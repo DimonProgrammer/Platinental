@@ -129,7 +129,7 @@
 ### TickTick
 
 - Claude управляет TickTick через MCP, пользователь НЕ открывает TickTick напрямую
-- project_id: `[TODO]`
+- project_id: `69d939a78f08df5cf3f4f543`
 - Приоритеты: 5=High, 3=Medium, 1=Low, 0=None
 - Даты ISO 8601, timezone Asia/Yekaterinburg
 - Подзадачи через checklist parameter
