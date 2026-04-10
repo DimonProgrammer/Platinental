@@ -1,0 +1,18 @@
+# Secrets
+.env
+.env.*
+memory/credentials.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Node (if applicable)
+node_modules/
