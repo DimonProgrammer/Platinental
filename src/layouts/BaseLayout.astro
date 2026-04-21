@@ -8,6 +8,7 @@ interface Props {
   description?: string;
   canonical?: string;
   ogImage?: string;
+  darkHero?: boolean;
 }
 
 const {
@@ -16,6 +17,7 @@ const {
   description = 'Platinental Казань — клиника пластической хирургии и эстетической медицины. Авторские методики. Клиника в Казани с 2011 года. Гармонизирующий подход.',
   canonical = 'https://kzn.platinental.ru/',
   ogImage = '/og-default.jpg',
+  darkHero = false,
 } = Astro.props;
 ---
 
@@ -99,7 +101,7 @@ const {
     })} />
   </head>
 
-  <body>
+  <body data-dark-hero={darkHero ? '' : undefined}>
     <div class="grain" aria-hidden="true"></div>
     <Navigation />
     <main id="main">

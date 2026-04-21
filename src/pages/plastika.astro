@@ -19,6 +19,7 @@ const surgeons = doctors.filter((d) => d.tags.includes('plastika'));
   title="Пластическая хирургия в Казани — клиника Platinental"
   description="27 операций пластической хирургии: ринопластика от 200 000 ₽, маммопластика от 450 000 ₽, блефаропластика от 60 000 ₽. 7 пластических хирургов, ASPS/ISAPS. Казань, запись +7 843 223-66-66."
   canonical="https://kzn.platinental.ru/plastika"
+  darkHero={true}
 >
   <!-- Hero -->
   <section class="p-hero" aria-labelledby="p-hero-title">
@@ -197,6 +198,9 @@ const surgeons = doctors.filter((d) => d.tags.includes('plastika'));
     gap: var(--space-5);
     align-items: center;
   }
+
+  .p-hero__actions :global(.btn--ghost) { color: rgba(255, 255, 255, 0.85); }
+  .p-hero__actions :global(.btn--ghost:hover) { color: var(--accent); }
 
   /* Ops: tabs + grid */
   .ops {

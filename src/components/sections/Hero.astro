@@ -1,0 +1,691 @@
+---
+import Button from '../primitives/Button.astro';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__canvas">
+    <svg class="hero__art" viewBox="0 0 1600 1200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="h1" cx="72%" cy="38%" r="72%">
+          <stop offset="0%" stop-color="#E8D7B8" stop-opacity="0.75"/>
+          <stop offset="55%" stop-color="#C4A882" stop-opacity="0.28"/>
+          <stop offset="100%" stop-color="#FFFDF8" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="h2" cx="18%" cy="78%" r="62%">
+          <stop offset="0%" stop-color="#F5F0EB" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#FFFDF8" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="h3" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FFFDF8"/>
+          <stop offset="100%" stop-color="#F5F0EB"/>
+        </linearGradient>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#h3)"/>
+      <rect width="100%" height="100%" fill="url(#h2)"/>
+      <rect width="100%" height="100%" fill="url(#h1)"/>
+      <g stroke="#0A0A0A" stroke-opacity="0.045" stroke-width="1" fill="none">
+        <line x1="600" y1="0" x2="600" y2="1200"/>
+        <line x1="988" y1="0" x2="988" y2="1200"/>
+        <line x1="0" y1="460" x2="1600" y2="460"/>
+        <line x1="0" y1="744" x2="1600" y2="744"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="hero__grid">
+    <div class="hero__copy" data-reveal>
+      <h1 id="hero-title" class="hero__title font-display">
+        Клиника пластической хирургии и&nbsp;косметологии в&nbsp;Казани
+      </h1>
+
+      <p class="hero__sub">
+        Авторские методики без&nbsp;шаблонов.<br/>
+        Клиника пластической хирургии в&nbsp;Казани с&nbsp;2011&nbsp;года.
+      </p>
+
+      <div class="hero__actions">
+        <Button href="#form" variant="primary" size="lg">Записаться на&nbsp;консультацию</Button>
+        <Button href="/prices" variant="ghost" size="lg">Узнать стоимость</Button>
+      </div>
+    </div>
+
+    <aside class="hero__ba" data-reveal data-ba-root aria-label="Примеры результатов">
+      <!-- Slider -->
+      <div class="hero__ba-slider" data-ba-slider>
+        <!-- Slides (before/after pairs) -->
+        <div class="hero__ba-slides" data-ba-slides>
+          <div class="hero__ba-slide" data-ba-slide data-procedure="Ринопластика" data-note="Результат через 3 месяца">
+            <div class="hero__ba-before ba-s1-before" aria-hidden="true"></div>
+            <div class="hero__ba-after ba-s1-after" data-ba-after aria-hidden="true"></div>
+          </div>
+          <div class="hero__ba-slide" data-ba-slide data-procedure="Блефаропластика" data-note="Верхние и нижние веки, через 2 недели">
+            <div class="hero__ba-before ba-s2-before" aria-hidden="true"></div>
+            <div class="hero__ba-after ba-s2-after" data-ba-after aria-hidden="true"></div>
+          </div>
+          <div class="hero__ba-slide" data-ba-slide data-procedure="Маммопластика" data-note="Индивидуальный дизайн, через 6 недель">
+            <div class="hero__ba-before ba-s3-before" aria-hidden="true"></div>
+            <div class="hero__ba-after ba-s3-after" data-ba-after aria-hidden="true"></div>
+          </div>
+          <div class="hero__ba-slide" data-ba-slide data-procedure="SMAS-лифтинг" data-note="Натуральный результат, через 1 месяц">
+            <div class="hero__ba-before ba-s4-before" aria-hidden="true"></div>
+            <div class="hero__ba-after ba-s4-after" data-ba-after aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Labels -->
+        <span class="hero__ba-tag" aria-hidden="true">До</span>
+        <span class="hero__ba-tag hero__ba-tag--after" aria-hidden="true">После</span>
+
+        <!-- Handle -->
+        <div class="hero__ba-handle" data-ba-handle aria-hidden="true">
+          <div class="hero__ba-line"></div>
+          <button class="hero__ba-btn" aria-label="Перетащить для сравнения">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="hero__ba-line"></div>
+        </div>
+      </div>
+
+      <!-- Caption + Nav -->
+      <div class="hero__ba-footer">
+        <div class="hero__ba-caption">
+          <span class="hero__ba-procedure font-display" data-ba-procedure>Ринопластика</span>
+          <span class="hero__ba-note" data-ba-note>Результат через 3 месяца. С согласия пациента.</span>
+        </div>
+        <div class="hero__ba-nav" aria-label="Переключить кейс">
+          <button class="hero__ba-nav-btn" data-ba-prev aria-label="Предыдущий">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="hero__ba-dots" data-ba-dots aria-hidden="true">
+            <span class="hero__ba-dot is-active"></span>
+            <span class="hero__ba-dot"></span>
+            <span class="hero__ba-dot"></span>
+            <span class="hero__ba-dot"></span>
+          </div>
+          <button class="hero__ba-nav-btn" data-ba-next aria-label="Следующий">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="hero__stats">
+    <div class="hero__stats-inner">
+      <div class="hero__stat">
+        <span class="hero__stat-dot" aria-hidden="true"></span>
+        <span class="hero__stat-text">Деликатная гармонизация</span>
+      </div>
+      <span class="hero__stat-divider" aria-hidden="true"></span>
+      <div class="hero__stat hero__stat--tooltip">
+        <span class="hero__stat-dot" aria-hidden="true"></span>
+        <button class="hero__stat-text hero__stat-trigger" aria-describedby="asps-tooltip">
+          Аккредитация ASPS, ISAPS
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <circle cx="6" cy="6" r="5.5" stroke="currentColor" stroke-opacity="0.45"/>
+            <path d="M6 5.5v3M6 3.8v.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="hero__tooltip" id="asps-tooltip" role="tooltip">
+          <p><strong>ASPS</strong> — Американское общество пластических хирургов. <strong>ISAPS</strong> — Международное общество эстетической пластической хирургии.</p>
+          <p>Членство подтверждает квалификацию хирурга на&nbsp;международном уровне и&nbsp;соответствие стандартам безопасности.</p>
+        </div>
+      </div>
+      <span class="hero__stat-divider" aria-hidden="true"></span>
+      <div class="hero__stat">
+        <span class="hero__stat-dot" aria-hidden="true"></span>
+        <span class="hero__stat-text">С&nbsp;2011 в&nbsp;Казани</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 0;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  @media (min-width: 768px) {
+    .hero { padding: calc(var(--nav-height) + var(--space-12)) 0 0; }
+  }
+
+  .hero__canvas {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
+  .hero__art { width: 100%; height: 100%; object-fit: cover; }
+
+  .hero__grid {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px var(--space-20);
+    display: grid;
+    gap: var(--space-12);
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  @media (min-width: 768px) { .hero__grid { padding: 0 32px var(--space-16); } }
+  @media (min-width: 1024px) {
+    .hero__grid {
+      grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+      gap: var(--space-12);
+      align-items: center;
+    }
+  }
+  @media (min-width: 1200px) { .hero__grid { padding: 0 48px var(--space-20); } }
+
+  .hero__eyebrow {
+    font-size: var(--text-caption);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--accent-hover);
+    margin-bottom: var(--space-8);
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 1rem + 2.8vw, 3.5rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.08;
+    letter-spacing: var(--tracking-display);
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+    max-width: 26ch;
+    text-wrap: balance;
+  }
+
+  .hero__sub {
+    font-size: var(--text-body);
+    line-height: 1.55;
+    color: var(--text-secondary);
+    max-width: 48ch;
+    margin-bottom: var(--space-8);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  /* Ghost-кнопка на тёмном фоне hero */
+  .hero__actions :global(.btn--ghost) {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .hero__actions :global(.btn--ghost:hover) {
+    color: var(--accent);
+  }
+
+  .hero__image {
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    max-height: 60vh;
+  }
+
+  .hero__image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #2B2620 0%, #4A3D33 55%, #6B5645 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: var(--space-6);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero__image-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nnn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nnn)'/%3E%3C/svg%3E");
+    opacity: 0.14;
+    mix-blend-mode: overlay;
+  }
+
+  .hero__image-label {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, 0.55);
+    position: relative;
+  }
+
+  .hero__stats {
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(255, 253, 248, 0.7);
+    backdrop-filter: blur(10px);
+  }
+
+  .hero__stats-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-5) 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  @media (min-width: 768px) { .hero__stats-inner { padding: var(--space-5) 32px; } }
+  @media (min-width: 1200px) { .hero__stats-inner { padding: var(--space-5) 48px; } }
+
+  .hero__stat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0 var(--space-8);
+    flex: 1;
+    justify-content: center;
+  }
+
+  .hero__stat-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .hero__stat-text,
+  .hero__stat-trigger {
+    font-size: var(--text-caption);
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: default;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    white-space: nowrap;
+  }
+
+  .hero__stat-trigger { cursor: help; }
+
+  .hero__stat--tooltip {
+    position: relative;
+  }
+
+  .hero__tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text-primary);
+    color: var(--text-inverse);
+    font-size: var(--text-caption);
+    line-height: 1.55;
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-sm);
+    width: 280px;
+    box-shadow: var(--shadow-md);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .hero__tooltip p { margin-bottom: var(--space-2); }
+  .hero__tooltip p:last-child { margin-bottom: 0; }
+  .hero__tooltip strong { color: var(--accent); }
+
+  .hero__tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--text-primary);
+  }
+
+  .hero__stat--tooltip:hover .hero__tooltip,
+  .hero__stat--tooltip:focus-within .hero__tooltip {
+    display: block;
+  }
+
+  .hero__stat-divider {
+    width: 1px;
+    align-self: stretch;
+    background: var(--border-subtle);
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .hero__stat-divider { display: block; }
+  }
+
+  /* ── Hero Before/After slider ──────────────────────────────────── */
+  .hero__ba {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    user-select: none;
+  }
+
+  .hero__ba-slider {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    aspect-ratio: 3 / 2;
+    cursor: col-resize;
+    box-shadow: var(--shadow-md);
+    max-height: 48vh;
+  }
+
+  @media (min-width: 1024px) {
+    .hero__ba-slider {
+      aspect-ratio: 4 / 3;
+      max-height: none;
+    }
+  }
+
+  /* Slides container */
+  .hero__ba-slides {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero__ba-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 480ms var(--ease-out);
+    pointer-events: none;
+  }
+
+  .hero__ba-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Before/After layers per slide */
+  .hero__ba-before,
+  .hero__ba-after {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Slide 1 — Ринопластика */
+  .ba-s1-before { background: linear-gradient(145deg, #2E2620 0%, #4A3C32 55%, #6A564A 100%); }
+  .ba-s1-after  { background: linear-gradient(145deg, #4A3820 0%, #6E5440 55%, #9A7A62 100%); }
+
+  /* Slide 2 — Блефаропластика */
+  .ba-s2-before { background: linear-gradient(145deg, #28282A 0%, #42404A 55%, #5A5866 100%); }
+  .ba-s2-after  { background: linear-gradient(145deg, #3A3428 0%, #5E5040 55%, #8A7260 100%); }
+
+  /* Slide 3 — Маммопластика */
+  .ba-s3-before { background: linear-gradient(145deg, #2A2824 0%, #46403A 55%, #6A6058 100%); }
+  .ba-s3-after  { background: linear-gradient(145deg, #48382C 0%, #705448 55%, #9A7A68 100%); }
+
+  /* Slide 4 — SMAS */
+  .ba-s4-before { background: linear-gradient(145deg, #2C2A28 0%, #504844 55%, #706860 100%); }
+  .ba-s4-after  { background: linear-gradient(145deg, #463830 0%, #6A5448 55%, #907668 100%); }
+
+  /* Clip-path for after — updated by JS */
+  .hero__ba-after {
+    clip-path: inset(0 50% 0 0);
+  }
+
+  /* Film grain */
+  .hero__ba-before::after,
+  .hero__ba-after::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nbg'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nbg)'/%3E%3C/svg%3E");
+    opacity: 0.16;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* До/После tags */
+  .hero__ba-tag {
+    position: absolute;
+    z-index: 5;
+    top: var(--space-4);
+    left: var(--space-4);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, 0.85);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 10px;
+    border-radius: 99px;
+    backdrop-filter: blur(4px);
+    pointer-events: none;
+  }
+
+  .hero__ba-tag--after {
+    left: auto;
+    right: var(--space-4);
+  }
+
+  /* Handle */
+  .hero__ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .hero__ba-line {
+    flex: 1;
+    width: 2px;
+    background: rgba(255, 253, 248, 0.85);
+  }
+
+  .hero__ba-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--surface-raised);
+    color: var(--text-primary);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    cursor: col-resize;
+    pointer-events: all;
+    flex-shrink: 0;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .hero__ba-slider:active .hero__ba-btn { transform: scale(0.9); }
+
+  /* Footer: caption + nav */
+  .hero__ba-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .hero__ba-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+
+  .hero__ba-procedure {
+    font-size: var(--text-lead);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-heading);
+    line-height: 1;
+    transition: opacity var(--duration-base) var(--ease-out);
+  }
+
+  .hero__ba-note {
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+    line-height: 1.4;
+    transition: opacity var(--duration-base) var(--ease-out);
+  }
+
+  /* Nav */
+  .hero__ba-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-shrink: 0;
+  }
+
+  .hero__ba-nav-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--border-soft);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-out),
+                border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .hero__ba-nav-btn:hover {
+    background: var(--text-primary);
+    border-color: var(--text-primary);
+    color: var(--text-inverse);
+  }
+
+  .hero__ba-dots {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .hero__ba-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border-soft);
+    transition: background-color var(--duration-base) var(--ease-out),
+                transform var(--duration-base) var(--ease-out);
+  }
+
+  .hero__ba-dot.is-active {
+    background: var(--accent-hover);
+    transform: scale(1.3);
+  }
+</style>
+
+<script>
+  const root = document.querySelector('[data-ba-root]') as HTMLElement | null;
+  if (!root) throw new Error('ba-root not found');
+
+  const slider   = root.querySelector('[data-ba-slider]') as HTMLElement;
+  const handle   = root.querySelector('[data-ba-handle]') as HTMLElement;
+  const slides   = Array.from(root.querySelectorAll('[data-ba-slide]')) as HTMLElement[];
+  const dots     = Array.from(root.querySelectorAll('[data-ba-dots] .hero__ba-dot')) as HTMLElement[];
+  const prevBtn  = root.querySelector('[data-ba-prev]') as HTMLButtonElement;
+  const nextBtn  = root.querySelector('[data-ba-next]') as HTMLButtonElement;
+  const procEl   = root.querySelector('[data-ba-procedure]') as HTMLElement;
+  const noteEl   = root.querySelector('[data-ba-note]') as HTMLElement;
+
+  let current = 0;
+  let dragging = false;
+  let autoTimer: ReturnType<typeof setInterval>;
+  const INTERVAL = 4500;
+
+  const getAfter = (slide: HTMLElement) =>
+    slide.querySelector('[data-ba-after]') as HTMLElement | null;
+
+  const setHandlePos = (pct: number) => {
+    const after = getAfter(slides[current]);
+    if (!after) return;
+    const clamped = Math.max(4, Math.min(96, pct));
+    after.style.clipPath = `inset(0 ${100 - clamped}% 0 0)`;
+    handle.style.left = `${clamped}%`;
+  };
+
+  const goTo = (idx: number) => {
+    slides[current].classList.remove('is-active');
+    dots[current]?.classList.remove('is-active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('is-active');
+    dots[current]?.classList.add('is-active');
+    // reset handle to 50% on slide change
+    handle.style.left = '50%';
+    const after = getAfter(slides[current]);
+    if (after) after.style.clipPath = 'inset(0 50% 0 0)';
+    // update caption
+    const proc = slides[current].dataset.procedure ?? '';
+    const note = slides[current].dataset.note ?? '';
+    procEl.style.opacity = '0';
+    noteEl.style.opacity = '0';
+    setTimeout(() => {
+      procEl.textContent = proc;
+      noteEl.textContent = note + '. С согласия пациента.';
+      procEl.style.opacity = '1';
+      noteEl.style.opacity = '1';
+    }, 160);
+  };
+
+  const startAuto = () => {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => { if (!dragging) goTo(current + 1); }, INTERVAL);
+  };
+
+  // Init
+  goTo(0);
+  startAuto();
+
+  // Nav buttons
+  prevBtn.addEventListener('click', () => { goTo(current - 1); startAuto(); });
+  nextBtn.addEventListener('click', () => { goTo(current + 1); startAuto(); });
+
+  // Drag-to-compare
+  const onDragStart = (clientX: number) => {
+    dragging = true;
+    setHandlePos(((clientX - slider.getBoundingClientRect().left) / slider.offsetWidth) * 100);
+  };
+  const onDragMove = (clientX: number) => {
+    if (!dragging) return;
+    setHandlePos(((clientX - slider.getBoundingClientRect().left) / slider.offsetWidth) * 100);
+  };
+  const onDragEnd = () => { dragging = false; };
+
+  slider.addEventListener('mousedown',  (e) => onDragStart((e as MouseEvent).clientX));
+  slider.addEventListener('touchstart', (e) => onDragStart((e as TouchEvent).touches[0].clientX), { passive: true });
+  window.addEventListener('mousemove',  (e) => onDragMove((e as MouseEvent).clientX));
+  window.addEventListener('touchmove',  (e) => onDragMove((e as TouchEvent).touches[0].clientX), { passive: true });
+  window.addEventListener('mouseup',    onDragEnd);
+  window.addEventListener('touchend',   onDragEnd);
+
+  // Pause auto on hover
+  root.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  root.addEventListener('mouseleave', startAuto);
+</script>

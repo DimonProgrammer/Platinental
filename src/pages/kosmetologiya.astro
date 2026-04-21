@@ -25,6 +25,7 @@ const cosmetologist = doctors.find((d) => d.slug === 'gritsay')!;
   title="Косметология в Казани — клиника Platinental"
   description="Косметология в Казани: ботулотоксин от 150 ₽/ед, контурная пластика от 22 000 ₽, CO₂-лазер, HELEO4. Косметолог работает в паре с хирургами. Запись: +7 843 223-66-66."
   canonical="https://kzn.platinental.ru/kosmetologiya"
+  darkHero={true}
 >
   <!-- Hero -->
   <section class="k-hero" aria-labelledby="k-hero-title">
@@ -212,6 +213,9 @@ const cosmetologist = doctors.find((d) => d.slug === 'gritsay')!;
     gap: var(--space-5);
     align-items: center;
   }
+
+  .k-hero__actions :global(.btn--ghost) { color: rgba(255, 255, 255, 0.85); }
+  .k-hero__actions :global(.btn--ghost:hover) { color: var(--accent); }
 
   /* Procedures */
   .procs {
