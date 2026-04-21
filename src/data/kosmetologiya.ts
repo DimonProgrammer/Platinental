@@ -52,9 +52,9 @@ export const kosmProcs: KosmProc[] = [
     badge: 'ИНЪЕКЦИИ',
     desc: 'Стимулирует регенерацию кожи собственной плазмой крови пациента.',
     prices: [
-      { label: '1 пробирка', value: '1 600 ₽' },
-      { label: '2 пробирки', value: '3 000 ₽' },
-      { label: '4 пробирки', value: '5 200 ₽' },
+      { label: '1 пробирка', value: 'от 1 600 ₽' },
+      { label: '2 пробирки', value: 'от 3 000 ₽' },
+      { label: '4 пробирки', value: 'от 5 200 ₽' },
     ],
     category: 'injection',
   },
