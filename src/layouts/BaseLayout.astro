@@ -1,0 +1,146 @@
+---
+import '../styles/global.css';
+import Navigation from '../components/layout/Navigation.astro';
+import Footer from '../components/layout/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Platinental Казань — клиника пластической хирургии и косметологии',
+  // TODO(verify-2011): Александра 21.04 поставила год основания (2011 vs 2013) под вопрос — перепроверить.
+  description = 'Platinental Казань — клиника пластической хирургии и эстетической медицины. Авторские методики. Клиника в Казани с 2011 года. Гармонизирующий подход.',
+  canonical = 'https://kzn.platinental.ru/',
+  ogImage = '/og-default.jpg',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#FFFDF8" />
+    <meta name="color-scheme" content="light" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="Platinental Казань" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts — Google Fonts с cyrillic subset -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Golos+Text:wght@400;500;600&display=swap"
+    />
+
+    <!-- Favicon placeholder — заменим на real favicon позже -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Figma capture: disable reveal animations when hash contains figmacapture -->
+    <script is:inline>
+      if (location.hash.includes('figmacapture')) {
+        document.documentElement.setAttribute('data-figma-export', '');
+      }
+    </script>
+    <style is:global>
+      [data-figma-export] [data-reveal],
+      [data-figma-export] [data-reveal].is-visible {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    </style>
+    <!-- Figma capture script (активируется только при наличии hash #figmacapture) -->
+
+
+    <!-- JSON-LD: MedicalClinic -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'MedicalClinic',
+      name: 'Platinental Казань',
+      description: description,
+      url: canonical,
+      telephone: '+7 843 223-66-66',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'ул. Карла Маркса, 48, корп. 1',
+        addressLocality: 'Казань',
+        addressRegion: 'Республика Татарстан',
+        addressCountry: 'RU',
+      },
+      openingHours: 'Mo-Su 09:00-20:00',
+      medicalSpecialty: ['PlasticSurgery', 'Dermatology'],
+      brand: {
+        '@type': 'Brand',
+        name: 'The Platinental',
+      },
+    })} />
+  </head>
+
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <Navigation />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Mark HTML ready for JS-only styles (prevents flash-of-hidden if JS fails)
+      document.documentElement.classList.add('js-ready');
+
+      const revealables = document.querySelectorAll('[data-reveal]');
+      const reveal = (el: Element) => el.classList.add('is-visible');
+
+      if ('IntersectionObserver' in window && revealables.length) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                reveal(entry.target);
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' },
+        );
+        revealables.forEach((el) => io.observe(el));
+
+        // Safety: reveal anything still hidden after 1.5s (covers full-page screenshots)
+        window.setTimeout(() => {
+          document.querySelectorAll('[data-reveal]:not(.is-visible)').forEach(reveal);
+        }, 1500);
+      } else {
+        revealables.forEach(reveal);
+      }
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  main {
+    padding-top: 0;
+  }
+</style>

@@ -1,0 +1,193 @@
+---
+const numbers = [
+  { big: '15+', label: 'Лет в&nbsp;эстетической медицине' },
+  { big: '2011', label: 'Год открытия в&nbsp;Казани' },
+  { big: '4', label: 'Направления&nbsp;— от&nbsp;хирургии до&nbsp;косметологии' },
+];
+---
+
+<section class="about" aria-label="О клинике">
+  <div class="about__inner">
+    <dl class="about__numbers">
+      {numbers.map((n, i) => (
+        <div class="about__num" data-reveal style={`transition-delay: ${i * 90}ms`}>
+          <dt class="about__num-big font-display">{n.big}</dt>
+          <dd class="about__num-label" set:html={n.label} />
+        </div>
+      ))}
+    </dl>
+
+    <div class="about__split">
+      <div class="about__text" data-reveal>
+        <p class="about__body">
+          Хорошее «дорого»&nbsp;— это&nbsp;эстетический вкус, уникальный опыт и&nbsp;репутация тех, кто&nbsp;умеет создавать идеальное по&nbsp;индивидуальным меркам. Страховка от&nbsp;ошибок и&nbsp;посредственности. И&nbsp;это особенно важно, потому&nbsp;что ошибки пластического хирурга видны всегда.
+        </p>
+        <blockquote class="about__quote">
+          <p class="font-display">«В&nbsp;мире, где&nbsp;избыточность является минимальным стандартом, деликатность ценится как&nbsp;новое сокровище»</p>
+          <footer>— Андрей Искорнев, основатель&nbsp;Platinental</footer>
+        </blockquote>
+        <a href="/about" class="about__link">
+          О&nbsp;клинике
+          <svg width="20" height="10" viewBox="0 0 20 10" aria-hidden="true" fill="none">
+            <path d="M1 5h18M14 1l5 4-5 4" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="about__photo" data-reveal aria-hidden="true">
+        <span class="about__photo-label">Фото клиники · интерьер</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--surface-alt);
+    padding: var(--space-20) 0;
+  }
+
+  @media (min-width: 1024px) { .about { padding: var(--space-24) 0; } }
+
+  .about__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .about__inner { padding: 0 32px; } }
+  @media (min-width: 1200px) { .about__inner { padding: 0 48px; } }
+
+  .about__numbers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8) var(--space-6);
+    padding-bottom: var(--space-16);
+    margin-bottom: var(--space-16);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  @media (min-width: 960px) {
+    .about__numbers {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+  }
+
+  .about__num {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .about__num-big {
+    font-size: clamp(2.5rem, 1.8rem + 2.5vw, 4rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent-hover);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+  }
+
+  .about__num-label {
+    font-size: var(--text-caption);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .about__split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  @media (min-width: 1024px) {
+    .about__split {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: var(--space-16);
+      align-items: center;
+    }
+  }
+
+  .about__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .about__body {
+    font-size: var(--text-body);
+    line-height: 1.6;
+    color: var(--text-primary);
+    max-width: 62ch;
+  }
+
+  .about__quote {
+    padding-left: var(--space-6);
+    border-left: 2px solid var(--accent);
+  }
+
+  .about__quote p {
+    font-size: var(--text-h5);
+    font-style: italic;
+    line-height: 1.35;
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-heading);
+    text-wrap: balance;
+  }
+
+  .about__quote footer {
+    margin-top: var(--space-4);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .about__link {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-ui);
+    font-weight: 500;
+    color: var(--accent-hover);
+    transition: gap var(--duration-base) var(--ease-out), color var(--duration-fast) var(--ease-out);
+  }
+
+  .about__link:hover {
+    gap: var(--space-5);
+    color: var(--text-primary);
+  }
+
+  .about__photo {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-md);
+    background: linear-gradient(160deg, #3A2F2A 0%, #6B5645 55%, #8C7354 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-6);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about__photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nab'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nab)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+  }
+
+  .about__photo-label {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, 0.55);
+    position: relative;
+  }
+</style>

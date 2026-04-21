@@ -1,0 +1,160 @@
+---
+const principles = [
+  {
+    n: '01',
+    title: 'Гармонизирующий подход',
+    text: 'Хирург не&nbsp;меняет внешность&nbsp;— он&nbsp;усиливает то, что&nbsp;уже есть. Никаких шаблонов&nbsp;— только индивидуальный подход: имплант, техника, реабилитация подбираются под&nbsp;конкретного человека (разная анатомия, разные аллергии, разные задачи).',
+    detail: 'Деликатность · пропорции',
+  },
+  {
+    n: '02',
+    title: 'Авторские методики',
+    text: 'У&nbsp;каждого хирурга клиники&nbsp;— своя школа, свой опыт и&nbsp;собственные техники. Кто-то учился в&nbsp;РНЦХ Петровского, кто-то&nbsp;— в&nbsp;Сеченовском, кто-то стажировался за&nbsp;рубежом. У&nbsp;каждого&nbsp;— свои авторские техники и&nbsp;патенты.',
+    detail: 'Авторские техники',
+  },
+  {
+    n: '03',
+    title: 'Квалификация хирургов',
+    text: 'Ординатура в&nbsp;РНИМУ&nbsp;Пирогова, Сеченовском университете, РНЦХ&nbsp;Петровского. Обучение в&nbsp;США, Швейцарии, Италии. Членство в&nbsp;ASPS и&nbsp;ISAPS.',
+    detail: 'ASPS · ISAPS · IPRAS',
+  },
+  {
+    n: '04',
+    title: 'Хирург + косметолог',
+    text: 'Хирург делает операцию. Косметолог готовит кожу к&nbsp;операции и&nbsp;ведёт реабилитацию&nbsp;— убирает рубцы, отёчность, улучшает качество кожи. Это союз, который даёт максимальный результат.',
+    detail: 'Полный цикл',
+  },
+];
+---
+
+<section class="principles" aria-labelledby="principles-title">
+  <div class="principles__inner">
+    <div class="principles__head" data-reveal>
+      <span class="eyebrow" id="principles-title">Почему Platinental</span>
+    </div>
+
+    <ol class="principles__list">
+      {principles.map((p, i) => (
+        <li class="principles__row" data-reveal style={`transition-delay: ${i * 80}ms`}>
+          <span class="principles__n font-display">{p.n}</span>
+          <h3 class="principles__title font-display" set:html={p.title} />
+          <p class="principles__text" set:html={p.text} />
+          <span class="principles__detail">{p.detail}</span>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .principles {
+    background: var(--surface-page);
+    padding: var(--space-16) 0;
+  }
+
+  @media (min-width: 1024px) { .principles { padding: var(--space-20) 0; } }
+
+  .principles__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .principles__inner { padding: 0 32px; } }
+  @media (min-width: 1200px) { .principles__inner { padding: 0 48px; } }
+
+  .principles__head {
+    margin-bottom: var(--space-6);
+  }
+
+  .principles__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .principles__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2) var(--space-6);
+    padding: var(--space-6) 0;
+    border-top: 1px solid var(--border-subtle);
+    position: relative;
+  }
+
+  .principles__list li:last-child {
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  @media (min-width: 768px) {
+    .principles__row {
+      grid-template-columns: 44px minmax(220px, 2.5fr) minmax(0, 5fr) 130px;
+      align-items: center;
+      gap: 0 var(--space-8);
+      padding: var(--space-5) 0;
+    }
+  }
+
+  /* Hover line accent */
+  .principles__row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: var(--accent);
+    transition: width var(--duration-base) var(--ease-out);
+  }
+
+  .principles__row:hover::before {
+    width: 2px;
+  }
+
+  .principles__n {
+    font-size: var(--text-body);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent-hover);
+    line-height: 1;
+    letter-spacing: 0;
+    display: block;
+  }
+
+  .principles__title {
+    font-size: clamp(1.1rem, 0.95rem + 0.75vw, 1.5rem);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: var(--tracking-heading);
+    color: var(--text-primary);
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 960px) {
+    .principles__title { white-space: normal; }
+  }
+
+  .principles__text {
+    font-size: var(--text-ui);
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .principles__detail {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: none;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    .principles__detail {
+      display: block;
+      text-align: right;
+    }
+  }
+</style>

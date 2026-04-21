@@ -1,0 +1,169 @@
+---
+import SectionHeader from '../primitives/SectionHeader.astro';
+
+const items = [
+  {
+    label: 'Адрес',
+    value: 'ул.&nbsp;Карла&nbsp;Маркса,&nbsp;48, корп.&nbsp;1<br/>Казань, 420015',
+  },
+  {
+    label: 'Телефон',
+    value: '<a href="tel:+78432236666">+7&nbsp;843&nbsp;223-66-66</a><br/><a href="tel:+78432366666">+7&nbsp;843&nbsp;236-66-66</a>',
+  },
+  {
+    label: 'Мессенджеры',
+    // TODO(wa-number): подтвердить, какой из двух номеров (+7 843 223-66-66 vs 236-66-66) подключён к WhatsApp — сейчас в ссылке использован первый.
+    value: '<a href="https://wa.me/78432236666" target="_blank" rel="noopener">WhatsApp</a>&ensp;·&ensp;<a href="https://max.ru/" target="_blank" rel="noopener">Max</a>&ensp;·&ensp;<a href="https://t.me/platinental_kazan" target="_blank" rel="noopener">Telegram</a>',
+  },
+  {
+    label: 'Режим работы',
+    value: 'Ежедневно&nbsp;9:00–20:00',
+  },
+];
+---
+
+<section class="contacts" id="contacts" aria-label="Контакты">
+  <div class="contacts__inner">
+    <SectionHeader title="Контакты" />
+
+    <div class="contacts__grid">
+      <dl class="contacts__list">
+        {items.map((item, i) => (
+          <div class="contact" data-reveal style={`transition-delay: ${i * 80}ms`}>
+            <dt class="contact__label">{item.label}</dt>
+            <dd class="contact__value" set:html={item.value} />
+          </div>
+        ))}
+      </dl>
+
+      <div class="contacts__map" data-reveal aria-hidden="true">
+        <div class="contacts__map-inner">
+          <span class="contacts__map-label">Яндекс.Карта</span>
+          <span class="contacts__map-coords">55.7887&nbsp;N · 49.1221&nbsp;E</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contacts {
+    background: var(--surface-page);
+    padding: var(--space-20) 0;
+  }
+
+  @media (min-width: 1024px) { .contacts { padding: var(--space-24) 0; } }
+
+  .contacts__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .contacts__inner { padding: 0 32px; } }
+  @media (min-width: 1200px) { .contacts__inner { padding: 0 48px; } }
+
+  .contacts__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  @media (min-width: 1024px) {
+    .contacts__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: var(--space-16);
+      align-items: start;
+    }
+  }
+
+  .contacts__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 560px) {
+    .contacts__list { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .contacts__list { grid-template-columns: 1fr; gap: var(--space-8); }
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .contact__label {
+    font-size: var(--text-caption);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .contact__value {
+    font-size: var(--text-body);
+    line-height: 1.5;
+    color: var(--text-primary);
+  }
+
+  .contact__value :global(a) {
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .contact__value :global(a:hover) {
+    border-bottom-color: var(--text-primary);
+  }
+
+  .contacts__map {
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-md);
+    background: linear-gradient(160deg, var(--color-sand-200) 0%, var(--color-cream-100) 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .contacts__map-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .contacts__map::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%230A0A0A' stroke-opacity='0.08' fill='none'%3E%3Cpath d='M0 70h400M0 150h400M0 210h400M80 0v260M180 0v260M280 0v260M340 0v260'/%3E%3Ccircle cx='230' cy='150' r='8' fill='%23C4A882' stroke='none'/%3E%3Ccircle cx='230' cy='150' r='16' stroke-opacity='0.3' stroke='%23C4A882'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover;
+    opacity: 0.7;
+  }
+
+  .contacts__map-label {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-lead);
+    color: var(--text-primary);
+  }
+
+  .contacts__map-coords {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+</style>

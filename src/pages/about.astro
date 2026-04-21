@@ -1,0 +1,607 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/primitives/Button.astro';
+import SectionHeader from '../components/primitives/SectionHeader.astro';
+import FinalCTA from '../components/sections/FinalCTA.astro';
+import Contacts from '../components/sections/Contacts.astro';
+
+const brandFacts = [
+  'Хирурги клиники обучались в&nbsp;РНИМУ им.&nbsp;Пирогова, 1-м&nbsp;МГМУ им.&nbsp;Сеченова и&nbsp;РНЦХ им.&nbsp;Петровского.',
+  'У&nbsp;наших хирургов&nbsp;— действующие членства ASPS, ISAPS, IPRAS и&nbsp;авторские методики.',
+  'Гармонизирующий подход: замеры и&nbsp;расчёт пропорций перед каждой операцией, единая методология для&nbsp;всех врачей клиники.',
+];
+
+const numbers = [
+  { big: '15+', label: 'Лет в&nbsp;эстетической медицине' },
+  { big: '2011', label: 'Год открытия в&nbsp;Казани' },
+  { big: '4', label: 'Направления&nbsp;— от&nbsp;хирургии до&nbsp;косметологии' },
+];
+
+const qualifications = [
+  {
+    title: 'РНИМУ им. Н.И. Пирогова',
+    desc: 'Ординатура по&nbsp;пластической хирургии.',
+  },
+  {
+    title: '1-й МГМУ им. И.М. Сеченова',
+    desc: 'Ординатура по&nbsp;пластической хирургии.',
+  },
+  {
+    title: 'РНЦХ им. Б.В. Петровского',
+    desc: 'Ординатура по&nbsp;пластической хирургии.',
+  },
+  {
+    title: 'Челюстно-лицевая хирургия',
+    desc: 'Отдельное направление&nbsp;— для&nbsp;сложных и&nbsp;вторичных ринопластик.',
+  },
+];
+
+const international = ['Чехия · Прага', 'Германия', 'Турция', 'Армения', 'Китай'];
+const memberships = ['ASPS', 'ISAPS', 'IPRAS'];
+---
+
+<BaseLayout
+  title="О клинике Platinental в Казани — пластическая хирургия и косметология"
+  description="Клиника Platinental в Казани: 15+ лет в эстетической медицине, авторские методики хирургов. Работаем с 2011 года."
+  canonical="https://kzn.platinental.ru/about"
+>
+  <!-- Hero -->
+  <section class="ab-hero" aria-labelledby="ab-title">
+    <div class="ab-hero__inner" data-reveal>
+      <span class="eyebrow ab-hero__eyebrow">PLATINENTAL КАЗАНЬ</span>
+      <h1 id="ab-title" class="ab-hero__title font-display">
+        Ум, честь и&nbsp;совесть современной <em>пластической хирургии</em>
+      </h1>
+      <p class="ab-hero__lede">
+        Концепция интеллигентной и&nbsp;уважительной гармонизации внешности.
+      </p>
+      <div class="ab-hero__actions">
+        <Button href="/#form" variant="inverse" size="lg">Записаться на&nbsp;консультацию</Button>
+        <Button href="/doctors" variant="ghost" size="lg" class="ab-hero__ghost">Врачи клиники</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy" aria-label="Философия клиники">
+    <div class="philosophy__inner">
+      <div class="philosophy__body" data-reveal>
+        <blockquote class="philosophy__quote font-display">
+          «Мы&nbsp;не&nbsp;создаём абстрактно красивые лица. Мы&nbsp;создаём образы с&nbsp;характером&nbsp;— запоминающиеся, со&nbsp;своей индивидуальностью, усиливающие звучание привлекательных черт»
+        </blockquote>
+        <div class="philosophy__text">
+          <p>
+            С&nbsp;момента основания клиника придерживается одного принципа: чтобы на&nbsp;выходе получить превосходные пропорции, мы&nbsp;всегда начинаем с&nbsp;замеров.
+          </p>
+          <p>
+            Хирург не&nbsp;просто выполняет операцию, а&nbsp;проектирует результат. Замеры, расчёт пропорций, индивидуальный план&nbsp;— и&nbsp;только потом скальпель. У&nbsp;каждого врача клиники своя школа, свой опыт и&nbsp;авторские техники&nbsp;— и&nbsp;при этом общая философия: деликатная, уважительная гармонизация.
+          </p>
+          <p>
+            Идейный вдохновитель этой философии&nbsp;— Андрей Искорнев, один из&nbsp;учредителей клиники, хирург, оперирующий в&nbsp;Москве и&nbsp;Лос-Анджелесе, действительный член ASPS, ISAPS и&nbsp;IPRAS.
+          </p>
+        </div>
+        <div class="philosophy__actions">
+          <Button href="/doctors" variant="primary" size="md">Познакомиться с&nbsp;врачами</Button>
+          <Button href="/plastika" variant="secondary" size="md">Наши направления</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value -->
+  <section class="value" aria-label="Ценность клиники">
+    <div class="value__inner" data-reveal>
+      <h2 class="value__title font-display">Разница между «дорого» и&nbsp;«дешево»</h2>
+      <div class="value__text">
+        <p>
+          Хорошее «дорого» не&nbsp;ограничивается персональным подходом и&nbsp;красивым интерьером. В&nbsp;«дорого» вы&nbsp;платите за&nbsp;эстетический вкус, уникальный опыт и&nbsp;репутацию тех, кто умеет создавать идеальное по&nbsp;индивидуальным меркам.
+        </p>
+        <p>
+          Вы&nbsp;покупаете годы учёбы и&nbsp;упорного труда&nbsp;— страховку от&nbsp;ошибок и&nbsp;посредственности. И&nbsp;это особенно важно: ошибки пластического хирурга видны всегда.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand facts -->
+  <section class="brand" aria-label="О клинике">
+    <div class="brand__inner">
+      <SectionHeader eyebrow="О клинике" title="Что стоит за&nbsp;каждой операцией" />
+
+      <ul class="brand__facts">
+        {brandFacts.map((f, i) => (
+          <li class="brand__fact" data-reveal style={`transition-delay: ${i * 80}ms`} set:html={f} />
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Numbers strip -->
+  <section class="ab-numbers" aria-label="Цифры клиники">
+    <div class="ab-numbers__inner">
+      <dl class="ab-numbers__grid">
+        {numbers.map((n, i) => (
+          <div class="ab-numbers__item" data-reveal style={`transition-delay: ${i * 90}ms`}>
+            <dt class="ab-numbers__big font-display">{n.big}</dt>
+            <dd class="ab-numbers__label" set:html={n.label} />
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- Qualifications -->
+  <section class="qual" aria-label="Образование и аккредитация">
+    <div class="qual__inner">
+      <SectionHeader eyebrow="Квалификация" title="Образование и&nbsp;аккредитация" />
+
+      <div class="qual__grid">
+        <ol class="qual__list">
+          {qualifications.map((q, i) => (
+            <li class="qual__item" data-reveal style={`transition-delay: ${i * 70}ms`}>
+              <h3 class="qual__item-title font-display">{q.title}</h3>
+              <p class="qual__item-desc" set:html={q.desc} />
+            </li>
+          ))}
+        </ol>
+
+        <aside class="qual__sidebar">
+          <div class="qual__sub">
+            <h4 class="qual__sub-title">Международное обучение</h4>
+            <div class="qual__tags">
+              {international.map((t) => <span class="qual__tag">{t}</span>)}
+            </div>
+          </div>
+
+          <div class="qual__sub">
+            <h4 class="qual__sub-title">Членство</h4>
+            <div class="qual__tags">
+              {memberships.map((t) => <span class="qual__tag qual__tag--accent">{t}</span>)}
+            </div>
+          </div>
+
+          <div class="qual__sub">
+            <h4 class="qual__sub-title">Патенты</h4>
+            <p class="qual__sub-text">
+              Авторские методики, разработанные хирургами клиники. Детали&nbsp;— на&nbsp;страницах конкретных врачей.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder quote -->
+  <section class="founder" aria-label="Цитата основателя">
+    <div class="founder__inner" data-reveal>
+      <blockquote class="founder__text font-display">
+        «В&nbsp;мире, где избыточность является минимальным стандартом, деликатность ценится как новое сокровище. Именно так мы&nbsp;относимся к&nbsp;внешности наших пациентов. Внося едва заметные коррективы, мы&nbsp;создаём образ, в&nbsp;котором вам будет комфортно покорять новый мир.»
+      </blockquote>
+      <footer class="founder__author">
+        Андрей Искорнев, один из&nbsp;учредителей и&nbsp;идейный вдохновитель · Член ASPS, ISAPS, IPRAS
+      </footer>
+      <Button href="/#form" variant="inverse" size="lg" class="founder__cta">Записаться на&nbsp;консультацию</Button>
+    </div>
+  </section>
+
+  <FinalCTA />
+  <Contacts />
+</BaseLayout>
+
+<style>
+  /* Hero: dark immersive */
+  .ab-hero {
+    background: var(--surface-inverse);
+    color: var(--text-inverse);
+    padding: calc(var(--nav-height-mobile) + var(--space-16)) 0 var(--space-20);
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .ab-hero { padding: calc(var(--nav-height) + var(--space-20)) 0 var(--space-24); }
+  }
+
+  .ab-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 70% 30%, rgba(196, 168, 130, 0.18), transparent 55%),
+      radial-gradient(circle at 20% 80%, rgba(196, 168, 130, 0.08), transparent 50%);
+    pointer-events: none;
+  }
+
+  .ab-hero__inner {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) { .ab-hero__inner { padding: 0 32px; } }
+
+  .ab-hero__eyebrow { color: var(--accent) !important; }
+
+  .ab-hero__title {
+    font-size: clamp(2rem, 1.2rem + 3vw, 3.75rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.05;
+    letter-spacing: var(--tracking-display);
+    color: var(--text-inverse);
+    margin: var(--space-6) 0 var(--space-5);
+    text-wrap: balance;
+    max-width: 24ch;
+  }
+
+  .ab-hero__title em {
+    color: var(--accent);
+    font-weight: 300;
+  }
+
+  .ab-hero__lede {
+    font-size: var(--text-lead);
+    line-height: 1.5;
+    color: var(--text-inverse-muted);
+    max-width: 52ch;
+    margin-bottom: var(--space-10);
+  }
+
+  .ab-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ab-hero__ghost { color: var(--text-inverse) !important; }
+
+  /* Philosophy */
+  .philosophy {
+    background: var(--surface-page);
+    padding: var(--space-20) 0;
+  }
+
+  @media (min-width: 1024px) { .philosophy { padding: var(--space-24) 0; } }
+
+  .philosophy__inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .philosophy__inner { padding: 0 32px; } }
+
+  .philosophy__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .philosophy__quote {
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 1rem + 1.6vw, 2.25rem);
+    line-height: 1.3;
+    letter-spacing: var(--tracking-heading);
+    color: var(--text-primary);
+    padding-left: var(--space-6);
+    border-left: 2px solid var(--accent);
+    text-wrap: balance;
+  }
+
+  .philosophy__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 62ch;
+  }
+
+  .philosophy__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  /* Value */
+  .value {
+    background: var(--surface-alt);
+    padding: var(--space-16) 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  @media (min-width: 1024px) { .value { padding: var(--space-20) 0; } }
+
+  .value__inner {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) { .value__inner { padding: 0 32px; } }
+
+  .value__title {
+    font-size: clamp(1.75rem, 1rem + 2vw, 2.5rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-display);
+    line-height: 1.1;
+    margin-bottom: var(--space-6);
+    text-wrap: balance;
+  }
+
+  .value__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    color: var(--text-secondary);
+    text-align: left;
+  }
+
+  /* Brand */
+  .brand {
+    background: var(--surface-page);
+    padding: var(--space-20) 0;
+  }
+
+  @media (min-width: 1024px) { .brand { padding: var(--space-24) 0; } }
+
+  .brand__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .brand__inner { padding: 0 32px; } }
+  @media (min-width: 1200px) { .brand__inner { padding: 0 48px; } }
+
+  .brand__facts {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 72ch;
+    margin: var(--space-10) auto 0;
+  }
+
+  .brand__fact {
+    position: relative;
+    padding: var(--space-4) 0 var(--space-4) var(--space-6);
+    border-top: 1px solid var(--border-subtle);
+    font-size: var(--text-body);
+    line-height: 1.55;
+    color: var(--text-primary);
+  }
+
+  .brand__fact::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: calc(50% - 3px);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .brand__facts li:last-child {
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  /* Numbers */
+  .ab-numbers {
+    background: var(--surface-inverse);
+    color: var(--text-inverse);
+    padding: var(--space-14) 0;
+  }
+
+  .ab-numbers__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .ab-numbers__inner { padding: 0 32px; } }
+  @media (min-width: 1200px) { .ab-numbers__inner { padding: 0 48px; } }
+
+  .ab-numbers__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 720px) { .ab-numbers__grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .ab-numbers__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    text-align: left;
+  }
+
+  .ab-numbers__big {
+    font-size: clamp(2.5rem, 1.5rem + 2.5vw, 3.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+  }
+
+  .ab-numbers__label {
+    font-size: var(--text-caption);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-inverse-muted);
+    line-height: 1.45;
+  }
+
+  /* Qual */
+  .qual {
+    background: var(--surface-alt);
+    padding: var(--space-20) 0;
+  }
+
+  @media (min-width: 1024px) { .qual { padding: var(--space-24) 0; } }
+
+  .qual__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .qual__inner { padding: 0 32px; } }
+  @media (min-width: 1200px) { .qual__inner { padding: 0 48px; } }
+
+  .qual__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  @media (min-width: 960px) {
+    .qual__grid {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: var(--space-12);
+    }
+  }
+
+  .qual__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .qual__item {
+    padding: var(--space-5) 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .qual__list li:last-child { border-bottom: 1px solid var(--border-subtle); }
+
+  .qual__item-title {
+    font-size: var(--text-lead);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-heading);
+    margin-bottom: var(--space-2);
+  }
+
+  .qual__item-desc {
+    font-size: var(--text-ui);
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  .qual__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .qual__sub-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--accent-hover);
+    margin-bottom: var(--space-3);
+  }
+
+  .qual__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .qual__tag {
+    display: inline-flex;
+    padding: 6px 14px;
+    font-size: var(--text-caption);
+    color: var(--text-primary);
+    border: 1px solid var(--border-soft);
+    border-radius: 99px;
+    background: var(--surface-page);
+  }
+
+  .qual__tag--accent {
+    border-color: var(--accent);
+    color: var(--accent-hover);
+    font-weight: 500;
+  }
+
+  .qual__sub-text {
+    font-size: var(--text-ui);
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  /* Founder */
+  .founder {
+    background: var(--surface-inverse);
+    color: var(--text-inverse);
+    padding: var(--space-24) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .founder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 50% 40%, rgba(196, 168, 130, 0.14), transparent 60%);
+    pointer-events: none;
+  }
+
+  .founder__inner {
+    position: relative;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 768px) { .founder__inner { padding: 0 32px; } }
+
+  .founder__text {
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.25rem, 0.9rem + 1.7vw, 2rem);
+    line-height: 1.4;
+    letter-spacing: var(--tracking-heading);
+    color: var(--text-inverse);
+    text-wrap: pretty;
+  }
+
+  .founder__author {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-inverse-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .founder__cta { margin-top: var(--space-2); }
+</style>

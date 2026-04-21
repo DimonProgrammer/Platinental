@@ -1,0 +1,387 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/primitives/Button.astro';
+import FinalCTA from '../components/sections/FinalCTA.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import Contacts from '../components/sections/Contacts.astro';
+import { priceCategories } from '../data/prices';
+---
+
+<BaseLayout
+  title="Цены на услуги клиники Platinental в Казани — полный прайс-лист"
+  description="Прайс-лист клиники Platinental: пластическая хирургия, косметология, консультации. Ринопластика от 200 000 ₽, маммопластика от 450 000 ₽, ботокс от 150 ₽/ед."
+  canonical="https://kzn.platinental.ru/prices"
+>
+  <!-- Hero -->
+  <section class="pr-hero" aria-labelledby="pr-title">
+    <div class="pr-hero__inner" data-reveal>
+      <span class="eyebrow">Цены</span>
+      <h1 id="pr-title" class="pr-hero__title font-display">
+        Цены на&nbsp;услуги клиники Platinental в&nbsp;Казани
+      </h1>
+      <p class="pr-hero__lede">
+        Стоимость зависит от&nbsp;категории сложности&nbsp;— её&nbsp;определяет хирург на&nbsp;консультации. Первая категория&nbsp;— стандартная анатомия, вторая и&nbsp;третья&nbsp;— осложнённые случаи или&nbsp;повторные операции.
+      </p>
+      <p class="pr-hero__lede">
+        Все цены указаны от&nbsp;минимального порога. Точная стоимость определяется хирургом на&nbsp;консультации после анализа анатомии и&nbsp;сложности случая.
+      </p>
+    </div>
+  </section>
+
+  <!-- Tabs + price tables -->
+  <section class="pr-body" aria-label="Прайс-лист">
+    <div class="pr-body__inner">
+      <div class="pr-tabs" role="tablist" aria-label="Разделы прайса">
+        {priceCategories.map((cat, i) => (
+          <button
+            type="button"
+            class:list={['pr-tab', i === 0 && 'is-active']}
+            data-tab={cat.key}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+          >
+            {cat.label}
+            {cat.count && <span class="pr-tab__count">{cat.count}</span>}
+          </button>
+        ))}
+      </div>
+
+      {priceCategories.map((cat, i) => (
+        <div class:list={['pr-panel', i === 0 && 'is-active']} data-panel={cat.key} role="tabpanel">
+          {cat.groups.map((group) => (
+            <div class="pr-group" data-reveal>
+              <h2 class="pr-group__title font-display">{group.title}</h2>
+              <div class="pr-table-wrap">
+                <table class="pr-table">
+                  {group.columns ? (
+                    <thead>
+                      <tr>
+                        {group.columns.map((col) => (
+                          <th style={col.width ? `width:${col.width}` : ''} class:list={[col.align === 'right' && 'pr-table__right']}>
+                            {col.label}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                  ) : (
+                    <thead>
+                      <tr>
+                        <th style="width:70%">Процедура</th>
+                        <th class="pr-table__right">Стоимость</th>
+                      </tr>
+                    </thead>
+                  )}
+                  <tbody>
+                    {group.rows.map((row) => (
+                      <tr>
+                        <td class="pr-table__service">
+                          {row.service}
+                          {row.sub && <span class="pr-table__sub">{row.sub}</span>}
+                          {row.code && <span class="pr-table__code">{row.code}</span>}
+                        </td>
+                        {group.columns ? (
+                          group.columns.slice(1).map((col) => {
+                            const val = row[col.key as keyof typeof row];
+                            return (
+                              <td class:list={['pr-table__price', val === '—' && 'is-empty']}>
+                                {val}
+                              </td>
+                            );
+                          })
+                        ) : (
+                          <td class="pr-table__price">{row.price}</td>
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+
+      <p class="pr-body__disclaimer">
+        Цены носят информационный характер и&nbsp;не&nbsp;являются публичной офертой. Точная стоимость определяется врачом на&nbsp;консультации. Имеются противопоказания, необходима консультация специалиста.
+      </p>
+    </div>
+  </section>
+
+  <FinalCTA />
+  <FAQ />
+  <Contacts />
+</BaseLayout>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-tab]');
+  const panels = document.querySelectorAll<HTMLElement>('[data-panel]');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach((t) => {
+        const active = t === tab;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-selected', String(active));
+      });
+      panels.forEach((p) => {
+        p.classList.toggle('is-active', p.dataset.panel === target);
+      });
+      // scroll to top of body section
+      document.querySelector('.pr-body__inner')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+<style>
+  /* Hero */
+  .pr-hero {
+    background: var(--surface-page);
+    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 var(--space-16);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  @media (min-width: 768px) {
+    .pr-hero { padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-20); }
+  }
+
+  .pr-hero__inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) { .pr-hero__inner { padding: 0 32px; } }
+
+  .pr-hero__title {
+    font-size: clamp(1.75rem, 1rem + 2.6vw, 3rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.1;
+    letter-spacing: var(--tracking-display);
+    color: var(--text-primary);
+    margin: var(--space-6) 0 var(--space-5);
+    text-wrap: balance;
+  }
+
+  .pr-hero__lede {
+    font-size: var(--text-body);
+    line-height: 1.55;
+    color: var(--text-secondary);
+    max-width: 64ch;
+    margin: 0 auto var(--space-8);
+  }
+
+  .pr-hero__quote {
+    font-size: var(--text-lead);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent-hover);
+    line-height: 1.35;
+    padding: var(--space-5) var(--space-6);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--surface-alt);
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  /* Tabs */
+  .pr-body {
+    background: var(--surface-page);
+    padding: var(--space-12) 0 var(--space-20);
+  }
+
+  @media (min-width: 1024px) { .pr-body { padding: var(--space-16) 0 var(--space-24); } }
+
+  .pr-body__inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .pr-body__inner { padding: 0 32px; } }
+
+  .pr-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-10);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--border-subtle);
+    position: sticky;
+    top: var(--nav-height);
+    background: var(--surface-page);
+    z-index: 5;
+    padding-top: var(--space-4);
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .pr-tabs {
+      margin-left: -32px;
+      margin-right: -32px;
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+  }
+
+  .pr-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    height: 40px;
+    padding: 0 18px;
+    background: transparent;
+    border: 1px solid var(--border-soft);
+    border-radius: 99px;
+    font-family: inherit;
+    font-size: var(--text-caption);
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-out),
+                border-color var(--duration-fast) var(--ease-out),
+                color var(--duration-fast) var(--ease-out);
+    white-space: nowrap;
+  }
+
+  .pr-tab:hover { border-color: var(--text-primary); color: var(--text-primary); }
+
+  .pr-tab.is-active {
+    background: var(--text-primary);
+    border-color: var(--text-primary);
+    color: var(--text-inverse);
+  }
+
+  .pr-tab__count {
+    font-size: 11px;
+    opacity: 0.65;
+  }
+
+  /* Panels */
+  .pr-panel { display: none; }
+  .pr-panel.is-active { display: block; }
+
+  .pr-group {
+    margin-bottom: var(--space-12);
+  }
+
+  .pr-group__title {
+    font-size: var(--text-h4);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-heading);
+    line-height: 1.1;
+    margin-bottom: var(--space-5);
+    text-wrap: balance;
+  }
+
+  /* Table */
+  .pr-table-wrap {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--surface-raised);
+  }
+
+  .pr-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-ui);
+  }
+
+  .pr-table thead {
+    background: var(--surface-alt);
+  }
+
+  .pr-table th {
+    text-align: left;
+    font-weight: 500;
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+    padding: var(--space-4) var(--space-5);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .pr-table__right { text-align: right; }
+
+  .pr-table tbody tr {
+    border-bottom: 1px solid var(--border-subtle);
+    transition: background-color var(--duration-fast) var(--ease-out);
+  }
+
+  .pr-table tbody tr:last-child { border-bottom: none; }
+
+  .pr-table tbody tr:hover {
+    background: var(--surface-alt);
+  }
+
+  .pr-table td {
+    padding: var(--space-4) var(--space-5);
+    vertical-align: baseline;
+  }
+
+  .pr-table__service {
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  .pr-table__sub {
+    color: var(--text-muted);
+    font-size: var(--text-caption);
+    display: block;
+    margin-top: 2px;
+  }
+
+  @media (min-width: 768px) {
+    .pr-table__sub {
+      display: inline;
+      margin-top: 0;
+    }
+  }
+
+  .pr-table__code {
+    display: inline-block;
+    margin-left: var(--space-2);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    opacity: 0.7;
+    font-weight: 400;
+    font-style: normal;
+    vertical-align: middle;
+  }
+
+  .pr-table__price {
+    text-align: right;
+    font-weight: 500;
+    color: var(--accent-hover);
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  .pr-table__price.is-empty {
+    color: var(--color-ink-300);
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .pr-body__disclaimer {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border-subtle);
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+    line-height: 1.55;
+    max-width: 72ch;
+  }
+</style>
