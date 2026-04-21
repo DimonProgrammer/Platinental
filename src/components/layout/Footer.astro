@@ -1,0 +1,287 @@
+---
+const year = new Date().getFullYear();
+
+const links = [
+  {
+    title: 'Направления',
+    items: [
+      { href: '/plastika', label: 'Пластическая хирургия' },
+      { href: '/kosmetologiya', label: 'Косметология' },
+      { href: '/kosmecevtika', label: 'Космецевтика' },
+    ],
+  },
+  {
+    title: 'Клиника',
+    items: [
+      { href: '/about', label: 'О Platinental' },
+      { href: '/doctors', label: 'Врачи' },
+      { href: '/prices', label: 'Цены' },
+      { href: '/documents', label: 'Документы' },
+      { href: '/contacts', label: 'Контакты' },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <a href="/" aria-label="Platinental — на главную">
+        <img src="/logo-white.svg" alt="Platinental" class="footer__logo" width="160" height="34" />
+      </a>
+      <p class="footer__tagline">
+        Клиника пластической хирургии<br/>и&nbsp;косметологии в&nbsp;Казани
+      </p>
+
+      <address class="footer__contacts">
+        <div class="footer__contact-row">
+          <span class="footer__contact-label">Адрес</span>
+          <span>ул.&nbsp;Карла&nbsp;Маркса,&nbsp;48, корп.&nbsp;1, Казань</span>
+        </div>
+        <div class="footer__contact-row">
+          <span class="footer__contact-label">Часы</span>
+          <span>Ежедневно 09:00–20:00</span>
+        </div>
+        <div class="footer__contact-row">
+          <span class="footer__contact-label">Телефон</span>
+          <a href="tel:+78432236666">+7&nbsp;843&nbsp;223-66-66</a>
+        </div>
+        <div class="footer__messengers">
+          <a href="https://max.ru/" target="_blank" rel="noopener" class="footer__messenger" aria-label="Max">
+            <img src="/logo-max.svg" alt="" width="20" height="20" class="footer__messenger-icon" />
+            Max
+          </a>
+          <a href="https://t.me/platinental_kazan" target="_blank" rel="noopener" class="footer__messenger" aria-label="Telegram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+            Telegram
+          </a>
+        </div>
+      </address>
+    </div>
+
+    {links.map((col) => (
+      <div class="footer__col">
+        <h3 class="footer__col-title">{col.title}</h3>
+        <ul>
+          {col.items.map((item) => (
+            <li><a href={item.href}>{item.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <div class="footer__disclaimer">
+    <p>
+      Имеются противопоказания. Необходима консультация специалиста. Информация на&nbsp;сайте не&nbsp;является публичной офертой.
+    </p>
+    <p>
+      Лицензия ЛО-16-01-003022. ООО&nbsp;«Платинентал Казань».
+    </p>
+  </div>
+
+  <div class="footer__base">
+    <span>© {year} Platinental Казань</span>
+    <nav aria-label="Юридическая информация">
+      <a href="/privacy">Политика конфиденциальности</a>
+      <a href="/terms">Пользовательское соглашение</a>
+      <a href="/consent">Согласие на&nbsp;обработку&nbsp;ПДн</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--surface-inverse);
+    color: var(--text-inverse);
+    padding: var(--space-20) 0 var(--space-10);
+  }
+
+  .footer__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    gap: var(--space-10) var(--space-12);
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Brand spans full width on mobile */
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: 768px) {
+    .footer__inner {
+      padding: 0 32px;
+      grid-template-columns: minmax(360px, 1.6fr) 1fr 1fr;
+      gap: var(--space-10) var(--space-16);
+    }
+    .footer__brand {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .footer__inner { padding: 0 48px; }
+  }
+
+  .footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    align-items: flex-start;
+  }
+
+  .footer__logo {
+    display: block;
+    height: 34px;
+    width: auto;
+    margin-left: -2px; /* optical alignment */
+  }
+
+  .footer__tagline {
+    font-size: var(--text-ui);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    margin-bottom: var(--space-3);
+  }
+
+  .footer__contacts {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .footer__contact-row {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: var(--space-6);
+    align-items: baseline;
+    font-size: var(--text-ui);
+  }
+
+  .footer__contact-label {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .footer__contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .footer__contact-links a,
+  .footer__contacts a {
+    color: rgba(255, 255, 255, 0.9);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .footer__contact-links a:hover,
+  .footer__contacts a:hover {
+    color: var(--accent);
+  }
+
+  .footer__messengers {
+    display: flex;
+    gap: var(--space-6);
+    margin-top: var(--space-4);
+  }
+
+  .footer__messenger {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-ui);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .footer__messenger:hover { color: var(--accent); }
+
+  .footer__col-title {
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: var(--space-5);
+  }
+
+  .footer__col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer__col a {
+    font-size: var(--text-ui);
+    color: rgba(255, 255, 255, 0.9);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .footer__col a:hover { color: var(--accent); }
+
+  .footer__disclaimer {
+    max-width: var(--container-max);
+    margin: var(--space-14) auto 0;
+    padding: var(--space-6) 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  @media (min-width: 768px) { .footer__disclaimer { padding: var(--space-6) 32px 0; } }
+  @media (min-width: 1200px) { .footer__disclaimer { padding: var(--space-6) 48px 0; } }
+
+  .footer__base {
+    max-width: var(--container-max);
+    margin: var(--space-5) auto 0;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  @media (min-width: 768px) {
+    .footer__base {
+      padding: 0 32px;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  @media (min-width: 1200px) { .footer__base { padding: 0 48px; } }
+
+  .footer__base nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+  }
+
+  .footer__base a {
+    color: rgba(255, 255, 255, 0.5);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .footer__base a:hover { color: var(--accent); }
+</style>
