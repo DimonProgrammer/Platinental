@@ -11,12 +11,6 @@ const brandFacts = [
   'Гармонизирующий подход: замеры и&nbsp;расчёт пропорций перед каждой операцией, единая методология для&nbsp;всех врачей клиники.',
 ];
 
-const numbers = [
-  { big: '15+', label: 'Лет в&nbsp;эстетической медицине' },
-  { big: '2011', label: 'Год открытия в&nbsp;Казани' },
-  { big: '4', label: 'Направления&nbsp;— от&nbsp;хирургии до&nbsp;косметологии' },
-];
-
 const qualifications = [
   {
     title: 'РНИМУ им. Н.И. Пирогова',
@@ -42,7 +36,7 @@ const memberships = ['ASPS', 'ISAPS', 'IPRAS'];
 
 <BaseLayout
   title="О клинике Platinental в Казани — пластическая хирургия и косметология"
-  description="Клиника Platinental в Казани: 15+ лет в эстетической медицине, авторские методики хирургов. Работаем с 2011 года."
+  description="Клиника Platinental в Казани: пластическая хирургия и косметология, хирурги с международной аккредитацией ASPS/ISAPS, авторские методики."
   canonical="https://kzn.platinental.ru/about"
   darkHero={true}
 >
@@ -114,20 +108,6 @@ const memberships = ['ASPS', 'ISAPS', 'IPRAS'];
           <li class="brand__fact" data-reveal style={`transition-delay: ${i * 80}ms`} set:html={f} />
         ))}
       </ul>
-    </div>
-  </section>
-
-  <!-- Numbers strip -->
-  <section class="ab-numbers" aria-label="Цифры клиники">
-    <div class="ab-numbers__inner">
-      <dl class="ab-numbers__grid">
-        {numbers.map((n, i) => (
-          <div class="ab-numbers__item" data-reveal style={`transition-delay: ${i * 90}ms`}>
-            <dt class="ab-numbers__big font-display">{n.big}</dt>
-            <dd class="ab-numbers__label" set:html={n.label} />
-          </div>
-        ))}
-      </dl>
     </div>
   </section>
 
@@ -402,55 +382,6 @@ const memberships = ['ASPS', 'ISAPS', 'IPRAS'];
 
   .brand__facts li:last-child {
     border-bottom: 1px solid var(--border-subtle);
-  }
-
-  /* Numbers */
-  .ab-numbers {
-    background: var(--surface-inverse);
-    color: var(--text-inverse);
-    padding: var(--space-14) 0;
-  }
-
-  .ab-numbers__inner {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  @media (min-width: 768px) { .ab-numbers__inner { padding: 0 32px; } }
-  @media (min-width: 1200px) { .ab-numbers__inner { padding: 0 48px; } }
-
-  .ab-numbers__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-  }
-
-  @media (min-width: 720px) { .ab-numbers__grid { grid-template-columns: repeat(3, 1fr); } }
-
-  .ab-numbers__item {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    text-align: left;
-  }
-
-  .ab-numbers__big {
-    font-size: clamp(2.5rem, 1.5rem + 2.5vw, 3.5rem);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--accent);
-    line-height: 0.95;
-    letter-spacing: -0.01em;
-  }
-
-  .ab-numbers__label {
-    font-size: var(--text-caption);
-    font-weight: 500;
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-    color: var(--text-inverse-muted);
-    line-height: 1.45;
   }
 
   /* Qual */
