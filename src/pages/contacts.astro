@@ -1,0 +1,718 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/primitives/Button.astro';
+import SectionHeader from '../components/primitives/SectionHeader.astro';
+
+const contactCards = [
+  {
+    icon: 'address',
+    title: 'Адрес',
+    value: 'ул.&nbsp;Карла&nbsp;Маркса,&nbsp;48, корп.&nbsp;1<br/>Казань, 420015',
+  },
+  {
+    icon: 'phone',
+    title: 'Телефоны',
+    value: '<a href="tel:+78432236666">+7&nbsp;(843)&nbsp;223-66-66</a><br/><a href="tel:+78432366666">+7&nbsp;(843)&nbsp;236-66-66</a>',
+  },
+  {
+    icon: 'messengers',
+    title: 'Мессенджеры',
+    value: '<a href="https://max.ru/" target="_blank" rel="noopener">Max</a>&ensp;·&ensp;<a href="https://t.me/platinental_kazan" target="_blank" rel="noopener">Telegram</a>&ensp;·&ensp;<a href="https://instagram.com/platinental_kazan" target="_blank" rel="noopener">Instagram</a><sup class="cn-card__star">*</sup>',
+  },
+  {
+    icon: 'clock',
+    title: 'Режим работы',
+    value: 'Ежедневно 09:00–20:00<br/><span class="contacts-page__sub">Без выходных</span>',
+  },
+];
+---
+
+<BaseLayout
+  title="Контакты клиники Platinental в Казани — адрес, телефоны, запись"
+  description="Контакты клиники Platinental в Казани: ул. Карла Маркса, 48, корп. 1. Ежедневно 9:00-20:00. Запись: +7 843 223-66-66, Max, Telegram."
+  canonical="https://kzn.platinental.ru/contacts"
+>
+  <!-- Hero -->
+  <section class="cn-hero" aria-labelledby="cn-title">
+    <div class="cn-hero__inner" data-reveal>
+      <span class="eyebrow">Контакты</span>
+      <h1 id="cn-title" class="cn-hero__title font-display">
+        Контакты клиники Platinental в&nbsp;Казани
+      </h1>
+      <p class="cn-hero__lede">
+        Принимаем ежедневно с&nbsp;09:00 до&nbsp;20:00. Запись по&nbsp;телефону, через Max, Telegram или&nbsp;форму&nbsp;— перезвоним в&nbsp;течение часа.
+      </p>
+      <div class="cn-hero__actions">
+        <Button href="#form" variant="primary" size="lg">Записаться на&nbsp;консультацию</Button>
+        <p class="cn-hero__messengers">
+          <span class="cn-hero__messengers-label">Написать:</span>
+          <a href="https://max.ru/" target="_blank" rel="noopener">Max</a>&ensp;·&ensp;
+          <a href="https://t.me/platinental_kazan" target="_blank" rel="noopener">Telegram</a>&ensp;·&ensp;
+          <a href="https://instagram.com/platinental_kazan" target="_blank" rel="noopener">Instagram</a><sup class="cn-hero__star">*</sup>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacts grid -->
+  <section class="cn-body" aria-label="Контакты и карта">
+    <div class="cn-body__inner">
+      <div class="cn-body__grid">
+        <div class="cn-body__cards">
+          {contactCards.map((card, i) => (
+            <article class="cn-card" data-reveal style={`transition-delay: ${i * 80}ms`}>
+              <div class={`cn-card__icon cn-card__icon--${card.icon}`} aria-hidden="true">
+                {card.icon === 'address' && (
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                  </svg>
+                )}
+                {card.icon === 'phone' && (
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                  </svg>
+                )}
+                {card.icon === 'messengers' && (
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                  </svg>
+                )}
+                {card.icon === 'clock' && (
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+                  </svg>
+                )}
+              </div>
+              <div class="cn-card__body">
+                <h3 class="cn-card__title">{card.title}</h3>
+                <div class="cn-card__value" set:html={card.value} />
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <aside class="cn-map" data-reveal>
+          <div class="cn-map__placeholder">
+            <div class="cn-map__grid" aria-hidden="true"></div>
+            <div class="cn-map__pin">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+            </div>
+            <div class="cn-map__label">
+              <span class="cn-map__label-title font-display">Platinental Казань</span>
+              <span class="cn-map__label-sub">ул.&nbsp;Карла&nbsp;Маркса,&nbsp;48, корп.&nbsp;1</span>
+            </div>
+          </div>
+          <a
+            href="https://yandex.ru/maps/?text=ул+Карла+Маркса+48+Казань"
+            target="_blank"
+            rel="noopener"
+            class="cn-map__link"
+          >
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+              <path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/>
+            </svg>
+            Построить маршрут в&nbsp;Яндекс.Картах
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form section: dark, detailed -->
+  <section class="cn-form" id="form" aria-labelledby="cn-form-title">
+    <div class="cn-form__inner">
+      <div class="cn-form__copy" data-reveal>
+        <h2 id="cn-form-title" class="cn-form__title font-display">Записаться на&nbsp;консультацию</h2>
+        <p class="cn-form__lede">
+          Заполните форму&nbsp;— администратор перезвонит и&nbsp;подберёт удобное время. Если&nbsp;не&nbsp;знаете, к&nbsp;какому врачу идти&nbsp;— оставьте поле пустым, поможем разобраться.
+        </p>
+        <p class="cn-form__note">Перезвоним в&nbsp;течение часа. Пн–Вс&nbsp;9:00–20:00.</p>
+      </div>
+
+      <form class="cn-form__body" data-reveal action="#" method="post" novalidate>
+        <div class="cn-form__row">
+          <label class="cn-form__field">
+            <span class="cn-form__label">Имя</span>
+            <input type="text" name="name" required placeholder="Как к&nbsp;вам обращаться" autocomplete="given-name" />
+          </label>
+
+          <label class="cn-form__field">
+            <span class="cn-form__label">Телефон</span>
+            <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__" autocomplete="tel" />
+          </label>
+        </div>
+
+        <label class="cn-form__field">
+          <span class="cn-form__label">Направление</span>
+          <select name="direction">
+            <option value="">Выберите направление</option>
+            <option value="plastika">Пластическая хирургия</option>
+            <option value="kosmetologiya">Косметология</option>
+            <option value="kosmecevtika">Космецевтика</option>
+            <option value="undecided">Не определился(-ась)</option>
+          </select>
+        </label>
+
+        <label class="cn-form__field">
+          <span class="cn-form__label">Предпочтительный врач</span>
+          <select name="doctor">
+            <option value="">Выберите врача</option>
+            <option value="meloyan">Мелоян М.М.</option>
+            <option value="tulatova">Тулатова Р.Т.</option>
+            <option value="vasilev">Васильев М.Н.</option>
+            <option value="makeenko">Макеенко Н.В.</option>
+            <option value="mamedov">Мамедов В.А.</option>
+            <option value="mardanova">Марданова Д.М.</option>
+            <option value="brechko">Бречко М.А.</option>
+            <option value="gritsay">Грицай О.А.</option>
+            <option value="any">Не важно</option>
+          </select>
+        </label>
+
+        <label class="cn-form__field">
+          <span class="cn-form__label">Комментарий</span>
+          <textarea name="comment" rows="3" placeholder="Опишите запрос, если хотите — что интересует, какие процедуры рассматриваете"></textarea>
+        </label>
+
+        <label class="cn-form__consent">
+          <input type="checkbox" name="consent" required />
+          <span>
+            Соглашаюсь на&nbsp;<a href="/privacy">обработку персональных данных</a> в&nbsp;соответствии с&nbsp;152-ФЗ
+          </span>
+        </label>
+
+        <Button type="submit" variant="inverse" size="lg" arrow={true} class="cn-form__submit">
+          Записаться на&nbsp;консультацию
+        </Button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Legal info -->
+  <section class="cn-legal" aria-label="Юридическая информация">
+    <div class="cn-legal__inner">
+      <div class="cn-legal__block">
+        <span class="cn-legal__label">Юридическое лицо</span>
+        <span class="cn-legal__value">ООО «Платинентал Казань»</span>
+      </div>
+      <div class="cn-legal__block">
+        <span class="cn-legal__label">Лицензия на&nbsp;медицинскую деятельность</span>
+        <span class="cn-legal__value">ЛО-16-01-003022</span>
+      </div>
+      <div class="cn-legal__block">
+        <span class="cn-legal__label">Все документы клиники</span>
+        <a href="/documents" class="cn-legal__link">Посмотреть документы →</a>
+      </div>
+    </div>
+    <p class="cn-legal__note">
+      <span aria-hidden="true">*</span>&nbsp;Instagram принадлежит компании Meta, признанной экстремистской и&nbsp;запрещённой на&nbsp;территории&nbsp;РФ.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .cn-hero {
+    background: var(--surface-page);
+    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 var(--space-16);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  @media (min-width: 768px) {
+    .cn-hero { padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-20); }
+  }
+
+  .cn-hero__inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) { .cn-hero__inner { padding: 0 32px; } }
+
+  .cn-hero__title {
+    font-size: clamp(1.75rem, 1rem + 2.6vw, 3rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.08;
+    letter-spacing: var(--tracking-display);
+    color: var(--text-primary);
+    margin: var(--space-6) 0 var(--space-5);
+    text-wrap: balance;
+    max-width: 22ch;
+    margin-inline: auto;
+  }
+
+  .cn-hero__lede {
+    font-size: var(--text-body);
+    line-height: 1.55;
+    color: var(--text-secondary);
+    max-width: 60ch;
+    margin: 0 auto var(--space-8);
+  }
+
+  .cn-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cn-hero__messengers {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2);
+    font-size: var(--text-body);
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .cn-hero__messengers-label {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-right: var(--space-1);
+  }
+
+  .cn-hero__messengers a {
+    color: var(--text-primary);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .cn-hero__messengers a:hover {
+    border-bottom-color: var(--text-primary);
+  }
+
+  .cn-hero__star,
+  .cn-card__star {
+    font-size: 0.75em;
+    color: var(--text-muted);
+    vertical-align: super;
+    margin-left: 2px;
+  }
+
+  /* Body: contacts + map */
+  .cn-body {
+    background: var(--surface-page);
+    padding: var(--space-16) 0 var(--space-20);
+  }
+
+  @media (min-width: 1024px) { .cn-body { padding: var(--space-20) 0 var(--space-24); } }
+
+  .cn-body__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .cn-body__inner { padding: 0 32px; } }
+  @media (min-width: 1200px) { .cn-body__inner { padding: 0 48px; } }
+
+  .cn-body__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 960px) {
+    .cn-body__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: var(--space-10);
+    }
+  }
+
+  .cn-body__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 560px) { .cn-body__cards { grid-template-columns: repeat(2, 1fr); } }
+
+  @media (min-width: 960px) { .cn-body__cards { grid-template-columns: 1fr; } }
+
+  .cn-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-6);
+    background: var(--surface-alt);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .cn-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--surface-raised);
+    color: var(--accent-hover);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .cn-card__icon--max {
+    background: transparent;
+    padding: 0;
+  }
+
+  .cn-card__icon--max img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .cn-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+    flex: 1;
+  }
+
+  .cn-card__title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+  }
+
+  .cn-card__value {
+    font-size: var(--text-ui);
+    line-height: 1.5;
+    color: var(--text-primary);
+  }
+
+  .cn-card__value :global(a) {
+    color: var(--text-primary);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .cn-card__value :global(a:hover) {
+    border-bottom-color: var(--text-primary);
+  }
+
+  .contacts-page__sub,
+  .cn-card__value :global(span) {
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+  }
+
+  /* Map */
+  .cn-map {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .cn-map__placeholder {
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-md);
+    background: linear-gradient(155deg, var(--color-sand-200) 0%, var(--color-cream-100) 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--space-3);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .cn-map__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(10, 10, 10, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10, 10, 10, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .cn-map__pin {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--color-ink-900);
+    box-shadow: 0 6px 20px rgba(196, 168, 130, 0.35);
+  }
+
+  .cn-map__label {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    text-align: center;
+  }
+
+  .cn-map__label-title {
+    font-size: var(--text-h5);
+    font-style: italic;
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-heading);
+  }
+
+  .cn-map__label-sub {
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+  }
+
+  .cn-map__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    background: var(--surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    font-size: var(--text-ui);
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .cn-map__link:hover { border-color: var(--text-primary); }
+
+  /* Form: dark */
+  .cn-form {
+    background: var(--surface-inverse);
+    color: var(--text-inverse);
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 1024px) { .cn-form { padding: var(--space-24) 0; } }
+
+  .cn-form::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 80% 20%, rgba(196, 168, 130, 0.16), transparent 55%),
+      radial-gradient(circle at 15% 85%, rgba(196, 168, 130, 0.08), transparent 45%);
+    pointer-events: none;
+  }
+
+  .cn-form__inner {
+    position: relative;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    gap: var(--space-12);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) { .cn-form__inner { padding: 0 32px; } }
+  @media (min-width: 1024px) {
+    .cn-form__inner {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: var(--space-16);
+      align-items: start;
+    }
+  }
+  @media (min-width: 1200px) { .cn-form__inner { padding: 0 48px; } }
+
+  .cn-form__copy { display: flex; flex-direction: column; gap: var(--space-5); }
+
+  .cn-form__title {
+    font-size: var(--text-h2);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.05;
+    color: var(--text-inverse);
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+  }
+
+  .cn-form__lede {
+    font-size: var(--text-body);
+    line-height: 1.65;
+    color: var(--text-inverse-muted);
+    max-width: 52ch;
+  }
+
+  .cn-form__note {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .cn-form__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .cn-form__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 640px) { .cn-form__row { grid-template-columns: 1fr 1fr; } }
+
+  .cn-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .cn-form__label {
+    font-size: var(--text-caption);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-inverse-muted);
+  }
+
+  .cn-form__field input,
+  .cn-form__field select,
+  .cn-form__field textarea {
+    padding: var(--space-4) var(--space-5);
+    background: rgba(255, 253, 248, 0.06);
+    border: 1px solid var(--border-inverse);
+    border-radius: var(--radius-sm);
+    color: var(--text-inverse);
+    font-size: var(--text-body);
+    font-family: var(--font-body);
+    transition: border-color var(--duration-fast) var(--ease-out), background-color var(--duration-fast) var(--ease-out);
+    resize: vertical;
+  }
+
+  .cn-form__field input::placeholder,
+  .cn-form__field textarea::placeholder {
+    color: rgba(255, 253, 248, 0.4);
+  }
+
+  .cn-form__field input:focus,
+  .cn-form__field select:focus,
+  .cn-form__field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(196, 168, 130, 0.06);
+  }
+
+  .cn-form__field select { cursor: pointer; }
+  .cn-form__field select option {
+    background: var(--color-ink-900);
+    color: var(--text-inverse);
+  }
+
+  .cn-form__consent {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    font-size: var(--text-caption);
+    color: var(--text-inverse-muted);
+    line-height: 1.5;
+    cursor: pointer;
+    margin-top: var(--space-2);
+  }
+
+  .cn-form__consent input[type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .cn-form__consent a {
+    color: var(--accent);
+    border-bottom: 1px solid rgba(196, 168, 130, 0.3);
+  }
+
+  .cn-form__submit {
+    margin-top: var(--space-4);
+    align-self: flex-start;
+  }
+
+  /* Legal */
+  .cn-legal {
+    background: var(--surface-page);
+    padding: var(--space-10) 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .cn-legal__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .cn-legal__inner {
+      padding: 0 32px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 1200px) { .cn-legal__inner { padding: 0 48px; } }
+
+  .cn-legal__block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .cn-legal__label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .cn-legal__value {
+    font-size: var(--text-ui);
+    color: var(--text-primary);
+  }
+
+  .cn-legal__link {
+    font-size: var(--text-ui);
+    font-weight: 500;
+    color: var(--accent-hover);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .cn-legal__link:hover { color: var(--text-primary); }
+
+  .cn-legal__note {
+    max-width: var(--container-max);
+    margin: var(--space-6) auto 0;
+    padding: var(--space-4) 20px 0;
+    border-top: 1px solid var(--border-subtle);
+    font-size: var(--text-caption);
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 768px) { .cn-legal__note { padding: var(--space-4) 32px 0; } }
+  @media (min-width: 1200px) { .cn-legal__note { padding: var(--space-4) 48px 0; } }
+</style>

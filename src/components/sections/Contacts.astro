@@ -13,7 +13,7 @@ const items = [
   {
     label: 'Мессенджеры',
     // TODO(wa-number): подтвердить, какой из двух номеров (+7 843 223-66-66 vs 236-66-66) подключён к WhatsApp — сейчас в ссылке использован первый.
-    value: '<a href="https://wa.me/78432236666" target="_blank" rel="noopener">WhatsApp</a>&ensp;·&ensp;<a href="https://max.ru/" target="_blank" rel="noopener">Max</a>&ensp;·&ensp;<a href="https://t.me/platinental_kazan" target="_blank" rel="noopener">Telegram</a>',
+    value: '<a href="https://wa.me/78432236666" target="_blank" rel="noopener">WhatsApp</a>&ensp;·&ensp;<a href="https://max.ru/" target="_blank" rel="noopener">Max</a>&ensp;·&ensp;<a href="https://t.me/platinental_kazan" target="_blank" rel="noopener">Telegram</a>&ensp;·&ensp;<a href="https://instagram.com/platinental_kazan" target="_blank" rel="noopener">Instagram</a><sup class="contact__star">*</sup>',
   },
   {
     label: 'Режим работы',
@@ -43,6 +43,10 @@ const items = [
         </div>
       </div>
     </div>
+
+    <p class="contacts__foot-note">
+      <span aria-hidden="true">*</span>&nbsp;Instagram принадлежит компании Meta, признанной экстремистской и&nbsp;запрещённой на&nbsp;территории&nbsp;РФ.
+    </p>
   </div>
 </section>
 
@@ -120,6 +124,24 @@ const items = [
 
   .contact__value :global(a:hover) {
     border-bottom-color: var(--text-primary);
+  }
+
+  .contact__value :global(.contact__star) {
+    font-size: 0.75em;
+    color: var(--text-muted);
+    vertical-align: super;
+    margin-left: 2px;
+    border: none;
+  }
+
+  .contacts__foot-note {
+    margin-top: var(--space-8);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+    font-size: var(--text-caption);
+    line-height: 1.5;
+    color: var(--text-muted);
+    max-width: 72ch;
   }
 
   .contacts__map {
