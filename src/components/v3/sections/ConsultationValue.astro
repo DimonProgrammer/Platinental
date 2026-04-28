@@ -1,5 +1,6 @@
 ---
-import ImagePlaceholder from '../ImagePlaceholder.astro';
+import { Image } from 'astro:assets';
+import cvPhoto from '../../../assets/photos/cv-consultation.jpeg';
 ---
 
 <section class="v3-cv v3-surface-sand" aria-labelledby="cv-heading">
@@ -29,12 +30,12 @@ import ImagePlaceholder from '../ImagePlaceholder.astro';
     </div>
 
     <div class="cv-image" data-v3-reveal>
-      <ImagePlaceholder
-        slot="CV-1"
-        description="Кабинет, стол врача, блокнот, дневной свет — Track C ambient"
-        ratio="3/4"
-        tone="cream"
-        source="Track C · Unsplash / Midjourney v7"
+      <Image
+        src={cvPhoto}
+        alt="Кабинет хирурга — стол, блокнот, дневной свет"
+        class="cv-photo"
+        loading="lazy"
+        decoding="async"
       />
     </div>
   </div>
@@ -94,6 +95,13 @@ import ImagePlaceholder from '../ImagePlaceholder.astro';
     max-width: 30rem;
     margin-left: auto;
     width: 100%;
+  }
+  .cv-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+    object-fit: cover;
   }
 
   @media (max-width: 1024px) {

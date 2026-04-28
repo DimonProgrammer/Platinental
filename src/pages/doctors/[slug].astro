@@ -150,7 +150,7 @@ const faqItems = [
         {d.details.awards && (
           <div class="awards-note" data-v3-reveal>
             <span class="v3-eyebrow">Квалификация</span>
-            <p class="v3-body">{d.details.awards}</p>
+            <p class="v3-body" set:html={d.details.awards}></p>
           </div>
         )}
       </div>
@@ -733,7 +733,7 @@ const faqItems = [
     position: absolute;
     background: rgba(255, 253, 248, 0.08);
     border: 1px solid rgba(255, 253, 248, 0.2);
-    color: var(--v3-cream, #FFFDF8);
+    color: var(--v3-cream);
     width: 3rem;
     height: 3rem;
     cursor: pointer;
