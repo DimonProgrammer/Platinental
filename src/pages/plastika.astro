@@ -51,16 +51,14 @@ const faqItems = [
     <PageHero
       pageMarker="01 / 04"
       pageMarkerLabel="Услуги"
-      eyebrow="Хирургия лица и тела"
-      h1="Пластическая хирургия"
-      lead="Деликатный результат, который не читается как «сделанный». Хирурги с ординатурой в РНИМУ, РНЦХ, Сеченовском университете."
+      eyebrow="THE PLATINENTAL · КАЗАНЬ"
+      h1="Пластическая хирургия в Казани — Platinental"
+      lead="Мы не делаем «идеальный нос из каталога» и не «увеличиваем грудь до размера». Platinental работает как дорогое ателье: сначала замеры — потом методика. Цель одна: все заметят изменение, но никто не свяжет его с операцией."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
-      ctaSecondary={{ label: 'Прайс-лист', href: '/prices' }}
+      ctaSecondary={{ label: 'Цены', href: '/prices' }}
       meta={[
-        { num: '27', label: 'видов операций' },
-        { num: 'от 5 000 ₽', label: 'первичная консультация' },
-        { num: 'Исключительная', label: 'квалификация хирургов' },
-        { num: 'с 2011', label: 'клиника в Казани' },
+        { num: '14', label: 'Лицо' },
+        { num: '13', label: 'Тело' },
       ]}
     />
 
@@ -118,12 +116,21 @@ const faqItems = [
       </div>
     </section>
 
+    <!-- Bridge quote -->
+    <section class="v3-bridge-quote v3-surface-ink" aria-label="Принцип работы">
+      <div class="v3-container v3-container-default" data-v3-reveal>
+        <blockquote class="bridge-q">
+          <p class="v3-display bridge-text"><em>«Сделать это так, чтобы все заметили результат, но никто не догадался, что дело в пластике»</em></p>
+        </blockquote>
+      </div>
+    </section>
+
     <!-- Surgeons -->
     <section class="v3-plastika-surgeons v3-surface-sand" aria-labelledby="surgeons-heading">
       <div class="v3-container v3-container-wide">
         <header class="surgeons-header" data-v3-stagger>
-          <span class="v3-eyebrow">Хирурги</span>
-          <h2 id="surgeons-heading" class="v3-h2"><em>Кто оперирует</em></h2>
+          <span class="v3-eyebrow">Команда</span>
+          <h2 id="surgeons-heading" class="v3-h2"><em>Хирурги направления</em></h2>
           <p class="v3-lead surgeons-lead">
             Каждый хирург клиники прошёл ординатуру по пластической или
             челюстно-лицевой хирургии в профильных учреждениях. Своя школа
@@ -187,9 +194,9 @@ const faqItems = [
     />
 
     <FinalCTA
-      heading="Записаться<br />на консультацию"
-      lead="Хирург осмотрит, оценит ситуацию и честно расскажет, что возможно в вашем случае. Первичная консультация — от 5 000 ₽."
-      submitLabel="Записаться на консультацию хирурга"
+      heading="Неудачная пластика<br />видна всем"
+      lead="Перекачанные губы, несоразмерные скулы — это вопрос эстетического вкуса хирурга, не только его рук. В Platinental задача одна: все заметят, что вы изменились. Никто не поймёт — чем.<br /><br />Перезвоним в течение часа."
+      submitLabel="Записаться на консультацию"
     />
   </main>
   <Footer />
@@ -342,6 +349,14 @@ const faqItems = [
     margin-top: var(--v3-gap-small);
     display: flex;
   }
+
+  /* Bridge quote */
+  .v3-bridge-quote {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-medium);
+  }
+  .bridge-q { margin: 0; }
+  .bridge-text { color: var(--v3-on-ink); max-width: 24ch; margin: 0; }
 
   /* Process */
   .v3-process {

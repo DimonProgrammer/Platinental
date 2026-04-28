@@ -17,17 +17,24 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
   <main id="main">
     <PageHero
       pageMarkerLabel="Прайс"
-      eyebrow="Стоимость"
-      h1="Прайс-лист"
-      lead="Цены актуальны на апрель 2026 года. Окончательная стоимость — после очной консультации."
+      eyebrow="Цены"
+      h1="Цены на услуги клиники Platinental в Казани"
+      lead="Стоимость зависит от категории сложности — её определяет хирург на консультации. Первая категория — стандартная анатомия, вторая и третья — осложнённые случаи или повторные операции."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Задать вопрос', href: 'https://wa.me/78432236666' }}
       meta={[
-        { num: '4', label: 'раздела' },
-        { num: 'полный прайс', label: 'актуально 2026' },
-        { num: 'консультация', label: 'точная цена индивидуально' },
+        { num: '7', label: 'Консультации' },
+        { num: '4', label: 'Пластика лица' },
+        { num: '4', label: 'Пластика тела' },
+        { num: '8', label: 'Косметология' },
       ]}
     />
+
+    <div class="v3-container v3-container-wide prices-hero-caption">
+      <p class="v3-caption">
+        Все цены указаны от минимального порога. Точная стоимость определяется хирургом на консультации после анализа анатомии и сложности случая.
+      </p>
+    </div>
 
     <section class="v3-prices v3-surface-cream" aria-labelledby="prices-heading">
       <div class="v3-container v3-container-default">
@@ -91,7 +98,7 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
                               class={col.key === 'service' ? 'price-service' : 'price-val'}
                             >
                               {col.key === 'service'
-                                ? [row.service, row.sub && <span class="price-sub">{row.sub}</span>]
+                                ? [row.service, row.sub && <span class="price-sub">{row.sub}</span>, row.code && <span class="price-sub price-code"> · {row.code}</span>]
                                 : row[col.key as keyof typeof row] ?? '—'}
                             </td>
                           ))}
@@ -111,9 +118,7 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
         ))}
 
         <p class="prices-disclaimer v3-caption" data-v3-reveal>
-          Имеются противопоказания. Необходима консультация специалиста. Цены носят справочный характер;
-          окончательная стоимость определяется на очной консультации с учётом индивидуальных особенностей.
-          Все операции проводятся только при наличии медицинских показаний и информированного согласия.
+          Цены носят информационный характер и не являются публичной офертой. Точная стоимость определяется врачом на консультации. Имеются противопоказания, необходима консультация специалиста.
         </p>
       </div>
     </section>

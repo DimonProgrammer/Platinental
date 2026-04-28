@@ -18,8 +18,8 @@ const directions = [
   {
     num: '02',
     title: 'Косметология',
-    body: 'Ботулотоксины, контурная пластика, CO₂-лазер, HELEO4. Врач-косметолог работает в связке с хирургом — составляет единый план, а не набор разрозненных процедур.',
-    list: ['Ботулотоксины', 'Контурная пластика', 'CO₂-лазер', 'HELEO4', 'Биоревитализация', 'Пилинги'],
+    body: 'Ботокс, контурная пластика, CO₂-лазер, HELEO4. Врач-косметолог работает в связке с хирургом — составляет единый план, а не набор разрозненных процедур.',
+    list: ['Ботокс', 'Контурная пластика', 'CO₂-лазер', 'HELEO4', 'Биоревитализация', 'Пилинги'],
     cta: { label: 'Все процедуры', href: '/kosmetologiya' },
     surface: 'sand',
     align: 'right',
@@ -59,7 +59,7 @@ const directions = [
             {d.list.map((item) => <li>{item}</li>)}
           </ul>
 
-          <a href={d.cta.href} class="v3-link spread-cta">{d.cta.label} →</a>
+          <a href={d.cta.href} class="v3-link spread-cta">→ {d.cta.label}</a>
         </div>
 
         <div class="spread-image v3-photo-film v3-photo-shutter" data-v3-reveal>

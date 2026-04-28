@@ -17,30 +17,28 @@ const milestones = [
 const principles = [
   {
     num: '01',
-    title: 'Честность прежде всего',
-    text: 'Если операция не нужна — мы скажем об этом. Если риски высоки — объясним. Консультация — это не продажа.',
+    title: 'Хирурги клиники обучались в РНИМУ им. Пирогова, 1-м МГМУ им. Сеченова и РНЦХ им. Петровского.',
+    text: '',
   },
   {
     num: '02',
-    title: 'Результат, который не виден',
-    text: 'Главный признак хорошей работы — окружающие замечают, что человек выглядит лучше, но не понимают почему.',
+    title: 'У наших хирургов — действующие членства ASPS, ISAPS, IPRAS и авторские методики.',
+    text: '',
   },
   {
     num: '03',
-    title: 'Авторские методики',
-    text: 'У каждого хирурга клиники своя школа и отработанные техники. Нет единого шаблона — есть индивидуальный подбор.',
-  },
-  {
-    num: '04',
-    title: 'Команда, а не одиночка',
-    text: 'Хирург и косметолог работают вместе. После операции — реабилитация внутри клиники, не у сторонних специалистов.',
+    title: 'Гармонизирующий подход: замеры и расчёт пропорций перед каждой операцией, единая методология для всех врачей клиники.',
+    text: '',
   },
 ];
 
 const accreditations = [
-  { abbr: 'Лицензия №ЛО-16-01-003022', full: 'Министерство здравоохранения РФ, 30.10.2013' },
-  { abbr: 'Сеченов · РНЦХ · РНИМУ', full: 'Ординатура хирургов в ведущих московских центрах' },
-  { abbr: 'Авторские методики', full: 'У ряда хирургов — собственные техники и патенты' },
+  { abbr: 'РНИМУ им. Пирогова', full: 'Ординатура по пластической хирургии' },
+  { abbr: '1-й МГМУ им. Сеченова', full: 'Ординатура по пластической хирургии' },
+  { abbr: 'РНЦХ им. Петровского', full: 'Ординатура по пластической хирургии' },
+  { abbr: 'Челюстно-лицевая хирургия', full: 'Отдельное направление — для сложных и вторичных ринопластик' },
+  { abbr: 'ASPS · ISAPS · IPRAS', full: 'Членство хирургов клиники' },
+  { abbr: 'Патенты', full: 'Авторские методики, разработанные хирургами клиники. Детали — на страницах конкретных врачей' },
 ];
 
 const faqItems = [
@@ -73,17 +71,34 @@ const faqItems = [
     <PageHero
       pageMarker="—"
       pageMarkerLabel="О клинике"
-      eyebrow="О нас"
-      h1="Клиника пластической хирургии&nbsp;— с&nbsp;2011&nbsp;года в&nbsp;Казани"
-      lead="Частная клиника, где хирург слушает дольше, чем оперирует. Деликатный результат — когда изменения видны только тем, кто знает, что искать."
+      eyebrow="PLATINENTAL КАЗАНЬ"
+      h1="Ум, честь и&nbsp;совесть современной пластической хирургии"
+      lead="Концепция интеллигентной и&nbsp;уважительной гармонизации внешности."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
-      ctaSecondary={{ label: 'Познакомиться с врачами', href: '/doctors' }}
+      ctaSecondary={{ label: 'Врачи клиники', href: '/doctors' }}
       meta={[
         { num: '15 лет', label: 'клиника в Казани' },
         { num: 'ул. К. Маркса 48', label: 'локация клиники' },
         { num: 'Исключительная', label: 'квалификация хирургов' },
       ]}
     />
+
+    <!-- Философия -->
+    <section class="v3-philosophy v3-surface-cream" aria-label="Философия клиники">
+      <div class="v3-container v3-container-default philosophy-inner" data-v3-reveal>
+        <blockquote class="philosophy-quote">
+          <p class="v3-display"><em>«Мы не создаём абстрактно красивые лица. Мы создаём образы с характером — запоминающиеся, со своей индивидуальностью, усиливающие звучание привлекательных черт»</em></p>
+        </blockquote>
+        <div class="philosophy-body">
+          <p class="v3-lead">С момента основания клиника придерживается одного принципа: чтобы на выходе получить превосходные пропорции, мы всегда начинаем с замеров.</p>
+          <p class="v3-body">Хирург не просто выполняет операцию, а проектирует результат. Замеры, расчёт пропорций, индивидуальный план — и только потом скальпель. У каждого врача клиники своя школа, свой опыт и авторские техники — и при этом общая философия: деликатная, уважительная гармонизация.</p>
+          <p class="v3-body">Идейный вдохновитель этой философии — Андрей Искорнев, один из учредителей клиники, хирург, оперирующий в Москве и Лос-Анджелесе, действительный член ASPS, ISAPS и IPRAS.</p>
+        </div>
+        <div>
+          <a href="/doctors" class="v3-btn v3-btn-secondary">Познакомиться с врачами</a>
+        </div>
+      </div>
+    </section>
 
     <!-- История -->
     <section class="v3-timeline v3-surface-sand" aria-labelledby="timeline-heading">
@@ -103,12 +118,21 @@ const faqItems = [
       </div>
     </section>
 
+    <!-- Экономика качества -->
+    <section class="v3-economics v3-surface-cream" aria-labelledby="economics-heading">
+      <div class="v3-container v3-container-default economics-inner" data-v3-reveal>
+        <h2 id="economics-heading" class="v3-h2"><em>Разница между «дорого» и «дёшево»</em></h2>
+        <p class="v3-lead">Хорошее «дорого» не ограничивается персональным подходом и красивым интерьером. В «дорого» вы платите за эстетический вкус, уникальный опыт и репутацию тех, кто умеет создавать идеальное по индивидуальным меркам.</p>
+        <p class="v3-lead">Вы покупаете годы учёбы и упорного труда — страховку от ошибок и посредственности. И это особенно важно: ошибки пластического хирурга видны всегда.</p>
+      </div>
+    </section>
+
     <!-- Принципы -->
     <section class="v3-about-principles v3-surface-cream" aria-labelledby="principles-heading">
       <div class="v3-container v3-container-default">
         <header class="principles-header" data-v3-stagger>
-          <span class="v3-eyebrow">Философия</span>
-          <h2 id="principles-heading" class="v3-h2"><em>Как мы работаем</em></h2>
+          <span class="v3-eyebrow">О клинике</span>
+          <h2 id="principles-heading" class="v3-h2"><em>Что стоит за каждой операцией</em></h2>
         </header>
         <ol class="principles-list" data-v3-stagger>
           {principles.map((p) => (
@@ -116,7 +140,7 @@ const faqItems = [
               <span class="principle-num v3-eyebrow">{p.num}</span>
               <div class="principle-body">
                 <h3 class="v3-h3">{p.title}</h3>
-                <p class="v3-body">{p.text}</p>
+                {p.text && <p class="v3-body">{p.text}</p>}
               </div>
             </li>
           ))}
@@ -129,11 +153,7 @@ const faqItems = [
       <div class="v3-container v3-container-default">
         <div class="accred-inner" data-v3-reveal>
           <span class="v3-eyebrow">Квалификация</span>
-          <h2 id="accred-heading" class="v3-h2"><em>Профессиональное признание</em></h2>
-          <p class="v3-lead accred-lead">
-            Хирурги клиники — члены российских и международных профессиональных объединений.
-            Обучение в ведущих мировых центрах, участие в конгрессах.
-          </p>
+          <h2 id="accred-heading" class="v3-h2"><em>Образование и аккредитация</em></h2>
           <ul class="accred-list">
             {accreditations.map((a) => (
               <li class="accred-item">
@@ -152,6 +172,18 @@ const faqItems = [
       items={faqItems}
     />
 
+    <!-- Цитата Искорнева -->
+    <section class="v3-iskornev v3-surface-ink" aria-label="Цитата основателя">
+      <div class="v3-container v3-container-default" data-v3-reveal>
+        <blockquote class="iskornev-quote">
+          <p class="v3-h2 iskornev-text"><em>«В мире, где избыточность является минимальным стандартом, деликатность ценится как новое сокровище. Именно так мы относимся к внешности наших пациентов. Внося едва заметные коррективы, мы создаём образ, в котором вам будет комфортно покорять новый мир.»</em></p>
+          <footer class="iskornev-author v3-eyebrow">
+            Андрей Искорнев, один из учредителей и идейный вдохновитель · Член ASPS, ISAPS, IPRAS
+          </footer>
+        </blockquote>
+      </div>
+    </section>
+
     <FinalCTA
       heading="Познакомьтесь<br />с&nbsp;клиникой"
       lead="Запишитесь на первичную консультацию. Расскажем о возможностях и ответим на все вопросы."
@@ -161,6 +193,55 @@ const faqItems = [
 </V3Layout>
 
 <style>
+  /* Philosophy */
+  .v3-philosophy {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .philosophy-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-small);
+    max-width: var(--v3-container-default);
+  }
+  .philosophy-quote { margin: 0; }
+  .philosophy-quote .v3-display { max-width: 28ch; }
+  .philosophy-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 56ch;
+  }
+  .philosophy-body p { margin: 0; }
+
+  /* Economics */
+  .v3-economics {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .economics-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h2-body);
+    max-width: var(--v3-container-default);
+  }
+  .economics-inner .v3-lead { max-width: 56ch; margin: 0; }
+
+  /* Iskornev quote */
+  .v3-iskornev {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .iskornev-quote {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h1-lead);
+    max-width: 52rem;
+  }
+  .iskornev-text { color: var(--v3-on-ink); margin: 0; }
+  .iskornev-author { color: var(--v3-on-ink-muted); }
+
   /* Timeline */
   .v3-timeline {
     padding-top: var(--v3-gap-deep);
@@ -244,7 +325,7 @@ const faqItems = [
   }
   .accred-item {
     display: grid;
-    grid-template-columns: 8rem 1fr;
+    grid-template-columns: 14rem 1fr;
     gap: 2rem;
     padding-block: 1.25rem;
     border-bottom: 1px solid var(--v3-border-on-ink);
@@ -256,6 +337,6 @@ const faqItems = [
   @media (max-width: 768px) {
     .timeline-item { grid-template-columns: 4rem 1fr; gap: 1rem; }
     .principles-list { grid-template-columns: 1fr; }
-    .accred-item { grid-template-columns: 6rem 1fr; gap: 1rem; }
+    .accred-item { grid-template-columns: 1fr; gap: 0.25rem; }
   }
 </style>

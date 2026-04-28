@@ -399,7 +399,7 @@ export const doctors: Doctor[] = [
     short: 'Челюстно-лицевая хирургия и&nbsp;ортогнатика. Изменение прикуса, формы и&nbsp;пропорций лица&nbsp;— через хирургическую коррекцию челюстей.',
     priceMain: 'Уточняйте у администратора',
     tone: 'a',
-    photo: null,
+    photo: '/doctors/sorvin/photo.jpg',
     stats: [
       { value: '1000+', label: 'ортогнатических операций' },
       { value: '11 лет', label: 'хирургического стажа' },
@@ -411,7 +411,7 @@ export const doctors: Doctor[] = [
     documents: [
       { src: '/doctors/sorvin/docs/cv.pdf', title: 'CV (MIOS 2026)', kind: 'cv' },
     ],
-    gallery: Array.from({ length: 4 }, (_, i) => `/doctors/sorvin/gallery/${String(i + 1).padStart(2, '0')}.jpg`),
+    gallery: Array.from({ length: 13 }, (_, i) => `/doctors/sorvin/gallery/${String(i + 1).padStart(2, '0')}.jpg`),
     details: {
       specialization: [
         'Ортогнатическая хирургия (коррекция прикуса)',

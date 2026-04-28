@@ -31,11 +31,11 @@ const toneStyle: Record<string, string> = {
     <PageHero
       pageMarker="03 / 04"
       pageMarkerLabel="Услуги"
-      eyebrow="Домашний уход"
-      h1="Космецевтика"
-      lead="Профессиональная косметика медицинского класса — для поддержки результата между процедурами и после операций. Только то, что реально работает."
-      ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
-      ctaSecondary={{ label: 'Получить рекомендацию', href: 'https://wa.me/78432236666' }}
+      eyebrow="Космецевтика"
+      h1="Профессиональная косметика по рекомендации врача"
+      lead="Профессиональная уходовая косметика, которую косметологи клиники подбирают для домашнего ухода между процедурами и послеоперационной реабилитации. Только оригинальные поставки от официальных представителей."
+      ctaPrimary={{ label: 'Смотреть каталог', href: '#catalog' }}
+      ctaSecondary={{ label: 'Записаться на подбор', href: '#form' }}
       meta={[
         { num: '6+', label: 'брендов' },
         { num: '40+', label: 'средств' },
@@ -48,11 +48,7 @@ const toneStyle: Record<string, string> = {
       <div class="v3-container v3-container-default">
         <header class="brands-header" data-v3-stagger>
           <span class="v3-eyebrow">Производители</span>
-          <h2 id="brands-heading" class="v3-h2"><em>Бренды</em></h2>
-          <p class="v3-lead brands-lead">
-            Только марки с доказанной эффективностью и профессиональной регистрацией.
-            Подбор — строго по показаниям, без массмаркет-ассортимента.
-          </p>
+          <h2 id="brands-heading" class="v3-h2"><em>Мы выбираем препараты брендов, которые используем сами</em></h2>
         </header>
         <ul class="brands-grid" data-v3-stagger>
           {brands.map((b) => (
@@ -67,6 +63,7 @@ const toneStyle: Record<string, string> = {
     </section>
 
     <!-- Products by category -->
+    <span id="catalog" aria-hidden="true"></span>
     {categories.map((cat) => {
       const catProducts = products.filter((p) => p.category === cat.key);
       if (catProducts.length === 0) return null;
@@ -97,27 +94,67 @@ const toneStyle: Record<string, string> = {
       );
     })}
 
-    <!-- Consultation CTA -->
-    <section class="v3-kosmec-consult v3-surface-sand" aria-label="Как подобрать космецевтику">
-      <div class="v3-container v3-container-default" data-v3-reveal>
-        <span class="v3-eyebrow">Подбор</span>
-        <h2 class="v3-h2"><em>Как выбрать правильные средства</em></h2>
-        <p class="v3-lead consult-lead">
-          Косметолог оценит состояние кожи, учтёт перенесённые процедуры и назначит
-          уходовый протокол. Самостоятельный выбор космецевтики часто даёт
-          противоположный результат — слишком активные кислоты или несовместимые
-          ингредиенты могут навредить коже.
-        </p>
-        <div class="consult-cta">
-          <a href="#form" class="v3-btn v3-btn-primary">Записаться на консультацию косметолога</a>
-          <a href="https://wa.me/78432236666" class="v3-link" target="_blank" rel="noopener noreferrer">Спросить в WhatsApp</a>
-        </div>
+    <!-- Disclaimer -->
+    <div class="v3-container v3-container-wide catalog-disclaimer" data-v3-reveal>
+      <p class="v3-caption">Цены и наличие актуальны на момент публикации и могут меняться. Не являются публичной офертой. Полный перечень средств — на консультации косметолога.</p>
+    </div>
+
+    <!-- Почему у врача -->
+    <section class="v3-why-doctor v3-surface-sand" aria-labelledby="why-doctor-heading">
+      <div class="v3-container v3-container-default">
+        <header class="why-header" data-v3-stagger>
+          <span class="v3-eyebrow">Почему у врача</span>
+          <h2 id="why-doctor-heading" class="v3-h2"><em>Почему лучше покупать у косметолога</em></h2>
+        </header>
+        <ol class="why-list" data-v3-stagger>
+          {[
+            { n: '01', title: 'Правильный подбор', text: 'Косметолог знает, что происходит с вашей кожей — он подбирает средства под конкретный случай, а не по общим рекомендациям.' },
+            { n: '02', title: 'Совместимость с процедурами', text: 'Некоторые ингредиенты несовместимы с инъекциями или лазером. Врач подбирает домашний уход так, чтобы он усиливал, а не нивелировал результат.' },
+            { n: '03', title: 'Без подделок', text: 'Все средства — из официальных каналов поставок. Без маркетплейсов, без рисков купить неоригинальный продукт.' },
+          ].map((item) => (
+            <li class="why-item">
+              <span class="why-num v3-eyebrow">{item.n}</span>
+              <div class="why-body">
+                <h3 class="v3-h3">{item.title}</h3>
+                <p class="v3-body">{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Как это работает -->
+    <section class="v3-how-works v3-surface-cream" aria-labelledby="how-works-heading">
+      <div class="v3-container v3-container-default">
+        <header class="how-header" data-v3-stagger>
+          <span class="v3-eyebrow">Процесс</span>
+          <h2 id="how-works-heading" class="v3-h2"><em>Как это работает</em></h2>
+          <p class="v3-lead how-lead">Подбор ухода занимает 30 минут</p>
+        </header>
+        <ol class="how-list" data-v3-stagger>
+          {[
+            { n: '1', title: 'Консультация', text: 'Косметолог осматривает кожу, уточняет домашний уход и процедуры, которые вы проходите.' },
+            { n: '2', title: 'Схема', text: 'Подбираем 3–5 средств под ваши задачи — утро, вечер, постуход. Обсуждаем бюджет и совместимость.' },
+            { n: '3', title: 'Получение', text: 'Забираете средства в клинике — оплата при получении. Нужные позиции привозим под заказ в течение 2–5 дней.' },
+          ].map((step) => (
+            <li class="how-item">
+              <span class="how-num v3-eyebrow">{step.n}</span>
+              <div class="how-body">
+                <h3 class="v3-h3">{step.title}</h3>
+                <p class="v3-body">{step.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
 
     <FinalCTA
-      heading="Записаться<br />к косметологу"
-      lead="Первичная консультация: от 2 000 ₽. Косметолог подберёт уходовый протокол под ваш тип кожи."
+      eyebrow="Подбор косметолога"
+      heading="Записаться<br />на подбор"
+      lead="Оставьте телефон — перезвоним в течение рабочего дня и подберём удобное время."
+      submitLabel="Отправить заявку"
     />
   </main>
   <Footer />
@@ -204,24 +241,86 @@ const toneStyle: Record<string, string> = {
     margin-top: 0.5rem;
   }
 
-  /* Consult CTA section */
-  .v3-kosmec-consult {
+  /* Catalog disclaimer */
+  .catalog-disclaimer {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-top: 1px solid var(--v3-border-hair);
+  }
+  .catalog-disclaimer .v3-caption {
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-family: var(--v3-font-body);
+    font-size: 0.875rem;
+  }
+
+  /* Why doctor */
+  .v3-why-doctor {
     padding-top: var(--v3-gap-deep);
     padding-bottom: var(--v3-gap-deep);
   }
-  .v3-kosmec-consult .v3-container {
+  .why-header {
     display: flex;
     flex-direction: column;
-    gap: var(--v3-gap-h1-lead);
-    max-width: var(--v3-container-default);
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
   }
-  .consult-lead { max-width: 52ch; }
-  .consult-cta {
+  .why-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    font-size: 0.9375rem;
+    flex-direction: column;
+  }
+  .why-item {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 2rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--v3-border-hair);
+    align-items: baseline;
+  }
+  .why-item:last-child { border-bottom: 1px solid var(--v3-border-hair); }
+  .why-num { color: var(--v3-ink-muted); }
+  .why-body { display: flex; flex-direction: column; gap: 0.5rem; }
+  .why-body p { margin: 0; }
+
+  /* How it works */
+  .v3-how-works {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .how-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
+  }
+  .how-lead { max-width: 40ch; }
+  .how-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--v3-border-hair);
+  }
+  .how-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 1.75rem;
+    background: var(--v3-cream);
+  }
+  .how-num { color: var(--v3-ink-muted); }
+  .how-body { display: flex; flex-direction: column; gap: 0.5rem; }
+  .how-body p { margin: 0; }
+
+  @media (max-width: 768px) {
+    .why-item { grid-template-columns: 2.5rem 1fr; gap: 1rem; }
+    .how-list { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 1024px) {

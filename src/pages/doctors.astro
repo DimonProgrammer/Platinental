@@ -2,6 +2,7 @@
 import V3Layout from '../layouts/V3Layout.astro';
 import Navigation from '../components/v3/sections/Navigation.astro';
 import PageHero from '../components/v3/sections/PageHero.astro';
+import FAQ from '../components/v3/sections/FAQ.astro';
 import FinalCTA from '../components/v3/sections/FinalCTA.astro';
 import Footer from '../components/v3/sections/Footer.astro';
 import { doctors } from '../data/doctors';
@@ -11,23 +12,18 @@ const allDoctors = doctors;
 
 <V3Layout
   title="Врачи — Platinental Казань"
-  description="Пластические хирурги и косметологи клиники Platinental Казань. Образование, специализации, стоимость консультации."
+  description="Пластические хирурги и косметологи клиники Platinental Казань. Клиника The Platinental Казань собрала самых востребованных специалистов в своей области. Образование, специализации, стоимость консультации."
 >
   <Navigation />
   <main id="main">
     <PageHero
       pageMarker="04 / 04"
       pageMarkerLabel="Команда"
-      eyebrow="Команда"
-      h1="Врачи клиники"
-      lead="Каждый врач — мастер в своём деле. Приходите на консультацию — подберём нужного специалиста под вашу задачу."
+      eyebrow="THE PLATINENTAL · КАЗАНЬ"
+      h1="Врачи клиники Platinental в Казани"
+      lead="У каждого хирурга клиники — своя школа, свой опыт, свой почерк. На консультации поможем выбрать того, чьи руки подходят именно вашей задаче."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
-      meta={[
-        { num: 'Сеченов · РНЦХ', label: 'ординатура хирургов' },
-        { num: 'Исключительная', label: 'квалификация' },
-        { num: 'авторские', label: 'методики и патенты' },
-        { num: 'с 2011', label: 'в Казани' },
-      ]}
+      ctaSecondary={{ label: 'Посмотреть врачей', href: '#doctors-heading' }}
     />
 
     <section class="v3-doctors v3-surface-cream" aria-labelledby="doctors-heading">
@@ -36,6 +32,13 @@ const allDoctors = doctors;
           <span class="v3-eyebrow">Команда</span>
           <h2 id="doctors-heading" class="v3-h2">Врачи клиники</h2>
         </header>
+        <ul class="doctors-filters" data-v3-reveal>
+          <li><span class="filter-chip filter-chip-active">Все специалисты</span></li>
+          <li><span class="filter-chip">Пластическая хирургия</span></li>
+          <li><span class="filter-chip">Лицо</span></li>
+          <li><span class="filter-chip">Тело</span></li>
+          <li><span class="filter-chip">Косметология</span></li>
+        </ul>
         <ul class="doctors-grid">
           {allDoctors.map((d) => (
             <li class="doctor-card" data-v3-reveal>
@@ -63,6 +66,34 @@ const allDoctors = doctors;
       </div>
     </section>
 
+    <FAQ items={[
+      {
+        q: 'Сколько стоит первичная консультация?',
+        a: 'У косметолога — от 2 000 ₽. У хирурга — от 5 000 ₽.',
+        open: true,
+      },
+      {
+        q: 'Есть ли противопоказания к операциям?',
+        a: 'Да. Часть — общие для любой хирургии: беременность, лактация, онкология, нарушения свёртываемости крови, тяжёлые хронические заболевания. Часть — индивидуальные: их хирург видит только на очной консультации.',
+      },
+      {
+        q: 'Через сколько дней виден результат после ботокса?',
+        a: 'Первый эффект появляется через 3–5 дней, окончательный — через 10–14 дней. Держится 4–6 месяцев в зависимости от препарата и индивидуальных особенностей.',
+      },
+      {
+        q: 'Вы работаете с мужчинами?',
+        a: 'Каждый пятый пациент — мужчина. Чаще всего приходят с носом, веками, подбородком и коррекцией гинекомастии. У мужской эстетики своё правило: результат не должен читаться как вмешательство — хирурги работают именно в этом ключе.',
+      },
+      {
+        q: 'Как проходит первичная консультация хирурга?',
+        a: 'Хирург осматривает, замеряет, фотографирует, подбирает методику — и отвечает на все вопросы без спешки.',
+      },
+      {
+        q: 'Как долго длится реабилитация?',
+        a: 'Зависит от операции. Блефаропластика — 7–14 дней. Ринопластика — 2–3 недели. Маммопластика — 2–4 недели ограничений. SMAS-лифтинг — 3–4 недели. Точные сроки хирург назовёт на консультации.',
+      },
+    ]} />
+
     <FinalCTA
       heading="Не знаете,<br />к кому записаться?"
       lead="Если вы не знаете, к какому врачу записаться — оставьте заявку, администратор подберёт специалиста под вашу задачу."
@@ -81,6 +112,31 @@ const allDoctors = doctors;
     flex-direction: column;
     gap: var(--v3-gap-eyebrow-h1);
     margin-bottom: var(--v3-gap-small);
+  }
+  .doctors-filters {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+  }
+  .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.875rem;
+    border: 1px solid var(--v3-border-hair);
+    border-radius: 999px;
+    font-family: var(--v3-font-body);
+    font-size: 0.8125rem;
+    color: var(--v3-ink-secondary);
+    background: transparent;
+    letter-spacing: 0.005em;
+  }
+  .filter-chip-active {
+    background: var(--v3-ink);
+    color: var(--v3-on-ink);
+    border-color: var(--v3-ink);
   }
   .doctors-grid {
     list-style: none;

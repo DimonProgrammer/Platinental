@@ -3,12 +3,13 @@ const directions = [
   { label: 'Пластическая хирургия', href: '/plastika' },
   { label: 'Косметология', href: '/kosmetologiya' },
   { label: 'Космецевтика', href: '/kosmecevtika' },
-  { label: 'Врачи клиники', href: '/doctors' },
 ];
-const legal = [
-  { label: 'О клинике', href: '/about' },
-  { label: 'Документы и лицензии', href: '/documents' },
-  { label: 'Политика конфиденциальности', href: '/privacy' },
+const clinic = [
+  { label: 'О Platinental', href: '/about' },
+  { label: 'Врачи', href: '/doctors' },
+  { label: 'Цены', href: '/prices' },
+  { label: 'Документы', href: '/documents' },
+  { label: 'Контакты', href: '/contacts' },
 ];
 const year = new Date().getFullYear();
 ---
@@ -29,6 +30,10 @@ const year = new Date().getFullYear();
       </p>
       <a href="tel:+78432236666" class="v3-link phone">+7 843 223-66-66</a>
       <p class="v3-small hours">Ежедневно 9:00–20:00</p>
+      <p class="v3-small messengers">
+        <a href="https://max.ru" class="footer-link">Max</a> ·
+        <a href="https://t.me/platinental_kazan" class="footer-link">Telegram</a>
+      </p>
     </div>
 
     <div class="col col-directions">
@@ -41,31 +46,20 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="col col-legal">
-      <span class="v3-eyebrow">Информация</span>
+      <span class="v3-eyebrow">Клиника</span>
       <ul class="link-list">
-        {legal.map((d) => (
+        {clinic.map((d) => (
           <li><a href={d.href} class="footer-link">{d.label}</a></li>
         ))}
       </ul>
-    </div>
-
-    <div class="col col-meta">
-      <span class="v3-eyebrow">Мессенджеры</span>
-      <ul class="link-list">
-        <li><a href="https://wa.me/78432236666" class="footer-link">WhatsApp</a></li>
-        <li><a href="https://max.ru" class="footer-link">Max</a></li>
-        <li><a href="https://t.me/platinental_kazan" class="footer-link">Telegram</a></li>
-        <li><a href="https://instagram.com/platinental_kazan" class="footer-link">Instagram*</a></li>
-      </ul>
-      <p class="v3-caption note">* Instagram принадлежит Meta, признанной экстремистской и запрещённой в РФ.</p>
     </div>
   </div>
 
   <div class="v3-container v3-container-wide bottom">
     <hr class="v3-hairline" />
     <div class="bottom-row">
-      <p class="v3-caption">© Platinental Казань, 2011–{year} · ООО «Платинентал Казань»</p>
-      <p class="v3-caption disclaimer">Имеются противопоказания. Необходима консультация специалиста.</p>
+      <p class="v3-caption">© Platinental Казань, {year} · ООО «Платинентал Казань»</p>
+      <p class="v3-caption disclaimer">Имеются противопоказания. Необходима консультация специалиста. Информация на сайте не является публичной офертой.</p>
     </div>
   </div>
 </footer>
@@ -104,9 +98,11 @@ const year = new Date().getFullYear();
   @media (max-width: 560px) {
     .footer-cta { width: 100%; text-align: center; }
   }
+  .messengers { color: var(--v3-on-ink-muted); margin: 0; }
+  .messengers .footer-link { font-size: 0.9375rem; }
   .footer-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    grid-template-columns: 1.4fr 1fr 1fr;
     gap: clamp(2rem, 4vw, 4rem);
     align-items: start;
   }

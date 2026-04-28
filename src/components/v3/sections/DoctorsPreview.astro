@@ -9,7 +9,7 @@ const featured = doctors.filter((d) => !d.tags.includes('cosmetology')).slice(0,
   <div class="v3-container v3-container-wide">
     <header class="doctors-header" data-v3-stagger>
       <span class="v3-eyebrow">Команда</span>
-      <h2 id="doctors-heading" class="v3-h2"><em>Хирурги направления</em></h2>
+      <h2 id="doctors-heading" class="v3-h2"><em>Врачи клиники</em></h2>
     </header>
 
     <ol class="doctors-grid" data-v3-stagger>
@@ -41,7 +41,10 @@ const featured = doctors.filter((d) => !d.tags.includes('cosmetology')).slice(0,
     </ol>
 
     <footer class="doctors-footer" data-v3-reveal>
-      <a href="/doctors" class="v3-link">Все врачи команды →</a>
+      <p class="v3-body doctors-also">
+        Также в&nbsp;клинике: Марданова Д.М., Макеенко Н.В., Бречко М.А. (CO₂-лазер, безоперационная блефаропластика), Грицай О.А. (косметолог)
+      </p>
+      <a href="/doctors" class="v3-link">Показать всех врачей →</a>
     </footer>
   </div>
 </section>
