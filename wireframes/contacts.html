@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контакты клиники Platinental в Казани — адрес, телефон, запись</title>
+<meta name="description" content="Клиника Platinental Казань: ул. Карла Маркса, 48, корп. 1. Телефон: +7 (843) 223-66-66. WhatsApp: +7 965 612-28-88. Ежедневно 09:00–20:00. Запись онлайн.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FFFDF8;
+  --warm-grey: #F5F0EB;
+  --dark: #0A0A0A;
+  --dark-2: #1A1A18;
+  --gold: #B8956A;
+  --gold-light: #D4B896;
+  --text-primary: #0A0A0A;
+  --text-muted: #6B6560;
+  --border: rgba(10,10,10,0.1);
+  --border-light: rgba(255,253,248,0.12);
+  --font-display: 'Lora', serif;
+  --font-body: 'Open Sans', sans-serif;
+  --max-w: 1080px;
+  --pad: 80px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
+.section { padding: 96px 0; }
+.section--grey { background: var(--warm-grey); }
+.section--dark { background: var(--dark-2); color: var(--cream); }
+
+/* ─── HEADER ─── */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 64px; background: var(--dark-2);
+  border-bottom: 1px solid var(--border-light);
+  display: flex; align-items: center;
+}
+.header__inner {
+  max-width: calc(var(--max-w) + 240px);
+  margin: 0 auto; padding: 0 48px;
+  width: 100%; display: flex; align-items: center;
+}
+.header__logo {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 18px; color: var(--cream); margin-right: auto;
+}
+.header__logo span { color: var(--gold-light); }
+.header__nav { display: flex; gap: 28px; list-style: none; margin-right: 36px; }
+.header__nav a {
+  font-size: 13px; color: rgba(255,253,248,0.6);
+  letter-spacing: 0.02em; transition: color 0.15s;
+}
+.header__nav a:hover { color: var(--cream); }
+.header__phone { font-size: 13px; color: rgba(255,253,248,0.6); margin-right: 20px; }
+.btn {
+  display: inline-flex; align-items: center; padding: 12px 24px;
+  font-family: var(--font-body); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.04em; cursor: pointer; border: none; transition: all 0.2s;
+  text-decoration: none;
+}
+.btn--gold { background: var(--gold); color: #fff; }
+.btn--gold:hover { background: #a07e5a; }
+.btn--outline-cream {
+  background: transparent; color: var(--cream);
+  border: 1px solid rgba(255,253,248,0.35);
+}
+.btn--outline-cream:hover { border-color: var(--gold-light); color: var(--gold-light); }
+.btn--outline-dark {
+  background: transparent; color: var(--dark);
+  border: 1px solid rgba(10,10,10,0.25);
+}
+.btn--outline-dark:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ─── HERO ─── */
+.hero-contacts {
+  padding: 160px 0 96px;
+  background: var(--dark-2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-contacts::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 110%, rgba(184,149,106,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 80% 20%, rgba(184,149,106,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-contacts__eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold-light); margin-bottom: 24px;
+  position: relative;
+}
+.hero-contacts__h1 {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(36px, 4.5vw, 56px); line-height: 1.15;
+  color: var(--cream); margin-bottom: 20px;
+  position: relative;
+}
+.hero-contacts__lead {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: 20px; color: rgba(255,253,248,0.55); line-height: 1.55;
+  max-width: 600px; margin: 0 auto 40px;
+  position: relative;
+}
+.hero-contacts__actions {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  position: relative;
+}
+
+/* ─── CONTACTS GRID ─── */
+.contacts-section {
+  padding: 96px 0;
+  background: var(--cream);
+}
+.contacts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Contact cards column */
+.contact-cards { display: flex; flex-direction: column; gap: 16px; }
+
+.contact-card {
+  background: #fff;
+  border: 1px solid rgba(10,10,10,0.06);
+  border-radius: 6px;
+  padding: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  box-shadow: 0 2px 16px rgba(10,10,10,0.04);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.contact-card:hover {
+  box-shadow: 0 4px 24px rgba(10,10,10,0.08);
+  transform: translateY(-1px);
+}
+.contact-card__icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  background: var(--gold);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+}
+.contact-card__icon svg {
+  width: 20px; height: 20px; fill: #fff;
+}
+.contact-card__body { flex: 1; }
+.contact-card__title {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+}
+.contact-card__value {
+  font-size: 15px; line-height: 1.65; color: var(--text-primary);
+}
+.contact-card__value a {
+  color: var(--text-primary); transition: color 0.15s;
+}
+.contact-card__value a:hover { color: var(--gold); }
+.contact-card__value .contact-link-wa {
+  color: var(--gold); font-weight: 500;
+}
+.contact-card__value .contact-link-wa:hover { color: #a07e5a; }
+
+/* Map placeholder column */
+.map-placeholder-wrap { display: flex; flex-direction: column; gap: 0; }
+
+.map-placeholder {
+  background: #E8E3DC;
+  border-radius: 6px;
+  aspect-ratio: 4 / 3;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(10,10,10,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.map-placeholder::before {
+  /* subtle grid lines suggesting a map */
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(10,10,10,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,10,10,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.map-placeholder__label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(10,10,10,0.3);
+  position: relative;
+}
+.map-placeholder__pin {
+  position: relative;
+  width: 32px; height: 32px;
+}
+.map-placeholder__pin svg {
+  width: 32px; height: 32px;
+  fill: var(--gold);
+  opacity: 0.85;
+}
+.map-placeholder__address {
+  font-size: 13px; color: rgba(10,10,10,0.5);
+  text-align: center; position: relative;
+  max-width: 220px; line-height: 1.5;
+}
+.map-placeholder__link-wrap {
+  padding: 16px 0 4px;
+  text-align: center;
+}
+.map-route-link {
+  font-size: 13px; font-weight: 500; color: var(--gold);
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color 0.15s;
+}
+.map-route-link:hover { color: #a07e5a; }
+.map-route-link svg { width: 14px; height: 14px; fill: currentColor; }
+
+/* ─── FORM SECTION ─── */
+.form-section {
+  padding: 96px 0;
+  background: var(--dark-2);
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 64px;
+  align-items: start;
+}
+.form-intro { padding-top: 8px; }
+.form-intro__h2 {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(28px, 3vw, 40px); line-height: 1.2;
+  color: var(--cream); margin-bottom: 20px;
+}
+.form-intro__text {
+  font-size: 15px; line-height: 1.75; color: rgba(255,253,248,0.65);
+  margin-bottom: 24px;
+}
+.form-intro__note {
+  font-size: 12px; color: rgba(255,253,248,0.35); line-height: 1.6;
+}
+
+/* Form itself */
+.booking-form { display: flex; flex-direction: column; gap: 16px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field label {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+  color: rgba(255,253,248,0.45); text-transform: uppercase;
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  font-family: var(--font-body);
+  font-size: 14px; color: var(--cream);
+  background: rgba(255,253,248,0.04);
+  border: 1px solid rgba(255,253,248,0.12);
+  border-radius: 4px;
+  padding: 0 16px;
+  height: 48px;
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.form-field input::placeholder { color: rgba(255,253,248,0.22); }
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--gold);
+  background: rgba(184,149,106,0.05);
+}
+.form-field select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,253,248,0.35)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.form-field select option { background: #2a2826; color: var(--cream); }
+.form-field textarea {
+  height: auto; padding: 14px 16px;
+  resize: vertical; min-height: 90px; line-height: 1.6;
+}
+.form-field--full { grid-column: 1 / -1; }
+
+/* Checkbox 152-FZ */
+.form-consent { display: flex; align-items: flex-start; gap: 12px; }
+.form-consent input[type="checkbox"] {
+  width: 18px; height: 18px; min-width: 18px; min-height: 18px;
+  margin-top: 2px; cursor: pointer;
+  accent-color: var(--gold);
+  border-radius: 2px;
+}
+.form-consent label {
+  font-size: 12px; line-height: 1.55;
+  color: rgba(255,253,248,0.4); cursor: pointer;
+  text-transform: none; letter-spacing: 0;
+  font-weight: 400;
+}
+.form-consent label a { color: rgba(255,253,248,0.55); text-decoration: underline; transition: color 0.15s; }
+.form-consent label a:hover { color: var(--gold-light); }
+
+.form-submit {
+  width: 100%; height: 52px; padding: 0 28px;
+  font-family: var(--font-body); font-size: 14px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  background: var(--gold); color: #fff;
+  border: none; border-radius: 4px; cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+.form-submit:hover { background: #a07e5a; }
+.form-submit:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+
+/* ─── LEGAL INFO ─── */
+.legal-section {
+  padding: 48px 0;
+  background: var(--cream);
+  border-top: 1px solid rgba(10,10,10,0.06);
+}
+.legal-grid {
+  display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap;
+}
+.legal-block__title {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+}
+.legal-block__text {
+  font-size: 13px; line-height: 1.65; color: var(--text-muted);
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--dark); padding: 64px 0 32px;
+  color: rgba(255,253,248,0.55);
+}
+.footer__cols {
+  display: grid; grid-template-columns: 1.6fr 0.4fr 1fr 1fr;
+  gap: 48px; margin-bottom: 56px;
+}
+.footer__brand {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 20px; color: var(--cream); margin-bottom: 16px;
+}
+.footer__brand-desc { font-size: 13px; line-height: 1.7; }
+.footer__col-title {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,253,248,0.35);
+  margin-bottom: 16px;
+}
+.footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer__links a {
+  font-size: 13px; color: rgba(255,253,248,0.55); transition: color 0.15s;
+}
+.footer__links a:hover { color: var(--cream); }
+.footer__legal {
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,253,248,0.08);
+  display: flex; gap: 24px; flex-wrap: wrap;
+}
+.footer__legal-item { font-size: 11px; color: rgba(255,253,248,0.25); }
+.footer__legal-item a { color: rgba(255,253,248,0.35); text-decoration: underline; transition: color 0.15s; }
+.footer__legal-item a:hover { color: rgba(255,253,248,0.6); }
+
+/* ─── FLOATING WHATSAPP (mobile only) ─── */
+.wa-float {
+  display: none;
+  position: fixed; bottom: 20px; right: 16px; z-index: 200;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #25D366;
+  align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+.wa-float:hover { transform: scale(1.08); }
+.wa-float svg { width: 26px; height: 26px; fill: #fff; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  :root { --pad: 40px; }
+}
+
+@media (max-width: 768px) {
+  :root { --pad: 20px; }
+  .header__nav { display: none; }
+  .header__phone { display: none; }
+  .header__inner { padding: 0 20px; }
+
+  .hero-contacts { padding: 120px 0 64px; }
+  .hero-contacts__lead { font-size: 17px; }
+  .hero-contacts__actions { flex-direction: column; align-items: center; }
+
+  .section { padding: 64px 0; }
+  .contacts-section { padding: 64px 0; }
+
+  .contacts-grid { grid-template-columns: 1fr; gap: 40px; }
+
+  .form-section { padding: 64px 0; }
+  .form-grid { grid-template-columns: 1fr; gap: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+
+  .footer__cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer__cols > div:first-child { grid-column: 1 / -1; }
+  .footer__cols > div:nth-child(2) { display: none; }
+
+  .legal-grid { flex-direction: column; gap: 24px; }
+
+  .wa-float { display: flex; }
+}
+
+@media (max-width: 480px) {
+  .hero-contacts__h1 { font-size: 30px; }
+  .hero-contacts__lead { font-size: 15px; }
+  .btn { width: 100%; justify-content: center; }
+  .contact-card { padding: 20px; }
+  .map-placeholder { min-height: 280px; }
+}
+</style>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header__inner">
+    <a href="/" class="header__logo">The <span>Platinental</span></a>
+    <nav><ul class="header__nav">
+      <li><a href="/plastika">Услуги</a></li>
+      <li><a href="/doctors">Врачи</a></li>
+      <li><a href="/about">О клинике</a></li>
+      <li><a href="/prices">Цены</a></li>
+      <li><a href="/contacts" style="color:var(--cream);">Контакты</a></li>
+    </ul></nav>
+    <span class="header__phone">+7 843 223-66-66</span>
+    <a href="#form" class="btn btn--gold" style="font-size:12px; padding:10px 20px;">Записаться</a>
+  </div>
+</header>
+
+<!-- 1. HERO -->
+<section class="hero-contacts">
+  <div class="container">
+    <p class="hero-contacts__eyebrow">Контакты</p>
+    <h1 class="hero-contacts__h1">Контакты клиники Platinental в Казани</h1>
+    <p class="hero-contacts__lead">Принимаем ежедневно с 09:00 до 20:00. Запись по телефону, WhatsApp или через форму — перезвоним в течение часа.</p>
+    <div class="hero-contacts__actions">
+      <a href="#form" class="btn btn--gold" style="padding:14px 32px; font-size:13px;">Записаться на консультацию</a>
+      <a href="https://wa.me/79656122888" target="_blank" rel="noopener" class="btn btn--outline-cream" style="padding:14px 32px; font-size:13px;">Написать в WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2. CONTACTS GRID -->
+<section class="contacts-section">
+  <div class="container">
+    <div class="contacts-grid">
+
+      <!-- Left: contact cards -->
+      <div class="contact-cards">
+
+        <!-- Address -->
+        <div class="contact-card">
+          <div class="contact-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div class="contact-card__body">
+            <div class="contact-card__title">Адрес</div>
+            <div class="contact-card__value">
+              ул. Карла Маркса, 48, корп. 1<br>Казань, 420015
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="contact-card">
+          <div class="contact-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <div class="contact-card__body">
+            <div class="contact-card__title">Телефон</div>
+            <div class="contact-card__value">
+              <a href="tel:+78432236666">+7 (843) 223-66-66</a><br>
+              <a href="tel:+78432366666">+7 (843) 236-66-66</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="contact-card">
+          <div class="contact-card__icon" style="background:#25D366;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div class="contact-card__body">
+            <div class="contact-card__title">WhatsApp</div>
+            <div class="contact-card__value">
+              <a href="https://wa.me/79656122888" target="_blank" rel="noopener" class="contact-link-wa">+7 965 612-28-88</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hours -->
+        <div class="contact-card">
+          <div class="contact-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          </div>
+          <div class="contact-card__body">
+            <div class="contact-card__title">Режим работы</div>
+            <div class="contact-card__value">
+              Ежедневно, 09:00–20:00<br>
+              <span style="font-size:13px; color:var(--text-muted);">Без выходных</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /contact-cards -->
+
+      <!-- Right: map placeholder -->
+      <div class="map-placeholder-wrap">
+        <div class="map-placeholder">
+          <div class="map-placeholder__pin">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div class="map-placeholder__label">Карта Яндекс</div>
+          <div class="map-placeholder__address">ул. Карла Маркса, 48, корп. 1</div>
+        </div>
+        <div class="map-placeholder__link-wrap">
+          <a href="https://yandex.ru/maps/?text=ул+Карла+Маркса+48+Казань" target="_blank" rel="noopener" class="map-route-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg>
+            Построить маршрут
+          </a>
+        </div>
+      </div><!-- /map -->
+
+    </div><!-- /contacts-grid -->
+  </div>
+</section>
+
+<!-- 3. FORM SECTION -->
+<section class="form-section" id="form">
+  <div class="container">
+    <div class="form-grid">
+
+      <!-- Left: intro -->
+      <div class="form-intro">
+        <h2 class="form-intro__h2">Записаться на консультацию</h2>
+        <p class="form-intro__text">Заполните форму — администратор перезвонит и подберёт удобное время.</p>
+        <p class="form-intro__note">Перезвоним в течение часа. Пн–вс 9:00–20:00.</p>
+      </div>
+
+      <!-- Right: form -->
+      <form class="booking-form" action="#" method="post" novalidate>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Ваше имя</label>
+            <input type="text" id="name" name="name" placeholder="Имя" required autocomplete="given-name">
+          </div>
+          <div class="form-field">
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="direction">Направление</label>
+          <select id="direction" name="direction">
+            <option value="">Выберите направление</option>
+            <option value="plastika">Пластическая хирургия</option>
+            <option value="kosmetologiya">Косметология</option>
+            <option value="undecided">Не определился(-ась)</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="doctor">Предпочтительный врач</label>
+          <select id="doctor" name="doctor">
+            <option value="">Выберите врача</option>
+            <option value="meloyan">Мелоян М.М.</option>
+            <option value="tulatova">Тулатова Р.Т.</option>
+            <option value="vasiliev">Васильев М.Н.</option>
+            <option value="makeenko">Макеенко Н.В.</option>
+            <option value="mamedov">Мамедов В.А.</option>
+            <option value="mardanova">Марданова Д.М.</option>
+            <option value="brechko">Бречко М.А.</option>
+            <option value="gritsay">Грицай О.А.</option>
+            <option value="any">Не важно</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="comment">Комментарий</label>
+          <textarea id="comment" name="comment" rows="3" placeholder="Необязательно — опишите ваш запрос или вопрос"></textarea>
+        </div>
+
+        <div class="form-consent">
+          <input type="checkbox" id="consent" name="consent" required>
+          <label for="consent">
+            Соглашаюсь на <a href="/documents" target="_blank">обработку персональных данных</a> в соответствии с Политикой конфиденциальности (152-ФЗ)
+          </label>
+        </div>
+
+        <button type="submit" class="form-submit">Записаться на консультацию</button>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 4. LEGAL INFO -->
+<section class="legal-section">
+  <div class="container">
+    <div class="legal-grid">
+      <div class="legal-block">
+        <div class="legal-block__title">Юридическое лицо</div>
+        <div class="legal-block__text">ООО «Платинентал Казань»</div>
+      </div>
+      <div class="legal-block">
+        <div class="legal-block__title">Лицензия на медицинскую деятельность</div>
+        <div class="legal-block__text">ЛО-01 №ЛО-16-01-003022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__cols">
+      <div>
+        <div class="footer__brand">The Platinental</div>
+        <p class="footer__brand-desc">Американский бренд эстетической медицины. Казань с 2011 года.</p>
+        <p class="footer__brand-desc" style="margin-top:12px;">+7 843 223-66-66<br>WhatsApp: +7 965 612-28-88<br>Пн–вс 9:00–20:00</p>
+      </div>
+      <div></div>
+      <div>
+        <div class="footer__col-title">Услуги</div>
+        <ul class="footer__links">
+          <li><a href="/plastika">Пластическая хирургия</a></li>
+          <li><a href="/kosmetologiya">Косметология</a></li>
+          <li><a href="/kosmecevtika">Космецевтика</a></li>
+          <li><a href="/prices">Цены</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Клиника</div>
+        <ul class="footer__links">
+          <li><a href="/about">О клинике</a></li>
+          <li><a href="/doctors">Врачи</a></li>
+          <li><a href="/documents">Документы</a></li>
+          <li><a href="/contacts" style="color:var(--cream);">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <span class="footer__legal-item">© 2026 ООО «Платинентал Казань» · ЛО-16-01-003022</span>
+      <span class="footer__legal-item">Имеются противопоказания. Необходима консультация специалиста.</span>
+      <span class="footer__legal-item"><a href="/documents">Политика конфиденциальности</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp (mobile) -->
+<a href="https://wa.me/79656122888" class="wa-float" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+</body>
+</html>

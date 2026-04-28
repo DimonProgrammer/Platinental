@@ -1,0 +1,329 @@
+---
+// Variant B — Generative Champagne Lines
+// Справа — абстрактная SVG-композиция из тонких champagne-линий.
+// Анимация через stroke-dashoffset на mount + slow drift.
+import Button from '../primitives/Button.astro';
+---
+
+<section class="heroB" aria-labelledby="heroB-title">
+  <div class="heroB__bg" aria-hidden="true">
+    <div class="heroB__bg-layer heroB__bg-layer--base"></div>
+    <div class="heroB__bg-layer heroB__bg-layer--hotspot"></div>
+    <div class="heroB__bg-layer heroB__bg-layer--grain"></div>
+    <div class="heroB__bg-layer heroB__bg-layer--vignette"></div>
+  </div>
+
+  <div class="heroB__grid">
+    <div class="heroB__copy" data-reveal>
+      <span class="heroB__eyebrow">Platinental&nbsp;· Казань</span>
+
+      <h1 id="heroB-title" class="heroB__title">
+        Клиника пластической хирургии и&nbsp;косметологии в&nbsp;Казани
+      </h1>
+
+      <p class="heroB__sub">
+        Интеллигентная гармонизация внешности&nbsp;— без&nbsp;избыточности и&nbsp;шаблонов, через&nbsp;авторские методики наших&nbsp;хирургов.
+      </p>
+
+      <div class="heroB__actions">
+        <Button href="#form" variant="inverse" size="lg">Записаться на&nbsp;консультацию</Button>
+        <Button href="/prices" variant="ghost" size="lg">Узнать стоимость&nbsp;→</Button>
+      </div>
+    </div>
+
+    <div class="heroB__art" aria-hidden="true">
+      <svg class="heroB__art-svg" viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <!-- Concentric organic contours — suggesting facial profile / golden ratio -->
+        <g stroke="#C4A882" stroke-width="1.1" stroke-linecap="round">
+          <path d="M 300 60
+                   C 420 60, 500 160, 500 280
+                   C 500 360, 470 420, 430 470
+                   C 400 510, 380 550, 380 600
+                   C 380 650, 420 680, 460 680"
+                class="heroB__line" style="--d:0"/>
+          <path d="M 300 100
+                   C 410 100, 480 190, 480 295
+                   C 480 365, 455 415, 420 460
+                   C 395 495, 380 530, 380 575
+                   C 380 615, 410 645, 445 650"
+                class="heroB__line" style="--d:1"/>
+          <path d="M 300 140
+                   C 400 140, 460 220, 460 310
+                   C 460 370, 440 410, 410 450
+                   C 390 480, 380 510, 380 550
+                   C 380 580, 400 610, 430 620"
+                class="heroB__line" style="--d:2"/>
+        </g>
+
+        <!-- Horizontal measurement traces -->
+        <g stroke="#C4A882" stroke-opacity="0.32" stroke-width="0.8">
+          <line x1="60"  y1="210" x2="260" y2="210" class="heroB__trace" style="--d:3"/>
+          <line x1="60"  y1="350" x2="260" y2="350" class="heroB__trace" style="--d:4"/>
+          <line x1="60"  y1="490" x2="260" y2="490" class="heroB__trace" style="--d:5"/>
+        </g>
+
+        <!-- Corner crosshairs — architectural feel -->
+        <g stroke="#C4A882" stroke-opacity="0.4" stroke-width="0.8">
+          <path d="M 40 40 L 40 60 M 40 40 L 60 40" class="heroB__tick" style="--d:6"/>
+          <path d="M 560 40 L 560 60 M 560 40 L 540 40" class="heroB__tick" style="--d:7"/>
+          <path d="M 40 660 L 40 640 M 40 660 L 60 660" class="heroB__tick" style="--d:8"/>
+          <path d="M 560 660 L 560 640 M 560 660 L 540 660" class="heroB__tick" style="--d:9"/>
+        </g>
+
+        <!-- Small dots on contour anchors -->
+        <g fill="#C4A882">
+          <circle cx="500" cy="280" r="2.2" class="heroB__dot" style="--d:10"/>
+          <circle cx="430" cy="470" r="2.2" class="heroB__dot" style="--d:11"/>
+          <circle cx="380" cy="600" r="2.2" class="heroB__dot" style="--d:12"/>
+        </g>
+
+        <!-- Central number ornament: "01" — issue/plate feel -->
+        <text x="300" y="680"
+              font-family="var(--font-display)"
+              font-size="14"
+              fill="#C4A882"
+              fill-opacity="0.6"
+              letter-spacing="0.4em"
+              text-anchor="middle">01 · ФОРМА</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="heroB__stats">
+    <div class="heroB__stats-inner">
+      <div class="heroB__stat">
+        <span class="heroB__stat-dot" aria-hidden="true"></span>
+        <span class="heroB__stat-text">Деликатная гармонизация</span>
+      </div>
+      <span class="heroB__stat-divider" aria-hidden="true"></span>
+      <div class="heroB__stat">
+        <span class="heroB__stat-dot" aria-hidden="true"></span>
+        <span class="heroB__stat-text">Аккредитация ASPS, ISAPS</span>
+      </div>
+      <span class="heroB__stat-divider" aria-hidden="true"></span>
+      <div class="heroB__stat">
+        <span class="heroB__stat-dot" aria-hidden="true"></span>
+        <span class="heroB__stat-text">С&nbsp;2011 в&nbsp;Казани</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .heroB {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: var(--text-inverse);
+    background: var(--color-ink-900);
+    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 0;
+  }
+  @media (min-width: 768px) {
+    .heroB { padding: calc(var(--nav-height) + var(--space-12)) 0 0; }
+  }
+
+  .heroB__bg { position: absolute; inset: 0; z-index: 0; }
+  .heroB__bg-layer { position: absolute; inset: 0; }
+  .heroB__bg-layer--base {
+    background: radial-gradient(130% 120% at 50% 110%, #3A2C20 0%, #1C140E 55%, #0A0807 100%);
+  }
+  .heroB__bg-layer--hotspot {
+    background:
+      radial-gradient(52% 58% at 82% 22%, rgba(196, 168, 130, 0.22) 0%, rgba(196, 168, 130, 0) 68%),
+      radial-gradient(40% 46% at 8% 88%, rgba(217, 193, 156, 0.12) 0%, rgba(217, 193, 156, 0) 72%);
+    mix-blend-mode: screen;
+  }
+  .heroB__bg-layer--grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='hn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23hn)'/%3E%3C/svg%3E");
+    opacity: 0.18;
+    mix-blend-mode: overlay;
+  }
+  .heroB__bg-layer--vignette {
+    background: linear-gradient(180deg, rgba(10, 8, 7, 0.35) 0%, rgba(10, 8, 7, 0) 22%, rgba(10, 8, 7, 0) 62%, rgba(10, 8, 7, 0.55) 100%);
+  }
+
+  .heroB__grid {
+    position: relative;
+    z-index: 1;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px var(--space-16);
+    display: grid;
+    gap: var(--space-12);
+    grid-template-columns: minmax(0, 1fr);
+  }
+  @media (min-width: 768px) { .heroB__grid { padding: 0 32px var(--space-16); } }
+  @media (min-width: 1024px) {
+    .heroB__grid {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: var(--space-16);
+      align-items: center;
+    }
+  }
+  @media (min-width: 1200px) { .heroB__grid { padding: 0 48px var(--space-20); } }
+
+  .heroB__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-8);
+  }
+  .heroB__eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  .heroB__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 1.15rem + 2.2vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    color: var(--text-inverse);
+    margin-bottom: var(--space-8);
+    max-width: 20ch;
+    text-wrap: balance;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
+  }
+
+  .heroB__sub {
+    font-family: var(--font-body);
+    font-size: var(--text-lead);
+    line-height: 1.55;
+    color: var(--text-inverse-muted);
+    max-width: 46ch;
+    margin-bottom: var(--space-10);
+  }
+
+  .heroB__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .heroB__actions :global(.btn--ghost) { color: rgba(255, 253, 248, 0.85); }
+  .heroB__actions :global(.btn--ghost:hover) { color: var(--accent); }
+
+  /* Art — SVG composition */
+  .heroB__art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+  }
+  @media (min-width: 1024px) { .heroB__art { min-height: 620px; } }
+
+  .heroB__art-svg {
+    width: 100%;
+    height: auto;
+    max-width: 560px;
+  }
+
+  /* Line draw-in animation on mount */
+  .heroB__line {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: heroB-draw 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(var(--d, 0) * 140ms + 180ms);
+  }
+  .heroB__trace {
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
+    animation: heroB-draw 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(var(--d, 0) * 100ms + 300ms);
+  }
+  .heroB__tick {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: heroB-draw 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(var(--d, 0) * 70ms + 100ms);
+  }
+  .heroB__dot {
+    opacity: 0;
+    animation: heroB-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(var(--d, 0) * 80ms + 1400ms);
+  }
+
+  @keyframes heroB-draw { to { stroke-dashoffset: 0; } }
+  @keyframes heroB-pop  { to { opacity: 1; } }
+
+  /* Slow drift after draw-in */
+  .heroB__art-svg {
+    animation: heroB-drift 14s ease-in-out infinite;
+    animation-delay: 2400ms;
+  }
+  @keyframes heroB-drift {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(4px, -4px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .heroB__line,
+    .heroB__trace,
+    .heroB__tick { stroke-dashoffset: 0 !important; animation: none !important; }
+    .heroB__dot  { opacity: 1 !important; animation: none !important; }
+    .heroB__art-svg { animation: none !important; }
+  }
+
+  /* Stats strip */
+  .heroB__stats {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(255, 253, 248, 0.08);
+    background: rgba(10, 8, 7, 0.55);
+    backdrop-filter: blur(12px);
+  }
+  .heroB__stats-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-5) 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 768px) { .heroB__stats-inner { padding: var(--space-5) 32px; } }
+  @media (min-width: 1200px) { .heroB__stats-inner { padding: var(--space-5) 48px; } }
+
+  .heroB__stat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0 var(--space-8);
+    flex: 1;
+    justify-content: center;
+  }
+  .heroB__stat-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .heroB__stat-text {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, 0.75);
+    white-space: nowrap;
+  }
+  .heroB__stat-divider {
+    width: 1px;
+    align-self: stretch;
+    background: rgba(255, 253, 248, 0.1);
+    display: none;
+  }
+  @media (min-width: 768px) { .heroB__stat-divider { display: block; } }
+</style>

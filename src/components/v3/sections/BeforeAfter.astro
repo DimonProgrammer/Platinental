@@ -1,0 +1,243 @@
+---
+import ImagePlaceholder from '../ImagePlaceholder.astro';
+
+const cases = [
+  { id: 'rinoplastika', label: 'Ринопластика', detail: 'Результат через 3 мес' },
+  { id: 'blefaroplastika', label: 'Блефаропластика', detail: 'Верхние и нижние, 2 нед' },
+  { id: 'mammoplastika', label: 'Маммопластика', detail: 'Индивидуальный дизайн' },
+  { id: 'smas', label: 'SMAS-лифтинг', detail: 'Натуральный результат' },
+  { id: 'abdomino', label: 'Абдоминопластика', detail: 'Полная коррекция' },
+  { id: 'kontur', label: 'Контурная пластика', detail: 'Многоуровневая техника' },
+];
+---
+
+<section class="v3-ba v3-surface-cream" aria-labelledby="ba-heading">
+  <div class="v3-container v3-container-default">
+    <header class="ba-header" data-v3-reveal>
+      <span class="v3-eyebrow">Результаты</span>
+      <h2 id="ba-heading" class="v3-h2"><em>До и после</em></h2>
+      <p class="v3-lead ba-lead">
+        Один кейс — один сравнительный кадр. Без галереи, без прокрутки.
+        Все фото публикуются с письменного согласия пациентов.
+      </p>
+    </header>
+
+    <div class="ba-stage" data-v3-reveal data-ba-stage>
+      <div class="ba-comparator" role="region" aria-label="Сравнение до и после">
+        <div class="ba-image ba-after" aria-label="После">
+          <ImagePlaceholder
+            slot="BA-after"
+            description="Кейс после операции — реальное фото клиента, согласие пациента"
+            ratio="1/1"
+            tone="sand"
+            source="От клиента · согласие требуется"
+          />
+        </div>
+        <div class="ba-image ba-before" data-ba-before aria-label="До">
+          <ImagePlaceholder
+            slot="BA-before"
+            description="Кейс до операции — реальное фото клиента"
+            ratio="1/1"
+            tone="cream"
+            source="От клиента · согласие требуется"
+          />
+        </div>
+        <button class="ba-handle" type="button" aria-label="Переместить разделитель" data-ba-handle>
+          <span class="ba-handle-arrow" aria-hidden="true">‹ ›</span>
+        </button>
+
+        <div class="ba-marker ba-marker-before">До</div>
+        <div class="ba-marker ba-marker-after">После</div>
+      </div>
+
+      <div class="ba-controls" role="tablist" aria-label="Кейсы">
+        {cases.map((c, i) => (
+          <button class="ba-tab" type="button" data-ba-case={i} aria-selected={i === 0 ? 'true' : 'false'}>
+            <span class="v3-eyebrow tab-num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="tab-label">{c.label}</span>
+            <span class="v3-caption tab-detail">{c.detail}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <p class="v3-caption ba-disclaimer">
+      Результат индивидуален и зависит от особенностей организма.
+      Публикуется с письменного согласия пациентов.
+    </p>
+  </div>
+</section>
+
+<script>
+  function initBA() {
+    const stage = document.querySelector<HTMLElement>('[data-ba-stage]');
+    if (!stage) return;
+    const before = stage.querySelector<HTMLElement>('[data-ba-before]');
+    const handle = stage.querySelector<HTMLElement>('[data-ba-handle]');
+    if (!before || !handle) return;
+
+    let dragging = false;
+    let pos = 50;
+
+    const setPos = (p: number) => {
+      pos = Math.max(0, Math.min(100, p));
+      before.style.clipPath = `inset(0 ${100 - pos}% 0 0)`;
+      handle.style.left = `${pos}%`;
+    };
+
+    setPos(50);
+
+    const onMove = (clientX: number) => {
+      const rect = stage.getBoundingClientRect();
+      const p = ((clientX - rect.left) / rect.width) * 100;
+      setPos(p);
+    };
+
+    handle.addEventListener('mousedown', (e) => { dragging = true; e.preventDefault(); });
+    handle.addEventListener('touchstart', () => { dragging = true; });
+
+    document.addEventListener('mousemove', (e) => { if (dragging) onMove(e.clientX); });
+    document.addEventListener('touchmove', (e) => { if (dragging) onMove(e.touches[0].clientX); });
+    document.addEventListener('mouseup', () => { dragging = false; });
+    document.addEventListener('touchend', () => { dragging = false; });
+
+    // Tabs (visual only — реальные фото подключатся позже)
+    stage.querySelectorAll<HTMLElement>('[data-ba-case]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        stage.querySelectorAll<HTMLElement>('[data-ba-case]').forEach((b) => b.setAttribute('aria-selected', 'false'));
+        btn.setAttribute('aria-selected', 'true');
+      });
+    });
+  }
+  if (document.readyState !== 'loading') initBA();
+  else document.addEventListener('DOMContentLoaded', initBA);
+</script>
+
+<style>
+  .v3-ba {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .ba-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-medium);
+    max-width: 56ch;
+  }
+  .ba-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+  }
+  .ba-comparator {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    user-select: none;
+  }
+  .ba-image { position: absolute; inset: 0; }
+  .ba-image > :global(figure) { position: absolute; inset: 0; aspect-ratio: auto; height: 100%; }
+  .ba-before { clip-path: inset(0 50% 0 0); transition: clip-path 80ms linear; }
+  .ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: var(--v3-cream);
+    border: 0;
+    cursor: ew-resize;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  .ba-handle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--v3-cream);
+    background: rgba(26, 31, 42, 0.42);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .ba-handle-arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--v3-cream);
+    font-family: var(--v3-font-body);
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    z-index: 1;
+  }
+  .ba-marker {
+    position: absolute;
+    top: 1rem;
+    font-family: var(--v3-font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--v3-cream);
+    background: rgba(26, 31, 42, 0.55);
+    padding: 0.25rem 0.5rem;
+    z-index: 1;
+  }
+  .ba-marker-before { left: 1rem; }
+  .ba-marker-after { right: 1rem; }
+
+  .ba-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .ba-tab {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.5rem 1rem;
+    grid-template-areas:
+      'num name'
+      '. detail';
+    padding: 1rem 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--v3-border-hair);
+    text-align: left;
+    cursor: pointer;
+    transition: background var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .ba-tab:last-child { border-bottom: 1px solid var(--v3-border-hair); }
+  .ba-tab:hover { background: var(--v3-cream-alt); }
+  .ba-tab[aria-selected="true"] {
+    background: var(--v3-cream-alt);
+  }
+  .ba-tab[aria-selected="true"] .tab-label { color: var(--v3-champagne-deep); }
+  .tab-num { grid-area: num; color: var(--v3-ink-muted); padding-top: 0.4rem; }
+  .tab-label {
+    grid-area: name;
+    font-family: var(--v3-font-display);
+    font-style: italic;
+    font-size: 1.125rem;
+    color: var(--v3-ink);
+  }
+  .tab-detail { grid-area: detail; color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0; font-family: var(--v3-font-body); font-size: 0.875rem; }
+
+  .ba-disclaimer {
+    margin-top: var(--v3-gap-medium);
+    text-align: center;
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-family: var(--v3-font-body);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 1024px) {
+    .ba-stage { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  align?: 'left' | 'center';
+  inverse?: boolean;
+  class?: string;
+}
+
+const { eyebrow, title, lede, align = 'left', inverse = false, class: className = '' } = Astro.props;
+---
+
+<header
+  class:list={[
+    'section-header',
+    align === 'center' && 'section-header--center',
+    inverse && 'section-header--inverse',
+    className,
+  ]}
+  data-reveal
+>
+  {eyebrow && <span class="eyebrow section-header__eyebrow">{eyebrow}</span>}
+  <h2 class="section-header__title font-display" set:html={title} />
+  {lede && <p class="section-header__lede">{lede}</p>}
+</header>
+
+<style>
+  .section-header {
+    max-width: 820px;
+    margin-bottom: var(--space-16);
+  }
+
+  .section-header--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .section-header__eyebrow {
+    margin-bottom: var(--space-5);
+  }
+
+  .section-header__title {
+    font-size: var(--text-h2);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-tight);
+    color: var(--text-primary);
+    text-wrap: balance;
+  }
+
+  .section-header__lede {
+    margin-top: var(--space-6);
+    font-size: var(--text-lead);
+    line-height: 1.55;
+    color: var(--text-secondary);
+    max-width: 64ch;
+  }
+
+  .section-header--center .section-header__lede {
+    margin-inline: auto;
+  }
+
+  .section-header--inverse .section-header__title {
+    color: var(--text-inverse);
+  }
+
+  .section-header--inverse .section-header__lede {
+    color: var(--text-inverse-muted);
+  }
+
+  .section-header--inverse .section-header__eyebrow {
+    color: var(--text-inverse-muted);
+  }
+</style>

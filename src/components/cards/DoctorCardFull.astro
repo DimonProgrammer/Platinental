@@ -1,0 +1,293 @@
+---
+import Button from '../primitives/Button.astro';
+import type { Doctor } from '../../data/doctors';
+
+interface Props {
+  doctor: Doctor;
+  index?: number;
+}
+
+const { doctor, index = 0 } = Astro.props;
+---
+
+<article
+  class="doctor-card"
+  data-reveal
+  data-tags={doctor.tags.join(' ')}
+  style={`transition-delay: ${Math.min(index * 70, 350)}ms`}
+  id={doctor.slug}
+>
+  <div class={`doctor-card__portrait doctor-card__portrait--${doctor.tone}`} aria-hidden="true">
+    <span class="doctor-card__initials font-display">{doctor.initials}</span>
+    <span class="doctor-card__placeholder-note">фото&nbsp;врача</span>
+  </div>
+
+  <div class="doctor-card__body">
+    <span class="doctor-card__spec">{doctor.spec}</span>
+    <h3 class="doctor-card__name font-display">{doctor.name}</h3>
+    <p class="doctor-card__desc" set:html={doctor.short} />
+
+    <div class="doctor-card__price">
+      <span class="doctor-card__price-main">{doctor.priceMain}</span>
+      {doctor.priceSub && <span class="doctor-card__price-sub">{doctor.priceSub}</span>}
+    </div>
+
+    <details class="doctor-card__details">
+      <summary>
+        <span>Подробнее о&nbsp;враче</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+        </svg>
+      </summary>
+      <div class="doctor-card__details-body">
+        {doctor.details.specialization.length > 0 && (
+          <div>
+            <h4>Специализация</h4>
+            <ul>
+              {doctor.details.specialization.map((s) => <li>{s}</li>)}
+            </ul>
+          </div>
+        )}
+
+        {doctor.details.education.length > 0 && (
+          <div>
+            <h4>Образование</h4>
+            <dl class="doctor-card__edu">
+              {doctor.details.education.map((e) => (
+                <div>
+                  <dt>{e.year}</dt>
+                  <dd>{e.text}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+
+        {doctor.details.awards && (
+          <div class="doctor-card__awards">
+            <h4>Достижения</h4>
+            <p>{doctor.details.awards}</p>
+          </div>
+        )}
+
+        {doctor.details.congresses && (
+          <div class="doctor-card__awards">
+            <h4>Конгрессы и&nbsp;конференции</h4>
+            <p>{doctor.details.congresses}</p>
+          </div>
+        )}
+      </div>
+    </details>
+
+    <Button href="/#form" variant="secondary" size="md" fullWidth={true} class="doctor-card__cta">
+      Записаться {doctor.nameBtn}
+    </Button>
+  </div>
+</article>
+
+<style>
+  .doctor-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    padding: var(--space-6);
+    background: var(--surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .doctor-card:hover { border-color: var(--border-soft); }
+
+  @media (min-width: 640px) {
+    .doctor-card {
+      grid-template-columns: 200px 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  .doctor-card__portrait {
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius-sm);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .doctor-card__portrait--a { background: var(--color-ink-900); }
+  .doctor-card__portrait--b { background: var(--color-ink-700); }
+  .doctor-card__portrait--c { background: var(--color-ink-900); }
+  .doctor-card__portrait--d { background: var(--color-ink-700); }
+
+  .doctor-card__initials {
+    font-size: 56px;
+    font-weight: 300;
+    font-style: normal;
+    color: rgba(255, 253, 248, 0.92);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    z-index: 1;
+  }
+
+  .doctor-card__placeholder-note {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, 0.4);
+    z-index: 1;
+  }
+
+  .doctor-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-width: 0;
+  }
+
+  .doctor-card__spec {
+    font-size: var(--text-micro);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--accent-hover);
+  }
+
+  .doctor-card__name {
+    font-size: var(--text-h5);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-heading);
+  }
+
+  .doctor-card__desc {
+    font-size: var(--text-ui);
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  .doctor-card__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    margin-top: var(--space-2);
+  }
+
+  .doctor-card__price-main {
+    font-size: var(--text-ui);
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .doctor-card__price-sub {
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+  }
+
+  .doctor-card__details {
+    margin-top: var(--space-2);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .doctor-card__details summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) 0;
+    cursor: pointer;
+    list-style: none;
+    font-size: var(--text-ui);
+    font-weight: 500;
+    color: var(--accent-hover);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .doctor-card__details summary:hover { color: var(--text-primary); }
+  .doctor-card__details summary::-webkit-details-marker { display: none; }
+
+  .doctor-card__details summary svg {
+    transition: transform var(--duration-base) var(--ease-out);
+    color: currentColor;
+  }
+
+  .doctor-card__details[open] summary svg { transform: rotate(45deg); }
+
+  .doctor-card__details-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding: var(--space-3) 0 var(--space-5);
+    font-size: var(--text-caption);
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  .doctor-card__details-body h4 {
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+  }
+
+  .doctor-card__details-body ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .doctor-card__details-body ul li {
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .doctor-card__details-body ul li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    top: 0;
+    color: var(--accent-hover);
+    font-weight: 600;
+  }
+
+  .doctor-card__edu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .doctor-card__edu > div {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: var(--space-3);
+  }
+
+  .doctor-card__edu dt {
+    font-size: var(--text-caption);
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
+  }
+
+  .doctor-card__edu dd { color: var(--text-muted); }
+
+  .doctor-card__awards p {
+    color: var(--text-muted);
+  }
+
+  .doctor-card__cta {
+    margin-top: auto;
+  }
+</style>

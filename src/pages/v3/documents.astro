@@ -1,0 +1,165 @@
+---
+import V3Layout from '../../layouts/V3Layout.astro';
+import Navigation from '../../components/v3/sections/Navigation.astro';
+import PageHero from '../../components/v3/sections/PageHero.astro';
+import Footer from '../../components/v3/sections/Footer.astro';
+
+const docs = [
+  {
+    title: 'Лицензия на медицинскую деятельность',
+    number: 'ЛО-16-01-007289',
+    issuer: 'Министерство здравоохранения Республики Татарстан',
+    date: '2020',
+    href: null,
+  },
+  {
+    title: 'Свидетельство о государственной регистрации',
+    number: 'ООО «Платинентал Казань»',
+    issuer: 'Федеральная налоговая служба',
+    date: '2019',
+    href: null,
+  },
+];
+---
+
+<V3Layout
+  title="Документы и лицензии — Platinental Казань"
+  description="Лицензия на медицинскую деятельность и правовые документы клиники Platinental Казань."
+>
+  <Navigation />
+  <main id="main">
+    <PageHero
+      eyebrow="Прозрачность"
+      h1="Документы и лицензии"
+      lead="Лицензия, регистрационные документы и политика в области персональных данных."
+      ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
+      ctaSecondary={undefined}
+    />
+
+    <section class="v3-docs v3-surface-cream" aria-labelledby="docs-heading">
+      <div class="v3-container v3-container-default">
+        <h2 id="docs-heading" class="sr-only">Документы клиники</h2>
+
+        <ul class="docs-list" data-v3-reveal>
+          {docs.map((d) => (
+            <li class="doc-item">
+              <div class="doc-meta">
+                <span class="v3-eyebrow doc-num">{d.number}</span>
+                <span class="v3-caption doc-date">{d.date}</span>
+              </div>
+              <div class="doc-info">
+                <p class="doc-title v3-h3">{d.title}</p>
+                <p class="v3-body doc-issuer">{d.issuer}</p>
+              </div>
+              {d.href ? (
+                <a href={d.href} class="v3-link doc-link" target="_blank" rel="noopener noreferrer">Скачать PDF</a>
+              ) : (
+                <span class="v3-caption doc-status">Оригинал в клинике</span>
+              )}
+            </li>
+          ))}
+        </ul>
+
+        <div class="docs-legal" data-v3-reveal>
+          <h3 class="v3-h3">Политика конфиденциальности (152-ФЗ)</h3>
+          <div class="v3-body legal-text">
+            <p>
+              ООО «Платинентал Казань» обрабатывает персональные данные пациентов в соответствии
+              с Федеральным законом № 152-ФЗ «О персональных данных».
+            </p>
+            <p>
+              Сбор данных осуществляется исключительно с добровольного согласия пациента, только в целях
+              оказания медицинских услуг и записи на приём. Данные не передаются третьим лицам.
+            </p>
+            <p>
+              Хранение: защищённые серверы на территории Российской Федерации, в соответствии
+              с требованиями Роскомнадзора.
+            </p>
+            <p>
+              Для отзыва согласия на обработку персональных данных или получения информации о хранении
+              данных обратитесь к администратору клиники:
+              <a href="tel:+78432236666" class="v3-link">+7 843 223-66-66</a>.
+            </p>
+          </div>
+        </div>
+
+        <p class="docs-disclaimer v3-caption" data-v3-reveal>
+          Имеются противопоказания. Необходима консультация специалиста. Все операции и процедуры
+          проводятся только при наличии медицинских показаний и информированного согласия пациента.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</V3Layout>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .v3-docs {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .docs-list {
+    list-style: none;
+    margin: 0 0 var(--v3-gap-medium);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .doc-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) auto;
+    gap: 2rem;
+    align-items: baseline;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--v3-border-hair);
+  }
+  .doc-item:last-child { border-bottom: 1px solid var(--v3-border-hair); }
+  .doc-meta { display: flex; flex-direction: column; gap: 0.375rem; }
+  .doc-num { color: var(--v3-ink-muted); }
+  .doc-date { color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0.005em; }
+  .doc-title { color: var(--v3-ink); margin-bottom: 0.25rem; }
+  .doc-issuer { margin: 0; }
+  .doc-link { font-size: 0.9375rem; white-space: nowrap; }
+  .doc-status { color: var(--v3-ink-muted); white-space: nowrap; }
+
+  .docs-legal {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h2-body);
+    padding: var(--v3-gap-medium) 0;
+    border-top: 1px solid var(--v3-border-hair);
+  }
+  .legal-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 64ch;
+  }
+  .legal-text p { margin: 0; }
+
+  .docs-disclaimer {
+    text-align: center;
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-style: italic;
+    font-family: var(--v3-font-display);
+    padding-top: 1rem;
+    border-top: 1px solid var(--v3-border-hair);
+  }
+
+  @media (max-width: 768px) {
+    .doc-item {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+</style>

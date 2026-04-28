@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О клинике Platinental в Казани — американский бренд эстетической медицины</title>
+<meta name="description" content="Platinental — американский бренд. Работаем в Казани с 2011 года. Хирурги — члены ASPS, ISAPS. Авторские методики, 10+ патентов. Научная база РНИМУ Пирогова.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FFFDF8;
+  --warm-grey: #F5F0EB;
+  --dark: #0A0A0A;
+  --dark-2: #1A1A18;
+  --gold: #B8956A;
+  --gold-light: #D4B896;
+  --text-primary: #0A0A0A;
+  --text-muted: #6B6560;
+  --border: rgba(10,10,10,0.1);
+  --border-light: rgba(255,253,248,0.12);
+  --font-display: 'Lora', serif;
+  --font-body: 'Open Sans', sans-serif;
+  --max-w: 1080px;
+  --pad: 80px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
+.section { padding: 96px 0; }
+.section--grey { background: var(--warm-grey); }
+.section--dark { background: var(--dark-2); color: var(--cream); }
+
+/* ─── HEADER ─── */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 64px; background: var(--dark-2);
+  border-bottom: 1px solid var(--border-light);
+  display: flex; align-items: center;
+}
+.header__inner {
+  max-width: calc(var(--max-w) + 240px);
+  margin: 0 auto; padding: 0 48px;
+  width: 100%; display: flex; align-items: center;
+}
+.header__logo {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 18px; color: var(--cream); margin-right: auto;
+}
+.header__logo span { color: var(--gold-light); }
+.header__nav { display: flex; gap: 28px; list-style: none; margin-right: 36px; }
+.header__nav a {
+  font-size: 13px; color: rgba(255,253,248,0.6);
+  letter-spacing: 0.02em; transition: color 0.15s;
+}
+.header__nav a:hover { color: var(--cream); }
+.header__phone { font-size: 13px; color: rgba(255,253,248,0.6); margin-right: 20px; }
+.btn {
+  display: inline-flex; align-items: center; padding: 12px 24px;
+  font-family: var(--font-body); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.04em; cursor: pointer; border: none; transition: all 0.2s;
+}
+.btn--gold { background: var(--gold); color: #fff; }
+.btn--gold:hover { background: #a07e5a; }
+.btn--outline-dark {
+  background: transparent; color: var(--dark);
+  border: 1px solid rgba(10,10,10,0.25);
+}
+.btn--outline-dark:hover { border-color: var(--gold); color: var(--gold); }
+
+.link-arrow {
+  font-size: 13px; color: var(--gold); font-weight: 500;
+  display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s;
+}
+.link-arrow:hover { gap: 8px; }
+
+.photo-placeholder {
+  background: #2a2826;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.12); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+/* ─── HERO ─── */
+.hero-about {
+  padding: 160px 0 96px;
+  background: var(--dark-2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-about::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 110%, rgba(184,149,106,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 80% 20%, rgba(184,149,106,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-about__eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold-light); margin-bottom: 24px;
+  position: relative;
+}
+.hero-about__h1 {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(36px, 4.5vw, 56px); line-height: 1.15;
+  color: var(--cream); margin-bottom: 20px;
+  position: relative;
+}
+.hero-about__lead {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: 20px; color: rgba(255,253,248,0.55); line-height: 1.55;
+  max-width: 600px; margin: 0 auto;
+  position: relative;
+}
+
+/* ─── PHILOSOPHY ─── */
+.philosophy__grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+}
+.philosophy__quote {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(22px, 2.5vw, 30px); line-height: 1.45;
+  color: var(--text-primary);
+  border-left: 2px solid var(--gold); padding-left: 24px;
+  margin-bottom: 32px;
+}
+.philosophy__text {
+  font-size: 15px; line-height: 1.8; color: var(--text-muted);
+}
+.philosophy__text p + p { margin-top: 16px; }
+.philosophy__photo { height: 480px; width: 100%; }
+
+/* ─── VALUE (dark) ─── */
+.value-section {
+  padding: 96px 0; background: var(--dark-2); color: var(--cream);
+}
+.value-section__inner {
+  max-width: 780px; margin: 0 auto; text-align: center;
+}
+.value-section__title {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(28px, 3vw, 40px); line-height: 1.2;
+  margin-bottom: 32px;
+}
+.value-section__text {
+  font-size: 16px; line-height: 1.85; color: rgba(255,253,248,0.7);
+}
+
+/* ─── BRAND ─── */
+.brand__cities {
+  display: flex; gap: 2px; justify-content: center;
+  margin: 48px 0 40px;
+}
+.brand__city {
+  background: #fff; padding: 20px 36px; text-align: center;
+  flex: 1; max-width: 200px;
+}
+.brand__city-name {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 20px; margin-bottom: 4px;
+}
+.brand__city-country {
+  font-size: 11px; color: var(--text-muted);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.brand__facts {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 32px; margin-top: 48px;
+}
+.brand__fact {
+  font-size: 14px; line-height: 1.65; color: var(--text-muted);
+  padding-left: 16px; border-left: 2px solid var(--gold);
+}
+
+/* ─── NUMBERS ─── */
+.numbers-strip {
+  padding: 64px 0; background: var(--warm-grey);
+}
+.numbers__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+}
+.numbers__item { text-align: center; position: relative; }
+.numbers__item + .numbers__item::before {
+  content: ''; position: absolute; left: 0; top: 50%;
+  transform: translateY(-50%); width: 1px; height: 48px;
+  background: var(--border);
+}
+.numbers__big {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: 56px; line-height: 1; color: var(--dark); margin-bottom: 8px;
+}
+.numbers__label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+
+/* ─── QUALIFICATION ─── */
+.qual__grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: start;
+}
+.qual__list { list-style: none; }
+.qual__item {
+  padding: 20px 0; border-bottom: 1px solid var(--border);
+}
+.qual__item-title {
+  font-weight: 600; font-size: 14px; margin-bottom: 4px;
+}
+.qual__item-desc {
+  font-size: 13px; color: var(--text-muted); line-height: 1.6;
+}
+.qual__sidebar-title {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+}
+.qual__tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px;
+}
+.qual__tag {
+  font-size: 12px; padding: 6px 14px;
+  border: 1px solid var(--border); color: var(--text-muted);
+}
+
+/* ─── FOUNDER QUOTE ─── */
+.founder-quote {
+  padding: 80px 0; background: var(--dark-2); text-align: center;
+}
+.founder-quote__text {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(22px, 2.8vw, 32px); line-height: 1.45;
+  color: var(--cream); max-width: 800px; margin: 0 auto 20px;
+}
+.founder-quote__author {
+  font-family: var(--font-body); font-size: 12px;
+  color: rgba(255,253,248,0.4); letter-spacing: 0.04em;
+}
+
+/* ─── LICENSE ─── */
+.license {
+  padding: 48px 0; text-align: center;
+  font-size: 13px; color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+/* ─── CTA FORM ─── */
+.cta-section { padding: 96px 0; background: var(--dark-2); color: var(--cream); }
+.cta-section__inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+.cta-section__title {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(28px, 3vw, 40px); line-height: 1.2;
+  color: var(--cream); margin-bottom: 20px;
+}
+.cta-section__text {
+  font-size: 15px; line-height: 1.75; color: rgba(255,253,248,0.6);
+}
+.cta-section__note {
+  font-size: 12px; color: rgba(255,253,248,0.3); margin-top: 16px;
+}
+.form__field { margin-bottom: 12px; }
+.form__input {
+  width: 100%; padding: 14px 16px;
+  background: rgba(255,253,248,0.06); border: 1px solid rgba(255,253,248,0.12);
+  color: var(--cream); font-family: var(--font-body); font-size: 14px;
+  outline: none; transition: border-color 0.15s;
+}
+.form__input:focus { border-color: var(--gold); }
+.form__input::placeholder { color: rgba(255,253,248,0.3); }
+.form__checkbox-row {
+  display: flex; gap: 10px; align-items: flex-start; margin: 16px 0 20px;
+}
+.form__checkbox-row input { margin-top: 3px; accent-color: var(--gold); }
+.form__checkbox-label { font-size: 12px; color: rgba(255,253,248,0.4); line-height: 1.5; }
+.form__submit {
+  width: 100%; padding: 15px 24px;
+  background: var(--gold); color: #fff;
+  font-family: var(--font-body); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.05em; cursor: pointer; border: none; transition: background 0.2s;
+}
+.form__submit:hover { background: #a07e5a; }
+
+/* ─── FOOTER ─── */
+.footer { background: var(--dark-2); color: var(--cream); padding: 64px 0 32px; }
+.footer__cols {
+  display: grid; grid-template-columns: 320px 1fr auto auto;
+  gap: 48px; padding-bottom: 48px;
+  border-bottom: 1px solid var(--border-light); margin-bottom: 32px;
+}
+.footer__brand {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 20px; color: var(--cream); margin-bottom: 14px;
+}
+.footer__brand-desc {
+  font-size: 13px; color: rgba(255,253,248,0.4); line-height: 1.6; max-width: 240px;
+}
+.footer__col-title {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(255,253,248,0.3); margin-bottom: 16px;
+}
+.footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer__links a { font-size: 14px; color: rgba(255,253,248,0.55); transition: color 0.15s; }
+.footer__links a:hover { color: var(--cream); }
+.footer__legal {
+  display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+}
+.footer__legal-item { font-size: 11.5px; color: rgba(255,253,248,0.25); }
+.footer__legal-item a { transition: color 0.15s; }
+.footer__legal-item a:hover { color: rgba(255,253,248,0.6); }
+
+.section__h2 {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(28px, 3vw, 42px); line-height: 1.2;
+  text-align: center; margin-bottom: 48px;
+}
+</style>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header__inner">
+    <a href="/" class="header__logo">The <span>Platinental</span></a>
+    <nav>
+      <ul class="header__nav">
+        <li><a href="/plastika">Услуги</a></li>
+        <li><a href="/doctors">Врачи</a></li>
+        <li><a href="/about" style="color:var(--cream);">О клинике</a></li>
+        <li><a href="/prices">Цены</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <span class="header__phone">+7 843 223-66-66</span>
+    <a href="#form" class="btn btn--gold" style="font-size:12px; padding:10px 20px;">Записаться</a>
+  </div>
+</header>
+
+
+<!-- ═══ 1. HERO ═══ -->
+<section class="hero-about">
+  <div class="container">
+    <p class="hero-about__eyebrow">THE PLATINENTAL</p>
+    <h1 class="hero-about__h1">Ум, честь и совесть<br>современной пластической хирургии</h1>
+    <p class="hero-about__lead">Концепция интеллигентной и уважительной гармонизации внешности</p>
+    <div style="margin-top:40px; display:flex; gap:16px; justify-content:center; position:relative;">
+      <a href="#form" class="btn btn--gold">Записаться на консультацию</a>
+      <a href="/doctors" class="btn" style="background:transparent; color:rgba(255,253,248,0.7); border:1px solid rgba(255,253,248,0.25); transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(255,253,248,0.6)'; this.style.color='#FFFDF8'" onmouseout="this.style.borderColor='rgba(255,253,248,0.25)'; this.style.color='rgba(255,253,248,0.7)'">Врачи клиники</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 2. ФИЛОСОФИЯ ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="philosophy__grid">
+      <div>
+        <blockquote class="philosophy__quote">
+          «Мы не создаём абстрактно красивые лица. Мы создаём запоминающиеся, как заноза, образы со своим характером, усиливая при этом звучание привлекательных черт.»
+        </blockquote>
+        <div class="philosophy__text">
+          <p>Что такое Platinental? С момента основания клиника придерживается одного принципа: чтобы на выходе получить превосходные пропорции, мы всегда начинаем с замеров.</p>
+          <p>Основатель бренда Андрей Искорнев разработал гармонизирующий подход — систему, в которой хирург не просто выполняет операцию, а проектирует результат. Замеры, расчёт пропорций, индивидуальный план — и только потом скальпель.</p>
+          <p>Все хирурги казанского филиала работают по этой методологии.</p>
+          <div style="margin-top:32px; display:flex; gap:16px;">
+            <a href="/doctors" class="btn btn--gold">Познакомиться с врачами</a>
+            <a href="/plastika" class="btn btn--outline-dark">Наши направления</a>
+          </div>
+        </div>
+      </div>
+      <div class="photo-placeholder philosophy__photo">ФОТО ИНТЕРЬЕРА</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 3. ЦЕННОСТЬ ═══ -->
+<section class="value-section">
+  <div class="container">
+    <div class="value-section__inner">
+      <h2 class="value-section__title">Разница между «дорого» и «дешево»</h2>
+      <p class="value-section__text">
+        Хорошее «дорого» не ограничивается персональным подходом и красивым интерьером. В «дорого» вы платите за эстетический вкус, уникальный опыт и репутацию тех людей, кто умеет создавать идеальное по индивидуальным меркам.
+        <br><br>
+        Вы покупаете годы учёбы и упорного труда — в качестве страховки против ошибок и дурновкусия. Тем более ценной, что ошибки пластического хирурга сложно не заметить.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 4. БРЕНД ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="brand__cities">
+      <div class="brand__city">
+        <div class="brand__city-name">Москва</div>
+        <div class="brand__city-country">Россия</div>
+      </div>
+      <div class="brand__city" style="border: 2px solid var(--gold);">
+        <div class="brand__city-name">Казань</div>
+        <div class="brand__city-country">Россия · с 2011</div>
+      </div>
+      <div class="brand__city">
+        <div class="brand__city-name">Алматы</div>
+        <div class="brand__city-country">Казахстан</div>
+      </div>
+      <div class="brand__city">
+        <div class="brand__city-name">Астана</div>
+        <div class="brand__city-country">Казахстан</div>
+      </div>
+    </div>
+
+    <div class="brand__facts">
+      <div class="brand__fact">Основатель — действительный член Американского общества пластических хирургов (ASPS), ISAPS и IPRAS</div>
+      <div class="brand__fact">Официальный партнёр кафедры пластической хирургии РНИМУ им. Н.И. Пирогова</div>
+      <div class="brand__fact">Единый стандарт качества, единая методология, единые протоколы во всех филиалах</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 5. ЦИФРЫ ═══ -->
+<section class="numbers-strip">
+  <div class="container">
+    <div class="numbers__grid">
+      <div class="numbers__item">
+        <div class="numbers__big">20+</div>
+        <div class="numbers__label">Лет в эстетической медицине</div>
+      </div>
+      <div class="numbers__item">
+        <div class="numbers__big">8</div>
+        <div class="numbers__label">Хирургов и косметологов</div>
+      </div>
+      <div class="numbers__item">
+        <div class="numbers__big">10+</div>
+        <div class="numbers__label">Запатентованных методик</div>
+      </div>
+      <div class="numbers__item">
+        <div class="numbers__big">2011</div>
+        <div class="numbers__label">Год открытия в Казани</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 6. КВАЛИФИКАЦИЯ ═══ -->
+<section class="section">
+  <div class="container">
+    <h2 class="section__h2">Образование и аккредитация</h2>
+    <div class="qual__grid">
+
+      <ul class="qual__list">
+        <li class="qual__item">
+          <div class="qual__item-title">РНИМУ им. Н.И. Пирогова</div>
+          <div class="qual__item-desc">Ординатура по пластической хирургии — Тулатова Р.Т., Васильев М.Н.</div>
+        </li>
+        <li class="qual__item">
+          <div class="qual__item-title">1-й МГМУ им. И.М. Сеченова</div>
+          <div class="qual__item-desc">Ординатура по пластической хирургии — Макеенко Н.В.</div>
+        </li>
+        <li class="qual__item">
+          <div class="qual__item-title">РНЦХ им. Б.В. Петровского</div>
+          <div class="qual__item-desc">Ординатура по пластической хирургии — Бречко М.А.</div>
+        </li>
+        <li class="qual__item">
+          <div class="qual__item-title">МОНИКИ им. М.Ф. Владимирского</div>
+          <div class="qual__item-desc">Ординатура по челюстно-лицевой хирургии — Мамедов В.А.</div>
+        </li>
+        <li class="qual__item">
+          <div class="qual__item-title">40 лет хирургической практики</div>
+          <div class="qual__item-desc">Мелоян М.М. — обучение в США, Чехии, Армении, Китае</div>
+        </li>
+      </ul>
+
+      <div>
+        <div class="qual__sidebar-title">Международное обучение</div>
+        <div class="qual__tags">
+          <span class="qual__tag">США, Лос-Анджелес</span>
+          <span class="qual__tag">Чехия, Прага</span>
+          <span class="qual__tag">Германия</span>
+          <span class="qual__tag">Турция</span>
+          <span class="qual__tag">Армения</span>
+          <span class="qual__tag">Китай</span>
+        </div>
+
+        <div class="qual__sidebar-title">Членство</div>
+        <div class="qual__tags">
+          <span class="qual__tag">ASPS</span>
+          <span class="qual__tag">ISAPS</span>
+          <span class="qual__tag">IPRAS</span>
+        </div>
+
+        <div class="qual__sidebar-title" style="margin-top:24px;">Патенты</div>
+        <div style="font-size:13px; color:var(--text-muted); line-height:1.7;">
+          10+ запатентованных авторских методик, разработанных внутри бренда. Соавтор патента — хирург казанского филиала Мамедов В.А. (патент РФ №2741620 «Способ подтяжки шеи»).
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 7. ЦИТАТА ОСНОВАТЕЛЯ ═══ -->
+<section class="founder-quote">
+  <div class="container">
+    <blockquote class="founder-quote__text">
+      «В мире, где избыточность является минимальным стандартом, деликатность ценится как новое сокровище. Именно так мы относимся к внешности наших пациентов. Внося едва заметные коррективы, мы создаём образ, в котором вам будет комфортно покорять новый мир.»
+    </blockquote>
+    <div class="founder-quote__author" style="margin-bottom:32px;">Андрей Искорнев, основатель Platinental, член ASPS, ISAPS, IPRAS</div>
+    <a href="#form" class="btn btn--gold" style="margin:0 auto;">Записаться на консультацию</a>
+  </div>
+</section>
+
+
+<!-- ═══ 8. ЛИЦЕНЗИЯ ═══ -->
+<section class="license">
+  <div class="container">
+    ООО «Платинентал Казань» · Лицензия ЛО-16-01-003022<br>
+    ул. Карла Маркса, 48, корп. 1, Казань, 420015
+  </div>
+</section>
+
+
+<!-- ═══ 9. CTA + ФОРМА ═══ -->
+<section class="cta-section" id="form">
+  <div class="container">
+    <div class="cta-section__inner">
+      <div>
+        <h2 class="cta-section__title">Приходите, поговорим</h2>
+        <p class="cta-section__text">
+          Мы хотим, чтобы ваш опыт эстетической медицины был приятным приключением к настоящему себе. Всё, что мы делаем, мы делаем очень достойно.
+        </p>
+        <p class="cta-section__note">Перезвоним в течение часа. Пн–вс 9:00–20:00.</p>
+      </div>
+      <form>
+        <div class="form__field">
+          <input class="form__input" type="text" placeholder="Ваше имя">
+        </div>
+        <div class="form__field">
+          <input class="form__input" type="tel" placeholder="+7 (___) ___-__-__">
+        </div>
+        <div class="form__checkbox-row">
+          <input type="checkbox" id="consent">
+          <label class="form__checkbox-label" for="consent">Соглашаюсь на <a href="/documents" style="text-decoration:underline; color:rgba(255,253,248,0.55);">обработку персональных данных</a></label>
+        </div>
+        <button type="submit" class="form__submit">Записаться на консультацию</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__cols">
+
+      <div>
+        <div class="footer__brand">The Platinental</div>
+        <p class="footer__brand-desc">Американский бренд эстетической медицины. Казань с 2011 года.</p>
+        <p class="footer__brand-desc" style="margin-top:12px;">
+          +7 843 223-66-66<br>
+          WhatsApp: +7 965 612-28-88<br>
+          Пн–вс 9:00–20:00
+        </p>
+      </div>
+
+      <div></div>
+
+      <div>
+        <div class="footer__col-title">Услуги</div>
+        <ul class="footer__links">
+          <li><a href="/plastika">Пластическая хирургия</a></li>
+          <li><a href="/kosmetologiya">Косметология</a></li>
+          <li><a href="/kosmecevtika">Космецевтика</a></li>
+          <li><a href="/prices">Цены</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer__col-title">Клиника</div>
+        <ul class="footer__links">
+          <li><a href="/about" style="color:var(--cream);">О клинике</a></li>
+          <li><a href="/doctors">Врачи</a></li>
+          <li><a href="/documents">Документы</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__legal">
+      <span class="footer__legal-item">© 2026 ООО «Платинентал Казань» · ЛО-16-01-003022</span>
+      <span class="footer__legal-item">Имеются противопоказания. Необходима консультация специалиста.</span>
+      <span class="footer__legal-item"><a href="/documents">Политика конфиденциальности</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

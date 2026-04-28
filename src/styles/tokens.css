@@ -1,0 +1,138 @@
+/*
+ * Platinental — Design Tokens
+ * 3-tier semantic system: base → composite → semantic.
+ * Никаких хекс-значений в компонентах. Всё тянется через семантические CSS vars.
+ */
+
+:root {
+  /* ── Base palette ───────────────────────────────────────────────── */
+  --color-cream-50: #FFFDF8;
+  --color-cream-100: #FAF6EE;
+  --color-sand-100: #F5F0EB;
+  --color-sand-200: #EAE2D7;
+  --color-ink-900: #0A0A0A;
+  --color-ink-700: #2B2B2B;
+  --color-ink-500: #6B6B6B;
+  --color-ink-300: #B8B5AE;
+  --color-ink-200: #D6D2CA;
+  --color-ink-100: #E6E2DA;
+  --color-white: #FFFFFF;
+
+  /* Champagne accent — premium, универсальный, не красный. */
+  --color-champagne-400: #D9C19C;
+  --color-champagne-500: #C4A882;
+  --color-champagne-600: #A88D6B;
+  --color-champagne-700: #8C7354;
+
+  /* Functional colours (используем скупо) */
+  --color-danger: #A8392B;
+
+  /* ── Semantic surface roles ─────────────────────────────────────── */
+  --surface-page: var(--color-cream-50);
+  --surface-raised: var(--color-white);
+  --surface-alt: var(--color-sand-100);
+  --surface-inverse: var(--color-ink-900);
+
+  /* ── Text roles ─────────────────────────────────────────────────── */
+  --text-primary: var(--color-ink-900);
+  --text-secondary: var(--color-ink-700);
+  --text-muted: var(--color-ink-500);
+  --text-inverse: var(--color-white);
+  --text-inverse-muted: rgba(255, 255, 255, 0.72);
+
+  /* ── Border / divider ───────────────────────────────────────────── */
+  --border-subtle: rgba(10, 10, 10, 0.08);
+  --border-soft: rgba(10, 10, 10, 0.14);
+  --border-inverse: rgba(255, 255, 255, 0.16);
+
+  /* ── Accent (единственная хроматическая роль) ───────────────────── */
+  --accent: var(--color-champagne-500);
+  --accent-hover: var(--color-champagne-600);
+  --accent-soft: rgba(196, 168, 130, 0.14);
+  --accent-contrast: var(--color-ink-900);
+
+  /* ── Focus ring ─────────────────────────────────────────────────── */
+  --focus-ring: 0 0 0 2px var(--surface-page), 0 0 0 4px var(--accent);
+
+  /* ── Overlays ───────────────────────────────────────────────────── */
+  --overlay-dark: rgba(10, 10, 10, 0.42);
+  --overlay-soft: rgba(10, 10, 10, 0.06);
+  --glass-bg: rgba(255, 253, 248, 0.72);
+  --glass-bg-scrolled: rgba(255, 253, 248, 0.86);
+
+  /* ── Shadows (почти невидимые — глубина через фон) ─────────────── */
+  --shadow-xs: 0 1px 2px rgba(10, 10, 10, 0.04);
+  --shadow-sm: 0 2px 16px rgba(10, 10, 10, 0.06);
+  --shadow-md: 0 4px 24px rgba(10, 10, 10, 0.08);
+  --shadow-lg: 0 12px 48px rgba(10, 10, 10, 0.14);
+
+  /* ── Radii ──────────────────────────────────────────────────────── */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ── Space (8px baseline) ───────────────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --space-40: 160px;
+
+  /* ── Typography families ────────────────────────────────────────── */
+  --font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-body: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* ── Fluid type scale (clamp min, preferred, max) ──────────────── */
+  --text-micro: clamp(0.688rem, 0.68rem + 0.04vw, 0.75rem);    /* 11 → 12 */
+  --text-caption: clamp(0.75rem, 0.73rem + 0.1vw, 0.8125rem);  /* 12 → 13 */
+  --text-ui: clamp(0.875rem, 0.85rem + 0.12vw, 0.9375rem);     /* 14 → 15 */
+  --text-body: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);    /* 15 → 17 */
+  --text-lead: clamp(1.0625rem, 1.02rem + 0.3vw, 1.25rem);     /* 17 → 20 */
+  --text-h5: clamp(1.25rem, 1.16rem + 0.45vw, 1.5rem);         /* 20 → 24 */
+  --text-h4: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);            /* 24 → 32 */
+  --text-h3: clamp(1.875rem, 1.6rem + 1.4vw, 2.75rem);         /* 30 → 44 */
+  --text-h2: clamp(2.25rem, 1.85rem + 2.05vw, 3.5rem);         /* 36 → 56 */
+  --text-h1: clamp(2rem, 1.4rem + 3vw, 5rem);                  /* 32 → 80 */
+  --text-display: clamp(2.25rem, 1.4rem + 4.25vw, 6.5rem);     /* 36 → 104 */
+
+  /* ── Line heights ───────────────────────────────────────────────── */
+  --leading-tight: 1.05;
+  --leading-snug: 1.15;
+  --leading-normal: 1.4;
+  --leading-relaxed: 1.6;
+
+  /* ── Tracking ───────────────────────────────────────────────────── */
+  --tracking-display: -0.02em;
+  --tracking-heading: -0.015em;
+  --tracking-normal: 0;
+  --tracking-ui: 0.01em;
+  --tracking-caps: 0.08em;
+
+  /* ── Motion ─────────────────────────────────────────────────────── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 160ms;
+  --duration-base: 240ms;
+  --duration-slow: 420ms;
+
+  /* ── Layout ─────────────────────────────────────────────────────── */
+  --container-max: 1280px;
+  --container-gutter-mobile: 20px;
+  --container-gutter-tablet: 32px;
+  --container-gutter-desktop: 48px;
+  --nav-height: 72px;
+  --nav-height-mobile: 60px;
+}

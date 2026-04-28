@@ -1,0 +1,116 @@
+---
+const fields = [
+  { label: 'Адрес', value: 'ул. Карла Маркса, 48, корп. 1<br />Казань, 420015' },
+  { label: 'Телефон', value: '<a href="tel:+78432236666" class="v3-link">+7 843 223-66-66</a>' },
+  {
+    label: 'Мессенджеры',
+    value: '<a href="https://wa.me/78432236666" class="v3-link">WhatsApp</a> · <a href="https://max.ru" class="v3-link">Max</a> · <a href="https://t.me/platinental_kazan" class="v3-link">Telegram</a> · <a href="https://instagram.com/platinental_kazan" class="v3-link">Instagram*</a>',
+  },
+  { label: 'Режим работы', value: 'Ежедневно 9:00–20:00' },
+];
+---
+
+<section class="v3-contacts v3-surface-cream" aria-labelledby="contacts-heading">
+  <div class="v3-container v3-container-wide contacts-grid">
+    <div class="contacts-text" data-v3-reveal>
+      <span class="v3-eyebrow">Контакты</span>
+      <h2 id="contacts-heading" class="v3-h2"><em>Как нас найти</em></h2>
+
+      <dl class="contacts-list">
+        {fields.map((f) => (
+          <div class="contact-row">
+            <dt class="v3-eyebrow contact-label">{f.label}</dt>
+            <dd class="contact-value v3-body" set:html={f.value}></dd>
+          </div>
+        ))}
+      </dl>
+
+      <p class="v3-caption ig-note">
+        * Instagram принадлежит Meta, признанной экстремистской и запрещённой в РФ.
+      </p>
+    </div>
+
+    <div class="contacts-map" data-v3-reveal aria-label="Карта расположения клиники">
+      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(26,31,42,0.06)" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="400" height="500" fill="var(--v3-sand)"/>
+        <rect width="400" height="500" fill="url(#grid)"/>
+        <line x1="0" y1="220" x2="400" y2="220" stroke="rgba(26,31,42,0.2)" stroke-width="1.5"/>
+        <line x1="0" y1="280" x2="400" y2="280" stroke="rgba(26,31,42,0.1)" stroke-width="1"/>
+        <line x1="180" y1="0" x2="180" y2="500" stroke="rgba(26,31,42,0.15)" stroke-width="1"/>
+        <line x1="240" y1="0" x2="240" y2="500" stroke="rgba(26,31,42,0.08)" stroke-width="1"/>
+        <circle cx="200" cy="250" r="32" fill="rgba(196,168,130,0.18)"/>
+        <circle cx="200" cy="250" r="8" fill="var(--v3-champagne-deep)"/>
+        <text x="216" y="254" font-family="var(--v3-font-body)" font-size="11" letter-spacing="0.16em" fill="var(--v3-ink)" font-weight="500">PLATINENTAL</text>
+      </svg>
+      <p class="map-coords v3-caption">55.7887°N · 49.1221°E</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v3-contacts {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .contacts-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+  }
+  .contacts-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h1-lead);
+    max-width: 36rem;
+  }
+
+  .contacts-list {
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-row {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: 1.5rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--v3-border-hair);
+    align-items: baseline;
+  }
+  .contact-row:last-child { border-bottom: 1px solid var(--v3-border-hair); }
+  .contact-label { color: var(--v3-ink-muted); }
+  .contact-value {
+    margin: 0;
+    font-family: var(--v3-font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--v3-ink);
+  }
+  .ig-note { color: var(--v3-ink-muted); margin-top: 1rem; text-transform: none; letter-spacing: 0.005em; font-family: var(--v3-font-body); font-size: 0.8125rem; }
+
+  .contacts-map {
+    width: 100%;
+    aspect-ratio: 4/5;
+    position: relative;
+    overflow: hidden;
+  }
+  .contacts-map svg { width: 100%; height: 100%; display: block; }
+  .map-coords {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    color: var(--v3-ink-muted);
+  }
+
+  @media (max-width: 1024px) {
+    .contacts-grid { grid-template-columns: 1fr; }
+    .contact-row { grid-template-columns: 1fr; gap: 0.25rem; }
+  }
+</style>

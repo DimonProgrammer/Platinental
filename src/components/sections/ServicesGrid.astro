@@ -1,0 +1,143 @@
+---
+import Button from '../primitives/Button.astro';
+
+const directions = [
+  {
+    title: 'Пластическая хирургия',
+    text: 'Мы&nbsp;не&nbsp;делаем «бразильские» ягодицы и&nbsp;не&nbsp;«увеличиваем» грудь. Мы&nbsp;предлагаем индивидуальный дизайн форм, которые органично вписываются в&nbsp;исходные параметры&nbsp;— никакого «сделанного» эффекта. 27&nbsp;видов операций.',
+    link: { href: '/plastika', label: 'Все операции' },
+    tone: 'a',
+  },
+  {
+    title: 'Косметология',
+    text: 'Ботокс, контурная пластика, CO₂-лазер, HELEO4. Врач-косметолог работает в&nbsp;связке с&nbsp;хирургом&nbsp;— составляет единый план, а&nbsp;не&nbsp;набор разрозненных процедур.',
+    link: { href: '/kosmetologiya', label: 'Все процедуры' },
+    tone: 'b',
+  },
+  {
+    title: 'Космецевтика',
+    text: 'Профессиональная косметика под&nbsp;конкретную задачу: реабилитация после операции, поддержание результата, ежедневный уход. Индивидуальный подбор со&nbsp;специалистом.',
+    link: { href: '/kosmecevtika', label: 'Каталог' },
+    tone: 'c',
+  },
+];
+---
+
+<section class="services" id="directions" aria-label="Три направления">
+  <div class="services__inner">
+    <div class="services__grid">
+      {directions.map((dir, i) => (
+        <article class={`direction direction--${dir.tone}`} data-reveal style={`transition-delay: ${i * 100}ms`}>
+          <div class={`direction__photo direction__photo--${dir.tone}`} aria-hidden="true">
+            <span class="direction__photo-label">Фото услуги</span>
+          </div>
+          <div class="direction__body">
+            <h3 class="direction__title font-display" set:html={dir.title} />
+            <p class="direction__text" set:html={dir.text} />
+            <Button href={dir.link.href} variant="link" arrow={true} class="direction__link">
+              {dir.link.label}
+            </Button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: var(--surface-page);
+    padding: var(--space-32) 0;
+  }
+
+  @media (min-width: 1024px) { .services { padding: var(--space-40) 0; } }
+
+  .services__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .services__inner { padding: 0 32px; } }
+  @media (min-width: 1200px) { .services__inner { padding: 0 48px; } }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  @media (min-width: 640px) {
+    .services__grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  }
+
+  @media (min-width: 1024px) {
+    .services__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .direction {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  .direction:hover { transform: translateY(-4px); }
+
+  .direction__photo {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-5);
+  }
+
+  .direction__photo--a {
+    background: var(--color-ink-900);
+  }
+  .direction__photo--b {
+    background: var(--color-sand-200);
+  }
+  .direction__photo--c {
+    background: var(--color-ink-700);
+  }
+
+  .direction__photo-label {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, 0.3);
+    position: relative;
+  }
+
+  .direction--b .direction__photo-label {
+    color: rgba(10, 10, 10, 0.25);
+  }
+
+  .direction__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .direction__title {
+    font-size: var(--text-h4);
+    font-weight: 400;
+    letter-spacing: var(--tracking-heading);
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
+
+  .direction__text {
+    font-size: var(--text-ui);
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .direction__link {
+    margin-top: var(--space-2);
+    align-self: flex-start;
+  }
+</style>

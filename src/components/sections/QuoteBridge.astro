@@ -1,0 +1,145 @@
+---
+---
+
+<section class="quote-bridge" aria-label="Философия клиники">
+  <div class="quote-bridge__inner">
+    <blockquote
+      class="quote-bridge__quote font-display reveal-type"
+      data-bg-color="rgba(255,253,248,0.18)"
+      data-fg-color="rgba(255,253,248,1)"
+    >
+      «Гармонизирующая хирургия&nbsp;— это&nbsp;Haute&nbsp;Couture<sup class="quote-bridge__sup">*</sup> эстетической медицины»
+    </blockquote>
+    <p class="quote-bridge__footnote">
+      <span class="quote-bridge__sup-mark">*</span>
+      Haute Couture (фр.)&nbsp;— высокая мода; изделие, созданное по&nbsp;индивидуальным меркам, вручную, без&nbsp;шаблонов.
+    </p>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import SplitType from 'split-type';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const init = () => {
+    const quoteEl = document.querySelector<HTMLElement>('.reveal-type');
+    if (!quoteEl) return;
+
+    const bgColor = quoteEl.dataset.bgColor ?? 'rgba(255,253,248,0.18)';
+    const fgColor = quoteEl.dataset.fgColor ?? 'rgba(255,253,248,1)';
+
+    // types: words,chars — слова не переносятся посередине
+    const split = new SplitType(quoteEl, { types: 'words,chars' });
+
+    gsap.fromTo(
+      split.chars,
+      { color: bgColor },
+      {
+        color: fgColor,
+        duration: 0.3,
+        stagger: 0.02,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: quoteEl,
+          start: 'top 80%',
+          end: 'top 20%',
+          scrub: true,
+          toggleActions: 'play play reverse reverse',
+        },
+      }
+    );
+  };
+
+  // Respect prefers-reduced-motion
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.fonts.ready.then(init);
+  }
+</script>
+
+<style>
+  .quote-bridge {
+    background: var(--surface-inverse);
+    color: var(--text-inverse);
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 1024px) { .quote-bridge { padding: var(--space-24) 0; } }
+
+  .quote-bridge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 80% 30%, rgba(196, 168, 130, 0.14), transparent 55%),
+      radial-gradient(circle at 18% 80%, rgba(196, 168, 130, 0.06), transparent 45%);
+    pointer-events: none;
+  }
+
+  .quote-bridge__inner {
+    position: relative;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) { .quote-bridge__inner { padding: 0 32px; } }
+
+  .quote-bridge__quote {
+    font-weight: 300;
+    font-size: clamp(1.5rem, 1.05rem + 2.3vw, 2.75rem);
+    line-height: 1.25;
+    letter-spacing: var(--tracking-heading);
+    color: var(--text-inverse);
+    text-wrap: balance;
+    position: relative;
+  }
+
+  /* Когда JS активен — затемняем, GSAP анимирует посимвольно */
+  :global(.js-ready) .quote-bridge__quote {
+    color: rgba(255, 253, 248, 0.18);
+  }
+
+  /* Слова — inline-block, чтобы перенос был только между словами */
+  :global(.quote-bridge__quote .word) {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .quote-bridge__sup {
+    font-size: 0.45em;
+    vertical-align: super;
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  .quote-bridge__footnote {
+    margin-top: var(--space-8);
+    font-size: var(--text-caption);
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.5;
+    text-align: center;
+    max-width: 52ch;
+    margin-inline: auto;
+  }
+
+  .quote-bridge__sup-mark {
+    color: var(--accent);
+    font-weight: 500;
+    margin-right: 4px;
+  }
+
+  /* Отключаем димминг при reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    :global(.js-ready) .quote-bridge__quote {
+      color: var(--text-inverse);
+    }
+  }
+</style>

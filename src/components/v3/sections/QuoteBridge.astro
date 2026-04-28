@@ -1,0 +1,54 @@
+---
+---
+
+<section class="v3-quote v3-surface-ink" aria-label="Брендовая цитата">
+  <div class="quote-inner v3-container v3-container-wide" data-v3-reveal>
+    <blockquote class="quote-text v3-display">
+      <em>
+        Гармонизирующая хирургия — это
+        <span class="hc">Haute&nbsp;Couture<sup>*</sup></span>
+        эстетической медицины
+      </em>
+    </blockquote>
+
+    <p class="quote-footnote v3-eyebrow">
+      *&nbsp;Haute Couture (фр.) — высокая мода; изделие, созданное по индивидуальным меркам, вручную, без шаблонов.
+    </p>
+  </div>
+</section>
+
+<style>
+  .v3-quote {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+    overflow: hidden;
+  }
+  .quote-inner {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.25rem, 3vw, 3rem);
+  }
+  .quote-text {
+    font-size: clamp(2.5rem, 7vw, 6rem);
+    line-height: 1.05;
+    color: var(--v3-on-ink);
+    margin: 0;
+    max-width: 22ch;
+  }
+  .hc { color: var(--v3-champagne); white-space: nowrap; }
+  .hc sup {
+    font-family: var(--v3-font-body);
+    font-style: normal;
+    font-size: 0.5em;
+    vertical-align: super;
+    margin-left: 0.05em;
+  }
+  .quote-footnote {
+    color: var(--v3-on-ink-muted);
+    max-width: 60ch;
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-size: 0.875rem;
+    font-family: var(--v3-font-body);
+  }
+</style>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Косметология в Казани — клиника Platinental | Инъекции, лазер, уход</title>
+<meta name="description" content="Косметология в клинике Platinental Казань: ботулотоксин, биоревитализация, контурная пластика, CO2-лазер, аппаратные процедуры. Запись: +7 (843) 223-66-66.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FFFDF8;
+  --warm-grey: #F5F0EB;
+  --dark: #0A0A0A;
+  --dark-2: #1A1A18;
+  --gold: #B8956A;
+  --gold-light: #D4B896;
+  --text-primary: #0A0A0A;
+  --text-muted: #6B6560;
+  --border: rgba(10,10,10,0.1);
+  --border-light: rgba(255,253,248,0.12);
+  --font-display: 'Lora', serif;
+  --font-body: 'Open Sans', sans-serif;
+  --max-w: 1080px;
+  --pad: 80px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--text-primary); background: var(--cream); -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
+.section { padding: 80px 0; }
+.section--grey { background: var(--warm-grey); }
+.section--dark { background: var(--dark-2); color: var(--cream); }
+
+/* ─── HEADER ─── */
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 64px; background: var(--dark-2); border-bottom: 1px solid var(--border-light); display: flex; align-items: center; }
+.header__inner { max-width: calc(var(--max-w) + 160px); margin: 0 auto; padding: 0 48px; width: 100%; display: flex; align-items: center; }
+.header__logo { font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--cream); margin-right: auto; }
+.header__logo span { color: var(--gold-light); }
+.header__nav { display: flex; gap: 28px; list-style: none; margin-right: 36px; }
+.header__dropdown { position: relative; }
+.header__dropdown-menu { position: absolute; top: calc(100% + 16px); left: -12px; background: var(--dark); border: 1px solid var(--border-light); padding: 8px 0; min-width: 200px; opacity: 0; visibility: hidden; transform: translateY(-4px); transition: all 0.15s; z-index: 20; }
+.header__dropdown:hover .header__dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.header__dropdown-menu a { display: block; padding: 8px 16px; font-size: 13px; color: rgba(255,253,248,0.6); }
+.header__dropdown-menu a:hover { color: var(--cream); background: rgba(255,253,248,0.04); }
+.header__nav a { font-size: 13px; color: rgba(255,253,248,0.6); letter-spacing: 0.02em; transition: color 0.15s; }
+.header__nav a:hover, .header__nav a.active { color: var(--cream); }
+.header__phone { font-size: 13px; color: rgba(255,253,248,0.6); margin-right: 20px; }
+.btn { display: inline-flex; align-items: center; padding: 12px 24px; font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; border: none; transition: all 0.2s; }
+.btn--gold { background: var(--gold); color: #fff; }
+.btn--gold:hover { background: #a07e5a; }
+.btn--outline-light { background: transparent; color: rgba(255,253,248,0.7); border: 1px solid rgba(255,253,248,0.25); }
+.btn--outline-light:hover { border-color: rgba(255,253,248,0.6); color: var(--cream); }
+
+/* ─── HERO ─── */
+.hero { padding: 140px 0 90px; text-align: center; background: var(--dark-2); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 110%, rgba(184,149,106,0.07) 0%, transparent 55%); pointer-events: none; }
+.hero__eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 20px; position: relative; }
+.hero__h1 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(28px, 3.6vw, 48px); line-height: 1.15; color: var(--cream); margin-bottom: 28px; position: relative; max-width: 760px; margin-left: auto; margin-right: auto; }
+.hero__lead { font-size: 15px; line-height: 1.80; color: rgba(255,253,248,0.55); max-width: 640px; margin: 0 auto 32px; position: relative; }
+.hero__blockquote { font-family: var(--font-display); font-style: italic; font-size: 17px; line-height: 1.6; color: rgba(255,253,248,0.45); border-left: 2px solid var(--gold); padding-left: 20px; max-width: 580px; margin: 0 auto 40px; text-align: left; position: relative; }
+.hero__cta { display: flex; gap: 16px; justify-content: center; position: relative; }
+
+/* ─── TABS ─── */
+.tabs-section { background: var(--cream); padding: 0; position: sticky; top: 64px; z-index: 50; border-bottom: 2px solid var(--border); box-shadow: 0 2px 12px rgba(10,10,10,0.06); }
+.tabs { display: flex; gap: 0; max-width: calc(var(--max-w) + 160px); margin: 0 auto; padding: 0 var(--pad); justify-content: center; }
+.tab-btn { padding: 20px 40px; font-size: 15px; font-weight: 600; letter-spacing: 0.02em; background: none; border: none; cursor: pointer; color: var(--text-muted); border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; font-family: var(--font-body); display: flex; align-items: center; gap: 10px; }
+.tab-btn:hover { color: var(--text-primary); background: rgba(184,149,106,0.04); }
+.tab-btn.active { color: var(--text-primary); border-bottom-color: var(--gold); background: rgba(184,149,106,0.06); }
+.tab-btn .tab-count { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-size: 12px; font-weight: 700; background: var(--border); color: var(--text-muted); transition: all 0.2s; }
+.tab-btn.active .tab-count { background: var(--gold); color: #fff; }
+
+/* ─── PROCEDURES SECTION ─── */
+.procs-section { padding: 56px 0 80px; }
+.procs-panel { display: none; }
+.procs-panel.active { display: block; }
+
+/* 3-column grid for injection and hardware tabs */
+.procs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+/* 2-column grid for therapy tab */
+.procs-grid--2col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+
+.proc-card { background: #fff; padding: 28px 26px 32px; display: flex; flex-direction: column; transition: box-shadow 0.2s; }
+.proc-card:hover { box-shadow: 0 8px 32px rgba(10,10,10,0.08); }
+.proc-card__badge { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.proc-card__name { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 22px; line-height: 1.2; margin-bottom: 12px; color: var(--text-primary); }
+.proc-card__desc { font-size: 13px; line-height: 1.65; color: var(--text-muted); margin-bottom: 16px; flex: 1; }
+.proc-card__prices { margin-bottom: 18px; }
+.proc-card__price-item { font-size: 13px; line-height: 1.75; color: var(--text-muted); }
+.proc-card__price-item strong { color: var(--text-primary); font-weight: 500; }
+.proc-card__price-range { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 22px; color: var(--gold); margin-bottom: 16px; line-height: 1.2; }
+.proc-card__cta { font-size: 12px; font-weight: 500; color: var(--gold); letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 4px; transition: gap 0.15s; }
+.proc-card__cta:hover { gap: 8px; }
+
+.disclaimer-small { font-size: 12px; color: var(--text-muted); opacity: 0.7; margin-top: 32px; }
+
+/* ─── COSMETOLOGIST SECTION ─── */
+.cosmetologist-section { background: var(--warm-grey); padding: 80px 0; }
+.section__h2 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(28px, 3vw, 42px); line-height: 1.2; text-align: center; margin-bottom: 0; }
+
+.cosm-card { max-width: 700px; margin: 40px auto 0; display: grid; grid-template-columns: 280px 1fr; overflow: hidden; }
+.cosm-card__left { background: var(--dark-2); padding: 36px 28px; display: flex; flex-direction: column; gap: 10px; }
+.cosm-card__badge { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); }
+.cosm-card__name { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 21px; line-height: 1.25; color: var(--cream); }
+.cosm-card__price { font-size: 13px; color: rgba(255,253,248,0.5); margin-top: auto; padding-top: 20px; }
+.cosm-card__btn { display: inline-block; padding: 11px 18px; background: var(--gold); color: #fff; font-family: var(--font-body); font-size: 12px; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; margin-top: 14px; transition: background 0.2s; }
+.cosm-card__btn:hover { background: #a07e5a; }
+.cosm-card__right { background: #fff; padding: 36px 32px; display: flex; flex-direction: column; justify-content: center; }
+.cosm-card__right p { font-size: 14px; line-height: 1.75; color: var(--text-muted); margin-bottom: 14px; }
+.cosm-card__right p:last-child { margin-bottom: 0; font-style: italic; color: var(--text-primary); font-size: 13px; }
+
+/* ─── QUOTE STRIP ─── */
+.quote-strip { padding: 72px 0; text-align: center; background: var(--dark-2); }
+.quote-strip__text { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(18px, 2.2vw, 26px); max-width: 720px; margin: 0 auto; color: rgba(255,253,248,0.75); line-height: 1.55; }
+
+/* ─── FAQ ─── */
+.faq__list { margin-top: 40px; }
+details { border-bottom: 1px solid var(--border); }
+summary { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; font-size: 16px; font-weight: 400; cursor: pointer; gap: 24px; list-style: none; transition: color 0.15s; }
+summary:hover { color: var(--gold); }
+.faq__icon { font-size: 20px; font-weight: 300; color: var(--gold); flex-shrink: 0; transition: transform 0.2s; }
+details[open] .faq__icon { transform: rotate(45deg); }
+.faq__answer { padding: 0 0 22px; font-size: 14px; line-height: 1.75; color: var(--text-muted); max-width: 800px; }
+
+/* ─── FORM ─── */
+.form-section { padding: 96px 0; background: var(--dark-2); color: var(--cream); }
+.form-section__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.form-section__title { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(26px, 3vw, 38px); line-height: 1.2; margin-bottom: 20px; }
+.form-section__text { font-size: 15px; line-height: 1.75; color: rgba(255,253,248,0.6); }
+.form-section__sub { font-size: 15px; line-height: 1.75; color: rgba(255,253,248,0.45); margin-top: 12px; }
+.form-section__note { font-size: 12px; color: rgba(255,253,248,0.3); margin-top: 16px; }
+.form__field { margin-bottom: 12px; }
+.form__input { width: 100%; padding: 14px 16px; background: rgba(255,253,248,0.06); border: 1px solid rgba(255,253,248,0.12); color: var(--cream); font-family: var(--font-body); font-size: 14px; outline: none; transition: border-color 0.15s; appearance: none; }
+.form__input:focus { border-color: var(--gold); }
+.form__input::placeholder { color: rgba(255,253,248,0.3); }
+.form__checkbox-row { display: flex; gap: 10px; align-items: flex-start; margin: 16px 0 20px; }
+.form__checkbox-row input { margin-top: 3px; accent-color: var(--gold); }
+.form__checkbox-label { font-size: 12px; color: rgba(255,253,248,0.4); line-height: 1.5; }
+.form__submit { width: 100%; padding: 15px 24px; background: var(--gold); color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.05em; cursor: pointer; border: none; transition: background 0.2s; }
+.form__submit:hover { background: #a07e5a; }
+
+/* ─── DISCLAIMER STRIP ─── */
+.disclaimer-strip { padding: 24px 0; background: var(--warm-grey); border-top: 1px solid var(--border); }
+.disclaimer-strip p { font-size: 12px; color: var(--text-muted); text-align: center; line-height: 1.7; max-width: 760px; margin: 0 auto; }
+
+/* ─── FOOTER ─── */
+.footer { background: var(--dark-2); color: var(--cream); padding: 64px 0 32px; }
+.footer__cols { display: grid; grid-template-columns: 320px 1fr auto auto; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border-light); margin-bottom: 32px; }
+.footer__brand { font-family: var(--font-display); font-style: italic; font-size: 20px; color: var(--cream); margin-bottom: 14px; }
+.footer__brand-desc { font-size: 13px; color: rgba(255,253,248,0.4); line-height: 1.6; max-width: 240px; }
+.footer__col-title { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,253,248,0.3); margin-bottom: 16px; }
+.footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer__links a { font-size: 14px; color: rgba(255,253,248,0.55); transition: color 0.15s; }
+.footer__links a:hover { color: var(--cream); }
+.footer__legal { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.footer__legal-item { font-size: 11.5px; color: rgba(255,253,248,0.25); }
+.footer__legal-item a:hover { color: rgba(255,253,248,0.6); }
+</style>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header__inner">
+    <a href="/" class="header__logo">The <span>Platinental</span></a>
+    <nav>
+      <ul class="header__nav">
+        <li class="header__dropdown">
+          <a href="#" class="active">Услуги ▾</a>
+          <div class="header__dropdown-menu">
+            <a href="/plastika">Пластическая хирургия</a>
+            <a href="/kosmetologiya" style="color:var(--cream);">Косметология</a>
+            <a href="/kosmecevtika">Космецевтика</a>
+          </div>
+        </li>
+        <li><a href="/doctors">Врачи</a></li>
+        <li><a href="/about">О клинике</a></li>
+        <li><a href="/prices">Цены</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <span class="header__phone">+7 843 223-66-66</span>
+    <a href="#form" class="btn btn--gold" style="font-size:12px; padding:10px 20px;">Записаться</a>
+  </div>
+</header>
+
+
+<!-- ═══ 1. HERO ═══ -->
+<section class="hero">
+  <div class="container">
+    <p class="hero__eyebrow">КОСМЕТОЛОГИЯ</p>
+    <h1 class="hero__h1">Косметология в Казани — клиника Platinental</h1>
+    <p class="hero__lead">В большинстве клиник косметолог и хирург не пересекаются. В Platinental они работают в одной команде: прежде чем рекомендовать процедуру, врач оценивает, не нужна ли хирургия — и наоборот. Это избавляет от ситуации, когда вам продают то, что не поможет.</p>
+    <blockquote class="hero__blockquote">«Для создания живого лица недостаточно просто вколоть филлер. Мы предлагаем более тонкие и сложные техники»</blockquote>
+    <div class="hero__cta">
+      <a href="#form" class="btn btn--gold">Записаться на консультацию</a>
+      <a href="/prices" class="btn btn--outline-light">Цены</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 2–3. ТАБЫ + ПРОЦЕДУРЫ (общий родитель для sticky) ═══ -->
+<div class="tabs-wrapper">
+
+<div class="tabs-section">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('injection', this)">Инъекционная <span class="tab-count">4</span></button>
+    <button class="tab-btn" onclick="switchTab('hardware', this)">Аппаратная <span class="tab-count">3</span></button>
+    <button class="tab-btn" onclick="switchTab('therapy', this)">Терапевтическая <span class="tab-count">5</span></button>
+  </div>
+</div>
+
+
+<!-- ═══ 3. ПРОЦЕДУРЫ ═══ -->
+<section class="procs-section">
+  <div class="container">
+
+    <!-- ИНЪЕКЦИОННАЯ -->
+    <div class="procs-panel active" id="panel-injection">
+      <div class="procs-grid">
+
+        <div class="proc-card">
+          <div class="proc-card__badge">ИНЪЕКЦИИ</div>
+          <div class="proc-card__name">Ботулотоксин</div>
+          <p class="proc-card__desc">Расслабляет мышцы, формирующие мимические морщины: лоб, межбровье, «гусиные лапки». Результат — через 7–14 дней, держится 4–6 месяцев.</p>
+          <div class="proc-card__prices">
+            <div class="proc-card__price-item">Диспорт — <strong>150 ₽/ед</strong></div>
+            <div class="proc-card__price-item">Миотокс — <strong>300 ₽/ед</strong></div>
+            <div class="proc-card__price-item">Ксеомин — <strong>310 ₽/ед</strong></div>
+            <div class="proc-card__price-item">Новакутан БТА — <strong>300 ₽/ед</strong></div>
+          </div>
+          <a href="#form" class="proc-card__cta">Записаться к косметологу →</a>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card__badge">ИНЪЕКЦИИ</div>
+          <div class="proc-card__name">Биоревитализация</div>
+          <p class="proc-card__desc">Насыщает кожу гиалуроновой кислотой, восстанавливает увлажнённость и тургор.</p>
+          <div class="proc-card__prices">
+            <div class="proc-card__price-item">Jalupro 3 мл — <strong>от 7 000 ₽</strong></div>
+            <div class="proc-card__price-item">Биоколлагеновый ревитализант — <strong>до 45 000 ₽</strong></div>
+          </div>
+          <a href="#form" class="proc-card__cta">Записаться к косметологу →</a>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card__badge">ИНЪЕКЦИИ</div>
+          <div class="proc-card__name">Контурная пластика</div>
+          <p class="proc-card__desc">Восстанавливает объём скул, губ, подбородка. Препараты разной плотности укладываются послойно для естественного 3D-эффекта.</p>
+          <div class="proc-card__prices">
+            <div class="proc-card__price-item">Белотеро 1 мл — <strong>от 22 000 ₽</strong></div>
+            <div class="proc-card__price-item">Скульптра 5 мл — <strong>до 48 000 ₽</strong></div>
+          </div>
+          <a href="#form" class="proc-card__cta">Записаться к косметологу →</a>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card__badge">ИНЪЕКЦИИ</div>
+          <div class="proc-card__name">Плазмотерапия (PRP)</div>
+          <p class="proc-card__desc">Стимулирует регенерацию кожи собственной плазмой крови пациента.</p>
+          <div class="proc-card__prices">
+            <div class="proc-card__price-item">1 пробирка — <strong>1 600 ₽</strong></div>
+            <div class="proc-card__price-item">2 пробирки — <strong>3 000 ₽</strong></div>
+            <div class="proc-card__price-item">4 пробирки — <strong>5 200 ₽</strong></div>
+          </div>
+          <a href="#form" class="proc-card__cta">Записаться к косметологу →</a>
+        </div>
+
+      </div>
+      <p class="disclaimer-small">Цены носят информационный характер и не являются публичной офертой. Точная стоимость определяется врачом на консультации.</p>
+    </div>
+
+    <!-- АППАРАТНАЯ -->
+    <div class="procs-panel" id="panel-hardware">
+      <div class="procs-grid">
+
+        <div class="proc-card">
+          <div class="proc-card__badge">АППАРАТНАЯ</div>
+          <div class="proc-card__name">Лазерная шлифовка CO2 (SmartXide)</div>
+          <p class="proc-card__desc">Обновляет кожу, выравнивает рельеф, уменьшает рубцы и растяжки. Аппарат SmartXide работает фракционно — повреждает микрозоны, здоровая ткань между ними ускоряет заживление.</p>
+          <div class="proc-card__prices">
+            <div class="proc-card__price-item">Веки (верхние или нижние) — <strong>4 000–20 000 ₽</strong></div>
+            <div class="proc-card__price-item">Веки + «гусиные лапки» — <strong>12 000–40 000 ₽</strong></div>
+            <div class="proc-card__price-item">Овал лица без зоны глаз — <strong>18 000–30 000 ₽</strong></div>
+            <div class="proc-card__price-item">Лицо + шея — <strong>30 000–45 000 ₽</strong></div>
+            <div class="proc-card__price-item">Лицо + шея + декольте — <strong>40 000–65 000 ₽</strong></div>
+          </div>
+          <a href="#form" class="proc-card__cta">Записаться к косметологу →</a>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card__badge">АППАРАТНАЯ</div>
+          <div class="proc-card__name">HELEO4</div>
+          <p class="proc-card__desc">Аппаратная процедура для насыщения кожи кислородом и улучшения микроциркуляции.</p>
+          <div class="proc-card__prices">
+            <div class="proc-card__price-item">Лицо, 1 процедура — <strong>4 000 ₽</strong></div>
+            <div class="proc-card__price-item">Лицо и шея — <strong>5 000 ₽</strong></div>
+            <div class="proc-card__price-item">Курс 5 процедур (лицо) — <strong>16 000 ₽</strong></div>
+          </div>
+          <a href="#form" class="proc-card__cta">Записаться к косметологу →</a>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card__badge">АППАРАТНАЯ</div>
+          <div class="proc-card__name">Микротоки</div>
+          <p class="proc-card__desc">Восстанавливают тонус мимических мышц и улучшают лимфодренаж.</p>
+          <div class="proc-card__prices">
+            <div class="proc-card__price-item">1 процедура — <strong>2 200–3 000 ₽</strong></div>
+          </div>
+          <a href="#form" class="proc-card__cta">Записаться к косметологу →</a>
+        </div>
+
+      </div>
+      <p class="disclaimer-small">Цены носят информационный характер и не являются публичной офертой. Точная стоимость определяется врачом на консультации.</p>
+    </div>
+
+    <!-- ТЕРАПЕВТИЧЕСКАЯ -->
+    <div class="procs-panel" id="panel-therapy">
+      <div class="procs-grid--2col">
+
+        <div class="proc-card">
+          <div class="proc-card__badge">ТЕРАПЕВТИЧЕСКАЯ</div>
+          <div class="proc-card__name">BioRePeel</div>
+          <p class="proc-card__desc">Химический пилинг без шелушения, выравнивает тон и текстуру кожи.</p>
+          <div class="proc-card__prices">
+            <div class="proc-card__price-item">Лицо — <strong>4 000 ₽</strong></div>
+            <div class="proc-card__price-item">Лицо + шея + декольте — <strong>6 000 ₽</strong></div>
+          </div>
+          <a href="#form" class="proc-card__cta">Записаться к косметологу →</a>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card__badge">ТЕРАПЕВТИЧЕСКАЯ</div>
+          <div class="proc-card__name">Атравматичная чистка</div>
+          <p class="proc-card__desc">Очищение кожи без механических повреждений. Подходит для чувствительной кожи.</p>
+          <div class="proc-card__prices">
+            <div class="proc-card__price-item"><strong>3 500 ₽</strong></div>
+          </div>
+          <a href="#form" class="proc-card__cta">Записаться к косметологу →</a>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card__badge">ТЕРАПЕВТИЧЕСКАЯ</div>
+          <div class="proc-card__name">Комбинированная чистка</div>
+          <p class="proc-card__desc">Сочетание мануальной и ультразвуковой чистки для глубокого очищения.</p>
+          <div class="proc-card__prices">
+            <div class="proc-card__price-item"><strong>4 500 ₽</strong></div>
+          </div>
+          <a href="#form" class="proc-card__cta">Записаться к косметологу →</a>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card__badge">ТЕРАПЕВТИЧЕСКАЯ</div>
+          <div class="proc-card__name">Глубокое очищение (Holy Land + УЗ)</div>
+          <p class="proc-card__desc">Профессиональная чистка на косметике Holy Land с ультразвуковой обработкой.</p>
+          <div class="proc-card__prices">
+            <div class="proc-card__price-item"><strong>5 000 ₽</strong></div>
+          </div>
+          <a href="#form" class="proc-card__cta">Записаться к косметологу →</a>
+        </div>
+
+        <div class="proc-card">
+          <div class="proc-card__badge">ТЕРАПЕВТИЧЕСКАЯ</div>
+          <div class="proc-card__name">Уходовые процедуры</div>
+          <p class="proc-card__desc">Профессиональные уходы для лица по показаниям.</p>
+          <div class="proc-card__prices">
+            <div class="proc-card__price-item"><strong>2 500–5 500 ₽</strong></div>
+          </div>
+          <a href="#form" class="proc-card__cta">Записаться к косметологу →</a>
+        </div>
+
+      </div>
+      <p class="disclaimer-small">Цены носят информационный характер и не являются публичной офертой. Точная стоимость определяется врачом на консультации.</p>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- /.tabs-wrapper -->
+
+
+<!-- ═══ 4. ВРАЧ-КОСМЕТОЛОГ ═══ -->
+<section class="cosmetologist-section">
+  <div class="container">
+    <h2 class="section__h2">Врач-косметолог клиники</h2>
+    <div class="cosm-card">
+      <div class="cosm-card__left">
+        <div class="cosm-card__badge">ВРАЧ-КОСМЕТОЛОГ</div>
+        <div class="cosm-card__name">Грицай Олеся Анатольевна</div>
+        <div class="cosm-card__price">Консультация от 2 000 ₽</div>
+        <a href="#form" class="cosm-card__btn">Записаться к Грицай О.А.</a>
+      </div>
+      <div class="cosm-card__right">
+        <p>Работает в паре с хирургами. Прежде чем рекомендовать процедуру — оценивает ситуацию в контексте всего лица, а не отдельной зоны. Выполняет ботулинотерапию, биоревитализацию, контурную пластику, CO2-лазер, аппаратные процедуры и профессиональные уходы.</p>
+        <p>Когда косметолог и хирург в одной клинике — тактику согласовывают, а не угадывают.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 5. ЦИТАТА ═══ -->
+<section class="quote-strip">
+  <div class="container">
+    <p class="quote-strip__text">Результат инъекций зависит не от препарата — а от того, кто и как его вводит. Хороший косметолог сначала смотрит на вас, а не на прайс.</p>
+  </div>
+</section>
+
+
+<!-- ═══ 6. FAQ ═══ -->
+<section class="section section--grey">
+  <div class="container">
+    <h2 class="section__h2" style="margin-bottom:40px;">Вопросы и ответы</h2>
+
+    <details open>
+      <summary>Что выбрать: ботокс или филлеры? <span class="faq__icon">+</span></summary>
+      <p class="faq__answer">Это разные инструменты для разных задач. Ботулотоксин расслабляет мышцы и убирает динамические морщины — те, что появляются при мимике. Филлеры заполняют статические морщины и восстанавливают объём (скулы, губы, носогубные складки). Часто косметолог комбинирует оба метода.</p>
+    </details>
+
+    <details>
+      <summary>Больно ли делать инъекции? <span class="faq__icon">+</span></summary>
+      <p class="faq__answer">Косметолог наносит обезболивающий крем за 20–30 минут до процедуры. Большинство пациентов описывают ощущения как умеренный дискомфорт. Инъекции ботулотоксина практически безболезненны — иглы ультратонкие.</p>
+    </details>
+
+    <details>
+      <summary>Как часто нужно повторять процедуры? <span class="faq__icon">+</span></summary>
+      <p class="faq__answer">Ботулотоксин — каждые 4–6 месяцев. Биоревитализация — курс 3–4 процедуры с интервалом 2–4 недели, повторный курс через 6–12 месяцев. Контурная пластика — раз в 8–18 месяцев в зависимости от препарата. Точный график составит косметолог.</p>
+    </details>
+
+    <details>
+      <summary>Можно ли делать косметологию летом? <span class="faq__icon">+</span></summary>
+      <p class="faq__answer">Зависит от процедуры. Ботулотоксин и биоревитализация — круглый год. Лазерная шлифовка CO2, пилинги — рекомендуется в период низкой солнечной активности (октябрь–март). После любой процедуры обязательно использовать SPF 50+.</p>
+    </details>
+
+    <details>
+      <summary>Нужна ли подготовка к инъекциям? <span class="faq__icon">+</span></summary>
+      <p class="faq__answer">За 3–5 дней исключите алкоголь и препараты, разжижающие кровь (аспирин, ибупрофен). Придите без макияжа или будьте готовы к демакияжу в клинике. Процедура займёт 20–40 минут.</p>
+    </details>
+
+    <details>
+      <summary>Совместима ли косметология с пластикой? <span class="faq__icon">+</span></summary>
+      <p class="faq__answer">Да. Косметолог и хирурги Platinental работают в одной клинике и согласовывают тактику. После пластической операции косметологические процедуры помогают ускорить реабилитацию и улучшить качество кожи.</p>
+    </details>
+
+    <p style="margin-top:32px; font-size:12px; color:var(--text-muted);">Имеются противопоказания. Необходима консультация специалиста.</p>
+  </div>
+</section>
+
+
+<!-- ═══ 7. ФОРМА ═══ -->
+<section class="form-section" id="form">
+  <div class="container">
+    <div class="form-section__inner">
+      <div>
+        <h2 class="form-section__title">Записаться к косметологу</h2>
+        <p class="form-section__text">На консультации Олеся Анатольевна делает анализ состояния кожи и предлагает тактику — без обязательств записаться на процедуру.</p>
+        <p class="form-section__sub">Консультация врача-косметолога — 2 000 ₽</p>
+        <p class="form-section__note">Без обязательств. Перезвоним в течение часа.</p>
+      </div>
+      <form>
+        <div class="form__field">
+          <input class="form__input" type="text" placeholder="Ваше имя">
+        </div>
+        <div class="form__field">
+          <input class="form__input" type="tel" placeholder="+7 (___) ___-__-__">
+        </div>
+        <div class="form__checkbox-row">
+          <input type="checkbox" id="consent">
+          <label class="form__checkbox-label" for="consent">Соглашаюсь на <a href="/documents" style="text-decoration:underline; color:rgba(255,253,248,0.55);">обработку персональных данных</a></label>
+        </div>
+        <button type="submit" class="form__submit">Записаться на консультацию</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ ДИСКЛЕЙМЕР ═══ -->
+<div class="disclaimer-strip">
+  <div class="container">
+    <p>Имеются противопоказания. Необходима консультация специалиста. Цены носят информационный характер и не являются публичной офертой. Точную стоимость определяет врач на консультации.</p>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__cols">
+      <div>
+        <div class="footer__brand">The Platinental</div>
+        <p class="footer__brand-desc">Американский бренд эстетической медицины. Казань с 2011 года.</p>
+        <p class="footer__brand-desc" style="margin-top:12px;">+7 843 223-66-66<br>WhatsApp: +7 965 612-28-88<br>Пн–вс 9:00–20:00</p>
+      </div>
+      <div></div>
+      <div>
+        <div class="footer__col-title">Услуги</div>
+        <ul class="footer__links">
+          <li><a href="/plastika">Пластическая хирургия</a></li>
+          <li><a href="/kosmetologiya" style="color:var(--cream);">Косметология</a></li>
+          <li><a href="/kosmecevtika">Космецевтика</a></li>
+          <li><a href="/prices">Цены</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Клиника</div>
+        <ul class="footer__links">
+          <li><a href="/about">О клинике</a></li>
+          <li><a href="/doctors">Врачи</a></li>
+          <li><a href="/documents">Документы</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <span class="footer__legal-item">© 2026 ООО «Платинентал Казань» · ЛО-16-01-003022</span>
+      <span class="footer__legal-item">Имеются противопоказания. Необходима консультация специалиста.</span>
+      <span class="footer__legal-item"><a href="/documents">Политика конфиденциальности</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function switchTab(panel, btn) {
+  document.querySelectorAll('.procs-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + panel).classList.add('active');
+  btn.classList.add('active');
+}
+
+document.querySelectorAll('details').forEach(d => {
+  d.addEventListener('toggle', () => {
+    const icon = d.querySelector('.faq__icon');
+    if (icon) icon.textContent = d.open ? '−' : '+';
+  });
+});
+</script>
+</body>
+</html>

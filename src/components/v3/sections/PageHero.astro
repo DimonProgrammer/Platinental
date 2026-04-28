@@ -1,0 +1,109 @@
+---
+import ImagePlaceholder from '../ImagePlaceholder.astro';
+
+interface Props {
+  eyebrow?: string;
+  h1: string;
+  lead: string;
+  ctaPrimary?: { label: string; href: string };
+  ctaSecondary?: { label: string; href: string };
+  imagePlaceholder?: {
+    slot: string;
+    description: string;
+    ratio?: '4/5' | '3/4' | '1/1' | '16/9';
+    tone?: 'cream' | 'sand' | 'champagne' | 'ink' | 'bw';
+    source?: string;
+  };
+  surface?: 'cream' | 'sand' | 'ink';
+}
+
+const {
+  eyebrow = 'Platinental · Казань',
+  h1,
+  lead,
+  ctaPrimary = { label: 'Записаться на консультацию', href: '#form' },
+  ctaSecondary,
+  imagePlaceholder,
+  surface = 'cream',
+} = Astro.props;
+---
+
+<section class={`v3-page-hero v3-surface-${surface}`} aria-labelledby="page-hero-heading">
+  <div class="v3-container v3-container-wide page-hero-grid">
+    <div class="hero-text" data-v3-reveal>
+      <span class="v3-eyebrow">{eyebrow}</span>
+      <h1 id="page-hero-heading" class="v3-h1 page-h1" set:html={h1}></h1>
+      <p class="v3-lead hero-lead">{lead}</p>
+      <div class="hero-cta">
+        <a href={ctaPrimary.href} class="v3-btn v3-btn-primary">{ctaPrimary.label}</a>
+        {ctaSecondary && (
+          <a href={ctaSecondary.href} class="v3-link cta-secondary">{ctaSecondary.label}</a>
+        )}
+      </div>
+    </div>
+
+    {imagePlaceholder && (
+      <div class="hero-image" data-v3-reveal>
+        <ImagePlaceholder
+          slot={imagePlaceholder.slot}
+          description={imagePlaceholder.description}
+          ratio={imagePlaceholder.ratio ?? '4/5'}
+          tone={imagePlaceholder.tone ?? 'cream'}
+          source={imagePlaceholder.source ?? 'Track A/C'}
+        />
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .v3-page-hero {
+    padding-top: clamp(1.5rem, 4vh, 3rem);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .page-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+    padding-top: clamp(1.5rem, 4vh, 3rem);
+  }
+  .page-hero-grid:not(:has(.hero-image)) {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: var(--v3-container-default);
+  }
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h1-lead);
+    max-width: var(--v3-hero-text-max);
+  }
+  .hero-text .v3-eyebrow { margin-bottom: var(--v3-gap-eyebrow-h1); }
+  .page-h1 { font-size: clamp(2rem, 4.5vw, 3.75rem); line-height: 1.05; }
+  .hero-lead { max-width: 42ch; }
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+  .cta-secondary { font-size: 0.9375rem; }
+  .hero-image {
+    max-width: 38rem;
+    margin-left: auto;
+    width: 100%;
+  }
+
+  .v3-surface-ink .page-h1 { color: var(--v3-on-ink); }
+  .v3-surface-ink .hero-lead { color: var(--v3-on-ink-secondary); }
+
+  @media (max-width: 1024px) {
+    .page-hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-image { max-width: 26rem; margin-inline: 0; }
+  }
+  @media (max-width: 560px) {
+    .page-h1 { font-size: clamp(1.875rem, 9vw, 2.5rem); }
+    .hero-cta { gap: 1rem; }
+  }
+</style>

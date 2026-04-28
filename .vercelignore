@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.playwright-mcp/
+Ресурсы/
+wireframes/
+memory/
+design-system/
+docs/
+knowledge/
+*.log

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Космецевтика в клинике Platinental Казань — профессиональная косметика</title>
+<meta name="description" content="Профессиональная космецевтика в клинике Platinental Казань. Средства для ухода за кожей, рекомендованные врачами-косметологами. Запись: +7 (843) 223-66-66.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+:root {
+  --cream: #FFFDF8;
+  --warm-grey: #F5F0EB;
+  --dark: #0A0A0A;
+  --dark-2: #1A1A18;
+  --gold: #B8956A;
+  --gold-light: #D4B896;
+  --text-primary: #0A0A0A;
+  --text-muted: #6B6560;
+  --border: rgba(10,10,10,0.1);
+  --border-light: rgba(255,253,248,0.12);
+  --font-display: 'Lora', serif;
+  --font-body: 'Open Sans', sans-serif;
+  --max-w: 1080px;
+  --pad: 80px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--text-primary); background: var(--cream); -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
+
+/* ─── HEADER ─── */
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 64px; background: var(--dark-2); border-bottom: 1px solid var(--border-light); display: flex; align-items: center; }
+.header__inner { max-width: calc(var(--max-w) + 240px); margin: 0 auto; padding: 0 48px; width: 100%; display: flex; align-items: center; }
+.header__logo { font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--cream); margin-right: auto; }
+.header__logo span { color: var(--gold-light); }
+.header__nav { display: flex; gap: 28px; list-style: none; margin-right: 36px; }
+.header__nav a { font-size: 13px; color: rgba(255,253,248,0.6); letter-spacing: 0.02em; transition: color 0.15s; }
+.header__nav a:hover, .header__nav a.active { color: var(--cream); }
+.header__phone { font-size: 13px; color: rgba(255,253,248,0.6); margin-right: 20px; }
+.btn { display: inline-flex; align-items: center; padding: 12px 24px; font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; border: none; transition: all 0.2s; text-decoration: none; }
+.btn--gold { background: var(--gold); color: #fff; }
+.btn--gold:hover { background: #a07e5a; }
+.btn--outline-light { background: transparent; color: rgba(255,253,248,0.7); border: 1px solid rgba(255,253,248,0.25); }
+.btn--outline-light:hover { border-color: rgba(255,253,248,0.6); color: var(--cream); }
+
+/* ─── HERO ─── */
+.hero { padding: 140px 0 96px; text-align: center; background: var(--dark-2); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 110%, rgba(184,149,106,0.08) 0%, transparent 60%); pointer-events: none; }
+.hero__eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 24px; position: relative; }
+.hero__h1 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(32px, 4vw, 52px); line-height: 1.15; color: var(--cream); margin-bottom: 24px; position: relative; max-width: 740px; margin-left: auto; margin-right: auto; }
+.hero__lead { font-size: 16px; line-height: 1.75; color: rgba(255,253,248,0.55); max-width: 620px; margin: 0 auto 40px; position: relative; }
+.hero__cta { display: flex; gap: 16px; justify-content: center; position: relative; }
+
+/* ─── SECTION ─── */
+.section { padding: 96px 0; }
+.section--grey { background: var(--warm-grey); }
+.section--dark { background: var(--dark-2); color: var(--cream); padding: 80px 0; }
+.section__h2 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(26px, 3vw, 40px); line-height: 1.2; text-align: center; margin-bottom: 16px; }
+.section__lead { text-align: center; font-size: 15px; color: var(--text-muted); max-width: 580px; margin: 0 auto 56px; line-height: 1.75; }
+
+/* ─── CATEGORIES ─── */
+.categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+.cat-card { background: #fff; padding: 40px 32px; display: flex; flex-direction: column; gap: 12px; transition: box-shadow 0.2s; }
+.cat-card:hover { box-shadow: 0 8px 32px rgba(10,10,10,0.07); }
+.cat-card__icon { width: 40px; height: 40px; background: var(--warm-grey); display: flex; align-items: center; justify-content: center; margin-bottom: 4px; }
+.cat-card__icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.cat-card__badge { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.cat-card__name { font-family: var(--font-display); font-style: italic; font-size: 22px; line-height: 1.2; color: var(--text-primary); }
+.cat-card__desc { font-size: 13px; line-height: 1.65; color: var(--text-muted); flex: 1; }
+.cat-card__status { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 8px; padding: 6px 12px; border: 1px solid var(--border); display: inline-flex; align-items: center; gap: 6px; width: fit-content; }
+.cat-card__status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); display: inline-block; }
+
+/* ─── WHY ─── */
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 48px; }
+.why-item { display: flex; flex-direction: column; gap: 12px; }
+.why-item__num { font-family: var(--font-display); font-style: italic; font-size: 40px; color: var(--gold); line-height: 1; }
+.why-item__title { font-weight: 600; font-size: 15px; }
+.why-item__text { font-size: 13px; line-height: 1.7; color: var(--text-muted); }
+
+/* ─── NOTIFY BLOCK ─── */
+.notify { max-width: 680px; margin: 0 auto; text-align: center; padding: 64px 0; }
+.notify__label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.notify__title { font-family: var(--font-display); font-style: italic; font-size: clamp(24px, 3vw, 36px); line-height: 1.25; color: var(--cream); margin-bottom: 16px; }
+.notify__text { font-size: 15px; line-height: 1.75; color: rgba(255,253,248,0.55); margin-bottom: 40px; }
+.notify__form { display: flex; gap: 12px; max-width: 480px; margin: 0 auto 16px; }
+.notify__input { flex: 1; padding: 14px 16px; background: rgba(255,253,248,0.07); border: 1px solid rgba(255,253,248,0.14); color: var(--cream); font-family: var(--font-body); font-size: 14px; outline: none; transition: border-color 0.15s; }
+.notify__input:focus { border-color: var(--gold); }
+.notify__input::placeholder { color: rgba(255,253,248,0.3); }
+.notify__consent { font-size: 11px; color: rgba(255,253,248,0.3); line-height: 1.5; }
+.notify__consent a { text-decoration: underline; }
+
+/* ─── FORM (CTA) ─── */
+.cta-section { padding: 96px 0; background: var(--dark-2); color: var(--cream); }
+.cta-section__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.cta-section__title { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(26px, 3vw, 38px); line-height: 1.2; color: var(--cream); margin-bottom: 20px; }
+.cta-section__text { font-size: 15px; line-height: 1.75; color: rgba(255,253,248,0.6); }
+.cta-section__note { font-size: 12px; color: rgba(255,253,248,0.3); margin-top: 16px; }
+.form__field { margin-bottom: 12px; }
+.form__input { width: 100%; padding: 14px 16px; background: rgba(255,253,248,0.06); border: 1px solid rgba(255,253,248,0.12); color: var(--cream); font-family: var(--font-body); font-size: 14px; outline: none; transition: border-color 0.15s; }
+.form__input:focus { border-color: var(--gold); }
+.form__input::placeholder { color: rgba(255,253,248,0.3); }
+.form__checkbox-row { display: flex; gap: 10px; align-items: flex-start; margin: 16px 0 20px; }
+.form__checkbox-row input { margin-top: 3px; accent-color: var(--gold); }
+.form__checkbox-label { font-size: 12px; color: rgba(255,253,248,0.4); line-height: 1.5; }
+.form__submit { width: 100%; padding: 15px 24px; background: var(--gold); color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.05em; cursor: pointer; border: none; transition: background 0.2s; }
+.form__submit:hover { background: #a07e5a; }
+
+/* ─── FOOTER ─── */
+.footer { background: var(--dark-2); color: var(--cream); padding: 64px 0 32px; }
+.footer__cols { display: grid; grid-template-columns: 320px 1fr auto auto; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border-light); margin-bottom: 32px; }
+.footer__brand { font-family: var(--font-display); font-style: italic; font-size: 20px; color: var(--cream); margin-bottom: 14px; }
+.footer__brand-desc { font-size: 13px; color: rgba(255,253,248,0.4); line-height: 1.6; max-width: 240px; }
+.footer__col-title { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,253,248,0.3); margin-bottom: 16px; }
+.footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer__links a { font-size: 14px; color: rgba(255,253,248,0.55); transition: color 0.15s; }
+.footer__links a:hover { color: var(--cream); }
+.footer__legal { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.footer__legal-item { font-size: 11.5px; color: rgba(255,253,248,0.25); }
+.footer__legal-item a { transition: color 0.15s; }
+.footer__legal-item a:hover { color: rgba(255,253,248,0.6); }
+
+/* ─── DISCLAIMER ─── */
+.disclaimer { padding: 32px 0; background: var(--warm-grey); text-align: center; font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header__inner">
+    <a href="/" class="header__logo">The <span>Platinental</span></a>
+    <nav>
+      <ul class="header__nav">
+        <li><a href="/plastika">Услуги</a></li>
+        <li><a href="/doctors">Врачи</a></li>
+        <li><a href="/about">О клинике</a></li>
+        <li><a href="/prices">Цены</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <span class="header__phone">+7 843 223-66-66</span>
+    <a href="#form" class="btn btn--gold" style="font-size:12px; padding:10px 20px;">Записаться</a>
+  </div>
+</header>
+
+
+<!-- ═══ 1. HERO ═══ -->
+<section class="hero">
+  <div class="container">
+    <p class="hero__eyebrow">КОСМЕЦЕВТИКА</p>
+    <h1 class="hero__h1">Профессиональная косметика клиники Platinental</h1>
+    <p class="hero__lead">Средства, которые рекомендуют врачи-косметологи клиники — для домашнего ухода между процедурами и после операций. Раздел в разработке.</p>
+    <div class="hero__cta">
+      <a href="#form" class="btn btn--gold">Узнать о продуктах</a>
+      <a href="/kosmetologiya" class="btn btn--outline-light">Косметология</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 2. КАТЕГОРИИ (ЗАГЛУШКИ) ═══ -->
+<section class="section">
+  <div class="container">
+    <h2 class="section__h2">Направления</h2>
+    <p class="section__lead">Подбираем только то, что сочетается с процедурами клиники и подходит вашему типу кожи. Конкретный ассортимент — уточняйте у косметолога.</p>
+
+    <div class="categories">
+
+      <div class="cat-card">
+        <div class="cat-card__icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
+        </div>
+        <div class="cat-card__badge">Уход за лицом</div>
+        <div class="cat-card__name">Очищение и тоники</div>
+        <p class="cat-card__desc">Мягкие очищающие средства, мицеллярные воды, тоники для подготовки кожи к уходовым процедурам.</p>
+        <span class="cat-card__status">Ассортимент уточняется</span>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-card__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/></svg>
+        </div>
+        <div class="cat-card__badge">Уход за лицом</div>
+        <div class="cat-card__name">Сыворотки и кремы</div>
+        <p class="cat-card__desc">Активные сыворотки с гиалуроновой кислотой, пептидами, витамином С. Дневные и ночные кремы по типу кожи.</p>
+        <span class="cat-card__status">Ассортимент уточняется</span>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-card__icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="cat-card__badge">Уход за лицом</div>
+        <div class="cat-card__name">Солнцезащита SPF</div>
+        <p class="cat-card__desc">SPF 30–50+ для ежедневного применения, в том числе после инъекционных и лазерных процедур.</p>
+        <span class="cat-card__status">Ассортимент уточняется</span>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-card__icon">
+          <svg viewBox="0 0 24 24"><path d="M20 14c0 4-4 7-8 7s-8-3-8-7V6l8-3 8 3v8z"/></svg>
+        </div>
+        <div class="cat-card__badge">Постпроцедурный уход</div>
+        <div class="cat-card__name">Реабилитационные средства</div>
+        <p class="cat-card__desc">Заживляющие и успокаивающие кремы для восстановления после лазера, пилингов и инъекционных процедур.</p>
+        <span class="cat-card__status">Ассортимент уточняется</span>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-card__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22V12m0 0C12 7 7 3 7 3s5 4 5 9zm0 0c0-5 5-9 5-9s-5 4-5 9"/></svg>
+        </div>
+        <div class="cat-card__badge">Тело</div>
+        <div class="cat-card__name">Уход за телом</div>
+        <p class="cat-card__desc">Средства для ухода за кожей тела: увлажнение, питание, коррекция растяжек и рубцов в домашних условиях.</p>
+        <span class="cat-card__status">Ассортимент уточняется</span>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-card__icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a9 9 0 0118 0v2"/></svg>
+        </div>
+        <div class="cat-card__badge">По назначению врача</div>
+        <div class="cat-card__name">Профессиональные линейки</div>
+        <p class="cat-card__desc">Медицинская косметика по назначению косметолога — подбирается индивидуально после консультации.</p>
+        <span class="cat-card__status">По записи в клинике</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 3. ПОЧЕМУ КЛИНИКА ═══ -->
+<section class="section section--grey">
+  <div class="container">
+    <h2 class="section__h2">Почему лучше покупать у врача</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-item__num">01</div>
+        <div class="why-item__title">Правильный подбор</div>
+        <p class="why-item__text">Косметолог знает, что происходит с вашей кожей — он подбирает средства под конкретный случай, а не по общим рекомендациям.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item__num">02</div>
+        <div class="why-item__title">Совместимость с процедурами</div>
+        <p class="why-item__text">Некоторые ингредиенты несовместимы с инъекциями или лазером. Врач подбирает домашний уход так, чтобы он усиливал, а не нивелировал результат.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item__num">03</div>
+        <div class="why-item__title">Нет подделок</div>
+        <p class="why-item__text">Все средства — из официальных каналов поставок. Без маркетплейсов, без рисков купить неоригинальный продукт.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 4. УВЕДОМИТЬ ═══ -->
+<section class="section--dark">
+  <div class="container">
+    <div class="notify">
+      <p class="notify__label">Раздел в разработке</p>
+      <h2 class="notify__title">Ассортимент скоро появится</h2>
+      <p class="notify__text">Мы формируем каталог вместе с косметологом клиники. Оставьте телефон — сообщим, когда он будет готов, или проконсультируем по конкретному вопросу уже сейчас.</p>
+      <form class="notify__form" onsubmit="return false;">
+        <input class="notify__input" type="tel" placeholder="+7 (___) ___-__-__">
+        <button type="submit" class="btn btn--gold" style="white-space:nowrap;">Сообщить мне</button>
+      </form>
+      <p class="notify__consent">Нажимая кнопку, вы соглашаетесь на <a href="/documents" style="color:rgba(255,253,248,0.4);">обработку персональных данных</a></p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 5. ФОРМА ═══ -->
+<section class="cta-section" id="form">
+  <div class="container">
+    <div class="cta-section__inner">
+      <div>
+        <h2 class="cta-section__title">Спросите косметолога</h2>
+        <p class="cta-section__text">На консультации Олеся Анатольевна подберёт домашний уход под ваш тип кожи и расскажет, какие средства будут эффективны в вашем случае.</p>
+        <p class="cta-section__note">Перезвоним в течение часа. Пн–вс 9:00–20:00.</p>
+      </div>
+      <form onsubmit="return false;">
+        <div class="form__field">
+          <input class="form__input" type="text" placeholder="Ваше имя">
+        </div>
+        <div class="form__field">
+          <input class="form__input" type="tel" placeholder="+7 (___) ___-__-__">
+        </div>
+        <div class="form__checkbox-row">
+          <input type="checkbox" id="consent">
+          <label class="form__checkbox-label" for="consent">Соглашаюсь на <a href="/documents" style="text-decoration:underline; color:rgba(255,253,248,0.55);">обработку персональных данных</a></label>
+        </div>
+        <button type="submit" class="form__submit">Записаться на консультацию</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ ДИСКЛЕЙМЕР ═══ -->
+<div class="disclaimer">
+  <div class="container">
+    Имеются противопоказания. Необходима консультация специалиста.
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__cols">
+      <div>
+        <div class="footer__brand">The Platinental</div>
+        <p class="footer__brand-desc">Американский бренд эстетической медицины. Казань с 2011 года.</p>
+        <p class="footer__brand-desc" style="margin-top:12px;">+7 843 223-66-66<br>WhatsApp: +7 965 612-28-88<br>Пн–вс 9:00–20:00</p>
+      </div>
+      <div></div>
+      <div>
+        <div class="footer__col-title">Услуги</div>
+        <ul class="footer__links">
+          <li><a href="/plastika">Пластическая хирургия</a></li>
+          <li><a href="/kosmetologiya">Косметология</a></li>
+          <li><a href="/kosmecevtika" style="color:var(--cream);">Космецевтика</a></li>
+          <li><a href="/prices">Цены</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Клиника</div>
+        <ul class="footer__links">
+          <li><a href="/about">О клинике</a></li>
+          <li><a href="/doctors">Врачи</a></li>
+          <li><a href="/documents">Документы</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <span class="footer__legal-item">© 2026 ООО «Платинентал Казань» · ЛО-16-01-003022</span>
+      <span class="footer__legal-item">Имеются противопоказания. Необходима консультация специалиста.</span>
+      <span class="footer__legal-item"><a href="/documents">Политика конфиденциальности</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

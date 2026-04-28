@@ -1,0 +1,259 @@
+---
+import V3Layout from '../../layouts/V3Layout.astro';
+import Navigation from '../../components/v3/sections/Navigation.astro';
+import PageHero from '../../components/v3/sections/PageHero.astro';
+import FinalCTA from '../../components/v3/sections/FinalCTA.astro';
+import Footer from '../../components/v3/sections/Footer.astro';
+import { priceCategories } from '../../data/prices';
+
+const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
+---
+
+<V3Layout
+  title="Прайс-лист — Platinental Казань"
+  description="Цены на пластические операции, косметологические процедуры и консультации врачей клиники Platinental Казань."
+>
+  <Navigation />
+  <main id="main">
+    <PageHero
+      eyebrow="Стоимость"
+      h1="Прайс-лист"
+      lead="Цены актуальны на апрель 2026 года. Окончательная стоимость — после очной консультации."
+      ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
+      ctaSecondary={{ label: 'Задать вопрос', href: 'https://wa.me/78432236666' }}
+    />
+
+    <section class="v3-prices v3-surface-cream" aria-labelledby="prices-heading">
+      <div class="v3-container v3-container-default">
+        <h2 id="prices-heading" class="sr-only">Прайс-лист</h2>
+
+        <!-- Category tabs -->
+        <div class="prices-tabs" role="tablist" aria-label="Категории услуг" data-v3-reveal>
+          {tabs.map((t, i) => (
+            <button
+              role="tab"
+              class="price-tab"
+              data-tab={t.key}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`panel-${t.key}`}
+              id={`tab-${t.key}`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+
+        <!-- Category panels -->
+        {priceCategories.map((cat, i) => (
+          <div
+            role="tabpanel"
+            id={`panel-${cat.key}`}
+            aria-labelledby={`tab-${cat.key}`}
+            class={`price-panel ${i === 0 ? 'is-active' : ''}`}
+            data-panel={cat.key}
+          >
+            {cat.groups.map((group) => (
+              <div class="price-group" data-v3-reveal>
+                <h3 class="price-group-title v3-h3">{group.title}</h3>
+                <table class="price-table">
+                  <thead>
+                    {group.columns ? (
+                      <tr>
+                        {group.columns.map((col) => (
+                          <th
+                            style={`width:${col.width || 'auto'}; text-align:${col.align || 'left'}`}
+                            class="v3-eyebrow"
+                          >
+                            {col.label}
+                          </th>
+                        ))}
+                      </tr>
+                    ) : (
+                      <tr>
+                        <th class="v3-eyebrow" style="width:70%">Услуга</th>
+                        <th class="v3-eyebrow" style="width:30%; text-align:right">Стоимость</th>
+                      </tr>
+                    )}
+                  </thead>
+                  <tbody>
+                    {group.rows.map((row) => (
+                      group.columns ? (
+                        <tr>
+                          {group.columns.map((col) => (
+                            <td
+                              style={`text-align:${col.align || 'left'}`}
+                              class={col.key === 'service' ? 'price-service' : 'price-val'}
+                            >
+                              {col.key === 'service'
+                                ? [row.service, row.sub && <span class="price-sub">{row.sub}</span>]
+                                : row[col.key as keyof typeof row] ?? '—'}
+                            </td>
+                          ))}
+                        </tr>
+                      ) : (
+                        <tr>
+                          <td class="price-service">{row.service}</td>
+                          <td class="price-val" style="text-align:right">{row.price ?? '—'}</td>
+                        </tr>
+                      )
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))}
+          </div>
+        ))}
+
+        <p class="prices-disclaimer v3-caption" data-v3-reveal>
+          Имеются противопоказания. Необходима консультация специалиста. Цены носят справочный характер;
+          окончательная стоимость определяется на очной консультации с учётом индивидуальных особенностей.
+          Все операции проводятся только при наличии медицинских показаний и информированного согласия.
+        </p>
+      </div>
+    </section>
+
+    <FinalCTA
+      heading="Узнайте точную<br />стоимость"
+      lead="Запишитесь на консультацию — хирург расскажет, что именно нужно и сколько это стоит в вашем случае."
+      submitLabel="Записаться на консультацию"
+    />
+  </main>
+  <Footer />
+</V3Layout>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .v3-prices {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-deep);
+  }
+
+  /* Tabs */
+  .prices-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--v3-border-hair);
+    margin-bottom: var(--v3-gap-small);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .prices-tabs::-webkit-scrollbar { display: none; }
+  .price-tab {
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--v3-ink-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color var(--v3-duration-fast) var(--v3-ease-out),
+                border-color var(--v3-duration-fast) var(--v3-ease-out);
+    margin-bottom: -1px;
+  }
+  .price-tab[aria-selected="true"] {
+    color: var(--v3-ink);
+    border-bottom-color: var(--v3-champagne-deep);
+  }
+  .price-tab:hover { color: var(--v3-ink); }
+
+  /* Panels */
+  .price-panel { display: none; }
+  .price-panel.is-active { display: block; }
+
+  /* Price group */
+  .price-group {
+    margin-bottom: var(--v3-gap-small);
+  }
+  .price-group-title {
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--v3-border-soft);
+    margin-bottom: 0;
+  }
+
+  /* Table */
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .price-table th {
+    font-family: var(--v3-font-body);
+    font-size: var(--v3-text-eyebrow);
+    font-weight: 400;
+    letter-spacing: var(--v3-tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--v3-ink-muted);
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid var(--v3-border-hair);
+  }
+  .price-table th:first-child { padding-left: 0; }
+  .price-table th:last-child { padding-right: 0; }
+  .price-table tr:not(:last-child) td {
+    border-bottom: 1px solid var(--v3-border-hair);
+  }
+  .price-table td {
+    padding: 0.875rem 0.5rem;
+    vertical-align: baseline;
+  }
+  .price-table td:first-child { padding-left: 0; }
+  .price-table td:last-child { padding-right: 0; }
+  .price-service {
+    font-family: var(--v3-font-body);
+    font-size: var(--v3-text-body);
+    color: var(--v3-ink);
+    line-height: 1.5;
+  }
+  .price-sub {
+    font-size: 0.875rem;
+    color: var(--v3-ink-muted);
+  }
+  .price-val {
+    font-family: var(--v3-font-display);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--v3-champagne-deep);
+    white-space: nowrap;
+  }
+
+  .prices-disclaimer {
+    margin-top: var(--v3-gap-medium);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--v3-border-hair);
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-style: italic;
+    font-family: var(--v3-font-display);
+    max-width: 72ch;
+  }
+
+  @media (max-width: 640px) {
+    .price-tab { padding: 0.625rem 1rem; font-size: 0.875rem; }
+    .price-table th, .price-table td { padding-inline: 0.25rem; }
+    .price-val { font-size: 0.9375rem; }
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.price-tab');
+  const panels = document.querySelectorAll<HTMLElement>('.price-panel');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const key = tab.dataset.tab;
+      tabs.forEach((t) => t.setAttribute('aria-selected', 'false'));
+      panels.forEach((p) => p.classList.remove('is-active'));
+      tab.setAttribute('aria-selected', 'true');
+      document.querySelector(`[data-panel="${key}"]`)?.classList.add('is-active');
+    });
+  });
+</script>

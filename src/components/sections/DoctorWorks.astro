@@ -1,0 +1,265 @@
+---
+import type { Doctor } from '../../data/doctors';
+
+interface Props {
+  works: Doctor['works'];
+}
+
+const { works } = Astro.props;
+---
+
+<section class="dw" aria-labelledby="dw-title">
+  <div class="dw__inner">
+    <div class="dw__head">
+      <div>
+        <span class="dw__eyebrow">Результаты операций</span>
+        <h2 id="dw-title" class="dw__title font-display">Работы</h2>
+        <p class="dw__lede">
+          Фотогалерея пополняется — материалы добавляются после согласия пациентов.
+          Все результаты индивидуальны.
+        </p>
+      </div>
+      <div class="dw__nav" aria-hidden="true">
+        <button type="button" class="dw__nav-btn" data-dw-prev aria-label="Предыдущий">
+          <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
+            <path d="M15 7H1M6 1L1 7l5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button type="button" class="dw__nav-btn" data-dw-next aria-label="Следующий">
+          <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
+            <path d="M1 7h14M10 1l5 6-5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="dw__scroll" data-dw-scroll>
+      {works.map((w, i) => (
+        <article class="dw-card" data-reveal style={`transition-delay: ${i * 70}ms`}>
+          <div class="dw-card__pair">
+            <div class="dw-card__half dw-card__half--before">
+              {w.before
+                ? <img src={w.before} alt={`До — ${w.caption}`} loading="lazy" decoding="async" />
+                : <span class="dw-card__tag">До</span>
+              }
+            </div>
+            <div class="dw-card__half dw-card__half--after">
+              {w.after
+                ? <img src={w.after} alt={`После — ${w.caption}`} loading="lazy" decoding="async" />
+                : <span class="dw-card__tag">После</span>
+              }
+            </div>
+          </div>
+          <p class="dw-card__caption font-display">{w.caption}</p>
+        </article>
+      ))}
+    </div>
+
+    <p class="dw__disclaimer">
+      Результат индивидуален и&nbsp;зависит от&nbsp;особенностей организма.
+      Публикуется с&nbsp;письменного согласия пациентов.
+    </p>
+  </div>
+</section>
+
+<script>
+  const scroll = document.querySelector('[data-dw-scroll]') as HTMLElement | null;
+  const prev = document.querySelector('[data-dw-prev]') as HTMLButtonElement | null;
+  const next = document.querySelector('[data-dw-next]') as HTMLButtonElement | null;
+  if (scroll && prev && next) {
+    const step = () => Math.min(scroll.clientWidth * 0.9, 560);
+    prev.addEventListener('click', () => scroll.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next.addEventListener('click', () => scroll.scrollBy({ left: step(), behavior: 'smooth' }));
+  }
+</script>
+
+<style>
+  .dw {
+    background: var(--surface-alt);
+    padding: var(--space-32) 0;
+  }
+
+  @media (min-width: 1024px) { .dw { padding: var(--space-40) 0; } }
+
+  .dw__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .dw__inner { padding: 0 32px; } }
+  @media (min-width: 1200px) { .dw__inner { padding: 0 48px; } }
+
+  .dw__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-6);
+    margin-bottom: var(--space-12);
+    flex-wrap: wrap;
+  }
+
+  .dw__eyebrow {
+    display: block;
+    font-size: var(--text-micro);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--accent-hover);
+    margin-bottom: var(--space-3);
+  }
+
+  .dw__title {
+    font-size: var(--text-h3);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: var(--tracking-display);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-3);
+  }
+
+  .dw__lede {
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 48ch;
+    margin: 0;
+  }
+
+  .dw__nav {
+    display: flex;
+    gap: var(--space-3);
+    flex-shrink: 0;
+  }
+
+  .dw__nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1px solid var(--border-soft);
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: border-color var(--duration-fast) var(--ease-out),
+                color var(--duration-fast) var(--ease-out);
+  }
+
+  .dw__nav-btn:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+  }
+
+  /* Scroll track */
+  .dw__scroll {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 90%;
+    gap: var(--space-5);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: var(--space-5);
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-soft) transparent;
+  }
+
+  @media (min-width: 560px) {
+    .dw__scroll {
+      grid-auto-columns: 58%;
+      margin: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .dw__scroll { grid-auto-columns: 42%; }
+  }
+
+  .dw__scroll::-webkit-scrollbar { height: 4px; }
+  .dw__scroll::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 4px; }
+
+  /* Card */
+  .dw-card {
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .dw-card__pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .dw-card__half {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-3);
+    overflow: hidden;
+  }
+
+  .dw-card__half--before {
+    background: var(--color-ink-900);
+  }
+
+  .dw-card__half--after {
+    background: var(--color-ink-700);
+  }
+
+  .dw-card__half::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='ndw'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23ndw)'/%3E%3C/svg%3E");
+    opacity: 0.14;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .dw-card__half img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    z-index: 0;
+  }
+
+  .dw-card__tag {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, 0.95);
+    position: relative;
+    z-index: 2;
+  }
+
+  .dw-card__caption {
+    font-size: var(--text-lead);
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-heading);
+    margin: 0;
+  }
+
+  .dw__disclaimer {
+    margin-top: var(--space-8);
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 64ch;
+  }
+</style>

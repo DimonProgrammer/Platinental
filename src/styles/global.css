@@ -1,0 +1,244 @@
+@import './tokens.css';
+@import 'tailwindcss';
+
+/* ────────────────────────────────────────────────────────────────────
+   ZapfHumnst BT — locally hosted (public/fonts)
+   ──────────────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'ZapfHumnst BT';
+  src: url('/fonts/ZapfHumnstBT-Roman.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZapfHumnst BT';
+  src: url('/fonts/ZapfHumnstBT-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tailwind v4 — сематические токены пробрасываются как utilities */
+@theme {
+  --color-surface: var(--surface-page);
+  --color-surface-alt: var(--surface-alt);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-ink: var(--text-primary);
+  --color-ink-muted: var(--text-muted);
+  --color-ink-secondary: var(--text-secondary);
+  --color-ink-inverse: var(--text-inverse);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-soft: var(--border-soft);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --shadow-soft: var(--shadow-sm);
+  --shadow-raised: var(--shadow-md);
+  --shadow-deep: var(--shadow-lg);
+
+  --container-max: var(--container-max);
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Reset — minimal, modern
+   ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+html, body {
+  min-height: 100vh;
+}
+
+body {
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
+  letter-spacing: var(--tracking-normal);
+  font-feature-settings: "kern", "liga", "calt", "ss01";
+  font-variant-numeric: lining-nums tabular-nums;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+h1, h2, h3, h4, h5 {
+  overflow-wrap: break-word;
+  hyphens: manual;
+}
+
+/* No italics anywhere — design rule. Browser default italicization of
+   <em> / <i> / <address> / <cite> is explicitly overridden. */
+em, i, cite, address, dfn, var {
+  font-style: normal;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Typography primitives
+   ──────────────────────────────────────────────────────────────────── */
+.font-display {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-tight);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-caption);
+  font-weight: 500;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Grain overlay — post-digital texture, 2026-aesthetic
+   Скрыт от screen readers, не мешает читаемости.
+   ──────────────────────────────────────────────────────────────────── */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Focus styles — accessibility first
+   ──────────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Selection
+   ──────────────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--accent);
+  color: var(--text-primary);
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Motion reveal — scroll-triggered opacity/translateY fade-in.
+   Content is visible by default; only hidden once JS adds .js-ready to <html>.
+   Гарантирует, что без JS или при fullPage screenshots контент отображается.
+   ──────────────────────────────────────────────────────────────────── */
+.js-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.js-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* prefers-reduced-motion — уважаем пользователя */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Section separators — тонкие, премиальные
+   ──────────────────────────────────────────────────────────────────── */
+.hairline {
+  height: 1px;
+  width: 100%;
+  background: var(--border-subtle);
+  border: none;
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Screen-reader-only utility
+   ──────────────────────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

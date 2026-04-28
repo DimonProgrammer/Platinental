@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ConceptHero from '../../components/concept/ConceptHero.astro';
+import ConceptServices from '../../components/concept/ConceptServices.astro';
+import ConceptQuote from '../../components/concept/ConceptQuote.astro';
+import ConceptDoctors from '../../components/concept/ConceptDoctors.astro';
+import ConceptCTA from '../../components/concept/ConceptCTA.astro';
+---
+
+<BaseLayout
+  title="Platinental — Концепт «Асимметричная сетка»"
+  description="Концепт-версия сайта Platinental Казань."
+  darkHero={false}
+>
+  <ConceptHero />
+  <ConceptServices />
+  <ConceptQuote />
+  <ConceptDoctors />
+  <ConceptCTA />
+</BaseLayout>

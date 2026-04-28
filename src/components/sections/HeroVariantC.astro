@@ -1,0 +1,336 @@
+---
+// Variant C — Clinic Architecture Interior
+// Справа — абстрактный архитектурный плейсхолдер: вертикальные ламели света,
+// тёплые световые blobs, film grain. 50/50 split, full-bleed к правой границе.
+import Button from '../primitives/Button.astro';
+---
+
+<section class="heroC" aria-labelledby="heroC-title">
+  <div class="heroC__bg" aria-hidden="true">
+    <div class="heroC__bg-layer heroC__bg-layer--base"></div>
+    <div class="heroC__bg-layer heroC__bg-layer--hotspot"></div>
+    <div class="heroC__bg-layer heroC__bg-layer--grain"></div>
+    <div class="heroC__bg-layer heroC__bg-layer--vignette"></div>
+  </div>
+
+  <div class="heroC__grid">
+    <div class="heroC__copy" data-reveal>
+      <span class="heroC__eyebrow">Platinental&nbsp;· Казань</span>
+
+      <h1 id="heroC-title" class="heroC__title">
+        Клиника пластической хирургии и&nbsp;косметологии в&nbsp;Казани
+      </h1>
+
+      <p class="heroC__sub">
+        Интеллигентная гармонизация внешности&nbsp;— без&nbsp;избыточности и&nbsp;шаблонов, через&nbsp;авторские методики наших&nbsp;хирургов.
+      </p>
+
+      <div class="heroC__actions">
+        <Button href="#form" variant="inverse" size="lg">Записаться на&nbsp;консультацию</Button>
+        <Button href="/prices" variant="ghost" size="lg">Узнать стоимость&nbsp;→</Button>
+      </div>
+    </div>
+
+    <figure class="heroC__interior" aria-hidden="true">
+      <svg class="heroC__interior-svg" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="heroC-wall" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"  stop-color="#3A2C20"/>
+            <stop offset="50%" stop-color="#2A1F16"/>
+            <stop offset="100%" stop-color="#12100C"/>
+          </linearGradient>
+          <radialGradient id="heroC-light" cx="50%" cy="28%" r="50%">
+            <stop offset="0%"   stop-color="#F5E2C3" stop-opacity="0.42"/>
+            <stop offset="60%"  stop-color="#C4A882" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#C4A882" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="heroC-glow" cx="50%" cy="90%" r="40%">
+            <stop offset="0%"   stop-color="#8A6B4F" stop-opacity="0.32"/>
+            <stop offset="100%" stop-color="#8A6B4F" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="heroC-floor" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stop-color="#3A2C20" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#1C140E" stop-opacity="0.9"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Wall gradient -->
+        <rect width="100%" height="100%" fill="url(#heroC-wall)"/>
+
+        <!-- Vertical louvres (ламели света) -->
+        <g opacity="0.55">
+          <rect x="80"  y="80" width="6" height="520" fill="#C4A882" fill-opacity="0.12"/>
+          <rect x="145" y="80" width="4" height="520" fill="#C4A882" fill-opacity="0.08"/>
+          <rect x="210" y="80" width="5" height="520" fill="#C4A882" fill-opacity="0.14"/>
+          <rect x="280" y="80" width="3" height="520" fill="#C4A882" fill-opacity="0.06"/>
+          <rect x="345" y="80" width="5" height="520" fill="#C4A882" fill-opacity="0.10"/>
+          <rect x="415" y="80" width="4" height="520" fill="#C4A882" fill-opacity="0.08"/>
+          <rect x="480" y="80" width="6" height="520" fill="#C4A882" fill-opacity="0.12"/>
+        </g>
+
+        <!-- Архитектурная арка — центральный проём -->
+        <path d="M 200 200
+                 Q 200 120, 300 120
+                 Q 400 120, 400 200
+                 L 400 600
+                 L 200 600 Z"
+              fill="#0A0807"
+              fill-opacity="0.55"/>
+
+        <!-- Light from the arch -->
+        <rect width="100%" height="100%" fill="url(#heroC-light)"/>
+
+        <!-- Soft floor glow -->
+        <rect width="100%" height="100%" fill="url(#heroC-glow)"/>
+
+        <!-- Floor darkening -->
+        <rect y="550" width="100%" height="250" fill="url(#heroC-floor)"/>
+
+        <!-- Thin horizontal architectural lines -->
+        <g stroke="#C4A882" stroke-opacity="0.18" stroke-width="0.6">
+          <line x1="0" y1="600" x2="600" y2="600"/>
+          <line x1="0" y1="650" x2="600" y2="650"/>
+        </g>
+
+        <!-- Scale marker bottom-right -->
+        <g stroke="#C4A882" stroke-opacity="0.4" stroke-width="0.8" fill="none">
+          <path d="M 520 740 L 540 740 M 530 740 L 530 760 M 524 760 L 536 760"/>
+        </g>
+        <text x="490" y="755"
+              font-family="var(--font-display)"
+              font-size="10"
+              fill="#C4A882"
+              fill-opacity="0.5"
+              letter-spacing="0.3em">2.4м</text>
+      </svg>
+      <div class="heroC__interior-grain"></div>
+    </figure>
+  </div>
+
+  <div class="heroC__stats">
+    <div class="heroC__stats-inner">
+      <div class="heroC__stat">
+        <span class="heroC__stat-dot" aria-hidden="true"></span>
+        <span class="heroC__stat-text">Деликатная гармонизация</span>
+      </div>
+      <span class="heroC__stat-divider" aria-hidden="true"></span>
+      <div class="heroC__stat">
+        <span class="heroC__stat-dot" aria-hidden="true"></span>
+        <span class="heroC__stat-text">Аккредитация ASPS, ISAPS</span>
+      </div>
+      <span class="heroC__stat-divider" aria-hidden="true"></span>
+      <div class="heroC__stat">
+        <span class="heroC__stat-dot" aria-hidden="true"></span>
+        <span class="heroC__stat-text">С&nbsp;2011 в&nbsp;Казани</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .heroC {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: var(--text-inverse);
+    background: var(--color-ink-900);
+    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 0;
+  }
+  @media (min-width: 768px) {
+    .heroC { padding: calc(var(--nav-height) + var(--space-12)) 0 0; }
+  }
+
+  .heroC__bg { position: absolute; inset: 0; z-index: 0; }
+  .heroC__bg-layer { position: absolute; inset: 0; }
+  .heroC__bg-layer--base {
+    background: radial-gradient(130% 120% at 50% 110%, #3A2C20 0%, #1C140E 55%, #0A0807 100%);
+  }
+  .heroC__bg-layer--hotspot {
+    background:
+      radial-gradient(40% 46% at 8% 88%, rgba(217, 193, 156, 0.12) 0%, rgba(217, 193, 156, 0) 72%);
+    mix-blend-mode: screen;
+  }
+  .heroC__bg-layer--grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='hn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23hn)'/%3E%3C/svg%3E");
+    opacity: 0.18;
+    mix-blend-mode: overlay;
+  }
+  .heroC__bg-layer--vignette {
+    background: linear-gradient(180deg, rgba(10, 8, 7, 0.35) 0%, rgba(10, 8, 7, 0) 22%, rgba(10, 8, 7, 0) 62%, rgba(10, 8, 7, 0.55) 100%);
+  }
+
+  /* 50/50 split, full-bleed interior к правой границе */
+  .heroC__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-12);
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0 20px var(--space-16);
+    max-width: var(--container-max);
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) { .heroC__grid { padding: 0 32px var(--space-16); } }
+  @media (min-width: 1024px) {
+    .heroC__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0;
+      align-items: stretch;
+      max-width: none;
+      padding: 0;
+      margin: 0;
+    }
+    .heroC__copy {
+      padding: 0 var(--space-12) 0 clamp(32px, 4vw, 72px);
+      justify-self: end;
+      align-self: center;
+      max-width: 720px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .heroC__copy { padding-left: clamp(48px, 6vw, 120px); }
+  }
+
+  .heroC__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-8);
+  }
+  .heroC__eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  .heroC__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 1.15rem + 2.2vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    color: var(--text-inverse);
+    margin-bottom: var(--space-8);
+    max-width: 20ch;
+    text-wrap: balance;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
+  }
+
+  .heroC__sub {
+    font-family: var(--font-body);
+    font-size: var(--text-lead);
+    line-height: 1.55;
+    color: var(--text-inverse-muted);
+    max-width: 46ch;
+    margin-bottom: var(--space-10);
+  }
+
+  .heroC__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .heroC__actions :global(.btn--ghost) { color: rgba(255, 253, 248, 0.85); }
+  .heroC__actions :global(.btn--ghost:hover) { color: var(--accent); }
+
+  /* Interior — full-bleed, zoom-in on mount */
+  .heroC__interior {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    margin: 0;
+  }
+  @media (min-width: 1024px) {
+    .heroC__interior {
+      aspect-ratio: auto;
+      min-height: 680px;
+    }
+  }
+
+  .heroC__interior-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform: scale(1.08);
+    animation: heroC-zoom 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes heroC-zoom {
+    to { transform: scale(1); }
+  }
+
+  .heroC__interior-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='pn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23pn)'/%3E%3C/svg%3E");
+    opacity: 0.22;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .heroC__interior-svg { transform: none; animation: none; }
+  }
+
+  /* Stats strip */
+  .heroC__stats {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(255, 253, 248, 0.08);
+    background: rgba(10, 8, 7, 0.55);
+    backdrop-filter: blur(12px);
+  }
+  .heroC__stats-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-5) 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 768px) { .heroC__stats-inner { padding: var(--space-5) 32px; } }
+  @media (min-width: 1200px) { .heroC__stats-inner { padding: var(--space-5) 48px; } }
+
+  .heroC__stat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0 var(--space-8);
+    flex: 1;
+    justify-content: center;
+  }
+  .heroC__stat-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .heroC__stat-text {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, 0.75);
+    white-space: nowrap;
+  }
+  .heroC__stat-divider {
+    width: 1px;
+    align-self: stretch;
+    background: rgba(255, 253, 248, 0.1);
+    display: none;
+  }
+  @media (min-width: 768px) { .heroC__stat-divider { display: block; } }
+</style>

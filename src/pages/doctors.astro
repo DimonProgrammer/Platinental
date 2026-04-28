@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/primitives/Button.astro';
-import DoctorCardFull from '../components/cards/DoctorCardFull.astro';
+import DoctorCardBrief from '../components/cards/DoctorCardBrief.astro';
 import FinalCTA from '../components/sections/FinalCTA.astro';
 import FAQ from '../components/sections/FAQ.astro';
 import Contacts from '../components/sections/Contacts.astro';
@@ -59,7 +59,7 @@ const filters = [
       </div>
 
       <div class="team__grid" data-doctors-grid>
-        {doctors.map((d, i) => <DoctorCardFull doctor={d} index={i} />)}
+        {doctors.map((d, i) => <DoctorCardBrief doctor={d} index={i} />)}
       </div>
 
       <p class="team__note">
@@ -83,7 +83,7 @@ const filters = [
         const filter = btn.dataset.filter ?? 'all';
         buttons.forEach((b) => b.classList.toggle('is-active', b === btn));
 
-        const cards = grid.querySelectorAll<HTMLElement>('.doctor-card');
+        const cards = grid.querySelectorAll<HTMLElement>('.dcb');
         cards.forEach((card) => {
           const tags = (card.dataset.tags ?? '').split(' ');
           const show = filter === 'all' || tags.includes(filter);
@@ -128,7 +128,6 @@ const filters = [
   .doctors-hero__title {
     font-size: clamp(2rem, 1rem + 3vw, 3.5rem);
     font-weight: 400;
-    font-style: italic;
     line-height: 1.08;
     letter-spacing: var(--tracking-display);
     color: var(--text-primary);

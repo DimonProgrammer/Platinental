@@ -16,3 +16,12 @@ Thumbs.db
 
 # Node (if applicable)
 node_modules/
+
+# Astro
+dist/
+.astro/
+
+# Screenshots from Playwright QA
+.playwright-mcp/
+check-*.jpg
+.vercel

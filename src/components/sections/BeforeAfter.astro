@@ -1,0 +1,182 @@
+---
+import SectionHeader from '../primitives/SectionHeader.astro';
+import Button from '../primitives/Button.astro';
+
+const cases = [
+  { label: 'Ринопластика' },
+  { label: 'Блефаропластика' },
+  { label: 'Маммопластика' },
+  { label: 'SMAS-лифтинг' },
+  { label: 'Абдоминопластика' },
+  { label: 'Контурная пластика' },
+];
+---
+
+<section class="ba" aria-label="До и после">
+  <div class="ba__inner">
+    <div class="ba__head">
+      <SectionHeader title="До и&nbsp;после" />
+      <div class="ba__nav" aria-hidden="true">
+        <Button variant="icon" size="md" ariaLabel="Предыдущий кейс" class="ba__nav-btn" id="ba-prev-btn">
+          <svg width="16" height="14" viewBox="0 0 16 14" aria-hidden="true" fill="none">
+            <path d="M15 7H1M6 1L1 7l5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </Button>
+        <Button variant="icon" size="md" ariaLabel="Следующий кейс" class="ba__nav-btn" id="ba-next-btn">
+          <svg width="16" height="14" viewBox="0 0 16 14" aria-hidden="true" fill="none">
+            <path d="M1 7h14M10 1l5 6-5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </Button>
+      </div>
+    </div>
+
+    <div class="ba__scroll" data-ba-scroll>
+      {cases.map((c, i) => (
+        <article class="ba-card" data-reveal style={`transition-delay: ${i * 70}ms`}>
+          <div class="ba-card__pair">
+            <div class="ba-card__half ba-card__half--before" aria-hidden="true">
+              <span class="ba-card__tag">До</span>
+            </div>
+            <div class="ba-card__half ba-card__half--after" aria-hidden="true">
+              <span class="ba-card__tag">После</span>
+            </div>
+          </div>
+          <h3 class="ba-card__title font-display">{c.label}</h3>
+        </article>
+      ))}
+    </div>
+
+    <p class="ba__disclaimer">
+      Результат индивидуален и&nbsp;зависит от&nbsp;особенностей организма. Публикуется с&nbsp;письменного согласия пациентов.
+    </p>
+  </div>
+</section>
+
+<script>
+  const scroll = document.querySelector('[data-ba-scroll]') as HTMLElement | null;
+  const prev = document.getElementById('ba-prev-btn') as HTMLButtonElement | null;
+  const next = document.getElementById('ba-next-btn') as HTMLButtonElement | null;
+  if (scroll && prev && next) {
+    const step = () => Math.min(scroll.clientWidth * 0.9, 560);
+    prev.addEventListener('click', () => scroll.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next.addEventListener('click', () => scroll.scrollBy({ left: step(), behavior: 'smooth' }));
+  }
+</script>
+
+<style>
+  .ba {
+    background: var(--surface-alt);
+    padding: var(--space-32) 0;
+  }
+
+  @media (min-width: 1024px) { .ba { padding: var(--space-40) 0; } }
+
+  .ba__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .ba__inner { padding: 0 32px; } }
+  @media (min-width: 1200px) { .ba__inner { padding: 0 48px; } }
+
+  .ba__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-6);
+    margin-bottom: var(--space-12);
+    flex-wrap: wrap;
+  }
+
+  .ba__head :global(.section-header) { margin-bottom: 0; }
+
+  .ba__nav {
+    display: flex;
+    gap: var(--space-3);
+  }
+
+  .ba__scroll {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 90%;
+    gap: var(--space-5);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: var(--space-5);
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    scrollbar-width: thin;
+  }
+
+  @media (min-width: 560px) {
+    .ba__scroll {
+      grid-auto-columns: 58%;
+      margin: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .ba__scroll { grid-auto-columns: 42%; }
+  }
+
+  .ba__scroll::-webkit-scrollbar { height: 4px; }
+  .ba__scroll::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 4px; }
+
+  .ba-card {
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .ba-card__pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .ba-card__half {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-3);
+  }
+
+  .ba-card__half--before {
+    background: var(--color-ink-700);
+  }
+
+  .ba-card__half--after {
+    background: var(--color-ink-900);
+  }
+
+  .ba-card__tag {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, 0.78);
+    position: relative;
+  }
+
+  .ba-card__title {
+    font-size: var(--text-lead);
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-heading);
+  }
+
+  .ba__disclaimer {
+    margin-top: var(--space-8);
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 64ch;
+  }
+</style>

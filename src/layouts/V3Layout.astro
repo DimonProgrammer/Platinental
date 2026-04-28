@@ -1,0 +1,89 @@
+---
+import '../styles/tokens-v3.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'Platinental Казань — клиника пластической хирургии и косметологии',
+  description = 'Platinental Казань — клиника пластической хирургии и эстетической медицины. Авторские методики, гармонизирующий подход. С 2011 года в Казани.',
+  canonical = 'https://kzn.platinental.ru/',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#FFFEF2" />
+    <meta name="color-scheme" content="light" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="Platinental Казань" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Golos+Text:wght@400;500;600&display=swap"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+
+  <body>
+    <div data-v3>
+      <slot />
+    </div>
+
+    <script>
+      // Reveal-on-scroll for [data-v3-reveal]
+      const els = document.querySelectorAll<HTMLElement>('[data-v3-reveal]');
+      if ('IntersectionObserver' in window && els.length) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' },
+        );
+        els.forEach((el) => io.observe(el));
+        // Safety: reveal all after 1.5s
+        window.setTimeout(() => {
+          document.querySelectorAll('[data-v3-reveal]:not(.is-visible)').forEach((el) => el.classList.add('is-visible'));
+        }, 1500);
+      } else {
+        els.forEach((el) => el.classList.add('is-visible'));
+      }
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFEF2;
+    overflow-x: hidden;
+  }
+  body { min-height: 100vh; }
+  *, *::before, *::after { box-sizing: border-box; }
+  img, picture, svg { display: block; max-width: 100%; }
+</style>

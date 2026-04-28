@@ -1,0 +1,228 @@
+---
+import V3Layout from '../../layouts/V3Layout.astro';
+import Navigation from '../../components/v3/sections/Navigation.astro';
+import PageHero from '../../components/v3/sections/PageHero.astro';
+import FinalCTA from '../../components/v3/sections/FinalCTA.astro';
+import Footer from '../../components/v3/sections/Footer.astro';
+import { brands, categories, products } from '../../data/kosmecevtika';
+
+const badgeLabel: Record<string, string> = {
+  new: 'Новинка',
+  best: 'Хит',
+  rx: 'По рекомендации',
+};
+
+const toneStyle: Record<string, string> = {
+  cream: 'background: var(--v3-cream-alt)',
+  blush: 'background: #F5EDE8',
+  sage: 'background: #EAF0EA',
+  stone: 'background: var(--v3-sand)',
+  champagne: 'background: #F5EBD8',
+  ink: 'background: var(--v3-ink); color: var(--v3-on-ink)',
+};
+---
+
+<V3Layout
+  title="Космецевтика — Platinental Казань"
+  description="Профессиональная космецевтика в клинике Platinental Казань: ANUBIS, Ultraceuticals, HELIOCARE. Подбор средств врачом-косметологом."
+>
+  <Navigation />
+  <main id="main">
+    <PageHero
+      eyebrow="Домашний уход"
+      h1="Космецевтика"
+      lead="Профессиональная косметика медицинского класса — для поддержки результата между процедурами и после операций. Только то, что реально работает."
+      ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
+      ctaSecondary={{ label: 'Получить рекомендацию', href: 'https://wa.me/78432236666' }}
+    />
+
+    <!-- Brands -->
+    <section class="v3-brands v3-surface-sand" aria-labelledby="brands-heading">
+      <div class="v3-container v3-container-default">
+        <header class="brands-header" data-v3-reveal>
+          <span class="v3-eyebrow">Производители</span>
+          <h2 id="brands-heading" class="v3-h2"><em>Бренды</em></h2>
+          <p class="v3-lead brands-lead">
+            Только марки с доказанной эффективностью и профессиональной регистрацией.
+            Подбор — строго по показаниям, без массмаркет-ассортимента.
+          </p>
+        </header>
+        <ul class="brands-grid" data-v3-reveal>
+          {brands.map((b) => (
+            <li class="brand-card">
+              <span class="brand-name v3-h3">{b.name}</span>
+              {b.country && <span class="brand-country v3-eyebrow">{b.country}</span>}
+              <p class="brand-tagline v3-body">{b.tagline}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Products by category -->
+    {categories.map((cat) => {
+      const catProducts = products.filter((p) => p.category === cat.key);
+      if (catProducts.length === 0) return null;
+      return (
+        <section class="v3-cat-products v3-surface-cream" aria-labelledby={`cat-${cat.key}-heading`}>
+          <div class="v3-container v3-container-wide">
+            <header class="cat-header" data-v3-reveal>
+              <span class="v3-eyebrow">{cat.shortLabel ?? cat.label}</span>
+              <h2 id={`cat-${cat.key}-heading`} class="v3-h2"><em>{cat.label}</em></h2>
+              <p class="v3-lead cat-desc">{cat.description}</p>
+            </header>
+            <ul class="products-grid" data-v3-reveal>
+              {catProducts.map((p) => (
+                <li class="product-card" style={toneStyle[p.tone] ?? ''}>
+                  {p.badge && (
+                    <span class="product-badge v3-eyebrow">{badgeLabel[p.badge]}</span>
+                  )}
+                  <div class="product-brand v3-eyebrow">{p.brand.toUpperCase()}</div>
+                  <h3 class="product-name v3-h3">{p.name}</h3>
+                  <p class="product-volume v3-caption">{p.volume}</p>
+                  <p class="product-benefit v3-body">{p.benefit}</p>
+                  <p class="product-price">{p.price}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      );
+    })}
+
+    <!-- Consultation CTA -->
+    <section class="v3-kosmec-consult v3-surface-sand" aria-label="Как подобрать космецевтику">
+      <div class="v3-container v3-container-default" data-v3-reveal>
+        <span class="v3-eyebrow">Подбор</span>
+        <h2 class="v3-h2"><em>Как выбрать правильные средства</em></h2>
+        <p class="v3-lead consult-lead">
+          Косметолог оценит состояние кожи, учтёт перенесённые процедуры и назначит
+          уходовый протокол. Самостоятельный выбор космецевтики часто даёт
+          противоположный результат — слишком активные кислоты или несовместимые
+          ингредиенты могут навредить коже.
+        </p>
+        <div class="consult-cta">
+          <a href="#form" class="v3-btn v3-btn-primary">Записаться на консультацию косметолога</a>
+          <a href="https://wa.me/78432236666" class="v3-link" target="_blank" rel="noopener noreferrer">Спросить в WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <FinalCTA
+      heading="Записаться<br />к косметологу"
+      lead="Первичная консультация: от 2 000 ₽. Косметолог подберёт уходовый протокол под ваш тип кожи."
+    />
+  </main>
+  <Footer />
+</V3Layout>
+
+<style>
+  /* Brands */
+  .v3-brands {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .brands-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
+  }
+  .brands-lead { max-width: 52ch; }
+  .brands-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--v3-border-hair);
+  }
+  .brand-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 2rem 1.75rem;
+    background: var(--v3-cream);
+  }
+  .brand-name { color: var(--v3-ink); }
+  .brand-country { color: var(--v3-ink-muted); }
+  .brand-tagline { margin: 0; font-size: 0.9375rem; }
+
+  /* Category sections */
+  .v3-cat-products {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .cat-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
+  }
+  .cat-desc { max-width: 52ch; }
+
+  /* Products grid */
+  .products-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    position: relative;
+  }
+  .product-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--v3-champagne-deep);
+    font-size: 0.625rem;
+  }
+  .product-brand { color: var(--v3-ink-muted); margin-bottom: 0.25rem; }
+  .product-name { color: var(--v3-ink); font-size: 1.0625rem; }
+  .product-volume { color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0.005em; }
+  .product-benefit { margin: 0; font-size: 0.875rem; color: var(--v3-ink-secondary); flex: 1; }
+  .product-price {
+    font-family: var(--v3-font-display);
+    font-style: italic;
+    font-size: 1.125rem;
+    color: var(--v3-champagne-deep);
+    margin-top: 0.5rem;
+  }
+
+  /* Consult CTA section */
+  .v3-kosmec-consult {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .v3-kosmec-consult .v3-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h1-lead);
+    max-width: var(--v3-container-default);
+  }
+  .consult-lead { max-width: 52ch; }
+  .consult-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 0.9375rem;
+  }
+
+  @media (max-width: 1024px) {
+    .brands-grid { grid-template-columns: repeat(2, 1fr); }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .brands-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: 1fr; }
+  }
+</style>

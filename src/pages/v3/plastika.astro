@@ -1,0 +1,400 @@
+---
+import V3Layout from '../../layouts/V3Layout.astro';
+import Navigation from '../../components/v3/sections/Navigation.astro';
+import PageHero from '../../components/v3/sections/PageHero.astro';
+import FinalCTA from '../../components/v3/sections/FinalCTA.astro';
+import FAQ from '../../components/v3/sections/FAQ.astro';
+import Footer from '../../components/v3/sections/Footer.astro';
+import { plastikaOps } from '../../data/plastika';
+import { doctors } from '../../data/doctors';
+
+const faceOps = plastikaOps.filter((op) => op.category === 'face');
+const bodyOps = plastikaOps.filter((op) => op.category === 'body');
+
+const surgeons = doctors.filter((d) => d.tags.includes('plastika'));
+
+const faqItems = [
+  {
+    q: 'Как записаться на первичную консультацию хирурга?',
+    a: 'Позвоните по <a href="tel:+78432236666">+7 843 223-66-66</a>, напишите в WhatsApp или заполните форму. Консультация хирурга — от 5 000 ₽, длится 30–60 минут.',
+    open: true,
+  },
+  {
+    q: 'Сколько стоит операция? Как формируется цена?',
+    a: 'Стоимость зависит от объёма операции, категории сложности и выбранного хирурга. Точную цену хирург называет на консультации — после осмотра и обсуждения задачи. Базовые цены — в прайс-листе.',
+  },
+  {
+    q: 'Как подготовиться к операции?',
+    a: 'Список анализов и обследований хирург выдаёт на консультации. Общие требования: анализы крови, коагулограмма, ЭКГ, справка от терапевта об отсутствии противопоказаний. За 2 недели до операции — отказ от курения и алкоголя.',
+  },
+  {
+    q: 'Где проходит операция?',
+    a: 'Операции проводятся в операционной клиники на ул. Карла Маркса, 48, корп. 1. Операционная аккредитована и оснащена в соответствии с требованиями к плановой хирургии.',
+  },
+  {
+    q: 'Каков реабилитационный период?',
+    a: 'Зависит от операции:<br />— Блефаропластика: 7–14 дней<br />— Ринопластика: 2–3 недели<br />— Маммопластика: 2–4 недели<br />— SMAS-лифтинг: 3–4 недели<br /><br />Реабилитация ведётся совместно с косметологом клиники.',
+  },
+  {
+    q: 'Есть ли противопоказания к пластической операции?',
+    a: 'Да. Онкология, беременность, лактация, нарушения свёртываемости крови, тяжёлые хронические заболевания — абсолютные противопоказания. Относительные противопоказания хирург выявляет на консультации.',
+  },
+];
+---
+
+<V3Layout
+  title="Пластическая хирургия — Platinental Казань"
+  description="Пластические операции на лице и теле в клинике Platinental Казань. Ринопластика, блефаропластика, SMAS-лифтинг, маммопластика. Хирурги с ординатурой в ведущих московских центрах."
+>
+  <Navigation />
+  <main id="main">
+    <PageHero
+      eyebrow="Пластическая хирургия"
+      h1="Операции на лице и теле"
+      lead="Деликатный результат, который не читается как «сделанный». Хирурги с ординатурой в РНИМУ, РНЦХ, Сеченовском университете."
+      ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
+      ctaSecondary={{ label: 'Прайс-лист', href: '/v3/prices' }}
+    />
+
+    <!-- Category tabs -->
+    <section class="v3-plastika v3-surface-cream" aria-labelledby="plastika-heading">
+      <div class="v3-container v3-container-wide">
+        <h2 id="plastika-heading" class="sr-only">Направления пластической хирургии</h2>
+
+        <div class="plast-tabs" role="tablist" aria-label="Направления" data-v3-reveal>
+          <button role="tab" class="plast-tab is-active" data-tab="face"
+            aria-selected="true" aria-controls="panel-face" id="tab-face">
+            Пластика лица
+          </button>
+          <button role="tab" class="plast-tab" data-tab="body"
+            aria-selected="false" aria-controls="panel-body" id="tab-body">
+            Пластика тела
+          </button>
+        </div>
+
+        <!-- Face -->
+        <div role="tabpanel" id="panel-face" aria-labelledby="tab-face"
+          class="plast-panel is-active" data-panel="face">
+          <ul class="ops-grid" data-v3-reveal>
+            {faceOps.map((op) => (
+              <li class="op-card">
+                <span class="op-badge v3-eyebrow">{op.badge}</span>
+                <h3 class="op-name v3-h3">{op.name}</h3>
+                <p class="op-desc v3-body" set:html={op.desc}></p>
+                <div class="op-footer">
+                  <span class="op-price">{op.price}</span>
+                  <a href="#form" class="v3-link op-cta">Записаться</a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Body -->
+        <div role="tabpanel" id="panel-body" aria-labelledby="tab-body"
+          class="plast-panel" data-panel="body">
+          <ul class="ops-grid" data-v3-reveal>
+            {bodyOps.map((op) => (
+              <li class="op-card">
+                <span class="op-badge v3-eyebrow">{op.badge}</span>
+                <h3 class="op-name v3-h3">{op.name}</h3>
+                <p class="op-desc v3-body" set:html={op.desc}></p>
+                <div class="op-footer">
+                  <span class="op-price">{op.price}</span>
+                  <a href="#form" class="v3-link op-cta">Записаться</a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Surgeons -->
+    <section class="v3-plastika-surgeons v3-surface-sand" aria-labelledby="surgeons-heading">
+      <div class="v3-container v3-container-wide">
+        <header class="surgeons-header" data-v3-reveal>
+          <span class="v3-eyebrow">Хирурги</span>
+          <h2 id="surgeons-heading" class="v3-h2"><em>Кто оперирует</em></h2>
+          <p class="v3-lead surgeons-lead">
+            Каждый хирург клиники прошёл ординатуру по пластической или
+            челюстно-лицевой хирургии в профильных учреждениях. Своя школа
+            и авторские техники — нет единого шаблона.
+          </p>
+        </header>
+        <ul class="surgeons-grid" data-v3-reveal>
+          {surgeons.map((d) => (
+            <li class="surgeon-card">
+              <a href={`/v3/doctors/${d.slug}`} class="surgeon-link">
+                <div class="surgeon-photo">
+                  {d.photo
+                    ? <img src={d.photo} alt={d.name} width="320" height="400" loading="lazy" />
+                    : <div class="surgeon-initials">{d.initials}</div>}
+                </div>
+                <div class="surgeon-info">
+                  <p class="surgeon-spec v3-eyebrow">{d.spec}</p>
+                  <h3 class="surgeon-name v3-h3">{d.name}</h3>
+                  <p class="surgeon-price v3-caption">{d.priceMain}</p>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div class="surgeons-cta" data-v3-reveal>
+          <a href="/v3/doctors" class="v3-btn v3-btn-primary">Все врачи клиники</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process steps -->
+    <section class="v3-process v3-surface-ink" aria-labelledby="process-heading">
+      <div class="v3-container v3-container-default">
+        <header class="process-header" data-v3-reveal>
+          <span class="v3-eyebrow">Как это работает</span>
+          <h2 id="process-heading" class="v3-h2"><em>Путь к операции</em></h2>
+        </header>
+        <ol class="process-list" data-v3-reveal>
+          {[
+            { n: '01', title: 'Консультация', text: 'Хирург осматривает, замеряет, объясняет — что возможно, что разумно, что ожидать. Без спешки.' },
+            { n: '02', title: 'Подготовка', text: 'Анализы, обследования, отмена препаратов если нужно. Список — от хирурга на консультации.' },
+            { n: '03', title: 'Операция', text: 'В собственной операционной клиники. Анестезиолог — штатный, не приглашённый.' },
+            { n: '04', title: 'Реабилитация', text: 'Под наблюдением хирурга и косметолога — без передачи в чужие руки.' },
+          ].map((s) => (
+            <li class="process-item">
+              <span class="process-num v3-eyebrow">{s.n}</span>
+              <div class="process-body">
+                <h3 class="process-title">{s.title}</h3>
+                <p class="v3-body process-text">{s.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <FAQ
+      eyebrow="Пластика"
+      heading="Частые вопросы"
+      items={faqItems}
+    />
+
+    <FinalCTA
+      heading="Записаться<br />на консультацию"
+      lead="Хирург осмотрит, оценит ситуацию и честно расскажет, что возможно в вашем случае. Первичная консультация — от 5 000 ₽."
+      submitLabel="Записаться на консультацию хирурга"
+    />
+  </main>
+  <Footer />
+</V3Layout>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  /* Plastika section */
+  .v3-plastika {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-deep);
+  }
+
+  /* Tabs */
+  .plast-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--v3-border-hair);
+    margin-bottom: var(--v3-gap-small);
+  }
+  .plast-tab {
+    font-family: var(--v3-font-body);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--v3-ink-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.875rem 2rem;
+    cursor: pointer;
+    transition: color var(--v3-duration-fast) var(--v3-ease-out),
+                border-color var(--v3-duration-fast) var(--v3-ease-out);
+    margin-bottom: -1px;
+  }
+  .plast-tab.is-active,
+  .plast-tab[aria-selected="true"] {
+    color: var(--v3-ink);
+    border-bottom-color: var(--v3-champagne-deep);
+  }
+  .plast-tab:hover { color: var(--v3-ink); }
+
+  /* Panels */
+  .plast-panel { display: none; }
+  .plast-panel.is-active { display: block; }
+
+  /* Operations grid */
+  .ops-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--v3-border-hair);
+  }
+  .op-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.75rem;
+    background: var(--v3-cream);
+  }
+  .op-badge { color: var(--v3-ink-muted); }
+  .op-name { color: var(--v3-ink); }
+  .op-desc { margin: 0; font-size: 0.9375rem; color: var(--v3-ink-secondary); flex: 1; line-height: 1.55; }
+  .op-footer {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--v3-border-hair);
+    margin-top: auto;
+  }
+  .op-price {
+    font-family: var(--v3-font-display);
+    font-style: italic;
+    font-size: 1.0625rem;
+    color: var(--v3-champagne-deep);
+    white-space: nowrap;
+  }
+  .op-cta { font-size: 0.9375rem; }
+
+  /* Surgeons */
+  .v3-plastika-surgeons {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .surgeons-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
+  }
+  .surgeons-lead { max-width: 52ch; }
+  .surgeons-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--v3-border-hair);
+  }
+  .surgeon-card { background: var(--v3-sand); }
+  .surgeon-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: background var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .surgeon-link:hover { background: var(--v3-sand-deep); }
+  .surgeon-photo {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--v3-cream);
+  }
+  .surgeon-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .surgeon-initials {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--v3-font-display);
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--v3-ink-muted);
+  }
+  .surgeon-info {
+    padding: 1rem 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+  .surgeon-spec { color: var(--v3-ink-muted); }
+  .surgeon-name { color: var(--v3-ink); }
+  .surgeon-price { color: var(--v3-champagne-deep); text-transform: none; letter-spacing: 0.005em; font-family: var(--v3-font-display); font-style: italic; font-size: 0.9375rem; }
+  .surgeons-cta {
+    margin-top: var(--v3-gap-small);
+    display: flex;
+  }
+
+  /* Process */
+  .v3-process {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .process-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
+  }
+  .process-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--v3-border-on-ink);
+  }
+  .process-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 1.75rem;
+    background: var(--v3-ink);
+  }
+  .process-num { color: var(--v3-champagne); }
+  .process-title {
+    font-family: var(--v3-font-body);
+    font-weight: 500;
+    font-size: 1.0625rem;
+    color: var(--v3-on-ink);
+    margin: 0;
+  }
+  .process-text { color: var(--v3-on-ink-secondary); margin: 0; font-size: 0.9375rem; }
+
+  @media (max-width: 1024px) {
+    .ops-grid { grid-template-columns: repeat(2, 1fr); }
+    .surgeons-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-list { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .plast-tab { padding-inline: 1.25rem; font-size: 0.9375rem; }
+    .ops-grid { grid-template-columns: 1fr; }
+    .surgeons-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-list { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.plast-tab');
+  const panels = document.querySelectorAll<HTMLElement>('.plast-panel');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const key = tab.dataset.tab;
+      tabs.forEach((t) => { t.setAttribute('aria-selected', 'false'); t.classList.remove('is-active'); });
+      panels.forEach((p) => p.classList.remove('is-active'));
+      tab.setAttribute('aria-selected', 'true');
+      tab.classList.add('is-active');
+      document.querySelector(`[data-panel="${key}"]`)?.classList.add('is-active');
+    });
+  });
+</script>

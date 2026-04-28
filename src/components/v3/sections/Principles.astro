@@ -1,0 +1,119 @@
+---
+const principles = [
+  {
+    num: '01',
+    title: 'Гармонизирующий подход',
+    body: 'Хирург не меняет внешность — он усиливает то, что уже есть. У каждого лица своя геометрия, свой ресурс тканей, своя история. Шаблонных решений не бывает: имплант, техника и план реабилитации собираются под конкретного пациента.',
+    detail: 'Деликатность · пропорции',
+  },
+  {
+    num: '02',
+    title: 'Авторские методики',
+    body: 'У каждого хирурга клиники — многолетняя специализация, авторские техники и собственный профессиональный почерк. То, что отличает результат от шаблона.',
+    detail: 'Авторские техники',
+  },
+  {
+    num: '03',
+    title: 'Квалификация хирургов',
+    body: 'Ординатура в РНИМУ Пирогова, Сеченовском университете, РНЦХ Петровского. Обучение в США, Швейцарии, Италии. Членство в ASPS и ISAPS.',
+    detail: 'ASPS · ISAPS · IPRAS',
+  },
+  {
+    num: '04',
+    title: 'Хирург + косметолог',
+    body: 'Хирург даёт результат, а косметолог помогает подготовиться к операции. После операции косметолог убирает рубцы, улучшает качество кожи. В союзе они дают наилучший результат.',
+    detail: 'Полный цикл',
+  },
+];
+---
+
+<section class="v3-principles v3-surface-ink" aria-labelledby="principles-heading">
+  <div class="v3-container v3-container-default principles-grid">
+    <aside class="principles-aside" data-v3-reveal>
+      <span class="v3-eyebrow">Принципы клиники</span>
+      <h2 id="principles-heading" class="v3-h2 principles-h2">
+        <em>Почему&nbsp;Platinental</em>
+      </h2>
+      <p class="v3-lead principles-lead">
+        Четыре идеи, на которых клиника живёт девятый год.
+      </p>
+    </aside>
+
+    <ol class="principles-list">
+      {principles.map((p) => (
+        <li class="principle" data-v3-reveal>
+          <span class="principle-num v3-display">
+            <em>{p.num}</em>
+          </span>
+          <div class="principle-content">
+            <h3 class="v3-h3 principle-title">{p.title}</h3>
+            <p class="v3-body principle-body">{p.body}</p>
+            <span class="v3-eyebrow principle-detail">{p.detail}</span>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .v3-principles {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .principles-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+  }
+  .principles-aside {
+    position: sticky;
+    top: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+  }
+  .principles-h2 { max-width: 12ch; }
+  .principles-lead { max-width: 26ch; }
+
+  .principles-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .principle {
+    display: grid;
+    grid-template-columns: minmax(3.5rem, 5rem) 1fr;
+    gap: clamp(1.25rem, 2.5vw, 2.5rem);
+    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+    border-top: 1px solid var(--v3-border-on-ink);
+    align-items: start;
+  }
+  .principle:last-child { border-bottom: 1px solid var(--v3-border-on-ink); }
+  .principle-num {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1;
+    color: var(--v3-champagne);
+    font-family: var(--v3-font-display);
+    font-style: italic;
+  }
+  .principle-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .principle-title { color: var(--v3-on-ink); }
+  .principle-body { color: var(--v3-on-ink-secondary); max-width: 56ch; }
+  .principle-detail { color: var(--v3-on-ink-muted); margin-top: 0.5rem; }
+
+  @media (max-width: 1024px) {
+    .principles-grid { grid-template-columns: 1fr; }
+    .principles-aside { position: static; }
+  }
+  @media (max-width: 640px) {
+    .principle { grid-template-columns: 1fr; gap: 0.75rem; }
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import V3Layout from '../../layouts/V3Layout.astro';
+import Navigation from '../../components/v3/sections/Navigation.astro';
+import PageHero from '../../components/v3/sections/PageHero.astro';
+import Contacts from '../../components/v3/sections/Contacts.astro';
+import FinalCTA from '../../components/v3/sections/FinalCTA.astro';
+import Footer from '../../components/v3/sections/Footer.astro';
+---
+
+<V3Layout
+  title="Контакты — Platinental Казань"
+  description="Адрес клиники Platinental в Казани, телефон, режим работы и схема проезда. ул. Карла Маркса, 48, корп. 1."
+>
+  <Navigation />
+  <main id="main">
+    <PageHero
+      eyebrow="Platinental · Казань"
+      h1="Контакты"
+      lead="Казань, ул. Карла Маркса, 48, корп. 1. Приём ежедневно с 9:00 до 20:00."
+      ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
+      ctaSecondary={{ label: '+7 843 223-66-66', href: 'tel:+78432236666' }}
+    />
+    <Contacts />
+    <FinalCTA
+      heading="Запишитесь<br />на приём"
+      lead="Позвоните, напишите или заполните форму — мы свяжемся в течение 2 часов."
+    />
+  </main>
+  <Footer />
+</V3Layout>

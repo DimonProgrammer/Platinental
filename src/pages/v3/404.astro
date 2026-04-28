@@ -1,0 +1,76 @@
+---
+import V3Layout from '../../layouts/V3Layout.astro';
+import Navigation from '../../components/v3/sections/Navigation.astro';
+import Footer from '../../components/v3/sections/Footer.astro';
+---
+
+<V3Layout
+  title="Страница не найдена — Platinental Казань"
+  description="Запрошенная страница не найдена. Вернитесь на главную страницу клиники Platinental Казань."
+>
+  <Navigation />
+  <main id="main">
+    <section class="v3-404 v3-surface-cream" aria-labelledby="notfound-heading">
+      <div class="v3-container v3-container-default notfound-inner">
+        <div data-v3-reveal>
+          <span class="v3-eyebrow">Platinental · Казань</span>
+          <p class="notfound-code" aria-hidden="true">404</p>
+          <h1 id="notfound-heading" class="v3-h1 notfound-h1">
+            <em>Страница не&nbsp;найдена</em>
+          </h1>
+          <p class="v3-lead notfound-lead">
+            Возможно, адрес устарел или страница была перемещена.
+          </p>
+          <div class="notfound-cta">
+            <a href="/v3/" class="v3-btn v3-btn-primary">На главную</a>
+            <a href="/v3/plastika" class="v3-link">Пластическая хирургия</a>
+            <a href="/v3/kosmetologiya" class="v3-link">Косметология</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</V3Layout>
+
+<style>
+  .v3-404 {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+  .notfound-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-small);
+  }
+  .notfound-inner .v3-eyebrow {
+    margin-bottom: var(--v3-gap-eyebrow-h1);
+  }
+  .notfound-code {
+    font-family: var(--v3-font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(6rem, 20vw, 14rem);
+    line-height: 0.9;
+    color: var(--v3-sand-deep);
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+  }
+  .notfound-h1 {
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+  }
+  .notfound-lead {
+    max-width: 40ch;
+  }
+  .notfound-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    font-size: 0.9375rem;
+  }
+</style>

@@ -1,0 +1,179 @@
+---
+---
+
+<section class="cc" id="form">
+  <div class="cc__inner">
+
+    <div class="cc__left">
+      <span class="cc__label">Запись</span>
+      <h2 class="cc__title font-display">Задайте вопрос врачу</h2>
+      <p class="cc__lede">
+        Первая консультация&nbsp;— разговор без&nbsp;обязательств. Вы&nbsp;рассказываете о&nbsp;запросе, врач объясняет возможности. Приходите, поговорим.
+      </p>
+      <p class="cc__note">Отвечаем в&nbsp;течение 2&nbsp;часов. Пн–Вс 9:00–20:00.</p>
+    </div>
+
+    <div class="cc__right">
+      <form class="cc__form" action="#" method="post" novalidate>
+        <label class="cc__field">
+          <span class="cc__field-label">Имя</span>
+          <input type="text" name="name" autocomplete="given-name" required placeholder="Как к вам обращаться" />
+        </label>
+        <label class="cc__field">
+          <span class="cc__field-label">Телефон</span>
+          <input type="tel" name="phone" autocomplete="tel" required placeholder="+7 ___ ___ ____" />
+        </label>
+        <label class="cc__consent">
+          <input type="checkbox" name="consent" required />
+          <span>Я&nbsp;согласен(а) на&nbsp;обработку персональных данных в&nbsp;соответствии с&nbsp;<a href="/privacy">152-ФЗ</a></span>
+        </label>
+        <button type="submit" class="cc__submit">Записаться на&nbsp;консультацию&nbsp;→</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .cc {
+    background: var(--surface-inverse);
+    color: var(--text-inverse);
+    padding: var(--space-32) 0;
+  }
+
+  @media (min-width: 1024px) { .cc { padding: var(--space-40) 0; } }
+
+  .cc__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  @media (min-width: 768px) { .cc__inner { padding: 0 32px; } }
+
+  @media (min-width: 960px) {
+    .cc__inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-20);
+      align-items: start;
+      padding: 0 48px;
+    }
+  }
+
+  /* Left */
+  .cc__label {
+    display: block;
+    font-size: var(--text-micro);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-6);
+  }
+
+  .cc__title {
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--text-inverse);
+    margin: 0 0 var(--space-6);
+    text-wrap: balance;
+  }
+
+  .cc__lede {
+    font-size: var(--text-body);
+    line-height: 1.65;
+    color: var(--text-inverse-muted);
+    max-width: 44ch;
+    margin: 0 0 var(--space-5);
+  }
+
+  .cc__note {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0;
+  }
+
+  /* Form */
+  .cc__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .cc__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .cc__field-label {
+    font-size: var(--text-caption);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-inverse-muted);
+  }
+
+  .cc__field input {
+    padding: var(--space-4) 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-inverse);
+    color: var(--text-inverse);
+    font-size: var(--text-body);
+    font-family: var(--font-body);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .cc__field input::placeholder { color: rgba(255, 253, 248, 0.35); }
+  .cc__field input:focus { outline: none; border-bottom-color: var(--accent); }
+
+  .cc__consent {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    font-size: var(--text-caption);
+    color: var(--text-inverse-muted);
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .cc__consent input[type='checkbox'] {
+    width: 16px; height: 16px;
+    border: 1px solid var(--border-inverse);
+    accent-color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+    background: transparent;
+  }
+
+  .cc__consent a { color: var(--accent); text-decoration: underline; }
+
+  .cc__submit {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px var(--space-8);
+    background: var(--accent);
+    border: none;
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--color-ink-900);
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background var(--duration-fast) var(--ease-out);
+    margin-top: var(--space-2);
+  }
+
+  .cc__submit:hover { background: var(--color-champagne-400); }
+</style>

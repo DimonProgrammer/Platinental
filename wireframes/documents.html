@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Документы и лицензии клиники Platinental в Казани</title>
+<meta name="description" content="Лицензии, сертификаты и правовые документы клиники Platinental в Казани. Политика конфиденциальности, согласие на обработку персональных данных.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FFFDF8;
+  --warm-grey: #F5F0EB;
+  --dark: #0A0A0A;
+  --dark-2: #1A1A18;
+  --gold: #B8956A;
+  --gold-light: #D4B896;
+  --text-primary: #0A0A0A;
+  --text-muted: #6B6560;
+  --border: rgba(10,10,10,0.1);
+  --border-light: rgba(255,253,248,0.12);
+  --font-display: 'Lora', serif;
+  --font-body: 'Open Sans', sans-serif;
+  --max-w: 1080px;
+  --pad: 80px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
+
+/* ─── HEADER ─── */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 64px; background: var(--dark-2);
+  border-bottom: 1px solid var(--border-light);
+  display: flex; align-items: center;
+}
+.header__inner {
+  max-width: calc(var(--max-w) + 240px);
+  margin: 0 auto; padding: 0 48px;
+  width: 100%; display: flex; align-items: center;
+}
+.header__logo {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 18px; color: var(--cream); margin-right: auto;
+}
+.header__logo span { color: var(--gold-light); }
+.header__nav { display: flex; gap: 28px; list-style: none; margin-right: 36px; }
+.header__nav a {
+  font-size: 13px; color: rgba(255,253,248,0.6);
+  letter-spacing: 0.02em; transition: color 0.15s;
+}
+.header__nav a:hover { color: var(--cream); }
+.header__phone { font-size: 13px; color: rgba(255,253,248,0.6); margin-right: 20px; }
+.btn {
+  display: inline-flex; align-items: center; padding: 12px 24px;
+  font-family: var(--font-body); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.04em; cursor: pointer; border: none; transition: all 0.2s;
+}
+.btn--gold { background: var(--gold); color: #fff; }
+.btn--gold:hover { background: #a07e5a; }
+
+/* ─── PAGE CONTENT ─── */
+.page-content {
+  padding-top: 120px;
+  padding-bottom: 96px;
+  min-height: 100vh;
+}
+
+.page-header {
+  padding: 48px 0 56px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 56px;
+}
+
+.page-header__eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.page-header__h1 {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 44px); line-height: 1.2;
+  color: var(--text-primary); margin-bottom: 16px;
+  max-width: 680px;
+}
+
+.page-header__meta {
+  font-size: 14px; color: var(--text-muted); line-height: 1.6;
+}
+
+/* ─── DOCUMENT LIST ─── */
+.doc-list {
+  max-width: 760px;
+  list-style: none;
+}
+
+.doc-row {
+  display: flex; align-items: center; gap: 20px;
+  padding: 20px 24px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+  cursor: default;
+}
+.doc-row:first-child {
+  border-top: 1px solid var(--border);
+}
+.doc-row:hover {
+  background: rgba(184,149,106,0.05);
+}
+
+.doc-icon {
+  flex-shrink: 0;
+  width: 32px; height: 40px;
+  background: var(--warm-grey);
+  border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.doc-icon::after {
+  content: '';
+  position: absolute;
+  top: 4px; right: 4px;
+  width: 10px; height: 10px;
+  border-top: 1px solid rgba(10,10,10,0.15);
+  border-right: 1px solid rgba(10,10,10,0.15);
+}
+.doc-icon__lines {
+  display: flex; flex-direction: column; gap: 4px; padding: 12px 6px 8px;
+  width: 100%;
+}
+.doc-icon__line {
+  height: 2px; background: rgba(10,10,10,0.15); border-radius: 1px;
+}
+.doc-icon__line:last-child { width: 60%; }
+
+.doc-name {
+  flex: 1;
+  font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.45;
+}
+
+.doc-download {
+  flex-shrink: 0;
+  font-size: 12px; font-weight: 500;
+  color: var(--gold); letter-spacing: 0.02em;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+.doc-download:hover { color: #a07e5a; }
+.doc-download svg { flex-shrink: 0; }
+
+/* ─── DISCLAIMER ─── */
+.doc-disclaimer {
+  max-width: 760px;
+  margin-top: 24px;
+  font-size: 12.5px; color: var(--text-muted); line-height: 1.6;
+  padding: 16px 24px;
+  border-left: 2px solid var(--border);
+}
+
+/* ─── FOOTER ─── */
+.footer { background: var(--dark-2); color: var(--cream); padding: 64px 0 32px; }
+.footer__cols {
+  display: grid; grid-template-columns: 320px 1fr auto auto;
+  gap: 48px; padding-bottom: 48px;
+  border-bottom: 1px solid var(--border-light); margin-bottom: 32px;
+}
+.footer__brand {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 20px; color: var(--cream); margin-bottom: 14px;
+}
+.footer__brand-desc {
+  font-size: 13px; color: rgba(255,253,248,0.4); line-height: 1.6; max-width: 240px;
+}
+.footer__col-title {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(255,253,248,0.3); margin-bottom: 16px;
+}
+.footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer__links a { font-size: 14px; color: rgba(255,253,248,0.55); transition: color 0.15s; }
+.footer__links a:hover { color: var(--cream); }
+.footer__legal {
+  display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+}
+.footer__legal-item { font-size: 11.5px; color: rgba(255,253,248,0.25); }
+.footer__legal-item a { transition: color 0.15s; }
+.footer__legal-item a:hover { color: rgba(255,253,248,0.6); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  :root { --pad: 20px; }
+  .header__nav, .header__phone { display: none; }
+  .header__inner { padding: 0 20px; }
+  .page-content { padding-top: 100px; padding-bottom: 64px; }
+  .page-header { padding: 32px 0 40px; margin-bottom: 40px; }
+  .doc-row { padding: 16px; gap: 12px; }
+  .doc-download span { display: none; }
+  .footer__cols { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header__inner">
+    <a href="/" class="header__logo">The <span>Platinental</span></a>
+    <nav><ul class="header__nav">
+      <li><a href="/plastika">Услуги</a></li>
+      <li><a href="/doctors">Врачи</a></li>
+      <li><a href="/about">О клинике</a></li>
+      <li><a href="/prices">Цены</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+    </ul></nav>
+    <span class="header__phone">+7 843 223-66-66</span>
+    <a href="/contacts#form" class="btn btn--gold" style="font-size:12px; padding:10px 20px;">Записаться</a>
+  </div>
+</header>
+
+<!-- PAGE CONTENT -->
+<main class="page-content">
+  <div class="container">
+
+    <div class="page-header">
+      <p class="page-header__eyebrow">Прозрачность и соответствие</p>
+      <h1 class="page-header__h1">Документы и лицензии клиники Platinental в Казани</h1>
+      <p class="page-header__meta">ООО «Платинентал Казань» · Лицензия ЛО-16-01-003022 · ул. Карла Маркса, 48, корп. 1, Казань, 420015</p>
+    </div>
+
+    <ul class="doc-list">
+
+      <li class="doc-row">
+        <div class="doc-icon" aria-hidden="true">
+          <div class="doc-icon__lines">
+            <div class="doc-icon__line"></div>
+            <div class="doc-icon__line"></div>
+            <div class="doc-icon__line"></div>
+          </div>
+        </div>
+        <span class="doc-name">Лицензия на осуществление медицинской деятельности</span>
+        <a href="#" class="doc-download" aria-label="Скачать: Лицензия на осуществление медицинской деятельности">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Скачать PDF</span>
+        </a>
+      </li>
+
+      <li class="doc-row">
+        <div class="doc-icon" aria-hidden="true">
+          <div class="doc-icon__lines">
+            <div class="doc-icon__line"></div>
+            <div class="doc-icon__line"></div>
+            <div class="doc-icon__line"></div>
+          </div>
+        </div>
+        <span class="doc-name">Политика в отношении обработки персональных данных (152-ФЗ)</span>
+        <a href="#" class="doc-download" aria-label="Скачать: Политика в отношении обработки персональных данных">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Скачать PDF</span>
+        </a>
+      </li>
+
+      <li class="doc-row">
+        <div class="doc-icon" aria-hidden="true">
+          <div class="doc-icon__lines">
+            <div class="doc-icon__line"></div>
+            <div class="doc-icon__line"></div>
+            <div class="doc-icon__line"></div>
+          </div>
+        </div>
+        <span class="doc-name">Согласие на обработку персональных данных</span>
+        <a href="#" class="doc-download" aria-label="Скачать: Согласие на обработку персональных данных">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Скачать PDF</span>
+        </a>
+      </li>
+
+      <li class="doc-row">
+        <div class="doc-icon" aria-hidden="true">
+          <div class="doc-icon__lines">
+            <div class="doc-icon__line"></div>
+            <div class="doc-icon__line"></div>
+            <div class="doc-icon__line"></div>
+          </div>
+        </div>
+        <span class="doc-name">Правила предоставления медицинских услуг</span>
+        <a href="#" class="doc-download" aria-label="Скачать: Правила предоставления медицинских услуг">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Скачать PDF</span>
+        </a>
+      </li>
+
+      <li class="doc-row">
+        <div class="doc-icon" aria-hidden="true">
+          <div class="doc-icon__lines">
+            <div class="doc-icon__line"></div>
+            <div class="doc-icon__line"></div>
+            <div class="doc-icon__line"></div>
+          </div>
+        </div>
+        <span class="doc-name">Информированное добровольное согласие на медицинское вмешательство</span>
+        <a href="#" class="doc-download" aria-label="Скачать: Информированное добровольное согласие на медицинское вмешательство">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Скачать PDF</span>
+        </a>
+      </li>
+
+    </ul>
+
+    <p class="doc-disclaimer">
+      Документы представлены для ознакомления. Оригиналы можно запросить в клинике.
+    </p>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__cols">
+      <div>
+        <div class="footer__brand">The Platinental</div>
+        <p class="footer__brand-desc">Американский бренд эстетической медицины. Казань с 2011 года.</p>
+        <p class="footer__brand-desc" style="margin-top:12px;">+7 843 223-66-66<br>WhatsApp: +7 965 612-28-88<br>Пн–вс 9:00–20:00</p>
+      </div>
+      <div></div>
+      <div>
+        <div class="footer__col-title">Услуги</div>
+        <ul class="footer__links">
+          <li><a href="/plastika">Пластическая хирургия</a></li>
+          <li><a href="/kosmetologiya">Косметология</a></li>
+          <li><a href="/kosmecevtika">Космецевтика</a></li>
+          <li><a href="/prices">Цены</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Клиника</div>
+        <ul class="footer__links">
+          <li><a href="/about">О клинике</a></li>
+          <li><a href="/doctors">Врачи</a></li>
+          <li><a href="/documents" style="color:var(--cream);">Документы</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <span class="footer__legal-item">© 2026 ООО «Платинентал Казань» · ЛО-16-01-003022</span>
+      <span class="footer__legal-item">Имеются противопоказания. Необходима консультация специалиста.</span>
+      <span class="footer__legal-item"><a href="/documents">Политика конфиденциальности</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

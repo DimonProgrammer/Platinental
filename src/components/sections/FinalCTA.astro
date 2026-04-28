@@ -1,0 +1,190 @@
+---
+import Button from '../primitives/Button.astro';
+---
+
+<section class="form" id="form" aria-labelledby="form-title">
+  <div class="form__inner">
+    <div class="form__copy" data-reveal>
+      <h2 id="form-title" class="form__title font-display">Задайте вопрос врачу</h2>
+      <p class="form__lede">
+        Первая консультация&nbsp;— разговор без&nbsp;обязательств. Вы&nbsp;рассказываете о&nbsp;запросе, врач объясняет возможности. Приходите, поговорим.
+      </p>
+      <p class="form__note">Отвечаем в&nbsp;течение 2&nbsp;часов. Пн–Вс 9:00–20:00.</p>
+    </div>
+
+    <form class="form__body" data-reveal action="#" method="post" novalidate>
+      <label class="form__field">
+        <span class="form__label">Имя</span>
+        <input type="text" name="name" autocomplete="given-name" required placeholder="Как к вам обращаться" />
+      </label>
+
+      <label class="form__field">
+        <span class="form__label">Телефон</span>
+        <input type="tel" name="phone" autocomplete="tel" required placeholder="+7 ___ ___ ____" />
+      </label>
+
+      <label class="form__field">
+        <span class="form__label">Опишите запрос (необязательно)</span>
+        <textarea name="message" rows="4" placeholder="Что интересует, какие операции рассматриваете, какие ожидания"></textarea>
+      </label>
+
+      <label class="form__consent">
+        <input type="checkbox" name="consent" required />
+        <span>
+          Я&nbsp;согласен(а) на&nbsp;обработку персональных данных в&nbsp;соответствии с&nbsp;<a href="/privacy">152-ФЗ</a>
+        </span>
+      </label>
+
+      <Button type="submit" variant="inverse" size="lg" arrow={true} class="form__submit">
+        Записаться на&nbsp;консультацию
+      </Button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .form {
+    background: var(--surface-inverse);
+    color: var(--text-inverse);
+    padding: var(--space-32) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 1024px) { .form { padding: var(--space-40) 0; } }
+
+  .form::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 80% 20%, rgba(196, 168, 130, 0.18), transparent 55%),
+      radial-gradient(circle at 15% 85%, rgba(196, 168, 130, 0.08), transparent 45%);
+    pointer-events: none;
+  }
+
+  .form__inner {
+    position: relative;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    gap: var(--space-12);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) { .form__inner { padding: 0 32px; } }
+  @media (min-width: 1024px) {
+    .form__inner {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: var(--space-16);
+      align-items: start;
+    }
+  }
+  @media (min-width: 1200px) { .form__inner { padding: 0 48px; } }
+
+  .form__copy { display: flex; flex-direction: column; gap: var(--space-5); }
+
+  .form__title {
+    font-size: var(--text-h2);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--text-inverse);
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+  }
+
+  .form__lede {
+    font-size: var(--text-body);
+    line-height: 1.65;
+    color: var(--text-inverse-muted);
+    max-width: 56ch;
+  }
+
+  .form__note {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .form__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form__label {
+    font-size: var(--text-caption);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-inverse-muted);
+  }
+
+  .form__field input,
+  .form__field textarea {
+    padding: var(--space-4) var(--space-5);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-inverse);
+    color: var(--text-inverse);
+    font-size: var(--text-body);
+    font-family: var(--font-body);
+    transition: border-color var(--duration-fast) var(--ease-out);
+    border-radius: 0;
+    resize: vertical;
+  }
+
+  .form__field input::placeholder,
+  .form__field textarea::placeholder {
+    color: rgba(255, 253, 248, 0.4);
+  }
+
+  .form__field input:focus,
+  .form__field textarea:focus {
+    outline: none;
+    border-bottom-color: var(--accent);
+    box-shadow: none;
+  }
+
+  .form__consent {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    font-size: var(--text-caption);
+    color: var(--text-inverse-muted);
+    line-height: 1.5;
+    cursor: pointer;
+    margin-top: var(--space-2);
+  }
+
+  .form__consent input[type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--border-inverse);
+    border-radius: var(--radius-xs);
+    accent-color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+    background: transparent;
+  }
+
+  .form__consent a {
+    color: var(--accent);
+    border-bottom: 1px solid rgba(196, 168, 130, 0.3);
+  }
+
+  .form__consent a:hover { border-color: var(--accent); }
+
+  .form__submit {
+    margin-top: var(--space-4);
+    align-self: flex-start;
+  }
+</style>

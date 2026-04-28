@@ -1,0 +1,167 @@
+---
+import ImagePlaceholder from '../ImagePlaceholder.astro';
+
+const directions = [
+  {
+    num: '01',
+    title: 'Пластическая хирургия',
+    body: 'Мы не делаем «бразильские» ягодицы и не «увеличиваем» грудь. Мы предлагаем индивидуальный дизайн форм, которые органично вписываются в исходные параметры — никакого «сделанного» эффекта. 27 видов операций.',
+    list: ['Ринопластика', 'Маммопластика', 'Блефаропластика', 'Абдоминопластика', 'Лифтинг лица', 'Отопластика'],
+    cta: { label: 'Все операции', href: '/v3/plastika' },
+    surface: 'cream',
+    align: 'left',
+    slot: 'S1',
+    slotDesc: 'B&W body fragment — линия челюсти в профиль, шея, плечо',
+    slotTone: 'bw',
+    slotSource: 'Track A · Midjourney v7 / Unsplash B&W editorial',
+  },
+  {
+    num: '02',
+    title: 'Косметология',
+    body: 'Ботокс, контурная пластика, CO₂-лазер, HELEO4. Врач-косметолог работает в связке с хирургом — составляет единый план, а не набор разрозненных процедур.',
+    list: ['Ботокс', 'Контурная пластика', 'CO₂-лазер', 'HELEO4', 'Биоревитализация', 'Пилинги'],
+    cta: { label: 'Все процедуры', href: '/v3/kosmetologiya' },
+    surface: 'sand',
+    align: 'right',
+    slot: 'S2',
+    slotDesc: 'Material macro — капля сыворотки на коже, тёплый боковой свет',
+    slotTone: 'sand',
+    slotSource: 'Track C · Unsplash / Midjourney v7',
+  },
+  {
+    num: '03',
+    title: 'Космецевтика',
+    body: 'Профессиональная косметика под конкретную задачу: реабилитация после операции, поддержание результата, ежедневный уход. Индивидуальный подбор со специалистом.',
+    list: ['Реабилитация', 'Anti-age', 'Чувствительная кожа', 'Постоперационный уход'],
+    cta: { label: 'Каталог', href: '/v3/kosmecevtika' },
+    surface: 'ink',
+    align: 'left',
+    slot: 'S3',
+    slotDesc: 'Product still life — 2–3 unbranded baночки на тёплой тёмной поверхности',
+    slotTone: 'ink',
+    slotSource: 'Track C · Midjourney v7',
+  },
+];
+---
+
+<section class="v3-services" aria-labelledby="services-heading">
+  <header class="v3-container v3-container-default services-header" data-v3-reveal>
+    <span class="v3-eyebrow">Направления клиники</span>
+    <h2 id="services-heading" class="v3-h2 services-h2">
+      <em>Что мы делаем</em>
+    </h2>
+  </header>
+
+  {directions.map((d) => (
+    <article class={`spread v3-surface-${d.surface}`} data-align={d.align}>
+      <div class="v3-container v3-container-wide spread-grid" data-v3-reveal>
+        <div class="spread-text">
+          <span class="v3-eyebrow num">{d.num} · {d.title.toUpperCase()}</span>
+          <h3 class="v3-display spread-display">
+            <em>{d.title}</em>
+          </h3>
+          <p class="v3-lead spread-body">{d.body}</p>
+
+          <ul class="spread-list">
+            {d.list.map((item) => <li>{item}</li>)}
+          </ul>
+
+          <a href={d.cta.href} class="v3-link spread-cta">{d.cta.label} →</a>
+        </div>
+
+        <div class="spread-image">
+          <ImagePlaceholder
+            slot={d.slot}
+            description={d.slotDesc}
+            ratio="4/5"
+            tone={d.slotTone as any}
+            source={d.slotSource}
+          />
+        </div>
+      </div>
+    </article>
+  ))}
+</section>
+
+<style>
+  .v3-services {
+    padding-top: var(--v3-gap-deep);
+  }
+  .services-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
+  }
+  .services-h2 {
+    max-width: 16ch;
+  }
+
+  .spread {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+    overflow-x: hidden;
+  }
+  .spread-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: center;
+  }
+  .spread[data-align="right"] .spread-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .spread[data-align="right"] .spread-text { order: 2; }
+  .spread[data-align="right"] .spread-image { order: 1; }
+
+  .spread-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 38rem;
+  }
+  .num { color: inherit; opacity: 0.65; }
+  .spread-display {
+    font-size: var(--v3-text-display);
+    line-height: 1.05;
+    margin: 0;
+  }
+  .spread-body {
+    max-width: 36ch;
+  }
+  .spread-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1.5rem;
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    letter-spacing: 0.005em;
+    color: inherit;
+  }
+  .spread-list li {
+    padding-block: 0.5rem;
+    border-top: 1px solid currentColor;
+    opacity: 0.75;
+  }
+  .v3-surface-ink .spread-list li { opacity: 0.6; }
+  .spread-cta { align-self: flex-start; margin-top: 0.5rem; }
+
+  .spread-image {
+    max-width: 36rem;
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    .spread-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .spread-text { order: 2; }
+    .spread-image { order: 1; max-width: none; }
+    .spread[data-align="right"] .spread-text { order: 2; }
+    .spread[data-align="right"] .spread-image { order: 1; }
+  }
+  @media (max-width: 560px) {
+    .spread-list { grid-template-columns: 1fr; }
+  }
+</style>

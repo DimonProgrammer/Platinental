@@ -1,0 +1,123 @@
+---
+import SectionHeader from '../primitives/SectionHeader.astro';
+
+const reviews = [
+  {
+    stars: 5,
+    text: '«После консультации у&nbsp;Мхитара Мисаковича все страхи прошли&nbsp;— он&nbsp;объяснил каждый шаг. В&nbsp;день снятия гипса я&nbsp;была самым счастливым человеком. Три года прошло&nbsp;— результат только лучше.»',
+    author: 'Лейла',
+    meta: 'Казань · Ринопластика',
+  },
+  {
+    stars: 5,
+    text: '«Доктор Тулатова сделала круговую блефаропластику и&nbsp;височный лифтинг. Лёгкая реабилитация, результат выглядит естественно. Все подруги просят её&nbsp;контактную информацию.»',
+    author: 'Пациентка клиники',
+    meta: 'Казань · Блефаропластика',
+  },
+  {
+    stars: 5,
+    text: '«Просто счастлива, что&nbsp;узнала Васильева Максима Николаевича. Он&nbsp;и&nbsp;выслушал, и&nbsp;понял. После операции&nbsp;— наконец-то могу убирать волосы назад.»',
+    author: 'Пациентка клиники',
+    meta: 'Казань · Отопластика',
+  },
+];
+---
+
+<section class="reviews" aria-label="Отзывы пациентов">
+  <div class="reviews__inner">
+    <SectionHeader title="Пациенты о&nbsp;клинике" />
+
+    <div class="reviews__grid">
+      {reviews.map((r, i) => (
+        <figure class="review" data-reveal style={`transition-delay: ${i * 110}ms`}>
+          <div class="review__stars" aria-label={`${r.stars} звёзд из 5`}>
+            {Array.from({ length: r.stars }).map(() => (
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+                <path d="M7 0l2.163 4.382 4.837.703-3.5 3.41.826 4.818L7 11.027l-4.326 2.286.826-4.818-3.5-3.41 4.837-.703L7 0z"/>
+              </svg>
+            ))}
+          </div>
+          <blockquote>
+            <p set:html={r.text} />
+          </blockquote>
+          <figcaption>
+            <span class="review__author">{r.author}</span>
+            <span class="review__meta">{r.meta}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews {
+    background: var(--surface-page);
+    padding: var(--space-32) 0;
+  }
+
+  @media (min-width: 1024px) { .reviews { padding: var(--space-40) 0; } }
+
+  .reviews__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .reviews__inner { padding: 0 32px; } }
+  @media (min-width: 1200px) { .reviews__inner { padding: 0 48px; } }
+
+  .reviews__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) { .reviews__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .reviews__grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .review {
+    background: var(--surface-alt);
+    padding: var(--space-8);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .review__stars {
+    display: inline-flex;
+    gap: 2px;
+    color: var(--accent-hover);
+  }
+
+  .review blockquote p {
+    font-size: var(--text-ui);
+    line-height: 1.65;
+    color: var(--text-primary);
+    text-wrap: pretty;
+  }
+
+  .review figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-top: auto;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .review__author {
+    font-family: var(--font-display);
+    font-size: var(--text-lead);
+    color: var(--text-primary);
+    letter-spacing: var(--tracking-heading);
+  }
+
+  .review__meta {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+</style>

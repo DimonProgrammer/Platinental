@@ -1,0 +1,494 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/primitives/Button.astro';
+import DoctorWorks from '../../components/sections/DoctorWorks.astro';
+import DoctorCardBrief from '../../components/cards/DoctorCardBrief.astro';
+import FinalCTA from '../../components/sections/FinalCTA.astro';
+import Contacts from '../../components/sections/Contacts.astro';
+import { doctors } from '../../data/doctors';
+
+export function getStaticPaths() {
+  return doctors.map((d) => ({ params: { slug: d.slug }, props: { doctor: d } }));
+}
+
+interface Props { doctor: (typeof doctors)[number] }
+const { doctor } = Astro.props;
+
+const otherDoctors = doctors.filter((d) => d.slug !== doctor.slug).slice(0, 3);
+---
+
+<BaseLayout
+  title={`${doctor.name} — пластический хирург клиники Platinental Казань`}
+  description={`${doctor.name}: ${doctor.details.specialization.slice(0, 3).join(', ')}. ${doctor.priceMain}. Запись: +7 843 223-66-66.`}
+  canonical={`https://kzn.platinental.ru/doctors/${doctor.slug}/`}
+>
+
+  <!-- Hero -->
+  <section class="dp-hero" aria-labelledby="dp-name">
+    <div class="dp-hero__inner">
+      <div class={`dp-hero__portrait dp-hero__portrait--${doctor.tone}`} data-reveal>
+        {doctor.photo
+          ? <img src={doctor.photo} alt={doctor.name} width="560" height="747" loading="eager" decoding="async" />
+          : <span class="dp-hero__initials font-display">{doctor.initials}</span>
+        }
+      </div>
+
+      <div class="dp-hero__content" data-reveal>
+        <span class="dp-hero__breadcrumb">
+          <a href="/doctors/">Врачи</a>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M4.5 2.5L7.5 6l-3 3.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          {doctor.name.split(' ')[0]}
+        </span>
+        <p class="dp-hero__spec">{doctor.spec}</p>
+        <h1 id="dp-name" class="dp-hero__name font-display">{doctor.name}</h1>
+        <p class="dp-hero__short" set:html={doctor.short} />
+
+        <div class="dp-hero__price">
+          <span class="dp-hero__price-main">{doctor.priceMain}</span>
+          {doctor.priceSub && <span class="dp-hero__price-sub">{doctor.priceSub}</span>}
+        </div>
+
+        <div class="dp-hero__actions">
+          <Button href="/#form" variant="primary" size="lg">Записаться {doctor.nameBtn}</Button>
+          <Button href="tel:+78432236666" variant="ghost" size="lg">+7 843 223-66-66</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialization -->
+  {doctor.details.specialization.length > 0 && (
+    <section class="dp-section dp-section--page" aria-labelledby="dp-spec-title">
+      <div class="dp-section__inner">
+        <h2 id="dp-spec-title" class="dp-section__title font-display">Специализация</h2>
+        <ul class="dp-spec-list">
+          {doctor.details.specialization.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- Education -->
+  {doctor.details.education.length > 0 && (
+    <section class="dp-section dp-section--alt" aria-labelledby="dp-edu-title">
+      <div class="dp-section__inner">
+        <h2 id="dp-edu-title" class="dp-section__title font-display">Образование</h2>
+        <dl class="dp-edu">
+          {doctor.details.education.map((e) => (
+            <div class="dp-edu__row">
+              <dt class="dp-edu__year">{e.year}</dt>
+              <dd class="dp-edu__text">{e.text}</dd>
+            </div>
+          ))}
+        </dl>
+
+        {doctor.details.additionalEducation && doctor.details.additionalEducation.length > 0 && (
+          <div class="dp-edu__extra">
+            <h3 class="dp-edu__extra-title">Дополнительное образование и&nbsp;конгрессы</h3>
+            <dl class="dp-edu">
+              {doctor.details.additionalEducation.map((e) => (
+                <div class="dp-edu__row">
+                  {e.year && <dt class="dp-edu__year">{e.year}</dt>}
+                  <dd class:list={['dp-edu__text', !e.year && 'dp-edu__text--full']}>{e.text}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+
+        {doctor.details.congresses && (
+          <div class="dp-edu__extra">
+            <h3 class="dp-edu__extra-title">Конгрессы и&nbsp;конференции</h3>
+            <p class="dp-edu__congress">{doctor.details.congresses}</p>
+          </div>
+        )}
+
+        {doctor.details.awards && (
+          <div class="dp-edu__extra">
+            <h3 class="dp-edu__extra-title">Достижения</h3>
+            <p class="dp-edu__congress">{doctor.details.awards}</p>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- Patent (only on personal page) -->
+  {doctor.details.patent && (
+    <section class="dp-section dp-section--page" aria-label="Патент">
+      <div class="dp-section__inner">
+        <div class="dp-patent">
+          <svg class="dp-patent__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="dp-patent__label">Патент на изобретение</p>
+            <p class="dp-patent__text">{doctor.details.patent}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Works gallery -->
+  <DoctorWorks works={doctor.works} />
+
+  <!-- Other doctors -->
+  {otherDoctors.length > 0 && (
+    <section class="dp-section dp-section--page dp-others" aria-labelledby="dp-others-title">
+      <div class="dp-section__inner">
+        <h2 id="dp-others-title" class="dp-section__title font-display">Другие специалисты</h2>
+        <div class="dp-others__grid">
+          {otherDoctors.map((d, i) => <DoctorCardBrief doctor={d} index={i} />)}
+        </div>
+        <div class="dp-others__cta">
+          <Button href="/doctors/" variant="secondary" size="md" arrow={true}>Все врачи клиники</Button>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <FinalCTA />
+  <Contacts />
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .dp-hero {
+    background: var(--surface-page);
+    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 var(--space-16);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  @media (min-width: 768px) {
+    .dp-hero { padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-20); }
+  }
+
+  .dp-hero__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  @media (min-width: 768px) { .dp-hero__inner { padding: 0 32px; } }
+
+  @media (min-width: 960px) {
+    .dp-hero__inner {
+      grid-template-columns: 340px 1fr;
+      gap: var(--space-16);
+      align-items: start;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .dp-hero__inner {
+      padding: 0 48px;
+      grid-template-columns: 400px 1fr;
+    }
+  }
+
+  /* Portrait */
+  .dp-hero__portrait {
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 480px;
+    width: 100%;
+  }
+
+  @media (min-width: 960px) { .dp-hero__portrait { max-height: none; } }
+
+  .dp-hero__portrait--a { background: #2B2421; }
+  .dp-hero__portrait--b { background: #3A2F2A; }
+  .dp-hero__portrait--c { background: #1F1E1C; }
+  .dp-hero__portrait--d { background: #2D2620; }
+
+  .dp-hero__portrait img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .dp-hero__portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='ndp'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23ndp)'/%3E%3C/svg%3E");
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .dp-hero__initials {
+    font-size: 72px;
+    font-weight: 300;
+    color: rgba(255, 253, 248, 0.92);
+    letter-spacing: -0.02em;
+    z-index: 1;
+  }
+
+  /* Hero content */
+  .dp-hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding-top: var(--space-2);
+  }
+
+  .dp-hero__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+  }
+
+  .dp-hero__breadcrumb a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .dp-hero__breadcrumb a:hover { color: var(--accent-hover); }
+
+  .dp-hero__spec {
+    font-size: var(--text-micro);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--accent-hover);
+    margin: 0;
+  }
+
+  .dp-hero__name {
+    font-size: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: var(--tracking-display);
+    color: var(--text-primary);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .dp-hero__short {
+    font-size: var(--text-body);
+    line-height: 1.55;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .dp-hero__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-4) 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .dp-hero__price-main {
+    font-size: var(--text-ui);
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .dp-hero__price-sub {
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+  }
+
+  .dp-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+  }
+
+  /* Shared section layout */
+  .dp-section {
+    padding: var(--space-16) 0;
+  }
+
+  @media (min-width: 1024px) { .dp-section { padding: var(--space-20) 0; } }
+
+  .dp-section--page { background: var(--surface-page); }
+  .dp-section--alt  { background: var(--surface-alt); }
+
+  .dp-section__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px)  { .dp-section__inner { padding: 0 32px; } }
+  @media (min-width: 1200px) { .dp-section__inner { padding: 0 48px; } }
+
+  .dp-section__title {
+    font-size: var(--text-h3);
+    font-weight: 400;
+    letter-spacing: var(--tracking-display);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-8);
+  }
+
+  /* Specialization list */
+  .dp-spec-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 640px) {
+    .dp-spec-list { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .dp-spec-list li {
+    font-size: var(--text-body);
+    color: var(--text-secondary);
+    line-height: 1.45;
+    padding-left: var(--space-5);
+    position: relative;
+  }
+
+  .dp-spec-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent-hover);
+    font-weight: 400;
+  }
+
+  /* Education timeline */
+  .dp-edu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin: 0;
+  }
+
+  .dp-edu__row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: var(--space-4);
+  }
+
+  .dp-edu__year {
+    font-size: var(--text-ui);
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
+    padding-top: 2px;
+  }
+
+  .dp-edu__text {
+    font-size: var(--text-ui);
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .dp-edu__text--full {
+    grid-column: 1 / -1;
+  }
+
+  .dp-edu__extra {
+    margin-top: var(--space-10);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .dp-edu__extra-title {
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 var(--space-5);
+  }
+
+  .dp-edu__congress {
+    font-size: var(--text-ui);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Patent callout */
+  .dp-patent {
+    display: flex;
+    gap: var(--space-5);
+    padding: var(--space-6);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+    max-width: 72ch;
+  }
+
+  .dp-patent__icon {
+    flex-shrink: 0;
+    color: var(--accent-hover);
+    margin-top: 2px;
+  }
+
+  .dp-patent__label {
+    font-size: var(--text-micro);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--accent-hover);
+    margin: 0 0 var(--space-2);
+  }
+
+  .dp-patent__text {
+    font-size: var(--text-ui);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Other doctors */
+  .dp-others__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    margin-bottom: var(--space-8);
+  }
+
+  @media (min-width: 960px) {
+    .dp-others__grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+
+    /* Force stacked layout inside "other doctors" — portrait on top, text below */
+    .dp-others__grid :global(.dcb) {
+      grid-template-columns: 1fr;
+    }
+    .dp-others__grid :global(.dcb__portrait-link) {
+      max-height: 260px;
+      overflow: hidden;
+    }
+    .dp-others__grid :global(.dcb__portrait) {
+      aspect-ratio: 3 / 2;
+    }
+  }
+
+  .dp-others__cta {
+    display: flex;
+  }
+</style>

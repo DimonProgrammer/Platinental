@@ -1,0 +1,427 @@
+---
+// Variant D — Centered Editorial Poster (non-standard grid)
+// Текст по центру, декоративные чипы в 4-х углах вьюпорта, champagne-рамка,
+// stats-strip снизу. Без split 2-колонки.
+import Button from '../primitives/Button.astro';
+---
+
+<section class="heroD" aria-labelledby="heroD-title">
+  <div class="heroD__bg" aria-hidden="true">
+    <div class="heroD__bg-layer heroD__bg-layer--base"></div>
+    <div class="heroD__bg-layer heroD__bg-layer--halo"></div>
+    <div class="heroD__bg-layer heroD__bg-layer--grain"></div>
+    <div class="heroD__bg-layer heroD__bg-layer--vignette"></div>
+  </div>
+
+  <!-- Watermark — behind frame and content -->
+  <div class="heroD__watermark" aria-hidden="true">PLATINENTAL</div>
+
+  <!-- Champagne outline frame + corner crosshairs + top insignia -->
+  <div class="heroD__frame" aria-hidden="true">
+    <svg class="heroD__frame-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <rect class="heroD__frame-rect" x="0.5" y="0.5" width="calc(100% - 1px)" height="calc(100% - 1px)"
+            fill="none" stroke="#C4A882" stroke-width="1" stroke-opacity="0.3"/>
+    </svg>
+
+    <!-- Corner crosshair ticks — architectural touch -->
+    <span class="heroD__tick heroD__tick--tl" aria-hidden="true"></span>
+    <span class="heroD__tick heroD__tick--tr" aria-hidden="true"></span>
+    <span class="heroD__tick heroD__tick--bl" aria-hidden="true"></span>
+    <span class="heroD__tick heroD__tick--br" aria-hidden="true"></span>
+
+    <!-- Top-center insignia medallion sitting on the frame line -->
+    <div class="heroD__insignia" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="17" stroke="#C4A882" stroke-opacity="0.38" fill="#0A0807"/>
+        <path d="M13 10 L13 26 M13 10 L20 10 Q23.5 10 23.5 14 Q23.5 18 20 18 L13 18"
+              stroke="#C4A882" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Corner chips -->
+  <div class="heroD__chip heroD__chip--tl">
+    <span class="heroD__chip-dash" aria-hidden="true"></span>
+    <span>Platinental&nbsp;· Казань</span>
+  </div>
+
+  <div class="heroD__chip heroD__chip--tr">
+    <span>Клиника с&nbsp;2011</span>
+  </div>
+
+  <div class="heroD__chip heroD__chip--bl">
+    <span>Казань · Адлера,&nbsp;3</span>
+  </div>
+
+  <div class="heroD__chip heroD__chip--br">
+    <span>Направления</span>
+    <span class="heroD__chip-line" aria-hidden="true"></span>
+  </div>
+
+  <!-- Center stack -->
+  <div class="heroD__center" data-reveal>
+    <span class="heroD__issue">N°01 &nbsp;—&nbsp; Казань · 2026</span>
+
+    <h1 id="heroD-title" class="heroD__title" aria-label="Клиника пластической хирургии и косметологии в Казани">
+      <span class="heroD__word" style="--d:0">Клиника</span>
+      <span class="heroD__word" style="--d:1">пластической</span>
+      <span class="heroD__word" style="--d:2">хирургии</span>
+      <span class="heroD__word" style="--d:3">и&nbsp;косметологии</span>
+      <span class="heroD__word" style="--d:4">в&nbsp;Казани</span>
+    </h1>
+
+    <span class="heroD__divider" aria-hidden="true"></span>
+
+    <p class="heroD__sub">
+      Интеллигентная гармонизация внешности&nbsp;— без&nbsp;избыточности и&nbsp;шаблонов, через&nbsp;авторские методики наших&nbsp;хирургов.
+    </p>
+
+    <div class="heroD__actions">
+      <Button href="#form" variant="inverse" size="lg">Записаться на&nbsp;консультацию</Button>
+      <Button href="/prices" variant="ghost" size="lg">Узнать стоимость&nbsp;→</Button>
+    </div>
+  </div>
+
+  <div class="heroD__stats">
+    <div class="heroD__stats-inner">
+      <div class="heroD__stat">
+        <span class="heroD__stat-dot" aria-hidden="true"></span>
+        <span class="heroD__stat-text">Деликатная гармонизация</span>
+      </div>
+      <span class="heroD__stat-divider" aria-hidden="true"></span>
+      <div class="heroD__stat">
+        <span class="heroD__stat-dot" aria-hidden="true"></span>
+        <span class="heroD__stat-text">Аккредитация ASPS, ISAPS</span>
+      </div>
+      <span class="heroD__stat-divider" aria-hidden="true"></span>
+      <div class="heroD__stat">
+        <span class="heroD__stat-dot" aria-hidden="true"></span>
+        <span class="heroD__stat-text">С&nbsp;2011 в&nbsp;Казани</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .heroD {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: var(--text-inverse);
+    background: var(--color-ink-900);
+    padding: calc(var(--nav-height-mobile) + var(--space-16)) 0 0;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+  }
+  @media (min-width: 768px) {
+    .heroD { padding: calc(var(--nav-height) + var(--space-16)) 0 0; }
+  }
+
+  .heroD__bg { position: absolute; inset: 0; z-index: 0; }
+  .heroD__bg-layer { position: absolute; inset: 0; }
+  .heroD__bg-layer--base {
+    background: radial-gradient(130% 130% at 50% 110%, #2A1F16 0%, #14100C 55%, #0A0807 100%);
+  }
+  .heroD__bg-layer--halo {
+    /* Стронгий центральный hotspot — «свет на афише» */
+    background:
+      radial-gradient(46% 42% at 50% 45%, rgba(196, 168, 130, 0.22) 0%, rgba(196, 168, 130, 0.06) 40%, rgba(196, 168, 130, 0) 72%);
+    mix-blend-mode: screen;
+  }
+  .heroD__bg-layer--grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='hn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23hn)'/%3E%3C/svg%3E");
+    opacity: 0.18;
+    mix-blend-mode: overlay;
+  }
+  .heroD__bg-layer--vignette {
+    background: radial-gradient(120% 90% at 50% 50%, rgba(10, 8, 7, 0) 40%, rgba(10, 8, 7, 0.55) 100%);
+  }
+
+  /* Champagne outline frame, отступ 40px от краёв (80px на desktop) */
+  .heroD__frame {
+    position: absolute;
+    inset: 40px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  @media (min-width: 768px)  { .heroD__frame { inset: 60px; } }
+  @media (min-width: 1200px) { .heroD__frame { inset: 80px; } }
+
+  .heroD__frame-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .heroD__frame-rect {
+    stroke-dasharray: 4000;
+    stroke-dashoffset: 4000;
+    animation: heroD-frame 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 200ms;
+  }
+  @keyframes heroD-frame { to { stroke-dashoffset: 0; } }
+
+  /* Corner crosshair ticks — sit on each corner of the frame */
+  .heroD__tick {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    opacity: 0;
+    animation: heroD-chip 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 1600ms;
+  }
+  .heroD__tick::before,
+  .heroD__tick::after {
+    content: '';
+    position: absolute;
+    background: var(--accent);
+    opacity: 0.55;
+  }
+  .heroD__tick::before { left: 0; right: 0; top: 50%; height: 1px; transform: translateY(-0.5px); }
+  .heroD__tick::after  { top: 0; bottom: 0; left: 50%; width: 1px; transform: translateX(-0.5px); }
+  .heroD__tick--tl { top: -7px; left: -7px; }
+  .heroD__tick--tr { top: -7px; right: -7px; }
+  .heroD__tick--bl { bottom: -7px; left: -7px; }
+  .heroD__tick--br { bottom: -7px; right: -7px; }
+
+  /* Top-center insignia medallion, sits on the top frame line */
+  .heroD__insignia {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: heroD-chip 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 1400ms;
+    line-height: 0;
+  }
+
+  /* Corner chips */
+  .heroD__chip {
+    position: absolute;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-body);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, 0.7);
+    opacity: 0;
+    animation: heroD-chip 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 1200ms;
+  }
+  .heroD__chip--tl { top: 56px; left: 56px; color: var(--accent); }
+  .heroD__chip--tr { top: 56px; right: 56px; }
+  .heroD__chip--bl { bottom: 116px; left: 56px; }
+  .heroD__chip--br { bottom: 116px; right: 56px; color: var(--accent); }
+  @media (min-width: 768px) {
+    .heroD__chip--tl { top: 80px; left: 80px; }
+    .heroD__chip--tr { top: 80px; right: 80px; }
+    .heroD__chip--bl { bottom: 120px; left: 80px; }
+    .heroD__chip--br { bottom: 120px; right: 80px; }
+  }
+  @media (min-width: 1200px) {
+    .heroD__chip--tl { top: 100px; left: 100px; }
+    .heroD__chip--tr { top: 100px; right: 100px; }
+    .heroD__chip--bl { bottom: 128px; left: 100px; }
+    .heroD__chip--br { bottom: 128px; right: 100px; }
+  }
+
+  .heroD__chip-dash {
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+  .heroD__chip-line {
+    width: 48px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+
+  @keyframes heroD-chip { to { opacity: 1; } }
+
+  /* На мобильнике чипсы стекаются под центр, не в углах */
+  @media (max-width: 767px) {
+    .heroD__chip {
+      position: static;
+      opacity: 1;
+      animation: none;
+      justify-content: center;
+    }
+    .heroD__chip--tr, .heroD__chip--bl, .heroD__chip--br { display: none; }
+    .heroD__chip--tl {
+      position: absolute;
+      top: calc(var(--nav-height-mobile) + var(--space-6));
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Center stack */
+  .heroD__center {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-12) 20px var(--space-16);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px)  { .heroD__center { padding: var(--space-16) 32px; } }
+  @media (min-width: 1200px) { .heroD__center { padding: var(--space-16) 48px; } }
+
+  /* Editorial issue meta — «N°01 — КАЗАНЬ · 2026» */
+  .heroD__issue {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-6);
+    opacity: 0.82;
+  }
+
+  .heroD__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 1rem + 3vw, 3.75rem);
+    line-height: 1.06;
+    letter-spacing: -0.018em;
+    color: var(--text-inverse);
+    margin-bottom: var(--space-6);
+    max-width: 20ch;
+    text-wrap: balance;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
+  }
+
+  /* Thin champagne divider between H1 and sub */
+  .heroD__divider {
+    display: block;
+    width: 48px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.5;
+    margin: 0 auto var(--space-8);
+  }
+
+  .heroD__sub {
+    font-family: var(--font-body);
+    font-size: var(--text-lead);
+    line-height: 1.55;
+    color: var(--text-inverse-muted);
+    max-width: 52ch;
+    margin: 0 auto var(--space-10);
+  }
+
+  .heroD__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .heroD__actions :global(.btn--ghost) { color: rgba(255, 253, 248, 0.85); }
+  .heroD__actions :global(.btn--ghost:hover) { color: var(--accent); }
+
+  /* Stats strip */
+  .heroD__stats {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(255, 253, 248, 0.08);
+    background: rgba(10, 8, 7, 0.55);
+    backdrop-filter: blur(12px);
+  }
+  .heroD__stats-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-5) 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 768px)  { .heroD__stats-inner { padding: var(--space-5) 32px; } }
+  @media (min-width: 1200px) { .heroD__stats-inner { padding: var(--space-5) 48px; } }
+
+  .heroD__stat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0 var(--space-8);
+    flex: 1;
+    justify-content: center;
+  }
+  .heroD__stat-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .heroD__stat-text {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, 0.75);
+    white-space: nowrap;
+  }
+  .heroD__stat-divider {
+    width: 1px;
+    align-self: stretch;
+    background: rgba(255, 253, 248, 0.1);
+    display: none;
+  }
+  @media (min-width: 768px) { .heroD__stat-divider { display: block; } }
+
+  /* A — Watermark «PLATINENTAL» за H1, opacity ~3.5% */
+  .heroD__watermark {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48%);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(4.5rem, 13vw, 14rem);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.035;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+  }
+
+  /* B — Word-by-word H1 reveal */
+  .heroD__word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: heroD-word 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(550ms + var(--d) * 80ms);
+  }
+  @keyframes heroD-word {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .heroD__frame-rect { stroke-dashoffset: 0; animation: none; }
+    .heroD__chip, .heroD__tick, .heroD__insignia { opacity: 1; animation: none; }
+    .heroD__word { opacity: 1; transform: none; animation: none; }
+  }
+</style>

@@ -3,57 +3,36 @@ import Button from '../primitives/Button.astro';
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero__canvas">
-    <svg class="hero__art" viewBox="0 0 1600 1200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <radialGradient id="h1" cx="72%" cy="38%" r="72%">
-          <stop offset="0%" stop-color="#E8D7B8" stop-opacity="0.75"/>
-          <stop offset="55%" stop-color="#C4A882" stop-opacity="0.28"/>
-          <stop offset="100%" stop-color="#FFFDF8" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="h2" cx="18%" cy="78%" r="62%">
-          <stop offset="0%" stop-color="#F5F0EB" stop-opacity="0.95"/>
-          <stop offset="100%" stop-color="#FFFDF8" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="h3" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#FFFDF8"/>
-          <stop offset="100%" stop-color="#F5F0EB"/>
-        </linearGradient>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#h3)"/>
-      <rect width="100%" height="100%" fill="url(#h2)"/>
-      <rect width="100%" height="100%" fill="url(#h1)"/>
-      <g stroke="#0A0A0A" stroke-opacity="0.045" stroke-width="1" fill="none">
-        <line x1="600" y1="0" x2="600" y2="1200"/>
-        <line x1="988" y1="0" x2="988" y2="1200"/>
-        <line x1="0" y1="460" x2="1600" y2="460"/>
-        <line x1="0" y1="744" x2="1600" y2="744"/>
-      </g>
-    </svg>
+  <!-- Full-bleed cinematic canvas (4 layers: warm dark gradient, champagne hotspot, film grain, vignette) -->
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__bg-layer hero__bg-layer--base"></div>
+    <div class="hero__bg-layer hero__bg-layer--hotspot"></div>
+    <div class="hero__bg-layer hero__bg-layer--grain"></div>
+    <div class="hero__bg-layer hero__bg-layer--vignette"></div>
   </div>
 
   <div class="hero__grid">
     <div class="hero__copy" data-reveal>
-      <h1 id="hero-title" class="hero__title font-display">
+      <span class="hero__eyebrow">Platinental&nbsp;· Казань</span>
+
+      <h1 id="hero-title" class="hero__title">
         Клиника пластической хирургии и&nbsp;косметологии в&nbsp;Казани
       </h1>
 
       <p class="hero__sub">
-        Интеллигентная гармонизация внешности&nbsp;— без&nbsp;избыточности и&nbsp;шаблонов, через применение авторских методик.
+        Интеллигентная гармонизация внешности&nbsp;— без&nbsp;избыточности и&nbsp;шаблонов, через&nbsp;авторские методики наших&nbsp;хирургов.
       </p>
 
       <div class="hero__actions">
-        <Button href="#form" variant="primary" size="lg">Записаться на&nbsp;консультацию</Button>
-        <Button href="/prices" variant="ghost" size="lg">Узнать стоимость</Button>
+        <Button href="#form" variant="inverse" size="lg">Записаться на&nbsp;консультацию</Button>
+        <Button href="/prices" variant="ghost" size="lg">Узнать стоимость&nbsp;→</Button>
       </div>
     </div>
 
     <aside class="hero__ba" data-reveal data-ba-root aria-label="Примеры результатов">
-      <!-- Slider -->
       <div class="hero__ba-slider" data-ba-slider>
-        <!-- Slides (before/after pairs) -->
         <div class="hero__ba-slides" data-ba-slides>
-          <div class="hero__ba-slide" data-ba-slide data-procedure="Ринопластика" data-note="Результат через 3 месяца">
+          <div class="hero__ba-slide is-active" data-ba-slide data-procedure="Ринопластика" data-note="Результат через 3 месяца">
             <div class="hero__ba-before ba-s1-before" aria-hidden="true"></div>
             <div class="hero__ba-after ba-s1-after" data-ba-after aria-hidden="true"></div>
           </div>
@@ -71,11 +50,9 @@ import Button from '../primitives/Button.astro';
           </div>
         </div>
 
-        <!-- Labels -->
         <span class="hero__ba-tag" aria-hidden="true">До</span>
         <span class="hero__ba-tag hero__ba-tag--after" aria-hidden="true">После</span>
 
-        <!-- Handle -->
         <div class="hero__ba-handle" data-ba-handle aria-hidden="true">
           <div class="hero__ba-line"></div>
           <button class="hero__ba-btn" aria-label="Перетащить для сравнения">
@@ -87,10 +64,9 @@ import Button from '../primitives/Button.astro';
         </div>
       </div>
 
-      <!-- Caption + Nav -->
       <div class="hero__ba-footer">
         <div class="hero__ba-caption">
-          <span class="hero__ba-procedure font-display" data-ba-procedure>Ринопластика</span>
+          <span class="hero__ba-procedure" data-ba-procedure>Ринопластика</span>
           <span class="hero__ba-note" data-ba-note>Результат через 3 месяца. С согласия пациента.</span>
         </div>
         <div class="hero__ba-nav" aria-label="Переключить кейс">
@@ -146,233 +122,130 @@ import Button from '../primitives/Button.astro';
 </section>
 
 <style>
+  /* ── Hero: dark cinematic canvas (Aesop × ShowcaseMD) ──────────── */
   .hero {
     position: relative;
-    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 0;
-    overflow: hidden;
     isolation: isolate;
+    overflow: hidden;
+    color: var(--text-inverse);
+    background: var(--color-ink-900);
+    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 0;
   }
-
   @media (min-width: 768px) {
     .hero { padding: calc(var(--nav-height) + var(--space-12)) 0 0; }
   }
 
-  .hero__canvas {
+  /* ── Layered background ────────────────────────────────────────── */
+  .hero__bg {
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: 0;
+  }
+  .hero__bg-layer { position: absolute; inset: 0; }
+
+  .hero__bg-layer--base {
+    background: var(--color-ink-900);
+  }
+  .hero__bg-layer--hotspot {
+    background:
+      radial-gradient(52% 58% at 82% 22%, rgba(196, 168, 130, 0.18) 0%, transparent 68%),
+      radial-gradient(40% 46% at 8% 88%, rgba(196, 168, 130, 0.08) 0%, transparent 72%);
+    mix-blend-mode: screen;
+  }
+  .hero__bg-layer--grain { display: none; }
+  .hero__bg-layer--vignette {
+    background:
+      linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, transparent 22%, transparent 62%, rgba(10, 10, 10, 0.5) 100%);
   }
 
-  .hero__art { width: 100%; height: 100%; object-fit: cover; }
-
+  /* ── Main grid: copy + B/A slider ──────────────────────────────── */
   .hero__grid {
+    position: relative;
+    z-index: 1;
     max-width: var(--container-max);
     margin: 0 auto;
-    padding: 0 20px var(--space-20);
+    padding: 0 20px var(--space-16);
     display: grid;
     gap: var(--space-12);
     grid-template-columns: minmax(0, 1fr);
   }
-
   @media (min-width: 768px) { .hero__grid { padding: 0 32px var(--space-16); } }
   @media (min-width: 1024px) {
     .hero__grid {
       grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
-      gap: var(--space-12);
+      gap: var(--space-16);
       align-items: center;
     }
   }
   @media (min-width: 1200px) { .hero__grid { padding: 0 48px var(--space-20); } }
 
+  /* ── Eyebrow ───────────────────────────────────────────────────── */
   .hero__eyebrow {
-    font-size: var(--text-caption);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-body);
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: var(--tracking-caps);
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--accent-hover);
+    color: var(--accent);
     margin-bottom: var(--space-8);
   }
+  .hero__eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.6;
+  }
 
+  /* ── H1: Cormorant Garamond italic 400, editorial scale ────────── */
   .hero__title {
-    font-size: clamp(2rem, 1rem + 2.8vw, 3.5rem);
-    font-weight: 400;
+    font-family: var(--font-display);
+    font-weight: 300;
     font-style: italic;
+    font-size: clamp(2rem, 1.2rem + 3vw, 4rem);
     line-height: 1.08;
-    letter-spacing: var(--tracking-display);
-    color: var(--text-primary);
-    margin-bottom: var(--space-6);
-    max-width: 26ch;
+    letter-spacing: -0.015em;
+    color: var(--text-inverse);
+    margin-bottom: var(--space-8);
+    max-width: 20ch;
     text-wrap: balance;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
   }
 
   .hero__sub {
-    font-size: var(--text-body);
+    font-family: var(--font-body);
+    font-size: var(--text-lead);
     line-height: 1.55;
-    color: var(--text-secondary);
-    max-width: 48ch;
-    margin-bottom: var(--space-8);
+    color: var(--text-inverse-muted);
+    max-width: 46ch;
+    margin-bottom: var(--space-10);
   }
 
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-6);
     align-items: center;
+    gap: var(--space-6);
   }
 
-  /* Ghost-кнопка на тёмном фоне hero */
+  /* Ghost button on dark hero — muted cream → champagne on hover */
   .hero__actions :global(.btn--ghost) {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 253, 248, 0.85);
   }
   .hero__actions :global(.btn--ghost:hover) {
     color: var(--accent);
   }
-
-  .hero__image {
-    aspect-ratio: 3 / 4;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    max-height: 60vh;
+  .hero__actions :global(.btn--ghost .btn__label::after) {
+    background: currentColor;
+    opacity: 0.35;
   }
 
-  .hero__image-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(160deg, #2B2620 0%, #4A3D33 55%, #6B5645 100%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    padding: var(--space-6);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero__image-placeholder::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nnn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nnn)'/%3E%3C/svg%3E");
-    opacity: 0.14;
-    mix-blend-mode: overlay;
-  }
-
-  .hero__image-label {
-    font-size: var(--text-caption);
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-    color: rgba(255, 253, 248, 0.55);
-    position: relative;
-  }
-
-  .hero__stats {
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-    background: rgba(255, 253, 248, 0.7);
-    backdrop-filter: blur(10px);
-  }
-
-  .hero__stats-inner {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: var(--space-5) 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-  }
-
-  @media (min-width: 768px) { .hero__stats-inner { padding: var(--space-5) 32px; } }
-  @media (min-width: 1200px) { .hero__stats-inner { padding: var(--space-5) 48px; } }
-
-  .hero__stat {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    padding: 0 var(--space-8);
-    flex: 1;
-    justify-content: center;
-  }
-
-  .hero__stat-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .hero__stat-text,
-  .hero__stat-trigger {
-    font-size: var(--text-caption);
-    color: var(--text-secondary);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: default;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    white-space: nowrap;
-  }
-
-  .hero__stat-trigger { cursor: help; }
-
-  .hero__stat--tooltip {
-    position: relative;
-  }
-
-  .hero__tooltip {
-    display: none;
-    position: absolute;
-    bottom: calc(100% + 12px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--text-primary);
-    color: var(--text-inverse);
-    font-size: var(--text-caption);
-    line-height: 1.55;
-    padding: var(--space-4) var(--space-5);
-    border-radius: var(--radius-sm);
-    width: 280px;
-    box-shadow: var(--shadow-md);
-    z-index: 10;
-    pointer-events: none;
-  }
-
-  .hero__tooltip p { margin-bottom: var(--space-2); }
-  .hero__tooltip p:last-child { margin-bottom: 0; }
-  .hero__tooltip strong { color: var(--accent); }
-
-  .hero__tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 6px solid transparent;
-    border-top-color: var(--text-primary);
-  }
-
-  .hero__stat--tooltip:hover .hero__tooltip,
-  .hero__stat--tooltip:focus-within .hero__tooltip {
-    display: block;
-  }
-
-  .hero__stat-divider {
-    width: 1px;
-    align-self: stretch;
-    background: var(--border-subtle);
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    .hero__stat-divider { display: block; }
-  }
-
-  /* ── Hero Before/After slider ──────────────────────────────────── */
+  /* ── B/A slider ────────────────────────────────────────────────── */
   .hero__ba {
     display: flex;
     flex-direction: column;
@@ -386,8 +259,9 @@ import Button from '../primitives/Button.astro';
     overflow: hidden;
     aspect-ratio: 3 / 2;
     cursor: col-resize;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     max-height: 48vh;
+    border: 1px solid rgba(255, 253, 248, 0.08);
   }
 
   @media (min-width: 1024px) {
@@ -397,11 +271,7 @@ import Button from '../primitives/Button.astro';
     }
   }
 
-  /* Slides container */
-  .hero__ba-slides {
-    position: absolute;
-    inset: 0;
-  }
+  .hero__ba-slides { position: absolute; inset: 0; }
 
   .hero__ba-slide {
     position: absolute;
@@ -410,81 +280,46 @@ import Button from '../primitives/Button.astro';
     transition: opacity 480ms var(--ease-out);
     pointer-events: none;
   }
-
   .hero__ba-slide.is-active {
     opacity: 1;
     pointer-events: auto;
   }
 
-  /* Before/After layers per slide */
   .hero__ba-before,
-  .hero__ba-after {
-    position: absolute;
-    inset: 0;
-  }
+  .hero__ba-after { position: absolute; inset: 0; }
 
-  /* Slide 1 — Ринопластика */
-  .ba-s1-before { background: linear-gradient(145deg, #2E2620 0%, #4A3C32 55%, #6A564A 100%); }
-  .ba-s1-after  { background: linear-gradient(145deg, #4A3820 0%, #6E5440 55%, #9A7A62 100%); }
+  /* Solid placeholder per slide — before darker, after slightly lighter */
+  .ba-s1-before, .ba-s2-before, .ba-s3-before, .ba-s4-before { background: var(--color-ink-900); }
+  .ba-s1-after,  .ba-s2-after,  .ba-s3-after,  .ba-s4-after  { background: var(--color-ink-700); }
 
-  /* Slide 2 — Блефаропластика */
-  .ba-s2-before { background: linear-gradient(145deg, #28282A 0%, #42404A 55%, #5A5866 100%); }
-  .ba-s2-after  { background: linear-gradient(145deg, #3A3428 0%, #5E5040 55%, #8A7260 100%); }
+  .hero__ba-after { clip-path: inset(0 50% 0 0); }
 
-  /* Slide 3 — Маммопластика */
-  .ba-s3-before { background: linear-gradient(145deg, #2A2824 0%, #46403A 55%, #6A6058 100%); }
-  .ba-s3-after  { background: linear-gradient(145deg, #48382C 0%, #705448 55%, #9A7A68 100%); }
-
-  /* Slide 4 — SMAS */
-  .ba-s4-before { background: linear-gradient(145deg, #2C2A28 0%, #504844 55%, #706860 100%); }
-  .ba-s4-after  { background: linear-gradient(145deg, #463830 0%, #6A5448 55%, #907668 100%); }
-
-  /* Clip-path for after — updated by JS */
-  .hero__ba-after {
-    clip-path: inset(0 50% 0 0);
-  }
-
-  /* Film grain */
-  .hero__ba-before::after,
-  .hero__ba-after::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nbg'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nbg)'/%3E%3C/svg%3E");
-    opacity: 0.16;
-    mix-blend-mode: overlay;
-    pointer-events: none;
-  }
-
-  /* До/После tags */
   .hero__ba-tag {
     position: absolute;
     z-index: 5;
     top: var(--space-4);
     left: var(--space-4);
-    font-size: 11px;
+    font-family: var(--font-body);
+    font-size: 10px;
     font-weight: 500;
-    letter-spacing: var(--tracking-caps);
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(255, 253, 248, 0.85);
-    background: rgba(0, 0, 0, 0.3);
+    color: rgba(255, 253, 248, 0.9);
+    background: rgba(10, 8, 7, 0.5);
     padding: 4px 10px;
     border-radius: 99px;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
     pointer-events: none;
   }
-
   .hero__ba-tag--after {
     left: auto;
     right: var(--space-4);
   }
 
-  /* Handle */
+  /* Handle (drag divider) */
   .hero__ba-handle {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
+    top: 0; bottom: 0; left: 50%;
     transform: translateX(-50%);
     width: 2px;
     display: flex;
@@ -493,91 +328,85 @@ import Button from '../primitives/Button.astro';
     z-index: 10;
     pointer-events: none;
   }
-
   .hero__ba-line {
     flex: 1;
     width: 2px;
     background: rgba(255, 253, 248, 0.85);
   }
-
   .hero__ba-btn {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: var(--surface-raised);
-    color: var(--text-primary);
+    background: var(--color-cream-50);
+    color: var(--color-ink-900);
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     cursor: col-resize;
     pointer-events: all;
     flex-shrink: 0;
     transition: transform var(--duration-fast) var(--ease-out);
   }
+  .hero__ba-slider:active .hero__ba-btn { transform: scale(0.92); }
 
-  .hero__ba-slider:active .hero__ba-btn { transform: scale(0.9); }
-
-  /* Footer: caption + nav */
+  /* Footer under slider */
   .hero__ba-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-4);
   }
-
   .hero__ba-caption {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
     min-width: 0;
   }
-
   .hero__ba-procedure {
+    font-family: var(--font-display);
     font-size: var(--text-lead);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--text-primary);
-    letter-spacing: var(--tracking-heading);
-    line-height: 1;
+    font-weight: 700;
+    color: var(--text-inverse);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
     transition: opacity var(--duration-base) var(--ease-out);
   }
-
   .hero__ba-note {
+    font-family: var(--font-body);
     font-size: var(--text-caption);
-    color: var(--text-muted);
+    color: var(--text-inverse-muted);
     line-height: 1.4;
     transition: opacity var(--duration-base) var(--ease-out);
   }
 
-  /* Nav */
   .hero__ba-nav {
     display: flex;
     align-items: center;
     gap: var(--space-3);
     flex-shrink: 0;
   }
-
   .hero__ba-nav-btn {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: transparent;
-    border: 1px solid var(--border-soft);
-    color: var(--text-primary);
+    border: 1px solid rgba(255, 253, 248, 0.22);
+    color: rgba(255, 253, 248, 0.85);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color var(--duration-fast) var(--ease-out),
-                border-color var(--duration-fast) var(--ease-out);
+    transition:
+      background-color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
   }
-
   .hero__ba-nav-btn:hover {
-    background: var(--text-primary);
-    border-color: var(--text-primary);
-    color: var(--text-inverse);
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--color-ink-900);
   }
 
   .hero__ba-dots {
@@ -585,20 +414,123 @@ import Button from '../primitives/Button.astro';
     gap: 5px;
     align-items: center;
   }
-
   .hero__ba-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--border-soft);
-    transition: background-color var(--duration-base) var(--ease-out),
-                transform var(--duration-base) var(--ease-out);
+    background: rgba(255, 253, 248, 0.25);
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
   }
-
   .hero__ba-dot.is-active {
-    background: var(--accent-hover);
+    background: var(--accent);
     transform: scale(1.3);
   }
+
+  /* ── Stats strip (bottom band) ─────────────────────────────────── */
+  .hero__stats {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(255, 253, 248, 0.08);
+    background: rgba(10, 8, 7, 0.55);
+    backdrop-filter: blur(12px);
+  }
+  .hero__stats-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-5) 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  @media (min-width: 768px) { .hero__stats-inner { padding: var(--space-5) 32px; } }
+  @media (min-width: 1200px) { .hero__stats-inner { padding: var(--space-5) 48px; } }
+
+  .hero__stat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0 var(--space-8);
+    flex: 1;
+    justify-content: center;
+  }
+  .hero__stat-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .hero__stat-text,
+  .hero__stat-trigger {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 253, 248, 0.75);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: default;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    white-space: nowrap;
+  }
+  .hero__stat-trigger { cursor: help; }
+
+  .hero__stat--tooltip { position: relative; }
+
+  .hero__tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-cream-50);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+    line-height: 1.55;
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-sm);
+    width: 280px;
+    box-shadow: var(--shadow-lg);
+    z-index: 10;
+    pointer-events: none;
+  }
+  .hero__tooltip p { margin-bottom: var(--space-2); }
+  .hero__tooltip p:last-child { margin-bottom: 0; }
+  .hero__tooltip strong { color: var(--accent-hover); }
+
+  .hero__tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--color-cream-50);
+  }
+
+  .hero__stat--tooltip:hover .hero__tooltip,
+  .hero__stat--tooltip:focus-within .hero__tooltip {
+    display: block;
+  }
+
+  .hero__stat-divider {
+    width: 1px;
+    align-self: stretch;
+    background: rgba(255, 253, 248, 0.1);
+    display: none;
+  }
+  @media (min-width: 768px) { .hero__stat-divider { display: block; } }
 </style>
 
 <script>
@@ -636,11 +568,9 @@ import Button from '../primitives/Button.astro';
     current = (idx + slides.length) % slides.length;
     slides[current].classList.add('is-active');
     dots[current]?.classList.add('is-active');
-    // reset handle to 50% on slide change
     handle.style.left = '50%';
     const after = getAfter(slides[current]);
     if (after) after.style.clipPath = 'inset(0 50% 0 0)';
-    // update caption
     const proc = slides[current].dataset.procedure ?? '';
     const note = slides[current].dataset.note ?? '';
     procEl.style.opacity = '0';
@@ -658,15 +588,12 @@ import Button from '../primitives/Button.astro';
     autoTimer = setInterval(() => { if (!dragging) goTo(current + 1); }, INTERVAL);
   };
 
-  // Init
   goTo(0);
   startAuto();
 
-  // Nav buttons
   prevBtn.addEventListener('click', () => { goTo(current - 1); startAuto(); });
   nextBtn.addEventListener('click', () => { goTo(current + 1); startAuto(); });
 
-  // Drag-to-compare
   const onDragStart = (clientX: number) => {
     dragging = true;
     setHandlePos(((clientX - slider.getBoundingClientRect().left) / slider.offsetWidth) * 100);
@@ -684,7 +611,6 @@ import Button from '../primitives/Button.astro';
   window.addEventListener('mouseup',    onDragEnd);
   window.addEventListener('touchend',   onDragEnd);
 
-  // Pause auto on hover
   root.addEventListener('mouseenter', () => clearInterval(autoTimer));
   root.addEventListener('mouseleave', startAuto);
 </script>

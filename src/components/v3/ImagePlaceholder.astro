@@ -1,0 +1,101 @@
+---
+interface Props {
+  slot: string;
+  description: string;
+  ratio?: '4/5' | '3/4' | '1/1' | '16/9' | '9/16';
+  tone?: 'cream' | 'sand' | 'champagne' | 'ink' | 'bw';
+  source?: string; // e.g. 'Track A · Midjourney v7'
+  class?: string;
+}
+
+const {
+  slot,
+  description,
+  ratio = '4/5',
+  tone = 'sand',
+  source = '',
+  class: className = '',
+} = Astro.props;
+
+const toneStyles: Record<string, string> = {
+  cream: 'background: var(--v3-cream-alt); color: var(--v3-ink-secondary);',
+  sand: 'background: var(--v3-sand); color: var(--v3-ink-secondary);',
+  champagne: 'background: var(--v3-champagne-soft); color: var(--v3-ink);',
+  ink: 'background: var(--v3-ink); color: var(--v3-on-ink-secondary);',
+  bw: 'background: linear-gradient(135deg, #2A2D34, #4A4F5C); color: rgba(255,254,242,0.72);',
+};
+---
+
+<figure
+  class={`v3-img-placeholder ${className}`}
+  style={`aspect-ratio: ${ratio}; ${toneStyles[tone]}`}
+  role="img"
+  aria-label={`Слот ${slot}: ${description}`}
+>
+  <span class="slot-tag">{slot} · {ratio}</span>
+  <span class="description">{description}</span>
+  {source && <span class="source">{source}</span>}
+</figure>
+
+<style>
+  .v3-img-placeholder {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1.5rem, 3vw, 3rem);
+    overflow: hidden;
+    margin: 0;
+  }
+  .v3-img-placeholder::before,
+  .v3-img-placeholder::after {
+    content: '';
+    position: absolute;
+    background: currentColor;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .v3-img-placeholder::before {
+    inset: 0.75rem 0.75rem auto auto;
+    width: 1.25rem;
+    height: 1px;
+  }
+  .v3-img-placeholder::after {
+    inset: 0.75rem 0.75rem auto auto;
+    width: 1px;
+    height: 1.25rem;
+  }
+  .slot-tag {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    font-family: var(--v3-font-body);
+    font-size: 0.6875rem;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .description {
+    font-family: var(--v3-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(0.95rem, 1.4vw, 1.25rem);
+    line-height: 1.4;
+    text-align: center;
+    max-width: 28ch;
+    opacity: 0.85;
+  }
+  .source {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    font-family: var(--v3-font-body);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    text-align: center;
+  }
+</style>

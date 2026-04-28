@@ -1,0 +1,115 @@
+---
+import ImagePlaceholder from '../ImagePlaceholder.astro';
+---
+
+<section class="v3-hero v3-surface-cream" aria-labelledby="hero-heading">
+  <div class="v3-container v3-container-wide hero-grid">
+    <div class="hero-text" data-v3-reveal>
+      <span class="v3-eyebrow">Platinental · Казань</span>
+
+      <h1 id="hero-heading" class="v3-h1 hero-h1">
+        Клиника<br />
+        пластической&nbsp;хирургии<br />
+        и&nbsp;косметологии<br />
+        <span class="hero-h1-loc">в&nbsp;Казани</span>
+      </h1>
+
+      <p class="v3-lead hero-lead">
+        Интеллигентная гармонизация внешности — без избыточности и шаблонов,
+        через авторские методики наших&nbsp;хирургов.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#form" class="v3-btn v3-btn-primary">Записаться на консультацию</a>
+        <a href="/v3/prices" class="v3-link cta-secondary">Узнать стоимость</a>
+      </div>
+    </div>
+
+    <div class="hero-image" data-v3-reveal>
+      <ImagePlaceholder
+        slot="H1"
+        description="Архитектурный фрагмент интерьера клиники — окно, материал, свет — ИЛИ editorial body fragment B&W (шея/ключица в профиль)"
+        ratio="4/5"
+        tone="bw"
+        source="Track A или C · Midjourney v7 / Unsplash"
+      />
+    </div>
+  </div>
+
+  <div class="v3-container v3-container-wide hero-stats" data-v3-reveal>
+    <hr class="v3-hairline" />
+    <ul class="stats-list">
+      <li>
+        <span class="v3-eyebrow stat-label">Подход</span>
+        <span class="v3-body stat-value">Деликатная гармонизация</span>
+      </li>
+      <li>
+        <span class="v3-eyebrow stat-label">Аккредитация</span>
+        <span class="v3-body stat-value" title="ASPS — American Society of Plastic Surgeons; ISAPS — International Society of Aesthetic Plastic Surgery">ASPS · ISAPS</span>
+      </li>
+      <li>
+        <span class="v3-eyebrow stat-label">В Казани</span>
+        <span class="v3-body stat-value">С 2011 года</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .v3-hero {
+    padding-top: clamp(1.5rem, 4vh, 3.5rem);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+    padding-top: clamp(2rem, 6vh, 4rem);
+  }
+  .hero-text { display: flex; flex-direction: column; gap: var(--v3-gap-h1-lead); max-width: var(--v3-hero-text-max); }
+  .hero-text .v3-eyebrow { margin-bottom: var(--v3-gap-eyebrow-h1); }
+  .hero-h1 { line-height: 1.05; }
+  .hero-h1-loc { color: var(--v3-champagne-deep); }
+  .hero-lead { max-width: 38ch; }
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+  .cta-secondary { font-size: 0.9375rem; }
+  .hero-image {
+    max-width: 38rem;
+    margin-left: auto;
+    width: 100%;
+  }
+  .hero-stats {
+    margin-top: var(--v3-gap-medium);
+  }
+  .stats-list {
+    list-style: none;
+    padding: 1.25rem 0 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(0.75rem, 2.5vw, 2.5rem);
+  }
+  .stats-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+  .stat-label { color: var(--v3-ink-muted); }
+  .stat-value { font-family: var(--v3-font-body); font-weight: 500; font-size: 0.9375rem; line-height: 1.4; color: var(--v3-ink); letter-spacing: 0.01em; }
+
+  @media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-image { max-width: 28rem; margin-inline: 0; }
+  }
+  @media (max-width: 560px) {
+    .stats-list { grid-template-columns: 1fr; gap: 1rem; }
+    .hero-cta { gap: 1rem; }
+  }
+</style>

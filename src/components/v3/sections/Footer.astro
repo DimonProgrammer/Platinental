@@ -1,0 +1,126 @@
+---
+const directions = [
+  { label: 'Пластическая хирургия', href: '/v3/plastika' },
+  { label: 'Косметология', href: '/v3/kosmetologiya' },
+  { label: 'Космецевтика', href: '/v3/kosmecevtika' },
+  { label: 'Врачи клиники', href: '/v3/doctors' },
+];
+const legal = [
+  { label: 'О клинике', href: '/v3/about' },
+  { label: 'Документы и лицензии', href: '/v3/documents' },
+  { label: 'Политика конфиденциальности', href: '/v3/privacy' },
+];
+const year = new Date().getFullYear();
+---
+
+<footer class="v3-footer v3-surface-ink">
+  <div class="v3-container v3-container-wide footer-grid">
+    <div class="col col-contacts">
+      <span class="v3-eyebrow">Контакты</span>
+      <p class="v3-body addr">
+        ул. Карла Маркса, 48, корп. 1<br />
+        Казань, 420015
+      </p>
+      <a href="tel:+78432236666" class="v3-link phone">+7 843 223-66-66</a>
+      <p class="v3-small hours">Ежедневно 9:00–20:00</p>
+    </div>
+
+    <div class="col col-directions">
+      <span class="v3-eyebrow">Направления</span>
+      <ul class="link-list">
+        {directions.map((d) => (
+          <li><a href={d.href} class="footer-link">{d.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="col col-legal">
+      <span class="v3-eyebrow">Информация</span>
+      <ul class="link-list">
+        {legal.map((d) => (
+          <li><a href={d.href} class="footer-link">{d.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="col col-meta">
+      <span class="v3-eyebrow">Мессенджеры</span>
+      <ul class="link-list">
+        <li><a href="https://wa.me/78432236666" class="footer-link">WhatsApp</a></li>
+        <li><a href="https://max.ru" class="footer-link">Max</a></li>
+        <li><a href="https://t.me/platinental_kazan" class="footer-link">Telegram</a></li>
+        <li><a href="https://instagram.com/platinental_kazan" class="footer-link">Instagram*</a></li>
+      </ul>
+      <p class="v3-caption note">* Instagram принадлежит Meta, признанной экстремистской и запрещённой в РФ.</p>
+    </div>
+  </div>
+
+  <div class="v3-container v3-container-wide bottom">
+    <hr class="v3-hairline" />
+    <div class="bottom-row">
+      <p class="v3-caption">© Platinental Казань, 2011–{year} · ООО «Платинентал Казань»</p>
+      <p class="v3-caption disclaimer">Имеются противопоказания. Необходима консультация специалиста.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .v3-footer {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-small);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+  }
+  .col { display: flex; flex-direction: column; gap: 1rem; }
+  .col .v3-eyebrow {
+    color: var(--v3-on-ink-muted);
+    margin-bottom: 0.5rem;
+  }
+  .addr { color: var(--v3-on-ink); margin: 0; }
+  .phone {
+    font-family: var(--v3-font-body);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    align-self: flex-start;
+    letter-spacing: 0.01em;
+  }
+  .hours { color: var(--v3-on-ink-muted); }
+  .link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .footer-link {
+    color: var(--v3-on-ink);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .footer-link:hover { color: var(--v3-champagne); }
+  .note { color: var(--v3-on-ink-muted); margin-top: 0.5rem; }
+  .bottom { margin-top: var(--v3-gap-medium); }
+  .bottom-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .bottom-row .v3-caption { color: var(--v3-on-ink-muted); }
+  .disclaimer { text-align: right; }
+
+  @media (max-width: 960px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .disclaimer { text-align: left; }
+  }
+</style>

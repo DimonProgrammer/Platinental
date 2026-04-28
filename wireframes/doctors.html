@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Врачи Platinental Казань — пластические хирурги и косметолог</title>
+<meta name="description" content="7 пластических хирургов и врач-косметолог клиники Platinental в Казани. Образование, специализации, стоимость консультации. Запись: +7 (843) 223-66-66.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FFFDF8;
+  --warm-grey: #F5F0EB;
+  --dark: #0A0A0A;
+  --dark-2: #1A1A18;
+  --gold: #B8956A;
+  --gold-light: #D4B896;
+  --text-primary: #0A0A0A;
+  --text-muted: #6B6560;
+  --border: rgba(10,10,10,0.1);
+  --border-light: rgba(255,253,248,0.12);
+  --font-display: 'Lora', serif;
+  --font-body: 'Open Sans', sans-serif;
+  --max-w: 1200px;
+  --pad: 80px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--text-primary); background: var(--cream); -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
+.section { padding: 80px 0; }
+.section--grey { background: var(--warm-grey); }
+.section--dark { background: var(--dark-2); color: var(--cream); }
+
+/* ─── HEADER ─── */
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 64px; background: var(--dark-2); border-bottom: 1px solid var(--border-light); display: flex; align-items: center; }
+.header__inner { max-width: calc(var(--max-w) + 160px); margin: 0 auto; padding: 0 48px; width: 100%; display: flex; align-items: center; }
+.header__logo { font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--cream); margin-right: auto; }
+.header__logo span { color: var(--gold-light); }
+.header__nav { display: flex; gap: 28px; list-style: none; margin-right: 36px; position: relative; }
+.header__dropdown { position: relative; }
+.header__dropdown-menu { position: absolute; top: calc(100% + 16px); left: -12px; background: var(--dark); border: 1px solid var(--border-light); padding: 8px 0; min-width: 200px; opacity: 0; visibility: hidden; transform: translateY(-4px); transition: all 0.15s; z-index: 20; }
+.header__dropdown:hover .header__dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.header__dropdown-menu a { display: block; padding: 8px 16px; font-size: 13px; color: rgba(255,253,248,0.6); }
+.header__dropdown-menu a:hover { color: var(--cream); background: rgba(255,253,248,0.04); }
+.header__nav a { font-size: 13px; color: rgba(255,253,248,0.6); letter-spacing: 0.02em; transition: color 0.15s; }
+.header__nav a:hover { color: var(--cream); }
+.header__phone { font-size: 13px; color: rgba(255,253,248,0.6); margin-right: 20px; }
+.btn { display: inline-flex; align-items: center; padding: 12px 24px; font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; border: none; transition: all 0.2s; }
+.btn--gold { background: var(--gold); color: #fff; }
+.btn--gold:hover { background: #a07e5a; }
+.btn--outline-dark { background: transparent; color: var(--dark); border: 1px solid rgba(10,10,10,0.25); }
+.btn--outline-dark:hover { border-color: var(--gold); color: var(--gold); }
+.link-arrow { font-size: 13px; color: var(--gold); font-weight: 500; display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s; }
+.link-arrow:hover { gap: 8px; }
+.photo-placeholder { background: #2a2826; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.1); font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ─── HERO ─── */
+.hero {
+  padding: 140px 0 72px; text-align: center;
+  background: var(--dark-2); position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 70% at 50% 110%, rgba(184,149,106,0.07) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero__eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 20px; position: relative; }
+.hero__h1 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(32px, 4vw, 52px); line-height: 1.15; margin-bottom: 24px; color: var(--cream); position: relative; }
+.hero__lead { font-size: 16px; line-height: 1.75; color: rgba(255,253,248,0.55); max-width: 700px; margin: 0 auto 36px; position: relative; }
+
+/* ─── FILTERS ─── */
+.filters { display: flex; gap: 8px; justify-content: center; margin-bottom: 56px; flex-wrap: wrap; }
+.filter-btn { font-size: 13px; padding: 8px 20px; border: 1px solid rgba(255,253,248,0.15); background: transparent; color: rgba(255,253,248,0.5); cursor: pointer; transition: all 0.15s; font-family: var(--font-body); }
+.filter-btn:hover { border-color: rgba(255,253,248,0.4); color: rgba(255,253,248,0.8); }
+.filter-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(184,149,106,0.08); }
+
+/* ─── DOCTORS GRID ─── */
+.doctors__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+/* ─── DOCTOR CARD ─── */
+.doctor-card { background: #fff; overflow: hidden; }
+.doctor-card__photo { height: 300px; width: 100%; }
+.doctor-card__body { padding: 22px 22px 26px; }
+.doctor-card__spec {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 8px; line-height: 1.4;
+}
+.doctor-card__name {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: 20px; line-height: 1.25; margin-bottom: 12px;
+}
+.doctor-card__desc {
+  font-size: 13px; line-height: 1.65; color: var(--text-muted); margin-bottom: 14px;
+}
+.doctor-card__price { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
+.doctor-card__price strong { color: var(--text-primary); font-weight: 600; }
+.doctor-card__btn {
+  display: block; width: 100%; text-align: center;
+  background: var(--gold); color: #fff;
+  padding: 11px 16px; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.04em; transition: background 0.2s;
+}
+.doctor-card__btn:hover { background: #a07e5a; }
+.doctor-card__more {
+  display: block; text-align: center; margin-top: 10px;
+  font-size: 12px; color: var(--gold); cursor: pointer;
+  letter-spacing: 0.02em; transition: opacity 0.15s;
+}
+.doctor-card__more:hover { opacity: 0.7; }
+
+/* ─── MODAL ─── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(10,10,10,0.65); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: all 0.25s ease;
+  padding: 24px;
+}
+.modal-overlay.open { opacity: 1; visibility: visible; }
+.modal {
+  background: var(--cream); max-width: 860px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  display: grid; grid-template-columns: 280px 1fr;
+  position: relative;
+  transform: translateY(20px); transition: transform 0.25s ease;
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal__close {
+  position: absolute; top: 16px; right: 20px;
+  font-size: 22px; color: var(--text-muted); cursor: pointer;
+  background: none; border: none; line-height: 1;
+  transition: color 0.15s; z-index: 2;
+}
+.modal__close:hover { color: var(--text-primary); }
+.modal__left {
+  background: var(--dark-2); padding: 40px 28px;
+  display: flex; flex-direction: column; align-items: flex-start;
+}
+.modal__photo {
+  width: 100%; height: 220px; margin-bottom: 24px;
+}
+.modal__badge {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 8px; line-height: 1.4;
+}
+.modal__name {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: 22px; color: var(--cream); line-height: 1.25; margin-bottom: 20px;
+}
+.modal__price {
+  font-size: 13px; color: rgba(255,253,248,0.55); margin-bottom: 4px; line-height: 1.6;
+}
+.modal__price strong { color: var(--cream); font-weight: 600; }
+.modal__cta {
+  display: block; width: 100%; text-align: center;
+  background: var(--gold); color: #fff;
+  padding: 12px 16px; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.04em; margin-top: 20px; transition: background 0.2s;
+}
+.modal__cta:hover { background: #a07e5a; }
+.modal__right { padding: 40px 36px; overflow-y: auto; }
+.modal__section-title {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 14px; margin-top: 28px;
+}
+.modal__section-title:first-child { margin-top: 0; }
+.modal__spec-list {
+  list-style: none; font-size: 13.5px; line-height: 1.75; color: var(--text-muted);
+}
+.modal__spec-list li { padding: 4px 0; border-bottom: 1px solid var(--border); }
+.modal__spec-list li:last-child { border-bottom: none; }
+.modal__edu-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.modal__edu-item:last-child { border-bottom: none; }
+.modal__edu-year { font-size: 11px; font-weight: 600; color: var(--gold); margin-bottom: 2px; }
+.modal__edu-text { font-size: 13px; line-height: 1.6; color: var(--text-muted); }
+.modal__patent {
+  margin-top: 16px; padding: 14px 16px;
+  background: rgba(184,149,106,0.08); border-left: 2px solid var(--gold);
+  font-size: 12.5px; line-height: 1.6; color: var(--text-muted);
+}
+
+/* Cosmetic card highlight */
+.doctor-card--cosmetic .doctor-card__spec { color: var(--text-muted); }
+
+/* ─── QUOTE STRIP ─── */
+.quote-strip { padding: 64px 0; text-align: center; }
+.quote-strip__text {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(20px, 2.5vw, 28px); color: var(--text-primary);
+  max-width: 780px; margin: 0 auto;
+}
+
+/* ─── FAQ ─── */
+.faq__list { margin-top: 40px; }
+details { border-bottom: 1px solid var(--border); }
+summary {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 0; font-size: 16px; font-weight: 400; cursor: pointer;
+  gap: 24px; list-style: none; transition: color 0.15s;
+}
+summary:hover { color: var(--gold); }
+.faq__icon { font-size: 20px; font-weight: 300; color: var(--gold); flex-shrink: 0; transition: transform 0.2s; }
+details[open] .faq__icon { transform: rotate(45deg); }
+.faq__answer { padding: 0 0 22px; font-size: 14px; line-height: 1.75; color: var(--text-muted); max-width: 800px; }
+
+/* ─── FORM ─── */
+.cta-section { padding: 96px 0; background: var(--dark-2); color: var(--cream); }
+.cta-section__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.cta-section__title { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(28px, 3vw, 40px); line-height: 1.2; margin-bottom: 20px; }
+.cta-section__text { font-size: 15px; line-height: 1.75; color: rgba(255,253,248,0.6); }
+.cta-section__note { font-size: 12px; color: rgba(255,253,248,0.3); margin-top: 16px; }
+.form__field { margin-bottom: 12px; }
+.form__input { width: 100%; padding: 14px 16px; background: rgba(255,253,248,0.06); border: 1px solid rgba(255,253,248,0.12); color: var(--cream); font-family: var(--font-body); font-size: 14px; outline: none; transition: border-color 0.15s; }
+.form__input:focus { border-color: var(--gold); }
+.form__input::placeholder { color: rgba(255,253,248,0.3); }
+.form__checkbox-row { display: flex; gap: 10px; align-items: flex-start; margin: 16px 0 20px; }
+.form__checkbox-row input { margin-top: 3px; accent-color: var(--gold); }
+.form__checkbox-label { font-size: 12px; color: rgba(255,253,248,0.4); line-height: 1.5; }
+.form__submit { width: 100%; padding: 15px 24px; background: var(--gold); color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.05em; cursor: pointer; border: none; transition: background 0.2s; }
+.form__submit:hover { background: #a07e5a; }
+
+/* ─── FOOTER ─── */
+.footer { background: var(--dark-2); color: var(--cream); padding: 64px 0 32px; }
+.footer__cols { display: grid; grid-template-columns: 320px 1fr auto auto; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border-light); margin-bottom: 32px; }
+.footer__brand { font-family: var(--font-display); font-style: italic; font-size: 20px; color: var(--cream); margin-bottom: 14px; }
+.footer__brand-desc { font-size: 13px; color: rgba(255,253,248,0.4); line-height: 1.6; max-width: 240px; }
+.footer__col-title { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,253,248,0.3); margin-bottom: 16px; }
+.footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer__links a { font-size: 14px; color: rgba(255,253,248,0.55); transition: color 0.15s; }
+.footer__links a:hover { color: var(--cream); }
+.footer__legal { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.footer__legal-item { font-size: 11.5px; color: rgba(255,253,248,0.25); }
+.footer__legal-item a:hover { color: rgba(255,253,248,0.6); }
+
+.section__h2 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(28px, 3vw, 42px); line-height: 1.2; text-align: center; margin-bottom: 48px; }
+</style>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header__inner">
+    <a href="/" class="header__logo">The <span>Platinental</span></a>
+    <nav>
+      <ul class="header__nav">
+        <li class="header__dropdown">
+          <a href="#directions">Услуги ▾</a>
+          <div class="header__dropdown-menu">
+            <a href="/plastika">Пластическая хирургия</a>
+            <a href="/kosmetologiya">Косметология</a>
+            <a href="/kosmecevtika">Космецевтика</a>
+          </div>
+        </li>
+        <li><a href="/doctors" style="color:var(--cream);">Врачи</a></li>
+        <li><a href="/about">О клинике</a></li>
+        <li><a href="/prices">Цены</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <span class="header__phone">+7 843 223-66-66</span>
+    <a href="#form" class="btn btn--gold" style="font-size:12px; padding:10px 20px;">Записаться</a>
+  </div>
+</header>
+
+
+<!-- ═══ 1. HERO ═══ -->
+<section class="hero">
+  <div class="container">
+    <p class="hero__eyebrow">THE PLATINENTAL · КАЗАНЬ</p>
+    <h1 class="hero__h1">Врачи клиники Platinental в Казани</h1>
+    <p class="hero__lead">Каждый врач — мастер в своём деле. Приходите на консультацию — подберём нужного специалиста под вашу задачу.</p>
+
+    <div style="margin-top:32px; position:relative;">
+      <a href="#form" class="btn btn--gold">Записаться на консультацию</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 2. КАРТОЧКИ ВРАЧЕЙ ═══ -->
+<section class="section" style="padding-top:40px;">
+  <div class="container">
+    <div class="filters" style="margin-bottom:40px;">
+      <button class="filter-btn active" style="border-color:rgba(10,10,10,0.15); color:var(--text-muted);" onmouseover="this.style.borderColor='var(--gold)'; this.style.color='var(--text-primary)'" onmouseout="if(!this.classList.contains('active')){this.style.borderColor='rgba(10,10,10,0.15)'; this.style.color='var(--text-muted)'}">Все специалисты</button>
+      <button class="filter-btn" style="border-color:rgba(10,10,10,0.15); color:var(--text-muted);">Пластическая хирургия</button>
+      <button class="filter-btn" style="border-color:rgba(10,10,10,0.15); color:var(--text-muted);">Лицо</button>
+      <button class="filter-btn" style="border-color:rgba(10,10,10,0.15); color:var(--text-muted);">Тело</button>
+      <button class="filter-btn" style="border-color:rgba(10,10,10,0.15); color:var(--text-muted);">Косметология</button>
+    </div>
+    <div class="doctors__grid">
+
+      <!-- Мелоян -->
+      <div class="doctor-card">
+        <div class="photo-placeholder doctor-card__photo">ФОТО ВРАЧА</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__spec">RHINOPLASTY / РИНОПЛАСТИКА</div>
+          <div class="doctor-card__name">Мелоян Мхитар Мисакович</div>
+          <p class="doctor-card__desc">В хирургии с 1986 года. Специализируется на ринопластике и маммопластике.</p>
+          <div class="doctor-card__price">Первичная <strong>7 000 ₽</strong> · Повторная 5 000 ₽</div>
+          <a href="#form" class="doctor-card__btn">Записаться к Мелояну М.М.</a>
+          <span class="doctor-card__more" onclick="document.getElementById('modal-meloyan').classList.add('open')">Подробнее о враче →</span>
+        </div>
+      </div>
+
+      <!-- Тулатова -->
+      <div class="doctor-card">
+        <div class="photo-placeholder doctor-card__photo">ФОТО ВРАЧА</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__spec">FACE PRESERVING SURGERY / ДЕЛИКАТНАЯ ХИРУРГИЯ</div>
+          <div class="doctor-card__name">Тулатова Регина Тимуровна</div>
+          <p class="doctor-card__desc">Face preserving surgery — деликатная хирургия лица с максимальным сохранением естественных черт. Ординатура — РНИМУ им. Пирогова.</p>
+          <div class="doctor-card__price">Первичная <strong>7 000 ₽</strong> · Повторная 5 000 ₽</div>
+          <a href="#form" class="doctor-card__btn">Записаться к Тулатовой Р.Т.</a>
+          <span class="doctor-card__more" onclick="document.getElementById('modal-tulatova').classList.add('open')">Подробнее о враче →</span>
+        </div>
+      </div>
+
+      <!-- Мамедов -->
+      <div class="doctor-card">
+        <div class="photo-placeholder doctor-card__photo">ФОТО ВРАЧА</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__spec">ВТОРИЧНАЯ РИНОПЛАСТИКА / ЧЕЛЮСТНО-ЛИЦЕВАЯ ХИРУРГИЯ</div>
+          <div class="doctor-card__name">Мамедов Вахид Аждарович</div>
+          <p class="doctor-card__desc">Берётся за сложные и вторичные ринопластики — когда предыдущая операция не дала результата. Фундамент — челюстно-лицевая хирургия.</p>
+          <div class="doctor-card__price">Первичная <strong>10 000 ₽</strong> · Повторная 7 000 ₽</div>
+          <a href="#form" class="doctor-card__btn">Записаться к Мамедову В.А.</a>
+          <span class="doctor-card__more" onclick="document.getElementById('modal-mamedov').classList.add('open')">Подробнее о враче →</span>
+        </div>
+      </div>
+
+      <!-- Васильев -->
+      <div class="doctor-card">
+        <div class="photo-placeholder doctor-card__photo">ФОТО ВРАЧА</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__spec">К.М.Н. / МАММОПЛАСТИКА · КОНТУРИРОВАНИЕ ТЕЛА</div>
+          <div class="doctor-card__name">Васильев Максим Николаевич</div>
+          <p class="doctor-card__desc">К.м.н. Из тех, кто сначала слушает, потом оперирует. Пациенты говорят, что он понимает задачу лучше, чем ты сам её сформулировал.</p>
+          <div class="doctor-card__price">Первичная <strong>7 000 ₽</strong> · Повторная 5 000 ₽</div>
+          <a href="#form" class="doctor-card__btn">Записаться к Васильеву М.Н.</a>
+          <span class="doctor-card__more" onclick="document.getElementById('modal-vasilev').classList.add('open')">Подробнее о враче →</span>
+        </div>
+      </div>
+
+      <!-- Макеенко -->
+      <div class="doctor-card">
+        <div class="photo-placeholder doctor-card__photo">ФОТО ВРАЧА</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__spec">БЛЕФАРОПЛАСТИКА / ЛИПОФИЛИНГ</div>
+          <div class="doctor-card__name">Макеенко Николай Владимирович</div>
+          <p class="doctor-card__desc">Коррекция нижних век — через разрез изнутри, снаружи ничего не видно. Пациенты записываются повторно и привозят подруг.</p>
+          <div class="doctor-card__price">Первичная <strong>5 000 ₽</strong> · Повторная 2 500 ₽</div>
+          <a href="#form" class="doctor-card__btn">Записаться к Макеенко Н.В.</a>
+          <span class="doctor-card__more" onclick="document.getElementById('modal-makeenko').classList.add('open')">Подробнее о враче →</span>
+        </div>
+      </div>
+
+      <!-- Марданова -->
+      <div class="doctor-card">
+        <div class="photo-placeholder doctor-card__photo">ФОТО ВРАЧА</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__spec">ПЛАСТИЧЕСКИЙ ХИРУРГ · ОНЛАЙН-КОНСУЛЬТАЦИИ</div>
+          <div class="doctor-card__name">Марданова Дженнет Мевлютовна</div>
+          <p class="doctor-card__desc">Единственная в клинике, кто ведёт онлайн-консультации — удобно разобраться в ситуации до посещения клиники. Ординатура — Сеченовский университет.</p>
+          <div class="doctor-card__price">Первичная <strong>5 000 ₽</strong> · Онлайн <strong>3 500 ₽</strong> · Повторная 2 500 ₽</div>
+          <a href="#form" class="doctor-card__btn">Записаться к Мардановой Д.М.</a>
+          <span class="doctor-card__more" onclick="document.getElementById('modal-mardanova').classList.add('open')">Подробнее о враче →</span>
+        </div>
+      </div>
+
+      <!-- Бречко -->
+      <div class="doctor-card">
+        <div class="photo-placeholder doctor-card__photo">ФОТО ВРАЧА</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__spec">БЛЕФАРОПЛАСТИКА · SMAS · CO₂-ЛАЗЕР</div>
+          <div class="doctor-card__name">Бречко Мария Александровна</div>
+          <p class="doctor-card__desc">Ординатура в РНЦХ им. Петровского. Делает и хирургическую блефаропластику, и лазерную CO₂ — подбирает метод под конкретный случай.</p>
+          <div class="doctor-card__price">Консультация — уточняйте у администратора</div>
+          <a href="#form" class="doctor-card__btn">Записаться к Бречко М.А.</a>
+          <span class="doctor-card__more" onclick="document.getElementById('modal-brechko').classList.add('open')">Подробнее о враче →</span>
+        </div>
+      </div>
+
+      <!-- Грицай -->
+      <div class="doctor-card">
+        <div class="photo-placeholder doctor-card__photo">ФОТО ВРАЧА</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__spec">ВРАЧ-КОСМЕТОЛОГ</div>
+          <div class="doctor-card__name">Грицай Олеся Анатольевна</div>
+          <p class="doctor-card__desc">Работает в одной команде с хирургами. Это значит: если вам нужна операция — она скажет честно. Если нет — подберёт косметологическое решение.</p>
+          <div class="doctor-card__price">Первичная <strong>2 000 ₽</strong> · Повторная 700 ₽</div>
+          <a href="#form" class="doctor-card__btn">Записаться к Грицай О.А.</a>
+          <span class="doctor-card__more" onclick="document.getElementById('modal-gritsay').classList.add('open')">Подробнее о враче →</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 3. ЦИТАТА ═══ -->
+<section class="quote-strip section--dark" style="padding:64px 0;">
+  <div class="container">
+    <p class="quote-strip__text" style="color:var(--cream);">«Сделать это так, чтобы все заметили результат, но никто не догадался, что дело в пластике»</p>
+    <p style="text-align:center; margin-top:16px; font-size:12px; color:rgba(255,253,248,0.35); letter-spacing:0.04em;">Андрей Искорнев, основатель Platinental</p>
+  </div>
+</section>
+
+
+<!-- ═══ 4. FAQ ═══ -->
+<section class="section">
+  <div class="container">
+    <h2 class="section__h2">Вопросы и ответы</h2>
+    <div class="faq__list">
+
+      <details open>
+        <summary>Как выбрать хирурга для пластической операции? <span class="faq__icon">+</span></summary>
+        <p class="faq__answer">Обратите внимание на три вещи: ординатура по пластической хирургии (не курсы переподготовки), опыт именно в той операции, которая вам нужна, и результаты работ. В Platinental все хирурги прошли ординатуру в ведущих клинических центрах — РНИМУ Пирогова, 1-й МГМУ Сеченова, РНЦХ Петровского.</p>
+      </details>
+
+      <details>
+        <summary>Можно ли получить консультацию онлайн? <span class="faq__icon">+</span></summary>
+        <p class="faq__answer">Да. Онлайн-консультации ведёт Марданова Д.М. — 3 500 ₽. Вы отправляете фотографии, хирург оценивает ситуацию и даёт рекомендации по видеосвязи. Для окончательного плана операции потребуется очный осмотр.</p>
+      </details>
+
+      <details>
+        <summary>Какие международные аккредитации есть у хирургов? <span class="faq__icon">+</span></summary>
+        <p class="faq__answer">Platinental — американский бренд. Основатель — действительный член ASPS, ISAPS и IPRAS. Хирурги казанского филиала работают по единой методологии гармонизирующей хирургии, разработанной основателем бренда.</p>
+      </details>
+
+    </div>
+    <p style="margin-top:32px; font-size:12px; color:var(--text-muted);">Имеются противопоказания. Необходима консультация специалиста.</p>
+  </div>
+</section>
+
+
+<!-- ═══ 5. ФОРМА ═══ -->
+<section class="cta-section" id="form">
+  <div class="container">
+    <div class="cta-section__inner">
+      <div>
+        <h2 class="cta-section__title">Приходите, поговорим</h2>
+        <p class="cta-section__text">Оставьте номер — мы перезвоним и подберём врача под вашу задачу. Без обязательств.</p>
+        <p class="cta-section__note">Перезвоним в течение часа. Пн–вс 9:00–20:00.</p>
+      </div>
+      <form>
+        <div class="form__field">
+          <input class="form__input" type="text" placeholder="Ваше имя">
+        </div>
+        <div class="form__field">
+          <input class="form__input" type="tel" placeholder="+7 (___) ___-__-__">
+        </div>
+        <div class="form__checkbox-row">
+          <input type="checkbox" id="consent">
+          <label class="form__checkbox-label" for="consent">Соглашаюсь на <a href="/documents" style="text-decoration:underline; color:rgba(255,253,248,0.55);">обработку персональных данных</a></label>
+        </div>
+        <button type="submit" class="form__submit">Записаться на консультацию</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ МОДАЛКИ ВРАЧЕЙ ═══ -->
+
+<!-- Мелоян -->
+<div class="modal-overlay" id="modal-meloyan" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal__close" onclick="document.getElementById('modal-meloyan').classList.remove('open')">✕</button>
+    <div class="modal__left">
+      <div class="photo-placeholder modal__photo">ФОТО</div>
+      <div class="modal__badge">RHINOPLASTY / РИНОПЛАСТИКА</div>
+      <div class="modal__name">Мелоян Мхитар Мисакович</div>
+      <div class="modal__price">Первичная <strong>7 000 ₽</strong></div>
+      <div class="modal__price">Повторная 5 000 ₽</div>
+      <a href="#form" class="modal__cta" onclick="document.getElementById('modal-meloyan').classList.remove('open')">Записаться к Мелояну М.М.</a>
+    </div>
+    <div class="modal__right">
+      <div class="modal__section-title">Специализация</div>
+      <ul class="modal__spec-list">
+        <li>Ринопластика</li>
+        <li>Эстетическая хирургия молочных желез</li>
+      </ul>
+      <div class="modal__section-title">Образование</div>
+      <div class="modal__edu-item"><div class="modal__edu-year">1986</div><div class="modal__edu-text">Алтайский государственный медицинский институт, лечебное дело. Интернатура по хирургии.</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2000</div><div class="modal__edu-text">РМАПО — повышение квалификации «Эстетическая пластическая хирургия»</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2008</div><div class="modal__edu-text">РГМУ — переподготовка «Челюстно-лицевая хирургия»</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2011</div><div class="modal__edu-text">МедКорпорация — переподготовка «Пластическая хирургия»</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2016</div><div class="modal__edu-text">ЦГМА Управления делами Президента РФ — хирургия. МедКорпорация — пластическая хирургия.</div></div>
+      <div class="modal__section-title">Международное обучение</div>
+      <div class="modal__edu-item"><div class="modal__edu-text">Aesthetic Plastic Surgery — Лос-Анджелес, США</div></div>
+      <div class="modal__patent">Основатель Platinental Андрей Искорнев (ASPS, ISAPS, IPRAS) прошёл ринопластику у Мхитара Мисаковича.</div>
+      <div class="modal__edu-item"><div class="modal__edu-text">Курс по трансплантации волос — Прага, Чехия</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-text">Сосудистая и общая хирургия — Ереван, Армения</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-text">Нетрадиционные методы лечения китайской медицины — Шэньян, Китай</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Тулатова -->
+<div class="modal-overlay" id="modal-tulatova" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal__close" onclick="document.getElementById('modal-tulatova').classList.remove('open')">✕</button>
+    <div class="modal__left">
+      <div class="photo-placeholder modal__photo">ФОТО</div>
+      <div class="modal__badge">FACE PRESERVING SURGERY</div>
+      <div class="modal__name">Тулатова Регина Тимуровна</div>
+      <div class="modal__price">Первичная <strong>7 000 ₽</strong></div>
+      <div class="modal__price">Повторная 5 000 ₽</div>
+      <a href="#form" class="modal__cta" onclick="document.getElementById('modal-tulatova').classList.remove('open')">Записаться к Тулатовой Р.Т.</a>
+    </div>
+    <div class="modal__right">
+      <div class="modal__section-title">Специализация</div>
+      <ul class="modal__spec-list">
+        <li>Верхняя и нижняя блефаропластика</li>
+        <li>Эндоскопическая подтяжка лба</li>
+        <li>Височный лифтинг</li>
+        <li>Платизмопластика (подтяжка шеи)</li>
+        <li>Липосакция шеи</li>
+        <li>Нанофэтграфтинг, липофилинг лица</li>
+        <li>Эндопротезирование подбородков</li>
+        <li>Удаление комков Биша</li>
+        <li>Удаление биополимеров из губ</li>
+        <li>CO₂-шлифовка</li>
+      </ul>
+      <div class="modal__section-title">Образование</div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2014</div><div class="modal__edu-text">Северо-Осетинская государственная медицинская академия — лечебное дело</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2015</div><div class="modal__edu-text">1-й МГМУ им. И.М. Сеченова — хирургия</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2017</div><div class="modal__edu-text">РНИМУ им. Н.И. Пирогова — ординатура по пластической хирургии</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Мамедов -->
+<div class="modal-overlay" id="modal-mamedov" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal__close" onclick="document.getElementById('modal-mamedov').classList.remove('open')">✕</button>
+    <div class="modal__left">
+      <div class="photo-placeholder modal__photo">ФОТО</div>
+      <div class="modal__badge">ВТОРИЧНАЯ РИНОПЛАСТИКА · ЧЛХ</div>
+      <div class="modal__name">Мамедов Вахид Аждарович</div>
+      <div class="modal__price">Первичная <strong>10 000 ₽</strong></div>
+      <div class="modal__price">Повторная 7 000 ₽</div>
+      <a href="#form" class="modal__cta" onclick="document.getElementById('modal-mamedov').classList.remove('open')">Записаться к Мамедову В.А.</a>
+    </div>
+    <div class="modal__right">
+      <div class="modal__section-title">Специализация</div>
+      <ul class="modal__spec-list">
+        <li>Ринопластика (первичная и вторичная, 2-я кат. сложности)</li>
+        <li>Блефаропластика, в т.ч. ориентальная (европеизация век)</li>
+        <li>Контурная пластика лицевого скелета с имплантатами</li>
+        <li>Гениопластика, фронтопластика, мандибулопластика, маляропластика</li>
+        <li>Эндоскопическое омоложение верхней и средней трети лица</li>
+        <li>Платизмопластика, отопластика, хейлопластика</li>
+        <li>Удаление комков Биша, липофилинг лица</li>
+        <li>Коррекция результатов предыдущих вмешательств</li>
+      </ul>
+      <div class="modal__section-title">Образование</div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2010–2015</div><div class="modal__edu-text">Дальневосточный государственный медицинский университет — стоматология</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2017–2019</div><div class="modal__edu-text">МОНИКИ им. М.Ф. Владимирского — ординатура по челюстно-лицевой хирургии</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2018</div><div class="modal__edu-text">AMWC Aesthetic & Anti-aging medicine world congress — Monaco, Monte-Carlo</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2020–2021</div><div class="modal__edu-text">Teorhinoplasty Course, Dr. Teoman Dogan — Турция. Сохраняющая и структурная ринопластика — Санкт-Петербург</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2021</div><div class="modal__edu-text">Курсы: орто-фациальная хирургия, контурная пластика (феминизация, маскулинизация), эндоскопическая хирургия</div></div>
+      <div class="modal__patent">Соавтор патента РФ №2741620 «Способ подтяжки шеи» (совместно с Васильевым М.Н. и Искорневым А.А.)</div>
+    </div>
+  </div>
+</div>
+
+<!-- Васильев -->
+<div class="modal-overlay" id="modal-vasilev" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal__close" onclick="document.getElementById('modal-vasilev').classList.remove('open')">✕</button>
+    <div class="modal__left">
+      <div class="photo-placeholder modal__photo">ФОТО</div>
+      <div class="modal__badge">К.М.Н. · ПЛАСТИЧЕСКИЙ ХИРУРГ</div>
+      <div class="modal__name">Васильев Максим Николаевич</div>
+      <div class="modal__price">Первичная <strong>7 000 ₽</strong></div>
+      <div class="modal__price">Повторная 5 000 ₽</div>
+      <a href="#form" class="modal__cta" onclick="document.getElementById('modal-vasilev').classList.remove('open')">Записаться к Васильеву М.Н.</a>
+    </div>
+    <div class="modal__right">
+      <div class="modal__section-title">Специализация</div>
+      <ul class="modal__spec-list">
+        <li>Маммопластика, редукция и подтяжка груди</li>
+        <li>Блефаропластика, миниинвазивный лифтинг бровей</li>
+        <li>Липосакция, липомоделирование</li>
+        <li>Миниабдоминопластика</li>
+        <li>Контурная пластика, плазмотерапия, 3D мезонити</li>
+        <li>Пластика рубцов, удаление новообразований</li>
+      </ul>
+      <div class="modal__section-title">Образование</div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2006–2008</div><div class="modal__edu-text">Ульяновский государственный университет — лечебное дело, интернатура по хирургии</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2011</div><div class="modal__edu-text">Защита диссертации к.м.н. — «Выбор метода герниопластики у больных с послеоперационными вентральными грыжами»</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2013</div><div class="modal__edu-text">1-й МГМУ им. Сеченова — пластическая хирургия. НМХЦ им. Пирогова — хирургия.</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2018</div><div class="modal__edu-text">РНИМУ им. Н.И. Пирогова — пластическая хирургия</div></div>
+      <div class="modal__patent">Соавтор патента РФ №2741620 «Способ подтяжки шеи» (совместно с Мамедовым В.А. и Искорневым А.А.)</div>
+    </div>
+  </div>
+</div>
+
+<!-- Макеенко -->
+<div class="modal-overlay" id="modal-makeenko" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal__close" onclick="document.getElementById('modal-makeenko').classList.remove('open')">✕</button>
+    <div class="modal__left">
+      <div class="photo-placeholder modal__photo">ФОТО</div>
+      <div class="modal__badge">БЛЕФАРОПЛАСТИКА · ЛИПОФИЛИНГ</div>
+      <div class="modal__name">Макеенко Николай Владимирович</div>
+      <div class="modal__price">Первичная <strong>5 000 ₽</strong></div>
+      <div class="modal__price">Повторная 2 500 ₽</div>
+      <a href="#form" class="modal__cta" onclick="document.getElementById('modal-makeenko').classList.remove('open')">Записаться к Макеенко Н.В.</a>
+    </div>
+    <div class="modal__right">
+      <div class="modal__section-title">Специализация</div>
+      <ul class="modal__spec-list">
+        <li>Блефаропластика верхних век</li>
+        <li>Трансконъюнктивальная блефаропластика нижних век (без внешних разрезов)</li>
+        <li>Эндоскопическая подтяжка лба</li>
+        <li>Липофилинг лица и области больших половых губ</li>
+        <li>Лабиопластика</li>
+      </ul>
+      <div class="modal__section-title">Образование</div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2010–2016</div><div class="modal__edu-text">1-й МГМУ им. И.М. Сеченова — лечебное дело</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2016–2018</div><div class="modal__edu-text">НМИЦ здоровья детей — врач-детский хирург</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2018–2020</div><div class="modal__edu-text">1-й МГМУ им. И.М. Сеченова (Сеченовский университет) — ординатура по пластической хирургии</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Марданова -->
+<div class="modal-overlay" id="modal-mardanova" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal__close" onclick="document.getElementById('modal-mardanova').classList.remove('open')">✕</button>
+    <div class="modal__left">
+      <div class="photo-placeholder modal__photo">ФОТО</div>
+      <div class="modal__badge">ПЛАСТИЧЕСКИЙ ХИРУРГ · ОНЛАЙН</div>
+      <div class="modal__name">Марданова Дженнет Мевлютовна</div>
+      <div class="modal__price">Первичная <strong>5 000 ₽</strong></div>
+      <div class="modal__price">Онлайн <strong>3 500 ₽</strong></div>
+      <div class="modal__price">Повторная 2 500 ₽</div>
+      <a href="#form" class="modal__cta" onclick="document.getElementById('modal-mardanova').classList.remove('open')">Записаться к Мардановой Д.М.</a>
+    </div>
+    <div class="modal__right">
+      <div class="modal__section-title">Специализация</div>
+      <ul class="modal__spec-list">
+        <li>Риносептопластика, гениопластика</li>
+        <li>Верхняя и нижняя блефаропластика</li>
+        <li>Эндоскопический лифтинг лба, височный лифтинг</li>
+        <li>SMAS-лифтинг, платизмопластика</li>
+        <li>Удаление комков Биша, липосакция шеи, липофилинг</li>
+        <li>CO₂-лазер: шлифовка рубцов, безоперационная блефаропластика</li>
+        <li>Хирургическое лечение рубцов</li>
+      </ul>
+      <div class="modal__section-title">Образование</div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2016–2022</div><div class="modal__edu-text">1-й МГМУ им. И.М. Сеченова — лечебное дело</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2022–2024</div><div class="modal__edu-text">1-й МГМУ им. И.М. Сеченова — ординатура по пластической хирургии</div></div>
+      <div class="modal__section-title">Конгрессы и конференции</div>
+      <div class="modal__edu-item"><div class="modal__edu-text">X, XI, XII Национальные конгрессы «Пластическая хирургия, эстетическая медицина и косметология» им. Н.О. Миланова (Москва, 2021–2023). Национальные хирургические конгрессы XIV, XV (2022, 2023). Летний конгресс — Санкт-Петербург (2023).</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Бречко -->
+<div class="modal-overlay" id="modal-brechko" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal__close" onclick="document.getElementById('modal-brechko').classList.remove('open')">✕</button>
+    <div class="modal__left">
+      <div class="photo-placeholder modal__photo">ФОТО</div>
+      <div class="modal__badge">БЛЕФАРОПЛАСТИКА · SMAS · CO₂</div>
+      <div class="modal__name">Бречко Мария Александровна</div>
+      <div class="modal__price">Консультация — уточняйте у администратора</div>
+      <a href="#form" class="modal__cta" onclick="document.getElementById('modal-brechko').classList.remove('open')">Записаться к Бречко М.А.</a>
+    </div>
+    <div class="modal__right">
+      <div class="modal__section-title">Специализация</div>
+      <ul class="modal__spec-list">
+        <li>Блефаропластика верхних и нижних век</li>
+        <li>Эндоскопический лифтинг лба</li>
+        <li>SMAS-лифтинг</li>
+        <li>Платизмопластика</li>
+        <li>Удаление комков Биша, липосакция шеи, липофилинг лица</li>
+        <li>Лазерная блефаропластика CO₂ (безоперационная)</li>
+        <li>Коррекция рубцов, удаление новообразований</li>
+      </ul>
+      <div class="modal__section-title">Образование</div>
+      <div class="modal__edu-item"><div class="modal__edu-year">до 2020</div><div class="modal__edu-text">Донецкий национальный медицинский университет — лечебное дело</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2020–2021</div><div class="modal__edu-text">Интернатура по хирургии</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-year">2022–2024</div><div class="modal__edu-text">РНЦХ им. Б.В. Петровского — ординатура по пластической хирургии</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-text">Участник национальных и международных конгрессов по пластической хирургии</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Грицай -->
+<div class="modal-overlay" id="modal-gritsay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal__close" onclick="document.getElementById('modal-gritsay').classList.remove('open')">✕</button>
+    <div class="modal__left">
+      <div class="photo-placeholder modal__photo">ФОТО</div>
+      <div class="modal__badge">ВРАЧ-КОСМЕТОЛОГ</div>
+      <div class="modal__name">Грицай Олеся Анатольевна</div>
+      <div class="modal__price">Первичная <strong>2 000 ₽</strong></div>
+      <div class="modal__price">Повторная 700 ₽</div>
+      <a href="#form" class="modal__cta" onclick="document.getElementById('modal-gritsay').classList.remove('open')">Записаться к Грицай О.А.</a>
+    </div>
+    <div class="modal__right">
+      <div class="modal__section-title">Специализация</div>
+      <ul class="modal__spec-list">
+        <li>Ботулинотерапия (Диспорт, Ксеомин, Миотокс)</li>
+        <li>Контурная пластика, работа с филлерами</li>
+        <li>Биоревитализация, биоармирование</li>
+        <li>Бланширование</li>
+        <li>SMAS-подтяжка (аппаратная)</li>
+        <li>Лазеротерапия, фотоомоложение</li>
+      </ul>
+      <div class="modal__section-title">Образование</div>
+      <div class="modal__edu-item"><div class="modal__edu-text">КГМУ — ординатура по дерматовенерологии</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-text">Стажировка в медицинских организациях и клиниках Германии</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-text">Специализации: лазерная дерматовенерология и косметология, трихология, косметология</div></div>
+      <div class="modal__edu-item"><div class="modal__edu-text">Диплом «Специализация по организации здравоохранения и общественного здоровья»</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__cols">
+      <div>
+        <div class="footer__brand">The Platinental</div>
+        <p class="footer__brand-desc">Американский бренд эстетической медицины. Казань с 2011 года.</p>
+        <p class="footer__brand-desc" style="margin-top:12px;">+7 843 223-66-66<br>WhatsApp: +7 965 612-28-88<br>Пн–вс 9:00–20:00</p>
+      </div>
+      <div></div>
+      <div>
+        <div class="footer__col-title">Услуги</div>
+        <ul class="footer__links">
+          <li><a href="/plastika">Пластическая хирургия</a></li>
+          <li><a href="/kosmetologiya">Косметология</a></li>
+          <li><a href="/kosmecevtika">Космецевтика</a></li>
+          <li><a href="/prices">Цены</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Клиника</div>
+        <ul class="footer__links">
+          <li><a href="/about">О клинике</a></li>
+          <li><a href="/doctors" style="color:var(--cream);">Врачи</a></li>
+          <li><a href="/documents">Документы</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <span class="footer__legal-item">© 2026 ООО «Платинентал Казань» · ЛО-16-01-003022</span>
+      <span class="footer__legal-item">Имеются противопоказания. Необходима консультация специалиста.</span>
+      <span class="footer__legal-item"><a href="/documents">Политика конфиденциальности</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ icons
+document.querySelectorAll('details').forEach(d => {
+  d.addEventListener('toggle', () => {
+    const icon = d.querySelector('.faq__icon');
+    if (icon) icon.textContent = d.open ? '−' : '+';
+  });
+});
+// Filter tabs (visual only)
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+// Doctor card toggles
+document.querySelectorAll('.doctor-card__toggle').forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    const full = toggle.nextElementSibling;
+    if (full) {
+      full.classList.toggle('open');
+      toggle.textContent = full.classList.contains('open')
+        ? 'Скрыть ↑'
+        : 'Подробнее об образовании ↓';
+    }
+  });
+});
+</script>
+</body>
+</html>

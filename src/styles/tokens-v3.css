@@ -1,0 +1,359 @@
+/*
+ * Platinental v3 — Design Tokens
+ * Откалиброванная палитра по docs/design-research/00-synthesis-v2.md.
+ * Префикс --v3-* — чтобы не конфликтовало с прототипом (--color-*, --text-*).
+ * Применяется только внутри [data-v3] контейнера.
+ */
+
+[data-v3] {
+  /* ── Surfaces ─────────────────────────────────────────────────── */
+  --v3-cream: #FFFEF2;          /* primary bg — warm cream (Aesop) */
+  --v3-cream-alt: #FAF6EE;      /* раздел/панель чуть тёплее */
+  --v3-sand: #F5F0EB;           /* alt section bg */
+  --v3-sand-deep: #EAE2D7;      /* hairline sections */
+  --v3-ink: #1A1F2A;            /* primary text — warm dark */
+  --v3-white: #FFFFFF;
+
+  /* Ink tones */
+  --v3-ink-secondary: #4A4F5C;
+  --v3-ink-muted: #8A8E96;
+  --v3-ink-faint: #B5B8BD;
+
+  /* Inverse ink (для тёмных секций) */
+  --v3-on-ink: #FFFEF2;
+  --v3-on-ink-secondary: rgba(255, 254, 242, 0.72);
+  --v3-on-ink-muted: rgba(255, 254, 242, 0.50);
+
+  /* ── Accent — champagne ───────────────────────────────────────── */
+  --v3-champagne: #C4A882;
+  --v3-champagne-soft: #DECCB0;
+  --v3-champagne-deep: #A88B66;
+
+  /* ── Borders ──────────────────────────────────────────────────── */
+  --v3-border-hair: #E8E2D6;     /* почти невидимый hairline */
+  --v3-border-soft: #D6CFC4;
+  --v3-border-strong: #1A1F2A;
+  --v3-border-on-ink: rgba(255, 254, 242, 0.18);
+
+  /* ── Typography families ──────────────────────────────────────── */
+  --v3-font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --v3-font-body: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
+
+  /* ── Type scale (fluid) ───────────────────────────────────────── */
+  --v3-text-display: clamp(3rem, 7vw, 6rem);          /* 48 → 96 — direction headings */
+  --v3-text-h1:      clamp(2.5rem, 6vw, 5rem);        /* 40 → 80 — hero */
+  --v3-text-h2:      clamp(1.75rem, 3.5vw, 3rem);     /* 28 → 48 — section H2 */
+  --v3-text-h3:      clamp(1.125rem, 1.6vw, 1.5rem);  /* 18 → 24 — sub-headers */
+  --v3-text-lead:    clamp(1.125rem, 1.5vw, 1.375rem);/* 18 → 22 — lead */
+  --v3-text-body:    clamp(0.9375rem, 1vw, 1rem);     /* 15 → 16 — body */
+  --v3-text-small: 0.875rem;                         /* 14 */
+  --v3-text-eyebrow: clamp(0.75rem, 0.9vw, 0.875rem);/* 12 → 14 caps */
+  --v3-text-caption: 0.75rem;                        /* 12 */
+
+  /* ── Leading ──────────────────────────────────────────────────── */
+  --v3-leading-display: 1.05;
+  --v3-leading-h1: 1.05;
+  --v3-leading-h2: 1.10;
+  --v3-leading-h3: 1.30;
+  --v3-leading-lead: 1.50;
+  --v3-leading-body: 1.65;     /* generous для кириллицы */
+
+  /* ── Tracking ─────────────────────────────────────────────────── */
+  --v3-tracking-display: -0.005em;
+  --v3-tracking-h1: -0.005em;
+  --v3-tracking-h2: 0;
+  --v3-tracking-body: 0.005em;
+  --v3-tracking-eyebrow: 0.20em;   /* SIGNATURE */
+
+  /* ── Containers ───────────────────────────────────────────────── */
+  --v3-container-narrow: 45rem;     /* 720px — monument cards */
+  --v3-container-default: 68.75rem; /* 1100px — editorial */
+  --v3-container-wide: 80rem;       /* 1280px — hero */
+  --v3-gutter: clamp(1.25rem, 3vw, 3rem); /* 20 → 48 */
+
+  /* ── Three-tier section rhythm ────────────────────────────────── */
+  --v3-gap-small:  clamp(3rem, 6vh, 5rem);      /* 48 → 80  — между связанными блоками */
+  --v3-gap-medium: clamp(5rem, 10vh, 8rem);     /* 80 → 128 — между секциями */
+  --v3-gap-deep:   clamp(7rem, 14vh, 11rem);    /* 112 → 176 — direction transitions */
+
+  /* ── Element gaps ─────────────────────────────────────────────── */
+  --v3-gap-eyebrow-h1: 0.625rem;
+  --v3-gap-h1-lead: clamp(0.875rem, 1.5vw, 1.5rem);
+  --v3-gap-h2-body: clamp(1rem, 1.5vw, 1.75rem);
+  --v3-gap-content-cta: clamp(1.25rem, 2vw, 2rem);
+
+  /* ── Hero text column ─────────────────────────────────────────── */
+  --v3-hero-text-max: clamp(20rem, 40vw, 40rem);
+
+  /* ── Motion ───────────────────────────────────────────────────── */
+  --v3-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --v3-ease-power3: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --v3-duration-fast: 200ms;
+  --v3-duration-base: 400ms;
+  --v3-duration-slow: 800ms;
+  --v3-duration-deep: 1200ms;
+
+  /* ── Z layers ─────────────────────────────────────────────────── */
+  --v3-z-nav: 50;
+  --v3-z-overlay: 100;
+}
+
+/* ── Base setup внутри v3 ──────────────────────────────────────── */
+[data-v3] {
+  background: var(--v3-cream);
+  color: var(--v3-ink);
+  font-family: var(--v3-font-body);
+  font-size: var(--v3-text-body);
+  line-height: var(--v3-leading-body);
+  letter-spacing: var(--v3-tracking-body);
+  font-feature-settings: 'ss01', 'cv11', 'kern';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Reusable utility classes (v3-scoped) ──────────────────────── */
+[data-v3] .v3-eyebrow {
+  font-family: var(--v3-font-body);
+  font-size: var(--v3-text-eyebrow);
+  font-weight: 400;
+  letter-spacing: var(--v3-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--v3-ink-secondary);
+  display: block;
+}
+
+[data-v3] .v3-h1 {
+  font-family: var(--v3-font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--v3-text-h1);
+  line-height: var(--v3-leading-h1);
+  letter-spacing: var(--v3-tracking-h1);
+  color: var(--v3-ink);
+  margin: 0;
+  hyphens: manual;
+}
+
+[data-v3] .v3-h2 {
+  font-family: var(--v3-font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--v3-text-h2);
+  line-height: var(--v3-leading-h2);
+  letter-spacing: var(--v3-tracking-h2);
+  color: var(--v3-ink);
+  margin: 0;
+  hyphens: manual;
+}
+
+[data-v3] .v3-display {
+  font-family: var(--v3-font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--v3-text-display);
+  line-height: var(--v3-leading-display);
+  letter-spacing: var(--v3-tracking-display);
+  color: var(--v3-ink);
+  margin: 0;
+  hyphens: manual;
+}
+
+[data-v3] .v3-h3 {
+  font-family: var(--v3-font-body);
+  font-weight: 500;
+  font-size: var(--v3-text-h3);
+  line-height: var(--v3-leading-h3);
+  letter-spacing: var(--v3-tracking-h2);
+  color: var(--v3-ink);
+  margin: 0;
+}
+
+[data-v3] .v3-lead {
+  font-family: var(--v3-font-body);
+  font-weight: 400;
+  font-size: var(--v3-text-lead);
+  line-height: var(--v3-leading-lead);
+  color: var(--v3-ink-secondary);
+  margin: 0;
+}
+
+[data-v3] .v3-body {
+  font-family: var(--v3-font-body);
+  font-size: var(--v3-text-body);
+  line-height: var(--v3-leading-body);
+  color: var(--v3-ink-secondary);
+  margin: 0;
+}
+
+[data-v3] .v3-small {
+  font-size: var(--v3-text-small);
+  line-height: var(--v3-leading-body);
+  color: var(--v3-ink-muted);
+}
+
+[data-v3] .v3-caption {
+  font-size: var(--v3-text-caption);
+  line-height: 1.4;
+  color: var(--v3-ink-muted);
+  letter-spacing: var(--v3-tracking-eyebrow);
+  text-transform: uppercase;
+}
+
+/* ── Surface modifiers ────────────────────────────────────────── */
+[data-v3] .v3-surface-cream {
+  background: var(--v3-cream);
+  color: var(--v3-ink);
+}
+[data-v3] .v3-surface-sand {
+  background: var(--v3-sand);
+  color: var(--v3-ink);
+}
+[data-v3] .v3-surface-ink {
+  background: var(--v3-ink);
+  color: var(--v3-on-ink);
+}
+[data-v3] .v3-surface-ink .v3-eyebrow,
+[data-v3] .v3-surface-ink .v3-body,
+[data-v3] .v3-surface-ink .v3-lead {
+  color: var(--v3-on-ink-secondary);
+}
+[data-v3] .v3-surface-ink .v3-h1,
+[data-v3] .v3-surface-ink .v3-h2,
+[data-v3] .v3-surface-ink .v3-h3,
+[data-v3] .v3-surface-ink .v3-display {
+  color: var(--v3-on-ink);
+}
+
+/* ── Section rhythm helpers ───────────────────────────────────── */
+[data-v3] .v3-section {
+  padding-top: var(--v3-gap-medium);
+  padding-bottom: var(--v3-gap-medium);
+}
+[data-v3] .v3-section-deep {
+  padding-top: var(--v3-gap-deep);
+  padding-bottom: var(--v3-gap-deep);
+}
+[data-v3] .v3-section-tight {
+  padding-top: var(--v3-gap-small);
+  padding-bottom: var(--v3-gap-small);
+}
+
+/* ── Container ────────────────────────────────────────────────── */
+[data-v3] .v3-container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--v3-gutter);
+}
+[data-v3] .v3-container-narrow {
+  max-width: var(--v3-container-narrow);
+}
+[data-v3] .v3-container-default {
+  max-width: var(--v3-container-default);
+}
+[data-v3] .v3-container-wide {
+  max-width: var(--v3-container-wide);
+}
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+[data-v3] .v3-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--v3-font-body);
+  font-size: var(--v3-text-body);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding: 1rem 2rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background var(--v3-duration-base) var(--v3-ease-out),
+              color var(--v3-duration-base) var(--v3-ease-out),
+              border-color var(--v3-duration-base) var(--v3-ease-out);
+  text-decoration: none;
+  border-radius: 0;
+}
+[data-v3] .v3-btn-primary {
+  background: var(--v3-champagne);
+  color: var(--v3-ink);
+}
+[data-v3] .v3-btn-primary:hover {
+  background: var(--v3-champagne-deep);
+  color: var(--v3-on-ink);
+}
+[data-v3] .v3-btn-ghost {
+  background: transparent;
+  color: var(--v3-ink);
+  border-color: var(--v3-border-strong);
+}
+[data-v3] .v3-btn-ghost:hover {
+  background: var(--v3-ink);
+  color: var(--v3-on-ink);
+}
+[data-v3] .v3-surface-ink .v3-btn-ghost {
+  color: var(--v3-on-ink);
+  border-color: var(--v3-border-on-ink);
+}
+[data-v3] .v3-surface-ink .v3-btn-ghost:hover {
+  background: var(--v3-on-ink);
+  color: var(--v3-ink);
+  border-color: var(--v3-on-ink);
+}
+
+/* Text-link CTA — Lanserhof style */
+[data-v3] .v3-link {
+  color: var(--v3-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--v3-ink);
+  padding-bottom: 0.125rem;
+  transition: color var(--v3-duration-fast) var(--v3-ease-out),
+              border-color var(--v3-duration-fast) var(--v3-ease-out);
+}
+[data-v3] .v3-link:hover {
+  color: var(--v3-champagne-deep);
+  border-color: var(--v3-champagne-deep);
+}
+[data-v3] .v3-surface-ink .v3-link {
+  color: var(--v3-on-ink);
+  border-color: var(--v3-on-ink);
+}
+[data-v3] .v3-surface-ink .v3-link:hover {
+  color: var(--v3-champagne);
+  border-color: var(--v3-champagne);
+}
+
+/* ── Reveal ───────────────────────────────────────────────────── */
+[data-v3] [data-v3-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--v3-duration-deep) var(--v3-ease-out),
+              transform var(--v3-duration-deep) var(--v3-ease-out);
+}
+[data-v3] [data-v3-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-v3] [data-v3-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  [data-v3] * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Hairline rule ────────────────────────────────────────────── */
+[data-v3] .v3-hairline {
+  border: 0;
+  border-top: 1px solid var(--v3-border-hair);
+  margin: 0;
+}
+[data-v3] .v3-surface-ink .v3-hairline {
+  border-top-color: var(--v3-border-on-ink);
+}

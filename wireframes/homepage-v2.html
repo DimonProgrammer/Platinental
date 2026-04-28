@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platinental Казань — клиника пластической хирургии и косметологии</title>
+<meta name="description" content="Клиника Platinental в Казани. Ринопластика от 200 000 ₽, маммопластика от 450 000 ₽, ботокс от 150 ₽/ед. Американский бренд, 8 хирургов. Запись: +7 843 223-66-66.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ─── DESIGN TOKENS ─── */
+  :root {
+    --cream: #FFFDF8;
+    --warm-grey: #F5F0EB;
+    --dark: #0A0A0A;
+    --dark-2: #1A1A18;
+    --gold: #B8956A;
+    --gold-light: #D4B896;
+    --text-primary: #0A0A0A;
+    --text-muted: #6B6560;
+    --text-light: rgba(255,253,248,0.7);
+    --border: rgba(10,10,10,0.1);
+    --border-light: rgba(255,253,248,0.12);
+
+    --font-display: 'Lora', serif;
+    --font-body: 'Open Sans', sans-serif;
+
+    --max-w: 1200px;
+    --pad: 120px;
+  }
+
+  /* ─── RESET ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-primary);
+    background: var(--cream);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ─── UTILITIES ─── */
+  .container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+  }
+  .section { padding: 96px 0; }
+  .section--grey { background: var(--warm-grey); }
+  .section--dark { background: var(--dark-2); color: var(--cream); }
+
+  .label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .label--light { color: var(--gold-light); }
+  .label--muted { color: var(--text-muted); }
+
+  .h1 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .h2 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(32px, 3.5vw, 52px);
+    line-height: 1.15;
+    text-align: center;
+  }
+  .h3 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 2.5vw, 32px);
+    line-height: 1.2;
+  }
+  .price {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 36px;
+    color: var(--gold);
+  }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+  }
+  .btn--gold {
+    background: var(--gold);
+    color: #fff;
+  }
+  .btn--gold:hover { background: #a07e5a; }
+  .btn--outline-light {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid rgba(255,253,248,0.4);
+  }
+  .btn--outline-light:hover {
+    border-color: rgba(255,253,248,0.8);
+    background: rgba(255,253,248,0.06);
+  }
+  .btn--outline-dark {
+    background: transparent;
+    color: var(--dark);
+    border: 1px solid rgba(10,10,10,0.25);
+  }
+  .btn--outline-dark:hover { border-color: var(--gold); color: var(--gold); }
+
+  .link-arrow {
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s ease;
+  }
+  .link-arrow:hover { gap: 8px; }
+
+  /* ─── PLACEHOLDER ─── */
+  .photo-placeholder {
+    background: #2a2826;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.15);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .photo-placeholder--light {
+    background: #E8E4DE;
+    color: rgba(10,10,10,0.2);
+  }
+
+  /* ══════════════════════════════════════════
+     HEADER
+  ══════════════════════════════════════════ */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 64px;
+    background: var(--dark-2);
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+  }
+  .header__inner {
+    max-width: calc(var(--max-w) + 240px);
+    margin: 0 auto;
+    padding: 0 48px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .header__logo {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+    margin-right: auto;
+  }
+  .header__logo span { color: var(--gold-light); }
+  .header__nav {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    margin-right: 40px;
+  }
+  .header__nav a {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,253,248,0.65);
+    letter-spacing: 0.02em;
+    transition: color 0.15s;
+  }
+  .header__nav a:hover { color: var(--cream); }
+  .header__dropdown {
+    position: relative;
+  }
+  .header__dropdown-menu {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: -12px;
+    background: var(--dark);
+    border: 1px solid var(--border-light);
+    padding: 8px 0;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: all 0.15s ease;
+    z-index: 20;
+  }
+  .header__dropdown:hover .header__dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .header__dropdown-menu a {
+    display: block;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: rgba(255,253,248,0.6);
+    transition: all 0.1s;
+  }
+  .header__dropdown-menu a:hover {
+    color: var(--cream);
+    background: rgba(255,253,248,0.04);
+  }
+  .header__phone {
+    font-size: 13px;
+    color: rgba(255,253,248,0.65);
+    margin-right: 24px;
+    letter-spacing: 0.01em;
+  }
+  .header__cta {
+    font-size: 12px;
+    padding: 10px 22px;
+  }
+
+  /* ══════════════════════════════════════════
+     HERO
+  ══════════════════════════════════════════ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    background: var(--dark-2);
+    display: flex;
+    flex-direction: column;
+    padding-top: 64px;
+  }
+  .hero__photo {
+    position: absolute;
+    inset: 64px 0 0 0;
+    overflow: hidden;
+  }
+  .hero__photo-inner {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1815 0%, #0d0c0a 60%, #1c1a17 100%);
+  }
+  /* Subtle texture on hero */
+  .hero__photo-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 65% 40%, rgba(184,149,106,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(184,149,106,0.04) 0%, transparent 50%);
+  }
+  .hero__overlay {
+    position: absolute;
+    inset: 64px 0 0 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.75) 100%);
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0;
+  }
+  .hero__inner {
+    padding: 80px 48px 80px var(--pad);
+    max-width: 680px;
+  }
+  .hero__image {
+    height: 100%;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero__image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, rgba(184,149,106,0.15) 0%, rgba(10,10,10,0.3) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,253,248,0.15);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .hero__eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 24px;
+  }
+  .hero__h1 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 1.1;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+  .hero__sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,253,248,0.6);
+    letter-spacing: 0.01em;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .hero__sub--large {
+    font-size: 19px;
+    font-weight: 400;
+    color: rgba(255,253,248,0.7);
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+  .hero__cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* Stats strip */
+  .hero__stats {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--border-light);
+    background: rgba(10,10,10,0.5);
+    backdrop-filter: blur(8px);
+    padding: 18px 48px;
+  }
+  .hero__stats-inner {
+    max-width: calc(var(--max-w) + 240px);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  .hero__stat {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex: 1;
+    justify-content: center;
+  }
+  .hero__stat-text {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,253,248,0.55);
+    letter-spacing: 0.03em;
+  }
+  .tooltip-wrap {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dotted rgba(255,253,248,0.25);
+  }
+  .tooltip-wrap:hover .tooltip-box { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .tooltip-box {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: var(--cream);
+    color: var(--text-primary);
+    padding: 14px 18px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    width: 300px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    pointer-events: none;
+    z-index: 10;
+  }
+  .tooltip-box::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--cream);
+  }
+  .hero__stat-divider {
+    width: 1px;
+    height: 18px;
+    background: var(--border-light);
+    flex-shrink: 0;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION: THREE DIRECTIONS
+  ══════════════════════════════════════════ */
+  .directions__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+  .direction-card {
+    background: #fff;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .direction-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(10,10,10,0.1);
+  }
+  .direction-card__photo {
+    height: 240px;
+    width: 100%;
+  }
+  .direction-card__body {
+    padding: 28px;
+  }
+  .direction-card__title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 32px;
+    font-weight: 400;
+    margin: 0 0 16px;
+    line-height: 1.2;
+  }
+  .direction-card__text {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION: PRINCIPLES
+  ══════════════════════════════════════════ */
+  .principles__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 56px;
+  }
+  .principle-card {
+    background: var(--cream);
+    padding: 36px 28px 40px;
+  }
+  .principle-card__num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 20px;
+    line-height: 1;
+    opacity: 0.7;
+  }
+  .principle-card__title {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin-bottom: 12px;
+  }
+  .principle-card__text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION: PROCEDURES
+  ══════════════════════════════════════════ */
+  .section__header-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+  }
+  .procedures__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .procedure-card {
+    background: #fff;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+  }
+  .procedure-card:hover { box-shadow: 0 12px 32px rgba(10,10,10,0.08); }
+  .procedure-card__photo {
+    height: 200px;
+    width: 100%;
+  }
+  .procedure-card__body {
+    padding: 20px 22px 24px;
+  }
+  .procedure-card__name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 400;
+    margin: 10px 0 4px;
+    line-height: 1.2;
+  }
+  .procedure-card__price {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 28px;
+    color: var(--gold);
+    margin: 8px 0 12px;
+  }
+  .procedure-card__desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+  .disclaimer-small {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    opacity: 0.7;
+    margin-top: 32px;
+    letter-spacing: 0.01em;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION: ABOUT
+  ══════════════════════════════════════════ */
+  .about__numbers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    padding-bottom: 72px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 72px;
+  }
+  .about__num-item {
+    position: relative;
+    padding-right: 40px;
+  }
+  .about__num-item + .about__num-item {
+    padding-left: 40px;
+    border-left: 1px solid var(--border);
+  }
+  .about__num-big {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 72px;
+    line-height: 1;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .about__num-label {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .about__split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about__text-body {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+  .about__quote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.45;
+    border-left: 2px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 32px;
+  }
+  .about__photo {
+    height: 380px;
+    width: 100%;
+    border-radius: 2px;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION: DOCTORS
+  ══════════════════════════════════════════ */
+  .doctors__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 0;
+  }
+  .doctor-card {
+    background: #fff;
+    overflow: hidden;
+  }
+  .doctor-card__photo {
+    height: 300px;
+    width: 100%;
+  }
+  .doctor-card__body {
+    padding: 20px 22px 24px;
+  }
+  .doctor-card__spec {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .doctor-card__name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .doctor-card__price {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+  .doctor-card__btn {
+    width: 100%;
+    display: block;
+    text-align: center;
+    background: var(--gold);
+    color: #fff;
+    padding: 11px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .doctor-card__btn:hover { background: #a07e5a; }
+  .doctors__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .doctors__also {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    max-width: 680px;
+    line-height: 1.6;
+  }
+  .section__header-row .h2 { margin-bottom: 0; }
+
+  /* ══════════════════════════════════════════
+     SECTION: BEFORE/AFTER
+  ══════════════════════════════════════════ */
+  .ba__carousel-wrap {
+    position: relative;
+    margin-top: 48px;
+  }
+  .ba__grid {
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .ba__grid::-webkit-scrollbar { display: none; }
+  .ba__grid > div {
+    flex: 0 0 calc(33.333% - 2px);
+    scroll-snap-align: start;
+  }
+  .ba__nav {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    top: -56px;
+    right: 0;
+  }
+  .ba__nav-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .ba__nav-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .ba-card__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .ba-card__half {
+    height: 260px;
+    position: relative;
+  }
+  .ba-card__half-label {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    z-index: 2;
+  }
+  .ba-card__label {
+    padding: 14px 16px;
+    font-size: 14px;
+    font-family: var(--font-display);
+    font-style: italic;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-top: none;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION: REVIEWS
+  ══════════════════════════════════════════ */
+  .reviews__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+  }
+  .review-card {
+    background: #fff;
+    padding: 32px 28px;
+  }
+  .review-card__stars {
+    font-size: 14px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+  .review-card__text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-style: italic;
+    font-family: var(--font-display);
+    font-size: 17px;
+  }
+  .review-card__author {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .review-card__author span {
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION: FORM
+  ══════════════════════════════════════════ */
+  .form-section {
+    background: var(--dark-2);
+    color: var(--cream);
+    padding: 96px 0;
+  }
+  .form-section__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .form-section__label-text {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,253,248,0.55);
+    margin-top: 24px;
+    line-height: 1.7;
+  }
+  .form-section__note {
+    font-size: 12px;
+    color: rgba(255,253,248,0.35);
+    margin-top: 16px;
+  }
+  .form__field {
+    margin-bottom: 12px;
+  }
+  .form__input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255,253,248,0.06);
+    border: 1px solid rgba(255,253,248,0.12);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .form__input:focus { border-color: var(--gold); }
+  .form__input::placeholder { color: rgba(255,253,248,0.3); }
+  .form__textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  .form__checkbox-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin: 16px 0 20px;
+  }
+  .form__checkbox-row input { margin-top: 3px; flex-shrink: 0; accent-color: var(--gold); }
+  .form__checkbox-label {
+    font-size: 12px;
+    color: rgba(255,253,248,0.45);
+    line-height: 1.5;
+  }
+  .form__submit {
+    width: 100%;
+    padding: 15px 24px;
+    background: var(--gold);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+  }
+  .form__submit:hover { background: #a07e5a; }
+
+  /* ══════════════════════════════════════════
+     SECTION: FAQ
+  ══════════════════════════════════════════ */
+  .faq__list {
+    margin-top: 56px;
+  }
+  .faq__item {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    font-size: 17px;
+    font-weight: 400;
+    cursor: pointer;
+    gap: 24px;
+    transition: color 0.15s;
+    list-style: none;
+  }
+  .faq__question:hover { color: var(--gold); }
+  .faq__icon {
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--gold);
+    flex-shrink: 0;
+    line-height: 1;
+    transition: transform 0.2s;
+  }
+  details[open] .faq__icon { transform: rotate(45deg); }
+  .faq__answer {
+    padding: 0 0 24px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 800px;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION: CONTACTS
+  ══════════════════════════════════════════ */
+  .contacts__inner {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .contact-item {
+    margin-bottom: 28px;
+  }
+  .contact-item__label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .contact-item__value {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text-primary);
+  }
+  .map-placeholder {
+    height: 420px;
+    position: relative;
+  }
+  .map-placeholder__inner {
+    width: 100%;
+    height: 100%;
+    background: var(--warm-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ══════════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════════ */
+  .footer {
+    background: var(--dark-2);
+    color: var(--cream);
+    padding: 64px 0 32px;
+  }
+  .footer__cols {
+    display: grid;
+    grid-template-columns: 320px 1fr auto auto;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 32px;
+  }
+  .footer__brand {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--cream);
+    margin-bottom: 14px;
+  }
+  .footer__brand-desc {
+    font-size: 13px;
+    color: rgba(255,253,248,0.4);
+    line-height: 1.6;
+    max-width: 240px;
+  }
+  .footer__col-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,253,248,0.3);
+    margin-bottom: 16px;
+  }
+  .footer__links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer__links a {
+    font-size: 14px;
+    color: rgba(255,253,248,0.55);
+    transition: color 0.15s;
+  }
+  .footer__links a:hover { color: var(--cream); }
+  .footer__legal {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .footer__legal-item {
+    font-size: 11.5px;
+    color: rgba(255,253,248,0.25);
+    letter-spacing: 0.01em;
+  }
+  .footer__legal-item a { transition: color 0.15s; }
+  .footer__legal-item a:hover { color: rgba(255,253,248,0.6); }
+</style>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════ -->
+<header class="header">
+  <div class="header__inner">
+    <a href="/" class="header__logo">The <span>Platinental</span></a>
+    <nav>
+      <ul class="header__nav">
+        <li class="header__dropdown">
+          <a href="#directions">Услуги ▾</a>
+          <div class="header__dropdown-menu">
+            <a href="/plastika">Пластическая хирургия</a>
+            <a href="/kosmetologiya">Косметология</a>
+            <a href="/kosmecevtika">Космецевтика</a>
+          </div>
+        </li>
+        <li><a href="#doctors">Врачи</a></li>
+        <li><a href="/about">О клинике</a></li>
+        <li><a href="/prices">Цены</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <span class="header__phone">+7 843 223-66-66</span>
+    <a href="#form" class="btn btn--gold btn--small header__cta">Записаться</a>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero__photo">
+    <div class="hero__photo-inner"></div>
+  </div>
+  <div class="hero__overlay"></div>
+
+  <div class="hero__content">
+    <div class="hero__inner">
+      <p class="hero__eyebrow">THE PLATINENTAL · КАЗАНЬ</p>
+      <h1 class="hero__h1">
+        Клиника пластической хирургии и&nbsp;косметологии в&nbsp;Казани
+      </h1>
+      <p class="hero__sub hero__sub--large">
+        Авторские методики без шаблонов.<br>Американский бренд эстетической медицины Platinental.
+      </p>
+      <div class="hero__cta">
+        <a href="#form" class="btn btn--gold">Записаться на консультацию</a>
+        <a href="/prices" class="btn btn--outline-light">Узнать стоимость</a>
+      </div>
+    </div>
+    <div class="hero__image">
+      <div class="hero__image-placeholder">ФОТО ВРАЧА / ИНТЕРЬЕР</div>
+    </div>
+  </div>
+
+  <div class="hero__stats">
+    <div class="hero__stats-inner">
+      <div class="hero__stat">
+        <span class="hero__stat-text">Результат, который выглядит вашим</span>
+      </div>
+      <div class="hero__stat-divider"></div>
+      <div class="hero__stat">
+        <span class="hero__stat-text tooltip-wrap">Аккредитация ASPS, ISAPS
+          <span class="tooltip-box">Американское общество пластических хирургов (ASPS) и Международное общество эстетической пластической хирургии (ISAPS) — главные профессиональные организации в мире. Членство подтверждает квалификацию хирурга на международном уровне.</span>
+        </span>
+      </div>
+      <div class="hero__stat-divider"></div>
+      <div class="hero__stat">
+        <span class="hero__stat-text">С 2011 в Казани</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ТРИ НАПРАВЛЕНИЯ
+══════════════════════════════════════════ -->
+<section class="section" id="directions">
+  <div class="container">
+    <div class="directions__grid">
+
+      <div class="direction-card">
+        <div class="photo-placeholder direction-card__photo">ФОТО УСЛУГИ</div>
+        <div class="direction-card__body">
+          <div class="direction-card__title">Пластическая хирургия</div>
+          <p class="direction-card__text">Мы не делаем «бразильские» ягодицы и не «увеличиваем» грудь. Мы предлагаем индивидуальный дизайн форм, которые органично вписываются в исходные параметры — никакого «сделанного» эффекта. 27 видов операций.</p>
+          <a href="/plastika" class="link-arrow">Все операции →</a>
+        </div>
+      </div>
+
+      <div class="direction-card">
+        <div class="photo-placeholder direction-card__photo">ФОТО УСЛУГИ</div>
+        <div class="direction-card__body">
+          <div class="direction-card__title">Косметология</div>
+          <p class="direction-card__text">Ботокс, контурная пластика, CO₂-лазер, HELEO4. Врач-косметолог работает в связке с хирургом — видит вас в комплексе, не по одной процедуре.</p>
+          <a href="/kosmetologiya" class="link-arrow">Все процедуры →</a>
+        </div>
+      </div>
+
+      <div class="direction-card">
+        <div class="photo-placeholder direction-card__photo">ФОТО УСЛУГИ</div>
+        <div class="direction-card__body">
+          <div class="direction-card__title">Космецевтика</div>
+          <p class="direction-card__text">Профессиональная косметика под конкретную задачу: реабилитация после операции, поддержание результата, ежедневный уход. Индивидуальный подбор со специалистом.</p>
+          <a href="/kosmecevtika" class="link-arrow">Каталог →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ЧЕТЫРЕ ПРИНЦИПА
+══════════════════════════════════════════ -->
+<section class="section section--grey">
+  <div class="container">
+    <h2 class="h2">Почему Platinental</h2>
+    <div class="principles__grid">
+
+      <div class="principle-card">
+        <div class="principle-card__num">01</div>
+        <div class="principle-card__title">Гармонизирующий подход</div>
+        <p class="principle-card__text">Основатель Platinental Андрей Искорнев разработал собственную систему: хирург не меняет внешность — он усиливает то, что уже есть. Сначала замеры и проект, потом операция.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-card__num">02</div>
+        <div class="principle-card__title">Авторские методики</div>
+        <p class="principle-card__text">10+ запатентованных техник. Все хирурги казанского филиала работают по единой методологии бренда.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-card__num">03</div>
+        <div class="principle-card__title">Квалификация</div>
+        <p class="principle-card__text">Хирурги высшей квалификации с международным опытом. Ординатура в РНИМУ Пирогова, Сеченовском университете, РНЦХ Петровского. Членство в ASPS и ISAPS.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-card__num">04</div>
+        <div class="principle-card__title">Хирург + косметолог</div>
+        <p class="principle-card__text">Хирург и косметолог ведут пациента вместе — от первой консультации до реабилитации и поддержания результата.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ЧАЩЕ ВСЕГО ВЫБИРАЮТ
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section__header-row">
+      <h2 class="h2">Чаще всего выбирают</h2>
+      <a href="/plastika" class="link-arrow">Все процедуры →</a>
+    </div>
+    <div class="procedures__grid">
+
+      <div class="procedure-card">
+        <div class="photo-placeholder procedure-card__photo">ФОТО</div>
+        <div class="procedure-card__body">
+          <span class="label label--muted">Пластика лица</span>
+          <div class="procedure-card__name">Ринопластика</div>
+          <div class="procedure-card__price">от 200 000 ₽</div>
+          <p class="procedure-card__desc">Проектируется по замерам лица — результат органично впишется в вашу внешность.</p>
+          <a href="/plastika#rinoplastika" class="link-arrow">Подробнее →</a>
+        </div>
+      </div>
+
+      <div class="procedure-card">
+        <div class="photo-placeholder procedure-card__photo">ФОТО</div>
+        <div class="procedure-card__body">
+          <span class="label label--muted">Пластика тела</span>
+          <div class="procedure-card__name">Маммопластика</div>
+          <div class="procedure-card__price">от 450 000 ₽</div>
+          <p class="procedure-card__desc">Индивидуальный дизайн молочной железы, подбор протеза.</p>
+          <a href="/plastika#mammoplastika" class="link-arrow">Подробнее →</a>
+        </div>
+      </div>
+
+      <div class="procedure-card">
+        <div class="photo-placeholder procedure-card__photo">ФОТО</div>
+        <div class="procedure-card__body">
+          <span class="label label--muted">Пластика лица</span>
+          <div class="procedure-card__name">Блефаропластика</div>
+          <div class="procedure-card__price">от 60 000 ₽</div>
+          <p class="procedure-card__desc">Верхних и нижних век. Лазерная и хирургическая методика.</p>
+          <a href="/plastika#blefaroplastika" class="link-arrow">Подробнее →</a>
+        </div>
+      </div>
+
+      <div class="procedure-card">
+        <div class="photo-placeholder procedure-card__photo">ФОТО</div>
+        <div class="procedure-card__body">
+          <span class="label label--muted">Косметология</span>
+          <div class="procedure-card__name">Ботокс</div>
+          <div class="procedure-card__price">от 150 ₽/ед.</div>
+          <p class="procedure-card__desc">Диспорт, Миотокс, Ксеомин. Эффект через 3–14 дней, длится 4–6 месяцев.</p>
+          <a href="/kosmetologiya#botox" class="link-arrow">Подробнее →</a>
+        </div>
+      </div>
+
+      <div class="procedure-card">
+        <div class="photo-placeholder procedure-card__photo">ФОТО</div>
+        <div class="procedure-card__body">
+          <span class="label label--muted">Косметология</span>
+          <div class="procedure-card__name">Контурная пластика</div>
+          <div class="procedure-card__price">от 22 000 ₽</div>
+          <p class="procedure-card__desc">Белотеро, Радиесс, Скульптра. Многоуровневые техники.</p>
+          <a href="/kosmetologiya#kontur" class="link-arrow">Подробнее →</a>
+        </div>
+      </div>
+
+      <div class="procedure-card">
+        <div class="photo-placeholder procedure-card__photo">ФОТО</div>
+        <div class="procedure-card__body">
+          <span class="label label--muted">Пластика тела</span>
+          <div class="procedure-card__name">Абдоминопластика</div>
+          <div class="procedure-card__price">от 250 000 ₽</div>
+          <p class="procedure-card__desc">Мини- и полная абдоминопластика. Коррекция живота, талии, нависающего фартука.</p>
+          <a href="/plastika#abdominoplastika" class="link-arrow">Подробнее →</a>
+        </div>
+      </div>
+
+    </div>
+    <p class="disclaimer-small">Цены носят информационный характер и не являются публичной офертой. Точная стоимость определяется врачом на консультации.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ЦИТАТА-МОСТ
+══════════════════════════════════════════ -->
+<section class="section--dark" style="padding:72px 0; text-align:center;">
+  <div class="container">
+    <blockquote style="font-family:var(--font-display); font-style:italic; font-size:clamp(24px,3vw,36px); font-weight:400; color:var(--cream); line-height:1.4; max-width:800px; margin:0 auto;">
+      «Гармонизирующая хирургия — это Haute Couture эстетической медицины»
+    </blockquote>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     О КЛИНИКЕ
+══════════════════════════════════════════ -->
+<section class="section section--grey">
+  <div class="container">
+
+    <div class="about__numbers">
+      <div class="about__num-item">
+        <div class="about__num-big">20+</div>
+        <div class="about__num-label">Лет в эстетической медицине</div>
+      </div>
+      <div class="about__num-item">
+        <div class="about__num-big">8</div>
+        <div class="about__num-label">Хирургов и косметологов</div>
+      </div>
+      <div class="about__num-item">
+        <div class="about__num-big">10+</div>
+        <div class="about__num-label">Запатентованных методик</div>
+      </div>
+      <div class="about__num-item">
+        <div class="about__num-big">2011</div>
+        <div class="about__num-label">Год открытия в Казани</div>
+      </div>
+    </div>
+
+    <div class="about__split">
+      <div>
+        <p class="about__text-body">
+          Хорошее «дорого» — это эстетический вкус, уникальный опыт и репутация тех людей, кто умеет создавать идеальное по индивидуальным меркам. Страховка против ошибок и дурновкусия. Тем более ценная, что ошибки пластического хирурга сложно не заметить.
+        </p>
+        <blockquote class="about__quote">
+          «В мире, где избыточность является минимальным стандартом, деликатность ценится как новое сокровище»<br><span style="font-family:var(--font-body); font-style:normal; font-size:12px; color:var(--text-muted); margin-top:8px; display:inline-block;">— Андрей Искорнев, основатель Platinental</span>
+        </blockquote>
+        <a href="/about" class="link-arrow">О клинике →</a>
+      </div>
+      <div>
+        <div class="photo-placeholder about__photo">ФОТО КЛИНИКИ / ИНТЕРЬЕР</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ВРАЧИ
+══════════════════════════════════════════ -->
+<section class="section" id="doctors">
+  <div class="container">
+    <div class="section__header-row" style="margin-bottom: 12px;">
+      <h2 class="h2">Врачи клиники</h2>
+      <a href="/doctors" class="link-arrow">Все врачи →</a>
+    </div>
+    <div class="doctors__grid">
+
+      <div class="doctor-card">
+        <div class="photo-placeholder doctor-card__photo">ФОТО ВРАЧА</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__spec">RHINOPLASTY / РИНОПЛАСТИКА</div>
+          <div class="doctor-card__name">Мелоян Мхитар Мисакович</div>
+          <div class="doctor-card__price">Консультация от 7 000 ₽</div>
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:10px; line-height:1.5; font-style:italic;">Ринопластику у него прошёл сам основатель Platinental</div>
+          <a href="/doctors#meloyan" class="doctor-card__btn">Записаться к Мелояну</a>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="photo-placeholder doctor-card__photo">ФОТО ВРАЧА</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__spec">FACE PRESERVING SURGERY / ДЕЛИКАТНАЯ ХИРУРГИЯ</div>
+          <div class="doctor-card__name">Тулатова Регина Тимуровна</div>
+          <div class="doctor-card__price">Консультация от 7 000 ₽</div>
+          <a href="/doctors#tulatova" class="doctor-card__btn">Записаться к Тулатовой</a>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="photo-placeholder doctor-card__photo">ФОТО ВРАЧА</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__spec">ЧЕЛЮСТНО-ЛИЦЕВАЯ ХИРУРГИЯ</div>
+          <div class="doctor-card__name">Мамедов Вахид Аждарович</div>
+          <div class="doctor-card__price">Консультация от 10 000 ₽</div>
+          <a href="/doctors#mamedov" class="doctor-card__btn">Записаться к Мамедову</a>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="photo-placeholder doctor-card__photo">ФОТО ВРАЧА</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__spec">К.М.Н. / ПЛАСТИЧЕСКИЙ ХИРУРГ</div>
+          <div class="doctor-card__name">Васильев Максим Николаевич</div>
+          <div class="doctor-card__price">Консультация от 7 000 ₽</div>
+          <a href="/doctors#vasilev" class="doctor-card__btn">Записаться к Васильеву</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="doctors__footer">
+      <p class="doctors__also">Также в клинике: Марданова Д.М., Макеенко Н.В., Бречко М.А. (CO₂-лазер, безоперационная блефаропластика), Грицай О.А. (косметолог)</p>
+      <a href="/doctors" class="btn btn--outline-dark">Показать всех врачей</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ДО И ПОСЛЕ
+══════════════════════════════════════════ -->
+<section class="section section--grey">
+  <div class="container">
+    <h2 class="h2">До и после</h2>
+    <div class="ba__carousel-wrap">
+      <div class="ba__nav">
+        <button class="ba__nav-btn" onclick="document.getElementById('baGrid').scrollBy({left:-400,behavior:'smooth'})">←</button>
+        <button class="ba__nav-btn" onclick="document.getElementById('baGrid').scrollBy({left:400,behavior:'smooth'})">→</button>
+      </div>
+      <div class="ba__grid" id="baGrid">
+
+        <div>
+          <div class="ba-card__images">
+            <div class="ba-card__half photo-placeholder"><span class="ba-card__half-label">До</span></div>
+            <div class="ba-card__half photo-placeholder"><span class="ba-card__half-label">После</span></div>
+          </div>
+          <div class="ba-card__label">Ринопластика</div>
+        </div>
+
+        <div>
+          <div class="ba-card__images">
+            <div class="ba-card__half photo-placeholder"><span class="ba-card__half-label">До</span></div>
+            <div class="ba-card__half photo-placeholder"><span class="ba-card__half-label">После</span></div>
+          </div>
+          <div class="ba-card__label">Блефаропластика</div>
+        </div>
+
+        <div>
+          <div class="ba-card__images">
+            <div class="ba-card__half photo-placeholder"><span class="ba-card__half-label">До</span></div>
+            <div class="ba-card__half photo-placeholder"><span class="ba-card__half-label">После</span></div>
+          </div>
+          <div class="ba-card__label">Маммопластика</div>
+        </div>
+
+        <div>
+          <div class="ba-card__images">
+            <div class="ba-card__half photo-placeholder"><span class="ba-card__half-label">До</span></div>
+            <div class="ba-card__half photo-placeholder"><span class="ba-card__half-label">После</span></div>
+          </div>
+          <div class="ba-card__label">SMAS-лифтинг</div>
+        </div>
+
+        <div>
+          <div class="ba-card__images">
+            <div class="ba-card__half photo-placeholder"><span class="ba-card__half-label">До</span></div>
+            <div class="ba-card__half photo-placeholder"><span class="ba-card__half-label">После</span></div>
+          </div>
+          <div class="ba-card__label">Абдоминопластика</div>
+        </div>
+
+        <div>
+          <div class="ba-card__images">
+            <div class="ba-card__half photo-placeholder"><span class="ba-card__half-label">До</span></div>
+            <div class="ba-card__half photo-placeholder"><span class="ba-card__half-label">После</span></div>
+          </div>
+          <div class="ba-card__label">Контурная пластика</div>
+        </div>
+
+      </div>
+    </div>
+    <p class="disclaimer-small" style="margin-top:24px;">Результат индивидуален и зависит от особенностей организма. Публикуется с письменного согласия пациентов.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ОТЗЫВЫ
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <h2 class="h2">Пациенты о клинике</h2>
+    <div class="reviews__grid">
+
+      <div class="review-card">
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">«После консультации у Мхитара Мисаковича все страхи прошли — он объяснил каждый шаг. В день снятия гипса я была самым счастливым человеком. Три года прошло — результат только лучше.»</p>
+        <div class="review-card__author"><span>Лейла</span> · Казань · Ринопластика</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">«Доктор Тулатова сделала круговую блефаропластику и височный лифтинг. Лёгкая реабилитация, результат сногсшибательный. Все подруги просят её контактную информацию.»</p>
+        <div class="review-card__author"><span>Пациентка клиники</span> · Казань · Блефаропластика</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">«Просто счастлива, что узнала Васильева Максима Николаевича. Он и выслушал, и понял. После операции — наконец-то могу убирать волосы назад.»</p>
+        <div class="review-card__author"><span>Пациентка клиники</span> · Казань · Отопластика</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     КОНСУЛЬТАЦИЯ VALUE
+══════════════════════════════════════════ -->
+<section class="section" style="padding-bottom:0;">
+  <div class="container" style="max-width:720px; text-align:center;">
+    <h2 class="h2" style="margin-bottom:24px;">Консультация хирурга</h2>
+    <p style="font-size:15px; line-height:1.75; color:var(--text-muted); margin-bottom:12px;">
+      Осмотр, антропометрические замеры, фотопротокол, рекомендация по методике. Хирург покажет аналогичные случаи из своей практики. Без обязательств — это ваш выбор.
+    </p>
+    <p style="font-family:var(--font-display); font-style:italic; font-size:28px; color:var(--gold); margin-bottom:0;">от 5 000 ₽</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ФОРМА
+══════════════════════════════════════════ -->
+<section class="form-section" id="form">
+  <div class="container">
+    <div class="form-section__inner">
+      <div>
+        <h2 class="h2" style="color:var(--cream);">Задайте вопрос врачу</h2>
+        <p class="form-section__label-text">
+          Мы хотим, чтобы ваш опыт пластической хирургии был приятным приключением к настоящему себе. Обещаем. Всё, что мы делаем, мы делаем очень достойно. Приходите, поговорим об этом.
+        </p>
+        <p class="form-section__note">Отвечаем в течение 2 часов. Пн–вс 9:00–20:00.</p>
+      </div>
+      <form>
+        <div class="form__field">
+          <input class="form__input" type="text" placeholder="Имя">
+        </div>
+        <div class="form__field">
+          <input class="form__input" type="tel" placeholder="Телефон">
+        </div>
+        <div class="form__field">
+          <textarea class="form__input form__textarea" placeholder="Опишите запрос (необязательно)"></textarea>
+        </div>
+        <div class="form__checkbox-row">
+          <input type="checkbox" id="consent">
+          <label class="form__checkbox-label" for="consent">Я согласен(а) на обработку персональных данных в соответствии с&nbsp;152-ФЗ</label>
+        </div>
+        <button type="submit" class="form__submit">Записаться на консультацию</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FAQ
+══════════════════════════════════════════ -->
+<section class="section section--grey">
+  <div class="container">
+    <h2 class="h2">Вопросы и ответы</h2>
+    <div class="faq__list">
+
+      <details open>
+        <summary class="faq__question">
+          Сколько стоит первичная консультация?
+          <span class="faq__icon">+</span>
+        </summary>
+        <p class="faq__answer">У косметолога — 2 000 ₽. У хирурга — от 5 000 до 10 000 ₽ в зависимости от специалиста.</p>
+      </details>
+
+      <details>
+        <summary class="faq__question">
+          Есть ли противопоказания к операциям?
+          <span class="faq__icon">+</span>
+        </summary>
+        <p class="faq__answer">Да. Противопоказания определяет хирург на очной консультации после осмотра и анализа анамнеза. Стандартные ограничения: беременность, лактация, онкология, нарушения свёртываемости крови, декомпенсированные хронические заболевания.</p>
+      </details>
+
+      <details>
+        <summary class="faq__question">
+          Через сколько дней виден результат после ботокса?
+          <span class="faq__icon">+</span>
+        </summary>
+        <p class="faq__answer">Первый эффект появляется через 3–5 дней, окончательный — через 10–14 дней. Держится 4–6 месяцев в зависимости от препарата и индивидуальных особенностей.</p>
+      </details>
+
+      <details>
+        <summary class="faq__question">
+          Вы работаете с мужчинами?
+          <span class="faq__icon">+</span>
+        </summary>
+        <p class="faq__answer">Да. Мужчины составляют около 15–20% пациентов. Популярные запросы: ринопластика, коррекция гинекомастии, блефаропластика, контурная пластика подбородка. Для мужчин особенно важна незаметность результата — хирурги это учитывают.</p>
+      </details>
+
+      <details>
+        <summary class="faq__question">
+          Как проходит первичная консультация хирурга?
+          <span class="faq__icon">+</span>
+        </summary>
+        <p class="faq__answer">Осмотр, антропометрические замеры, фотопротокол, рекомендация по методике. Хирург покажет аналогичные случаи из своей практики. Никакого давления — это ваш выбор.</p>
+      </details>
+
+      <details>
+        <summary class="faq__question">
+          Как долго длится реабилитация?
+          <span class="faq__icon">+</span>
+        </summary>
+        <p class="faq__answer">Зависит от операции. Блефаропластика — 7–14 дней. Ринопластика — 2–3 недели. Маммопластика — 2–4 недели ограничений. SMAS-лифтинг — 3–4 недели. Точные сроки хирург назовёт на консультации.</p>
+      </details>
+
+    </div>
+    <p class="disclaimer-small" style="margin-top: 40px;">Имеются противопоказания. Необходима консультация специалиста.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     КОНТАКТЫ
+══════════════════════════════════════════ -->
+<section class="section" id="contacts">
+  <div class="container">
+    <h2 class="h2" style="margin-bottom: 48px;">Контакты</h2>
+    <div class="contacts__inner">
+      <div>
+        <div class="contact-item">
+          <div class="contact-item__label">Адрес</div>
+          <div class="contact-item__value">ул. Карла Маркса, 48, корп. 1<br>Казань, 420015</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item__label">Телефон</div>
+          <div class="contact-item__value">
+            <a href="tel:+78432236666">+7 843 223-66-66</a><br>
+            <a href="tel:+78432366666">+7 843 236-66-66</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item__label">WhatsApp</div>
+          <div class="contact-item__value"><a href="https://wa.me/79656122888">+7 965 612-28-88</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item__label">Режим работы</div>
+          <div class="contact-item__value">Ежедневно 9:00–20:00</div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <div class="map-placeholder__inner">Яндекс.Карта</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__cols">
+
+      <div>
+        <div class="footer__brand">The Platinental</div>
+        <p class="footer__brand-desc">Американский бренд эстетической медицины. Казань с 2011 года.</p>
+        <p class="footer__brand-desc" style="margin-top:12px;">+7 843 223-66-66<br>WhatsApp: +7 965 612-28-88<br>Пн–вс 9:00–20:00</p>
+      </div>
+
+      <div></div><!-- spacer -->
+
+      <div>
+        <div class="footer__col-title">Услуги</div>
+        <ul class="footer__links">
+          <li><a href="/plastika">Пластическая хирургия</a></li>
+          <li><a href="/kosmetologiya">Косметология</a></li>
+          <li><a href="/kosmecevtika">Космецевтика</a></li>
+          <li><a href="/prices">Цены</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer__col-title">Клиника</div>
+        <ul class="footer__links">
+          <li><a href="/about">О клинике</a></li>
+          <li><a href="/doctors">Врачи</a></li>
+          <li><a href="/documents">Документы</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__legal">
+      <span class="footer__legal-item">© 2026 ООО «Платинентал Казань» · ЛО-16-01-003022</span>
+      <span class="footer__legal-item">Имеются противопоказания. Необходима консультация специалиста.</span>
+      <span class="footer__legal-item"><a href="/documents">Политика конфиденциальности</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // FAQ — rotate icon
+  document.querySelectorAll('details').forEach(d => {
+    d.addEventListener('toggle', () => {
+      const icon = d.querySelector('.faq__icon');
+      if (icon) icon.textContent = d.open ? '−' : '+';
+    });
+  });
+</script>
+</body>
+</html>

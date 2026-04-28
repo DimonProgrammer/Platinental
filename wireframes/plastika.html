@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Пластическая хирургия в Казани — клиника Platinental | Цены</title>
+<meta name="description" content="27 операций на лице и теле в клинике Platinental. Ринопластика от 200 000 ₽, маммопластика от 450 000 ₽, блефаропластика от 60 000 ₽. Запись: +7 843 223-66-66.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FFFDF8;
+  --warm-grey: #F5F0EB;
+  --dark: #0A0A0A;
+  --dark-2: #1A1A18;
+  --gold: #B8956A;
+  --gold-light: #D4B896;
+  --text-primary: #0A0A0A;
+  --text-muted: #6B6560;
+  --border: rgba(10,10,10,0.1);
+  --border-light: rgba(255,253,248,0.12);
+  --font-display: 'Lora', serif;
+  --font-body: 'Open Sans', sans-serif;
+  --max-w: 1200px;
+  --pad: 80px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--text-primary); background: var(--cream); -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
+.section { padding: 80px 0; }
+.section--grey { background: var(--warm-grey); }
+.section--dark { background: var(--dark-2); color: var(--cream); }
+
+/* ─── HEADER ─── */
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 64px; background: var(--dark-2); border-bottom: 1px solid var(--border-light); display: flex; align-items: center; }
+.header__inner { max-width: calc(var(--max-w) + 160px); margin: 0 auto; padding: 0 48px; width: 100%; display: flex; align-items: center; }
+.header__logo { font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--cream); margin-right: auto; }
+.header__logo span { color: var(--gold-light); }
+.header__nav { display: flex; gap: 28px; list-style: none; margin-right: 36px; }
+.header__dropdown { position: relative; }
+.header__dropdown-menu { position: absolute; top: calc(100% + 16px); left: -12px; background: var(--dark); border: 1px solid var(--border-light); padding: 8px 0; min-width: 200px; opacity: 0; visibility: hidden; transform: translateY(-4px); transition: all 0.15s; z-index: 20; }
+.header__dropdown:hover .header__dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.header__dropdown-menu a { display: block; padding: 8px 16px; font-size: 13px; color: rgba(255,253,248,0.6); }
+.header__dropdown-menu a:hover { color: var(--cream); background: rgba(255,253,248,0.04); }
+.header__nav a { font-size: 13px; color: rgba(255,253,248,0.6); letter-spacing: 0.02em; transition: color 0.15s; }
+.header__nav a:hover, .header__nav a.active { color: var(--cream); }
+.header__phone { font-size: 13px; color: rgba(255,253,248,0.6); margin-right: 20px; }
+.btn { display: inline-flex; align-items: center; padding: 12px 24px; font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; border: none; transition: all 0.2s; }
+.btn--gold { background: var(--gold); color: #fff; }
+.btn--gold:hover { background: #a07e5a; }
+.btn--outline-light { background: transparent; color: rgba(255,253,248,0.7); border: 1px solid rgba(255,253,248,0.25); }
+.btn--outline-light:hover { border-color: rgba(255,253,248,0.6); color: var(--cream); }
+.link-arrow { font-size: 13px; color: var(--gold); font-weight: 500; display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s; }
+.link-arrow:hover { gap: 8px; }
+
+/* ─── HERO ─── */
+.hero { padding: 140px 0 80px; text-align: center; background: var(--dark-2); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 110%, rgba(184,149,106,0.07) 0%, transparent 55%); pointer-events: none; }
+.hero__eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 20px; position: relative; }
+.hero__h1 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(30px, 4vw, 52px); line-height: 1.15; color: var(--cream); margin-bottom: 24px; position: relative; max-width: 760px; margin-left: auto; margin-right: auto; }
+.hero__lead { font-size: 16px; line-height: 1.75; color: rgba(255,253,248,0.55); max-width: 680px; margin: 0 auto 40px; position: relative; }
+.hero__cta { display: flex; gap: 16px; justify-content: center; position: relative; }
+
+/* ─── TABS ─── */
+.tabs-section { background: var(--cream); padding: 0; position: sticky; top: 64px; z-index: 50; border-bottom: 2px solid var(--border); box-shadow: 0 2px 12px rgba(10,10,10,0.06); }
+.tabs { display: flex; gap: 0; max-width: calc(var(--max-w) + 160px); margin: 0 auto; padding: 0 var(--pad); justify-content: center; }
+.tab-btn { padding: 20px 40px; font-size: 15px; font-weight: 600; letter-spacing: 0.02em; background: none; border: none; cursor: pointer; color: var(--text-muted); border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; font-family: var(--font-body); display: flex; align-items: center; gap: 10px; }
+.tab-btn:hover { color: var(--text-primary); background: rgba(184,149,106,0.04); }
+.tab-btn.active { color: var(--text-primary); border-bottom-color: var(--gold); background: rgba(184,149,106,0.06); }
+.tab-btn .tab-count { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-size: 12px; font-weight: 700; background: var(--border); color: var(--text-muted); transition: all 0.2s; }
+.tab-btn.active .tab-count { background: var(--gold); color: #fff; }
+
+/* ─── OPERATIONS GRID ─── */
+.ops-section { padding: 56px 0 80px; }
+.ops-panel { display: none; }
+.ops-panel.active { display: block; }
+.ops-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.op-card { background: #fff; padding: 28px 26px 32px; display: flex; flex-direction: column; transition: box-shadow 0.2s; }
+.op-card:hover { box-shadow: 0 8px 32px rgba(10,10,10,0.08); }
+.op-card__badge { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.op-card__name { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 22px; line-height: 1.2; margin-bottom: 12px; color: var(--text-primary); }
+.op-card__desc { font-size: 13px; line-height: 1.65; color: var(--text-muted); margin-bottom: 16px; flex: 1; }
+.op-card__price { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 26px; color: var(--gold); margin-bottom: 16px; }
+.op-card__cta { font-size: 12px; font-weight: 500; color: var(--gold); letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 4px; transition: gap 0.15s; }
+.op-card__cta:hover { gap: 8px; }
+
+/* ─── QUOTE STRIP ─── */
+.quote-strip { padding: 64px 0; text-align: center; }
+.quote-strip__text { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(20px, 2.5vw, 28px); max-width: 800px; margin: 0 auto; color: var(--cream); }
+
+/* ─── SURGEONS ─── */
+.surgeons__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 40px; }
+.surgeon-card { background: #fff; padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; }
+.surgeon-card__badge { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+.surgeon-card__name { font-family: var(--font-display); font-style: italic; font-size: 19px; font-weight: 400; line-height: 1.25; }
+.surgeon-card__price { font-size: 12px; color: var(--text-muted); }
+.surgeon-card__link { font-size: 12px; color: var(--gold); font-weight: 500; margin-top: 4px; }
+
+/* ─── SOCIAL PROOF ─── */
+.proof-block { max-width: 680px; margin: 56px auto 0; text-align: center; }
+.proof-block__quote { font-family: var(--font-display); font-style: italic; font-size: 20px; line-height: 1.6; color: var(--text-primary); margin-bottom: 16px; }
+.proof-block__author { font-size: 12px; color: var(--text-muted); }
+
+/* ─── CTA ОШИБКИ ─── */
+.cta-errors { padding: 80px 0; background: var(--dark-2); text-align: center; }
+.cta-errors__inner { max-width: 720px; margin: 0 auto; }
+.cta-errors__h2 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(24px, 3vw, 36px); line-height: 1.3; color: var(--cream); margin-bottom: 24px; }
+.cta-errors__text { font-size: 16px; line-height: 1.8; color: rgba(255,253,248,0.6); margin-bottom: 36px; }
+.cta-errors__note { font-size: 12px; color: rgba(255,253,248,0.3); margin-top: 14px; }
+
+/* ─── FAQ ─── */
+.faq__list { margin-top: 40px; }
+details { border-bottom: 1px solid var(--border); }
+summary { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; font-size: 16px; font-weight: 400; cursor: pointer; gap: 24px; list-style: none; transition: color 0.15s; }
+summary:hover { color: var(--gold); }
+.faq__icon { font-size: 20px; font-weight: 300; color: var(--gold); flex-shrink: 0; transition: transform 0.2s; }
+details[open] .faq__icon { transform: rotate(45deg); }
+.faq__answer { padding: 0 0 22px; font-size: 14px; line-height: 1.75; color: var(--text-muted); max-width: 800px; }
+
+/* ─── FORM ─── */
+.form-section { padding: 96px 0; background: var(--dark-2); color: var(--cream); }
+.form-section__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.form-section__title { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(28px, 3vw, 40px); line-height: 1.2; margin-bottom: 20px; }
+.form-section__text { font-size: 15px; line-height: 1.75; color: rgba(255,253,248,0.6); }
+.form-section__note { font-size: 12px; color: rgba(255,253,248,0.3); margin-top: 16px; }
+.form__field { margin-bottom: 12px; }
+.form__input, .form__select { width: 100%; padding: 14px 16px; background: rgba(255,253,248,0.06); border: 1px solid rgba(255,253,248,0.12); color: var(--cream); font-family: var(--font-body); font-size: 14px; outline: none; transition: border-color 0.15s; appearance: none; }
+.form__input:focus, .form__select:focus { border-color: var(--gold); }
+.form__input::placeholder { color: rgba(255,253,248,0.3); }
+.form__select option { background: var(--dark-2); color: var(--cream); }
+.form__checkbox-row { display: flex; gap: 10px; align-items: flex-start; margin: 16px 0 20px; }
+.form__checkbox-row input { margin-top: 3px; accent-color: var(--gold); }
+.form__checkbox-label { font-size: 12px; color: rgba(255,253,248,0.4); line-height: 1.5; }
+.form__submit { width: 100%; padding: 15px 24px; background: var(--gold); color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.05em; cursor: pointer; border: none; transition: background 0.2s; }
+.form__submit:hover { background: #a07e5a; }
+
+/* ─── FOOTER ─── */
+.footer { background: var(--dark-2); color: var(--cream); padding: 64px 0 32px; }
+.footer__cols { display: grid; grid-template-columns: 320px 1fr auto auto; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border-light); margin-bottom: 32px; }
+.footer__brand { font-family: var(--font-display); font-style: italic; font-size: 20px; color: var(--cream); margin-bottom: 14px; }
+.footer__brand-desc { font-size: 13px; color: rgba(255,253,248,0.4); line-height: 1.6; max-width: 240px; }
+.footer__col-title { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,253,248,0.3); margin-bottom: 16px; }
+.footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer__links a { font-size: 14px; color: rgba(255,253,248,0.55); transition: color 0.15s; }
+.footer__links a:hover { color: var(--cream); }
+.footer__legal { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.footer__legal-item { font-size: 11.5px; color: rgba(255,253,248,0.25); }
+.footer__legal-item a:hover { color: rgba(255,253,248,0.6); }
+
+.section__h2 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(28px, 3vw, 42px); line-height: 1.2; text-align: center; margin-bottom: 0; }
+.disclaimer-small { font-size: 12px; color: var(--text-muted); opacity: 0.7; margin-top: 32px; }
+</style>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header__inner">
+    <a href="/" class="header__logo">The <span>Platinental</span></a>
+    <nav>
+      <ul class="header__nav">
+        <li class="header__dropdown">
+          <a href="#" class="active">Услуги ▾</a>
+          <div class="header__dropdown-menu">
+            <a href="/plastika" style="color:var(--cream);">Пластическая хирургия</a>
+            <a href="/kosmetologiya">Косметология</a>
+            <a href="/kosmecevtika">Космецевтика</a>
+          </div>
+        </li>
+        <li><a href="/doctors">Врачи</a></li>
+        <li><a href="/about">О клинике</a></li>
+        <li><a href="/prices">Цены</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <span class="header__phone">+7 843 223-66-66</span>
+    <a href="#form" class="btn btn--gold" style="font-size:12px; padding:10px 20px;">Записаться</a>
+  </div>
+</header>
+
+
+<!-- ═══ 1. HERO ═══ -->
+<section class="hero">
+  <div class="container">
+    <p class="hero__eyebrow">THE PLATINENTAL · КАЗАНЬ</p>
+    <h1 class="hero__h1">Пластическая хирургия в Казани — клиника Platinental</h1>
+    <p class="hero__lead">Мы не делаем «идеальный нос из каталога» и не «увеличиваем грудь до размера». Platinental работает как дорогое ателье: сначала замеры — потом методика. Цель одна: все заметят изменение, но никто не свяжет его с операцией.</p>
+    <div class="hero__cta">
+      <a href="#form" class="btn btn--gold">Записаться на консультацию</a>
+      <a href="/prices" class="btn btn--outline-light">Цены</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 2–3. ТАБЫ + ОПЕРАЦИИ (общий родитель для sticky) ═══ -->
+<div class="tabs-wrapper">
+
+<div class="tabs-section">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('face', this)">Лицо <span class="tab-count">14</span></button>
+    <button class="tab-btn" onclick="switchTab('body', this)">Тело <span class="tab-count">13</span></button>
+  </div>
+</div>
+
+
+<!-- ═══ 3. ОПЕРАЦИИ ═══ -->
+<section class="ops-section">
+  <div class="container">
+
+    <!-- ЛИЦО -->
+    <div class="ops-panel active" id="panel-face">
+      <div class="ops-grid">
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика лица</div>
+          <div class="op-card__name">Ринопластика</div>
+          <p class="op-card__desc">Планируется по пропорциям всего лица, а не только носа. Результат — гармоничный профиль, который воспринимается как ваш собственный.</p>
+          <div class="op-card__price">от 200 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика лица · Мамедов В.А.</div>
+          <div class="op-card__name">Вторичная ринопластика</div>
+          <p class="op-card__desc">Когда предыдущая операция не дала результата. Единственный специалист в клинике по вторичным операциям 2-й категории сложности.</p>
+          <div class="op-card__price">от 1 000 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика лица</div>
+          <div class="op-card__name">Блефаропластика</div>
+          <p class="op-card__desc">Жировые грыжи не удаляем — перемещаем. Взгляд становится открытым и живым, а не «прооперированным».</p>
+          <div class="op-card__price">от 60 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика лица · Лазер</div>
+          <div class="op-card__name">Блефаропластика CO₂</div>
+          <p class="op-card__desc">Без скальпеля. Лазер подтягивает кожу век, убирает мешки. Результат нарастает 2–3 месяца.</p>
+          <div class="op-card__price">от 20 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Подтяжка лица</div>
+          <div class="op-card__name">SMAS-лифтинг</div>
+          <p class="op-card__desc">Работает с глубокими слоями, не только кожей. Чёткий овал, убранные брылья, восстановленный угол шеи.</p>
+          <div class="op-card__price">530 000–557 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Подтяжка лица</div>
+          <div class="op-card__name">Подтяжка нижней трети</div>
+          <p class="op-card__desc">Брылья и линия челюсти — без полной круговой подтяжки. Прицельная работа с нижней частью лица.</p>
+          <div class="op-card__price">400 000–420 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Подтяжка лица</div>
+          <div class="op-card__name">Лифтинг верхней трети</div>
+          <p class="op-card__desc">Тяжёлый взгляд и опущенные брови — не всегда блефаропластика. Иногда решение в эндоскопическом подъёме лба.</p>
+          <div class="op-card__price">260 000–273 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Подтяжка шеи</div>
+          <div class="op-card__name">Голливудская платизмопластика</div>
+          <p class="op-card__desc">Восстанавливает молодой угол между подбородком и шеей — то, что не берут ни инъекции, ни аппараты.</p>
+          <div class="op-card__price">350 000–368 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика лица</div>
+          <div class="op-card__name">Удаление комков Биша</div>
+          <p class="op-card__desc">Скулы чётче, нижняя треть лица изящнее. Разрез внутри рта — снаружи следов нет.</p>
+          <div class="op-card__price">от 125 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика лица</div>
+          <div class="op-card__name">Ментопластика</div>
+          <p class="op-card__desc">Форма подбородка напрямую влияет на профиль и пропорции. Имплант — предсказуемый и стойкий результат.</p>
+          <div class="op-card__price">350 000–368 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика лица</div>
+          <div class="op-card__name">Отопластика</div>
+          <p class="op-card__desc">Форма и положение ушных раковин. Результат — навсегда. Можно делать с 6 лет.</p>
+          <div class="op-card__price">120 000–126 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика лица</div>
+          <div class="op-card__name">Булхорн</div>
+          <p class="op-card__desc">Сокращает расстояние между носом и губой. Губы визуально выразительнее — без филлеров.</p>
+          <div class="op-card__price">100 000–105 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика лица</div>
+          <div class="op-card__name">Кантопластика</div>
+          <p class="op-card__desc">Форма разреза глаз: открытый или миндалевидный взгляд — в зависимости от задачи.</p>
+          <div class="op-card__price">100 000–105 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Коррекция</div>
+          <div class="op-card__name">Удаление гидрогеля</div>
+          <p class="op-card__desc">Если когда-то вводили «постоянный» филлер — извлекаем инородный материал хирургически.</p>
+          <div class="op-card__price">200 000–210 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+      </div>
+      <p class="disclaimer-small">Цены носят информационный характер и не являются публичной офертой. Точная стоимость определяется врачом на консультации.</p>
+    </div>
+
+    <!-- ТЕЛО -->
+    <div class="ops-panel" id="panel-body">
+      <div class="ops-grid">
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика тела</div>
+          <div class="op-card__name">Маммопластика</div>
+          <p class="op-card__desc">Не размер из каталога — индивидуальный дизайн под параметры фигуры. Результат воспринимается как природный.</p>
+          <div class="op-card__price">от 450 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика тела</div>
+          <div class="op-card__name">Аугментация + подтяжка</div>
+          <p class="op-card__desc">Увеличение и коррекция птоза в одной операции — один наркоз вместо двух.</p>
+          <div class="op-card__price">от 550 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика тела</div>
+          <div class="op-card__name">Мастопексия</div>
+          <p class="op-card__desc">Форма и положение груди без изменения объёма — или с небольшим имплантом.</p>
+          <div class="op-card__price">от 250 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика тела</div>
+          <div class="op-card__name">Мамморедукция</div>
+          <p class="op-card__desc">Уменьшение и подтяжка груди. Решает и эстетическую, и медицинскую задачу — нагрузка на позвоночник снижается.</p>
+          <div class="op-card__price">480 000–504 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Мужская пластика</div>
+          <div class="op-card__name">Гинекомастия</div>
+          <p class="op-card__desc">Уменьшение грудных желез у мужчин. Через небольшие разрезы, реабилитация 2–3 недели.</p>
+          <div class="op-card__price">150 000–158 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика тела</div>
+          <div class="op-card__name">Абдоминопластика</div>
+          <p class="op-card__desc">Передняя брюшная стенка, диастаз, нависающий фартук. Полная или мини-версия.</p>
+          <div class="op-card__price">480 000–504 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика тела</div>
+          <div class="op-card__name">Миниабдоминопластика</div>
+          <p class="op-card__desc">Нижняя часть живота — без переноса пупка. Когда объём вмешательства меньше.</p>
+          <div class="op-card__price">от 250 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика тела</div>
+          <div class="op-card__name">Липосакция</div>
+          <p class="op-card__desc">Локальные жировые отложения там, где не берёт спорт — подбородок, бёдра, живот.</p>
+          <div class="op-card__price">от 55 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика тела</div>
+          <div class="op-card__name">Липофилинг</div>
+          <p class="op-card__desc">Пересадка собственного жира — добавить объём без имплантов. Лицо, ягодицы, другие зоны.</p>
+          <div class="op-card__price">от 55 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика тела</div>
+          <div class="op-card__name">Глютеопластика</div>
+          <p class="op-card__desc">Форма и объём ягодиц. Импланты или липофилинг — хирург выберет подходящий метод.</p>
+          <div class="op-card__price">350 000–368 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Пластика тела</div>
+          <div class="op-card__name">Брахиопластика</div>
+          <p class="op-card__desc">Избыток кожи на внутренней стороне рук — после похудения или возрастной дряблости.</p>
+          <div class="op-card__price">180 000–189 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Интимная хирургия</div>
+          <div class="op-card__name">Лабиопластика</div>
+          <p class="op-card__desc">Коррекция формы малых половых губ. Эстетическая и функциональная задача.</p>
+          <div class="op-card__price">100 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+        <div class="op-card">
+          <div class="op-card__badge">Коррекция</div>
+          <div class="op-card__name">Коррекция рубцов</div>
+          <p class="op-card__desc">Хирургическое иссечение и пластика рубцов после операций, травм или ожогов.</p>
+          <div class="op-card__price">от 18 000 ₽</div>
+          <a href="#form" class="op-card__cta">Записаться →</a>
+        </div>
+
+      </div>
+      <p class="disclaimer-small">Цены носят информационный характер и не являются публичной офертой. Точная стоимость определяется врачом на консультации.</p>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- /tabs-wrapper -->
+
+
+<!-- ═══ ЦИТАТА ═══ -->
+<section class="quote-strip section--dark">
+  <div class="container">
+    <p class="quote-strip__text">«Сделать это так, чтобы все заметили результат, но никто не догадался, что дело в пластике»</p>
+  </div>
+</section>
+
+
+<!-- ═══ ХИРУРГИ ═══ -->
+<section class="section section--grey">
+  <div class="container">
+    <h2 class="section__h2">Хирурги направления</h2>
+    <div class="surgeons__grid" style="margin-top:40px;">
+
+      <div class="surgeon-card">
+        <div class="surgeon-card__badge">RHINOPLASTY / РИНОПЛАСТИКА · МАММОПЛАСТИКА</div>
+        <div class="surgeon-card__name">Мелоян Мхитар Мисакович</div>
+        <div class="surgeon-card__price">Консультация от 7 000 ₽</div>
+        <a href="/doctors#meloyan" class="surgeon-card__link">Записаться к Мелояну М.М. →</a>
+      </div>
+
+      <div class="surgeon-card">
+        <div class="surgeon-card__badge">FACE PRESERVING SURGERY</div>
+        <div class="surgeon-card__name">Тулатова Регина Тимуровна</div>
+        <div class="surgeon-card__price">Консультация от 7 000 ₽</div>
+        <a href="/doctors#tulatova" class="surgeon-card__link">Записаться к Тулатовой Р.Т. →</a>
+      </div>
+
+      <div class="surgeon-card">
+        <div class="surgeon-card__badge">ВТОРИЧНАЯ РИНОПЛАСТИКА · ЧЛХ</div>
+        <div class="surgeon-card__name">Мамедов Вахид Аждарович</div>
+        <div class="surgeon-card__price">Консультация от 10 000 ₽</div>
+        <a href="/doctors#mamedov" class="surgeon-card__link">Записаться к Мамедову В.А. →</a>
+      </div>
+
+      <div class="surgeon-card">
+        <div class="surgeon-card__badge">К.М.Н. · МАММОПЛАСТИКА · ТЕЛО</div>
+        <div class="surgeon-card__name">Васильев Максим Николаевич</div>
+        <div class="surgeon-card__price">Консультация от 7 000 ₽</div>
+        <a href="/doctors#vasilev" class="surgeon-card__link">Записаться к Васильеву М.Н. →</a>
+      </div>
+
+      <div class="surgeon-card">
+        <div class="surgeon-card__badge">БЛЕФАРОПЛАСТИКА · ЛИПОФИЛИНГ</div>
+        <div class="surgeon-card__name">Макеенко Николай Владимирович</div>
+        <div class="surgeon-card__price">Консультация от 5 000 ₽</div>
+        <a href="/doctors#makeenko" class="surgeon-card__link">Записаться к Макеенко Н.В. →</a>
+      </div>
+
+      <div class="surgeon-card">
+        <div class="surgeon-card__badge">БЛЕФАРОПЛАСТИКА · SMAS · CO₂-ЛАЗЕР</div>
+        <div class="surgeon-card__name">Бречко Мария Александровна</div>
+        <div class="surgeon-card__price">Консультация — уточняйте</div>
+        <a href="/doctors#brechko" class="surgeon-card__link">Записаться к Бречко М.А. →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ SOCIAL PROOF ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="proof-block">
+      <p class="proof-block__quote">«Доктор Тулатова сделала круговую блефаропластику и височный лифтинг. Лёгкая реабилитация, результат сногсшибательный. Все подруги просят её контактную информацию.»</p>
+      <p class="proof-block__author">Пациентка клиники · Казань · июнь 2024</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CTA ОШИБКИ ХИРУРГИИ ═══ -->
+<section class="cta-errors">
+  <div class="container">
+    <div class="cta-errors__inner">
+      <h2 class="cta-errors__h2">Неудачная пластика видна всем</h2>
+      <p class="cta-errors__text">Перекачанные губы, несоразмерные скулы, глаза, потерявшие живость — это всегда вопрос эстетического вкуса хирурга, не его рук. Чтобы убедиться, что результат улучшит ваше лицо, а не изменит его до неузнаваемости — начните с детального анализа черт. Хирург делает замеры, объясняет что возможно именно в вашем случае.</p>
+      <a href="#form" class="btn btn--gold">Записаться на консультацию</a>
+      <p class="cta-errors__note">Без обязательств. Перезвоним в течение часа.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FAQ ═══ -->
+<section class="section section--grey">
+  <div class="container">
+    <h2 class="section__h2" style="margin-bottom:40px;">Вопросы и ответы</h2>
+
+    <details open>
+      <summary>Будет ли заметно, что я делала операцию? <span class="faq__icon">+</span></summary>
+      <p class="faq__answer">Главный принцип работы — результат видят все, причину не знает никто. Хирург работает с пропорциями вашего лица, а не со стандартом красоты. Послеоперационные следы скрыты в естественных складках кожи.</p>
+    </details>
+
+    <details>
+      <summary>Сколько длится реабилитация? <span class="faq__icon">+</span></summary>
+      <p class="faq__answer">Зависит от операции. Блефаропластика — 7–14 дней. Ринопластика — 2–3 недели (гипс снимают на 10–14 день). Маммопластика — 2–4 недели ограничений. SMAS-лифтинг — 3–4 недели. Точные сроки назовёт хирург на консультации.</p>
+    </details>
+
+    <details>
+      <summary>Какой наркоз используется? <span class="faq__icon">+</span></summary>
+      <p class="faq__answer">Общая анестезия на немецком и американском оборудовании. Анестезиолог сопровождает пациента на всех этапах — от подготовки до выхода из наркоза. После операции пациент находится под наблюдением.</p>
+    </details>
+
+    <details>
+      <summary>Как формируется цена на операцию? <span class="faq__icon">+</span></summary>
+      <p class="faq__answer">В указанную стоимость входит работа хирурга. Наркоз, пребывание в клинике и расходные материалы рассчитываются отдельно — итоговую цифру хирург назовёт на консультации после осмотра.</p>
+    </details>
+
+    <details>
+      <summary>Можно ли сделать несколько операций за один наркоз? <span class="faq__icon">+</span></summary>
+      <p class="faq__answer">Да. Ринопластика + блефаропластика, маммопластика + абдоминопластика — сочетанные операции сокращают общий срок реабилитации и снижают нагрузку от наркоза. Возможность определяет хирург после осмотра.</p>
+    </details>
+
+    <details>
+      <summary>Что происходит на консультации? <span class="faq__icon">+</span></summary>
+      <p class="faq__answer">Осмотр, антропометрические замеры, фотопротокол, рекомендация по методике. Хирург покажет аналогичные случаи из своей практики. Никакого давления на решение — это ваш выбор.</p>
+    </details>
+
+    <p style="margin-top:32px; font-size:12px; color:var(--text-muted);">Имеются противопоказания. Необходима консультация специалиста.</p>
+  </div>
+</section>
+
+
+<!-- ═══ ФОРМА ═══ -->
+<section class="form-section" id="form">
+  <div class="container">
+    <div class="form-section__inner">
+      <div>
+        <h2 class="form-section__title">Приходите, поговорим</h2>
+        <p class="form-section__text">Оставьте номер — перезвоним и подберём хирурга под вашу задачу. Без обязательств.</p>
+        <p class="form-section__note">Перезвоним в течение часа. Пн–вс 9:00–20:00.</p>
+      </div>
+      <form>
+        <div class="form__field">
+          <input class="form__input" type="text" placeholder="Ваше имя">
+        </div>
+        <div class="form__field">
+          <input class="form__input" type="tel" placeholder="+7 (___) ___-__-__">
+        </div>
+        <div class="form__field">
+          <select class="form__select">
+            <option value="" disabled selected>Интересующее направление</option>
+            <option>Пластика лица</option>
+            <option>Пластика тела</option>
+            <option>Не определился(-ась)</option>
+          </select>
+        </div>
+        <div class="form__checkbox-row">
+          <input type="checkbox" id="consent">
+          <label class="form__checkbox-label" for="consent">Соглашаюсь на <a href="/documents" style="text-decoration:underline; color:rgba(255,253,248,0.55);">обработку персональных данных</a></label>
+        </div>
+        <button type="submit" class="form__submit">Записаться на консультацию</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__cols">
+      <div>
+        <div class="footer__brand">The Platinental</div>
+        <p class="footer__brand-desc">Американский бренд эстетической медицины. Казань с 2011 года.</p>
+        <p class="footer__brand-desc" style="margin-top:12px;">+7 843 223-66-66<br>WhatsApp: +7 965 612-28-88<br>Пн–вс 9:00–20:00</p>
+      </div>
+      <div></div>
+      <div>
+        <div class="footer__col-title">Услуги</div>
+        <ul class="footer__links">
+          <li><a href="/plastika" style="color:var(--cream);">Пластическая хирургия</a></li>
+          <li><a href="/kosmetologiya">Косметология</a></li>
+          <li><a href="/kosmecevtika">Космецевтика</a></li>
+          <li><a href="/prices">Цены</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Клиника</div>
+        <ul class="footer__links">
+          <li><a href="/about">О клинике</a></li>
+          <li><a href="/doctors">Врачи</a></li>
+          <li><a href="/documents">Документы</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <span class="footer__legal-item">© 2026 ООО «Платинентал Казань» · ЛО-16-01-003022</span>
+      <span class="footer__legal-item">Имеются противопоказания. Необходима консультация специалиста.</span>
+      <span class="footer__legal-item"><a href="/documents">Политика конфиденциальности</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function switchTab(panel, btn) {
+  document.querySelectorAll('.ops-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + panel).classList.add('active');
+  btn.classList.add('active');
+}
+
+document.querySelectorAll('details').forEach(d => {
+  d.addEventListener('toggle', () => {
+    const icon = d.querySelector('.faq__icon');
+    if (icon) icon.textContent = d.open ? '−' : '+';
+  });
+});
+
+</script>
+</body>
+</html>

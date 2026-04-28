@@ -1,0 +1,366 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Contacts from '../components/sections/Contacts.astro';
+
+const docs = [
+  {
+    title: 'Лицензия на&nbsp;осуществление медицинской деятельности',
+    href: '#',
+    ext: 'PDF',
+    size: '2.1 МБ',
+  },
+  {
+    title: 'Политика в&nbsp;отношении обработки персональных данных (152-ФЗ)',
+    href: '/privacy',
+    ext: 'PDF',
+    size: '480 КБ',
+  },
+  {
+    title: 'Согласие на&nbsp;обработку персональных данных',
+    href: '/consent',
+    ext: 'PDF',
+    size: '320 КБ',
+  },
+  {
+    title: 'Правила предоставления медицинских услуг',
+    href: '#',
+    ext: 'PDF',
+    size: '1.2 МБ',
+  },
+  {
+    title: 'Информированное добровольное согласие на&nbsp;медицинское вмешательство',
+    href: '#',
+    ext: 'PDF',
+    size: '420 КБ',
+  },
+  {
+    title: 'Пользовательское соглашение сайта',
+    href: '/terms',
+    ext: 'PDF',
+    size: '280 КБ',
+  },
+];
+---
+
+<BaseLayout
+  title="Документы и лицензии клиники Platinental в Казани"
+  description="Документы клиники Platinental Казань: лицензия на медицинскую деятельность ЛО-16-01-003022, политика обработки персональных данных, правила предоставления услуг."
+  canonical="https://kzn.platinental.ru/documents"
+>
+  <!-- Header -->
+  <section class="docs-hero" aria-labelledby="docs-title">
+    <div class="docs-hero__inner" data-reveal>
+      <span class="eyebrow">Прозрачность и&nbsp;соответствие</span>
+      <h1 id="docs-title" class="docs-hero__title font-display">
+        Документы и&nbsp;лицензии клиники Platinental
+      </h1>
+      <p class="docs-hero__meta">
+        ООО «Платинентал Казань» · Лицензия ЛО-16-01-003022 · ул.&nbsp;Карла&nbsp;Маркса,&nbsp;48, корп.&nbsp;1, Казань, 420015
+      </p>
+    </div>
+  </section>
+
+  <!-- Docs list -->
+  <section class="docs-list" aria-label="Список документов">
+    <div class="docs-list__inner">
+      <ul class="docs-list__items">
+        {docs.map((doc, i) => (
+          <li class="doc-item" data-reveal style={`transition-delay: ${Math.min(i * 50, 200)}ms`}>
+            <a href={doc.href} class="doc-item__link">
+              <div class="doc-item__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 32" fill="none" width="22" height="26">
+                  <path d="M2 2h14l6 6v22a0 0 0 01-0 0H2a0 0 0 01-0-0V2z" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M16 2v6h6" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M6 14h12M6 18h12M6 22h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <div class="doc-item__body">
+                <h3 class="doc-item__name" set:html={doc.title} />
+                <span class="doc-item__meta">{doc.ext} · {doc.size}</span>
+              </div>
+
+              <div class="doc-item__action" aria-hidden="true">
+                <svg viewBox="0 0 14 14" fill="none" width="16" height="16">
+                  <path d="M7 1v9M3.5 6.5L7 10l3.5-3.5M1 13h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Скачать</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <aside class="docs-list__note">
+        <p>
+          Документы представлены для&nbsp;ознакомления. Оригиналы можно запросить в&nbsp;клинике. При&nbsp;заключении договора на&nbsp;медицинские услуги все&nbsp;формы подписываются офлайн.
+        </p>
+      </aside>
+
+      <div class="docs-legal">
+        <p class="docs-legal__disclaimer">
+          Информация на&nbsp;сайте kzn.platinental.ru носит исключительно популярно-просветительский характер, не&nbsp;может быть использована как пособие по&nbsp;самолечению и&nbsp;ни&nbsp;при&nbsp;каких условиях не&nbsp;является публичной офертой, определяемой положениями ч.&nbsp;2 ст.&nbsp;437 Гражданского кодекса Российской Федерации. Для&nbsp;получения подробной информации о&nbsp;наличии, стоимости услуг и&nbsp;записи на&nbsp;приём обращайтесь по&nbsp;телефону <a href="tel:+78432236666">8&nbsp;(843)&nbsp;223-66-66</a> или&nbsp;по&nbsp;электронной почте <a href="mailto:platinental.kzn@gmail.com">platinental.kzn@gmail.com</a>
+        </p>
+
+        <dl class="docs-legal__info">
+          <div class="docs-legal__row">
+            <dt>Организация</dt>
+            <dd>ООО «Платинентал Казань»</dd>
+          </div>
+          <div class="docs-legal__row">
+            <dt>Юридический адрес</dt>
+            <dd>420015, Республика Татарстан, г.&nbsp;Казань, ул.&nbsp;Карла&nbsp;Маркса, д.&nbsp;48</dd>
+          </div>
+          <div class="docs-legal__row">
+            <dt>Фактический адрес</dt>
+            <dd>420015, Республика Татарстан, г.&nbsp;Казань, ул.&nbsp;Карла&nbsp;Маркса, д.&nbsp;48</dd>
+          </div>
+          <div class="docs-legal__row">
+            <dt>Телефоны</dt>
+            <dd>
+              <a href="tel:+79656122888">+7&nbsp;965&nbsp;612-28-88</a>,&nbsp;
+              <a href="tel:+78432236666">223-66-66</a>
+            </dd>
+          </div>
+        </dl>
+
+        <p class="docs-legal__note">
+          Для&nbsp;разработки плана лечения вам необходима личная консультация специалиста. Для&nbsp;получения подробной информации о&nbsp;стоимости товаров и&nbsp;услуг обращайтесь по&nbsp;указанным телефонам.
+        </p>
+        <p class="docs-legal__note">
+          Срок ожидания предоставления платных медицинских услуг может быть до&nbsp;6&nbsp;месяцев, требуется обязательная предварительная запись.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Contacts />
+</BaseLayout>
+
+<style>
+  .docs-hero {
+    background: var(--surface-page);
+    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 var(--space-10);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  @media (min-width: 768px) {
+    .docs-hero { padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-12); }
+  }
+
+  .docs-hero__inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .docs-hero__inner { padding: 0 32px; } }
+
+  .docs-hero__title {
+    font-size: clamp(1.75rem, 1rem + 2.2vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: var(--tracking-display);
+    color: var(--text-primary);
+    margin: var(--space-5) 0 var(--space-5);
+    text-wrap: balance;
+    max-width: 24ch;
+  }
+
+  .docs-hero__meta {
+    font-size: var(--text-caption);
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  /* Docs list */
+  .docs-list {
+    background: var(--surface-page);
+    padding: var(--space-12) 0 var(--space-20);
+  }
+
+  @media (min-width: 1024px) { .docs-list { padding: var(--space-16) 0 var(--space-24); } }
+
+  .docs-list__inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) { .docs-list__inner { padding: 0 32px; } }
+
+  .docs-list__items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .doc-item {
+    border-bottom: 1px solid var(--border-subtle);
+    transition: background-color var(--duration-fast) var(--ease-out);
+  }
+
+  .doc-item:hover { background: var(--surface-alt); }
+
+  .doc-item__link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-5);
+    align-items: center;
+    padding: var(--space-5) var(--space-4);
+    color: inherit;
+  }
+
+  .doc-item__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-raised);
+    border: 1px solid var(--border-subtle);
+    color: var(--accent-hover);
+    flex-shrink: 0;
+  }
+
+  .doc-item__body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .doc-item__name {
+    font-size: var(--text-ui);
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  .doc-item__meta {
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .doc-item__action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-caption);
+    font-weight: 500;
+    color: var(--accent-hover);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid transparent;
+    border-radius: 99px;
+    transition: color var(--duration-fast) var(--ease-out),
+                border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .doc-item:hover .doc-item__action {
+    color: var(--text-primary);
+    border-color: var(--border-soft);
+  }
+
+  @media (max-width: 520px) {
+    .doc-item__action span { display: none; }
+  }
+
+  .docs-list__note {
+    margin-top: var(--space-10);
+    padding: var(--space-5) var(--space-6);
+    background: var(--surface-alt);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-size: var(--text-caption);
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* Legal info block */
+  .docs-legal {
+    margin-top: var(--space-12);
+    padding-top: var(--space-10);
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .docs-legal__disclaimer {
+    font-size: var(--text-caption);
+    line-height: 1.65;
+    color: var(--text-muted);
+    max-width: 80ch;
+  }
+
+  .docs-legal__disclaimer a {
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-soft);
+    transition: color var(--duration-fast) var(--ease-out),
+                border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .docs-legal__disclaimer a:hover {
+    color: var(--accent-hover);
+    border-color: var(--accent);
+  }
+
+  .docs-legal__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .docs-legal__row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .docs-legal__row:last-child { border-bottom: none; }
+
+  .docs-legal__row dt {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-caption);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--surface-alt);
+    border-right: 1px solid var(--border-subtle);
+  }
+
+  .docs-legal__row dd {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-caption);
+    line-height: 1.55;
+    color: var(--text-primary);
+  }
+
+  .docs-legal__row dd a {
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-soft);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .docs-legal__row dd a:hover { color: var(--accent-hover); }
+
+  @media (max-width: 520px) {
+    .docs-legal__row { grid-template-columns: 1fr; }
+    .docs-legal__row dt { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+  }
+
+  .docs-legal__note {
+    font-size: var(--text-caption);
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 80ch;
+  }
+</style>
