@@ -1,366 +1,166 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Contacts from '../components/sections/Contacts.astro';
+import V3Layout from '../layouts/V3Layout.astro';
+import Navigation from '../components/v3/sections/Navigation.astro';
+import PageHero from '../components/v3/sections/PageHero.astro';
+import Footer from '../components/v3/sections/Footer.astro';
 
 const docs = [
   {
-    title: 'Лицензия на&nbsp;осуществление медицинской деятельности',
-    href: '#',
-    ext: 'PDF',
-    size: '2.1 МБ',
+    title: 'Лицензия на медицинскую деятельность',
+    number: 'ЛО-16-01-003022',
+    issuer: 'Министерство здравоохранения Республики Татарстан',
+    date: '30.10.2013',
+    href: null,
   },
   {
-    title: 'Политика в&nbsp;отношении обработки персональных данных (152-ФЗ)',
-    href: '/privacy',
-    ext: 'PDF',
-    size: '480 КБ',
-  },
-  {
-    title: 'Согласие на&nbsp;обработку персональных данных',
-    href: '/consent',
-    ext: 'PDF',
-    size: '320 КБ',
-  },
-  {
-    title: 'Правила предоставления медицинских услуг',
-    href: '#',
-    ext: 'PDF',
-    size: '1.2 МБ',
-  },
-  {
-    title: 'Информированное добровольное согласие на&nbsp;медицинское вмешательство',
-    href: '#',
-    ext: 'PDF',
-    size: '420 КБ',
-  },
-  {
-    title: 'Пользовательское соглашение сайта',
-    href: '/terms',
-    ext: 'PDF',
-    size: '280 КБ',
+    title: 'Свидетельство о государственной регистрации',
+    number: 'ООО «Платинентал Казань»',
+    issuer: 'Федеральная налоговая служба',
+    date: null,
+    href: null,
   },
 ];
 ---
 
-<BaseLayout
-  title="Документы и лицензии клиники Platinental в Казани"
-  description="Документы клиники Platinental Казань: лицензия на медицинскую деятельность ЛО-16-01-003022, политика обработки персональных данных, правила предоставления услуг."
-  canonical="https://kzn.platinental.ru/documents"
+<V3Layout
+  title="Документы и лицензии — Platinental Казань"
+  description="Лицензия на медицинскую деятельность и правовые документы клиники Platinental Казань."
 >
-  <!-- Header -->
-  <section class="docs-hero" aria-labelledby="docs-title">
-    <div class="docs-hero__inner" data-reveal>
-      <span class="eyebrow">Прозрачность и&nbsp;соответствие</span>
-      <h1 id="docs-title" class="docs-hero__title font-display">
-        Документы и&nbsp;лицензии клиники Platinental
-      </h1>
-      <p class="docs-hero__meta">
-        ООО «Платинентал Казань» · Лицензия ЛО-16-01-003022 · ул.&nbsp;Карла&nbsp;Маркса,&nbsp;48, корп.&nbsp;1, Казань, 420015
-      </p>
-    </div>
-  </section>
+  <Navigation />
+  <main id="main">
+    <PageHero
+      pageMarkerLabel="Документы"
+      eyebrow="Прозрачность"
+      h1="Документы и лицензии"
+      lead="Лицензия, регистрационные документы и политика в области персональных данных."
+      ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
+      ctaSecondary={undefined}
+    />
 
-  <!-- Docs list -->
-  <section class="docs-list" aria-label="Список документов">
-    <div class="docs-list__inner">
-      <ul class="docs-list__items">
-        {docs.map((doc, i) => (
-          <li class="doc-item" data-reveal style={`transition-delay: ${Math.min(i * 50, 200)}ms`}>
-            <a href={doc.href} class="doc-item__link">
-              <div class="doc-item__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 32" fill="none" width="22" height="26">
-                  <path d="M2 2h14l6 6v22a0 0 0 01-0 0H2a0 0 0 01-0-0V2z" stroke="currentColor" stroke-width="1.4"/>
-                  <path d="M16 2v6h6" stroke="currentColor" stroke-width="1.4"/>
-                  <path d="M6 14h12M6 18h12M6 22h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-                </svg>
+    <section class="v3-docs v3-surface-cream" aria-labelledby="docs-heading">
+      <div class="v3-container v3-container-default">
+        <h2 id="docs-heading" class="sr-only">Документы клиники</h2>
+
+        <ul class="docs-list" data-v3-stagger>
+          {docs.map((d) => (
+            <li class="doc-item">
+              <div class="doc-meta">
+                <span class="v3-eyebrow doc-num">{d.number}</span>
+                <span class="v3-caption doc-date">{d.date}</span>
               </div>
-
-              <div class="doc-item__body">
-                <h3 class="doc-item__name" set:html={doc.title} />
-                <span class="doc-item__meta">{doc.ext} · {doc.size}</span>
+              <div class="doc-info">
+                <p class="doc-title v3-h3">{d.title}</p>
+                <p class="v3-body doc-issuer">{d.issuer}</p>
               </div>
+              {d.href ? (
+                <a href={d.href} class="v3-link doc-link" target="_blank" rel="noopener noreferrer">Скачать PDF</a>
+              ) : (
+                <span class="v3-caption doc-status">Оригинал в клинике</span>
+              )}
+            </li>
+          ))}
+        </ul>
 
-              <div class="doc-item__action" aria-hidden="true">
-                <svg viewBox="0 0 14 14" fill="none" width="16" height="16">
-                  <path d="M7 1v9M3.5 6.5L7 10l3.5-3.5M1 13h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Скачать</span>
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <aside class="docs-list__note">
-        <p>
-          Документы представлены для&nbsp;ознакомления. Оригиналы можно запросить в&nbsp;клинике. При&nbsp;заключении договора на&nbsp;медицинские услуги все&nbsp;формы подписываются офлайн.
-        </p>
-      </aside>
-
-      <div class="docs-legal">
-        <p class="docs-legal__disclaimer">
-          Информация на&nbsp;сайте kzn.platinental.ru носит исключительно популярно-просветительский характер, не&nbsp;может быть использована как пособие по&nbsp;самолечению и&nbsp;ни&nbsp;при&nbsp;каких условиях не&nbsp;является публичной офертой, определяемой положениями ч.&nbsp;2 ст.&nbsp;437 Гражданского кодекса Российской Федерации. Для&nbsp;получения подробной информации о&nbsp;наличии, стоимости услуг и&nbsp;записи на&nbsp;приём обращайтесь по&nbsp;телефону <a href="tel:+78432236666">8&nbsp;(843)&nbsp;223-66-66</a> или&nbsp;по&nbsp;электронной почте <a href="mailto:platinental.kzn@gmail.com">platinental.kzn@gmail.com</a>
-        </p>
-
-        <dl class="docs-legal__info">
-          <div class="docs-legal__row">
-            <dt>Организация</dt>
-            <dd>ООО «Платинентал Казань»</dd>
+        <div class="docs-legal" data-v3-reveal>
+          <h3 class="v3-h3">Политика конфиденциальности (152-ФЗ)</h3>
+          <div class="v3-body legal-text">
+            <p>
+              ООО «Платинентал Казань» обрабатывает персональные данные пациентов в соответствии
+              с Федеральным законом № 152-ФЗ «О персональных данных».
+            </p>
+            <p>
+              Сбор данных осуществляется исключительно с добровольного согласия пациента, только в целях
+              оказания медицинских услуг и записи на приём. Данные не передаются третьим лицам.
+            </p>
+            <p>
+              Хранение: защищённые серверы на территории Российской Федерации, в соответствии
+              с требованиями Роскомнадзора.
+            </p>
+            <p>
+              Для отзыва согласия на обработку персональных данных или получения информации о хранении
+              данных обратитесь к администратору клиники:
+              <a href="tel:+78432236666" class="v3-link">+7 843 223-66-66</a>.
+            </p>
           </div>
-          <div class="docs-legal__row">
-            <dt>Юридический адрес</dt>
-            <dd>420015, Республика Татарстан, г.&nbsp;Казань, ул.&nbsp;Карла&nbsp;Маркса, д.&nbsp;48</dd>
-          </div>
-          <div class="docs-legal__row">
-            <dt>Фактический адрес</dt>
-            <dd>420015, Республика Татарстан, г.&nbsp;Казань, ул.&nbsp;Карла&nbsp;Маркса, д.&nbsp;48</dd>
-          </div>
-          <div class="docs-legal__row">
-            <dt>Телефоны</dt>
-            <dd>
-              <a href="tel:+79656122888">+7&nbsp;965&nbsp;612-28-88</a>,&nbsp;
-              <a href="tel:+78432236666">223-66-66</a>
-            </dd>
-          </div>
-        </dl>
+        </div>
 
-        <p class="docs-legal__note">
-          Для&nbsp;разработки плана лечения вам необходима личная консультация специалиста. Для&nbsp;получения подробной информации о&nbsp;стоимости товаров и&nbsp;услуг обращайтесь по&nbsp;указанным телефонам.
-        </p>
-        <p class="docs-legal__note">
-          Срок ожидания предоставления платных медицинских услуг может быть до&nbsp;6&nbsp;месяцев, требуется обязательная предварительная запись.
+        <p class="docs-disclaimer v3-caption" data-v3-reveal>
+          Имеются противопоказания. Необходима консультация специалиста. Все операции и процедуры
+          проводятся только при наличии медицинских показаний и информированного согласия пациента.
         </p>
       </div>
-    </div>
-  </section>
-
-  <Contacts />
-</BaseLayout>
+    </section>
+  </main>
+  <Footer />
+</V3Layout>
 
 <style>
-  .docs-hero {
-    background: var(--surface-page);
-    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 var(--space-10);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  @media (min-width: 768px) {
-    .docs-hero { padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-12); }
-  }
-
-  .docs-hero__inner {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  @media (min-width: 768px) { .docs-hero__inner { padding: 0 32px; } }
-
-  .docs-hero__title {
-    font-size: clamp(1.75rem, 1rem + 2.2vw, 2.75rem);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: var(--tracking-display);
-    color: var(--text-primary);
-    margin: var(--space-5) 0 var(--space-5);
-    text-wrap: balance;
-    max-width: 24ch;
-  }
-
-  .docs-hero__meta {
-    font-size: var(--text-caption);
-    line-height: 1.55;
-    color: var(--text-muted);
-  }
-
-  /* Docs list */
-  .docs-list {
-    background: var(--surface-page);
-    padding: var(--space-12) 0 var(--space-20);
-  }
-
-  @media (min-width: 1024px) { .docs-list { padding: var(--space-16) 0 var(--space-24); } }
-
-  .docs-list__inner {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  @media (min-width: 768px) { .docs-list__inner { padding: 0 32px; } }
-
-  .docs-list__items {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid var(--border-subtle);
-  }
-
-  .doc-item {
-    border-bottom: 1px solid var(--border-subtle);
-    transition: background-color var(--duration-fast) var(--ease-out);
-  }
-
-  .doc-item:hover { background: var(--surface-alt); }
-
-  .doc-item__link {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: var(--space-5);
-    align-items: center;
-    padding: var(--space-5) var(--space-4);
-    color: inherit;
-  }
-
-  .doc-item__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: var(--radius-sm);
-    background: var(--surface-raised);
-    border: 1px solid var(--border-subtle);
-    color: var(--accent-hover);
-    flex-shrink: 0;
-  }
-
-  .doc-item__body {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 0;
-  }
-
-  .doc-item__name {
-    font-size: var(--text-ui);
-    font-weight: 500;
-    color: var(--text-primary);
-    line-height: 1.4;
-  }
-
-  .doc-item__meta {
-    font-size: var(--text-caption);
-    color: var(--text-muted);
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-  }
-
-  .doc-item__action {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: var(--text-caption);
-    font-weight: 500;
-    color: var(--accent-hover);
-    padding: var(--space-2) var(--space-3);
-    border: 1px solid transparent;
-    border-radius: 99px;
-    transition: color var(--duration-fast) var(--ease-out),
-                border-color var(--duration-fast) var(--ease-out);
-  }
-
-  .doc-item:hover .doc-item__action {
-    color: var(--text-primary);
-    border-color: var(--border-soft);
-  }
-
-  @media (max-width: 520px) {
-    .doc-item__action span { display: none; }
-  }
-
-  .docs-list__note {
-    margin-top: var(--space-10);
-    padding: var(--space-5) var(--space-6);
-    background: var(--surface-alt);
-    border-left: 2px solid var(--accent);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    font-size: var(--text-caption);
-    line-height: 1.6;
-    color: var(--text-muted);
-  }
-
-  /* Legal info block */
-  .docs-legal {
-    margin-top: var(--space-12);
-    padding-top: var(--space-10);
-    border-top: 1px solid var(--border-subtle);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  .docs-legal__disclaimer {
-    font-size: var(--text-caption);
-    line-height: 1.65;
-    color: var(--text-muted);
-    max-width: 80ch;
-  }
-
-  .docs-legal__disclaimer a {
-    color: var(--text-secondary);
-    border-bottom: 1px solid var(--border-soft);
-    transition: color var(--duration-fast) var(--ease-out),
-                border-color var(--duration-fast) var(--ease-out);
-  }
-
-  .docs-legal__disclaimer a:hover {
-    color: var(--accent-hover);
-    border-color: var(--accent);
-  }
-
-  .docs-legal__info {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
     overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
   }
-
-  .docs-legal__row {
+  .v3-docs {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .docs-list {
+    list-style: none;
+    margin: 0 0 var(--v3-gap-medium);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .doc-item {
     display: grid;
-    grid-template-columns: 180px 1fr;
-    border-bottom: 1px solid var(--border-subtle);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) auto;
+    gap: 2rem;
+    align-items: baseline;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--v3-border-hair);
+  }
+  .doc-item:last-child { border-bottom: 1px solid var(--v3-border-hair); }
+  .doc-meta { display: flex; flex-direction: column; gap: 0.375rem; }
+  .doc-num { color: var(--v3-ink-muted); }
+  .doc-date { color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0.005em; }
+  .doc-title { color: var(--v3-ink); margin-bottom: 0.25rem; }
+  .doc-issuer { margin: 0; }
+  .doc-link { font-size: 0.9375rem; white-space: nowrap; }
+  .doc-status { color: var(--v3-ink-muted); white-space: nowrap; }
+
+  .docs-legal {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h2-body);
+    padding: var(--v3-gap-medium) 0;
+    border-top: 1px solid var(--v3-border-hair);
+  }
+  .legal-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 64ch;
+  }
+  .legal-text p { margin: 0; }
+
+  .docs-disclaimer {
+    text-align: center;
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-style: normal;
+    font-family: var(--v3-font-display);
+    padding-top: 1rem;
+    border-top: 1px solid var(--v3-border-hair);
   }
 
-  .docs-legal__row:last-child { border-bottom: none; }
-
-  .docs-legal__row dt {
-    padding: var(--space-3) var(--space-5);
-    font-size: var(--text-caption);
-    font-weight: 500;
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-    color: var(--text-muted);
-    background: var(--surface-alt);
-    border-right: 1px solid var(--border-subtle);
-  }
-
-  .docs-legal__row dd {
-    padding: var(--space-3) var(--space-5);
-    font-size: var(--text-caption);
-    line-height: 1.55;
-    color: var(--text-primary);
-  }
-
-  .docs-legal__row dd a {
-    color: var(--text-primary);
-    border-bottom: 1px solid var(--border-soft);
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .docs-legal__row dd a:hover { color: var(--accent-hover); }
-
-  @media (max-width: 520px) {
-    .docs-legal__row { grid-template-columns: 1fr; }
-    .docs-legal__row dt { border-right: none; border-bottom: 1px solid var(--border-subtle); }
-  }
-
-  .docs-legal__note {
-    font-size: var(--text-caption);
-    line-height: 1.6;
-    color: var(--text-muted);
-    max-width: 80ch;
+  @media (max-width: 768px) {
+    .doc-item {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
   }
 </style>

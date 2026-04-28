@@ -42,17 +42,37 @@
 
 ## Visual Development Block (МАНДАТОРНО после любого frontend-изменения)
 
-Claude не видит глазами. Любое изменение UI/компонентов/стилей ДОЛЖНО быть визуально проверено через Playwright MCP прежде чем заявлять "готово".
+Claude не видит глазами. Любое изменение UI/компонентов/стилей ДОЛЖНО быть визуально проверено через **Playwright CLI** прежде чем заявлять "готово".
 
-**Протокол:**
-1. Убедиться, что dev-сервер запущен (`npm run dev` → http://localhost:4321).
-2. Navigate → `browser_take_screenshot` на 3 вьюпортах: **1440×900** (desktop), **1024×768** (tablet), **375×812** (mobile).
-3. Сохранять в `.playwright-mcp/<feature>/` — именно как baseline для визуальной регрессии.
-4. `browser_console_messages` level=error → ожидаем 0 ошибок. Любая ошибка = fail.
-5. Сверить с `DESIGN.md` + `docs/design-direction.md` — никаких запрещённых цветов/шрифтов/градиентов.
-6. Для серьёзного ревью → дёргать subagent **design-reviewer** (`.claude/agents/design-reviewer.md`): он гонит весь чеклист в Haiku-модели и возвращает findings с file:line.
+**Протокол (Playwright CLI через Bash):**
 
-**Если Playwright MCP недоступен** — не утверждать "готово". Сказать явно: "не смог визуально проверить, нужна ручная проверка на экране".
+```bash
+# 1. Убедиться что dev-сервер запущен (npm run dev → http://localhost:4321)
+npx @playwright/cli open http://localhost:4321
+
+# 2. Desktop 1440×900
+npx @playwright/cli resize 1440 900
+npx @playwright/cli screenshot --filename .playwright-screenshots/<feature>/desktop.png --full-page
+
+# 3. Tablet 1024×768
+npx @playwright/cli resize 1024 768
+npx @playwright/cli screenshot --filename .playwright-screenshots/<feature>/tablet.png --full-page
+
+# 4. Mobile 375×812
+npx @playwright/cli resize 375 812
+npx @playwright/cli screenshot --filename .playwright-screenshots/<feature>/mobile.png --full-page
+
+# 5. Console errors (ожидаем 0 ошибок)
+npx @playwright/cli console error
+
+# 6. Закрыть браузер
+npx @playwright/cli close
+```
+
+1. Сверить скриншоты с `DESIGN.md` + `docs/design-direction.md` — никаких запрещённых цветов/шрифтов/градиентов.
+2. Для серьёзного ревью → дёргать subagent **design-reviewer** (`.claude/agents/design-reviewer.md`): он гонит весь чеклист в Haiku-модели и возвращает findings с file:line.
+
+**Если CLI недоступен** — не утверждать "готово". Сказать явно: "не смог визуально проверить, нужна ручная проверка на экране".
 
 **Никогда** не пропускать визуальную проверку из-за "это маленькое изменение". Мелкие правки тоже ломают layout.
 

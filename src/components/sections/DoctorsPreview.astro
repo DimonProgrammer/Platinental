@@ -71,9 +71,6 @@ const doctors = [
     </div>
 
     <div class="doctors__footer">
-      <p class="doctors__also">
-        Также в&nbsp;клинике: Марданова Д.М., Макеенко Н.В., Бречко М.А. (CO₂-лазер, безоперационная блефаропластика), Грицай&nbsp;О.А. (косметолог)
-      </p>
       <Button href="/doctors" variant="secondary" size="md">Показать всех врачей</Button>
     </div>
   </div>
@@ -125,8 +122,8 @@ const doctors = [
   }
 
   .doctor__portrait {
-    aspect-ratio: 3 / 4;
-    border-radius: var(--radius-md);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -211,13 +208,6 @@ const doctors = [
     padding-top: var(--space-10);
     border-top: 1px solid var(--border-subtle);
     align-items: flex-start;
-  }
-
-  .doctors__also {
-    font-size: var(--text-ui);
-    line-height: 1.55;
-    color: var(--text-muted);
-    max-width: 80ch;
   }
 
 </style>

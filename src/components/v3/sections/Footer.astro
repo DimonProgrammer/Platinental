@@ -1,19 +1,25 @@
 ---
 const directions = [
-  { label: 'Пластическая хирургия', href: '/v3/plastika' },
-  { label: 'Косметология', href: '/v3/kosmetologiya' },
-  { label: 'Космецевтика', href: '/v3/kosmecevtika' },
-  { label: 'Врачи клиники', href: '/v3/doctors' },
+  { label: 'Пластическая хирургия', href: '/plastika' },
+  { label: 'Косметология', href: '/kosmetologiya' },
+  { label: 'Космецевтика', href: '/kosmecevtika' },
+  { label: 'Врачи клиники', href: '/doctors' },
 ];
 const legal = [
-  { label: 'О клинике', href: '/v3/about' },
-  { label: 'Документы и лицензии', href: '/v3/documents' },
-  { label: 'Политика конфиденциальности', href: '/v3/privacy' },
+  { label: 'О клинике', href: '/about' },
+  { label: 'Документы и лицензии', href: '/documents' },
+  { label: 'Политика конфиденциальности', href: '/privacy' },
 ];
 const year = new Date().getFullYear();
 ---
 
 <footer class="v3-footer v3-surface-ink">
+  <div class="v3-container v3-container-wide footer-top">
+    <a href="/" class="footer-logo" aria-label="Platinental — на главную">
+      <img src="/logo-white.svg" alt="Platinental" width="187" height="40" class="footer-logo-img" />
+    </a>
+    <a href="#form" class="v3-btn v3-btn-primary footer-cta">Записаться на консультацию</a>
+  </div>
   <div class="v3-container v3-container-wide footer-grid">
     <div class="col col-contacts">
       <span class="v3-eyebrow">Контакты</span>
@@ -68,6 +74,35 @@ const year = new Date().getFullYear();
   .v3-footer {
     padding-top: var(--v3-gap-medium);
     padding-bottom: var(--v3-gap-small);
+  }
+  .footer-top {
+    margin-bottom: var(--v3-gap-small);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: opacity var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .footer-logo:hover { opacity: 0.78; }
+  .footer-logo-img {
+    display: block;
+    height: 28px;
+    width: auto;
+  }
+  .footer-cta {
+    min-height: 48px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+  }
+  @media (max-width: 560px) {
+    .footer-cta { width: 100%; text-align: center; }
   }
   .footer-grid {
     display: grid;

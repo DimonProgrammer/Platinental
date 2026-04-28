@@ -13,7 +13,7 @@ const cases = [
 
 <section class="v3-ba v3-surface-cream" aria-labelledby="ba-heading">
   <div class="v3-container v3-container-default">
-    <header class="ba-header" data-v3-reveal>
+    <header class="ba-header" data-v3-stagger>
       <span class="v3-eyebrow">Результаты</span>
       <h2 id="ba-heading" class="v3-h2"><em>До и после</em></h2>
       <p class="v3-lead ba-lead">
@@ -146,12 +146,25 @@ const cases = [
     top: 0;
     bottom: 0;
     left: 50%;
-    width: 2px;
-    background: var(--v3-cream);
+    width: 44px;            /* hit-зона 44px для пальца */
+    background: transparent;
     border: 0;
     cursor: ew-resize;
     transform: translateX(-50%);
     z-index: 2;
+    padding: 0;
+    touch-action: none;
+  }
+  /* Визуальная вертикальная линия */
+  .ba-handle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: var(--v3-cream);
+    transform: translateX(-50%);
   }
   .ba-handle::before {
     content: '';
@@ -221,7 +234,7 @@ const cases = [
   .tab-label {
     grid-area: name;
     font-family: var(--v3-font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: 1.125rem;
     color: var(--v3-ink);
   }

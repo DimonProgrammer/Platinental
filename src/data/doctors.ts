@@ -17,12 +17,31 @@ export interface Doctor {
   initials: string;
   nameBtn: string; // «к Фамилии И.О.» — дат. падеж + инициалы, для кнопки CTA
   spec: string;
-  tags: Array<'plastika' | 'face' | 'body' | 'cosmetology'>;
+  tags: Array<'plastika' | 'face' | 'body' | 'cosmetology' | 'orthopedia'>;
   short: string;
   priceMain: string;
   priceSub?: string;
   tone: 'a' | 'b' | 'c' | 'd';
   photo: string | null;
+
+  // Strip из 2–4 чисел под Hero. Рендерится только если есть.
+  stats?: Array<{ value: string; label: string }>;
+
+  // Уникальность врача — авторская методика, регенеративный подход и т.п.
+  approach?: { title: string; body: string };
+
+  // Документы: дипломы, сертификаты, CV, патенты, публикации. Превью + клик в lightbox/новую вкладку для PDF.
+  documents?: Array<{
+    src: string;
+    title: string;
+    kind: 'diploma' | 'certificate' | 'cv' | 'patent' | 'publication';
+    preview?: string; // путь к JPG-превью (для PDF)
+  }>;
+
+  // Галерея работ — БЕЗ ПОДПИСЕЙ операций (фото клиента неподписаны).
+  // Если задано — рендерится отдельная секция с lightbox. Старое поле works оставлено для обратной совместимости.
+  gallery?: string[];
+
   details: {
     specialization: string[];
     education: Array<{ year: string; text: string }>;
@@ -46,18 +65,27 @@ export const doctors: Doctor[] = [
     name: 'Мелоян Мхитар Мисакович',
     initials: 'ММ',
     nameBtn: 'к Мелояну М.М.',
-    spec: 'RHINOPLASTY / РИНОПЛАСТИКА',
-    tags: ['plastika', 'face'],
-    short: 'В&nbsp;хирургии с&nbsp;1986&nbsp;года. Специализируется на&nbsp;ринопластике и&nbsp;эстетической хирургии молочных желёз.',
+    spec: 'ПЛАСТИЧЕСКИЙ ХИРУРГ · 40 ЛЕТ ПРАКТИКИ',
+    tags: ['plastika', 'face', 'body'],
+    short: 'В&nbsp;хирургии с&nbsp;1986&nbsp;года. Полный спектр пластической хирургии&nbsp;— от&nbsp;ринопластики и&nbsp;маммопластики до&nbsp;контурирования тела. Обучение в&nbsp;США, Чехии, Армении.',
     priceMain: 'Первичная 7 000 ₽',
     priceSub: 'Повторная 5 000 ₽',
     tone: 'a',
     photo: '/doctors/meloyan/photo.png',
+    stats: [
+      { value: '40 лет', label: 'хирургической практики' },
+      { value: 'с 1986', label: 'в хирургии' },
+      { value: 'США · Чехия · Армения', label: 'международные стажировки' },
+    ],
     details: {
       specialization: [
         'Ринопластика (первичная)',
-        'Эстетическая хирургия молочных желёз',
-        'Маммопластика',
+        'Эстетическая хирургия молочных желёз, маммопластика',
+        'Абдоминопластика, контурирование тела',
+        'Липосакция, липомоделирование',
+        'Блефаропластика, омоложение лица',
+        'Отопластика, хейлопластика',
+        'Реконструктивные операции после травм',
       ],
       education: [
         { year: '1986', text: 'Алтайский государственный медицинский институт — «Лечебное дело»' },
@@ -101,7 +129,12 @@ export const doctors: Doctor[] = [
     priceMain: 'Первичная 7 000 ₽',
     priceSub: 'Повторная 5 000 ₽',
     tone: 'b',
-    photo: '/doctors/tulatova/photo.jpg',
+    photo: '/doctors/tulatova/photo.png',
+    approach: {
+      title: 'Деликатная хирургия лица',
+      body: 'Face preserving surgery — подход, при котором естественные черты лица сохраняются полностью. Никакого «сделанного» вида: задача — чтобы пациент остался узнаваемым, но выглядел отдохнувшим и моложе на 5–10 лет.',
+    },
+    gallery: Array.from({ length: 28 }, (_, i) => `/doctors/tulatova/gallery/${String(i + 1).padStart(2, '0')}.jpg`),
     details: {
       specialization: [
         'CO₂-шлифовка',
@@ -134,13 +167,18 @@ export const doctors: Doctor[] = [
     name: 'Васильев Максим Николаевич',
     initials: 'МВ',
     nameBtn: 'к Васильеву М.Н.',
-    spec: 'К.М.Н. / МАММОПЛАСТИКА · КОНТУРИРОВАНИЕ ТЕЛА',
-    tags: ['plastika', 'body'],
-    short: 'К.м.н. Из&nbsp;тех, кто сначала слушает, потом оперирует. Пациенты говорят, что он&nbsp;понимает задачу лучше, чем&nbsp;ты&nbsp;сам её&nbsp;сформулировал.',
+    spec: 'К.М.Н. · ПЛАСТИЧЕСКИЙ ХИРУРГ',
+    tags: ['plastika', 'face', 'body'],
+    short: 'К.м.н. Полный спектр пластики&nbsp;— блефаропластика, маммопластика, контурирование тела. Из&nbsp;тех, кто сначала слушает, потом оперирует.',
     priceMain: 'Первичная 7 000 ₽',
     priceSub: 'Повторная 5 000 ₽',
     tone: 'd',
     photo: '/doctors/vasilev/photo.png',
+    stats: [
+      { value: 'К.м.н.', label: 'кандидат медицинских наук' },
+      { value: 'Соавтор', label: 'патента РФ № 2741620' },
+    ],
+    gallery: Array.from({ length: 23 }, (_, i) => `/doctors/vasilev/gallery/${String(i + 1).padStart(2, '0')}.jpg`),
     details: {
       specialization: [
         'Блефаропластика, миниинвазивный лифтинг бровей',
@@ -169,40 +207,6 @@ export const doctors: Doctor[] = [
     ],
   },
   {
-    slug: 'makeenko',
-    sourceSlug: 'makeenko-nikolaj-vladimirovich',
-    name: 'Макеенко Николай Владимирович',
-    initials: 'МН',
-    nameBtn: 'к Макеенко Н.В.',
-    spec: 'БЛЕФАРОПЛАСТИКА / ЛИПОФИЛИНГ',
-    tags: ['plastika', 'face'],
-    short: 'Коррекция нижних век&nbsp;— через разрез изнутри, снаружи ничего не&nbsp;видно. Пациенты записываются повторно и&nbsp;привозят подруг.',
-    priceMain: 'Первичная 5 000 ₽',
-    priceSub: 'Повторная 2 500 ₽',
-    tone: 'a',
-    photo: '/doctors/makeenko/photo.png',
-    details: {
-      specialization: [
-        'Блефаропластика верхних век',
-        'Трансконъюнктивальная блефаропластика нижних век (без внешних разрезов)',
-        'Эндоскопическая подтяжка лба',
-        'Липофилинг лица и области больших половых губ',
-        'Лабиопластика',
-      ],
-      education: [
-        { year: '2010–2016', text: '1-й МГМУ им. И.М. Сеченова — «Лечебное дело», врач' },
-        { year: '2016–2018', text: 'ФГАУ «НМИЦ здоровья детей» — врач-детский хирург' },
-        { year: '2018–2020', text: '1-й МГМУ им. И.М. Сеченова (Сеченовский университет) — ординатура по пластической хирургии' },
-      ],
-    },
-    works: worksPlaceholder([
-      'Блефаропластика верхних век, 3 мес.',
-      'Трансконъюнктивальная блефаропластика, 3 мес.',
-      'Липофилинг лица, 6 мес.',
-      'Эндоскопическая подтяжка лба, 6 мес.',
-    ]),
-  },
-  {
     slug: 'mamedov',
     sourceSlug: '1077',
     name: 'Мамедов Вахид Аждарович',
@@ -215,6 +219,15 @@ export const doctors: Doctor[] = [
     priceSub: 'Повторная 7 000 ₽',
     tone: 'c',
     photo: '/doctors/mamedov/photo.png',
+    stats: [
+      { value: '1000+', label: 'ринопластик' },
+      { value: '2000+', label: 'операций на лице' },
+      { value: 'с 2017', label: 'действующий хирург' },
+    ],
+    approach: {
+      title: 'Сложные и вторичные ринопластики',
+      body: 'Действующий член EAFPS (Европейская академия лицевых пластических хирургов), RSE (Европейское общество ринопластики) и IAOMS (Международная ассоциация челюстно-лицевых хирургов). Берётся за&nbsp;вторичные ринопластики 2-й категории сложности&nbsp;— случаи, когда предыдущая операция не&nbsp;дала желаемого результата.',
+    },
     details: {
       specialization: [
         'Ринопластика (в т.ч. сложные и вторичные)',
@@ -268,6 +281,7 @@ export const doctors: Doctor[] = [
     priceSub: 'Онлайн 3 500 ₽ · Повторная 2 500 ₽',
     tone: 'b',
     photo: '/doctors/mardanova/photo.png',
+    gallery: Array.from({ length: 11 }, (_, i) => `/doctors/mardanova/gallery/${String(i + 1).padStart(2, '0')}.jpg`),
     details: {
       specialization: [
         'Риносептопластика, гениопластика',
@@ -311,6 +325,7 @@ export const doctors: Doctor[] = [
     priceMain: 'Консультация — уточняйте у администратора',
     tone: 'c',
     photo: '/doctors/brechko/photo.png',
+    gallery: Array.from({ length: 17 }, (_, i) => `/doctors/brechko/gallery/${String(i + 1).padStart(2, '0')}.jpg`),
     details: {
       specialization: [
         'Блефаропластика (верхняя и нижняя)',
@@ -356,7 +371,7 @@ export const doctors: Doctor[] = [
     priceMain: 'Первичная 2 000 ₽',
     priceSub: 'Повторная 700 ₽',
     tone: 'd',
-    photo: '/doctors/gritsay/photo.jpg',
+    photo: '/doctors/gritsay/photo.png',
     details: {
       specialization: [
         'Ботулинотерапия',
@@ -383,5 +398,84 @@ export const doctors: Doctor[] = [
       'SMAS-подтяжка, 3 мес.',
       'Фотоомоложение, 2 мес.',
     ]),
+  },
+  {
+    slug: 'sorvin',
+    sourceSlug: 'vladimir-sorvin',
+    name: 'Сорвин Владимир',
+    initials: 'СВ',
+    nameBtn: 'к Сорвину В.',
+    spec: 'ЧЕЛЮСТНО-ЛИЦЕВОЙ ХИРУРГ · ОРТОГНАТИКА',
+    tags: ['plastika', 'face'],
+    short: 'Челюстно-лицевая хирургия и&nbsp;ортогнатика. Изменение прикуса, формы и&nbsp;пропорций лица&nbsp;— через хирургическую коррекцию челюстей.',
+    priceMain: 'Уточняйте у администратора',
+    tone: 'a',
+    photo: null,
+    stats: [
+      { value: '1000+', label: 'ортогнатических операций' },
+      { value: '11 лет', label: 'хирургического стажа' },
+    ],
+    approach: {
+      title: 'Ортогнатика — не косметика, а функция',
+      body: 'Ортогнатическая хирургия исправляет прикус и&nbsp;пропорции лица одновременно. Это не&nbsp;просто эстетика&nbsp;— это решает проблемы дыхания, жевания, осанки и&nbsp;храпа. Эффект сохраняется на&nbsp;всю жизнь.',
+    },
+    documents: [
+      { src: '/doctors/sorvin/docs/cv.pdf', title: 'CV (MIOS 2026)', kind: 'cv' },
+    ],
+    gallery: Array.from({ length: 4 }, (_, i) => `/doctors/sorvin/gallery/${String(i + 1).padStart(2, '0')}.jpg`),
+    details: {
+      specialization: [
+        'Ортогнатическая хирургия (коррекция прикуса)',
+        'Ремоделирование лицевого скелета',
+        'Гениопластика (пластика подбородка)',
+        'Реконструкция после травм',
+        'Хирургическое лечение нарушений сна (апноэ)',
+      ],
+      education: [
+        { year: '—', text: 'Высшее медицинское образование, специализация «Челюстно-лицевая хирургия»' },
+      ],
+      additionalEducation: [
+        { text: 'Международный конгресс ортогнатической хирургии MIOS 2026' },
+      ],
+      awards: 'Более 1000 ортогнатических операций за 11 лет практики.',
+    },
+    works: [],
+  },
+  {
+    slug: 'babayan',
+    sourceSlug: 'arsen-babayan',
+    name: 'Бабаян Арсен Викторович',
+    initials: 'БА',
+    nameBtn: 'к Бабаяну А.В.',
+    spec: 'НЕЙРОХИРУРГ · ХИРУРГ-ОРТОПЕД · Д.М.Н.',
+    tags: ['orthopedia', 'body'],
+    short: 'Доктор медицинских наук, профессор. Авторская методика регенерации тканей&nbsp;— «лечим клетки тела, а&nbsp;не&nbsp;протез». Признан лучшим нейрохирургом независимыми экспертами Европы.',
+    priceMain: 'Онлайн-консультация · по запросу',
+    priceSub: 'Очно в Казани · по записи',
+    tone: 'c',
+    photo: null,
+    approach: {
+      title: 'Регенеративный подход — лечим клетки, а не протез',
+      body: 'Большинство ортопедических операций&nbsp;— это замена сустава на&nbsp;имплант. Методика Бабаяна позволяет восстанавливать собственные ткани и&nbsp;откладывать или избегать протезирования. Сотрудничество с&nbsp;клиникой Mibrar (Ереван), организация лечения в&nbsp;Армении, мастер-классы для коллег по&nbsp;авторской методике.',
+    },
+    documents: [
+      { src: '/doctors/babayan/docs/broschure.pdf', title: 'Брошюра по методике (RU, до/после)', kind: 'publication' },
+      { src: '/doctors/babayan/docs/diploma.pdf', title: 'Документы об образовании', kind: 'diploma' },
+    ],
+    details: {
+      specialization: [
+        'Регенеративная ортопедия (восстановление износа суставов)',
+        'Нейрохирургия',
+        'Онлайн-консультации и подбор лечения',
+        'Организация лечения в клинике Mibrar (Ереван)',
+        'Мастер-классы для коллег по авторской методике',
+      ],
+      education: [
+        { year: '—', text: 'Доктор медицинских наук, профессор' },
+        { year: '—', text: 'Специализация: нейрохирургия и хирургическая ортопедия' },
+      ],
+      awards: 'Признан лучшим нейрохирургом независимыми экспертами Европы. Интервью о&nbsp;методике&nbsp;— Tatar-inform: «Лечат клетки тела, а&nbsp;не&nbsp;протез».',
+    },
+    works: [],
   },
 ];

@@ -1,34 +1,46 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/sections/Hero.astro';
-import ServicesGrid from '../components/sections/ServicesGrid.astro';
-import Principles from '../components/sections/Principles.astro';
-import Procedures from '../components/sections/Procedures.astro';
-import QuoteBridge from '../components/sections/QuoteBridge.astro';
-import DoctorsPreview from '../components/sections/DoctorsPreview.astro';
-import BeforeAfter from '../components/sections/BeforeAfter.astro';
-import Reviews from '../components/sections/Reviews.astro';
-import ConsultationValue from '../components/sections/ConsultationValue.astro';
-import FinalCTA from '../components/sections/FinalCTA.astro';
-import FAQ from '../components/sections/FAQ.astro';
-import Contacts from '../components/sections/Contacts.astro';
+import V3Layout from '../layouts/V3Layout.astro';
+import Navigation from '../components/v3/sections/Navigation.astro';
+import Hero from '../components/v3/sections/Hero.astro';
+import ServicesGrid from '../components/v3/sections/ServicesGrid.astro';
+import Principles from '../components/v3/sections/Principles.astro';
+import Procedures from '../components/v3/sections/Procedures.astro';
+import QuoteBridge from '../components/v3/sections/QuoteBridge.astro';
+import DoctorsPreview from '../components/v3/sections/DoctorsPreview.astro';
+import BeforeAfter from '../components/v3/sections/BeforeAfter.astro';
+import Reviews from '../components/v3/sections/Reviews.astro';
+import ConsultationValue from '../components/v3/sections/ConsultationValue.astro';
+import FinalCTA from '../components/v3/sections/FinalCTA.astro';
+import FAQ from '../components/v3/sections/FAQ.astro';
+import Contacts from '../components/v3/sections/Contacts.astro';
+import Footer from '../components/v3/sections/Footer.astro';
 ---
 
-<BaseLayout
+<V3Layout
   title="Platinental Казань — клиника пластической хирургии и косметологии"
-  description="Клиника Platinental в Казани. Ринопластика от 200 000 ₽, маммопластика от 450 000 ₽, ботокс от 150 ₽/ед. Работаем с 2011 года. Запись: +7 843 223-66-66."
-  darkHero={true}
+  description="Клиника Platinental в Казани. Гармонизирующая хирургия, авторские методики. С 2011 года."
 >
-  <Hero />
-  <ServicesGrid />
-  <Principles />
-  <Procedures />
-  <QuoteBridge />
-  <DoctorsPreview />
-  <BeforeAfter />
-  <Reviews />
-  <ConsultationValue />
-  <FinalCTA />
-  <FAQ />
-  <Contacts />
-</BaseLayout>
+  <Navigation />
+  <main id="main">
+    <Hero />
+    <ServicesGrid />
+    <Principles />
+    <Procedures />
+    <QuoteBridge />
+    <DoctorsPreview />
+    <BeforeAfter />
+    <Reviews />
+    <ConsultationValue />
+    <FinalCTA />
+    <FAQ />
+    <Contacts />
+  </main>
+  <Footer />
+</V3Layout>
+
+<style is:global>
+  /* ZapfHumnst BT вместо Cormorant на всём сайте */
+  [data-v3] {
+    --v3-font-display: 'ZapfHumnst BT', Georgia, serif;
+  }
+</style>

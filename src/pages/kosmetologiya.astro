@@ -1,487 +1,269 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../components/primitives/Button.astro';
-import SectionHeader from '../components/primitives/SectionHeader.astro';
-import FinalCTA from '../components/sections/FinalCTA.astro';
-import FAQ from '../components/sections/FAQ.astro';
-import Contacts from '../components/sections/Contacts.astro';
+import V3Layout from '../layouts/V3Layout.astro';
+import Navigation from '../components/v3/sections/Navigation.astro';
+import PageHero from '../components/v3/sections/PageHero.astro';
+import FinalCTA from '../components/v3/sections/FinalCTA.astro';
+import FAQ from '../components/v3/sections/FAQ.astro';
+import Footer from '../components/v3/sections/Footer.astro';
 import { kosmProcs } from '../data/kosmetologiya';
 import { doctors } from '../data/doctors';
 
-const injection = kosmProcs.filter((p) => p.category === 'injection');
-const hardware = kosmProcs.filter((p) => p.category === 'hardware');
-const therapy = kosmProcs.filter((p) => p.category === 'therapy');
+const cosmetologists = doctors.filter((d) => d.tags.includes('cosmetology'));
 
-const tabs = [
-  { key: 'injection', label: 'Инъекционная', count: injection.length, procs: injection },
-  { key: 'hardware', label: 'Аппаратная', count: hardware.length, procs: hardware },
-  { key: 'therapy', label: 'Терапевтическая', count: therapy.length, procs: therapy },
+const categoryMeta = {
+  injection: { label: 'Инъекционная косметология', eyebrow: 'Инъекции' },
+  hardware: { label: 'Аппаратная косметология', eyebrow: 'Аппаратная' },
+  therapy: { label: 'Терапевтические процедуры', eyebrow: 'Терапия' },
+};
+
+const categories = ['injection', 'hardware', 'therapy'] as const;
+
+const faqItems = [
+  {
+    q: 'Нужна ли консультация перед косметологической процедурой?',
+    a: 'Да. Перед любой инъекционной процедурой обязательна первичная консультация — врач оценит состояние кожи, исключит противопоказания и подберёт препарат.',
+    open: true,
+  },
+  {
+    q: 'Через сколько дней виден результат после ботулотоксина?',
+    a: 'Первый эффект — через 3–5 дней, полный результат — через 10–14 дней. Держится 4–6 месяцев.',
+  },
+  {
+    q: 'Сколько стоит консультация косметолога?',
+    a: 'Первичная консультация — <strong>2 000 ₽</strong>, повторная — <strong>700 ₽</strong>.',
+  },
+  {
+    q: 'Есть ли противопоказания к инъекциям?',
+    a: 'Да: беременность, лактация, воспалительные процессы в зоне введения, аутоиммунные заболевания, аллергия на компоненты препарата. Полный список противопоказаний — на консультации.',
+  },
+  {
+    q: 'Как долго держится контурная пластика (филлеры)?',
+    a: 'Зависит от препарата и зоны: губы — 6–12 месяцев, скулы — 12–18 месяцев, носогубные складки — 9–12 месяцев.',
+  },
+  {
+    q: 'Можно ли совмещать лазерную шлифовку и инъекции?',
+    a: 'Не в один день. Протокол комбинации процедур косметолог выстраивает индивидуально с учётом целей и состояния кожи.',
+  },
 ];
-
-const cosmetologist = doctors.find((d) => d.slug === 'gritsay')!;
 ---
 
-<BaseLayout
-  title="Косметология в Казани — клиника Platinental"
-  description="Косметология в Казани: ботулотоксин от 150 ₽/ед, контурная пластика от 22 000 ₽, CO₂-лазер, HELEO4. Косметолог работает в паре с хирургами. Запись: +7 843 223-66-66."
-  canonical="https://kzn.platinental.ru/kosmetologiya"
-  darkHero={true}
+<V3Layout
+  title="Косметология — Platinental Казань"
+  description="Инъекционная, аппаратная и терапевтическая косметология в клинике Platinental Казань. Ботулотоксин, филлеры, лазер CO₂, биоревитализация."
 >
-  <!-- Hero -->
-  <section class="k-hero" aria-labelledby="k-hero-title">
-    <div class="k-hero__inner" data-reveal>
-      <span class="eyebrow">Косметология</span>
-      <h1 id="k-hero-title" class="k-hero__title font-display">
-        Косметология в&nbsp;Казани&nbsp;— <em>клиника&nbsp;Platinental</em>
-      </h1>
-      <p class="k-hero__lede">
-        Косметолог при&nbsp;консультации клиента может порекомендовать процедуры, которые отсрочат операции на&nbsp;годы. Хирурги смотрят шире и&nbsp;не&nbsp;спешат к&nbsp;скальпелю. Если результат можно получить без&nbsp;операционных действий, через косметолога,&nbsp;— рекомендация будет в&nbsp;пользу этого пути.
-      </p>
-      <blockquote class="k-hero__quote font-display">
-        «Для создания живого лица недостаточно просто вколоть филлер. Мы&nbsp;предлагаем более тонкие и&nbsp;сложные техники»
-      </blockquote>
-      <div class="k-hero__actions">
-        <Button href="/#form" variant="primary" size="lg">Записаться на&nbsp;консультацию</Button>
-        <Button href="/prices" variant="ghost" size="lg">Цены</Button>
-      </div>
-    </div>
-  </section>
+  <Navigation />
+  <main id="main">
+    <PageHero
+      pageMarker="02 / 04"
+      pageMarkerLabel="Услуги"
+      eyebrow="Косметология"
+      h1="Косметологические процедуры"
+      lead="Инъекционная, аппаратная и терапевтическая косметология — от ботулотоксина до лазерной шлифовки. Работаем только с сертифицированными препаратами."
+      ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
+      ctaSecondary={{ label: 'Узнать стоимость', href: '/prices' }}
+      meta={[
+        { num: '3', label: 'направления' },
+        { num: 'от 2 000 ₽', label: 'консультация' },
+        { num: 'CO₂ · HELEO4', label: 'премиум-аппараты' },
+        { num: 'с 2011', label: 'в Казани' },
+      ]}
+    />
 
-  <!-- Procedures tabs -->
-  <section class="procs" aria-label="Процедуры">
-    <div class="procs__inner">
-      <div class="procs__tabs" role="tablist">
-        {tabs.map((t, i) => (
-          <button
-            type="button"
-            class:list={['procs__tab', i === 0 && 'is-active']}
-            data-tab={t.key}
-            role="tab"
-            aria-selected={i === 0 ? 'true' : 'false'}
-          >
-            {t.label} <span class="procs__count">{t.count}</span>
-          </button>
-        ))}
-      </div>
+    <!-- Procedures by category -->
+    {categories.map((catKey) => {
+      const procs = kosmProcs.filter((p) => p.category === catKey);
+      const meta = categoryMeta[catKey];
+      return (
+        <section class="v3-kosm-cat v3-surface-cream" aria-labelledby={`cat-${catKey}-heading`}>
+          <div class="v3-container v3-container-wide">
+            <header class="cat-header" data-v3-stagger>
+              <span class="v3-eyebrow">{meta.eyebrow}</span>
+              <h2 id={`cat-${catKey}-heading`} class="v3-h2"><em>{meta.label}</em></h2>
+            </header>
+            <ul class="procs-grid" data-v3-stagger>
+              {procs.map((p) => (
+                <li class="proc-card">
+                  <span class="proc-badge v3-eyebrow">{p.badge}</span>
+                  <h3 class="proc-name v3-h3">{p.name}</h3>
+                  <p class="proc-desc v3-body" set:html={p.desc}></p>
+                  <ul class="proc-prices">
+                    {p.prices.map((pr) => (
+                      <li class="proc-price-row">
+                        <span class="proc-price-label v3-caption">{pr.label}</span>
+                        <span class="proc-price-val">{pr.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a href="#form" class="proc-cta v3-link">Записаться</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      );
+    })}
 
-      {tabs.map((t, i) => (
-        <div class:list={['procs__panel', i === 0 && 'is-active']} data-panel={t.key} role="tabpanel">
-          <div class="procs__grid">
-            {t.procs.map((proc, idx) => (
-              <article class="proc-card" data-reveal style={`transition-delay: ${Math.min(idx * 50, 250)}ms`}>
-                <span class="proc-card__badge">{proc.badge}</span>
-                <h3 class="proc-card__name font-display">{proc.name}</h3>
-                <p class="proc-card__desc" set:html={proc.desc} />
-
-                <dl class="proc-card__prices">
-                  {proc.prices.map((p) => (
-                    <div class="proc-card__price-item">
-                      <dt>{p.label}</dt>
-                      <dd class="font-display">{p.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-
-                <Button href="/#form" variant="link" arrow={true} class="proc-card__cta">
-                  Записаться к&nbsp;косметологу
-                </Button>
-              </article>
+    <!-- Cosmetologists -->
+    {cosmetologists.length > 0 && (
+      <section class="v3-kosm-doctors v3-surface-sand" aria-labelledby="cosm-doctors-heading">
+        <div class="v3-container v3-container-wide">
+          <header class="doctors-header" data-v3-stagger>
+            <span class="v3-eyebrow">Специалисты</span>
+            <h2 id="cosm-doctors-heading" class="v3-h2"><em>Врачи-косметологи</em></h2>
+          </header>
+          <ul class="doctors-row" data-v3-stagger>
+            {cosmetologists.map((d) => (
+              <li class="doctor-mini">
+                <a href={`/doctors/${d.slug}`} class="doctor-mini-link">
+                  <div class="doctor-mini-photo">
+                    {d.photo
+                      ? <img src={d.photo} alt={d.name} width="200" height="250" loading="lazy" />
+                      : <div class="doctor-mini-initials">{d.initials}</div>}
+                  </div>
+                  <div class="doctor-mini-info">
+                    <p class="v3-eyebrow doctor-mini-spec">{d.spec}</p>
+                    <h3 class="v3-h3 doctor-mini-name">{d.name}</h3>
+                    <p class="v3-body doctor-mini-price">{d.priceMain}</p>
+                  </div>
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
-      ))}
+      </section>
+    )}
 
-      <p class="procs__disclaimer">
-        Цены носят информационный характер и&nbsp;не&nbsp;являются публичной офертой. Точная стоимость определяется врачом на&nbsp;консультации.
-      </p>
-    </div>
-  </section>
+    <FAQ
+      eyebrow="Косметология"
+      heading="Частые вопросы"
+      items={faqItems}
+    />
 
-  <!-- Cosmetologist -->
-  <section class="cosm" aria-label="Врач-косметолог">
-    <div class="cosm__inner">
-      <SectionHeader eyebrow="Специалист направления" title="Anti-age врач-косметолог клиники" />
-
-      <article class="cosm-card" data-reveal>
-        <div class="cosm-card__left">
-          <div class="cosm-card__portrait" aria-hidden="true">
-            <span class="cosm-card__initials font-display">{cosmetologist.initials}</span>
-          </div>
-        </div>
-        <div class="cosm-card__body">
-          <span class="cosm-card__badge">{cosmetologist.spec}</span>
-          <h3 class="cosm-card__name font-display">{cosmetologist.name}</h3>
-          <p class="cosm-card__desc">
-            Работает с&nbsp;рубцами и&nbsp;качеством кожи, готовит к&nbsp;операции и&nbsp;сопровождает реабилитацию. В&nbsp;паре с&nbsp;хирургом смотрит на&nbsp;лицо комплексно и&nbsp;целостно.
-          </p>
-          <div class="cosm-card__price">
-            <span class="cosm-card__price-label">Консультация</span>
-            <span class="cosm-card__price-val font-display">{cosmetologist.priceMain}</span>
-          </div>
-          <div class="cosm-card__actions">
-            <Button href="/#form" variant="primary" size="md">Записаться</Button>
-            <Button href={`/doctors#${cosmetologist.slug}`} variant="ghost" size="md">Подробнее о&nbsp;враче</Button>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <FinalCTA />
-  <FAQ />
-  <Contacts />
-</BaseLayout>
-
-<script>
-  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-tab]');
-  const panels = document.querySelectorAll<HTMLElement>('[data-panel]');
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.tab;
-      tabs.forEach((t) => {
-        const active = t === tab;
-        t.classList.toggle('is-active', active);
-        t.setAttribute('aria-selected', String(active));
-      });
-      panels.forEach((p) => {
-        p.classList.toggle('is-active', p.dataset.panel === target);
-      });
-    });
-  });
-</script>
+    <FinalCTA
+      heading="Записаться<br />к косметологу"
+      lead="Первичная консультация от 2 000 ₽. Врач оценит состояние кожи и подберёт процедуры под ваши цели."
+    />
+  </main>
+  <Footer />
+</V3Layout>
 
 <style>
-  .k-hero {
-    background: var(--surface-page);
-    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 var(--space-16);
-    border-bottom: 1px solid var(--border-subtle);
+  .v3-kosm-cat {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
   }
-
-  @media (min-width: 768px) {
-    .k-hero { padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-20); }
-  }
-
-  .k-hero__inner {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  @media (min-width: 768px) { .k-hero__inner { padding: 0 32px; } }
-
-  .k-hero__title {
-    font-size: clamp(1.75rem, 1rem + 2.6vw, 3rem);
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: var(--tracking-display);
-    color: var(--text-primary);
-    margin: var(--space-6) 0 var(--space-5);
-    text-wrap: balance;
-    max-width: 26ch;
-  }
-
-  .k-hero__title em {
-    color: var(--accent-hover);
-    font-weight: 300;
-  }
-
-  .k-hero__lede {
-    font-size: var(--text-body);
-    line-height: 1.55;
-    color: var(--text-secondary);
-    max-width: 64ch;
-    margin-bottom: var(--space-6);
-  }
-
-  .k-hero__quote {
-    font-size: var(--text-lead);
-    font-weight: 400;
-    color: var(--accent-hover);
-    line-height: 1.3;
-    padding: var(--space-5) 0 var(--space-5) var(--space-6);
-    border-left: 2px solid var(--accent);
-    margin-bottom: var(--space-8);
-    max-width: 60ch;
-  }
-
-  .k-hero__actions {
+  .cat-header {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-5);
-    align-items: center;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
   }
-
-  .k-hero__actions :global(.btn--ghost) { color: rgba(255, 255, 255, 0.85); }
-  .k-hero__actions :global(.btn--ghost:hover) { color: var(--accent); }
-
-  /* Procedures */
-  .procs {
-    background: var(--surface-alt);
-    padding: var(--space-16) 0 var(--space-20);
-  }
-
-  @media (min-width: 1024px) { .procs { padding: var(--space-20) 0 var(--space-24); } }
-
-  .procs__inner {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  @media (min-width: 768px) { .procs__inner { padding: 0 32px; } }
-  @media (min-width: 1200px) { .procs__inner { padding: 0 48px; } }
-
-  .procs__tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-bottom: var(--space-8);
-    padding-bottom: var(--space-6);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .procs__tab {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    height: 40px;
-    padding: 0 18px;
-    background: transparent;
-    border: 1px solid var(--border-soft);
-    border-radius: 99px;
-    font-family: inherit;
-    font-size: var(--text-caption);
-    font-weight: 500;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: background-color var(--duration-fast) var(--ease-out),
-                border-color var(--duration-fast) var(--ease-out),
-                color var(--duration-fast) var(--ease-out);
-  }
-
-  .procs__tab:hover { border-color: var(--text-primary); color: var(--text-primary); }
-
-  .procs__tab.is-active {
-    background: var(--text-primary);
-    border-color: var(--text-primary);
-    color: var(--text-inverse);
-  }
-
-  .procs__count {
-    font-size: 11px;
-    opacity: 0.65;
-  }
-
-  .procs__panel { display: none; }
-  .procs__panel.is-active { display: block; }
-
-  .procs__grid {
+  .procs-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--v3-border-hair);
   }
-
-  @media (min-width: 720px) { .procs__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1100px) { .procs__grid { grid-template-columns: repeat(3, 1fr); } }
-
   .proc-card {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
-    padding: var(--space-6);
-    background: var(--surface-raised);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    transition: border-color var(--duration-fast) var(--ease-out),
-                transform var(--duration-base) var(--ease-out);
+    gap: 0.75rem;
+    padding: 1.75rem;
+    background: var(--v3-cream);
   }
-
-  .proc-card:hover {
-    border-color: var(--border-soft);
-    transform: translateY(-2px);
-  }
-
-  .proc-card__badge {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .proc-card__name {
-    font-size: var(--text-h5);
-    font-weight: 400;
-    line-height: 1.15;
-    color: var(--text-primary);
-    letter-spacing: var(--tracking-heading);
-  }
-
-  .proc-card__desc {
-    font-size: var(--text-ui);
-    line-height: 1.55;
-    color: var(--text-muted);
-  }
-
-  .proc-card__prices {
+  .proc-badge { color: var(--v3-ink-muted); }
+  .proc-name { color: var(--v3-ink); }
+  .proc-desc { margin: 0; font-size: 0.9375rem; color: var(--v3-ink-secondary); flex: 1; }
+  .proc-prices {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0.875rem 0 0;
+    border-top: 1px solid var(--v3-border-hair);
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
-    padding: var(--space-4) 0;
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-    margin-top: var(--space-2);
-    flex: 1;
+    gap: 0.375rem;
   }
-
-  .proc-card__price-item {
+  .proc-price-row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: var(--space-3);
-    font-size: var(--text-caption);
+    gap: 0.5rem;
   }
-
-  .proc-card__price-item dt {
-    color: var(--text-muted);
-  }
-
-  .proc-card__price-item dd {
-    font-weight: 500;
-    color: var(--accent-hover);
+  .proc-price-label { color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0.005em; flex: 1; }
+  .proc-price-val {
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-size: 1rem;
+    color: var(--v3-champagne-deep);
     white-space: nowrap;
   }
-
-  .proc-card__cta {
-    margin-top: var(--space-2);
+  .proc-cta {
+    font-size: 0.9375rem;
+    margin-top: 0.25rem;
     align-self: flex-start;
   }
 
-  .procs__disclaimer {
-    margin-top: var(--space-10);
-    font-size: var(--text-caption);
-    color: var(--text-muted);
-    line-height: 1.55;
-    max-width: 64ch;
+  /* Doctors */
+  .v3-kosm-doctors {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
   }
-
-  /* Cosmetologist */
-  .cosm {
-    background: var(--surface-page);
-    padding: var(--space-20) 0;
+  .doctors-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
   }
-
-  @media (min-width: 1024px) { .cosm { padding: var(--space-24) 0; } }
-
-  .cosm__inner {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 20px;
+  .doctors-row {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
   }
-
-  @media (min-width: 768px) { .cosm__inner { padding: 0 32px; } }
-
-  .cosm-card {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
-    padding: var(--space-8);
-    background: var(--surface-alt);
-    border-radius: var(--radius-md);
+  .doctor-mini { flex: 0 0 22rem; }
+  .doctor-mini-link {
+    display: flex;
+    gap: 1.25rem;
+    text-decoration: none;
+    align-items: flex-start;
+    transition: opacity var(--v3-duration-fast) var(--v3-ease-out);
   }
-
-  @media (min-width: 640px) {
-    .cosm-card {
-      grid-template-columns: 220px 1fr;
-      gap: var(--space-10);
-    }
+  .doctor-mini-link:hover { opacity: 0.8; }
+  .doctor-mini-photo {
+    flex-shrink: 0;
+    width: 6rem;
+    height: 6rem;
+    overflow: hidden;
+    background: var(--v3-cream);
+    border-radius: 50%;
   }
-
-  .cosm-card__portrait {
-    aspect-ratio: 3 / 4;
-    background: #2B2421;
-    border-radius: var(--radius-sm);
+  .doctor-mini-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .doctor-mini-initials {
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-size: 1.75rem;
+    color: var(--v3-ink-muted);
   }
+  .doctor-mini-info { display: flex; flex-direction: column; gap: 0.375rem; padding-top: 0.25rem; }
+  .doctor-mini-spec { color: var(--v3-ink-muted); }
+  .doctor-mini-name { color: var(--v3-ink); }
+  .doctor-mini-price { color: var(--v3-champagne-deep); font-size: 0.875rem; margin: 0; }
 
-  .cosm-card__portrait::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nck'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nck)'/%3E%3C/svg%3E");
-    opacity: 0.15;
-    mix-blend-mode: overlay;
+  @media (max-width: 1024px) {
+    .procs-grid { grid-template-columns: repeat(2, 1fr); }
   }
-
-  .cosm-card__initials {
-    font-size: 64px;
-    font-weight: 300;
-    color: rgba(255, 253, 248, 0.92);
-    letter-spacing: -0.02em;
-    position: relative;
-    z-index: 1;
-  }
-
-  .cosm-card__body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .cosm-card__badge {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-    color: var(--accent-hover);
-  }
-
-  .cosm-card__name {
-    font-size: var(--text-h4);
-    font-weight: 400;
-    line-height: 1.1;
-    color: var(--text-primary);
-    letter-spacing: var(--tracking-heading);
-  }
-
-  .cosm-card__desc {
-    font-size: var(--text-ui);
-    line-height: 1.6;
-    color: var(--text-muted);
-  }
-
-  .cosm-card__price {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-3);
-    padding: var(--space-4) 0;
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-    margin: var(--space-2) 0;
-  }
-
-  .cosm-card__price-label {
-    font-size: var(--text-caption);
-    font-weight: 500;
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .cosm-card__price-val {
-    font-size: var(--text-lead);
-    color: var(--accent-hover);
-  }
-
-  .cosm-card__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-    margin-top: var(--space-2);
+  @media (max-width: 560px) {
+    .procs-grid { grid-template-columns: 1fr; }
+    .doctor-mini { flex: 0 0 100%; }
   }
 </style>

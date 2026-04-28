@@ -25,3 +25,15 @@ dist/
 .playwright-mcp/
 check-*.jpg
 .vercel
+.playwright-cli/
+.playwright-screenshots/
+
+# Root QA screenshots
+*-desktop-*.png
+*-mobile-*.png
+*-tablet-*.png
+
+# Audit temp files
+audit-*.js
+audit-*.mjs
+mobile-audit-results.txt

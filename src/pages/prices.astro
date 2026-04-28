@@ -1,383 +1,267 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../components/primitives/Button.astro';
-import FinalCTA from '../components/sections/FinalCTA.astro';
-import FAQ from '../components/sections/FAQ.astro';
-import Contacts from '../components/sections/Contacts.astro';
+import V3Layout from '../layouts/V3Layout.astro';
+import Navigation from '../components/v3/sections/Navigation.astro';
+import PageHero from '../components/v3/sections/PageHero.astro';
+import FinalCTA from '../components/v3/sections/FinalCTA.astro';
+import Footer from '../components/v3/sections/Footer.astro';
 import { priceCategories } from '../data/prices';
+
+const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
 ---
 
-<BaseLayout
-  title="Цены на услуги клиники Platinental в Казани — полный прайс-лист"
-  description="Прайс-лист клиники Platinental: пластическая хирургия, косметология, консультации. Ринопластика от 200 000 ₽, маммопластика от 450 000 ₽, ботокс от 150 ₽/ед."
-  canonical="https://kzn.platinental.ru/prices"
+<V3Layout
+  title="Прайс-лист — Platinental Казань"
+  description="Цены на пластические операции, косметологические процедуры и консультации врачей клиники Platinental Казань."
 >
-  <!-- Hero -->
-  <section class="pr-hero" aria-labelledby="pr-title">
-    <div class="pr-hero__inner" data-reveal>
-      <span class="eyebrow">Цены</span>
-      <h1 id="pr-title" class="pr-hero__title font-display">
-        Цены на&nbsp;услуги клиники Platinental в&nbsp;Казани
-      </h1>
-      <p class="pr-hero__lede">
-        Стоимость зависит от&nbsp;категории сложности&nbsp;— её&nbsp;определяет хирург на&nbsp;консультации. Первая категория&nbsp;— стандартная анатомия, вторая и&nbsp;третья&nbsp;— осложнённые случаи или&nbsp;повторные операции.
-      </p>
-      <p class="pr-hero__lede">
-        Все цены указаны от&nbsp;минимального порога. Точная стоимость определяется хирургом на&nbsp;консультации после анализа анатомии и&nbsp;сложности случая.
-      </p>
-    </div>
-  </section>
+  <Navigation />
+  <main id="main">
+    <PageHero
+      pageMarkerLabel="Прайс"
+      eyebrow="Стоимость"
+      h1="Прайс-лист"
+      lead="Цены актуальны на апрель 2026 года. Окончательная стоимость — после очной консультации."
+      ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
+      ctaSecondary={{ label: 'Задать вопрос', href: 'https://wa.me/78432236666' }}
+      meta={[
+        { num: '4', label: 'раздела' },
+        { num: 'полный прайс', label: 'актуально 2026' },
+        { num: 'консультация', label: 'точная цена индивидуально' },
+      ]}
+    />
 
-  <!-- Tabs + price tables -->
-  <section class="pr-body" aria-label="Прайс-лист">
-    <div class="pr-body__inner">
-      <div class="pr-tabs" role="tablist" aria-label="Разделы прайса">
+    <section class="v3-prices v3-surface-cream" aria-labelledby="prices-heading">
+      <div class="v3-container v3-container-default">
+        <h2 id="prices-heading" class="sr-only">Прайс-лист</h2>
+
+        <!-- Category tabs -->
+        <div class="prices-tabs" role="tablist" aria-label="Категории услуг" data-v3-reveal>
+          {tabs.map((t, i) => (
+            <button
+              role="tab"
+              class="price-tab"
+              data-tab={t.key}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`panel-${t.key}`}
+              id={`tab-${t.key}`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+
+        <!-- Category panels -->
         {priceCategories.map((cat, i) => (
-          <button
-            type="button"
-            class:list={['pr-tab', i === 0 && 'is-active']}
-            data-tab={cat.key}
-            role="tab"
-            aria-selected={i === 0 ? 'true' : 'false'}
+          <div
+            role="tabpanel"
+            id={`panel-${cat.key}`}
+            aria-labelledby={`tab-${cat.key}`}
+            class={`price-panel ${i === 0 ? 'is-active' : ''}`}
+            data-panel={cat.key}
           >
-            {cat.label}
-            {cat.count && <span class="pr-tab__count">{cat.count}</span>}
-          </button>
-        ))}
-      </div>
-
-      {priceCategories.map((cat, i) => (
-        <div class:list={['pr-panel', i === 0 && 'is-active']} data-panel={cat.key} role="tabpanel">
-          {cat.groups.map((group) => (
-            <div class="pr-group" data-reveal>
-              <h2 class="pr-group__title font-display">{group.title}</h2>
-              <div class="pr-table-wrap">
-                <table class="pr-table">
-                  {group.columns ? (
-                    <thead>
+            {cat.groups.map((group) => (
+              <div class="price-group" data-v3-reveal>
+                <h3 class="price-group-title v3-h3">{group.title}</h3>
+                <table class="price-table">
+                  <thead>
+                    {group.columns ? (
                       <tr>
                         {group.columns.map((col) => (
-                          <th style={col.width ? `width:${col.width}` : ''} class:list={[col.align === 'right' && 'pr-table__right']}>
+                          <th
+                            style={`width:${col.width || 'auto'}; text-align:${col.align || 'left'}`}
+                            class="v3-eyebrow"
+                          >
                             {col.label}
                           </th>
                         ))}
                       </tr>
-                    </thead>
-                  ) : (
-                    <thead>
+                    ) : (
                       <tr>
-                        <th style="width:70%">Процедура</th>
-                        <th class="pr-table__right">Стоимость</th>
+                        <th class="v3-eyebrow" style="width:70%">Услуга</th>
+                        <th class="v3-eyebrow" style="width:30%; text-align:right">Стоимость</th>
                       </tr>
-                    </thead>
-                  )}
+                    )}
+                  </thead>
                   <tbody>
                     {group.rows.map((row) => (
-                      <tr>
-                        <td class="pr-table__service">
-                          {row.service}
-                          {row.sub && <span class="pr-table__sub">{row.sub}</span>}
-                          {row.code && <span class="pr-table__code">{row.code}</span>}
-                        </td>
-                        {group.columns ? (
-                          group.columns.slice(1).map((col) => {
-                            const val = row[col.key as keyof typeof row];
-                            return (
-                              <td class:list={['pr-table__price', val === '—' && 'is-empty']}>
-                                {val}
-                              </td>
-                            );
-                          })
-                        ) : (
-                          <td class="pr-table__price">{row.price}</td>
-                        )}
-                      </tr>
+                      group.columns ? (
+                        <tr>
+                          {group.columns.map((col) => (
+                            <td
+                              style={`text-align:${col.align || 'left'}`}
+                              class={col.key === 'service' ? 'price-service' : 'price-val'}
+                            >
+                              {col.key === 'service'
+                                ? [row.service, row.sub && <span class="price-sub">{row.sub}</span>]
+                                : row[col.key as keyof typeof row] ?? '—'}
+                            </td>
+                          ))}
+                        </tr>
+                      ) : (
+                        <tr>
+                          <td class="price-service">{row.service}</td>
+                          <td class="price-val" style="text-align:right">{row.price ?? '—'}</td>
+                        </tr>
+                      )
                     ))}
                   </tbody>
                 </table>
               </div>
-            </div>
-          ))}
-        </div>
-      ))}
+            ))}
+          </div>
+        ))}
 
-      <p class="pr-body__disclaimer">
-        Цены носят информационный характер и&nbsp;не&nbsp;являются публичной офертой. Точная стоимость определяется врачом на&nbsp;консультации. Имеются противопоказания, необходима консультация специалиста.
-      </p>
-    </div>
-  </section>
+        <p class="prices-disclaimer v3-caption" data-v3-reveal>
+          Имеются противопоказания. Необходима консультация специалиста. Цены носят справочный характер;
+          окончательная стоимость определяется на очной консультации с учётом индивидуальных особенностей.
+          Все операции проводятся только при наличии медицинских показаний и информированного согласия.
+        </p>
+      </div>
+    </section>
 
-  <FinalCTA />
-  <FAQ />
-  <Contacts />
-</BaseLayout>
-
-<script>
-  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-tab]');
-  const panels = document.querySelectorAll<HTMLElement>('[data-panel]');
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.tab;
-      tabs.forEach((t) => {
-        const active = t === tab;
-        t.classList.toggle('is-active', active);
-        t.setAttribute('aria-selected', String(active));
-      });
-      panels.forEach((p) => {
-        p.classList.toggle('is-active', p.dataset.panel === target);
-      });
-      // scroll to top of body section
-      document.querySelector('.pr-body__inner')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-</script>
+    <FinalCTA
+      heading="Узнайте точную<br />стоимость"
+      lead="Запишитесь на консультацию — хирург расскажет, что именно нужно и сколько это стоит в вашем случае."
+      submitLabel="Записаться на консультацию"
+    />
+  </main>
+  <Footer />
+</V3Layout>
 
 <style>
-  /* Hero */
-  .pr-hero {
-    background: var(--surface-page);
-    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 var(--space-16);
-    border-bottom: 1px solid var(--border-subtle);
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
   }
-
-  @media (min-width: 768px) {
-    .pr-hero { padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-20); }
-  }
-
-  .pr-hero__inner {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
-  }
-
-  @media (min-width: 768px) { .pr-hero__inner { padding: 0 32px; } }
-
-  .pr-hero__title {
-    font-size: clamp(1.75rem, 1rem + 2.6vw, 3rem);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: var(--tracking-display);
-    color: var(--text-primary);
-    margin: var(--space-6) 0 var(--space-5);
-    text-wrap: balance;
-  }
-
-  .pr-hero__lede {
-    font-size: var(--text-body);
-    line-height: 1.55;
-    color: var(--text-secondary);
-    max-width: 64ch;
-    margin: 0 auto var(--space-8);
-  }
-
-  .pr-hero__quote {
-    font-size: var(--text-lead);
-    font-weight: 400;
-    color: var(--accent-hover);
-    line-height: 1.35;
-    padding: var(--space-5) var(--space-6);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    background: var(--surface-alt);
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: left;
+  .v3-prices {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-deep);
   }
 
   /* Tabs */
-  .pr-body {
-    background: var(--surface-page);
-    padding: var(--space-12) 0 var(--space-20);
-  }
-
-  @media (min-width: 1024px) { .pr-body { padding: var(--space-16) 0 var(--space-24); } }
-
-  .pr-body__inner {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  @media (min-width: 768px) { .pr-body__inner { padding: 0 32px; } }
-
-  .pr-tabs {
+  .prices-tabs {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-bottom: var(--space-10);
-    padding-bottom: var(--space-6);
-    border-bottom: 1px solid var(--border-subtle);
-    position: sticky;
-    top: var(--nav-height);
-    background: var(--surface-page);
-    z-index: 5;
-    padding-top: var(--space-4);
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    gap: 0;
+    border-bottom: 1px solid var(--v3-border-hair);
+    margin-bottom: var(--v3-gap-small);
+    overflow-x: auto;
+    scrollbar-width: none;
   }
-
-  @media (min-width: 768px) {
-    .pr-tabs {
-      margin-left: -32px;
-      margin-right: -32px;
-      padding-left: 32px;
-      padding-right: 32px;
-    }
-  }
-
-  .pr-tab {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    height: 40px;
-    padding: 0 18px;
-    background: transparent;
-    border: 1px solid var(--border-soft);
-    border-radius: 99px;
-    font-family: inherit;
-    font-size: var(--text-caption);
-    font-weight: 500;
-    color: var(--text-muted);
+  .prices-tabs::-webkit-scrollbar { display: none; }
+  .price-tab {
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--v3-ink-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.875rem 1.5rem;
+    min-height: 48px;
     cursor: pointer;
-    transition: background-color var(--duration-fast) var(--ease-out),
-                border-color var(--duration-fast) var(--ease-out),
-                color var(--duration-fast) var(--ease-out);
     white-space: nowrap;
+    touch-action: manipulation;
+    transition: color var(--v3-duration-fast) var(--v3-ease-out),
+                border-color var(--v3-duration-fast) var(--v3-ease-out);
+    margin-bottom: -1px;
   }
-
-  .pr-tab:hover { border-color: var(--text-primary); color: var(--text-primary); }
-
-  .pr-tab.is-active {
-    background: var(--text-primary);
-    border-color: var(--text-primary);
-    color: var(--text-inverse);
+  .price-tab[aria-selected="true"] {
+    color: var(--v3-ink);
+    border-bottom-color: var(--v3-champagne-deep);
   }
-
-  .pr-tab__count {
-    font-size: 11px;
-    opacity: 0.65;
-  }
+  .price-tab:hover { color: var(--v3-ink); }
 
   /* Panels */
-  .pr-panel { display: none; }
-  .pr-panel.is-active { display: block; }
+  .price-panel { display: none; }
+  .price-panel.is-active { display: block; }
 
-  .pr-group {
-    margin-bottom: var(--space-12);
+  /* Price group */
+  .price-group {
+    margin-bottom: var(--v3-gap-small);
   }
-
-  .pr-group__title {
-    font-size: var(--text-h4);
-    font-weight: 400;
-    color: var(--text-primary);
-    letter-spacing: var(--tracking-heading);
-    line-height: 1.1;
-    margin-bottom: var(--space-5);
-    text-wrap: balance;
+  .price-group-title {
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--v3-border-soft);
+    margin-bottom: 0;
   }
 
   /* Table */
-  .pr-table-wrap {
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    background: var(--surface-raised);
-  }
-
-  .pr-table {
+  .price-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: var(--text-ui);
   }
-
-  .pr-table thead {
-    background: var(--surface-alt);
-  }
-
-  .pr-table th {
-    text-align: left;
-    font-weight: 500;
-    font-size: var(--text-caption);
-    color: var(--text-muted);
-    padding: var(--space-4) var(--space-5);
-    letter-spacing: var(--tracking-caps);
+  .price-table th {
+    font-family: var(--v3-font-body);
+    font-size: var(--v3-text-eyebrow);
+    font-weight: 400;
+    letter-spacing: var(--v3-tracking-eyebrow);
     text-transform: uppercase;
-    border-bottom: 1px solid var(--border-subtle);
+    color: var(--v3-ink-muted);
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid var(--v3-border-hair);
   }
-
-  .pr-table__right { text-align: right; }
-
-  .pr-table tbody tr {
-    border-bottom: 1px solid var(--border-subtle);
-    transition: background-color var(--duration-fast) var(--ease-out);
+  .price-table th:first-child { padding-left: 0; }
+  .price-table th:last-child { padding-right: 0; }
+  .price-table tr:not(:last-child) td {
+    border-bottom: 1px solid var(--v3-border-hair);
   }
-
-  .pr-table tbody tr:last-child { border-bottom: none; }
-
-  .pr-table tbody tr:hover {
-    background: var(--surface-alt);
-  }
-
-  .pr-table td {
-    padding: var(--space-4) var(--space-5);
+  .price-table td {
+    padding: 0.875rem 0.5rem;
     vertical-align: baseline;
   }
-
-  .pr-table__service {
-    color: var(--text-primary);
-    line-height: 1.4;
+  .price-table td:first-child { padding-left: 0; }
+  .price-table td:last-child { padding-right: 0; }
+  .price-service {
+    font-family: var(--v3-font-body);
+    font-size: var(--v3-text-body);
+    color: var(--v3-ink);
+    line-height: 1.5;
   }
-
-  .pr-table__sub {
-    color: var(--text-muted);
-    font-size: var(--text-caption);
-    display: block;
-    margin-top: 2px;
+  .price-sub {
+    font-size: 0.875rem;
+    color: var(--v3-ink-muted);
   }
-
-  @media (min-width: 768px) {
-    .pr-table__sub {
-      display: inline;
-      margin-top: 0;
-    }
-  }
-
-  .pr-table__code {
-    display: inline-block;
-    margin-left: var(--space-2);
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-    opacity: 0.7;
-    font-weight: 400;
+  .price-val {
+    font-family: var(--v3-font-display);
     font-style: normal;
-    vertical-align: middle;
-  }
-
-  .pr-table__price {
-    text-align: right;
-    font-weight: 500;
-    color: var(--accent-hover);
+    font-size: 1rem;
+    color: var(--v3-champagne-deep);
     white-space: nowrap;
   }
 
-  .pr-table__price.is-empty {
-    color: var(--color-ink-300);
-    font-weight: 400;
+  .prices-disclaimer {
+    margin-top: var(--v3-gap-medium);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--v3-border-hair);
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
     font-style: normal;
-  }
-
-  .pr-body__disclaimer {
-    margin-top: var(--space-8);
-    padding-top: var(--space-6);
-    border-top: 1px solid var(--border-subtle);
-    font-size: var(--text-caption);
-    color: var(--text-muted);
-    line-height: 1.55;
+    font-family: var(--v3-font-display);
     max-width: 72ch;
   }
+
+  @media (max-width: 640px) {
+    .price-tab { padding: 0.625rem 1rem; font-size: 0.875rem; }
+    .price-table th, .price-table td { padding-inline: 0.25rem; }
+    .price-val { font-size: 0.9375rem; }
+  }
 </style>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.price-tab');
+  const panels = document.querySelectorAll<HTMLElement>('.price-panel');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const key = tab.dataset.tab;
+      tabs.forEach((t) => t.setAttribute('aria-selected', 'false'));
+      panels.forEach((p) => p.classList.remove('is-active'));
+      tab.setAttribute('aria-selected', 'true');
+      document.querySelector(`[data-panel="${key}"]`)?.classList.add('is-active');
+    });
+  });
+</script>

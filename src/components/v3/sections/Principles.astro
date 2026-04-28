@@ -14,9 +14,9 @@ const principles = [
   },
   {
     num: '03',
-    title: 'Квалификация хирургов',
-    body: 'Ординатура в РНИМУ Пирогова, Сеченовском университете, РНЦХ Петровского. Обучение в США, Швейцарии, Италии. Членство в ASPS и ISAPS.',
-    detail: 'ASPS · ISAPS · IPRAS',
+    title: 'Исключительная квалификация',
+    body: 'Ординатура в РНИМУ Пирогова, Сеченовском университете, РНЦХ Петровского. Обучение в США, Швейцарии, Италии. Хирурги с практикой 10–40 лет.',
+    detail: 'Сеченов · РНЦХ · РНИМУ',
   },
   {
     num: '04',
@@ -29,19 +29,19 @@ const principles = [
 
 <section class="v3-principles v3-surface-ink" aria-labelledby="principles-heading">
   <div class="v3-container v3-container-default principles-grid">
-    <aside class="principles-aside" data-v3-reveal>
+    <aside class="principles-aside" data-v3-stagger>
       <span class="v3-eyebrow">Принципы клиники</span>
       <h2 id="principles-heading" class="v3-h2 principles-h2">
         <em>Почему&nbsp;Platinental</em>
       </h2>
       <p class="v3-lead principles-lead">
-        Четыре идеи, на которых клиника живёт девятый год.
+        Четыре идеи, на которых клиника живёт пятнадцатый год.
       </p>
     </aside>
 
-    <ol class="principles-list">
+    <ol class="principles-list" data-v3-stagger>
       {principles.map((p) => (
-        <li class="principle" data-v3-reveal>
+        <li class="principle">
           <span class="principle-num v3-display">
             <em>{p.num}</em>
           </span>
@@ -98,7 +98,7 @@ const principles = [
     line-height: 1;
     color: var(--v3-champagne);
     font-family: var(--v3-font-display);
-    font-style: italic;
+    font-style: normal;
   }
   .principle-content {
     display: flex;

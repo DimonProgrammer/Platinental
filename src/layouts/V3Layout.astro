@@ -1,5 +1,7 @@
 ---
 import '../styles/tokens-v3.css';
+import { ClientRouter } from 'astro:transitions';
+import BookingModal from '../components/v3/BookingModal.astro';
 
 interface Props {
   title?: string;
@@ -38,45 +40,51 @@ const {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Golos+Text:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&display=swap"
     />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ClientRouter />
   </head>
 
   <body>
     <div data-v3>
       <slot />
+
+      <!-- Custom cursor — внутри [data-v3] чтобы CSS-переменные --v3-* каскадировались -->
+      <div data-v3-cursor aria-hidden="true">
+        <div class="v3-cursor-dot"></div>
+        <div class="v3-cursor-ring"></div>
+      </div>
+
+      <BookingModal />
     </div>
 
     <script>
-      // Reveal-on-scroll for [data-v3-reveal]
-      const els = document.querySelectorAll<HTMLElement>('[data-v3-reveal]');
-      if ('IntersectionObserver' in window && els.length) {
-        const io = new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                io.unobserve(entry.target);
-              }
-            }
-          },
-          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' },
-        );
-        els.forEach((el) => io.observe(el));
-        // Safety: reveal all after 1.5s
-        window.setTimeout(() => {
-          document.querySelectorAll('[data-v3-reveal]:not(.is-visible)').forEach((el) => el.classList.add('is-visible'));
-        }, 1500);
-      } else {
-        els.forEach((el) => el.classList.add('is-visible'));
-      }
+      import '../scripts/motion-stagger.ts';
+      import '../scripts/motion-scroll.ts';
+      import '../scripts/motion-cursor.ts';
+      import '../scripts/motion-faq.ts';
     </script>
   </body>
 </html>
 
 <style is:global>
+  @font-face {
+    font-family: 'ZapfHumnst BT';
+    src: url('/fonts/ZapfHumnstBT-Roman.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'ZapfHumnst BT';
+    src: url('/fonts/ZapfHumnstBT-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
   html, body {
     margin: 0;
     padding: 0;

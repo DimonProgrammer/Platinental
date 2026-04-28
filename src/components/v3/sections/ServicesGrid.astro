@@ -7,7 +7,7 @@ const directions = [
     title: 'Пластическая хирургия',
     body: 'Мы не делаем «бразильские» ягодицы и не «увеличиваем» грудь. Мы предлагаем индивидуальный дизайн форм, которые органично вписываются в исходные параметры — никакого «сделанного» эффекта. 27 видов операций.',
     list: ['Ринопластика', 'Маммопластика', 'Блефаропластика', 'Абдоминопластика', 'Лифтинг лица', 'Отопластика'],
-    cta: { label: 'Все операции', href: '/v3/plastika' },
+    cta: { label: 'Все операции', href: '/plastika' },
     surface: 'cream',
     align: 'left',
     slot: 'S1',
@@ -18,9 +18,9 @@ const directions = [
   {
     num: '02',
     title: 'Косметология',
-    body: 'Ботокс, контурная пластика, CO₂-лазер, HELEO4. Врач-косметолог работает в связке с хирургом — составляет единый план, а не набор разрозненных процедур.',
-    list: ['Ботокс', 'Контурная пластика', 'CO₂-лазер', 'HELEO4', 'Биоревитализация', 'Пилинги'],
-    cta: { label: 'Все процедуры', href: '/v3/kosmetologiya' },
+    body: 'Ботулотоксины, контурная пластика, CO₂-лазер, HELEO4. Врач-косметолог работает в связке с хирургом — составляет единый план, а не набор разрозненных процедур.',
+    list: ['Ботулотоксины', 'Контурная пластика', 'CO₂-лазер', 'HELEO4', 'Биоревитализация', 'Пилинги'],
+    cta: { label: 'Все процедуры', href: '/kosmetologiya' },
     surface: 'sand',
     align: 'right',
     slot: 'S2',
@@ -33,7 +33,7 @@ const directions = [
     title: 'Космецевтика',
     body: 'Профессиональная косметика под конкретную задачу: реабилитация после операции, поддержание результата, ежедневный уход. Индивидуальный подбор со специалистом.',
     list: ['Реабилитация', 'Anti-age', 'Чувствительная кожа', 'Постоперационный уход'],
-    cta: { label: 'Каталог', href: '/v3/kosmecevtika' },
+    cta: { label: 'Каталог', href: '/kosmecevtika' },
     surface: 'ink',
     align: 'left',
     slot: 'S3',
@@ -44,14 +44,7 @@ const directions = [
 ];
 ---
 
-<section class="v3-services" aria-labelledby="services-heading">
-  <header class="v3-container v3-container-default services-header" data-v3-reveal>
-    <span class="v3-eyebrow">Направления клиники</span>
-    <h2 id="services-heading" class="v3-h2 services-h2">
-      <em>Что мы делаем</em>
-    </h2>
-  </header>
-
+<section class="v3-services">
   {directions.map((d) => (
     <article class={`spread v3-surface-${d.surface}`} data-align={d.align}>
       <div class="v3-container v3-container-wide spread-grid" data-v3-reveal>
@@ -69,14 +62,16 @@ const directions = [
           <a href={d.cta.href} class="v3-link spread-cta">{d.cta.label} →</a>
         </div>
 
-        <div class="spread-image">
-          <ImagePlaceholder
-            slot={d.slot}
-            description={d.slotDesc}
-            ratio="4/5"
-            tone={d.slotTone as any}
-            source={d.slotSource}
-          />
+        <div class="spread-image v3-photo-film v3-photo-shutter" data-v3-reveal>
+          <div class="v3-photo-breathing">
+            <ImagePlaceholder
+              slot={d.slot}
+              description={d.slotDesc}
+              ratio="4/5"
+              tone={d.slotTone as any}
+              source={d.slotSource}
+            />
+          </div>
         </div>
       </div>
     </article>
@@ -84,19 +79,6 @@ const directions = [
 </section>
 
 <style>
-  .v3-services {
-    padding-top: var(--v3-gap-deep);
-  }
-  .services-header {
-    display: flex;
-    flex-direction: column;
-    gap: var(--v3-gap-eyebrow-h1);
-    margin-bottom: var(--v3-gap-small);
-  }
-  .services-h2 {
-    max-width: 16ch;
-  }
-
   .spread {
     padding-top: var(--v3-gap-deep);
     padding-bottom: var(--v3-gap-deep);

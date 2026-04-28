@@ -22,7 +22,7 @@ const defaultItems: FAQItem[] = [
     a: 'Да. Часть — общие для любой хирургии: беременность, лактация, онкология, нарушения свёртываемости крови, тяжёлые хронические заболевания. Часть — индивидуальные: их хирург видит только на очной консультации.',
   },
   {
-    q: 'Через сколько дней виден результат после ботокса?',
+    q: 'Через сколько дней виден результат после ботулотоксина?',
     a: 'Первый эффект появляется через 3–5 дней, окончательный — через 10–14 дней. Держится 4–6 месяцев в зависимости от препарата и индивидуальных особенностей.',
   },
   {
@@ -50,12 +50,12 @@ const faqs = items;
 
 <section class="v3-faq v3-surface-cream" aria-labelledby="faq-heading">
   <div class="v3-container v3-container-default">
-    <header class="faq-header" data-v3-reveal>
+    <header class="faq-header" data-v3-stagger>
       <span class="v3-eyebrow">{eyebrow}</span>
       <h2 id="faq-heading" class="v3-h2"><em>{heading}</em></h2>
     </header>
 
-    <ol class="faq-list" data-v3-reveal>
+    <ol class="faq-list" data-v3-stagger>
       {faqs.map((f, i) => (
         <li class="faq-item">
           <details open={f.open}>

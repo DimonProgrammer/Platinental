@@ -1,243 +1,172 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../components/primitives/Button.astro';
-import DoctorCardBrief from '../components/cards/DoctorCardBrief.astro';
-import FinalCTA from '../components/sections/FinalCTA.astro';
-import FAQ from '../components/sections/FAQ.astro';
-import Contacts from '../components/sections/Contacts.astro';
+import V3Layout from '../layouts/V3Layout.astro';
+import Navigation from '../components/v3/sections/Navigation.astro';
+import PageHero from '../components/v3/sections/PageHero.astro';
+import FinalCTA from '../components/v3/sections/FinalCTA.astro';
+import Footer from '../components/v3/sections/Footer.astro';
 import { doctors } from '../data/doctors';
 
-const filters = [
-  { key: 'all', label: 'Все специалисты' },
-  { key: 'plastika', label: 'Пластическая хирургия' },
-  { key: 'face', label: 'Лицо' },
-  { key: 'body', label: 'Тело' },
-  { key: 'cosmetology', label: 'Косметология' },
-];
+const allDoctors = doctors;
 ---
 
-<BaseLayout
-  title="Врачи клиники Platinental в Казани — пластические хирурги и косметологи"
-  description="Врачи клиники Platinental в Казани: пластические хирурги, челюстно-лицевой хирург, врач-косметолог. Ординатура РНИМУ им. Пирогова, Сеченовского университета, РНЦХ Петровского. Запись: +7 843 223-66-66."
-  canonical="https://kzn.platinental.ru/doctors"
+<V3Layout
+  title="Врачи — Platinental Казань"
+  description="Пластические хирурги и косметологи клиники Platinental Казань. Образование, специализации, стоимость консультации."
 >
-  <!-- Hero -->
-  <section class="doctors-hero" aria-labelledby="doctors-title">
-    <div class="doctors-hero__inner">
-      <div data-reveal>
-        <span class="eyebrow">THE PLATINENTAL · КАЗАНЬ</span>
-        <h1 id="doctors-title" class="doctors-hero__title font-display">
-          Врачи клиники<br/>Platinental в&nbsp;Казани
-        </h1>
-        <p class="doctors-hero__lede">
-          У&nbsp;каждого хирурга клиники&nbsp;— своя школа, свой опыт, свой почерк. На&nbsp;консультации поможем подобрать лучшего специалиста именно под&nbsp;вашу задачу.
-        </p>
-        <div class="doctors-hero__actions">
-          <Button href="/#form" variant="primary" size="lg">Записаться на&nbsp;консультацию</Button>
-          <Button href="#team" variant="ghost" size="lg">Посмотреть врачей</Button>
-        </div>
+  <Navigation />
+  <main id="main">
+    <PageHero
+      pageMarker="04 / 04"
+      pageMarkerLabel="Команда"
+      eyebrow="Команда"
+      h1="Врачи клиники"
+      lead="Каждый врач — мастер в своём деле. Приходите на консультацию — подберём нужного специалиста под вашу задачу."
+      ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
+      meta={[
+        { num: 'Сеченов · РНЦХ', label: 'ординатура хирургов' },
+        { num: 'Исключительная', label: 'квалификация' },
+        { num: 'авторские', label: 'методики и патенты' },
+        { num: 'с 2011', label: 'в Казани' },
+      ]}
+    />
+
+    <section class="v3-doctors v3-surface-cream" aria-labelledby="doctors-heading">
+      <div class="v3-container v3-container-wide">
+        <header class="doctors-header" data-v3-stagger>
+          <span class="v3-eyebrow">Команда</span>
+          <h2 id="doctors-heading" class="v3-h2">Врачи клиники</h2>
+        </header>
+        <ul class="doctors-grid">
+          {allDoctors.map((d) => (
+            <li class="doctor-card" data-v3-reveal>
+              <a href={`/doctors/${d.slug}`} class="doctor-link">
+                <div class="doctor-photo">
+                  {d.photo ? (
+                    <img src={d.photo} alt={d.name} width="400" height="500" loading="lazy" />
+                  ) : (
+                    <div class="doctor-initials" aria-hidden="true">{d.initials}</div>
+                  )}
+                </div>
+                <div class="doctor-info">
+                  <p class="doctor-spec v3-eyebrow">{d.spec}</p>
+                  <h3 class="doctor-name v3-h3">{d.name}</h3>
+                  <p class="doctor-short v3-body" set:html={d.short}></p>
+                  <div class="doctor-price">
+                    <span class="price-primary v3-caption">{d.priceMain}</span>
+                    {d.priceSub && <span class="price-sub v3-caption">{d.priceSub}</span>}
+                  </div>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
+    </section>
 
-      {/* TODO(photos-team): заменить плейсхолдер на командное фото врачей */}
-      <div class="doctors-hero__photo" data-reveal aria-hidden="true">
-        <span class="doctors-hero__photo-label">Фото команды · в процессе</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Filters + Cards -->
-  <section class="team" id="team" aria-label="Список врачей">
-    <div class="team__inner">
-      <div class="team__filters" role="toolbar" aria-label="Фильтр специалистов">
-        {filters.map((f) => (
-          <button
-            type="button"
-            class:list={['team__filter', f.key === 'all' && 'is-active']}
-            data-filter={f.key}
-          >{f.label}</button>
-        ))}
-      </div>
-
-      <div class="team__grid" data-doctors-grid>
-        {doctors.map((d, i) => <DoctorCardBrief doctor={d} index={i} />)}
-      </div>
-
-      <p class="team__note">
-        Если&nbsp;вы&nbsp;не&nbsp;знаете, к&nbsp;какому врачу записаться&nbsp;— оставьте заявку, администратор подберёт специалиста под&nbsp;вашу задачу.
-      </p>
-    </div>
-  </section>
-
-  <FinalCTA />
-  <FAQ />
-  <Contacts />
-</BaseLayout>
-
-<script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
-  const grid = document.querySelector<HTMLElement>('[data-doctors-grid]');
-
-  if (buttons.length && grid) {
-    buttons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const filter = btn.dataset.filter ?? 'all';
-        buttons.forEach((b) => b.classList.toggle('is-active', b === btn));
-
-        const cards = grid.querySelectorAll<HTMLElement>('.dcb');
-        cards.forEach((card) => {
-          const tags = (card.dataset.tags ?? '').split(' ');
-          const show = filter === 'all' || tags.includes(filter);
-          card.style.display = show ? '' : 'none';
-        });
-      });
-    });
-  }
-</script>
+    <FinalCTA
+      heading="Не знаете,<br />к кому записаться?"
+      lead="Если вы не знаете, к какому врачу записаться — оставьте заявку, администратор подберёт специалиста под вашу задачу."
+    />
+  </main>
+  <Footer />
+</V3Layout>
 
 <style>
-  /* Hero */
-  .doctors-hero {
-    background: var(--surface-page);
-    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 var(--space-16);
-    border-bottom: 1px solid var(--border-subtle);
+  .v3-doctors {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
   }
-
-  @media (min-width: 768px) {
-    .doctors-hero { padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-20); }
+  .doctors-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
   }
-
-  .doctors-hero__inner {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 20px;
+  .doctors-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: grid;
-    gap: var(--space-10);
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--v3-border-hair);
   }
-
-  @media (min-width: 768px) { .doctors-hero__inner { padding: 0 32px; } }
-  @media (min-width: 1024px) {
-    .doctors-hero__inner {
-      grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
-      gap: var(--space-16);
-      align-items: end;
-    }
+  .doctors-grid-cosm {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 48rem;
   }
-  @media (min-width: 1200px) { .doctors-hero__inner { padding: 0 48px; } }
-
-  .doctors-hero__title {
-    font-size: clamp(2rem, 1rem + 3vw, 3.5rem);
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: var(--tracking-display);
-    color: var(--text-primary);
-    margin: var(--space-6) 0 var(--space-5);
-    text-wrap: balance;
+  .doctor-card {
+    background: var(--v3-cream);
   }
-
-  .doctors-hero__lede {
-    font-size: var(--text-body);
-    line-height: 1.55;
-    color: var(--text-secondary);
-    max-width: 52ch;
-    margin-bottom: var(--space-8);
+  .v3-surface-sand .doctor-card {
+    background: var(--v3-sand);
   }
-
-  .doctors-hero__actions {
+  .doctor-link {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-6);
+    flex-direction: column;
+    text-decoration: none;
+    height: 100%;
+    transition: background var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .doctor-link:hover { background: var(--v3-cream-alt); }
+  .v3-surface-sand .doctor-link:hover { background: var(--v3-sand-deep); }
+
+  .doctor-photo {
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    background: var(--v3-sand);
+    position: relative;
+    border-radius: 50%;
+    margin: 1.5rem 1.5rem 0;
+  }
+  .doctor-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s var(--v3-ease-out);
+  }
+  .doctor-link:hover .doctor-photo img {
+    transform: scale(1.04);
+  }
+  .doctor-initials {
+    width: 100%;
+    height: 100%;
+    display: flex;
     align-items: center;
+    justify-content: center;
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--v3-ink-muted);
   }
 
-  .doctors-hero__photo {
-    aspect-ratio: 4 / 5;
-    border-radius: var(--radius-md);
-    background: linear-gradient(160deg, var(--color-sand-200) 0%, var(--color-cream-100) 100%);
+  .doctor-info {
+    padding: 1.25rem 1.5rem 1.75rem;
     display: flex;
-    align-items: flex-end;
-    padding: var(--space-6);
-    max-height: 480px;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
   }
-
-  .doctors-hero__photo-label {
-    font-size: var(--text-caption);
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  /* Team section */
-  .team {
-    background: var(--surface-alt);
-    padding: var(--space-16) 0 var(--space-20);
-  }
-
-  @media (min-width: 1024px) { .team { padding: var(--space-20) 0 var(--space-24); } }
-
-  .team__inner {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  @media (min-width: 768px) { .team__inner { padding: 0 32px; } }
-  @media (min-width: 1200px) { .team__inner { padding: 0 48px; } }
-
-  .team__filters {
+  .doctor-spec { color: var(--v3-ink-muted); }
+  .doctor-name { color: var(--v3-ink); }
+  .doctor-short { color: var(--v3-ink-secondary); margin: 0; font-size: 0.9375rem; line-height: 1.5; }
+  .doctor-price {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-bottom: var(--space-10);
-    padding-bottom: var(--space-6);
-    border-bottom: 1px solid var(--border-subtle);
+    flex-direction: column;
+    gap: 0.125rem;
+    margin-top: auto;
+    padding-top: 0.75rem;
   }
+  .price-primary { color: var(--v3-champagne-deep); text-transform: none; letter-spacing: 0.005em; font-family: var(--v3-font-display); font-style: normal; font-size: 0.9375rem; }
+  .price-sub { color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0.005em; }
 
-  .team__filter {
-    display: inline-flex;
-    align-items: center;
-    height: 36px;
-    padding: 0 16px;
-    background: transparent;
-    border: 1px solid var(--border-soft);
-    border-radius: 99px;
-    font-family: inherit;
-    font-size: var(--text-caption);
-    font-weight: 500;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: background-color var(--duration-fast) var(--ease-out),
-                border-color var(--duration-fast) var(--ease-out),
-                color var(--duration-fast) var(--ease-out);
+  @media (max-width: 1024px) {
+    .doctors-grid { grid-template-columns: repeat(2, 1fr); }
+    .doctors-grid-cosm { grid-template-columns: repeat(2, 1fr); }
   }
-
-  .team__filter:hover {
-    border-color: var(--text-primary);
-    color: var(--text-primary);
-  }
-
-  .team__filter.is-active {
-    background: var(--text-primary);
-    border-color: var(--text-primary);
-    color: var(--text-inverse);
-  }
-
-  .team__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
-  }
-
-  @media (min-width: 960px) {
-    .team__grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
-  }
-
-  .team__note {
-    margin-top: var(--space-10);
-    padding-top: var(--space-6);
-    border-top: 1px solid var(--border-subtle);
-    font-size: var(--text-caption);
-    color: var(--text-muted);
-    max-width: 70ch;
+  @media (max-width: 560px) {
+    .doctors-grid { grid-template-columns: 1fr; }
+    .doctors-grid-cosm { grid-template-columns: 1fr; }
   }
 </style>

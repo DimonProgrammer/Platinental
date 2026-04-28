@@ -1,494 +1,778 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Button from '../../components/primitives/Button.astro';
-import DoctorWorks from '../../components/sections/DoctorWorks.astro';
-import DoctorCardBrief from '../../components/cards/DoctorCardBrief.astro';
-import FinalCTA from '../../components/sections/FinalCTA.astro';
-import Contacts from '../../components/sections/Contacts.astro';
+import V3Layout from '../../layouts/V3Layout.astro';
+import Navigation from '../../components/v3/sections/Navigation.astro';
+import FinalCTA from '../../components/v3/sections/FinalCTA.astro';
+import FAQ from '../../components/v3/sections/FAQ.astro';
+import Footer from '../../components/v3/sections/Footer.astro';
 import { doctors } from '../../data/doctors';
+import type { Doctor } from '../../data/doctors';
 
-export function getStaticPaths() {
-  return doctors.map((d) => ({ params: { slug: d.slug }, props: { doctor: d } }));
+export async function getStaticPaths() {
+  return doctors.map((d) => ({
+    params: { slug: d.slug },
+    props: { doctor: d },
+  }));
 }
 
-interface Props { doctor: (typeof doctors)[number] }
-const { doctor } = Astro.props;
+interface Props { doctor: Doctor }
+const { doctor: d } = Astro.props;
 
-const otherDoctors = doctors.filter((d) => d.slug !== doctor.slug).slice(0, 3);
+const isSurgeon = d.tags.includes('plastika');
+const consultationPrice = d.priceMain;
+
+const faqItems = [
+  {
+    q: `Как записаться к ${d.name.split(' ')[0]}?`,
+    a: 'Позвоните по номеру <a href="tel:+78432236666">+7 843 223-66-66</a>, напишите в WhatsApp или заполните форму на сайте. Администратор подберёт удобное время.',
+    open: true,
+  },
+  {
+    q: 'Сколько длится первичная консультация?',
+    a: 'Первичная консультация — 30–60 минут. Хирург осматривает, замеряет пропорции, отвечает на вопросы, показывает похожие случаи из практики.',
+  },
+  isSurgeon ? {
+    q: 'Нужна ли подготовка к операции?',
+    a: 'Да. Перечень анализов и обследований врач выдаёт на консультации. Как правило: клинический и биохимический анализ крови, коагулограмма, ЭКГ, справки от терапевта.',
+  } : {
+    q: 'Как подготовиться к косметологической процедуре?',
+    a: 'Зависит от процедуры. На консультации врач даст точные рекомендации: что исключить за несколько дней, как ухаживать за кожей в период восстановления.',
+  },
+  {
+    q: 'Можно ли получить онлайн-консультацию?',
+    a: d.priceSub?.includes('Онлайн')
+      ? 'Да, онлайн-консультации доступны. Запишитесь через форму или WhatsApp — укажите, что вам нужен онлайн-формат.'
+      : 'Этот специалист принимает очно. Если вы находитесь за пределами Казани — свяжитесь с нами, обсудим варианты.',
+  },
+];
 ---
 
-<BaseLayout
-  title={`${doctor.name} — пластический хирург клиники Platinental Казань`}
-  description={`${doctor.name}: ${doctor.details.specialization.slice(0, 3).join(', ')}. ${doctor.priceMain}. Запись: +7 843 223-66-66.`}
-  canonical={`https://kzn.platinental.ru/doctors/${doctor.slug}/`}
+<V3Layout
+  title={`${d.name} — ${d.spec} — Platinental Казань`}
+  description={`${d.name} — ${isSurgeon ? 'пластический хирург' : 'врач-косметолог'} клиники Platinental Казань. Специализация, образование, запись на консультацию.`}
 >
+  <Navigation />
+  <main id="main">
 
-  <!-- Hero -->
-  <section class="dp-hero" aria-labelledby="dp-name">
-    <div class="dp-hero__inner">
-      <div class={`dp-hero__portrait dp-hero__portrait--${doctor.tone}`} data-reveal>
-        {doctor.photo
-          ? <img src={doctor.photo} alt={doctor.name} width="560" height="747" loading="eager" decoding="async" />
-          : <span class="dp-hero__initials font-display">{doctor.initials}</span>
-        }
-      </div>
-
-      <div class="dp-hero__content" data-reveal>
-        <span class="dp-hero__breadcrumb">
-          <a href="/doctors/">Врачи</a>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M4.5 2.5L7.5 6l-3 3.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          {doctor.name.split(' ')[0]}
-        </span>
-        <p class="dp-hero__spec">{doctor.spec}</p>
-        <h1 id="dp-name" class="dp-hero__name font-display">{doctor.name}</h1>
-        <p class="dp-hero__short" set:html={doctor.short} />
-
-        <div class="dp-hero__price">
-          <span class="dp-hero__price-main">{doctor.priceMain}</span>
-          {doctor.priceSub && <span class="dp-hero__price-sub">{doctor.priceSub}</span>}
+    <!-- Hero -->
+    <section class="v3-doc-hero v3-surface-cream" aria-labelledby="doc-heading">
+      <div class="v3-container v3-container-wide doc-hero-grid">
+        <div class="doc-hero-text" data-v3-reveal>
+          <nav class="doc-breadcrumb" aria-label="Хлебные крошки">
+            <a href="/" class="bc-link">Главная</a>
+            <span class="bc-sep" aria-hidden="true">→</span>
+            <a href="/doctors" class="bc-link">Врачи</a>
+          </nav>
+          <span class="v3-eyebrow doc-spec">{d.spec}</span>
+          <h1 id="doc-heading" class="v3-h1 doc-h1">
+            <em>{d.name}</em>
+          </h1>
+          <p class="v3-lead doc-lead" set:html={d.short}></p>
+          <div class="doc-price-row">
+            <span class="doc-price">{consultationPrice}</span>
+            {d.priceSub && <span class="v3-caption doc-price-sub">{d.priceSub}</span>}
+          </div>
+          <div class="doc-cta">
+            <button type="button" class="v3-btn v3-btn-primary" data-booking-open data-doctor={d.nameBtn}>
+              Записаться {d.nameBtn}
+            </button>
+          </div>
         </div>
 
-        <div class="dp-hero__actions">
-          <Button href="/#form" variant="primary" size="lg">Записаться {doctor.nameBtn}</Button>
-          <Button href="tel:+78432236666" variant="ghost" size="lg">+7 843 223-66-66</Button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Specialization -->
-  {doctor.details.specialization.length > 0 && (
-    <section class="dp-section dp-section--page" aria-labelledby="dp-spec-title">
-      <div class="dp-section__inner">
-        <h2 id="dp-spec-title" class="dp-section__title font-display">Специализация</h2>
-        <ul class="dp-spec-list">
-          {doctor.details.specialization.map((s) => <li>{s}</li>)}
-        </ul>
-      </div>
-    </section>
-  )}
-
-  <!-- Education -->
-  {doctor.details.education.length > 0 && (
-    <section class="dp-section dp-section--alt" aria-labelledby="dp-edu-title">
-      <div class="dp-section__inner">
-        <h2 id="dp-edu-title" class="dp-section__title font-display">Образование</h2>
-        <dl class="dp-edu">
-          {doctor.details.education.map((e) => (
-            <div class="dp-edu__row">
-              <dt class="dp-edu__year">{e.year}</dt>
-              <dd class="dp-edu__text">{e.text}</dd>
+        <div class="doc-hero-photo" data-v3-reveal>
+          {d.photo ? (
+            <img
+              src={d.photo}
+              alt={d.name}
+              width="480"
+              height="600"
+              loading="eager"
+              class="doc-photo-img"
+            />
+          ) : (
+            <div class="doc-photo-placeholder" aria-hidden="true">
+              <span class="doc-initials">{d.initials}</span>
             </div>
+          )}
+        </div>
+      </div>
+    </section>
+
+    {d.stats && d.stats.length > 0 && (
+      <section class="v3-doc-stats v3-surface-sand" aria-label="Статистика">
+        <div class="v3-container v3-container-wide">
+          <ul class="stats-row" data-v3-stagger>
+            {d.stats.map((s) => (
+              <li class="stats-item">
+                <span class="stats-value">{s.value}</span>
+                <span class="v3-caption stats-label">{s.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )}
+
+    {d.approach && (
+      <section class="v3-doc-approach v3-surface-cream" aria-labelledby="approach-heading">
+        <div class="v3-container v3-container-default">
+          <header class="doc-section-header" data-v3-stagger>
+            <span class="v3-eyebrow">Подход</span>
+            <h2 id="approach-heading" class="v3-h2"><em>{d.approach.title}</em></h2>
+          </header>
+          <p class="v3-lead approach-body" data-v3-reveal set:html={d.approach.body}></p>
+        </div>
+      </section>
+    )}
+
+    <!-- Specialization -->
+    <section class="v3-doc-spec v3-surface-sand" aria-labelledby="spec-heading">
+      <div class="v3-container v3-container-default">
+        <header class="doc-section-header" data-v3-stagger>
+          <span class="v3-eyebrow">Специализация</span>
+          <h2 id="spec-heading" class="v3-h2"><em>Что делает</em></h2>
+        </header>
+        <ul class="spec-list" data-v3-stagger>
+          {d.details.specialization.map((s) => (
+            <li class="spec-item">
+              <span class="spec-dot" aria-hidden="true"></span>
+              <span class="v3-body spec-text">{s}</span>
+            </li>
           ))}
-        </dl>
+        </ul>
 
-        {doctor.details.additionalEducation && doctor.details.additionalEducation.length > 0 && (
-          <div class="dp-edu__extra">
-            <h3 class="dp-edu__extra-title">Дополнительное образование и&nbsp;конгрессы</h3>
-            <dl class="dp-edu">
-              {doctor.details.additionalEducation.map((e) => (
-                <div class="dp-edu__row">
-                  {e.year && <dt class="dp-edu__year">{e.year}</dt>}
-                  <dd class:list={['dp-edu__text', !e.year && 'dp-edu__text--full']}>{e.text}</dd>
-                </div>
+        {d.details.patent && (
+          <div class="patent-note" data-v3-reveal>
+            <span class="v3-eyebrow">Патент</span>
+            <p class="v3-body patent-text">{d.details.patent}</p>
+          </div>
+        )}
+
+        {d.details.awards && (
+          <div class="awards-note" data-v3-reveal>
+            <span class="v3-eyebrow">Квалификация</span>
+            <p class="v3-body">{d.details.awards}</p>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="v3-doc-edu v3-surface-cream" aria-labelledby="edu-heading">
+      <div class="v3-container v3-container-default">
+        <header class="doc-section-header" data-v3-stagger>
+          <span class="v3-eyebrow">Образование</span>
+          <h2 id="edu-heading" class="v3-h2"><em>Где учился</em></h2>
+        </header>
+        <ol class="edu-timeline" data-v3-stagger>
+          {d.details.education.map((e) => (
+            <li class="edu-item">
+              <span class="edu-year v3-eyebrow">{e.year}</span>
+              <p class="edu-text v3-body">{e.text}</p>
+            </li>
+          ))}
+        </ol>
+
+        {d.details.additionalEducation && d.details.additionalEducation.length > 0 && (
+          <div class="edu-additional" data-v3-reveal>
+            <h3 class="v3-h3 edu-additional-title">Дополнительное образование</h3>
+            <ul class="edu-add-list">
+              {d.details.additionalEducation.map((e) => (
+                <li class="edu-add-item">
+                  {e.year && <span class="edu-add-year v3-eyebrow">{e.year}</span>}
+                  <span class="v3-body">{e.text}</span>
+                </li>
               ))}
-            </dl>
+            </ul>
           </div>
         )}
 
-        {doctor.details.congresses && (
-          <div class="dp-edu__extra">
-            <h3 class="dp-edu__extra-title">Конгрессы и&nbsp;конференции</h3>
-            <p class="dp-edu__congress">{doctor.details.congresses}</p>
-          </div>
-        )}
-
-        {doctor.details.awards && (
-          <div class="dp-edu__extra">
-            <h3 class="dp-edu__extra-title">Достижения</h3>
-            <p class="dp-edu__congress">{doctor.details.awards}</p>
-          </div>
+        {d.details.congresses && (
+          <p class="v3-body edu-congresses" data-v3-reveal>{d.details.congresses}</p>
         )}
       </div>
     </section>
-  )}
 
-  <!-- Patent (only on personal page) -->
-  {doctor.details.patent && (
-    <section class="dp-section dp-section--page" aria-label="Патент">
-      <div class="dp-section__inner">
-        <div class="dp-patent">
-          <svg class="dp-patent__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <div>
-            <p class="dp-patent__label">Патент на изобретение</p>
-            <p class="dp-patent__text">{doctor.details.patent}</p>
-          </div>
+    {d.documents && d.documents.length > 0 && (
+      <section class="v3-doc-docs v3-surface-cream" aria-labelledby="docs-heading">
+        <div class="v3-container v3-container-default">
+          <header class="doc-section-header" data-v3-stagger>
+            <span class="v3-eyebrow">Документы</span>
+            <h2 id="docs-heading" class="v3-h2"><em>Дипломы и&nbsp;публикации</em></h2>
+          </header>
+          <ul class="docs-grid" data-v3-stagger>
+            {d.documents.map((doc) => (
+              <li class="doc-card">
+                <a href={doc.src} target="_blank" rel="noopener" class="doc-card-link">
+                  <span class="doc-card-icon" aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="9" y1="14" x2="15" y2="14" />
+                      <line x1="9" y1="17" x2="13" y2="17" />
+                    </svg>
+                  </span>
+                  <span class="doc-card-meta">
+                    <span class="v3-eyebrow doc-card-kind">{
+                      doc.kind === 'diploma' ? 'Диплом' :
+                      doc.kind === 'certificate' ? 'Сертификат' :
+                      doc.kind === 'cv' ? 'Резюме' :
+                      doc.kind === 'patent' ? 'Патент' :
+                      'Публикация'
+                    }</span>
+                    <span class="doc-card-title">{doc.title}</span>
+                    <span class="v3-caption doc-card-cta">Открыть PDF →</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
+      </section>
+    )}
+
+    {d.gallery && d.gallery.length > 0 && (
+      <section class="v3-doc-gallery v3-surface-sand" aria-labelledby="gallery-heading">
+        <div class="v3-container v3-container-wide">
+          <header class="doc-section-header" data-v3-stagger>
+            <span class="v3-eyebrow">Работы</span>
+            <h2 id="gallery-heading" class="v3-h2"><em>Результаты</em></h2>
+          </header>
+          <ul class="gallery-grid" data-v3-stagger data-gallery>
+            {d.gallery.map((src, i) => (
+              <li class="gallery-item">
+                <button type="button" class="gallery-btn" data-gallery-open data-index={i} aria-label={`Открыть фото ${i + 1}`}>
+                  <img src={src} alt="" width="400" height="500" loading="lazy" />
+                </button>
+              </li>
+            ))}
+          </ul>
+          <p class="works-disclaimer v3-caption" data-v3-reveal>
+            Фотографии результатов публикуются с&nbsp;письменного согласия пациентов. Результат индивидуален.
+          </p>
+        </div>
+      </section>
+    )}
+
+    {d.gallery && d.gallery.length > 0 && (
+      <div class="lightbox" data-lightbox hidden role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
+        <button type="button" class="lightbox-close" data-lightbox-close aria-label="Закрыть"><span aria-hidden="true">×</span></button>
+        <button type="button" class="lightbox-prev" data-lightbox-prev aria-label="Предыдущее фото"><span aria-hidden="true">‹</span></button>
+        <button type="button" class="lightbox-next" data-lightbox-next aria-label="Следующее фото"><span aria-hidden="true">›</span></button>
+        <figure class="lightbox-figure">
+          <img data-lightbox-img alt="" />
+          <figcaption class="v3-caption lightbox-counter" data-lightbox-counter></figcaption>
+        </figure>
       </div>
-    </section>
-  )}
+    )}
 
-  <!-- Works gallery -->
-  <DoctorWorks works={doctor.works} />
+    <FAQ
+      eyebrow="Вопросы"
+      heading={`Вопросы о приёме`}
+      items={faqItems}
+    />
 
-  <!-- Other doctors -->
-  {otherDoctors.length > 0 && (
-    <section class="dp-section dp-section--page dp-others" aria-labelledby="dp-others-title">
-      <div class="dp-section__inner">
-        <h2 id="dp-others-title" class="dp-section__title font-display">Другие специалисты</h2>
-        <div class="dp-others__grid">
-          {otherDoctors.map((d, i) => <DoctorCardBrief doctor={d} index={i} />)}
-        </div>
-        <div class="dp-others__cta">
-          <Button href="/doctors/" variant="secondary" size="md" arrow={true}>Все врачи клиники</Button>
-        </div>
-      </div>
-    </section>
-  )}
+    <FinalCTA
+      heading={`Записаться<br />${d.nameBtn}`}
+      lead={`Консультация: ${[d.priceMain, d.priceSub].filter(Boolean).join(' · ')}. Задайте вопросы — врач ответит без спешки.`}
+      submitLabel={`Записаться ${d.nameBtn}`}
+    />
+  </main>
+  <Footer />
+</V3Layout>
 
-  <FinalCTA />
-  <Contacts />
-</BaseLayout>
+<script define:vars={{ images: d.gallery ?? [] }}>
+  function initDoctorPage() {
+    // Booking button binding
+    document.querySelectorAll('[data-booking-open]').forEach((b) => {
+      if (b.dataset.bookingBound === '1') return;
+      b.dataset.bookingBound = '1';
+      b.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const doctor = b.getAttribute('data-doctor') ?? undefined;
+        window.dispatchEvent(new CustomEvent('open-booking', { detail: { doctor } }));
+      });
+    });
+
+    if (!images || images.length === 0) return;
+    const root = document.querySelector('[data-lightbox]');
+    if (!root) return;
+    const imgEl = root.querySelector('[data-lightbox-img]');
+    const counterEl = root.querySelector('[data-lightbox-counter]');
+    const closeBtn = root.querySelector('[data-lightbox-close]');
+    const prevBtn = root.querySelector('[data-lightbox-prev]');
+    const nextBtn = root.querySelector('[data-lightbox-next]');
+
+    let idx = 0;
+    let lastFocus = null;
+
+    const render = () => {
+      imgEl.src = images[idx];
+      counterEl.textContent = `${idx + 1} / ${images.length}`;
+    };
+    const open = (i) => {
+      lastFocus = document.activeElement;
+      idx = i;
+      render();
+      root.hidden = false;
+      document.documentElement.style.overflow = 'hidden';
+      closeBtn?.focus();
+    };
+    const close = () => {
+      root.hidden = true;
+      document.documentElement.style.overflow = '';
+      lastFocus?.focus?.();
+    };
+    const next = () => { idx = (idx + 1) % images.length; render(); };
+    const prev = () => { idx = (idx - 1 + images.length) % images.length; render(); };
+
+    document.querySelectorAll('[data-gallery-open]').forEach((btn) => {
+      if (btn.dataset.lbBound === '1') return;
+      btn.dataset.lbBound = '1';
+      btn.addEventListener('click', () => open(parseInt(btn.dataset.index ?? '0', 10)));
+    });
+
+    closeBtn?.addEventListener('click', close);
+    nextBtn?.addEventListener('click', next);
+    prevBtn?.addEventListener('click', prev);
+    root.addEventListener('click', (e) => { if (e.target === root) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (root.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') next();
+      else if (e.key === 'ArrowLeft') prev();
+    });
+  }
+  if (document.readyState !== 'loading') initDoctorPage();
+  else document.addEventListener('DOMContentLoaded', initDoctorPage);
+  document.addEventListener('astro:page-load', initDoctorPage);
+</script>
 
 <style>
   /* Hero */
-  .dp-hero {
-    background: var(--surface-page);
-    padding: calc(var(--nav-height-mobile) + var(--space-12)) 0 var(--space-16);
-    border-bottom: 1px solid var(--border-subtle);
+  .v3-doc-hero {
+    padding-top: clamp(1.5rem, 4vh, 3rem);
+    padding-bottom: var(--v3-gap-deep);
   }
-
-  @media (min-width: 768px) {
-    .dp-hero { padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-20); }
-  }
-
-  .dp-hero__inner {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 20px;
+  .doc-hero-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-10);
-    align-items: start;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+    padding-top: clamp(1.5rem, 4vh, 3rem);
   }
-
-  @media (min-width: 768px) { .dp-hero__inner { padding: 0 32px; } }
-
-  @media (min-width: 960px) {
-    .dp-hero__inner {
-      grid-template-columns: 340px 1fr;
-      gap: var(--space-16);
-      align-items: start;
-    }
+  .doc-hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h1-lead);
   }
-
-  @media (min-width: 1200px) {
-    .dp-hero__inner {
-      padding: 0 48px;
-      grid-template-columns: 400px 1fr;
-    }
+  .doc-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-size: 0.875rem;
+    color: var(--v3-ink-muted);
   }
+  .bc-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--v3-duration-fast) var(--v3-ease-out);
+    touch-action: manipulation;
+    padding-block: 0.375rem;
+  }
+  .bc-link:hover,
+  .bc-link:focus-visible { color: var(--v3-ink); }
+  .bc-sep { color: var(--v3-ink-faint); font-size: 0.75rem; }
+  .doc-spec { color: var(--v3-champagne-deep); margin-bottom: var(--v3-gap-eyebrow-h1); }
+  .doc-h1 { font-size: clamp(1.75rem, 3.5vw, 3rem); }
+  .doc-lead { max-width: 44ch; }
+  .doc-price-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--v3-border-soft);
+  }
+  .doc-price {
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    color: var(--v3-champagne-deep);
+  }
+  .doc-price-sub { color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0.005em; }
+  .doc-cta { margin-top: 0.5rem; }
 
-  /* Portrait */
-  .dp-hero__portrait {
-    aspect-ratio: 3 / 4;
-    border-radius: var(--radius-md);
-    position: relative;
-    overflow: hidden;
+  .doc-hero-photo {
+    max-width: 36rem;
+    margin-left: auto;
+    width: 100%;
+  }
+  .doc-photo-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    background: var(--v3-sand);
+    border-radius: 50%;
+  }
+  .doc-photo-placeholder {
+    aspect-ratio: 1/1;
+    background: var(--v3-sand);
     display: flex;
     align-items: center;
     justify-content: center;
-    max-height: 480px;
-    width: 100%;
+    border-radius: 50%;
+  }
+  .doc-initials {
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-size: clamp(4rem, 10vw, 8rem);
+    color: var(--v3-ink-muted);
   }
 
-  @media (min-width: 960px) { .dp-hero__portrait { max-height: none; } }
-
-  .dp-hero__portrait--a { background: #2B2421; }
-  .dp-hero__portrait--b { background: #3A2F2A; }
-  .dp-hero__portrait--c { background: #1F1E1C; }
-  .dp-hero__portrait--d { background: #2D2620; }
-
-  .dp-hero__portrait img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
+  /* Section shared */
+  .v3-doc-spec,
+  .v3-doc-edu {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-medium);
   }
-
-  .dp-hero__portrait::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='ndp'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23ndp)'/%3E%3C/svg%3E");
-    opacity: 0.08;
-    mix-blend-mode: overlay;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .dp-hero__initials {
-    font-size: 72px;
-    font-weight: 300;
-    color: rgba(255, 253, 248, 0.92);
-    letter-spacing: -0.02em;
-    z-index: 1;
-  }
-
-  /* Hero content */
-  .dp-hero__content {
+  .doc-section-header {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
-    padding-top: var(--space-2);
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-h2-body);
   }
 
-  .dp-hero__breadcrumb {
+  /* Spec list */
+  .spec-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: var(--text-caption);
-    color: var(--text-muted);
+    flex-direction: column;
   }
-
-  .dp-hero__breadcrumb a {
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .dp-hero__breadcrumb a:hover { color: var(--accent-hover); }
-
-  .dp-hero__spec {
-    font-size: var(--text-micro);
-    font-weight: 500;
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-    color: var(--accent-hover);
-    margin: 0;
-  }
-
-  .dp-hero__name {
-    font-size: clamp(1.75rem, 1rem + 2.5vw, 3rem);
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: var(--tracking-display);
-    color: var(--text-primary);
-    margin: 0;
-    text-wrap: balance;
-  }
-
-  .dp-hero__short {
-    font-size: var(--text-body);
-    line-height: 1.55;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  .dp-hero__price {
+  .spec-item {
     display: flex;
-    flex-wrap: wrap;
     align-items: baseline;
-    gap: var(--space-3);
-    padding: var(--space-4) 0;
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
+    gap: 1rem;
+    padding-block: 0.875rem;
+    border-top: 1px solid var(--v3-border-hair);
   }
-
-  .dp-hero__price-main {
-    font-size: var(--text-ui);
-    font-weight: 500;
-    color: var(--text-primary);
+  .spec-item:last-of-type { border-bottom: 1px solid var(--v3-border-hair); }
+  .spec-dot {
+    flex-shrink: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--v3-champagne-deep);
+    margin-top: 0.4em;
   }
+  .spec-text { margin: 0; }
 
-  .dp-hero__price-sub {
-    font-size: var(--text-caption);
-    color: var(--text-muted);
-  }
-
-  .dp-hero__actions {
+  .patent-note,
+  .awards-note {
+    margin-top: var(--v3-gap-small);
+    padding: 1.5rem;
+    background: var(--v3-cream);
+    border-left: 3px solid var(--v3-champagne);
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
   }
+  .patent-text { margin: 0; }
 
-  /* Shared section layout */
-  .dp-section {
-    padding: var(--space-16) 0;
+  /* Education timeline */
+  .edu-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
   }
-
-  @media (min-width: 1024px) { .dp-section { padding: var(--space-20) 0; } }
-
-  .dp-section--page { background: var(--surface-page); }
-  .dp-section--alt  { background: var(--surface-alt); }
-
-  .dp-section__inner {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 20px;
+  .edu-item {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: 1.5rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--v3-border-hair);
+    align-items: baseline;
   }
+  .edu-item:last-of-type { border-bottom: 1px solid var(--v3-border-hair); }
+  .edu-year { color: var(--v3-champagne-deep); }
+  .edu-text { margin: 0; }
 
-  @media (min-width: 768px)  { .dp-section__inner { padding: 0 32px; } }
-  @media (min-width: 1200px) { .dp-section__inner { padding: 0 48px; } }
-
-  .dp-section__title {
-    font-size: var(--text-h3);
-    font-weight: 400;
-    letter-spacing: var(--tracking-display);
-    color: var(--text-primary);
-    margin: 0 0 var(--space-8);
+  .edu-additional {
+    margin-top: var(--v3-gap-small);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
+  .edu-additional-title { color: var(--v3-ink); }
+  .edu-add-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .edu-add-item {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    font-size: 0.9375rem;
+    color: var(--v3-ink-secondary);
+  }
+  .edu-add-year { color: var(--v3-ink-muted); flex-shrink: 0; min-width: 3rem; }
+  .edu-congresses { margin-top: var(--v3-gap-small); color: var(--v3-ink-secondary); }
 
-  /* Specialization list */
-  .dp-spec-list {
+  /* Works */
+  .v3-doc-works {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .works-grid {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .work-item { display: flex; flex-direction: column; gap: 0.5rem; }
+  .work-img-wrap {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--v3-cream);
+  }
+  .work-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .work-caption { color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0.005em; }
+  .works-disclaimer {
+    margin-top: 1.5rem;
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-style: normal;
+    font-family: var(--v3-font-display);
   }
 
-  @media (min-width: 640px) {
-    .dp-spec-list { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 1024px) {
+    .doc-hero-grid { grid-template-columns: 1fr; }
+    .doc-hero-photo { max-width: 26rem; margin-inline: 0; }
+    .works-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .edu-item { grid-template-columns: 1fr; gap: 0.25rem; }
+    .works-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
   }
 
-  .dp-spec-list li {
-    font-size: var(--text-body);
-    color: var(--text-secondary);
-    line-height: 1.45;
-    padding-left: var(--space-5);
-    position: relative;
+  /* Stats strip */
+  .v3-doc-stats {
+    padding-top: clamp(1.5rem, 4vh, 3rem);
+    padding-bottom: clamp(1.5rem, 4vh, 3rem);
   }
-
-  .dp-spec-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--accent-hover);
-    font-weight: 400;
+  .stats-row {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: clamp(1rem, 3vw, 3rem);
+    border-top: 1px solid var(--v3-border-soft);
+    border-bottom: 1px solid var(--v3-border-soft);
+    padding-block: clamp(1.25rem, 3vh, 2.25rem);
   }
-
-  /* Education timeline */
-  .dp-edu {
+  .stats-item {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
-    margin: 0;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  .stats-value {
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    line-height: 1.05;
+    color: var(--v3-champagne-deep);
+  }
+  .stats-label {
+    color: var(--v3-ink-secondary);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    line-height: 1.4;
   }
 
-  .dp-edu__row {
+  /* Approach */
+  .v3-doc-approach {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-medium);
+  }
+  .approach-body {
+    max-width: 56ch;
+    color: var(--v3-ink);
+  }
+
+  /* Documents */
+  .v3-doc-docs {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .docs-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: grid;
-    grid-template-columns: 90px 1fr;
-    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+    gap: 1px;
+    background: var(--v3-border-hair);
   }
-
-  .dp-edu__year {
-    font-size: var(--text-ui);
-    font-weight: 500;
-    color: var(--text-primary);
-    letter-spacing: 0.01em;
-    padding-top: 2px;
+  .doc-card {
+    background: var(--v3-cream);
   }
-
-  .dp-edu__text {
-    font-size: var(--text-ui);
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
-
-  .dp-edu__text--full {
-    grid-column: 1 / -1;
-  }
-
-  .dp-edu__extra {
-    margin-top: var(--space-10);
-    padding-top: var(--space-8);
-    border-top: 1px solid var(--border-subtle);
-  }
-
-  .dp-edu__extra-title {
-    font-family: var(--font-body);
-    font-size: var(--text-micro);
-    font-weight: 500;
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin: 0 0 var(--space-5);
-  }
-
-  .dp-edu__congress {
-    font-size: var(--text-ui);
-    color: var(--text-secondary);
-    line-height: 1.55;
-    margin: 0;
-  }
-
-  /* Patent callout */
-  .dp-patent {
+  .doc-card-link {
     display: flex;
-    gap: var(--space-5);
-    padding: var(--space-6);
-    border: 1px solid var(--accent);
-    border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--accent) 6%, transparent);
-    max-width: 72ch;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    transition: background var(--v3-duration-fast) var(--v3-ease-out);
   }
-
-  .dp-patent__icon {
+  .doc-card-link:hover { background: var(--v3-cream-alt); }
+  .doc-card-icon {
     flex-shrink: 0;
-    color: var(--accent-hover);
-    margin-top: 2px;
+    color: var(--v3-champagne-deep);
+    padding-top: 0.125rem;
   }
-
-  .dp-patent__label {
-    font-size: var(--text-micro);
-    font-weight: 500;
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-    color: var(--accent-hover);
-    margin: 0 0 var(--space-2);
-  }
-
-  .dp-patent__text {
-    font-size: var(--text-ui);
-    color: var(--text-secondary);
-    line-height: 1.55;
-    margin: 0;
-  }
-
-  /* Other doctors */
-  .dp-others__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
-    margin-bottom: var(--space-8);
-  }
-
-  @media (min-width: 960px) {
-    .dp-others__grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
-
-    /* Force stacked layout inside "other doctors" — portrait on top, text below */
-    .dp-others__grid :global(.dcb) {
-      grid-template-columns: 1fr;
-    }
-    .dp-others__grid :global(.dcb__portrait-link) {
-      max-height: 260px;
-      overflow: hidden;
-    }
-    .dp-others__grid :global(.dcb__portrait) {
-      aspect-ratio: 3 / 2;
-    }
-  }
-
-  .dp-others__cta {
+  .doc-card-meta {
     display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .doc-card-kind { color: var(--v3-ink-muted); }
+  .doc-card-title {
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-size: 1.125rem;
+    line-height: 1.3;
+    color: var(--v3-ink);
+  }
+  .doc-card-cta {
+    color: var(--v3-champagne-deep);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    margin-top: 0.25rem;
+  }
+
+  /* Gallery */
+  .v3-doc-gallery {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .gallery-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  .gallery-item { margin: 0; }
+  .gallery-btn {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: var(--v3-cream);
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    transition: transform var(--v3-duration-fast) var(--v3-ease-out), box-shadow var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .gallery-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--v3-ease-out);
+  }
+  .gallery-btn:hover img { transform: scale(1.04); }
+  .gallery-btn:focus-visible {
+    outline: 2px solid var(--v3-champagne);
+    outline-offset: 4px;
+  }
+  @media (max-width: 1024px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+
+  /* Lightbox */
+  .lightbox[hidden] { display: none; }
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    background: rgba(10, 10, 10, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    animation: lb-fade 200ms var(--v3-ease-out);
+  }
+  @keyframes lb-fade { from { opacity: 0; } to { opacity: 1; } }
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    position: absolute;
+    background: rgba(255, 253, 248, 0.08);
+    border: 1px solid rgba(255, 253, 248, 0.2);
+    color: var(--v3-cream, #FFFDF8);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    font-size: 1.75rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 160ms ease;
+  }
+  .lightbox-close:hover,
+  .lightbox-prev:hover,
+  .lightbox-next:hover { background: rgba(255, 253, 248, 0.18); }
+  .lightbox-close { top: 1rem; right: 1rem; }
+  .lightbox-prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+  .lightbox-next { right: 1rem; top: 50%; transform: translateY(-50%); }
+  .lightbox-figure {
+    margin: 0;
+    max-width: min(90vw, 1100px);
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .lightbox-figure img {
+    max-width: 100%;
+    max-height: 84vh;
+    object-fit: contain;
+    background: rgba(10, 10, 10, 0.4);
+  }
+  .lightbox-counter {
+    color: rgba(255, 253, 248, 0.7);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-family: var(--v3-font-body);
+    font-size: 0.875rem;
+  }
+  @media (max-width: 640px) {
+    .lightbox-prev, .lightbox-next { width: 2.5rem; height: 2.5rem; font-size: 1.5rem; }
   }
 </style>

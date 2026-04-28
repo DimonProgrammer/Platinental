@@ -1,36 +1,37 @@
 ---
+// Все отзывы — публичные, с Яндекс.Карт и ПроДокторов. Не редактируем содержательно.
 const reviews = [
   {
-    text: 'После консультации у Мхитара Мисаковича все страхи прошли — он объяснил каждый шаг. В день снятия гипса я была самым счастливым человеком. Три года прошло — результат только лучше.',
-    author: 'Лейла',
-    meta: 'Казань · Ринопластика',
+    text: 'Долго решалась на ринопластику, искала идеального хирурга — нашла Дженнет Мевлютовну. Операция прошла успешно. Администраторы всегда на связи: подсказывали, напоминали о визитах. Результат отличный, всё зажило быстро.',
+    author: 'Алёна',
+    meta: 'Яндекс.Карты · Ринопластика',
   },
   {
-    text: 'Доктор Тулатова сделала круговую блефаропластику и височный лифтинг. Лёгкая реабилитация, результат выглядит естественно. Все подруги просят её контактную информацию.',
-    author: 'Пациентка клиники',
-    meta: 'Казань · Блефаропластика',
+    text: 'В октябре 2025-го делала ринопластику у Мелояна Мхитара Мисаковича. Очень довольна результатом. Доктор — профессионал своего дела, всё аккуратно и красиво. Персонал в клинике вежливый.',
+    author: 'Евгения',
+    meta: 'Яндекс.Карты · Ринопластика',
   },
   {
-    text: 'Просто счастлива, что узнала Васильева Максима Николаевича. Он и выслушал, и понял. После операции — наконец-то могу убирать волосы назад.',
+    text: 'Мне 58 лет. Долго изучала вопрос. Максим Николаевич внимательно меня выслушал и порекомендовал верхнюю блефаропластику с фиксацией бровей. Результат — на 120%. Выгляжу лет на 15 моложе.',
     author: 'Пациентка клиники',
-    meta: 'Казань · Отопластика',
+    meta: 'ПроДокторов · Блефаропластика',
   },
 ];
 ---
 
 <section class="v3-reviews v3-surface-cream" aria-labelledby="reviews-heading">
   <div class="v3-container v3-container-default">
-    <header class="rev-header" data-v3-reveal>
+    <header class="rev-header" data-v3-stagger>
       <span class="v3-eyebrow">Отзывы</span>
       <h2 id="reviews-heading" class="v3-h2"><em>Пациенты о клинике</em></h2>
     </header>
 
-    <ol class="rev-list">
+    <ol class="rev-grid" data-v3-stagger>
       {reviews.map((r, i) => (
-        <li class="rev-item" data-v3-reveal>
+        <li class="rev-item">
           <span class="v3-eyebrow rev-num">{String(i + 1).padStart(2, '0')}</span>
           <blockquote class="rev-quote">
-            <p>{r.text}</p>
+            <p>«{r.text}»</p>
             <footer class="rev-foot">
               — <strong>{r.author}</strong>, <span class="rev-meta">{r.meta}</span>
             </footer>
@@ -59,34 +60,29 @@ const reviews = [
     gap: var(--v3-gap-eyebrow-h1);
     margin-bottom: var(--v3-gap-small);
   }
-  .rev-list {
+  .rev-grid {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(2rem, 4vw, 3.5rem);
   }
   .rev-item {
-    display: grid;
-    grid-template-columns: 3rem 1fr;
-    gap: 1.5rem;
-    padding-block: clamp(1.25rem, 3vw, 2rem);
-    border-top: 1px solid var(--v3-border-hair);
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
   }
-  .rev-item:last-child { border-bottom: 1px solid var(--v3-border-hair); }
-  .rev-num { color: var(--v3-ink-muted); padding-top: 0.5rem; }
-  .rev-quote {
-    margin: 0;
-  }
+  .rev-num { color: var(--v3-ink-muted); }
+  .rev-quote { margin: 0; }
   .rev-quote p {
     font-family: var(--v3-font-display);
-    font-style: italic;
+    font-style: normal;
     font-weight: 400;
-    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
-    line-height: 1.35;
+    font-size: clamp(1.0625rem, 1.25vw, 1.25rem);
+    line-height: 1.5;
     color: var(--v3-ink);
-    margin: 0 0 1.25rem 0;
-    max-width: 52ch;
+    margin: 0 0 0.875rem 0;
   }
   .rev-foot {
     font-family: var(--v3-font-body);
@@ -102,7 +98,8 @@ const reviews = [
     font-size: 0.9375rem;
   }
 
-  @media (max-width: 640px) {
-    .rev-item { grid-template-columns: 1fr; gap: 0.75rem; }
+  @media (max-width: 900px) {
+    .rev-grid { grid-template-columns: 1fr; gap: clamp(1.5rem, 4vw, 2.25rem); }
+    .rev-item { padding-block: 0; }
   }
 </style>

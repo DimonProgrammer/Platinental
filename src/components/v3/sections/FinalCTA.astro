@@ -16,7 +16,7 @@ const {
 
 <section id="form" class="v3-final v3-surface-ink" aria-labelledby="final-heading">
   <div class="v3-container v3-container-wide final-grid">
-    <div class="final-text" data-v3-reveal>
+    <div class="final-text" data-v3-stagger>
       <span class="v3-eyebrow">{eyebrow}</span>
       <h2 id="final-heading" class="v3-h2 final-h2">
         <em set:html={heading}></em>
@@ -32,15 +32,28 @@ const {
       </ul>
     </div>
 
-    <form class="final-form" data-v3-reveal>
+    <form class="final-form" data-v3-stagger>
       <label class="field">
         <span class="field-label v3-eyebrow">Имя</span>
-        <input type="text" name="name" required placeholder="Как к вам обращаться" />
+        <input
+          type="text"
+          name="name"
+          required
+          autocomplete="name"
+          placeholder="Как к вам обращаться"
+        />
       </label>
 
       <label class="field">
         <span class="field-label v3-eyebrow">Телефон</span>
-        <input type="tel" name="phone" required placeholder="+7 ___ ___ ____" />
+        <input
+          type="tel"
+          name="phone"
+          required
+          autocomplete="tel"
+          inputmode="tel"
+          placeholder="+7 ___ ___ ____"
+        />
       </label>
 
       <label class="field">
@@ -50,9 +63,9 @@ const {
 
       <label class="consent">
         <input type="checkbox" name="consent" required />
-        <span>
+        <span class="consent-text">
           Я согласен(а) на обработку персональных данных в соответствии с
-          <a href="/v3/privacy" class="v3-link">152-ФЗ</a>.
+          <a href="/privacy" class="v3-link">152-ФЗ</a>.
         </span>
       </label>
 
@@ -98,7 +111,7 @@ const {
   }
   .final-channels a {
     font-family: var(--v3-font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: 1.25rem;
   }
 
@@ -118,10 +131,11 @@ const {
     background: transparent;
     border: 0;
     border-bottom: 1px solid var(--v3-border-on-ink);
-    padding: 0.5rem 0;
+    padding: 0.875rem 0;
+    min-height: 48px;
     color: var(--v3-on-ink);
     font-family: var(--v3-font-body);
-    font-size: 1rem;
+    font-size: 16px; /* iOS не зумит при фокусе ≥ 16px */
     line-height: 1.5;
     transition: border-color var(--v3-duration-fast) var(--v3-ease-out);
   }
@@ -145,8 +159,18 @@ const {
     color: var(--v3-on-ink-secondary);
     font-size: 0.875rem;
     line-height: 1.5;
+    cursor: pointer;
+    padding-block: 0.25rem; /* увеличить tap-зону на label */
   }
-  .consent input { margin-top: 0.25rem; accent-color: var(--v3-champagne); }
+  .consent-text { padding-top: 0.125rem; }
+  .consent input {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    margin: 0;
+    accent-color: var(--v3-champagne);
+    cursor: pointer;
+  }
   .final-submit {
     align-self: flex-start;
     margin-top: 0.5rem;

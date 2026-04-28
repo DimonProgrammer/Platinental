@@ -1,534 +1,261 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../components/primitives/Button.astro';
-import SectionHeader from '../components/primitives/SectionHeader.astro';
-import FinalCTA from '../components/sections/FinalCTA.astro';
-import Contacts from '../components/sections/Contacts.astro';
+import V3Layout from '../layouts/V3Layout.astro';
+import Navigation from '../components/v3/sections/Navigation.astro';
+import PageHero from '../components/v3/sections/PageHero.astro';
+import FinalCTA from '../components/v3/sections/FinalCTA.astro';
+import FAQ from '../components/v3/sections/FAQ.astro';
+import Footer from '../components/v3/sections/Footer.astro';
 
-const brandFacts = [
-  'Хирурги клиники обучались в&nbsp;РНИМУ им.&nbsp;Пирогова, 1-м&nbsp;МГМУ им.&nbsp;Сеченова и&nbsp;РНЦХ им.&nbsp;Петровского.',
-  'У&nbsp;наших хирургов&nbsp;— действующие членства ASPS, ISAPS, IPRAS и&nbsp;авторские методики.',
-  'Гармонизирующий подход: замеры и&nbsp;расчёт пропорций перед каждой операцией, единая методология для&nbsp;всех врачей клиники.',
+const milestones = [
+  { year: '2011', text: 'Открытие клиники в Казани. Первые операции, первые пациенты.' },
+  { year: '2014', text: 'Расширение направления косметологии. Собственная операционная.' },
+  { year: '2018', text: 'Патент на изобретение «Способ подтяжки шеи» (РФ № 2741620).' },
+  { year: '2022', text: 'Команда пополнилась молодыми хирургами из ведущих московских клиник.' },
+  { year: '2024', text: 'Внедрение face-preserving philosophy — деликатная хирургия без потери естественности.' },
 ];
 
-const qualifications = [
+const principles = [
   {
-    title: 'РНИМУ им. Н.И. Пирогова',
-    desc: 'Ординатура по&nbsp;пластической хирургии.',
+    num: '01',
+    title: 'Честность прежде всего',
+    text: 'Если операция не нужна — мы скажем об этом. Если риски высоки — объясним. Консультация — это не продажа.',
   },
   {
-    title: '1-й МГМУ им. И.М. Сеченова',
-    desc: 'Ординатура по&nbsp;пластической хирургии.',
+    num: '02',
+    title: 'Результат, который не виден',
+    text: 'Главный признак хорошей работы — окружающие замечают, что человек выглядит лучше, но не понимают почему.',
   },
   {
-    title: 'РНЦХ им. Б.В. Петровского',
-    desc: 'Ординатура по&nbsp;пластической хирургии.',
+    num: '03',
+    title: 'Авторские методики',
+    text: 'У каждого хирурга клиники своя школа и отработанные техники. Нет единого шаблона — есть индивидуальный подбор.',
   },
   {
-    title: 'Челюстно-лицевая хирургия',
-    desc: 'Отдельное направление&nbsp;— для&nbsp;сложных и&nbsp;вторичных ринопластик.',
+    num: '04',
+    title: 'Команда, а не одиночка',
+    text: 'Хирург и косметолог работают вместе. После операции — реабилитация внутри клиники, не у сторонних специалистов.',
   },
 ];
 
-const international = ['Чехия · Прага', 'Германия', 'Турция', 'Армения', 'Китай'];
-const memberships = ['ASPS', 'ISAPS', 'IPRAS'];
+const accreditations = [
+  { abbr: 'Лицензия №ЛО-16-01-003022', full: 'Министерство здравоохранения РФ, 30.10.2013' },
+  { abbr: 'Сеченов · РНЦХ · РНИМУ', full: 'Ординатура хирургов в ведущих московских центрах' },
+  { abbr: 'Авторские методики', full: 'У ряда хирургов — собственные техники и патенты' },
+];
+
+const faqItems = [
+  {
+    q: 'Platinental — это филиал московской клиники?',
+    a: 'Нет. Platinental Казань — самостоятельное юридическое лицо (ООО «Платинентал Казань»). С московской клиникой у нас общий бренд и один из основателей, но это отдельные проекты.',
+    open: true,
+  },
+  {
+    q: 'С какого года работает клиника?',
+    a: 'С 2011 года. За это время в клинике выполнены тысячи операций и процедур.',
+  },
+  {
+    q: 'Есть ли у хирургов международные сертификаты?',
+    a: 'Все хирурги клиники — выпускники ординатуры РНИМУ Пирогова, Сеченовского университета, РНЦХ Петровского. У отдельных специалистов — членство в международных профессиональных ассоциациях; уточнить можно на странице конкретного врача.',
+  },
+  {
+    q: 'Где находится клиника?',
+    a: 'ул. Карла Маркса, 48, корп. 1. Казань, 420015. Приём ежедневно с 9:00 до 20:00.',
+  },
+];
 ---
 
-<BaseLayout
-  title="О клинике Platinental в Казани — пластическая хирургия и косметология"
-  description="Клиника Platinental в Казани: пластическая хирургия и косметология, хирурги с международной аккредитацией ASPS/ISAPS, авторские методики."
-  canonical="https://kzn.platinental.ru/about"
-  darkHero={true}
+<V3Layout
+  title="О клинике — Platinental Казань"
+  description="Platinental — клиника пластической хирургии и косметологии в Казани с 2011 года. Авторские методики, деликатный подход, исключительная квалификация хирургов."
 >
-  <!-- Hero -->
-  <section class="ab-hero" aria-labelledby="ab-title">
-    <div class="ab-hero__inner" data-reveal>
-      <span class="eyebrow ab-hero__eyebrow">PLATINENTAL КАЗАНЬ</span>
-      <h1 id="ab-title" class="ab-hero__title font-display">
-        Ум, честь и&nbsp;совесть современной <em>пластической хирургии</em>
-      </h1>
-      <p class="ab-hero__lede">
-        Концепция интеллигентной и&nbsp;уважительной гармонизации внешности.
-      </p>
-      <div class="ab-hero__actions">
-        <Button href="/#form" variant="inverse" size="lg">Записаться на&nbsp;консультацию</Button>
-        <Button href="/doctors" variant="ghost" size="lg" class="ab-hero__ghost">Врачи клиники</Button>
-      </div>
-    </div>
-  </section>
+  <Navigation />
+  <main id="main">
+    <PageHero
+      pageMarker="—"
+      pageMarkerLabel="О клинике"
+      eyebrow="О нас"
+      h1="Клиника пластической хирургии&nbsp;— с&nbsp;2011&nbsp;года в&nbsp;Казани"
+      lead="Частная клиника, где хирург слушает дольше, чем оперирует. Деликатный результат — когда изменения видны только тем, кто знает, что искать."
+      ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
+      ctaSecondary={{ label: 'Познакомиться с врачами', href: '/doctors' }}
+      meta={[
+        { num: '15 лет', label: 'клиника в Казани' },
+        { num: 'ул. К. Маркса 48', label: 'локация клиники' },
+        { num: 'Исключительная', label: 'квалификация хирургов' },
+      ]}
+    />
 
-  <!-- Philosophy -->
-  <section class="philosophy" aria-label="Философия клиники">
-    <div class="philosophy__inner">
-      <div class="philosophy__body" data-reveal>
-        <blockquote class="philosophy__quote font-display">
-          «Мы&nbsp;не&nbsp;создаём абстрактно красивые лица. Мы&nbsp;создаём образы с&nbsp;характером&nbsp;— запоминающиеся, со&nbsp;своей индивидуальностью, усиливающие звучание привлекательных черт»
-        </blockquote>
-        <div class="philosophy__text">
-          <p>
-            С&nbsp;момента основания клиника придерживается одного принципа: чтобы на&nbsp;выходе получить превосходные пропорции, мы&nbsp;всегда начинаем с&nbsp;замеров.
-          </p>
-          <p>
-            Хирург не&nbsp;просто выполняет операцию, а&nbsp;проектирует результат. Замеры, расчёт пропорций, индивидуальный план&nbsp;— и&nbsp;только потом скальпель. У&nbsp;каждого врача клиники своя школа, свой опыт и&nbsp;авторские техники&nbsp;— и&nbsp;при этом общая философия: деликатная, уважительная гармонизация.
-          </p>
-          <p>
-            Идейный вдохновитель этой философии&nbsp;— Андрей Искорнев, один из&nbsp;учредителей клиники, хирург, оперирующий в&nbsp;Москве и&nbsp;Лос-Анджелесе, действительный член ASPS, ISAPS и&nbsp;IPRAS.
-          </p>
-        </div>
-        <div class="philosophy__actions">
-          <Button href="/doctors" variant="primary" size="md">Познакомиться с&nbsp;врачами</Button>
-          <Button href="/plastika" variant="secondary" size="md">Наши направления</Button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Value -->
-  <section class="value" aria-label="Ценность клиники">
-    <div class="value__inner" data-reveal>
-      <h2 class="value__title font-display">Разница между «дорого» и&nbsp;«дешево»</h2>
-      <div class="value__text">
-        <p>
-          Хорошее «дорого» не&nbsp;ограничивается персональным подходом и&nbsp;красивым интерьером. В&nbsp;«дорого» вы&nbsp;платите за&nbsp;эстетический вкус, уникальный опыт и&nbsp;репутацию тех, кто умеет создавать идеальное по&nbsp;индивидуальным меркам.
-        </p>
-        <p>
-          Вы&nbsp;покупаете годы учёбы и&nbsp;упорного труда&nbsp;— страховку от&nbsp;ошибок и&nbsp;посредственности. И&nbsp;это особенно важно: ошибки пластического хирурга видны всегда.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Brand facts -->
-  <section class="brand" aria-label="О клинике">
-    <div class="brand__inner">
-      <SectionHeader eyebrow="О клинике" title="Что стоит за&nbsp;каждой операцией" />
-
-      <ul class="brand__facts">
-        {brandFacts.map((f, i) => (
-          <li class="brand__fact" data-reveal style={`transition-delay: ${i * 80}ms`} set:html={f} />
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <!-- Qualifications -->
-  <section class="qual" aria-label="Образование и аккредитация">
-    <div class="qual__inner">
-      <SectionHeader eyebrow="Квалификация" title="Образование и&nbsp;аккредитация" />
-
-      <div class="qual__grid">
-        <ol class="qual__list">
-          {qualifications.map((q, i) => (
-            <li class="qual__item" data-reveal style={`transition-delay: ${i * 70}ms`}>
-              <h3 class="qual__item-title font-display">{q.title}</h3>
-              <p class="qual__item-desc" set:html={q.desc} />
+    <!-- История -->
+    <section class="v3-timeline v3-surface-sand" aria-labelledby="timeline-heading">
+      <div class="v3-container v3-container-default">
+        <header class="timeline-header" data-v3-stagger>
+          <span class="v3-eyebrow">История</span>
+          <h2 id="timeline-heading" class="v3-h2"><em>Как мы росли</em></h2>
+        </header>
+        <ol class="timeline-list" data-v3-stagger>
+          {milestones.map((m) => (
+            <li class="timeline-item">
+              <span class="timeline-year v3-eyebrow">{m.year}</span>
+              <p class="timeline-text v3-body">{m.text}</p>
             </li>
           ))}
         </ol>
-
-        <aside class="qual__sidebar">
-          <div class="qual__sub">
-            <h4 class="qual__sub-title">Международное обучение</h4>
-            <div class="qual__tags">
-              {international.map((t) => <span class="qual__tag">{t}</span>)}
-            </div>
-          </div>
-
-          <div class="qual__sub">
-            <h4 class="qual__sub-title">Членство</h4>
-            <div class="qual__tags">
-              {memberships.map((t) => <span class="qual__tag qual__tag--accent">{t}</span>)}
-            </div>
-          </div>
-
-          <div class="qual__sub">
-            <h4 class="qual__sub-title">Патенты</h4>
-            <p class="qual__sub-text">
-              Авторские методики, разработанные хирургами клиники. Детали&nbsp;— на&nbsp;страницах конкретных врачей.
-            </p>
-          </div>
-        </aside>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Founder quote -->
-  <section class="founder" aria-label="Цитата основателя">
-    <div class="founder__inner" data-reveal>
-      <blockquote class="founder__text font-display">
-        «В&nbsp;мире, где избыточность является минимальным стандартом, деликатность ценится как новое сокровище. Именно так мы&nbsp;относимся к&nbsp;внешности наших пациентов. Внося едва заметные коррективы, мы&nbsp;создаём образ, в&nbsp;котором вам будет комфортно покорять новый мир.»
-      </blockquote>
-      <footer class="founder__author">
-        Андрей Искорнев, один из&nbsp;учредителей и&nbsp;идейный вдохновитель · Член ASPS, ISAPS, IPRAS
-      </footer>
-      <Button href="/#form" variant="inverse" size="lg" class="founder__cta">Записаться на&nbsp;консультацию</Button>
-    </div>
-  </section>
+    <!-- Принципы -->
+    <section class="v3-about-principles v3-surface-cream" aria-labelledby="principles-heading">
+      <div class="v3-container v3-container-default">
+        <header class="principles-header" data-v3-stagger>
+          <span class="v3-eyebrow">Философия</span>
+          <h2 id="principles-heading" class="v3-h2"><em>Как мы работаем</em></h2>
+        </header>
+        <ol class="principles-list" data-v3-stagger>
+          {principles.map((p) => (
+            <li class="principle-item">
+              <span class="principle-num v3-eyebrow">{p.num}</span>
+              <div class="principle-body">
+                <h3 class="v3-h3">{p.title}</h3>
+                <p class="v3-body">{p.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
 
-  <FinalCTA />
-  <Contacts />
-</BaseLayout>
+    <!-- Аккредитации -->
+    <section class="v3-accred v3-surface-ink" aria-labelledby="accred-heading">
+      <div class="v3-container v3-container-default">
+        <div class="accred-inner" data-v3-reveal>
+          <span class="v3-eyebrow">Квалификация</span>
+          <h2 id="accred-heading" class="v3-h2"><em>Профессиональное признание</em></h2>
+          <p class="v3-lead accred-lead">
+            Хирурги клиники — члены российских и международных профессиональных объединений.
+            Обучение в ведущих мировых центрах, участие в конгрессах.
+          </p>
+          <ul class="accred-list">
+            {accreditations.map((a) => (
+              <li class="accred-item">
+                <span class="accred-abbr v3-h3">{a.abbr}</span>
+                <span class="v3-body accred-full">{a.full}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <FAQ
+      eyebrow="О клинике"
+      heading="Частые вопросы"
+      items={faqItems}
+    />
+
+    <FinalCTA
+      heading="Познакомьтесь<br />с&nbsp;клиникой"
+      lead="Запишитесь на первичную консультацию. Расскажем о возможностях и ответим на все вопросы."
+    />
+  </main>
+  <Footer />
+</V3Layout>
 
 <style>
-  /* Hero: dark immersive */
-  .ab-hero {
-    background: var(--surface-inverse);
-    color: var(--text-inverse);
-    padding: calc(var(--nav-height-mobile) + var(--space-16)) 0 var(--space-20);
-    position: relative;
-    overflow: hidden;
+  /* Timeline */
+  .v3-timeline {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
   }
-
-  @media (min-width: 768px) {
-    .ab-hero { padding: calc(var(--nav-height) + var(--space-20)) 0 var(--space-24); }
-  }
-
-  .ab-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 70% 30%, rgba(196, 168, 130, 0.18), transparent 55%),
-      radial-gradient(circle at 20% 80%, rgba(196, 168, 130, 0.08), transparent 50%);
-    pointer-events: none;
-  }
-
-  .ab-hero__inner {
-    position: relative;
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
+  .timeline-header {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
   }
-
-  @media (min-width: 768px) { .ab-hero__inner { padding: 0 32px; } }
-
-  .ab-hero__eyebrow { color: var(--accent) !important; }
-
-  .ab-hero__title {
-    font-size: clamp(2rem, 1.2rem + 3vw, 3.75rem);
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: var(--tracking-display);
-    color: var(--text-inverse);
-    margin: var(--space-6) 0 var(--space-5);
-    text-wrap: balance;
-    max-width: 24ch;
-  }
-
-  .ab-hero__title em {
-    color: var(--accent);
-    font-weight: 300;
-  }
-
-  .ab-hero__lede {
-    font-size: var(--text-lead);
-    line-height: 1.5;
-    color: var(--text-inverse-muted);
-    max-width: 52ch;
-    margin-bottom: var(--space-10);
-  }
-
-  .ab-hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-5);
-    align-items: center;
-    justify-content: center;
-  }
-
-  .ab-hero__ghost { color: var(--text-inverse) !important; }
-
-  /* Philosophy */
-  .philosophy {
-    background: var(--surface-page);
-    padding: var(--space-20) 0;
-  }
-
-  @media (min-width: 1024px) { .philosophy { padding: var(--space-24) 0; } }
-
-  .philosophy__inner {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  @media (min-width: 768px) { .philosophy__inner { padding: 0 32px; } }
-
-  .philosophy__body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
-  }
-
-  .philosophy__quote {
-    font-weight: 400;
-    font-size: clamp(1.5rem, 1rem + 1.6vw, 2.25rem);
-    line-height: 1.3;
-    letter-spacing: var(--tracking-heading);
-    color: var(--text-primary);
-    padding-left: var(--space-6);
-    border-left: 2px solid var(--accent);
-    text-wrap: balance;
-  }
-
-  .philosophy__text {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    font-size: var(--text-body);
-    line-height: 1.65;
-    color: var(--text-secondary);
-    max-width: 62ch;
-  }
-
-  .philosophy__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-    margin-top: var(--space-4);
-  }
-
-  /* Value */
-  .value {
-    background: var(--surface-alt);
-    padding: var(--space-16) 0;
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  @media (min-width: 1024px) { .value { padding: var(--space-20) 0; } }
-
-  .value__inner {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
-  }
-
-  @media (min-width: 768px) { .value__inner { padding: 0 32px; } }
-
-  .value__title {
-    font-size: clamp(1.75rem, 1rem + 2vw, 2.5rem);
-    font-weight: 400;
-    color: var(--text-primary);
-    letter-spacing: var(--tracking-display);
-    line-height: 1.1;
-    margin-bottom: var(--space-6);
-    text-wrap: balance;
-  }
-
-  .value__text {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    font-size: var(--text-body);
-    line-height: 1.65;
-    color: var(--text-secondary);
-    text-align: left;
-  }
-
-  /* Brand */
-  .brand {
-    background: var(--surface-page);
-    padding: var(--space-20) 0;
-  }
-
-  @media (min-width: 1024px) { .brand { padding: var(--space-24) 0; } }
-
-  .brand__inner {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  @media (min-width: 768px) { .brand__inner { padding: 0 32px; } }
-  @media (min-width: 1200px) { .brand__inner { padding: 0 48px; } }
-
-  .brand__facts {
+  .timeline-list {
     list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
-    max-width: 72ch;
-    margin: var(--space-10) auto 0;
   }
-
-  .brand__fact {
-    position: relative;
-    padding: var(--space-4) 0 var(--space-4) var(--space-6);
-    border-top: 1px solid var(--border-subtle);
-    font-size: var(--text-body);
-    line-height: 1.55;
-    color: var(--text-primary);
-  }
-
-  .brand__fact::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: calc(50% - 3px);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-
-  .brand__facts li:last-child {
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  /* Qual */
-  .qual {
-    background: var(--surface-alt);
-    padding: var(--space-20) 0;
-  }
-
-  @media (min-width: 1024px) { .qual { padding: var(--space-24) 0; } }
-
-  .qual__inner {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  @media (min-width: 768px) { .qual__inner { padding: 0 32px; } }
-  @media (min-width: 1200px) { .qual__inner { padding: 0 48px; } }
-
-  .qual__grid {
+  .timeline-item {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-10);
+    grid-template-columns: 6rem 1fr;
+    gap: 2rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--v3-border-hair);
+    align-items: baseline;
   }
+  .timeline-item:last-child { border-bottom: 1px solid var(--v3-border-hair); }
+  .timeline-year { color: var(--v3-champagne-deep); }
+  .timeline-text { margin: 0; }
 
-  @media (min-width: 960px) {
-    .qual__grid {
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      gap: var(--space-12);
-    }
+  /* Principles */
+  .v3-about-principles {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
   }
-
-  .qual__list {
+  .principles-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
+  }
+  .principles-list {
     list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--v3-border-hair);
+  }
+  .principle-item {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 2rem 2.5rem;
+    background: var(--v3-cream);
   }
+  .principle-num { color: var(--v3-ink-muted); }
+  .principle-body { display: flex; flex-direction: column; gap: 0.75rem; }
+  .principle-body .v3-body { margin: 0; }
 
-  .qual__item {
-    padding: var(--space-5) 0;
-    border-top: 1px solid var(--border-subtle);
+  /* Accreditations */
+  .v3-accred {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
   }
-
-  .qual__list li:last-child { border-bottom: 1px solid var(--border-subtle); }
-
-  .qual__item-title {
-    font-size: var(--text-lead);
-    font-weight: 400;
-    color: var(--text-primary);
-    letter-spacing: var(--tracking-heading);
-    margin-bottom: var(--space-2);
-  }
-
-  .qual__item-desc {
-    font-size: var(--text-ui);
-    line-height: 1.55;
-    color: var(--text-muted);
-  }
-
-  .qual__sidebar {
+  .accred-inner {
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
+    gap: var(--v3-gap-h1-lead);
+    max-width: 52rem;
   }
-
-  .qual__sub-title {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-    color: var(--accent-hover);
-    margin-bottom: var(--space-3);
-  }
-
-  .qual__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-
-  .qual__tag {
-    display: inline-flex;
-    padding: 6px 14px;
-    font-size: var(--text-caption);
-    color: var(--text-primary);
-    border: 1px solid var(--border-soft);
-    border-radius: 99px;
-    background: var(--surface-page);
-  }
-
-  .qual__tag--accent {
-    border-color: var(--accent);
-    color: var(--accent-hover);
-    font-weight: 500;
-  }
-
-  .qual__sub-text {
-    font-size: var(--text-ui);
-    line-height: 1.55;
-    color: var(--text-muted);
-  }
-
-  /* Founder */
-  .founder {
-    background: var(--surface-inverse);
-    color: var(--text-inverse);
-    padding: var(--space-24) 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .founder::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 50% 40%, rgba(196, 168, 130, 0.14), transparent 60%);
-    pointer-events: none;
-  }
-
-  .founder__inner {
-    position: relative;
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
+  .accred-lead { max-width: 52ch; }
+  .accred-list {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: var(--space-5);
+    border-top: 1px solid var(--v3-border-on-ink);
   }
-
-  @media (min-width: 768px) { .founder__inner { padding: 0 32px; } }
-
-  .founder__text {
-    font-weight: 300;
-    font-size: clamp(1.25rem, 0.9rem + 1.7vw, 2rem);
-    line-height: 1.4;
-    letter-spacing: var(--tracking-heading);
-    color: var(--text-inverse);
-    text-wrap: pretty;
+  .accred-item {
+    display: grid;
+    grid-template-columns: 8rem 1fr;
+    gap: 2rem;
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--v3-border-on-ink);
+    align-items: baseline;
   }
+  .accred-abbr { color: var(--v3-champagne); }
+  .accred-full { color: var(--v3-on-ink-secondary); margin: 0; }
 
-  .founder__author {
-    font-size: var(--text-caption);
-    letter-spacing: var(--tracking-caps);
-    text-transform: uppercase;
-    color: var(--text-inverse-muted);
-    margin-bottom: var(--space-4);
+  @media (max-width: 768px) {
+    .timeline-item { grid-template-columns: 4rem 1fr; gap: 1rem; }
+    .principles-list { grid-template-columns: 1fr; }
+    .accred-item { grid-template-columns: 6rem 1fr; gap: 1rem; }
   }
-
-  .founder__cta { margin-top: var(--space-2); }
 </style>

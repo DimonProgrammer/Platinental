@@ -1,174 +1,79 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../components/primitives/Button.astro';
-
-const sections = [
-  { href: '/', label: 'Главная' },
-  { href: '/plastika', label: 'Пластическая хирургия' },
-  { href: '/kosmetologiya', label: 'Косметология' },
-  { href: '/doctors', label: 'Врачи' },
-  { href: '/prices', label: 'Цены' },
-  { href: '/contacts', label: 'Контакты' },
-];
+import V3Layout from '../layouts/V3Layout.astro';
+import Navigation from '../components/v3/sections/Navigation.astro';
+import Footer from '../components/v3/sections/Footer.astro';
 ---
 
-<BaseLayout
+<V3Layout
   title="Страница не найдена — Platinental Казань"
-  description="Страница не найдена. Вернитесь на главную Platinental Казань или выберите нужный раздел."
+  description="Запрошенная страница не найдена. Вернитесь на главную страницу клиники Platinental Казань."
 >
-  <section class="nf" aria-labelledby="nf-title">
-    <div class="nf__inner" data-reveal>
-      <div class="nf__badge font-display" aria-hidden="true">404</div>
-
-      <h1 id="nf-title" class="nf__title font-display">
-        Страница <em>не&nbsp;найдена</em>
-      </h1>
-
-      <p class="nf__text">
-        Такой страницы нет&nbsp;— возможно, она переехала или была удалена. Перейдите на&nbsp;главную или выберите раздел:
-      </p>
-
-      <nav class="nf__nav" aria-label="Навигация по разделам">
-        {sections.map((s, i) => (
-          <>
-            <a href={s.href} class="nf__nav-link">{s.label}</a>
-            {i < sections.length - 1 && <span class="nf__sep" aria-hidden="true">·</span>}
-          </>
-        ))}
-      </nav>
-
-      <div class="nf__actions">
-        <Button href="/" variant="inverse" size="lg">На&nbsp;главную</Button>
-        <Button href="/contacts" variant="ghost" size="lg" class="nf__ghost">Контакты клиники</Button>
+  <Navigation />
+  <main id="main">
+    <section class="v3-404 v3-surface-cream" aria-labelledby="notfound-heading">
+      <div class="v3-container v3-container-default notfound-inner">
+        <div data-v3-reveal>
+          <span class="v3-eyebrow">Platinental · Казань</span>
+          <p class="notfound-code" aria-hidden="true">404</p>
+          <h1 id="notfound-heading" class="v3-h1 notfound-h1">
+            <em>Страница не&nbsp;найдена</em>
+          </h1>
+          <p class="v3-lead notfound-lead">
+            Возможно, адрес устарел или страница была перемещена.
+          </p>
+          <div class="notfound-cta">
+            <a href="/" class="v3-btn v3-btn-primary">На главную</a>
+            <a href="/plastika" class="v3-link">Пластическая хирургия</a>
+            <a href="/kosmetologiya" class="v3-link">Косметология</a>
+          </div>
+        </div>
       </div>
-
-      <p class="nf__phone">
-        Или позвоните <a href="tel:+78432236666">+7&nbsp;(843)&nbsp;223-66-66</a>
-      </p>
-    </div>
-  </section>
-</BaseLayout>
+    </section>
+  </main>
+  <Footer />
+</V3Layout>
 
 <style>
-  .nf {
-    background: var(--surface-inverse);
-    color: var(--text-inverse);
-    min-height: 100vh;
+  .v3-404 {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+    min-height: 70vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: calc(var(--nav-height-mobile) + var(--space-12)) 20px var(--space-12);
-    position: relative;
-    overflow: hidden;
   }
-
-  @media (min-width: 768px) {
-    .nf { padding: calc(var(--nav-height) + var(--space-16)) 32px var(--space-16); }
-  }
-
-  .nf::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 50% 40%, rgba(196, 168, 130, 0.18), transparent 60%);
-    pointer-events: none;
-  }
-
-  .nf__inner {
-    position: relative;
-    max-width: 720px;
-    text-align: center;
+  .notfound-inner > div {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    max-width: 56rem;
   }
-
-  .nf__badge {
-    font-size: clamp(5rem, 3rem + 8vw, 10rem);
+  .notfound-inner .v3-eyebrow {
+    margin-bottom: var(--v3-gap-h1-lead);
+  }
+  .notfound-code {
+    font-family: var(--v3-font-display);
+    font-style: normal;
     font-weight: 300;
-    line-height: 0.9;
-    color: var(--accent);
-    letter-spacing: -0.04em;
-    margin-bottom: var(--space-4);
-    opacity: 0.85;
+    font-size: clamp(4.5rem, 12vw, 9rem);
+    line-height: 0.95;
+    color: var(--v3-sand-deep);
+    margin: 0 0 var(--v3-gap-h1-lead);
+    letter-spacing: -0.02em;
   }
-
-  .nf__title {
-    font-size: clamp(1.75rem, 1rem + 2.2vw, 2.75rem);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: var(--tracking-display);
-    color: var(--text-inverse);
-    margin-bottom: var(--space-5);
-    text-wrap: balance;
+  .notfound-h1 {
+    margin: 0 0 var(--v3-gap-h1-lead);
   }
-
-  .nf__title em {
-    color: var(--accent);
-    font-weight: 300;
+  .notfound-lead {
+    max-width: 40ch;
+    margin: 0 0 var(--v3-gap-content-cta);
   }
-
-  .nf__text {
-    font-size: var(--text-body);
-    line-height: 1.6;
-    color: var(--text-inverse-muted);
-    max-width: 50ch;
-    margin-bottom: var(--space-8);
-  }
-
-  .nf__nav {
+  .notfound-cta {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    justify-content: center;
     align-items: center;
-    margin-bottom: var(--space-10);
-  }
-
-  .nf__nav-link {
-    font-size: var(--text-ui);
-    color: var(--accent);
-    padding: 4px 0;
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .nf__nav-link:hover { color: var(--text-inverse); }
-
-  .nf__sep {
-    color: rgba(255, 253, 248, 0.2);
-    padding: 0 10px;
-    user-select: none;
-  }
-
-  @media (max-width: 520px) {
-    .nf__sep { display: none; }
-    .nf__nav {
-      flex-direction: column;
-      gap: var(--space-2);
-    }
-  }
-
-  .nf__actions {
-    display: flex;
+    gap: 1.5rem;
     flex-wrap: wrap;
-    gap: var(--space-4);
-    justify-content: center;
-    margin-bottom: var(--space-8);
+    font-size: 0.9375rem;
   }
-
-  .nf__ghost { color: var(--text-inverse) !important; }
-
-  .nf__phone {
-    font-size: var(--text-caption);
-    color: var(--text-inverse-muted);
+  @media (max-width: 768px) {
+    .v3-404 { min-height: auto; padding-top: var(--v3-gap-medium); padding-bottom: var(--v3-gap-medium); }
   }
-
-  .nf__phone a {
-    color: var(--text-inverse);
-    border-bottom: 1px solid rgba(255, 253, 248, 0.3);
-    transition: border-color var(--duration-fast) var(--ease-out);
-  }
-
-  .nf__phone a:hover { border-bottom-color: var(--accent); }
 </style>
