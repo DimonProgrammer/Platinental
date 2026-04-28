@@ -463,7 +463,7 @@ export const doctors: Doctor[] = [
         { year: '', text: 'Доктор медицинских наук, профессор' },
         { year: '', text: 'Специализация: нейрохирургия и хирургическая ортопедия' },
       ],
-      awards: 'Признан лучшим нейрохирургом независимыми экспертами Европы. Интервью о&nbsp;методике&nbsp;— Tatar-inform: «Лечат клетки тела, а&nbsp;не&nbsp;протез».',
+      awards: 'Признан лучшим нейрохирургом независимыми экспертами Европы. Интервью о&nbsp;методике&nbsp;— <a href="https://www.tatar-inform.ru/news/lecat-kletki-tela-a-ne-protez-kak-proryvnoi-metod-ortopedii-spasaet-iznosennye-sustavy-6017202" target="_blank" rel="noopener" class="v3-link">Tatar-inform: «Лечат клетки тела, а&nbsp;не&nbsp;протез»</a>.',
     },
     works: [],
   },

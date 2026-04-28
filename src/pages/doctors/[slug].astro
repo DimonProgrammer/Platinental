@@ -165,8 +165,8 @@ const faqItems = [
         </header>
         <ol class="edu-timeline" data-v3-stagger>
           {d.details.education.map((e) => (
-            <li class="edu-item">
-              <span class="edu-year v3-eyebrow">{e.year}</span>
+            <li class={`edu-item${e.year ? '' : ' edu-item--no-year'}`}>
+              {e.year && <span class="edu-year v3-eyebrow">{e.year}</span>}
               <p class="edu-text v3-body">{e.text}</p>
             </li>
           ))}
@@ -503,6 +503,7 @@ const faqItems = [
   .edu-item:last-of-type { border-bottom: 1px solid var(--v3-border-hair); }
   .edu-year { color: var(--v3-champagne-deep); }
   .edu-text { margin: 0; }
+  .edu-item--no-year { grid-template-columns: 1fr; }
 
   .edu-additional {
     margin-top: var(--v3-gap-small);
