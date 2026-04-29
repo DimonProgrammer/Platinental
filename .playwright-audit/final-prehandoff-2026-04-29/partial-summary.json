@@ -1,0 +1,174 @@
+{
+  "contacts": {
+    "desktop": {
+      "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/contacts-desktop.png",
+      "consoleErrors": [],
+      "title": "Контакты — Platinental Казань",
+      "description": "Адрес клиники Platinental в Казани, телефон, режим работы и схема проезда. ул. Карла Маркса, 48, корп. 1.",
+      "canonical": "https://kzn.platinental.ru/",
+      "h1": "Контакты клиники Platinental в Казани",
+      "docW": 1440,
+      "winW": 1440,
+      "linksToPrivacy": [
+        "/privacy",
+        "/documents",
+        "/privacy",
+        "/privacy"
+      ],
+      "forms": [
+        {
+          "index": 0,
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    },
+    "tablet": {
+      "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/contacts-tablet.png",
+      "consoleErrors": [],
+      "title": "Контакты — Platinental Казань",
+      "description": "Адрес клиники Platinental в Казани, телефон, режим работы и схема проезда. ул. Карла Маркса, 48, корп. 1.",
+      "canonical": "https://kzn.platinental.ru/",
+      "h1": "Контакты клиники Platinental в Казани",
+      "docW": 1024,
+      "winW": 1024,
+      "linksToPrivacy": [
+        "/privacy",
+        "/documents",
+        "/privacy",
+        "/privacy"
+      ],
+      "forms": [
+        {
+          "index": 0,
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    },
+    "mobile": {
+      "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/contacts-mobile.png",
+      "consoleErrors": [],
+      "title": "Контакты — Platinental Казань",
+      "description": "Адрес клиники Platinental в Казани, телефон, режим работы и схема проезда. ул. Карла Маркса, 48, корп. 1.",
+      "canonical": "https://kzn.platinental.ru/",
+      "h1": "Контакты клиники Platinental в Казани",
+      "docW": 375,
+      "winW": 375,
+      "linksToPrivacy": [
+        "/privacy",
+        "/documents",
+        "/privacy",
+        "/privacy"
+      ],
+      "forms": [
+        {
+          "index": 0,
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    }
+  },
+  "doctors": {
+    "desktop": {
+      "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/doctors-desktop.png",
+      "consoleErrors": [],
+      "title": "Врачи — Platinental Казань",
+      "description": "Пластические хирурги и косметологи клиники Platinental Казань. Клиника The Platinental Казань собрала самых востребованных специалистов в своей области. Образование, специализации, стоимость консультации.",
+      "canonical": "https://kzn.platinental.ru/",
+      "h1": "Врачи клиники Platinental в Казани",
+      "docW": 1440,
+      "winW": 1440,
+      "linksToPrivacy": [
+        "/privacy",
+        "/documents",
+        "/privacy",
+        "/privacy"
+      ],
+      "forms": [
+        {
+          "index": 0,
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    },
+    "tablet": {
+      "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/doctors-tablet.png",
+      "consoleErrors": [],
+      "title": "Врачи — Platinental Казань",
+      "description": "Пластические хирурги и косметологи клиники Platinental Казань. Клиника The Platinental Казань собрала самых востребованных специалистов в своей области. Образование, специализации, стоимость консультации.",
+      "canonical": "https://kzn.platinental.ru/",
+      "h1": "Врачи клиники Platinental в Казани",
+      "docW": 1024,
+      "winW": 1024,
+      "linksToPrivacy": [
+        "/privacy",
+        "/documents",
+        "/privacy",
+        "/privacy"
+      ],
+      "forms": [
+        {
+          "index": 0,
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    },
+    "mobile": {
+      "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/doctors-mobile.png",
+      "consoleErrors": [],
+      "title": "Врачи — Platinental Казань",
+      "description": "Пластические хирурги и косметологи клиники Platinental Казань. Клиника The Platinental Казань собрала самых востребованных специалистов в своей области. Образование, специализации, стоимость консультации.",
+      "canonical": "https://kzn.platinental.ru/",
+      "h1": "Врачи клиники Platinental в Казани",
+      "docW": 375,
+      "winW": 375,
+      "linksToPrivacy": [
+        "/privacy",
+        "/documents",
+        "/privacy",
+        "/privacy"
+      ],
+      "forms": [
+        {
+          "index": 0,
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    }
+  }
+}

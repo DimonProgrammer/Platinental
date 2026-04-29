@@ -16,7 +16,7 @@ const procedures = [
       <h2 id="procedures-heading" class="v3-h2"><em>Чаще всего выбирают</em></h2>
     </header>
 
-    <ol class="proc-list" data-v3-stagger>
+    <ol class="proc-list" data-v3-reveal>
       {procedures.map((p) => (
         <li class="proc-row">
           <a href={p.href} class="proc-link">
@@ -65,7 +65,7 @@ const procedures = [
     grid-template-columns: 3rem minmax(12rem, 1fr) auto minmax(0, 2fr) auto;
     gap: clamp(1rem, 2.5vw, 2.5rem);
     align-items: baseline;
-    padding-block: clamp(1rem, 2vw, 1.5rem);
+    padding-block: clamp(1.5rem, 2.5vw, 2.25rem);
     text-decoration: none;
     color: inherit;
     transition: background var(--v3-duration-fast) var(--v3-ease-out);

@@ -1,0 +1,7071 @@
+{
+  "baseUrl": "http://127.0.0.1:4322",
+  "outDir": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29",
+  "generatedAt": "2026-04-29T09:37:36.827Z",
+  "pages": {
+    "home": {
+      "path": "/",
+      "viewports": {
+        "desktop": {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/home-desktop.png",
+          "title": "Platinental Казань — клиника пластической хирургии и косметологии",
+          "description": "Клиника Platinental в Казани. Гармонизирующая хирургия, авторские методики. С 2011 года.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Клиника\nпластической хирургии\nи косметологии в Казани",
+          "docW": 1440,
+          "winW": 1440,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1860,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1827,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1815,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "Яндекс",
+              "w": 66,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "2ГИС",
+              "w": 53,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "TG",
+              "w": 18,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "MAX",
+              "w": 29,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 334,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Узнать стоимость",
+              "w": 131,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link spread-cta",
+              "text": "→ Все операции",
+              "w": 121,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link spread-cta",
+              "text": "→ Все процедуры",
+              "w": 131,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link spread-cta",
+              "text": "→ Каталог",
+              "w": 77,
+              "h": 27
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "tablet": {
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/home-tablet.png",
+          "title": "Platinental Казань — клиника пластической хирургии и косметологии",
+          "description": "Клиника Platinental в Казани. Гармонизирующая хирургия, авторские методики. С 2011 года.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Клиника\nпластической хирургии\nи косметологии в Казани",
+          "docW": 1024,
+          "winW": 1024,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1444,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1423,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1411,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 359,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Узнать стоимость",
+              "w": 131,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link spread-cta",
+              "text": "→ Все операции",
+              "w": 121,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link spread-cta",
+              "text": "→ Все процедуры",
+              "w": 131,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link spread-cta",
+              "text": "→ Каталог",
+              "w": 77,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Все процедуры →",
+              "w": 131,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "babayan-link",
+              "text": "Подробнее о враче →",
+              "w": 163,
+              "h": 25
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "v3-link doctor-cta",
+              "text": "Записаться →",
+              "w": 102,
+              "h": 31
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "v3-link doctor-cta",
+              "text": "Записаться →",
+              "w": 102,
+              "h": 31
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "mobile": {
+          "viewport": {
+            "width": 375,
+            "height": 812
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/home-mobile.png",
+          "title": "Platinental Казань — клиника пластической хирургии и косметологии",
+          "description": "Клиника Platinental в Казани. Гармонизирующая хирургия, авторские методики. С 2011 года.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Клиника\nпластической хирургии\nи косметологии в Казани",
+          "docW": 375,
+          "winW": 375,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 720,
+              "width": 345
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 710,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 698,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 103,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 305,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Узнать стоимость",
+              "w": 131,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link spread-cta",
+              "text": "→ Все операции",
+              "w": 121,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link spread-cta",
+              "text": "→ Все процедуры",
+              "w": 131,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link spread-cta",
+              "text": "→ Каталог",
+              "w": 77,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Все процедуры →",
+              "w": 131,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "babayan-link",
+              "text": "Подробнее о враче →",
+              "w": 163,
+              "h": 25
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "v3-link doctor-cta",
+              "text": "Записаться →",
+              "w": 102,
+              "h": 31
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "v3-link doctor-cta",
+              "text": "Записаться →",
+              "w": 102,
+              "h": 31
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "v3-link doctor-cta",
+              "text": "Записаться →",
+              "w": 102,
+              "h": 31
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Показать всех врачей →",
+              "w": 181,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "2ГИС",
+              "w": 39,
+              "h": 31
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Яндекс.Картах",
+              "w": 111,
+              "h": 31
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 67,
+              "h": 31
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 30,
+              "h": 31
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 75,
+              "h": 31
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Instagram*",
+              "w": 81,
+              "h": 31
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 38
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        }
+      },
+      "consoleErrors": [],
+      "metadata": {
+        "title": "Platinental Казань — клиника пластической хирургии и косметологии",
+        "description": "Клиника Platinental в Казани. Гармонизирующая хирургия, авторские методики. С 2011 года.",
+        "canonical": "https://kzn.platinental.ru/",
+        "h1": "Клиника\nпластической хирургии\nи косметологии в Казани"
+      },
+      "forms": [
+        {
+          "index": 0,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    },
+    "plastika": {
+      "path": "/plastika",
+      "viewports": {
+        "desktop": {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/plastika-desktop.png",
+          "title": "Пластическая хирургия — Platinental Казань",
+          "description": "Пластические операции на лице и теле в клинике Platinental Казань. Ринопластика, блефаропластика, SMAS-лифтинг, маммопластика. Хирурги с ординатурой в ведущих московских центрах.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Пластическая хирургия в Казани — Platinental",
+          "docW": 1440,
+          "winW": 1440,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1860,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1827,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1815,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "Яндекс",
+              "w": 66,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "2ГИС",
+              "w": 53,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "TG",
+              "w": 18,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "MAX",
+              "w": 29,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 334,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Цены",
+              "w": 40,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "tablet": {
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/plastika-tablet.png",
+          "title": "Пластическая хирургия — Platinental Казань",
+          "description": "Пластические операции на лице и теле в клинике Platinental Казань. Ринопластика, блефаропластика, SMAS-лифтинг, маммопластика. Хирурги с ординатурой в ведущих московских центрах.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Пластическая хирургия в Казани — Platinental",
+          "docW": 1024,
+          "winW": 1024,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1444,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1423,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1411,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 359,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Цены",
+              "w": 40,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "mobile": {
+          "viewport": {
+            "width": 375,
+            "height": 812
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/plastika-mobile.png",
+          "title": "Пластическая хирургия — Platinental Казань",
+          "description": "Пластические операции на лице и теле в клинике Platinental Казань. Ринопластика, блефаропластика, SMAS-лифтинг, маммопластика. Хирурги с ординатурой в ведущих московских центрах.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Пластическая хирургия в Казани — Platinental",
+          "docW": 375,
+          "winW": 375,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 720,
+              "width": 345
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 710,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 698,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 103,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 305,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Цены",
+              "w": 40,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link op-cta",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "",
+              "text": "+7 843 223-66-66",
+              "w": 125,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 38
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        }
+      },
+      "consoleErrors": [],
+      "metadata": {
+        "title": "Пластическая хирургия — Platinental Казань",
+        "description": "Пластические операции на лице и теле в клинике Platinental Казань. Ринопластика, блефаропластика, SMAS-лифтинг, маммопластика. Хирурги с ординатурой в ведущих московских центрах.",
+        "canonical": "https://kzn.platinental.ru/",
+        "h1": "Пластическая хирургия в Казани — Platinental"
+      },
+      "forms": [
+        {
+          "index": 0,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    },
+    "kosmetologiya": {
+      "path": "/kosmetologiya",
+      "viewports": {
+        "desktop": {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/kosmetologiya-desktop.png",
+          "title": "Косметология — Platinental Казань",
+          "description": "Инъекционная, аппаратная и терапевтическая косметология в клинике Platinental Казань. Ботулотоксин, филлеры, лазер CO₂, биоревитализация.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Косметология в Казани — клиника Platinental",
+          "docW": 1440,
+          "winW": 1440,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1860,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1827,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1815,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "Яндекс",
+              "w": 66,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "2ГИС",
+              "w": 53,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "TG",
+              "w": 18,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "MAX",
+              "w": 29,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 334,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Цены",
+              "w": 40,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "tablet": {
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/kosmetologiya-tablet.png",
+          "title": "Косметология — Platinental Казань",
+          "description": "Инъекционная, аппаратная и терапевтическая косметология в клинике Platinental Казань. Ботулотоксин, филлеры, лазер CO₂, биоревитализация.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Косметология в Казани — клиника Platinental",
+          "docW": 1024,
+          "winW": 1024,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1444,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1423,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1411,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 359,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Цены",
+              "w": 40,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 27
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "mobile": {
+          "viewport": {
+            "width": 375,
+            "height": 812
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/kosmetologiya-mobile.png",
+          "title": "Косметология — Platinental Казань",
+          "description": "Инъекционная, аппаратная и терапевтическая косметология в клинике Platinental Казань. Ботулотоксин, филлеры, лазер CO₂, биоревитализация.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Косметология в Казани — клиника Platinental",
+          "docW": 375,
+          "winW": 375,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 720,
+              "width": 345
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 710,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 698,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 103,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 305,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Цены",
+              "w": 40,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "proc-cta v3-link",
+              "text": "Записаться",
+              "w": 86,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "dc-more-link",
+              "text": "Подробнее о враче",
+              "w": 144,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 88,
+              "h": 38
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        }
+      },
+      "consoleErrors": [],
+      "metadata": {
+        "title": "Косметология — Platinental Казань",
+        "description": "Инъекционная, аппаратная и терапевтическая косметология в клинике Platinental Казань. Ботулотоксин, филлеры, лазер CO₂, биоревитализация.",
+        "canonical": "https://kzn.platinental.ru/",
+        "h1": "Косметология в Казани — клиника Platinental"
+      },
+      "forms": [
+        {
+          "index": 0,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    },
+    "kosmecevtika": {
+      "path": "/kosmecevtika",
+      "viewports": {
+        "desktop": {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/kosmecevtika-desktop.png",
+          "title": "Космецевтика — Platinental Казань",
+          "description": "Профессиональная космецевтика в клинике Platinental Казань: ANUBIS, Ultraceuticals, HELIOCARE. Подбор средств врачом-косметологом.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Профессиональная косметика по рекомендации врача",
+          "docW": 1440,
+          "winW": 1440,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1860,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1827,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1815,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "Яндекс",
+              "w": 66,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "2ГИС",
+              "w": 53,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "TG",
+              "w": 18,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "MAX",
+              "w": 29,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 334,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Записаться на подбор",
+              "w": 166,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 28
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "tablet": {
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/kosmecevtika-tablet.png",
+          "title": "Космецевтика — Platinental Казань",
+          "description": "Профессиональная космецевтика в клинике Platinental Казань: ANUBIS, Ultraceuticals, HELIOCARE. Подбор средств врачом-косметологом.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Профессиональная косметика по рекомендации врача",
+          "docW": 1024,
+          "winW": 1024,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1444,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1423,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1411,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 359,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Записаться на подбор",
+              "w": 166,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 88,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Instagram*",
+              "w": 91,
+              "h": 28
+            },
+            {
+              "tag": "INPUT",
+              "cls": "",
+              "text": "",
+              "w": 22,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "152-ФЗ",
+              "w": 50,
+              "h": 20
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "mobile": {
+          "viewport": {
+            "width": 375,
+            "height": 812
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/kosmecevtika-mobile.png",
+          "title": "Космецевтика — Platinental Казань",
+          "description": "Профессиональная космецевтика в клинике Platinental Казань: ANUBIS, Ultraceuticals, HELIOCARE. Подбор средств врачом-косметологом.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Профессиональная косметика по рекомендации врача",
+          "docW": 375,
+          "winW": 375,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 720,
+              "width": 345
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 710,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 698,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 103,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 305,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Записаться на подбор",
+              "w": 166,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 88,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Instagram*",
+              "w": 91,
+              "h": 38
+            },
+            {
+              "tag": "INPUT",
+              "cls": "",
+              "text": "",
+              "w": 22,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "152-ФЗ",
+              "w": 50,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "footer-logo",
+              "text": "",
+              "w": 335,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link phone",
+              "text": "+7 843 223-66-66",
+              "w": 147,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Telegram",
+              "w": 67,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Max",
+              "w": 30,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "WhatsApp",
+              "w": 75,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Instagram*",
+              "w": 81,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Пластическая хирургия",
+              "w": 178,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Косметология",
+              "w": 106,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Космецевтика",
+              "w": 108,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "О Platinental",
+              "w": 95,
+              "h": 18
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        }
+      },
+      "consoleErrors": [],
+      "metadata": {
+        "title": "Космецевтика — Platinental Казань",
+        "description": "Профессиональная космецевтика в клинике Platinental Казань: ANUBIS, Ultraceuticals, HELIOCARE. Подбор средств врачом-косметологом.",
+        "canonical": "https://kzn.platinental.ru/",
+        "h1": "Профессиональная косметика по рекомендации врача"
+      },
+      "forms": [
+        {
+          "index": 0,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    },
+    "prices": {
+      "path": "/prices",
+      "viewports": {
+        "desktop": {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/prices-desktop.png",
+          "title": "Прайс-лист — Platinental Казань",
+          "description": "Цены на пластические операции, косметологические процедуры и консультации врачей клиники Platinental Казань.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Цены на услуги клиники Platinental в Казани",
+          "docW": 1440,
+          "winW": 1440,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1860,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1827,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1815,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "Яндекс",
+              "w": 66,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "2ГИС",
+              "w": 53,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "TG",
+              "w": 18,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "MAX",
+              "w": 29,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 334,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Задать вопрос",
+              "w": 108,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 28
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "tablet": {
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/prices-tablet.png",
+          "title": "Прайс-лист — Platinental Казань",
+          "description": "Цены на пластические операции, косметологические процедуры и консультации врачей клиники Platinental Казань.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Цены на услуги клиники Platinental в Казани",
+          "docW": 1024,
+          "winW": 1024,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1444,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1423,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1411,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 359,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Задать вопрос",
+              "w": 108,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 88,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Instagram*",
+              "w": 91,
+              "h": 28
+            },
+            {
+              "tag": "INPUT",
+              "cls": "",
+              "text": "",
+              "w": 22,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "152-ФЗ",
+              "w": 50,
+              "h": 20
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "mobile": {
+          "viewport": {
+            "width": 375,
+            "height": 812
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/prices-mobile.png",
+          "title": "Прайс-лист — Platinental Казань",
+          "description": "Цены на пластические операции, косметологические процедуры и консультации врачей клиники Platinental Казань.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Цены на услуги клиники Platinental в Казани",
+          "docW": 375,
+          "winW": 375,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 720,
+              "width": 345
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 710,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 698,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 103,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 305,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Задать вопрос",
+              "w": 108,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 88,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Instagram*",
+              "w": 91,
+              "h": 38
+            },
+            {
+              "tag": "INPUT",
+              "cls": "",
+              "text": "",
+              "w": 22,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "152-ФЗ",
+              "w": 50,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "footer-logo",
+              "text": "",
+              "w": 335,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link phone",
+              "text": "+7 843 223-66-66",
+              "w": 147,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Telegram",
+              "w": 67,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Max",
+              "w": 30,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "WhatsApp",
+              "w": 75,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Instagram*",
+              "w": 81,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Пластическая хирургия",
+              "w": 178,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Косметология",
+              "w": 106,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Космецевтика",
+              "w": 108,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "О Platinental",
+              "w": 95,
+              "h": 18
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        }
+      },
+      "consoleErrors": [],
+      "metadata": {
+        "title": "Прайс-лист — Platinental Казань",
+        "description": "Цены на пластические операции, косметологические процедуры и консультации врачей клиники Platinental Казань.",
+        "canonical": "https://kzn.platinental.ru/",
+        "h1": "Цены на услуги клиники Platinental в Казани"
+      },
+      "forms": [
+        {
+          "index": 0,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    },
+    "about": {
+      "path": "/about",
+      "viewports": {
+        "desktop": {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/about-desktop.png",
+          "title": "О клинике — Platinental Казань",
+          "description": "Platinental — клиника пластической хирургии и косметологии в Казани с 2011 года. Авторские методики, деликатный подход, исключительная квалификация хирургов.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Ум, честь и совесть современной пластической хирургии",
+          "docW": 1440,
+          "winW": 1440,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1860,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1827,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1815,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "Яндекс",
+              "w": 66,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "2ГИС",
+              "w": 53,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "TG",
+              "w": 18,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "MAX",
+              "w": 29,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 334,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Врачи клиники",
+              "w": 113,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 28
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "tablet": {
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/about-tablet.png",
+          "title": "О клинике — Platinental Казань",
+          "description": "Platinental — клиника пластической хирургии и косметологии в Казани с 2011 года. Авторские методики, деликатный подход, исключительная квалификация хирургов.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Ум, честь и совесть современной пластической хирургии",
+          "docW": 1024,
+          "winW": 1024,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1444,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1423,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1411,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 359,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Врачи клиники",
+              "w": 113,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 88,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Instagram*",
+              "w": 91,
+              "h": 28
+            },
+            {
+              "tag": "INPUT",
+              "cls": "",
+              "text": "",
+              "w": 22,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "152-ФЗ",
+              "w": 50,
+              "h": 20
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "mobile": {
+          "viewport": {
+            "width": 375,
+            "height": 812
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/about-mobile.png",
+          "title": "О клинике — Platinental Казань",
+          "description": "Platinental — клиника пластической хирургии и косметологии в Казани с 2011 года. Авторские методики, деликатный подход, исключительная квалификация хирургов.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Ум, честь и совесть современной пластической хирургии",
+          "docW": 375,
+          "winW": 375,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 720,
+              "width": 345
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 710,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 698,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 103,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 305,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Врачи клиники",
+              "w": 113,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 88,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Instagram*",
+              "w": 91,
+              "h": 38
+            },
+            {
+              "tag": "INPUT",
+              "cls": "",
+              "text": "",
+              "w": 22,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "152-ФЗ",
+              "w": 50,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "footer-logo",
+              "text": "",
+              "w": 335,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link phone",
+              "text": "+7 843 223-66-66",
+              "w": 147,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Telegram",
+              "w": 67,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Max",
+              "w": 30,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "WhatsApp",
+              "w": 75,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Instagram*",
+              "w": 81,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Пластическая хирургия",
+              "w": 178,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Косметология",
+              "w": 106,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Космецевтика",
+              "w": 108,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "О Platinental",
+              "w": 95,
+              "h": 18
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        }
+      },
+      "consoleErrors": [],
+      "metadata": {
+        "title": "О клинике — Platinental Казань",
+        "description": "Platinental — клиника пластической хирургии и косметологии в Казани с 2011 года. Авторские методики, деликатный подход, исключительная квалификация хирургов.",
+        "canonical": "https://kzn.platinental.ru/",
+        "h1": "Ум, честь и совесть современной пластической хирургии"
+      },
+      "forms": [
+        {
+          "index": 0,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    },
+    "contacts": {
+      "path": "/contacts",
+      "viewports": {
+        "desktop": {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/contacts-desktop.png",
+          "title": "Контакты — Platinental Казань",
+          "description": "Адрес клиники Platinental в Казани, телефон, режим работы и схема проезда. ул. Карла Маркса, 48, корп. 1.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Контакты клиники Platinental в Казани",
+          "docW": 1440,
+          "winW": 1440,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1860,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1827,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1815,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "Яндекс",
+              "w": 66,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "2ГИС",
+              "w": 53,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "TG",
+              "w": 18,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "MAX",
+              "w": 29,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 334,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "+7 (843) 223-66-66",
+              "w": 137,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 (843) 223-66-66",
+              "w": 146,
+              "h": 23
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 72,
+              "h": 23
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 32,
+              "h": 23
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "tablet": {
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/contacts-tablet.png",
+          "title": "Контакты — Platinental Казань",
+          "description": "Адрес клиники Platinental в Казани, телефон, режим работы и схема проезда. ул. Карла Маркса, 48, корп. 1.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Контакты клиники Platinental в Казани",
+          "docW": 1024,
+          "winW": 1024,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1444,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1423,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1411,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 359,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "+7 (843) 223-66-66",
+              "w": 137,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 (843) 223-66-66",
+              "w": 146,
+              "h": 23
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 72,
+              "h": 23
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 32,
+              "h": 23
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 80,
+              "h": 23
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Instagram*",
+              "w": 86,
+              "h": 23
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 28
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "mobile": {
+          "viewport": {
+            "width": 375,
+            "height": 812
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/contacts-mobile.png",
+          "title": "Контакты — Platinental Казань",
+          "description": "Адрес клиники Platinental в Казани, телефон, режим работы и схема проезда. ул. Карла Маркса, 48, корп. 1.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Контакты клиники Platinental в Казани",
+          "docW": 375,
+          "winW": 375,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 720,
+              "width": 345
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 710,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 698,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 103,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 305,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "+7 (843) 223-66-66",
+              "w": 137,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 (843) 223-66-66",
+              "w": 146,
+              "h": 33
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 72,
+              "h": 33
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 32,
+              "h": 33
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 80,
+              "h": 33
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Instagram*",
+              "w": 86,
+              "h": 33
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 88,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Instagram*",
+              "w": 91,
+              "h": 38
+            },
+            {
+              "tag": "INPUT",
+              "cls": "",
+              "text": "",
+              "w": 22,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "152-ФЗ",
+              "w": 50,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "footer-logo",
+              "text": "",
+              "w": 335,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link phone",
+              "text": "+7 843 223-66-66",
+              "w": 147,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Telegram",
+              "w": 67,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Max",
+              "w": 30,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "WhatsApp",
+              "w": 75,
+              "h": 18
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        }
+      },
+      "consoleErrors": [],
+      "metadata": {
+        "title": "Контакты — Platinental Казань",
+        "description": "Адрес клиники Platinental в Казани, телефон, режим работы и схема проезда. ул. Карла Маркса, 48, корп. 1.",
+        "canonical": "https://kzn.platinental.ru/",
+        "h1": "Контакты клиники Platinental в Казани"
+      },
+      "forms": [
+        {
+          "index": 0,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    },
+    "doctors": {
+      "path": "/doctors",
+      "viewports": {
+        "desktop": {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/doctors-desktop.png",
+          "title": "Врачи — Platinental Казань",
+          "description": "Пластические хирурги и косметологи клиники Platinental Казань. Клиника The Platinental Казань собрала самых востребованных специалистов в своей области. Образование, специализации, стоимость консультации.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Врачи клиники Platinental в Казани",
+          "docW": 1440,
+          "winW": 1440,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1860,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1614,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1827,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1815,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1810,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1817,
+              "width": 334
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "Яндекс",
+              "w": 66,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-pill",
+              "text": "2ГИС",
+              "w": 53,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "TG",
+              "w": 18,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "nav-msgr",
+              "text": "MAX",
+              "w": 29,
+              "h": 20
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 334,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Посмотреть врачей",
+              "w": 146,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 28
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "tablet": {
+          "viewport": {
+            "width": 1024,
+            "height": 768
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/doctors-tablet.png",
+          "title": "Врачи — Platinental Казань",
+          "description": "Пластические хирурги и косметологи клиники Platinental Казань. Клиника The Platinental Казань собрала самых востребованных специалистов в своей области. Образование, специализации, стоимость консультации.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Врачи клиники Platinental в Казани",
+          "docW": 1024,
+          "winW": 1024,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 1444,
+              "width": 420
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 1186,
+              "width": 131
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 1423,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1411,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 1406,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 1413,
+              "width": 359
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "BUTTON",
+              "cls": "nav-link nav-trigger",
+              "text": "Услуги",
+              "w": 79,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Пластика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Косметология",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-sublink",
+              "text": "Космецевтика",
+              "w": 190,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Врачи",
+              "w": 46,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Цены",
+              "w": 41,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "О клинике",
+              "w": 78,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-link",
+              "text": "Контакты",
+              "w": 72,
+              "h": 34
+            },
+            {
+              "tag": "A",
+              "cls": "nav-phone",
+              "text": "+7 843 223-66-66",
+              "w": 130,
+              "h": 25
+            },
+            {
+              "tag": "A",
+              "cls": "v3-btn v3-btn-primary nav-cta",
+              "text": "Записаться",
+              "w": 124,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 131,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 359,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Посмотреть врачей",
+              "w": 146,
+              "h": 27
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 88,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Instagram*",
+              "w": 91,
+              "h": 28
+            },
+            {
+              "tag": "INPUT",
+              "cls": "",
+              "text": "",
+              "w": 22,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "152-ФЗ",
+              "w": 50,
+              "h": 20
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        },
+        "mobile": {
+          "viewport": {
+            "width": 375,
+            "height": 812
+          },
+          "screenshot": "/Users/dima/Downloads/Projects/Платиненталь/.playwright-audit/final-prehandoff-2026-04-29/doctors-mobile.png",
+          "title": "Врачи — Platinental Казань",
+          "description": "Пластические хирурги и косметологи клиники Platinental Казань. Клиника The Platinental Казань собрала самых востребованных специалистов в своей области. Образование, специализации, стоимость консультации.",
+          "canonical": "https://kzn.platinental.ru/",
+          "h1": "Врачи клиники Platinental в Казани",
+          "docW": 375,
+          "winW": 375,
+          "overflowNodes": [
+            {
+              "tag": "DIV",
+              "cls": "nav-overlay",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты ★ Яндекс ★ 2Г",
+              "right": 720,
+              "width": 345
+            },
+            {
+              "tag": "DIV",
+              "cls": "overlay-header",
+              "text": "",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "IMG",
+              "cls": "logo-img",
+              "text": "",
+              "right": 498,
+              "width": 103
+            },
+            {
+              "tag": "BUTTON",
+              "cls": "overlay-close",
+              "text": "",
+              "right": 710,
+              "width": 48
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 698,
+              "width": 24
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "line",
+              "cls": "[object SVGAnimatedString]",
+              "text": "",
+              "right": 693,
+              "width": 14
+            },
+            {
+              "tag": "NAV",
+              "cls": "overlay-nav",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            },
+            {
+              "tag": "UL",
+              "cls": "overlay-links",
+              "text": "Услуги ПластикаКосметологияКосмецевтика ВрачиЦеныО клиникеКонтакты",
+              "right": 700,
+              "width": 305
+            }
+          ],
+          "tapIssues": [
+            {
+              "tag": "A",
+              "cls": "overlay-logo",
+              "text": "",
+              "w": 103,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ Яндекс",
+              "w": 85,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-pill",
+              "text": "★ 2ГИС",
+              "w": 73,
+              "h": 32
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-phone",
+              "text": "+7 843 223-66-66",
+              "w": 305,
+              "h": 43
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "WhatsApp",
+              "w": 101,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "TG · Telegram",
+              "w": 99,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "overlay-msgr",
+              "text": "MAX",
+              "w": 33,
+              "h": 40
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link cta-secondary",
+              "text": "Посмотреть врачей",
+              "w": 146,
+              "h": 37
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "+7 843 223-66-66",
+              "w": 163,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Telegram",
+              "w": 76,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Max",
+              "w": 37,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "WhatsApp",
+              "w": 88,
+              "h": 38
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "Instagram*",
+              "w": 91,
+              "h": 38
+            },
+            {
+              "tag": "INPUT",
+              "cls": "",
+              "text": "",
+              "w": 22,
+              "h": 22
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link",
+              "text": "152-ФЗ",
+              "w": 50,
+              "h": 30
+            },
+            {
+              "tag": "A",
+              "cls": "footer-logo",
+              "text": "",
+              "w": 335,
+              "h": 28
+            },
+            {
+              "tag": "A",
+              "cls": "v3-link phone",
+              "text": "+7 843 223-66-66",
+              "w": 147,
+              "h": 41
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Telegram",
+              "w": 67,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Max",
+              "w": 30,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "WhatsApp",
+              "w": 75,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Instagram*",
+              "w": 81,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Пластическая хирургия",
+              "w": 178,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Косметология",
+              "w": 106,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "Космецевтика",
+              "w": 108,
+              "h": 18
+            },
+            {
+              "tag": "A",
+              "cls": "footer-link",
+              "text": "О Platinental",
+              "w": 95,
+              "h": 18
+            }
+          ],
+          "forms": [
+            {
+              "index": 0,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            },
+            {
+              "index": 1,
+              "action": null,
+              "method": "get",
+              "hasConsentCheckbox": true,
+              "hasPhoneInput": true
+            }
+          ],
+          "linksToPrivacy": [
+            "/privacy",
+            "/documents",
+            "/privacy",
+            "/privacy"
+          ],
+          "consoleErrors": []
+        }
+      },
+      "consoleErrors": [],
+      "metadata": {
+        "title": "Врачи — Platinental Казань",
+        "description": "Пластические хирурги и косметологи клиники Platinental Казань. Клиника The Platinental Казань собрала самых востребованных специалистов в своей области. Образование, специализации, стоимость консультации.",
+        "canonical": "https://kzn.platinental.ru/",
+        "h1": "Врачи клиники Platinental в Казани"
+      },
+      "forms": [
+        {
+          "index": 0,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        },
+        {
+          "index": 1,
+          "action": null,
+          "method": "get",
+          "hasConsentCheckbox": true,
+          "hasPhoneInput": true
+        }
+      ]
+    }
+  }
+}

@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = 'Platinental Казань — клиника пластической хирургии и косметологии',
-  description = 'Platinental Казань — клиника пластической хирургии и эстетической медицины. Авторские методики, гармонизирующий подход. С 2011 года в Казани.',
+  title = 'The Platinental Казань — клиника пластической хирургии и косметологии',
+  description = 'The Platinental Казань — клиника пластической хирургии и эстетической медицины. Авторские методики, гармонизирующий подход. С 2011 года в Казани.',
   canonical = 'https://kzn.platinental.ru/',
 } = Astro.props;
 ---
@@ -34,7 +34,7 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="ru_RU" />
-    <meta property="og:site_name" content="Platinental Казань" />
+    <meta property="og:site_name" content="The Platinental Казань" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -51,20 +51,14 @@ const {
     <div data-v3>
       <slot />
 
-      <!-- Custom cursor — внутри [data-v3] чтобы CSS-переменные --v3-* каскадировались -->
-      <div data-v3-cursor aria-hidden="true">
-        <div class="v3-cursor-dot"></div>
-        <div class="v3-cursor-ring"></div>
-      </div>
-
       <BookingModal />
     </div>
 
     <script>
       import '../scripts/motion-stagger.ts';
       import '../scripts/motion-scroll.ts';
-      import '../scripts/motion-cursor.ts';
       import '../scripts/motion-faq.ts';
+      import '../scripts/motion-quote.ts';
     </script>
   </body>
 </html>
@@ -89,9 +83,12 @@ const {
     margin: 0;
     padding: 0;
     background: #FFFEF2;
-    overflow-x: hidden;
   }
-  body { min-height: 100vh; }
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-top: var(--v3-nav-h, 4rem);
+  }
   *, *::before, *::after { box-sizing: border-box; }
   img, picture, svg { display: block; max-width: 100%; }
 </style>

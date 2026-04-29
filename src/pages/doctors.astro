@@ -11,8 +11,8 @@ const allDoctors = doctors;
 ---
 
 <V3Layout
-  title="Врачи — Platinental Казань"
-  description="Пластические хирурги и косметологи клиники Platinental Казань. Клиника The Platinental Казань собрала самых востребованных специалистов в своей области. Образование, специализации, стоимость консультации."
+  title="Врачи — The Platinental Казань"
+  description="Пластические хирурги и косметологи клиники The Platinental Казань. Клиника The Platinental Казань собрала самых востребованных специалистов в своей области. Образование, специализации, стоимость консультации."
 >
   <Navigation />
   <main id="main">
@@ -20,7 +20,7 @@ const allDoctors = doctors;
       pageMarker="04 / 04"
       pageMarkerLabel="Команда"
       eyebrow="THE PLATINENTAL · КАЗАНЬ"
-      h1="Врачи клиники Platinental в Казани"
+      h1="Врачи клиники The Platinental в Казани"
       lead="У каждого хирурга клиники — своя школа, свой опыт, свой почерк. На консультации поможем выбрать того, чьи руки подходят именно вашей задаче."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Посмотреть врачей', href: '#doctors-heading' }}
@@ -33,7 +33,7 @@ const allDoctors = doctors;
           <h2 id="doctors-heading" class="v3-h2">Врачи клиники</h2>
         </header>
         <ul class="doctors-filters" data-v3-reveal>
-          <li><span class="filter-chip filter-chip-active">Все специалисты</span></li>
+          <li><span class="filter-chip">Все специалисты</span></li>
           <li><span class="filter-chip">Пластическая хирургия</span></li>
           <li><span class="filter-chip">Лицо</span></li>
           <li><span class="filter-chip">Тело</span></li>
@@ -130,20 +130,17 @@ const allDoctors = doctors;
     font-family: var(--v3-font-body);
     font-size: 0.8125rem;
     color: var(--v3-ink-secondary);
-    background: transparent;
+    background: rgba(255, 253, 248, 0.7);
     letter-spacing: 0.005em;
-  }
-  .filter-chip-active {
-    background: var(--v3-ink);
-    color: var(--v3-on-ink);
-    border-color: var(--v3-ink);
+    pointer-events: none;
+    user-select: none;
   }
   .doctors-grid {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2px;
     background: var(--v3-border-hair);
   }
@@ -153,6 +150,7 @@ const allDoctors = doctors;
   }
   .doctor-card {
     background: var(--v3-cream);
+    min-width: 0;
   }
   .v3-surface-sand .doctor-card {
     background: var(--v3-sand);
@@ -162,28 +160,30 @@ const allDoctors = doctors;
     flex-direction: column;
     text-decoration: none;
     height: 100%;
+    min-width: 0;
+    overflow: hidden;
     transition: background var(--v3-duration-fast) var(--v3-ease-out);
   }
   .doctor-link:hover { background: var(--v3-cream-alt); }
   .v3-surface-sand .doctor-link:hover { background: var(--v3-sand-deep); }
 
   .doctor-photo {
+    width: clamp(13rem, 21vw, 17.5rem);
+    max-width: calc(100% - 3rem);
     aspect-ratio: 1/1;
     overflow: hidden;
     background: var(--v3-sand);
     position: relative;
     border-radius: 50%;
-    margin: 1.5rem 1.5rem 0;
+    margin: 1.5rem auto 0;
+    flex: 0 0 auto;
   }
   .doctor-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    transition: transform 0.6s var(--v3-ease-out);
-  }
-  .doctor-link:hover .doctor-photo img {
-    transform: scale(1.04);
+    object-position: center top;
+    display: block;
   }
   .doctor-initials {
     width: 100%;
@@ -203,6 +203,7 @@ const allDoctors = doctors;
     flex-direction: column;
     gap: 0.5rem;
     flex: 1;
+    min-width: 0;
   }
   .doctor-spec { color: var(--v3-ink-muted); }
   .doctor-name { color: var(--v3-ink); }
@@ -220,9 +221,16 @@ const allDoctors = doctors;
   @media (max-width: 1024px) {
     .doctors-grid { grid-template-columns: repeat(2, 1fr); }
     .doctors-grid-cosm { grid-template-columns: repeat(2, 1fr); }
+    .doctor-photo {
+      width: clamp(12.5rem, 32vw, 16rem);
+    }
   }
   @media (max-width: 560px) {
     .doctors-grid { grid-template-columns: 1fr; }
     .doctors-grid-cosm { grid-template-columns: 1fr; }
+    .doctor-photo {
+      width: min(15.5rem, calc(100vw - 5rem));
+      margin-top: 1.25rem;
+    }
   }
 </style>

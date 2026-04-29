@@ -1,0 +1,342 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Platinental — на главную" [ref=e5]:
+          - /url: /
+          - img "Platinental" [ref=e6]
+        - generic [ref=e7]:
+          - link "Позвонить" [ref=e8]:
+            - /url: tel:+78432236666
+            - img [ref=e9]
+          - button "Открыть меню" [ref=e11]
+    - dialog "Навигация" [ref=e15]:
+      - generic [ref=e16]:
+        - link "На главную" [ref=e17]:
+          - /url: /
+          - img "Platinental" [ref=e18]
+        - button "Закрыть меню" [ref=e19]:
+          - img [ref=e20]
+      - navigation "Мобильная навигация" [ref=e23]:
+        - list [ref=e24]:
+          - listitem [ref=e25]:
+            - button "Услуги" [ref=e26]:
+              - generic [ref=e27]: Услуги
+              - img [ref=e28]
+            - list:
+              - listitem [ref=e30]:
+                - link "Пластика" [ref=e31]:
+                  - /url: /plastika
+              - listitem [ref=e32]:
+                - link "Косметология" [ref=e33]:
+                  - /url: /kosmetologiya
+              - listitem [ref=e34]:
+                - link "Космецевтика" [ref=e35]:
+                  - /url: /kosmecevtika
+          - listitem [ref=e36]:
+            - link "Врачи" [ref=e37]:
+              - /url: /doctors
+          - listitem [ref=e38]:
+            - link "Цены" [ref=e39]:
+              - /url: /prices
+          - listitem [ref=e40]:
+            - link "О клинике" [ref=e41]:
+              - /url: /about
+          - listitem [ref=e42]:
+            - link "Контакты" [ref=e43]:
+              - /url: /contacts
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - link "★ Яндекс" [ref=e46]:
+            - /url: https://yandex.ru/maps/-/CCUmAEpyeC
+          - link "★ 2ГИС" [ref=e47]:
+            - /url: https://2gis.ru/kazan/firm/platinental
+        - link "+7 843 223-66-66" [ref=e48]:
+          - /url: tel:+78432236666
+        - paragraph [ref=e49]: Ежедневно 9:00 — 20:00 · ул. Карла Маркса, 48
+        - generic [ref=e50]:
+          - link "WhatsApp" [ref=e51]:
+            - /url: https://wa.me/78432236666
+            - img [ref=e52]
+            - text: WhatsApp
+          - link "Telegram" [ref=e55]:
+            - /url: https://t.me/platinental_kazan
+            - text: TG · Telegram
+          - link "MAX" [ref=e56]:
+            - /url: https://max.ru
+        - link "Записаться на консультацию" [ref=e57]:
+          - /url: "#form"
+    - main [ref=e58]:
+      - region "Мамедов Вахид Аждарович" [ref=e59]:
+        - generic [ref=e60]:
+          - generic [ref=e61]:
+            - navigation "Хлебные крошки" [ref=e62]:
+              - link "Главная" [ref=e63]:
+                - /url: /
+              - generic [ref=e64]: →
+              - link "Врачи" [ref=e65]:
+                - /url: /doctors
+            - generic [ref=e66]: ЧЕЛЮСТНО-ЛИЦЕВОЙ ХИРУРГ / РИНОПЛАСТИКА
+            - heading "Мамедов Вахид Аждарович" [level=1] [ref=e67]:
+              - emphasis [ref=e68]: Мамедов Вахид Аждарович
+            - paragraph [ref=e69]: Челюстно-лицевой хирург. Специализируется на сложных и вторичных ринопластиках — берётся за случаи, когда предыдущая операция не дала результата.
+            - generic [ref=e70]:
+              - generic [ref=e71]: Первичная 10 000 ₽
+              - generic [ref=e72]: Повторная 7 000 ₽
+            - button "Записаться к Мамедову В.А." [ref=e74]
+          - img "Мамедов Вахид Аждарович" [ref=e76]
+      - region "Статистика" [ref=e77]:
+        - list [ref=e79]:
+          - listitem [ref=e80]:
+            - generic [ref=e81]: 1000+
+            - generic [ref=e82]: ринопластик
+          - listitem [ref=e83]:
+            - generic [ref=e84]: 2000+
+            - generic [ref=e85]: операций на лице
+          - listitem [ref=e86]:
+            - generic [ref=e87]: с 2017
+            - generic [ref=e88]: действующий хирург
+      - region "Сложные и вторичные ринопластики" [ref=e89]:
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - generic [ref=e92]: Подход
+            - heading "Сложные и вторичные ринопластики" [level=2] [ref=e93]:
+              - emphasis [ref=e94]: Сложные и вторичные ринопластики
+          - paragraph [ref=e95]: Действующий член EAFPS (Европейская академия лицевых пластических хирургов), RSE (Европейское общество ринопластики) и IAOMS (Международная ассоциация челюстно-лицевых хирургов). Берётся за вторичные ринопластики 2-й категории сложности — случаи, когда предыдущая операция не дала желаемого результата.
+      - region "Что делает" [ref=e96]:
+        - generic [ref=e97]:
+          - generic [ref=e98]:
+            - generic [ref=e99]: Специализация
+            - heading "Что делает" [level=2] [ref=e100]:
+              - emphasis [ref=e101]: Что делает
+          - list [ref=e102]:
+            - listitem [ref=e103]:
+              - generic [ref=e105]: Ринопластика (в т.ч. сложные и вторичные)
+            - listitem [ref=e106]:
+              - generic [ref=e108]: Блефаропластика, в том числе ориентальная (европеизация век)
+            - listitem [ref=e109]:
+              - generic [ref=e111]: Контурная пластика лицевого скелета с использованием имплантатов
+            - listitem [ref=e112]:
+              - generic [ref=e114]: "Костно-пластические операции: гениопластика, фронтопластика, мандибулопластика, маляропластика"
+            - listitem [ref=e115]:
+              - generic [ref=e117]: Омоложение верхней и средней трети лица с использованием эндоскопического оборудования
+            - listitem [ref=e118]:
+              - generic [ref=e120]: Платизмопластика, отопластика, хейлопластика
+            - listitem [ref=e121]:
+              - generic [ref=e123]: Резекция и транспозиция комков Биша
+            - listitem [ref=e124]:
+              - generic [ref=e126]: Липофилинг лица (контурная пластика аутожиром)
+            - listitem [ref=e127]:
+              - generic [ref=e129]: Контурная пластика лица с использованием биодеградируемых наполнителей
+            - listitem [ref=e130]:
+              - generic [ref=e132]: "Реконструктивная хирургия: коррекция рубцов, устранение послеоперационных и посттравматических деформаций лица и шеи"
+          - generic [ref=e133]:
+            - generic [ref=e134]: Патент
+            - paragraph [ref=e135]: Соавтор патента на изобретение РФ № 2741620 «Способ подтяжки шеи» (совместно с Васильевым М.Н. и Искорневым А.А.). Патентообладатель — ПЛАТИНЕНТАЛ.
+          - generic [ref=e136]:
+            - generic [ref=e137]: Квалификация
+            - paragraph [ref=e138]: Единственный хирург клиники, выполняющий вторичные ринопластики 2-й категории сложности.
+      - region "Где учился" [ref=e139]:
+        - generic [ref=e140]:
+          - generic [ref=e141]:
+            - generic [ref=e142]: Образование
+            - heading "Где учился" [level=2] [ref=e143]:
+              - emphasis [ref=e144]: Где учился
+          - list [ref=e145]:
+            - listitem [ref=e146]:
+              - generic [ref=e147]: 2010–2015
+              - paragraph [ref=e148]: Дальневосточный государственный медицинский университет — диплом по специальности «Стоматология»
+            - listitem [ref=e149]:
+              - generic [ref=e150]: 2017–2019
+              - paragraph [ref=e151]: МОНИКИ им. М.Ф. Владимирского — ординатура по специальности «Челюстно-лицевая хирургия»
+            - listitem [ref=e152]:
+              - generic [ref=e153]: "2019"
+              - paragraph [ref=e154]: МОНИКИ им. М.Ф. Владимирского — диплом и сертификат по специальности «Челюстно-лицевая хирургия»
+          - generic [ref=e155]:
+            - heading "Дополнительное образование" [level=3] [ref=e156]
+            - list [ref=e157]:
+              - listitem [ref=e158]:
+                - generic [ref=e159]: "2018"
+                - generic [ref=e160]: Конгресс AMWC (Aesthetic & Anti-aging medicine world congress), Monte-Carlo, Монако
+              - listitem [ref=e161]:
+                - generic [ref=e162]: "2018"
+                - generic [ref=e163]: Научная конференция «Детская челюстно-лицевая хирургия и стоматология» (Москва)
+              - listitem [ref=e164]:
+                - generic [ref=e165]: "2020"
+                - generic [ref=e166]: Курс по сохраняющей ринопластике (Москва)
+              - listitem [ref=e167]:
+                - generic [ref=e168]: "2020"
+                - generic [ref=e169]: «Teorhinoplasty Course» (Dr. Teoman Dogan, Турция)
+              - listitem [ref=e170]:
+                - generic [ref=e171]: "2021"
+                - generic [ref=e172]: Повышение квалификации «Аспекты эндоскопической хирургии патологии ЛОР-органов»
+              - listitem [ref=e173]:
+                - generic [ref=e174]: "2021"
+                - generic [ref=e175]: Курс «Контурная пластика лица. Грациализация, феминизация, маскулинизация» (Санкт-Петербург)
+              - listitem [ref=e176]:
+                - generic [ref=e177]: "2021"
+                - generic [ref=e178]: Профессиональная переподготовка «Преподавание анатомии и физиологии в образовательной организации»
+              - listitem [ref=e179]:
+                - generic [ref=e180]: "2021"
+                - generic [ref=e181]: Повышение квалификации «Орто-фациальная хирургия и ортодонтия»
+              - listitem [ref=e182]:
+                - generic [ref=e183]: "2021"
+                - generic [ref=e184]: Кадавер-курс «Теоринопластика» (Санкт-Петербург, Dr. Teoman Dogan, Турция)
+              - listitem [ref=e185]:
+                - generic [ref=e186]: "2021"
+                - generic [ref=e187]: «Сохраняющая и структурная ринопластика» (Abdulkadir Goksel, Санкт-Петербург)
+      - region "Вопросы о приёме" [ref=e188]:
+        - generic [ref=e189]:
+          - generic [ref=e190]:
+            - generic [ref=e191]: Вопросы
+            - heading "Вопросы о приёме" [level=2] [ref=e192]:
+              - emphasis [ref=e193]: Вопросы о приёме
+          - list [ref=e194]:
+            - listitem [ref=e195]:
+              - group [ref=e196]:
+                - generic "01 Как записаться к Мамедов?" [ref=e197]:
+                  - generic [ref=e198]: "01"
+                  - generic [ref=e199]: Как записаться к Мамедов?
+                - generic [ref=e201]:
+                  - text: Позвоните по номеру
+                  - link "+7 843 223-66-66" [ref=e202]:
+                    - /url: tel:+78432236666
+                  - text: ", напишите в WhatsApp или заполните форму на сайте. Администратор подберёт удобное время."
+            - listitem [ref=e203]:
+              - group [ref=e204]:
+                - generic "02 Сколько длится первичная консультация?" [ref=e205]:
+                  - generic [ref=e206]: "02"
+                  - generic [ref=e207]: Сколько длится первичная консультация?
+            - listitem [ref=e209]:
+              - group [ref=e210]:
+                - generic "03 Нужна ли подготовка к операции?" [ref=e211]:
+                  - generic [ref=e212]: "03"
+                  - generic [ref=e213]: Нужна ли подготовка к операции?
+            - listitem [ref=e215]:
+              - group [ref=e216]:
+                - generic "04 Можно ли получить онлайн-консультацию?" [ref=e217]:
+                  - generic [ref=e218]: "04"
+                  - generic [ref=e219]: Можно ли получить онлайн-консультацию?
+          - paragraph [ref=e221]: Имеются противопоказания. Необходима консультация специалиста.
+      - region "Записаться к Мамедову В.А." [ref=e222]:
+        - generic [ref=e223]:
+          - generic [ref=e224]:
+            - generic [ref=e225]: Связь с клиникой
+            - heading "Записаться к Мамедову В.А." [level=2] [ref=e226]:
+              - emphasis [ref=e227]:
+                - text: Записаться
+                - text: к Мамедову В.А.
+            - paragraph [ref=e228]: "Консультация: Первичная 10 000 ₽ · Повторная 7 000 ₽. Задайте вопросы — врач ответит без спешки."
+            - paragraph [ref=e229]: Отвечаем в течение 2 часов. Пн–Вс 9:00–20:00.
+            - list [ref=e230]:
+              - listitem [ref=e231]:
+                - link "+7 843 223-66-66" [ref=e232]:
+                  - /url: tel:+78432236666
+              - listitem [ref=e233]:
+                - link "WhatsApp" [ref=e234]:
+                  - /url: https://wa.me/78432236666
+              - listitem [ref=e235]:
+                - link "Telegram" [ref=e236]:
+                  - /url: https://t.me/platinental_kazan
+          - generic [ref=e237]:
+            - generic [ref=e238]:
+              - generic [ref=e239]: Имя
+              - textbox "Имя" [ref=e240]:
+                - /placeholder: Как к вам обращаться
+            - generic [ref=e241]:
+              - generic [ref=e242]: Телефон
+              - textbox "Телефон" [ref=e243]:
+                - /placeholder: +7 ___ ___ ____
+            - generic [ref=e244]:
+              - generic [ref=e245]: Сообщение (опционально)
+              - textbox "Сообщение (опционально)" [ref=e246]:
+                - /placeholder: Что интересует, какие операции рассматриваете, какие ожидания
+            - generic [ref=e247]:
+              - checkbox "Я согласен(а) на обработку персональных данных в соответствии с 152-ФЗ ." [ref=e248]
+              - generic [ref=e249]:
+                - text: Я согласен(а) на обработку персональных данных в соответствии с
+                - link "152-ФЗ" [ref=e250]:
+                  - /url: /privacy
+                - text: .
+            - button "Записаться к Мамедову В.А." [ref=e251]:
+              - text: Записаться к Мамедову В.А.
+              - generic [ref=e252]: →
+    - contentinfo [ref=e253]:
+      - generic [ref=e254]:
+        - link "Platinental — на главную" [ref=e255]:
+          - /url: /
+          - img "Platinental" [ref=e256]
+        - link "Записаться на консультацию" [ref=e257]:
+          - /url: "#form"
+      - generic [ref=e258]:
+        - generic [ref=e259]:
+          - generic [ref=e260]: Контакты
+          - paragraph [ref=e261]:
+            - text: ул. Карла Маркса, 48, корп. 1
+            - text: Казань, 420015
+          - link "+7 843 223-66-66" [ref=e262]:
+            - /url: tel:+78432236666
+          - paragraph [ref=e263]: Ежедневно 9:00–20:00
+        - generic [ref=e264]:
+          - generic [ref=e265]: Направления
+          - list [ref=e266]:
+            - listitem [ref=e267]:
+              - link "Пластическая хирургия" [ref=e268]:
+                - /url: /plastika
+            - listitem [ref=e269]:
+              - link "Косметология" [ref=e270]:
+                - /url: /kosmetologiya
+            - listitem [ref=e271]:
+              - link "Космецевтика" [ref=e272]:
+                - /url: /kosmecevtika
+            - listitem [ref=e273]:
+              - link "Врачи клиники" [ref=e274]:
+                - /url: /doctors
+        - generic [ref=e275]:
+          - generic [ref=e276]: Информация
+          - list [ref=e277]:
+            - listitem [ref=e278]:
+              - link "О клинике" [ref=e279]:
+                - /url: /about
+            - listitem [ref=e280]:
+              - link "Документы и лицензии" [ref=e281]:
+                - /url: /documents
+            - listitem [ref=e282]:
+              - link "Политика конфиденциальности" [ref=e283]:
+                - /url: /privacy
+        - generic [ref=e284]:
+          - generic [ref=e285]: Мессенджеры
+          - list [ref=e286]:
+            - listitem [ref=e287]:
+              - link "WhatsApp" [ref=e288]:
+                - /url: https://wa.me/78432236666
+            - listitem [ref=e289]:
+              - link "Max" [ref=e290]:
+                - /url: https://max.ru
+            - listitem [ref=e291]:
+              - link "Telegram" [ref=e292]:
+                - /url: https://t.me/platinental_kazan
+            - listitem [ref=e293]:
+              - link "Instagram*" [ref=e294]:
+                - /url: https://instagram.com/platinental_kazan
+          - paragraph [ref=e295]: "* Instagram принадлежит Meta, признанной экстремистской и запрещённой в РФ."
+      - generic [ref=e296]:
+        - separator [ref=e297]
+        - generic [ref=e298]:
+          - paragraph [ref=e299]: © Platinental Казань, 2011–2026 · ООО «Платинентал Казань»
+          - paragraph [ref=e300]: Имеются противопоказания. Необходима консультация специалиста.
+  - generic [ref=e303]:
+    - button "Menu" [ref=e304]:
+      - img [ref=e306]
+      - generic: Menu
+    - button "Inspect" [ref=e310]:
+      - img [ref=e312]
+      - generic: Inspect
+    - button "Audit" [ref=e314]:
+      - generic [ref=e315]:
+        - img [ref=e316]
+        - img [ref=e319]
+      - generic: Audit
+    - button "Settings" [ref=e322]:
+      - img [ref=e324]
+      - generic: Settings

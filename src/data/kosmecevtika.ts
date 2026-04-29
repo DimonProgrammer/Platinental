@@ -181,5 +181,5 @@ export const products: Product[] = [
 export const badgeLabels: Record<NonNullable<Product['badge']>, string> = {
   new: 'Новинка',
   best: 'Хит',
-  rx: 'По&nbsp;рецепту',
+  rx: 'По рецепту',
 };

@@ -10,24 +10,18 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
 ---
 
 <V3Layout
-  title="Прайс-лист — Platinental Казань"
-  description="Цены на пластические операции, косметологические процедуры и консультации врачей клиники Platinental Казань."
+  title="Прайс-лист — The Platinental Казань"
+  description="Цены на пластические операции, косметологические процедуры и консультации врачей клиники The Platinental Казань."
 >
   <Navigation />
   <main id="main">
     <PageHero
       pageMarkerLabel="Прайс"
       eyebrow="Цены"
-      h1="Цены на услуги клиники Platinental в Казани"
+      h1="Цены на услуги клиники The Platinental в Казани"
       lead="Стоимость зависит от категории сложности — её определяет хирург на консультации. Первая категория — стандартная анатомия, вторая и третья — осложнённые случаи или повторные операции."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Задать вопрос', href: 'https://wa.me/78432236666' }}
-      meta={[
-        { num: '7', label: 'Консультации' },
-        { num: '4', label: 'Пластика лица' },
-        { num: '4', label: 'Пластика тела' },
-        { num: '8', label: 'Косметология' },
-      ]}
     />
 
     <div class="v3-container v3-container-wide prices-hero-caption">
@@ -66,15 +60,23 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
             data-panel={cat.key}
           >
             {cat.groups.map((group) => (
-              <div class="price-group" data-v3-reveal>
+              <div class:list={['price-group', cat.key === 'consultations' && 'price-group--consultations']} data-v3-reveal>
                 <h3 class="price-group-title v3-h3">{group.title}</h3>
-                <table class="price-table">
+                <div class="price-table-wrap">
+                <table class:list={['price-table', cat.key === 'consultations' && 'price-table--consultations']}>
+                  {group.columns && (
+                    <colgroup>
+                      {group.columns.map((col) => (
+                        <col style={`width:${col.width || 'auto'}`} />
+                      ))}
+                    </colgroup>
+                  )}
                   <thead>
                     {group.columns ? (
                       <tr>
                         {group.columns.map((col) => (
                           <th
-                            style={`width:${col.width || 'auto'}; text-align:${col.align || 'left'}`}
+                            style={`text-align:${col.align || 'left'}`}
                             class="v3-eyebrow"
                           >
                             {col.label}
@@ -112,6 +114,7 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
                     ))}
                   </tbody>
                 </table>
+                </div>
               </div>
             ))}
           </div>
@@ -187,6 +190,9 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
   .price-group {
     margin-bottom: var(--v3-gap-small);
   }
+  .price-table-wrap {
+    overflow-x: auto;
+  }
   .price-group-title {
     padding-bottom: 0.75rem;
     border-bottom: 2px solid var(--v3-border-soft);
@@ -198,7 +204,12 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
     width: 100%;
     border-collapse: collapse;
   }
+  .price-table--consultations {
+    min-width: 58rem;
+    table-layout: fixed;
+  }
   .price-table th {
+    display: table-cell;
     font-family: var(--v3-font-body);
     font-size: var(--v3-text-eyebrow);
     font-weight: 400;
@@ -207,6 +218,7 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
     color: var(--v3-ink-muted);
     padding: 0.75rem 0.5rem;
     border-bottom: 1px solid var(--v3-border-hair);
+    white-space: nowrap;
   }
   .price-table th:first-child { padding-left: 0; }
   .price-table th:last-child { padding-right: 0; }
@@ -228,6 +240,17 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
   .price-sub {
     font-size: 0.875rem;
     color: var(--v3-ink-muted);
+  }
+  .price-group--consultations .price-service {
+    padding-right: 1rem;
+  }
+  .price-group--consultations .price-val {
+    font-size: 0.9375rem;
+  }
+  .price-group--consultations .price-sub,
+  .price-group--consultations .price-code {
+    display: inline;
+    white-space: normal;
   }
   .price-val {
     font-family: var(--v3-font-display);
@@ -253,6 +276,7 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
     .price-tab { padding: 0.625rem 1rem; font-size: 0.875rem; }
     .price-table th, .price-table td { padding-inline: 0.25rem; }
     .price-val { font-size: 0.9375rem; }
+    .price-table--consultations { min-width: 48rem; }
   }
 </style>
 

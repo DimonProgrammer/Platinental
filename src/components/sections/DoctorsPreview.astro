@@ -7,8 +7,8 @@ const doctors = [
     spec: 'RHINOPLASTY / РИНОПЛАСТИКА',
     name: 'Мелоян Мхитар Мисакович',
     price: 'Консультация от 7 000 ₽',
-    note: '40 лет хирургической практики, обучение в&nbsp;США, Чехии, Армении',
-    cta: 'Записаться к&nbsp;Мелояну',
+    note: '40 лет хирургической практики, обучение в США, Чехии, Армении',
+    cta: 'Записаться к Мелояну',
     href: '/doctors/meloyan/',
     initials: 'ММ',
     tone: 'a',
@@ -17,7 +17,7 @@ const doctors = [
     spec: 'FACE PRESERVING SURGERY / ДЕЛИКАТНАЯ ХИРУРГИЯ',
     name: 'Тулатова Регина Тимуровна',
     price: 'Консультация от 7 000 ₽',
-    cta: 'Записаться к&nbsp;Тулатовой',
+    cta: 'Записаться к Тулатовой',
     href: '/doctors/tulatova/',
     initials: 'РТ',
     tone: 'b',
@@ -26,7 +26,7 @@ const doctors = [
     spec: 'ЧЕЛЮСТНО-ЛИЦЕВАЯ ХИРУРГИЯ',
     name: 'Мамедов Вахид Аждарович',
     price: 'Консультация от 10 000 ₽',
-    cta: 'Записаться к&nbsp;Мамедову',
+    cta: 'Записаться к Мамедову',
     href: '/doctors/mamedov/',
     initials: 'ВМ',
     tone: 'c',
@@ -35,7 +35,7 @@ const doctors = [
     spec: 'К.М.Н. / ПЛАСТИЧЕСКИЙ ХИРУРГ',
     name: 'Васильев Максим Николаевич',
     price: 'Консультация от 7 000 ₽',
-    cta: 'Записаться к&nbsp;Васильеву',
+    cta: 'Записаться к Васильеву',
     href: '/doctors/vasilev/',
     initials: 'МВ',
     tone: 'd',
@@ -55,7 +55,7 @@ const doctors = [
         <article class="doctor" data-reveal style={`transition-delay: ${i * 90}ms`}>
           <div class={`doctor__portrait doctor__portrait--${d.tone}`} aria-hidden="true">
             <span class="doctor__initials font-display">{d.initials}</span>
-            <span class="doctor__placeholder-note">фото&nbsp;врача</span>
+            <span class="doctor__placeholder-note">фото врача</span>
           </div>
           <div class="doctor__body">
             <span class="doctor__spec">{d.spec}</span>

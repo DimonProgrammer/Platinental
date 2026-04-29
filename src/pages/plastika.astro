@@ -16,7 +16,7 @@ const surgeons = doctors.filter((d) => d.tags.includes('plastika'));
 const faqItems = [
   {
     q: 'Как записаться на первичную консультацию хирурга?',
-    a: 'Позвоните по <a href="tel:+78432236666">+7 843 223-66-66</a>, напишите в WhatsApp или заполните форму. Консультация хирурга — от 5 000 ₽, длится 30–60 минут.',
+    a: 'Позвоните по <a href="tel:+78432236666">+7 843 223-66-66</a>, напишите в WhatsApp или заполните форму. Консультация хирурга — от 5 000 ₽, длится до 30 минут.',
     open: true,
   },
   {
@@ -25,7 +25,7 @@ const faqItems = [
   },
   {
     q: 'Как подготовиться к операции?',
-    a: 'Список анализов и обследований хирург выдаёт на консультации. Общие требования: анализы крови, коагулограмма, ЭКГ, справка от терапевта об отсутствии противопоказаний. За 2 недели до операции — отказ от курения и алкоголя.',
+    a: 'Список анализов и обследований хирург выдаёт на консультации после осмотра и оценки вашей ситуации. За 2 недели до операции может потребоваться отмена части препаратов и корректировка образа жизни — это врач объяснит индивидуально.',
   },
   {
     q: 'Где проходит операция?',
@@ -43,23 +43,19 @@ const faqItems = [
 ---
 
 <V3Layout
-  title="Пластическая хирургия — Platinental Казань"
-  description="Пластические операции на лице и теле в клинике Platinental Казань. Ринопластика, блефаропластика, SMAS-лифтинг, маммопластика. Хирурги с ординатурой в ведущих московских центрах."
+  title="Пластическая хирургия — The Platinental Казань"
+  description="Пластические операции на лице и теле в клинике The Platinental Казань. Ринопластика, блефаропластика, SMAS-лифтинг, маммопластика. Хирурги с ординатурой в ведущих московских центрах."
 >
   <Navigation />
-  <main id="main">
+  <main id="main" class="page-plastika">
     <PageHero
       pageMarker="01 / 04"
       pageMarkerLabel="Услуги"
       eyebrow="THE PLATINENTAL · КАЗАНЬ"
-      h1="Пластическая хирургия в Казани — Platinental"
-      lead="Мы не делаем «идеальный нос из каталога» и не «увеличиваем грудь до размера». Platinental работает как дорогое ателье: сначала замеры — потом методика. Цель одна: все заметят изменение, но никто не свяжет его с операцией."
+      h1="Пластическая хирургия в Казани — The Platinental"
+      lead="Мы не делаем «идеальный нос из каталога» и не «увеличиваем грудь до размера». The Platinental работает как дорогое ателье: сначала замеры — потом методика. Цель одна: все заметят изменение, но никто не свяжет его с операцией."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Цены', href: '/prices' }}
-      meta={[
-        { num: '14', label: 'Лицо' },
-        { num: '13', label: 'Тело' },
-      ]}
     />
 
     <!-- Category tabs -->
@@ -149,7 +145,10 @@ const faqItems = [
                 <div class="surgeon-info">
                   <p class="surgeon-spec v3-eyebrow">{d.spec}</p>
                   <h3 class="surgeon-name v3-h3">{d.name}</h3>
-                  <p class="surgeon-price v3-caption">{d.priceMain}</p>
+                  <div class="surgeon-prices">
+                    <p class="surgeon-price surgeon-price--primary v3-caption">{d.priceMain}</p>
+                    {d.priceSub && <p class="surgeon-price surgeon-price--secondary v3-caption">{d.priceSub}</p>}
+                  </div>
                 </div>
               </a>
             </li>
@@ -195,7 +194,7 @@ const faqItems = [
 
     <FinalCTA
       heading="Неудачная пластика<br />видна всем"
-      lead="Перекачанные губы, несоразмерные скулы — это вопрос эстетического вкуса хирурга, не только его рук. В Platinental задача одна: все заметят, что вы изменились. Никто не поймёт — чем.<br /><br />Перезвоним в течение часа."
+      lead="Перекачанные губы, несоразмерные скулы — это вопрос эстетического вкуса хирурга, не только его рук. В The Platinental задача одна: все заметят, что вы изменились. Никто не поймёт — чем.<br /><br />Перезвоним в течение часа."
       submitLabel="Записаться на консультацию"
     />
   </main>
@@ -318,11 +317,12 @@ const faqItems = [
   }
   .surgeon-link:hover { background: var(--v3-sand-deep); }
   .surgeon-photo {
+    width: min(calc(100% - 3rem), 14rem);
     aspect-ratio: 1/1;
     overflow: hidden;
     background: var(--v3-cream);
     border-radius: 50%;
-    margin: 1.5rem 1.5rem 0;
+    margin: 1.5rem auto 0;
   }
   .surgeon-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
   .surgeon-initials {
@@ -344,7 +344,28 @@ const faqItems = [
   }
   .surgeon-spec { color: var(--v3-ink-muted); }
   .surgeon-name { color: var(--v3-ink); }
-  .surgeon-price { color: var(--v3-champagne-deep); text-transform: none; letter-spacing: 0.005em; font-family: var(--v3-font-display); font-style: normal; font-size: 0.9375rem; }
+  .surgeon-prices {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+  .surgeon-price {
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-style: normal;
+    font-size: 0.9375rem;
+  }
+  .surgeon-price--primary {
+    color: var(--v3-champagne-deep);
+    font-family: var(--v3-font-display);
+  }
+  .surgeon-price--secondary {
+    color: var(--v3-ink-muted);
+    font-family: var(--v3-font-body);
+  }
   .surgeons-cta {
     margin-top: var(--v3-gap-small);
     display: flex;
@@ -405,6 +426,14 @@ const faqItems = [
     .ops-grid { grid-template-columns: 1fr; }
     .surgeons-grid { grid-template-columns: 1fr; }
     .process-list { grid-template-columns: 1fr; }
+  }
+
+  /* На этой странице убираем сдвиги-reveal, чтобы карточки/фото не "плыли" при первом рендере */
+  .page-plastika [data-v3-reveal],
+  .page-plastika [data-v3-stagger] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 </style>
 

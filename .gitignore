@@ -37,3 +37,8 @@ check-*.jpg
 audit-*.js
 audit-*.mjs
 mobile-audit-results.txt
+
+# Source photos from client (too large for git, store separately)
+Врачи/
+фото врачей/
+.env*.local

@@ -19,7 +19,7 @@ const { doctor, index = 0 } = Astro.props;
 >
   <div class={`doctor-card__portrait doctor-card__portrait--${doctor.tone}`} aria-hidden="true">
     <span class="doctor-card__initials font-display">{doctor.initials}</span>
-    <span class="doctor-card__placeholder-note">фото&nbsp;врача</span>
+    <span class="doctor-card__placeholder-note">фото врача</span>
   </div>
 
   <div class="doctor-card__body">
@@ -34,7 +34,7 @@ const { doctor, index = 0 } = Astro.props;
 
     <details class="doctor-card__details">
       <summary>
-        <span>Подробнее о&nbsp;враче</span>
+        <span>Подробнее о враче</span>
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
           <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
         </svg>
@@ -72,7 +72,7 @@ const { doctor, index = 0 } = Astro.props;
 
         {doctor.details.congresses && (
           <div class="doctor-card__awards">
-            <h4>Конгрессы и&nbsp;конференции</h4>
+            <h4>Конгрессы и конференции</h4>
             <p>{doctor.details.congresses}</p>
           </div>
         )}

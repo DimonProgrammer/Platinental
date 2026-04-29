@@ -2,6 +2,10 @@
 // Глобальная модалка записи. Открывается событием:
 //   window.dispatchEvent(new CustomEvent('open-booking', { detail: { doctor?: 'slug', preset?: 'Тема' } }))
 // Подключена один раз в V3Layout — доступна со всех страниц.
+
+const whatsapp = 'https://wa.me/78432236666';
+const telegram = 'https://t.me/platinental_kazan';
+const maxLink = 'https://max.ru';
 ---
 
 <div class="booking" data-booking hidden role="dialog" aria-modal="true" aria-labelledby="booking-title">
@@ -13,12 +17,13 @@
     </button>
 
     <header class="booking-header">
-      <span class="v3-eyebrow">Запись на консультацию</span>
+      <span class="v3-eyebrow">Быстрая связь с клиникой</span>
       <h2 id="booking-title" class="v3-h3 booking-title">
-        <em data-booking-title>Запись к врачу</em>
+        <em data-booking-title>Подберём врача и удобное время</em>
       </h2>
       <p class="v3-body booking-lead">
-        Администратор перезвонит в течение 2&nbsp;часов. Пн–Вс 9:00–20:00.
+        Оставьте телефон — администратор перезвонит в течение 2 часов,
+        сориентирует по консультации, стоимости и поможет выбрать врача.
       </p>
     </header>
 
@@ -51,6 +56,15 @@
       <button type="submit" class="v3-btn v3-btn-primary booking-submit">
         Отправить заявку <span aria-hidden="true">→</span>
       </button>
+
+      <div class="booking-direct">
+        <p class="v3-caption booking-direct-label">Если удобнее, напишите нам сразу</p>
+        <div class="booking-direct-links">
+          <a href={whatsapp} class="booking-direct-link" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href={telegram} class="booking-direct-link" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a href={maxLink} class="booking-direct-link" target="_blank" rel="noopener noreferrer">Max</a>
+        </div>
+      </div>
     </form>
   </div>
 </div>
@@ -70,12 +84,11 @@
     const open = (detail?: { doctor?: string; preset?: string }) => {
       lastFocus = document.activeElement as HTMLElement;
       if (titleEl) {
-        // detail.doctor уже содержит «к Фамилии И.О.» (поле nameBtn) — не дублируем «к».
         titleEl.textContent = detail?.preset
-          ? `Запись · ${detail.preset}`
+          ? `Консультация по направлению «${detail.preset}»`
           : detail?.doctor
-            ? `Запись ${detail.doctor}`
-            : 'Запись на консультацию';
+            ? `Подберём время ${detail.doctor}`
+            : 'Подберём врача и удобное время';
       }
       if (doctorInput) doctorInput.value = detail?.doctor ?? '';
       root.hidden = false;
@@ -93,6 +106,16 @@
     window.addEventListener('open-booking', (e) => {
       const detail = (e as CustomEvent).detail;
       open(detail);
+    });
+
+    // Унифицируем CTA: любые ссылки на #form открывают модалку записи.
+    document.querySelectorAll<HTMLAnchorElement>('a[href="#form"]').forEach((link) => {
+      if (link.dataset.bookingBound === '1') return;
+      link.dataset.bookingBound = '1';
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        open();
+      });
     });
 
     closeBtns.forEach((b) => b.addEventListener('click', close));
@@ -260,4 +283,57 @@
   }
 
   .booking-submit { align-self: stretch; margin-top: 0.25rem; }
+
+  .booking-direct {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--v3-border-soft, rgba(10, 10, 10, 0.16));
+  }
+  .booking-direct-label {
+    margin: 0;
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.01em;
+  }
+  .booking-direct-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .booking-direct-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.625rem 1rem;
+    border: 1px solid var(--v3-border-soft, rgba(10, 10, 10, 0.16));
+    border-radius: 999px;
+    color: var(--v3-ink);
+    text-decoration: none;
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    transition:
+      border-color var(--v3-duration-fast, 160ms) var(--v3-ease-out, ease-out),
+      color var(--v3-duration-fast, 160ms) var(--v3-ease-out, ease-out),
+      background-color var(--v3-duration-fast, 160ms) var(--v3-ease-out, ease-out);
+  }
+  .booking-direct-link:hover,
+  .booking-direct-link:focus-visible {
+    color: var(--v3-champagne-deep, #9e7f59);
+    border-color: var(--v3-champagne, #C4A882);
+    background: rgba(196, 168, 130, 0.08);
+    outline: none;
+  }
+
+  @media (max-width: 560px) {
+    .booking-direct-links {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .booking-direct-link {
+      width: 100%;
+    }
+  }
 </style>

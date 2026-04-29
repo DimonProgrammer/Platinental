@@ -4,7 +4,7 @@ const fields = [
   { label: 'Телефоны', value: '<a href="tel:+78432236666" class="v3-link">+7 (843) 223-66-66</a>' },
   {
     label: 'Мессенджеры',
-    value: '<a href="https://max.ru" class="v3-link">Max</a> · <a href="https://t.me/platinental_kazan" class="v3-link">Telegram</a> · <a href="https://instagram.com/platinental_kazan" class="v3-link">Instagram*</a> · <a href="https://wa.me/78432236666" class="v3-link">WhatsApp</a>',
+    value: '<a href="https://t.me/platinental_kazan" class="v3-link">Telegram</a> · <a href="https://max.ru" class="v3-link">Max</a> · <a href="https://wa.me/78432236666" class="v3-link">WhatsApp</a> · <a href="https://instagram.com/platinental_kazan" class="v3-link">Instagram*</a>',
   },
   { label: 'Режим работы', value: 'Ежедневно 09:00–20:00<br />Без выходных' },
 ];
@@ -47,7 +47,15 @@ const fields = [
         <circle cx="200" cy="250" r="8" fill="var(--v3-champagne-deep)"/>
         <text x="216" y="254" font-family="var(--v3-font-body)" font-size="11" letter-spacing="0.16em" fill="var(--v3-ink)" font-weight="500">PLATINENTAL</text>
       </svg>
-      <p class="map-coords v3-caption">55.7887&nbsp;N · 49.1221&nbsp;E</p>
+      <p class="map-coords v3-caption">55.7887 N · 49.1221 E</p>
+      <a
+        href="https://yandex.ru/maps/?rtext=~55.788700,49.122100&rtt=auto"
+        target="_blank"
+        rel="noopener"
+        class="map-route v3-btn v3-btn-ghost"
+      >
+        Построить маршрут →
+      </a>
     </div>
   </div>
 </section>
@@ -104,13 +112,39 @@ const fields = [
   .contacts-map svg { width: 100%; height: 100%; display: block; }
   .map-coords {
     position: absolute;
-    bottom: 1rem;
+    bottom: 3.5rem;
     left: 1rem;
     color: var(--v3-ink-muted);
+  }
+  .map-route {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    font-size: 0.875rem;
+    padding-block: 0.6rem;
+    min-height: 0;
+    text-align: center;
+    background: var(--v3-cream);
   }
 
   @media (max-width: 1024px) {
     .contacts-grid { grid-template-columns: 1fr; }
     .contact-row { grid-template-columns: 1fr; gap: 0.25rem; }
+  }
+  @media (max-width: 560px) {
+    .map-coords {
+      left: 0.875rem;
+      bottom: 3.25rem;
+    }
+    .map-route {
+      left: 0.75rem;
+      right: 0.75rem;
+      bottom: 0.75rem;
+      padding: 0.7rem 0.875rem;
+      font-size: 0.8125rem;
+      line-height: 1.2;
+      white-space: normal;
+    }
   }
 </style>

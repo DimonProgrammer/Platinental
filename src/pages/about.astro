@@ -5,6 +5,10 @@ import PageHero from '../components/v3/sections/PageHero.astro';
 import FinalCTA from '../components/v3/sections/FinalCTA.astro';
 import FAQ from '../components/v3/sections/FAQ.astro';
 import Footer from '../components/v3/sections/Footer.astro';
+import { Image } from 'astro:assets';
+import clinicReception from '../assets/photos/clinic-reception-ai.png';
+import clinicLobby from '../assets/photos/clinic-lounge-ai.png';
+import clinicExterior from '../assets/photos/clinic-exterior-ai.png';
 
 const milestones = [
   { year: '2011', text: 'Открытие клиники в Казани. Первые операции, первые пациенты.' },
@@ -22,7 +26,7 @@ const principles = [
   },
   {
     num: '02',
-    title: 'У наших хирургов — действующие членства ASPS, ISAPS, IPRAS и авторские методики.',
+    title: 'У наших хирургов — исключительная квалификация и опыт, авторские методики.',
     text: '',
   },
   {
@@ -37,14 +41,14 @@ const accreditations = [
   { abbr: '1-й МГМУ им. Сеченова', full: 'Ординатура по пластической хирургии' },
   { abbr: 'РНЦХ им. Петровского', full: 'Ординатура по пластической хирургии' },
   { abbr: 'Челюстно-лицевая хирургия', full: 'Отдельное направление — для сложных и вторичных ринопластик' },
-  { abbr: 'ASPS · ISAPS · IPRAS', full: 'Членство хирургов клиники' },
+  { abbr: 'Исключительная квалификация и опыт', full: 'Членство хирургов клиники' },
   { abbr: 'Патенты', full: 'Авторские методики, разработанные хирургами клиники. Детали — на страницах конкретных врачей' },
 ];
 
 const faqItems = [
   {
-    q: 'Platinental — это филиал московской клиники?',
-    a: 'Нет. Platinental Казань — самостоятельное юридическое лицо (ООО «Платинентал Казань»). С московской клиникой у нас общий бренд и один из основателей, но это отдельные проекты.',
+    q: 'The Platinental — это филиал московской клиники?',
+    a: 'Нет. The Platinental Казань — самостоятельное юридическое лицо (ООО «Платинентал Казань»). С московской клиникой у нас общий бренд и один из основателей, но это отдельные проекты.',
     open: true,
   },
   {
@@ -63,8 +67,8 @@ const faqItems = [
 ---
 
 <V3Layout
-  title="О клинике — Platinental Казань"
-  description="Platinental — клиника пластической хирургии и косметологии в Казани с 2011 года. Авторские методики, деликатный подход, исключительная квалификация хирургов."
+  title="О клинике — The Platinental Казань"
+  description="The Platinental — клиника пластической хирургии и косметологии в Казани с 2011 года. Авторские методики, деликатный подход, исключительная квалификация хирургов."
 >
   <Navigation />
   <main id="main">
@@ -72,30 +76,38 @@ const faqItems = [
       pageMarker="—"
       pageMarkerLabel="О клинике"
       eyebrow="PLATINENTAL КАЗАНЬ"
-      h1="Ум, честь и&nbsp;совесть современной пластической хирургии"
-      lead="Концепция интеллигентной и&nbsp;уважительной гармонизации внешности."
+      h1="Ум, честь и совесть современной пластической хирургии"
+      lead="Концепция интеллигентной и уважительной гармонизации внешности."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Врачи клиники', href: '/doctors' }}
-      meta={[
-        { num: '15 лет', label: 'клиника в Казани' },
-        { num: 'ул. К. Маркса 48', label: 'локация клиники' },
-        { num: 'Исключительная', label: 'квалификация хирургов' },
-      ]}
     />
 
     <!-- Философия -->
     <section class="v3-philosophy v3-surface-cream" aria-label="Философия клиники">
-      <div class="v3-container v3-container-default philosophy-inner" data-v3-reveal>
-        <blockquote class="philosophy-quote">
-          <p class="v3-display"><em>«Мы не создаём абстрактно красивые лица. Мы создаём образы с характером — запоминающиеся, со своей индивидуальностью, усиливающие звучание привлекательных черт»</em></p>
-        </blockquote>
-        <div class="philosophy-body">
-          <p class="v3-lead">С момента основания клиника придерживается одного принципа: чтобы на выходе получить превосходные пропорции, мы всегда начинаем с замеров.</p>
-          <p class="v3-body">Хирург не просто выполняет операцию, а проектирует результат. Замеры, расчёт пропорций, индивидуальный план — и только потом скальпель. У каждого врача клиники своя школа, свой опыт и авторские техники — и при этом общая философия: деликатная, уважительная гармонизация.</p>
-          <p class="v3-body">Идейный вдохновитель этой философии — Андрей Искорнев, один из учредителей клиники, хирург, оперирующий в Москве и Лос-Анджелесе, действительный член ASPS, ISAPS и IPRAS.</p>
+      <div class="v3-container v3-container-wide philosophy-grid" data-v3-reveal>
+        <div class="philosophy-text">
+          <blockquote class="philosophy-quote">
+            <p class="v3-display"><em>«Мы не создаём абстрактно красивые лица. Мы создаём образы с характером — запоминающиеся, со своей индивидуальностью, усиливающие звучание привлекательных черт»</em></p>
+          </blockquote>
+          <div class="philosophy-body">
+            <p class="v3-lead">С момента основания клиника придерживается одного принципа: чтобы на выходе получить превосходные пропорции, мы всегда начинаем с замеров.</p>
+            <p class="v3-body">Хирург не просто выполняет операцию, а проектирует результат. Замеры, расчёт пропорций, индивидуальный план — и только потом скальпель. У каждого врача клиники своя школа, свой опыт и авторские техники — и при этом общая философия: деликатная, уважительная гармонизация.</p>
+            <p class="v3-body">Идейный вдохновитель этой философии — Андрей Искорнев, один из учредителей клиники, хирург, оперирующий в Москве и Лос-Анджелесе, действительный член ASPS, ISAPS и IPRAS.</p>
+          </div>
+          <div>
+            <a href="/doctors" class="v3-btn v3-btn-secondary">Познакомиться с врачами</a>
+          </div>
         </div>
-        <div>
-          <a href="/doctors" class="v3-btn v3-btn-secondary">Познакомиться с врачами</a>
+        <div class="philosophy-photo v3-photo-film v3-photo-shutter" data-v3-reveal>
+          <div class="v3-photo-breathing">
+            <Image
+              src={clinicReception}
+              alt="Ресепшн клиники The Platinental — мраморная стойка и подвесные светильники"
+              widths={[480, 800, 1200]}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              class="philosophy-img"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -107,7 +119,7 @@ const faqItems = [
           <span class="v3-eyebrow">История</span>
           <h2 id="timeline-heading" class="v3-h2"><em>Как мы росли</em></h2>
         </header>
-        <ol class="timeline-list" data-v3-stagger>
+        <ol class="timeline-list" data-v3-reveal>
           {milestones.map((m) => (
             <li class="timeline-item">
               <span class="timeline-year v3-eyebrow">{m.year}</span>
@@ -118,12 +130,45 @@ const faqItems = [
       </div>
     </section>
 
+    <!-- Галерея клиники -->
+    <section class="v3-clinic-gallery v3-surface-cream" aria-label="Интерьеры клиники">
+      <div class="gallery-strip v3-container v3-container-wide" data-v3-reveal>
+        <div class="gallery-img-wrap">
+          <Image
+            src={clinicLobby}
+            alt="Зона ожидания клиники The Platinental — фирменный интерьер с логотипом"
+            width={720}
+            height={960}
+            loading="lazy"
+            class="gallery-img"
+          />
+        </div>
+        <div class="gallery-img-wrap">
+          <Image
+            src={clinicExterior}
+            alt="Фасад клиники The Platinental — ул. Карла Маркса, 48"
+            width={720}
+            height={960}
+            loading="lazy"
+            class="gallery-img"
+          />
+        </div>
+      </div>
+    </section>
+
     <!-- Экономика качества -->
-    <section class="v3-economics v3-surface-cream" aria-labelledby="economics-heading">
-      <div class="v3-container v3-container-default economics-inner" data-v3-reveal>
-        <h2 id="economics-heading" class="v3-h2"><em>Разница между «дорого» и «дёшево»</em></h2>
-        <p class="v3-lead">Хорошее «дорого» не ограничивается персональным подходом и красивым интерьером. В «дорого» вы платите за эстетический вкус, уникальный опыт и репутацию тех, кто умеет создавать идеальное по индивидуальным меркам.</p>
-        <p class="v3-lead">Вы покупаете годы учёбы и упорного труда — страховку от ошибок и посредственности. И это особенно важно: ошибки пластического хирурга видны всегда.</p>
+    <section class="v3-economics v3-surface-ink" aria-labelledby="economics-heading">
+      <div class="v3-container v3-container-wide economics-grid" data-v3-reveal>
+        <div class="economics-left">
+          <span class="v3-eyebrow economics-eyebrow">Экономика качества</span>
+          <h2 id="economics-heading" class="v3-display economics-display">
+            <em>Ошибки хирурга<br />видны всегда.</em>
+          </h2>
+        </div>
+        <div class="economics-right">
+          <p class="v3-lead economics-lead">Хорошее «дорого» не ограничивается персональным подходом и красивым интерьером. В «дорого» вы платите за эстетический вкус, уникальный опыт и репутацию тех, кто умеет создавать идеальное по индивидуальным меркам.</p>
+          <p class="v3-body economics-body">Вы покупаете годы учёбы и упорного труда — страховку от ошибок и посредственности. Именно поэтому выбор хирурга важнее выбора клиники: результат живёт на вашем лице, а не на сайте.</p>
+        </div>
       </div>
     </section>
 
@@ -174,18 +219,27 @@ const faqItems = [
 
     <!-- Цитата Искорнева -->
     <section class="v3-iskornev v3-surface-ink" aria-label="Цитата основателя">
-      <div class="v3-container v3-container-default" data-v3-reveal>
+      <div class="v3-container v3-container-default iskornev-wrap" data-v3-reveal>
         <blockquote class="iskornev-quote">
           <p class="v3-h2 iskornev-text"><em>«В мире, где избыточность является минимальным стандартом, деликатность ценится как новое сокровище. Именно так мы относимся к внешности наших пациентов. Внося едва заметные коррективы, мы создаём образ, в котором вам будет комфортно покорять новый мир.»</em></p>
           <footer class="iskornev-author v3-eyebrow">
             Андрей Искорнев, один из учредителей и идейный вдохновитель · Член ASPS, ISAPS, IPRAS
           </footer>
         </blockquote>
+        <figure class="iskornev-media">
+          <img
+            src="/quote/iskornev-portrait-2026.png"
+            alt="Портрет Андрея Искорнева"
+            class="iskornev-photo"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
       </div>
     </section>
 
     <FinalCTA
-      heading="Познакомьтесь<br />с&nbsp;клиникой"
+      heading="Познакомьтесь<br />с клиникой"
       lead="Запишитесь на первичную консультацию. Расскажем о возможностях и ответим на все вопросы."
     />
   </main>
@@ -198,11 +252,16 @@ const faqItems = [
     padding-top: var(--v3-gap-deep);
     padding-bottom: var(--v3-gap-deep);
   }
-  .philosophy-inner {
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+  }
+  .philosophy-text {
     display: flex;
     flex-direction: column;
     gap: var(--v3-gap-small);
-    max-width: var(--v3-container-default);
   }
   .philosophy-quote { margin: 0; }
   .philosophy-quote .v3-display { max-width: 28ch; }
@@ -213,34 +272,118 @@ const faqItems = [
     max-width: 56ch;
   }
   .philosophy-body p { margin: 0; }
+  .philosophy-photo {
+    position: sticky;
+    top: calc(var(--v3-nav-h, 4rem) + 2rem);
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .philosophy-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  /* Clinic gallery */
+  .v3-clinic-gallery {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .gallery-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+  }
+  .gallery-img-wrap {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .gallery-img-wrap:hover .gallery-img {
+    transform: scale(1.03);
+  }
 
   /* Economics */
   .v3-economics {
     padding-top: var(--v3-gap-deep);
     padding-bottom: var(--v3-gap-deep);
   }
-  .economics-inner {
+  .economics-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .economics-eyebrow { color: var(--v3-on-ink-muted); }
+  .economics-left {
     display: flex;
     flex-direction: column;
-    gap: var(--v3-gap-h2-body);
-    max-width: var(--v3-container-default);
+    gap: 1.5rem;
   }
-  .economics-inner .v3-lead { max-width: 56ch; margin: 0; }
+  .economics-display {
+    color: var(--v3-on-ink);
+    margin: 0;
+  }
+  .economics-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 0.5rem;
+  }
+  .economics-lead { color: var(--v3-on-ink); margin: 0; }
+  .economics-body { color: var(--v3-on-ink-secondary); margin: 0; }
 
   /* Iskornev quote */
   .v3-iskornev {
     padding-top: var(--v3-gap-deep);
     padding-bottom: var(--v3-gap-deep);
   }
+  .iskornev-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: end;
+  }
   .iskornev-quote {
     margin: 0;
     display: flex;
     flex-direction: column;
     gap: var(--v3-gap-h1-lead);
-    max-width: 52rem;
   }
   .iskornev-text { color: var(--v3-on-ink); margin: 0; }
   .iskornev-author { color: var(--v3-on-ink-muted); }
+  .iskornev-media {
+    position: relative;
+    margin: 0;
+    justify-self: end;
+    width: min(100%, 24rem);
+  }
+  .iskornev-media::before {
+    content: '';
+    position: absolute;
+    inset: -1rem 1rem 1rem -1rem;
+    border: 1px solid rgba(255, 254, 242, 0.12);
+    pointer-events: none;
+  }
+  .iskornev-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 27 / 36;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(100%);
+  }
 
   /* Timeline */
   .v3-timeline {
@@ -269,8 +412,14 @@ const faqItems = [
     align-items: baseline;
   }
   .timeline-item:last-child { border-bottom: 1px solid var(--v3-border-hair); }
-  .timeline-year { color: var(--v3-champagne-deep); }
-  .timeline-text { margin: 0; }
+  .timeline-year {
+    color: var(--v3-champagne-deep);
+    letter-spacing: 0.12em;
+  }
+  .timeline-text {
+    margin: 0;
+    color: var(--v3-ink-secondary);
+  }
 
   /* Principles */
   .v3-about-principles {
@@ -334,9 +483,26 @@ const faqItems = [
   .accred-abbr { color: var(--v3-champagne); }
   .accred-full { color: var(--v3-on-ink-secondary); margin: 0; }
 
+  @media (max-width: 1024px) {
+    .philosophy-grid { grid-template-columns: 1fr; }
+    .philosophy-photo { position: static; order: -1; }
+    .economics-grid { grid-template-columns: 1fr; }
+    .iskornev-wrap {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    .iskornev-media {
+      justify-self: start;
+      width: min(100%, 22rem);
+    }
+    .iskornev-media::before {
+      inset: -0.75rem 0.75rem 0.75rem -0.75rem;
+    }
+  }
   @media (max-width: 768px) {
     .timeline-item { grid-template-columns: 4rem 1fr; gap: 1rem; }
     .principles-list { grid-template-columns: 1fr; }
     .accred-item { grid-template-columns: 1fr; gap: 0.25rem; }
+    .gallery-strip { grid-template-columns: 1fr; }
   }
 </style>

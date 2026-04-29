@@ -2,26 +2,25 @@
 import V3Layout from '../layouts/V3Layout.astro';
 import Navigation from '../components/v3/sections/Navigation.astro';
 import PageHero from '../components/v3/sections/PageHero.astro';
-import Contacts from '../components/v3/sections/Contacts.astro';
+import ContactsSection from '../components/v3/sections/Contacts.astro';
 import FinalCTA from '../components/v3/sections/FinalCTA.astro';
 import Footer from '../components/v3/sections/Footer.astro';
 ---
 
 <V3Layout
-  title="Контакты — Platinental Казань"
-  description="Адрес клиники Platinental в Казани, телефон, режим работы и схема проезда. ул. Карла Маркса, 48, корп. 1."
+  title="Контакты — The Platinental Казань"
+  description="Адрес клиники The Platinental в Казани, телефон, режим работы и схема проезда. ул. Карла Маркса, 48, корп. 1."
 >
   <Navigation />
   <main id="main">
     <PageHero
       pageMarkerLabel="Контакты"
-      eyebrow="Контакты"
-      h1="Контакты клиники Platinental в Казани"
+      h1="Контакты клиники The Platinental в Казани"
       lead="Принимаем ежедневно с 09:00 до 20:00. Запись по телефону, через Max, Telegram или форму — перезвоним в течение часа."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: '+7 (843) 223-66-66', href: 'tel:+78432236666' }}
     />
-    <Contacts />
+    <ContactsSection />
     <FinalCTA
       heading="Запишитесь<br />на приём"
       lead="Позвоните, напишите или заполните форму — мы свяжемся в течение 2 часов."

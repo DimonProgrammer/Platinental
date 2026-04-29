@@ -5,6 +5,7 @@ import FinalCTA from '../../components/v3/sections/FinalCTA.astro';
 import FAQ from '../../components/v3/sections/FAQ.astro';
 import Footer from '../../components/v3/sections/Footer.astro';
 import { doctors } from '../../data/doctors';
+import { doctorPriceSheets } from '../../data/prices';
 import type { Doctor } from '../../data/doctors';
 
 export async function getStaticPaths() {
@@ -19,36 +20,38 @@ const { doctor: d } = Astro.props;
 
 const isSurgeon = d.tags.includes('plastika');
 const consultationPrice = d.priceMain;
+const doctorPriceSheet = doctorPriceSheets.find((sheet) => sheet.doctorSlug === d.slug);
+const hasOnlinePrice = (d.priceSub ?? '').includes('Онлайн');
 
 const faqItems = [
   {
-    q: `Как записаться к ${d.name.split(' ')[0]}?`,
+    q: `Как записаться ${d.nameBtn}?`,
     a: 'Позвоните по номеру <a href="tel:+78432236666">+7 843 223-66-66</a>, напишите в WhatsApp или заполните форму на сайте. Администратор подберёт удобное время.',
     open: true,
   },
   {
     q: 'Сколько длится первичная консультация?',
-    a: 'Первичная консультация — 30–60 минут. Хирург осматривает, замеряет пропорции, отвечает на вопросы, показывает похожие случаи из практики.',
+    a: 'Первичная консультация длится до 30 минут. Врач осматривает, задаёт уточняющие вопросы, объясняет возможные решения и дальнейшие шаги.',
   },
   isSurgeon ? {
     q: 'Нужна ли подготовка к операции?',
-    a: 'Да. Перечень анализов и обследований врач выдаёт на консультации. Как правило: клинический и биохимический анализ крови, коагулограмма, ЭКГ, справки от терапевта.',
+    a: 'Да. Перечень анализов и обследований врач выдаёт на консультации после осмотра и оценки вашей ситуации.',
   } : {
     q: 'Как подготовиться к косметологической процедуре?',
     a: 'Зависит от процедуры. На консультации врач даст точные рекомендации: что исключить за несколько дней, как ухаживать за кожей в период восстановления.',
   },
   {
     q: 'Можно ли получить онлайн-консультацию?',
-    a: d.priceSub?.includes('Онлайн')
+    a: hasOnlinePrice
       ? 'Да, онлайн-консультации доступны. Запишитесь через форму или WhatsApp — укажите, что вам нужен онлайн-формат.'
-      : 'Этот специалист принимает очно. Если вы находитесь за пределами Казани — свяжитесь с нами, обсудим варианты.',
+      : 'Да, онлайн-консультации доступны. Формат и стоимость администратор уточнит при записи.',
   },
 ];
 ---
 
 <V3Layout
-  title={`${d.name} — ${d.spec} — Platinental Казань`}
-  description={`${d.name} — ${isSurgeon ? 'пластический хирург' : 'врач-косметолог'} клиники Platinental Казань. Специализация, образование, запись на консультацию.`}
+  title={`${d.name} — ${d.spec} — The Platinental Казань`}
+  description={`${d.name} — ${isSurgeon ? 'пластический хирург' : 'врач-косметолог'} клиники The Platinental Казань. Специализация, образование, запись на консультацию.`}
 >
   <Navigation />
   <main id="main">
@@ -153,15 +156,48 @@ const faqItems = [
             <p class="v3-body" set:html={d.details.awards}></p>
           </div>
         )}
+
+        {d.profileNote && (
+          <div class="awards-note" data-v3-reveal>
+            <span class="v3-eyebrow">{d.profileNote.label}</span>
+            <p class="v3-body" set:html={d.profileNote.body}></p>
+          </div>
+        )}
       </div>
     </section>
+
+    {doctorPriceSheet && doctorPriceSheet.items.length > 0 && (
+      <section class="v3-doc-prices v3-surface-cream" aria-labelledby="doc-prices-heading">
+        <div class="v3-container v3-container-default">
+          <header class="doc-section-header" data-v3-stagger>
+            <span class="v3-eyebrow">Стоимость услуг</span>
+            <h2 id="doc-prices-heading" class="v3-h2"><em>Индивидуальный прайс врача</em></h2>
+          </header>
+          <div class="doc-price-table-wrap" data-v3-reveal>
+            <table class="doc-price-table">
+              <tbody>
+                {doctorPriceSheet.items.map((item) => (
+                  <tr>
+                    <td class="doc-price-service">{item.procedure}</td>
+                    <td class="doc-price-value">{item.price}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="v3-caption doc-price-disclaimer" data-v3-reveal>
+            Цены носят информационный характер. Точную стоимость врач определяет на консультации после осмотра и обсуждения задачи.
+          </p>
+        </div>
+      </section>
+    )}
 
     <!-- Education -->
     <section class="v3-doc-edu v3-surface-cream" aria-labelledby="edu-heading">
       <div class="v3-container v3-container-default">
         <header class="doc-section-header" data-v3-stagger>
           <span class="v3-eyebrow">Образование</span>
-          <h2 id="edu-heading" class="v3-h2"><em>Где учился</em></h2>
+          <h2 id="edu-heading" class="v3-h2"><em>Профессиональная подготовка</em></h2>
         </header>
         <ol class="edu-timeline" data-v3-stagger>
           {d.details.education.map((e) => (
@@ -197,7 +233,7 @@ const faqItems = [
         <div class="v3-container v3-container-default">
           <header class="doc-section-header" data-v3-stagger>
             <span class="v3-eyebrow">Документы</span>
-            <h2 id="docs-heading" class="v3-h2"><em>Дипломы и&nbsp;публикации</em></h2>
+            <h2 id="docs-heading" class="v3-h2"><em>Дипломы и публикации</em></h2>
           </header>
           <ul class="docs-grid" data-v3-stagger>
             {d.documents.map((doc) => (
@@ -247,7 +283,7 @@ const faqItems = [
             ))}
           </ul>
           <p class="works-disclaimer v3-caption" data-v3-reveal>
-            Фотографии результатов публикуются с&nbsp;письменного согласия пациентов. Результат индивидуален.
+            Фотографии результатов публикуются с письменного согласия пациентов. Результат индивидуален.
           </p>
         </div>
       </section>
@@ -273,7 +309,7 @@ const faqItems = [
 
     <FinalCTA
       heading={`Записаться<br />${d.nameBtn}`}
-      lead={`Консультация: ${[d.priceMain, d.priceSub].filter(Boolean).join(' · ')}. Задайте вопросы — врач ответит без спешки.`}
+      lead={`Консультация: ${[d.priceMain, d.priceSub].filter(Boolean).join(' · ')}. Задайте вопросы и получите подробные ответы.`}
       submitLabel={`Записаться ${d.nameBtn}`}
     />
   </main>
@@ -439,6 +475,10 @@ const faqItems = [
     padding-top: var(--v3-gap-medium);
     padding-bottom: var(--v3-gap-medium);
   }
+  .v3-doc-prices {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-medium);
+  }
   .doc-section-header {
     display: flex;
     flex-direction: column;
@@ -483,6 +523,40 @@ const faqItems = [
     gap: 0.5rem;
   }
   .patent-text { margin: 0; }
+  .doc-price-table-wrap {
+    overflow-x: auto;
+    border-top: 1px solid var(--v3-border-hair);
+  }
+  .doc-price-table {
+    width: 100%;
+    min-width: 34rem;
+    border-collapse: collapse;
+  }
+  .doc-price-table tr:not(:last-child) td {
+    border-bottom: 1px solid var(--v3-border-hair);
+  }
+  .doc-price-table td {
+    padding: 1rem 0;
+    vertical-align: baseline;
+  }
+  .doc-price-service {
+    padding-right: 1.5rem;
+    color: var(--v3-ink);
+  }
+  .doc-price-value {
+    text-align: right;
+    white-space: nowrap;
+    color: var(--v3-champagne-deep);
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-size: 1.125rem;
+  }
+  .doc-price-disclaimer {
+    margin-top: 1rem;
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+  }
 
   /* Education timeline */
   .edu-timeline {

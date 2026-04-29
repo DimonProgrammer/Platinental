@@ -1,5 +1,8 @@
 ---
-import ImagePlaceholder from '../ImagePlaceholder.astro';
+import { Image } from 'astro:assets';
+import imgPlastika from '../../../assets/photos/s1-plastika-neck.jpeg';
+import imgKosmetologiya from '../../../assets/photos/s2-kosmetologiya-injection.png';
+import imgKosmecevtika from '../../../assets/photos/s3-kosmecevtika-jar.jpeg';
 
 const directions = [
   {
@@ -10,10 +13,8 @@ const directions = [
     cta: { label: 'Все операции', href: '/plastika' },
     surface: 'cream',
     align: 'left',
-    slot: 'S1',
-    slotDesc: 'B&W body fragment — линия челюсти в профиль, шея, плечо',
-    slotTone: 'bw',
-    slotSource: 'Track A · Midjourney v7 / Unsplash B&W editorial',
+    img: imgPlastika,
+    imgAlt: 'Чёрно-белый фрагмент профиля с акцентом на линию подбородка и шеи',
   },
   {
     num: '02',
@@ -23,10 +24,8 @@ const directions = [
     cta: { label: 'Все процедуры', href: '/kosmetologiya' },
     surface: 'sand',
     align: 'right',
-    slot: 'S2',
-    slotDesc: 'Material macro — капля сыворотки на коже, тёплый боковой свет',
-    slotTone: 'sand',
-    slotSource: 'Track C · Unsplash / Midjourney v7',
+    img: imgKosmetologiya,
+    imgAlt: 'Крупный план косметологической процедуры в деликатной чёрно-белой стилистике',
   },
   {
     num: '03',
@@ -36,10 +35,8 @@ const directions = [
     cta: { label: 'Каталог', href: '/kosmecevtika' },
     surface: 'ink',
     align: 'left',
-    slot: 'S3',
-    slotDesc: 'Product still life — 2–3 unbranded baночки на тёплой тёмной поверхности',
-    slotTone: 'ink',
-    slotSource: 'Track C · Midjourney v7',
+    img: imgKosmecevtika,
+    imgAlt: 'Минималистичная банка космецевтики в графичной премиальной композиции',
   },
 ];
 ---
@@ -51,7 +48,9 @@ const directions = [
         <div class="spread-text">
           <span class="v3-eyebrow num">{d.num} · {d.title.toUpperCase()}</span>
           <h3 class="v3-display spread-display">
-            <em>{d.title}</em>
+            <a href={d.cta.href} class="spread-title-link" aria-label={`${d.title} — перейти на страницу направления`}>
+              <em>{d.title}</em>
+            </a>
           </h3>
           <p class="v3-lead spread-body">{d.body}</p>
 
@@ -63,13 +62,14 @@ const directions = [
         </div>
 
         <div class="spread-image v3-photo-film v3-photo-shutter" data-v3-reveal>
-          <div class="v3-photo-breathing">
-            <ImagePlaceholder
-              slot={d.slot}
-              description={d.slotDesc}
-              ratio="4/5"
-              tone={d.slotTone as any}
-              source={d.slotSource}
+          <div class="v3-photo-breathing spread-img-wrap">
+            <Image
+              src={d.img}
+              alt={d.imgAlt}
+              width={810}
+              height={1013}
+              loading="lazy"
+              class="spread-img"
             />
           </div>
         </div>
@@ -108,6 +108,16 @@ const directions = [
     line-height: 1.05;
     margin: 0;
   }
+  .spread-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .spread-title-link:hover,
+  .spread-title-link:focus-visible {
+    color: var(--v3-champagne-deep);
+    outline: none;
+  }
   .spread-body {
     max-width: 36ch;
   }
@@ -135,6 +145,17 @@ const directions = [
     max-width: 36rem;
     width: 100%;
   }
+  .spread-img-wrap {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    width: 100%;
+  }
+  .spread-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 
   @media (max-width: 1024px) {
     .spread-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -142,8 +163,48 @@ const directions = [
     .spread-image { order: 1; max-width: none; }
     .spread[data-align="right"] .spread-text { order: 2; }
     .spread[data-align="right"] .spread-image { order: 1; }
+    .spread-list { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .spread {
+      padding-top: var(--v3-gap-medium);
+      padding-bottom: var(--v3-gap-medium);
+    }
+    .spread-grid {
+      gap: 1.5rem;
+    }
+    .spread-text {
+      gap: 1rem;
+      max-width: none;
+    }
+    .spread-display {
+      font-size: clamp(2rem, 11vw, 2.75rem);
+      line-height: 0.98;
+    }
+    .spread-body {
+      max-width: none;
+      font-size: 1rem;
+    }
+    .spread-list {
+      margin: 0;
+      gap: 0;
+    }
+    .spread-list li {
+      padding-block: 0.875rem;
+    }
+    .spread-image {
+      max-width: 100%;
+    }
+    .spread-img-wrap {
+      aspect-ratio: 1 / 1;
+    }
   }
   @media (max-width: 560px) {
-    .spread-list { grid-template-columns: 1fr; }
+    .num {
+      line-height: 1.6;
+    }
+    .spread-display {
+      font-size: clamp(1.875rem, 10vw, 2.375rem);
+    }
   }
 </style>

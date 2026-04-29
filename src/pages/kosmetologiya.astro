@@ -48,8 +48,8 @@ const faqItems = [
 ---
 
 <V3Layout
-  title="Косметология — Platinental Казань"
-  description="Инъекционная, аппаратная и терапевтическая косметология в клинике Platinental Казань. Ботулотоксин, филлеры, лазер CO₂, биоревитализация."
+  title="Косметология — The Platinental Казань"
+  description="Инъекционная, аппаратная и терапевтическая косметология в клинике The Platinental Казань. Ботулотоксин, филлеры, лазер CO₂, биоревитализация."
 >
   <Navigation />
   <main id="main">
@@ -57,23 +57,21 @@ const faqItems = [
       pageMarker="02 / 04"
       pageMarkerLabel="Услуги"
       eyebrow="Косметология"
-      h1="Косметология в Казани — клиника Platinental"
+      h1="Косметология в Казани — клиника The Platinental"
       lead="Косметолог при консультации клиента может порекомендовать процедуры, которые отсрочат операции на годы. Хирурги смотрят шире и не спешат к скальпелю. Если результат можно получить без операционных действий, через косметолога, — рекомендация будет в пользу этого пути."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Цены', href: '/prices' }}
-      meta={[
-        { num: '4', label: 'Инъекционная' },
-        { num: '3', label: 'Аппаратная' },
-        { num: '5', label: 'Терапевтическая' },
-      ]}
     />
 
-    <!-- Pull quote -->
-    <section class="v3-surface-cream" aria-label="Подход клиники" style="padding-bottom: var(--v3-gap-medium);">
+    <section class="v3-kosm-quote v3-surface-sand" aria-labelledby="kosm-quote-heading">
       <div class="v3-container v3-container-wide">
-        <blockquote style="margin: 0; max-width: 56rem;">
-          <p class="v3-lead"><em>«Для создания живого лица недостаточно просто вколоть филлер. Мы предлагаем более тонкие и сложные техники»</em></p>
-        </blockquote>
+        <div class="kosm-quote-shell" data-v3-reveal>
+          <span class="v3-eyebrow kosm-quote-kicker">Подход клиники</span>
+          <blockquote id="kosm-quote-heading" class="kosm-quote-text v3-display">
+            <em>«Для создания живого лица недостаточно просто вколоть филлер. Мы предлагаем более тонкие и сложные техники»</em>
+          </blockquote>
+          <p class="kosm-quote-note v3-caption">Косметология в клинике работает не как набор отдельных инъекций, а как часть общей эстетической стратегии.</p>
+        </div>
       </div>
     </section>
 
@@ -113,30 +111,36 @@ const faqItems = [
 
     <!-- Cosmetologists -->
     {cosmetologists.length > 0 && (
-      <section class="v3-kosm-doctors v3-surface-sand" aria-labelledby="cosm-doctors-heading">
+      <section class="v3-kosm-doctors v3-surface-cream" aria-labelledby="cosm-doctors-heading">
         <div class="v3-container v3-container-wide">
           <header class="doctors-header" data-v3-stagger>
             <span class="v3-eyebrow">Специалист направления</span>
-            <h2 id="cosm-doctors-heading" class="v3-h2"><em>Anti-age врач-косметолог клиники</em></h2>
+            <h2 id="cosm-doctors-heading" class="v3-display doctors-h2"><em>Anti-age врач-косметолог клиники</em></h2>
           </header>
-          <ul class="doctors-row" data-v3-stagger>
-            {cosmetologists.map((d) => (
-              <li class="doctor-mini">
-                <a href={`/doctors/${d.slug}`} class="doctor-mini-link">
-                  <div class="doctor-mini-photo">
-                    {d.photo
-                      ? <img src={d.photo} alt={d.name} width="200" height="250" loading="lazy" />
-                      : <div class="doctor-mini-initials">{d.initials}</div>}
-                  </div>
-                  <div class="doctor-mini-info">
-                    <p class="v3-eyebrow doctor-mini-spec">{d.spec}</p>
-                    <h3 class="v3-h3 doctor-mini-name">{d.name}</h3>
-                    <p class="v3-body doctor-mini-price">{d.priceMain}</p>
-                  </div>
-                </a>
-              </li>
-            ))}
-          </ul>
+          {cosmetologists.map((d) => (
+            <div class="doctor-card" data-v3-reveal>
+              <div class="dc-photo-wrap">
+                {d.photo
+                  ? <img src={d.photo} alt={d.name} loading="lazy" class="dc-photo-img" />
+                  : <div class="dc-initials">{d.initials}</div>}
+              </div>
+              <div class="dc-body">
+                <p class="v3-eyebrow dc-spec">{d.spec}</p>
+                <h3 class="v3-display dc-name"><em>{d.name}</em></h3>
+                <p class="v3-body dc-bio" set:html={d.short}></p>
+                <hr class="dc-rule" />
+                <div class="dc-consult-row">
+                  <span class="v3-eyebrow dc-consult-label">Консультация</span>
+                  <span class="dc-price">{d.priceMain}</span>
+                </div>
+                <hr class="dc-rule" />
+                <div class="dc-actions">
+                  <a href="#form" class="v3-btn v3-btn-primary">Записаться</a>
+                  <a href={`/doctors/${d.slug}`} class="dc-more-link">Подробнее о враче</a>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     )}
@@ -156,6 +160,40 @@ const faqItems = [
 </V3Layout>
 
 <style>
+  .v3-kosm-quote {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-medium);
+  }
+  .kosm-quote-shell {
+    max-width: 64rem;
+    padding-block: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .kosm-quote-kicker {
+    color: var(--v3-ink-muted);
+  }
+  .kosm-quote-text {
+    margin: 0;
+    max-width: 22ch;
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-weight: 400;
+    font-size: clamp(2rem, 4.2vw, 4rem);
+    line-height: 1.06;
+    color: var(--v3-ink);
+    text-wrap: balance;
+  }
+  .kosm-quote-note {
+    max-width: 56ch;
+    margin: 0;
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-family: var(--v3-font-body);
+    font-size: 0.875rem;
+  }
   .v3-kosm-cat {
     padding-top: var(--v3-gap-deep);
     padding-bottom: var(--v3-gap-deep);
@@ -172,8 +210,9 @@ const faqItems = [
     padding: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--v3-border-hair);
+    gap: 0;
+    border-top: 1px solid var(--v3-border-hair);
+    border-left: 1px solid var(--v3-border-hair);
   }
   .proc-card {
     display: flex;
@@ -181,6 +220,8 @@ const faqItems = [
     gap: 0.75rem;
     padding: 1.75rem;
     background: var(--v3-cream);
+    border-right: 1px solid var(--v3-border-hair);
+    border-bottom: 1px solid var(--v3-border-hair);
   }
   .proc-badge { color: var(--v3-ink-muted); }
   .proc-name { color: var(--v3-ink); }
@@ -223,35 +264,32 @@ const faqItems = [
     display: flex;
     flex-direction: column;
     gap: var(--v3-gap-eyebrow-h1);
-    margin-bottom: var(--v3-gap-small);
+    margin-bottom: var(--v3-gap-medium, 3rem);
   }
-  .doctors-row {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
+  .doctors-h2 { margin: 0; }
+
+  /* Doctor card */
+  .doctor-card {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    background: var(--v3-sand);
   }
-  .doctor-mini { flex: 0 0 22rem; }
-  .doctor-mini-link {
-    display: flex;
-    gap: 1.25rem;
-    text-decoration: none;
-    align-items: flex-start;
-    transition: opacity var(--v3-duration-fast) var(--v3-ease-out);
-  }
-  .doctor-mini-link:hover { opacity: 0.8; }
-  .doctor-mini-photo {
-    flex-shrink: 0;
-    width: 6rem;
-    height: 6rem;
+  .dc-photo-wrap {
+    position: relative;
+    background: var(--v3-ink);
     overflow: hidden;
-    background: var(--v3-cream);
+    aspect-ratio: 1/1;
     border-radius: 50%;
+    margin: clamp(1rem, 2.5vw, 1.5rem);
   }
-  .doctor-mini-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-  .doctor-mini-initials {
+  .dc-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .dc-initials {
     width: 100%;
     height: 100%;
     display: flex;
@@ -259,19 +297,63 @@ const faqItems = [
     justify-content: center;
     font-family: var(--v3-font-display);
     font-style: normal;
-    font-size: 1.75rem;
-    color: var(--v3-ink-muted);
+    font-size: clamp(4rem, 8vw, 8rem);
+    color: rgba(255, 254, 242, 0.18);
+    letter-spacing: 0.04em;
   }
-  .doctor-mini-info { display: flex; flex-direction: column; gap: 0.375rem; padding-top: 0.25rem; }
-  .doctor-mini-spec { color: var(--v3-ink-muted); }
-  .doctor-mini-name { color: var(--v3-ink); }
-  .doctor-mini-price { color: var(--v3-champagne-deep); font-size: 0.875rem; margin: 0; }
+  .dc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    justify-content: center;
+  }
+  .dc-spec { color: var(--v3-champagne-deep); margin: 0; }
+  .dc-name { margin: 0; line-height: 1.05; color: var(--v3-ink); }
+  .dc-bio { margin: 0; color: var(--v3-ink-secondary); max-width: 52ch; }
+  .dc-rule {
+    border: none;
+    border-top: 1px solid var(--v3-border-hair);
+    margin: 0;
+  }
+  .dc-consult-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+  }
+  .dc-consult-label { color: var(--v3-ink-muted); }
+  .dc-price {
+    font-family: var(--v3-font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--v3-champagne-deep);
+  }
+  .dc-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .dc-more-link {
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    color: var(--v3-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--v3-border-hair);
+    text-underline-offset: 3px;
+    transition: color var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .dc-more-link:hover { color: var(--v3-champagne-deep); text-decoration-color: var(--v3-champagne-soft); }
 
   @media (max-width: 1024px) {
+    .kosm-quote-text { max-width: 100%; }
     .procs-grid { grid-template-columns: repeat(2, 1fr); }
+    .doctor-card { grid-template-columns: 1fr; }
+    .dc-photo-wrap { max-height: 26rem; }
   }
   @media (max-width: 560px) {
+    .kosm-quote-shell { gap: 0.875rem; }
     .procs-grid { grid-template-columns: 1fr; }
-    .doctor-mini { flex: 0 0 100%; }
+    .dc-photo-wrap { max-height: none; margin: 1rem; }
   }
 </style>

@@ -1,5 +1,5 @@
 /*
- * Platinental v3 — Design Tokens
+ * The Platinental v3 — Design Tokens
  * Откалиброванная палитра по docs/design-research/00-synthesis-v2.md.
  * Префикс --v3-* — чтобы не конфликтовало с прототипом (--color-*, --text-*).
  * Применяется только внутри [data-v3] контейнера.
@@ -36,7 +36,7 @@
   --v3-border-on-ink: rgba(255, 254, 242, 0.18);
 
   /* ── Typography families ──────────────────────────────────────── */
-  --v3-font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --v3-font-display: 'ZapfHumnst BT', Georgia, serif;
   --v3-font-body: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
 
   /* ── Type scale (fluid) ───────────────────────────────────────── */
@@ -324,6 +324,19 @@
   border-color: var(--v3-champagne-deep);
 }
 
+[data-v3] .v3-btn-secondary {
+  color: var(--v3-ink);
+  border-color: var(--v3-border-soft);
+}
+[data-v3] .v3-btn-secondary::before {
+  background: var(--v3-ink);
+}
+[data-v3] .v3-btn-secondary:hover,
+[data-v3] .v3-btn-secondary:focus-visible {
+  color: var(--v3-on-ink);
+  border-color: var(--v3-ink);
+}
+
 [data-v3] .v3-btn-ghost {
   color: var(--v3-ink);
 }
@@ -348,6 +361,19 @@
 [data-v3] .v3-surface-ink .v3-btn-primary:focus-visible {
   color: var(--v3-ink);
   border-color: var(--v3-champagne-soft);
+}
+
+[data-v3] .v3-surface-ink .v3-btn-secondary {
+  color: var(--v3-on-ink);
+  border-color: var(--v3-border-on-ink);
+}
+[data-v3] .v3-surface-ink .v3-btn-secondary::before {
+  background: var(--v3-on-ink);
+}
+[data-v3] .v3-surface-ink .v3-btn-secondary:hover,
+[data-v3] .v3-surface-ink .v3-btn-secondary:focus-visible {
+  color: var(--v3-ink);
+  border-color: var(--v3-on-ink);
 }
 
 [data-v3] .v3-surface-ink .v3-btn-ghost {
@@ -593,101 +619,6 @@ html.lenis body { height: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: clip; }
 
-/* ── Custom cursor — premium champagne dot + ring ───────────────── */
-[data-v3-cursor] {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-  z-index: 10000;
-  opacity: 0;
-  transition: opacity var(--v3-duration-fast) var(--v3-ease-out);
-  will-change: transform;
-}
-[data-v3-cursor] .v3-cursor-dot,
-[data-v3-cursor] .v3-cursor-ring {
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-radius: 50%;
-  pointer-events: none;
-}
-[data-v3-cursor] .v3-cursor-dot {
-  width: 6px;
-  height: 6px;
-  margin-left: -3px;
-  margin-top: -3px;
-  background: var(--v3-ink);
-  transition: transform var(--v3-duration-base) var(--v3-ease-out),
-              background var(--v3-duration-fast) var(--v3-ease-out),
-              opacity var(--v3-duration-fast) var(--v3-ease-out);
-}
-[data-v3-cursor] .v3-cursor-ring {
-  width: 28px;
-  height: 28px;
-  margin-left: -14px;
-  margin-top: -14px;
-  border: 1px solid var(--v3-champagne-deep);
-  background: transparent;
-  transform: scale(0.6);
-  opacity: 0;
-  transition: transform var(--v3-duration-base) var(--v3-ease-out),
-              opacity var(--v3-duration-fast) var(--v3-ease-out),
-              border-color var(--v3-duration-fast) var(--v3-ease-out);
-}
-/* Hover state — ring появляется, dot становится champagne */
-[data-v3-cursor].is-hover .v3-cursor-ring {
-  transform: scale(1);
-  opacity: 0.8;
-}
-[data-v3-cursor].is-hover .v3-cursor-dot {
-  background: var(--v3-champagne-deep);
-}
-/* Click — лёгкое сжатие ring */
-[data-v3-cursor].is-down .v3-cursor-ring {
-  transform: scale(0.85);
-}
-[data-v3-cursor].is-down .v3-cursor-dot {
-  transform: scale(0.7);
-}
-
-/* На тёмных секциях (.v3-surface-ink) — инвертируем цвет dot и ring */
-[data-v3-cursor].is-on-dark .v3-cursor-dot {
-  background: var(--v3-on-ink); /* cream */
-}
-[data-v3-cursor].is-on-dark .v3-cursor-ring {
-  border-color: var(--v3-champagne);
-}
-[data-v3-cursor].is-on-dark.is-hover .v3-cursor-dot {
-  background: var(--v3-champagne);
-}
-
-/* На тёмных секциях — dot осветляется */
-html.v3-cursor-active [data-v3] .v3-surface-ink {
-  /* опционально — но native cursor уже скрыт глобально */
-}
-
-/* Скрываем нативный cursor только когда наш активен */
-html.v3-cursor-active,
-html.v3-cursor-active * { cursor: none !important; }
-html.v3-cursor-active input,
-html.v3-cursor-active textarea {
-  cursor: text !important;
-}
-
-/* На тачскринах / reduced-motion — кастомный курсор не показываем */
-@media (pointer: coarse) {
-  [data-v3-cursor] { display: none; }
-  html.v3-cursor-active,
-  html.v3-cursor-active * { cursor: auto !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  [data-v3-cursor] { display: none; }
-  html.v3-cursor-active,
-  html.v3-cursor-active * { cursor: auto !important; }
-}
 
 /* ── Concept #6 — Astro View Transitions: editorial page-turn ── */
 @keyframes v3-page-out {
