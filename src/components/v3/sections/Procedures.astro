@@ -66,12 +66,15 @@ const procedures = [
     gap: clamp(1rem, 2.5vw, 2.5rem);
     align-items: baseline;
     padding-block: clamp(1.5rem, 2.5vw, 2.25rem);
+    padding-inline: 1.25rem;
     text-decoration: none;
     color: inherit;
-    transition: background var(--v3-duration-fast) var(--v3-ease-out);
+    border-radius: var(--v3-radius-lg);
+    transition: background var(--v3-duration-fast) var(--v3-ease-out), transform var(--v3-duration-fast) var(--v3-ease-out);
   }
   .proc-link:hover {
-    background: var(--v3-cream-alt);
+    background: var(--v3-surface-muted);
+    transform: translateY(-1px);
   }
   .proc-link:hover .proc-name {
     font-style: normal;

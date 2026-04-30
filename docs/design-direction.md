@@ -8,18 +8,18 @@
 
 | Роль | Значение | Где |
 |------|----------|-----|
-| `--surface-page` | cream `#FFFDF8` | основной фон страниц |
-| `--surface-alt` | sand `#F5F0EB` | чередующиеся секции |
-| `--surface-inverse` | ink `#0A0A0A` | цитата-мост, форма, stats |
-| `--text-primary` | ink `#0A0A0A` | заголовки, body |
-| `--text-muted` | ink-500 `#6B6B6B` | мелкий текст |
-| `--accent` | champagne `#C4A882` | единственный хроматический цвет |
-| `--accent-hover` | champagne-600 `#A88D6B` | hover на CTA, активные ссылки |
+| `--surface-page` | pearl-sage `#F6F8F3` | основной фон страниц |
+| `--surface-alt` | soft sage `#E7ECE5` | чередующиеся секции |
+| `--surface-inverse` | ink `#25302B` | цитата-мост, форма, stats |
+| `--text-primary` | ink `#25302B` | заголовки, body |
+| `--text-muted` | ink-500 `#7E8E86` | мелкий текст |
+| `--accent` | sage accent `#A7B7AC` | основной акцент в интерфейсе |
+| `--accent-hover` | sage-deep `#6D7F74` | hover на CTA, активные ссылки |
 
-**Правило:** акцент используется только на интерактивных элементах (CTA, ссылки, eyebrow, цифры-числа). Никаких hero-фонов champagne. Никогда — красный, зелёный, синий.
+**Правило:** акцент используется только на интерактивных элементах, деликатных плашках, цифрах и micro-UI. Полного залива акцентом не делаем. Красный по-прежнему запрещён.
 
 **Чередование секций:**
-cream → cream → sand → cream → ink(dark) → sand → cream → sand → cream → cream → ink(dark) → sand → cream. Ритм мягкий, без резких контрастов подряд.
+pearl-sage → pearl-sage → soft sage → pearl-sage → ink(dark) → soft sage → pearl-sage → soft sage → pearl-sage → pearl-sage → ink(dark) → soft sage → pearl-sage. Ритм мягкий, без резких контрастов подряд.
 
 ---
 
@@ -52,6 +52,7 @@ cream → cream → sand → cream → ink(dark) → sand → cream → sand →
 - `Footer` — 4-colonкi, brand + links + medical disclaimer + ПДн-links.
 - `SectionHeader` — eyebrow + title + lede. Display italic 400.
 - `Button` — primary (dark) / secondary (outlined) / ghost (underlined) / inverse (cream on dark).
+- Радиусы: не копируем референсы один в один, но системно уходим от жёсткой геометрии. Кнопки, фото-контейнеры, карточки и плашки используют мягкие скругления `16–32px`.
 
 **Секции главной (13 шт., в этом порядке):**
 1. `Hero` — eyebrow «THE PLATINENTAL · КАЗАНЬ», H1 italic, sub, 2 CTA, placeholder aside, stats-row.

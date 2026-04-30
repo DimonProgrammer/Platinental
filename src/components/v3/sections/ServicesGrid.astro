@@ -41,12 +41,12 @@ const directions = [
 ];
 ---
 
-<section class="v3-services">
+<section class="v3-services v3-surface-cream">
   {directions.map((d) => (
-    <article class={`spread v3-surface-${d.surface}`} data-align={d.align}>
-      <div class="v3-container v3-container-wide spread-grid" data-v3-reveal>
+    <article class="spread" data-align={d.align}>
+      <div class="v3-container v3-container-wide">
+        <div class={`spread-grid v3-surface-${d.surface}`} data-v3-reveal>
         <div class="spread-text">
-          <span class="v3-eyebrow num">{d.num} · {d.title.toUpperCase()}</span>
           <h3 class="v3-display spread-display">
             <a href={d.cta.href} class="spread-title-link" aria-label={`${d.title} — перейти на страницу направления`}>
               <em>{d.title}</em>
@@ -73,15 +73,20 @@ const directions = [
             />
           </div>
         </div>
+        </div>
       </div>
     </article>
   ))}
 </section>
 
 <style>
+  .v3-services {
+    padding-top: var(--v3-gap-small);
+    padding-bottom: var(--v3-gap-medium);
+  }
   .spread {
-    padding-top: var(--v3-gap-deep);
-    padding-bottom: var(--v3-gap-deep);
+    padding-top: clamp(0.875rem, 2vw, 1.5rem);
+    padding-bottom: clamp(0.875rem, 2vw, 1.5rem);
     overflow-x: hidden;
   }
   .spread-grid {
@@ -92,6 +97,19 @@ const directions = [
       "text";
     gap: 1.5rem;
     align-items: start;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border: 1px solid var(--v3-border-hair);
+    border-radius: var(--v3-radius-xl);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+  }
+  .spread-grid.v3-surface-sand {
+    background: color-mix(in srgb, var(--v3-sand) 92%, var(--v3-cream));
+  }
+  .spread-grid.v3-surface-ink {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--v3-ink) 96%, black) 0%, var(--v3-ink) 100%);
+    border-color: color-mix(in srgb, var(--v3-on-ink) 12%, transparent);
+    box-shadow: var(--v3-shadow-md);
   }
 
   .spread-text {
@@ -101,7 +119,6 @@ const directions = [
     gap: 1rem;
     max-width: none;
   }
-  .num { color: inherit; opacity: 0.65; }
   .spread-display {
     font-size: var(--v3-text-display);
     line-height: 1.05;
@@ -149,6 +166,8 @@ const directions = [
     aspect-ratio: 1 / 1;
     overflow: hidden;
     width: 100%;
+    border-radius: var(--v3-radius-xl);
+    border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
   }
   .spread-img {
     width: 100%;
@@ -158,9 +177,13 @@ const directions = [
   }
 
   @media (max-width: 768px) {
+    .v3-services {
+      padding-top: var(--v3-gap-small);
+      padding-bottom: var(--v3-gap-small);
+    }
     .spread {
-      padding-top: var(--v3-gap-medium);
-      padding-bottom: var(--v3-gap-medium);
+      padding-top: 0.625rem;
+      padding-bottom: 0.625rem;
     }
     .spread-display {
       font-size: clamp(2rem, 11vw, 2.75rem);
@@ -176,9 +199,6 @@ const directions = [
     }
   }
   @media (max-width: 560px) {
-    .num {
-      line-height: 1.6;
-    }
     .spread-display {
       font-size: clamp(1.875rem, 10vw, 2.375rem);
     }

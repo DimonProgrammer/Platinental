@@ -80,16 +80,19 @@ const principles = [
     padding: 0;
     display: flex;
     flex-direction: column;
+    gap: 0.875rem;
   }
   .principle {
     display: grid;
     grid-template-columns: minmax(3.5rem, 5rem) 1fr;
     gap: clamp(1.25rem, 2.5vw, 2.5rem);
     padding-block: clamp(1.5rem, 3vw, 2.5rem);
-    border-top: 1px solid var(--v3-border-on-ink);
+    border: 1px solid var(--v3-border-on-ink);
     align-items: start;
+    padding-inline: 1.25rem;
+    border-radius: var(--v3-radius-lg);
+    background: rgba(247, 250, 245, 0.04);
   }
-  .principle:last-child { border-bottom: 1px solid var(--v3-border-on-ink); }
   .principle-num {
     font-size: clamp(2rem, 4vw, 3.25rem);
     line-height: 1;

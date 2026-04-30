@@ -1,0 +1,815 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import clinicReception from '../../assets/photos/clinic-reception.webp';
+import clinicLobby from '../../assets/photos/clinic-lobby.webp';
+import clinicExterior from '../../assets/photos/clinic-exterior.webp';
+import consultationPhoto from '../../assets/photos/cv-consultation.jpeg';
+
+const artDirections = [
+  {
+    title: 'Porcelain & Champagne',
+    note: 'Основной вариант для показа',
+    body: 'Молочный фарфор, тёплый шампань и мягкий taupe. Самый премиальный и самый безопасный маршрут: светло, спокойно, дорого, без ассоциаций с прошлым тёмным сайтом.',
+  },
+  {
+    title: 'Ivory & Sage Mist',
+    note: 'Запасной вариант',
+    body: 'Кремовая база с очень тихими шалфейными деталями. Даёт ощущение свежести и медицины, но без холодной стерильности.',
+  },
+  {
+    title: 'Pearl & Blush Stone',
+    note: 'Запасной вариант',
+    body: 'Жемчужно-кремовый фон с пудрово-каменным подтоном. Самый новый и самый мягкий по ощущению сценарий.',
+  },
+];
+
+const servicePanels = [
+  {
+    eyebrow: 'Пластика',
+    title: 'Хирургия, которая не спорит с чертами лица',
+    text: 'Вместо тяжёлой драматургии и “эффектных трансформаций” — деликатная пластическая хирургия с акцентом на пропорции, естественность и спокойный диалог с пациентом.',
+    points: ['Ринопластика', 'Маммопластика', 'Блефаропластика'],
+    image: clinicExterior,
+    alt: 'Светлый внешний вид клиники The Platinental в Казани',
+  },
+  {
+    eyebrow: 'Косметология',
+    title: 'Светлая эстетика ухода, а не каталог инъекций',
+    text: 'Косметология показана как часть общей эстетической стратегии: меньше “технического” ощущения, больше доверия, мягкого ритма и визуального воздуха.',
+    points: ['Ботулотоксины', 'Контурная пластика', 'Лазерные методики'],
+    image: clinicReception,
+    alt: 'Светлая зона ожидания клиники',
+  },
+  {
+    eyebrow: 'Космецевтика',
+    title: 'Домашний уход как продолжение клинического результата',
+    text: 'Раздел выглядит не как магазин, а как curated-коллекция: нейтральные поверхности, понятные сценарии применения и ощущение бутиковой экспертизы.',
+    points: ['Реабилитация', 'Anti-age уход', 'Чувствительная кожа'],
+    image: clinicLobby,
+    alt: 'Светлое интерьерное пространство клиники',
+  },
+];
+---
+
+<BaseLayout
+  title="The Platinental — концепт «Porcelain & Champagne»"
+  description="Демонстрационный светлый концепт главной страницы The Platinental Казань для клиентского показа."
+  canonical="https://kzn.platinental.ru/concept/fresh-light"
+  darkHero={false}
+>
+  <div class="fresh-light">
+    <section class="fl-hero" aria-labelledby="fresh-light-heading">
+      <div class="fl-shell fl-hero-grid">
+        <div class="fl-hero-copy" data-reveal>
+          <p class="fl-kicker">Концепт главной · New visual direction</p>
+          <h1 id="fresh-light-heading" class="fl-display fl-hero-title">
+            Более светлый,<br />
+            новый и воздушный<br />
+            образ клиники
+          </h1>
+          <p class="fl-lead">
+            Этот вариант уводит сайт от ассоциации с прошлой тёмной эстетикой:
+            меньше контраста, меньше чёрных плоскостей, больше дневного воздуха,
+            мягких поверхностей и визуальной лёгкости.
+          </p>
+          <div class="fl-actions">
+            <a href="#consult" class="fl-button fl-button-primary">Обсудить концепт</a>
+            <a href="#directions" class="fl-button fl-button-ghost">Смотреть направления цвета</a>
+          </div>
+          <ul class="fl-microlist" aria-label="Ключевые изменения">
+            <li>Hero на светлой поверхности вместо тёмной драматургии</li>
+            <li>Editorial-подача через интерьер, свет и материал, а не через low-key B&W</li>
+            <li>CTA и формы на raised-секциях, а не на ink-блоках</li>
+          </ul>
+        </div>
+
+        <div class="fl-hero-visual" data-reveal>
+          <div class="fl-hero-frame">
+            <Image
+              src={clinicReception}
+              alt="Светлая reception-зона клиники The Platinental"
+              width={1200}
+              height={1500}
+              class="fl-hero-image"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+          <div class="fl-hero-note">
+            <span>Основной сценарий</span>
+            <strong>Porcelain & Champagne</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="directions" class="fl-section fl-section-porcelain" aria-labelledby="directions-heading">
+      <div class="fl-shell">
+        <div class="fl-section-head" data-reveal>
+          <p class="fl-kicker">Colour / art directions</p>
+          <h2 id="directions-heading" class="fl-display fl-h2">
+            Три направления, которые
+            можно показать клиенту
+          </h2>
+          <p class="fl-copy">
+            Отрисован один маршрут, но рядом зафиксированы ещё два запасных. Это помогает
+            обсуждать не просто “нравится/не нравится”, а конкретное визуальное направление.
+          </p>
+        </div>
+
+        <div class="fl-directions" data-reveal>
+          {artDirections.map((direction, index) => (
+            <article class={`fl-direction-card${index === 0 ? ' is-active' : ''}`}>
+              <span class="fl-direction-note">{direction.note}</span>
+              <h3 class="fl-direction-title">{direction.title}</h3>
+              <p class="fl-direction-body">{direction.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="fl-section fl-section-sand" aria-labelledby="services-heading">
+      <div class="fl-shell">
+        <div class="fl-section-head" data-reveal>
+          <p class="fl-kicker">Page rhythm</p>
+          <h2 id="services-heading" class="fl-display fl-h2">
+            Вместо тяжёлых спредов
+            более лёгкая gallery-подача
+          </h2>
+          <p class="fl-copy">
+            Здесь сервисные направления показаны как светлая подборка editorial-panels:
+            без обязательной тёмной сцены посередине и без ощущения наследования прошлому сайту.
+          </p>
+        </div>
+
+        <div class="fl-service-grid">
+          {servicePanels.map((panel) => (
+            <article class="fl-service-card" data-reveal>
+              <div class="fl-service-media">
+                <Image
+                  src={panel.image}
+                  alt={panel.alt}
+                  width={960}
+                  height={1200}
+                  class="fl-service-image"
+                  loading="eager"
+                />
+              </div>
+              <div class="fl-service-copy">
+                <p class="fl-service-eyebrow">{panel.eyebrow}</p>
+                <h3 class="fl-service-title">{panel.title}</h3>
+                <p class="fl-service-body">{panel.text}</p>
+                <ul class="fl-points">
+                  {panel.points.map((point) => <li>{point}</li>)}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="fl-section fl-section-ivory" aria-labelledby="statement-heading">
+      <div class="fl-shell">
+        <div class="fl-statement" data-reveal>
+          <p class="fl-kicker">Brand statement</p>
+          <blockquote id="statement-heading" class="fl-display fl-statement-text">
+            Новый визуал говорит не о драме, а о спокойной уверенности,
+            дневном свете и премиальной деликатности.
+          </blockquote>
+          <p class="fl-statement-foot">
+            В этом варианте тёмный цвет не исчезает совсем, но перестаёт быть доминирующей сценой.
+            Он работает как типографический акцент, а не как фон всего впечатления.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="fl-section fl-section-porcelain" aria-labelledby="experience-heading">
+      <div class="fl-shell fl-experience-grid">
+        <div class="fl-experience-copy" data-reveal>
+          <p class="fl-kicker">Visual language</p>
+          <h2 id="experience-heading" class="fl-display fl-h2">
+            Фото, свет и ритм теперь
+            работают иначе
+          </h2>
+          <p class="fl-copy">
+            Для клиентской демонстрации важен не только новый цвет, но и другой тип изображения:
+            daylight interior, фактура материалов, мягкие портретные планы и спокойные тёплые поверхности.
+          </p>
+          <dl class="fl-checks">
+            <div>
+              <dt>Что убираем</dt>
+              <dd>Большие чёрные плоскости, low-key B&amp;W-драму, ощущение “снова тот же сайт”.</dd>
+            </div>
+            <div>
+              <dt>Что добавляем</dt>
+              <dd>Молочные фоны, прозрачный воздух, шампань в CTA и светлые презентационные блоки.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="fl-experience-media" data-reveal>
+          <div class="fl-collage">
+            <div class="fl-collage-card fl-collage-card-tall">
+              <Image
+                src={consultationPhoto}
+                alt="Светлая консультационная сцена в клинике"
+                width={1200}
+                height={1600}
+                class="fl-collage-image"
+                loading="eager"
+              />
+            </div>
+            <div class="fl-collage-card">
+              <Image
+                src={clinicLobby}
+                alt="Светлый интерьер зоны ожидания клиники"
+                width={1200}
+                height={900}
+                class="fl-collage-image"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="consult" class="fl-section fl-section-sand" aria-labelledby="consult-heading">
+      <div class="fl-shell fl-consult-grid">
+        <div class="fl-consult-copy" data-reveal>
+          <p class="fl-kicker">Light CTA</p>
+          <h2 id="consult-heading" class="fl-display fl-h2">
+            Светлая форма вместо
+            тёмного завершающего блока
+          </h2>
+          <p class="fl-copy">
+            Эта секция показывает клиенту, как может выглядеть final CTA без тяжёлой ink-плашки:
+            форма стоит на raised-card, а доверие собирается через материал, воздух и типографику.
+          </p>
+          <ul class="fl-contact-list">
+            <li>Телефон: <a href="tel:+78432236666">+7 843 223-66-66</a></li>
+            <li>Telegram: <a href="https://t.me/platinental_kazan">platinental_kazan</a></li>
+            <li>Адрес: ул. Карла Маркса, 48, корп. 1, Казань</li>
+          </ul>
+        </div>
+
+        <form class="fl-form" data-reveal>
+          <label class="fl-field">
+            <span>Имя</span>
+            <input type="text" name="name" placeholder="Как к вам обращаться" autocomplete="name" />
+          </label>
+          <label class="fl-field">
+            <span>Телефон</span>
+            <input type="tel" name="phone" inputmode="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" />
+          </label>
+          <label class="fl-field">
+            <span>Комментарий</span>
+            <textarea name="message" rows="4" placeholder="Коротко опишите запрос"></textarea>
+          </label>
+          <label class="fl-consent">
+            <input type="checkbox" name="consent" required />
+            <span>
+              Согласен(а) на обработку персональных данных в соответствии с
+              <a href="/privacy">политикой конфиденциальности</a>.
+            </span>
+          </label>
+          <button type="submit" class="fl-button fl-button-primary fl-form-submit">
+            Записаться на консультацию
+          </button>
+        </form>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .fresh-light {
+    --fl-page: #fffbf5;
+    --fl-ivory: #f7f1e8;
+    --fl-sand: #efe5d8;
+    --fl-raised: rgba(255, 255, 255, 0.82);
+    --fl-stroke: rgba(94, 78, 57, 0.14);
+    --fl-stroke-strong: rgba(94, 78, 57, 0.22);
+    --fl-text: #1f1a17;
+    --fl-muted: #675f57;
+    --fl-soft: #8b8278;
+    --fl-accent: #c3a47c;
+    --fl-accent-deep: #a88458;
+    --fl-shadow: 0 18px 60px rgba(56, 42, 27, 0.08);
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.8), transparent 34%),
+      linear-gradient(180deg, #fffdf8 0%, #fffaf3 100%);
+    color: var(--fl-text);
+  }
+
+  .fresh-light :global(main) {
+    background: transparent;
+  }
+
+  .fl-shell {
+    width: min(1280px, calc(100% - 40px));
+    margin: 0 auto;
+  }
+
+  .fl-section,
+  .fl-hero {
+    position: relative;
+  }
+
+  .fl-hero {
+    padding: calc(var(--nav-height) + 4rem) 0 4.5rem;
+  }
+
+  .fl-hero-grid,
+  .fl-experience-grid,
+  .fl-consult-grid {
+    display: grid;
+    gap: clamp(2rem, 4vw, 4.5rem);
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  .fl-hero-copy,
+  .fl-hero-visual,
+  .fl-section-head,
+  .fl-service-card,
+  .fl-statement,
+  .fl-experience-copy,
+  .fl-experience-media,
+  .fl-consult-copy,
+  .fl-form {
+    min-width: 0;
+  }
+
+  .fl-kicker,
+  .fl-service-eyebrow,
+  .fl-direction-note,
+  .fl-field span,
+  .fl-checks dt {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .fl-kicker,
+  .fl-service-eyebrow,
+  .fl-direction-note,
+  .fl-field span {
+    color: var(--fl-accent-deep);
+  }
+
+  .fl-display {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.04;
+  }
+
+  .fl-hero-title {
+    font-size: clamp(3rem, 5.2vw, 4.85rem);
+    max-width: 9.8ch;
+    margin-top: 0.75rem;
+    line-height: 1.02;
+  }
+
+  .fl-h2 {
+    font-size: clamp(2rem, 3.8vw, 3.35rem);
+    max-width: 10.5ch;
+    line-height: 1.08;
+  }
+
+  .fl-lead,
+  .fl-copy,
+  .fl-service-body,
+  .fl-direction-body,
+  .fl-statement-foot,
+  .fl-checks dd,
+  .fl-contact-list,
+  .fl-consent {
+    font-size: clamp(1rem, 0.9vw, 1.0625rem);
+    line-height: 1.68;
+    color: var(--fl-muted);
+  }
+
+  .fl-lead,
+  .fl-copy {
+    max-width: 58ch;
+  }
+
+  .fl-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.75rem;
+  }
+
+  .fl-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0.9rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  .fl-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .fl-button-primary {
+    background: var(--fl-accent);
+    color: #261c11;
+    border-color: rgba(163, 130, 91, 0.25);
+  }
+
+  .fl-button-primary:hover {
+    background: var(--fl-accent-deep);
+    color: #fffdf8;
+  }
+
+  .fl-button-ghost {
+    border-color: var(--fl-stroke-strong);
+    color: var(--fl-text);
+    background: rgba(255, 255, 255, 0.45);
+  }
+
+  .fl-button-ghost:hover {
+    border-color: var(--fl-accent-deep);
+    color: var(--fl-accent-deep);
+  }
+
+  .fl-microlist,
+  .fl-points,
+  .fl-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .fl-microlist {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1.75rem;
+  }
+
+  .fl-microlist li,
+  .fl-points li,
+  .fl-contact-list li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--fl-muted);
+  }
+
+  .fl-microlist li::before,
+  .fl-points li::before,
+  .fl-contact-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.8rem;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: var(--fl-accent);
+  }
+
+  .fl-hero-visual {
+    position: relative;
+  }
+
+  .fl-hero-frame {
+    background: rgba(255, 255, 255, 0.58);
+    padding: clamp(1rem, 2vw, 1.4rem);
+    border: 1px solid rgba(150, 126, 98, 0.16);
+    border-radius: 2rem;
+    box-shadow: var(--fl-shadow);
+  }
+
+  .fl-hero-image,
+  .fl-service-image,
+  .fl-collage-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .fl-hero-image {
+    aspect-ratio: 4 / 5;
+    border-radius: 1.35rem;
+  }
+
+  .fl-hero-note {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    position: absolute;
+    left: -1rem;
+    bottom: 2rem;
+    padding: 0.9rem 1rem;
+    border-radius: 1.15rem;
+    background: rgba(255, 250, 244, 0.92);
+    border: 1px solid rgba(170, 140, 105, 0.18);
+    box-shadow: 0 12px 30px rgba(56, 42, 27, 0.08);
+  }
+
+  .fl-hero-note span {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fl-soft);
+  }
+
+  .fl-hero-note strong {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--fl-text);
+  }
+
+  .fl-section {
+    padding: 4.5rem 0;
+  }
+
+  .fl-section-porcelain {
+    background: linear-gradient(180deg, rgba(255, 252, 246, 0.96), rgba(255, 248, 239, 0.88));
+  }
+
+  .fl-section-sand {
+    background: linear-gradient(180deg, rgba(244, 236, 225, 0.82), rgba(239, 229, 216, 0.72));
+  }
+
+  .fl-section-ivory {
+    background: linear-gradient(180deg, rgba(249, 244, 235, 0.9), rgba(245, 238, 229, 0.95));
+  }
+
+  .fl-section-head {
+    max-width: 42rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .fl-directions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .fl-direction-card,
+  .fl-service-card,
+  .fl-statement,
+  .fl-form {
+    background: var(--fl-raised);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--fl-stroke);
+    box-shadow: var(--fl-shadow);
+  }
+
+  .fl-direction-card {
+    border-radius: 1.5rem;
+    padding: 1.35rem;
+  }
+
+  .fl-direction-card.is-active {
+    background: rgba(255, 253, 248, 0.96);
+    border-color: rgba(168, 132, 88, 0.34);
+  }
+
+  .fl-direction-title {
+    font-size: 1.35rem;
+    line-height: 1.24;
+    margin: 0.55rem 0 0.65rem;
+    color: var(--fl-text);
+  }
+
+  .fl-service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .fl-service-card {
+    border-radius: 1.7rem;
+    overflow: hidden;
+  }
+
+  .fl-service-media {
+    aspect-ratio: 4 / 3;
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  .fl-service-copy {
+    padding: 1.35rem;
+  }
+
+  .fl-service-title {
+    font-size: 1.42rem;
+    line-height: 1.22;
+    margin: 0.45rem 0 0.7rem;
+    color: var(--fl-text);
+  }
+
+  .fl-points {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .fl-statement {
+    border-radius: 2rem;
+    padding: clamp(1.8rem, 3.2vw, 2.6rem);
+    max-width: 54rem;
+  }
+
+  .fl-statement-text {
+    font-size: clamp(1.9rem, 3.5vw, 3rem);
+    max-width: 18ch;
+    margin: 0.65rem 0 0.95rem;
+    color: var(--fl-text);
+    line-height: 1.12;
+  }
+
+  .fl-checks {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.6rem;
+  }
+
+  .fl-checks dt {
+    margin-bottom: 0.4rem;
+  }
+
+  .fl-checks dd {
+    margin: 0;
+  }
+
+  .fl-collage {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .fl-collage-card {
+    border-radius: 1.6rem;
+    overflow: hidden;
+    border: 1px solid var(--fl-stroke);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: var(--fl-shadow);
+    min-height: 19rem;
+  }
+
+  .fl-collage-card-tall {
+    min-height: 34rem;
+  }
+
+  .fl-consult-grid {
+    align-items: start;
+  }
+
+  .fl-contact-list {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .fl-contact-list a,
+  .fl-consent a {
+    color: var(--fl-accent-deep);
+    text-decoration: underline;
+    text-decoration-color: rgba(168, 132, 88, 0.35);
+    text-underline-offset: 0.18em;
+  }
+
+  .fl-form {
+    border-radius: 1.7rem;
+    padding: 1.4rem;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .fl-field {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .fl-field input,
+  .fl-field textarea {
+    width: 100%;
+    min-height: 52px;
+    padding: 0.9rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--fl-stroke);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--fl-text);
+    transition: border-color var(--duration-fast) var(--ease-out),
+      box-shadow var(--duration-fast) var(--ease-out);
+  }
+
+  .fl-field textarea {
+    min-height: 8.5rem;
+    resize: vertical;
+  }
+
+  .fl-field input:focus,
+  .fl-field textarea:focus {
+    outline: none;
+    border-color: rgba(168, 132, 88, 0.44);
+    box-shadow: 0 0 0 4px rgba(195, 164, 124, 0.14);
+  }
+
+  .fl-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .fl-consent input {
+    width: 20px;
+    height: 20px;
+    margin-top: 0.2rem;
+    accent-color: var(--fl-accent-deep);
+    flex-shrink: 0;
+  }
+
+  .fl-form-submit {
+    width: 100%;
+  }
+
+  @media (min-width: 900px) {
+    .fl-hero-grid,
+    .fl-experience-grid,
+    .fl-consult-grid {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .fl-directions,
+    .fl-service-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 899px) {
+    .fl-hero {
+      padding-top: calc(var(--nav-height-mobile) + 2.8rem);
+    }
+
+    .fl-hero-note {
+      position: static;
+      margin-top: 1rem;
+      margin-left: auto;
+      width: fit-content;
+    }
+
+    .fl-collage {
+      grid-template-columns: 1fr;
+    }
+
+    .fl-collage-card,
+    .fl-collage-card-tall {
+      min-height: 18rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .fl-shell {
+      width: min(100% - 24px, 1280px);
+    }
+
+    .fl-hero,
+    .fl-section {
+      padding: 3.25rem 0;
+    }
+
+    .fl-actions {
+      flex-direction: column;
+    }
+
+    .fl-button {
+      width: 100%;
+    }
+
+    .fl-hero-title {
+      max-width: 11ch;
+    }
+
+    .fl-service-copy,
+    .fl-direction-card,
+    .fl-form,
+    .fl-statement {
+      padding: 1.2rem;
+    }
+  }
+</style>

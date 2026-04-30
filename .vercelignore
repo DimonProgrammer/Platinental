@@ -1,11 +1,49 @@
 node_modules/
 dist/
 .astro/
+.git/
+.DS_Store
+.env.local
+.claude/
+.mcp.json
 .playwright-mcp/
+.playwright-cli/
+.playwright-audit/
+.playwright-screenshots/
+.tmp-pydeps/
+.tmp-xls/
+.tmp-doctors-current-sheet.png
+.tmp-doctors-white-sheet.png
 Ресурсы/
 wireframes/
 memory/
 design-system/
 docs/
 knowledge/
+daily/
+refs/
+research/
+Notion выгрузка/
+ZapfHumnst BT [Rus by me]/
+Врачи/
+Врачи в цвете/
+Врачи на белом/
+Дизайн/
+До:Поосле/
+Фото для главной/
+Фото на сайт/
+фото врачей/
+audit-mobile.js
+audit-mobile.mjs
+check-404s.mjs
+check-console.mjs
+check-overflow.mjs
+debug-overflow.mjs
+debug-overflow2.mjs
+screenshot-review.js
+screenshot-review.mjs
+screenshots.mjs
+mobile-audit-results.txt
+doctors-listing-1440.png
+tulatova-mobile-snapshot.md
 *.log

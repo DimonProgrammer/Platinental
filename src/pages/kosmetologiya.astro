@@ -121,7 +121,13 @@ const faqItems = [
             <div class="doctor-card" data-v3-reveal>
               <div class="dc-photo-wrap">
                 {d.photo
-                  ? <img src={d.photo} alt={d.name} loading="lazy" class="dc-photo-img" />
+                  ? <img
+                      src={d.photo}
+                      alt={d.name}
+                      loading="lazy"
+                      class="dc-photo-img"
+                      style={`--doctor-photo-scale:${d.photoFrame?.scale ?? 1.1}; --doctor-photo-x:${d.photoFrame?.x ?? '0%'}; --doctor-photo-y:${d.photoFrame?.y ?? '-2%'};`}
+                    />
                   : <div class="dc-initials">{d.initials}</div>}
               </div>
               <div class="dc-body">
@@ -273,13 +279,17 @@ const faqItems = [
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
     background: var(--v3-sand);
+    border-radius: var(--v3-radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--v3-border-soft);
+    box-shadow: var(--v3-shadow-sm);
   }
   .dc-photo-wrap {
     position: relative;
     background: var(--v3-ink);
     overflow: hidden;
     aspect-ratio: 1/1;
-    border-radius: 50%;
+    border-radius: var(--v3-radius-lg);
     margin: clamp(1rem, 2.5vw, 1.5rem);
   }
   .dc-photo-img {
@@ -288,6 +298,8 @@ const faqItems = [
     object-fit: cover;
     object-position: center top;
     display: block;
+    transform: translate(var(--doctor-photo-x, 0%), var(--doctor-photo-y, -2%)) scale(var(--doctor-photo-scale, 1.1));
+    transform-origin: center top;
   }
   .dc-initials {
     width: 100%;

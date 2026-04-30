@@ -7,33 +7,45 @@
 
 [data-v3] {
   /* ── Surfaces ─────────────────────────────────────────────────── */
-  --v3-cream: #FFFEF2;          /* primary bg — warm cream (Aesop) */
-  --v3-cream-alt: #FAF6EE;      /* раздел/панель чуть тёплее */
-  --v3-sand: #F5F0EB;           /* alt section bg */
-  --v3-sand-deep: #EAE2D7;      /* hairline sections */
-  --v3-ink: #1A1F2A;            /* primary text — warm dark */
+  --v3-cream: #F8FBF7;
+  --v3-cream-alt: #F3F7F2;
+  --v3-sand: #EEF4EE;
+  --v3-sand-deep: #E5EDE6;
+  --v3-surface-card: #FBFCF9;
+  --v3-surface-muted: #F5F8F4;
+  --v3-ink: #314039;
   --v3-white: #FFFFFF;
 
   /* Ink tones */
-  --v3-ink-secondary: #4A4F5C;
-  --v3-ink-muted: #8A8E96;
-  --v3-ink-faint: #B5B8BD;
+  --v3-ink-secondary: #61726A;
+  --v3-ink-muted: #7B8C82;
+  --v3-ink-faint: #BEC8C0;
 
   /* Inverse ink (для тёмных секций) */
-  --v3-on-ink: #FFFEF2;
-  --v3-on-ink-secondary: rgba(255, 254, 242, 0.72);
-  --v3-on-ink-muted: rgba(255, 254, 242, 0.50);
+  --v3-on-ink: #F8FBF7;
+  --v3-on-ink-secondary: rgba(248, 251, 247, 0.76);
+  --v3-on-ink-muted: rgba(248, 251, 247, 0.56);
 
-  /* ── Accent — champagne ───────────────────────────────────────── */
-  --v3-champagne: #C4A882;
-  --v3-champagne-soft: #DECCB0;
-  --v3-champagne-deep: #A88B66;
+  /* ── Accent — sage premium ────────────────────────────────────── */
+  --v3-champagne: #B8C7B8;
+  --v3-champagne-soft: #D6E0D6;
+  --v3-champagne-deep: #92A392;
+  --v3-accent-strong: #A8B7A8;
 
   /* ── Borders ──────────────────────────────────────────────────── */
-  --v3-border-hair: #E8E2D6;     /* почти невидимый hairline */
-  --v3-border-soft: #D6CFC4;
-  --v3-border-strong: #1A1F2A;
-  --v3-border-on-ink: rgba(255, 254, 242, 0.18);
+  --v3-border-hair: #DCE4DA;
+  --v3-border-soft: #D6E0D6;
+  --v3-border-strong: #314039;
+  --v3-border-on-ink: rgba(248, 251, 247, 0.18);
+
+  /* ── Shadows / radii ──────────────────────────────────────────── */
+  --v3-shadow-sm: 0 10px 30px rgba(49, 64, 57, 0.05);
+  --v3-shadow-md: 0 18px 44px rgba(49, 64, 57, 0.08);
+  --v3-radius-sm: 14px;
+  --v3-radius-md: 18px;
+  --v3-radius-lg: 24px;
+  --v3-radius-xl: 32px;
+  --v3-radius-pill: 999px;
 
   /* ── Typography families ──────────────────────────────────────── */
   --v3-font-display: 'ZapfHumnst BT', Georgia, serif;
@@ -275,15 +287,21 @@
   font-weight: 500;
   letter-spacing: 0.04em;
   padding: 0.875rem 1.75rem;
-  border: 1px solid currentColor;
-  background: transparent;
+  border: 1px solid transparent;
+  background: var(--v3-surface-card);
   cursor: pointer;
   text-decoration: none;
-  border-radius: 0;
+  border-radius: var(--v3-radius-pill);
   overflow: hidden;
   isolation: isolate;
   touch-action: manipulation; /* убрать 300ms tap delay */
-  transition: color var(--v3-duration-base) var(--v3-ease-out);
+  box-shadow: var(--v3-shadow-sm);
+  transition:
+    color var(--v3-duration-base) var(--v3-ease-out),
+    background var(--v3-duration-base) var(--v3-ease-out),
+    border-color var(--v3-duration-base) var(--v3-ease-out),
+    transform var(--v3-duration-base) var(--v3-ease-out),
+    box-shadow var(--v3-duration-base) var(--v3-ease-out);
 }
 @media (max-width: 560px) {
   [data-v3] .v3-btn {
@@ -304,76 +322,91 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--v3-champagne-deep);
-  transform: translateY(101%);
-  transition: transform var(--v3-duration-slow, 380ms) var(--v3-ease-out);
+  background: color-mix(in srgb, var(--v3-champagne) 35%, transparent);
+  opacity: 0;
+  transform: scale(0.94);
+  transition:
+    opacity var(--v3-duration-base) var(--v3-ease-out),
+    transform var(--v3-duration-base) var(--v3-ease-out);
   z-index: -1;
 }
 [data-v3] .v3-btn:hover::before,
 [data-v3] .v3-btn:focus-visible::before {
-  transform: translateY(0);
+  opacity: 1;
+  transform: scale(1);
 }
 
 
 [data-v3] .v3-btn-primary {
-  color: var(--v3-champagne-deep);
+  color: var(--v3-on-ink);
+  background: var(--v3-ink);
+  border-color: var(--v3-ink);
+  box-shadow: 0 18px 38px rgba(37, 48, 43, 0.16);
 }
 [data-v3] .v3-btn-primary:hover,
 [data-v3] .v3-btn-primary:focus-visible {
   color: var(--v3-on-ink);
-  border-color: var(--v3-champagne-deep);
+  border-color: var(--v3-ink);
+  transform: translateY(-1px);
+  box-shadow: 0 22px 42px rgba(37, 48, 43, 0.2);
 }
 
 [data-v3] .v3-btn-secondary {
   color: var(--v3-ink);
+  background: var(--v3-surface-card);
   border-color: var(--v3-border-soft);
 }
 [data-v3] .v3-btn-secondary::before {
-  background: var(--v3-ink);
+  background: color-mix(in srgb, var(--v3-champagne) 22%, transparent);
 }
 [data-v3] .v3-btn-secondary:hover,
 [data-v3] .v3-btn-secondary:focus-visible {
-  color: var(--v3-on-ink);
-  border-color: var(--v3-ink);
+  color: var(--v3-ink);
+  border-color: var(--v3-accent-strong);
+  transform: translateY(-1px);
 }
 
 [data-v3] .v3-btn-ghost {
   color: var(--v3-ink);
+  background: transparent;
+  border-color: var(--v3-border-soft);
 }
 [data-v3] .v3-btn-ghost::before {
-  background: var(--v3-ink);
+  background: color-mix(in srgb, var(--v3-champagne) 18%, transparent);
 }
 [data-v3] .v3-btn-ghost:hover,
 [data-v3] .v3-btn-ghost:focus-visible {
-  color: var(--v3-on-ink);
-  border-color: var(--v3-ink);
+  color: var(--v3-ink);
+  border-color: var(--v3-accent-strong);
 }
 
 /* На тёмных секциях */
 [data-v3] .v3-surface-ink .v3-btn-primary {
-  color: var(--v3-champagne-soft);
-  border-color: var(--v3-champagne-soft);
+  color: var(--v3-ink);
+  background: var(--v3-on-ink);
+  border-color: var(--v3-on-ink);
 }
 [data-v3] .v3-surface-ink .v3-btn-primary::before {
-  background: var(--v3-champagne-soft);
+  background: color-mix(in srgb, var(--v3-champagne) 24%, transparent);
 }
 [data-v3] .v3-surface-ink .v3-btn-primary:hover,
 [data-v3] .v3-surface-ink .v3-btn-primary:focus-visible {
   color: var(--v3-ink);
-  border-color: var(--v3-champagne-soft);
+  border-color: var(--v3-on-ink);
 }
 
 [data-v3] .v3-surface-ink .v3-btn-secondary {
   color: var(--v3-on-ink);
+  background: transparent;
   border-color: var(--v3-border-on-ink);
 }
 [data-v3] .v3-surface-ink .v3-btn-secondary::before {
-  background: var(--v3-on-ink);
+  background: color-mix(in srgb, var(--v3-on-ink) 18%, transparent);
 }
 [data-v3] .v3-surface-ink .v3-btn-secondary:hover,
 [data-v3] .v3-surface-ink .v3-btn-secondary:focus-visible {
-  color: var(--v3-ink);
-  border-color: var(--v3-on-ink);
+  color: var(--v3-on-ink);
+  border-color: var(--v3-champagne-soft);
 }
 
 [data-v3] .v3-surface-ink .v3-btn-ghost {
@@ -419,28 +452,30 @@
   border-color: var(--v3-champagne);
 }
 
-/* ── Reveal — Audit #2: 1200ms → 800ms (deep оставляем для feature) ── */
+/* ── Reveal ────────────────────────────────────────────────────────
+   Контент должен быть доступен сразу. Анимация остаётся только как
+   прогрессивное улучшение, без скрытия блоков до срабатывания JS. */
 [data-v3] [data-v3-reveal] {
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
+  transform: none;
   transition: opacity var(--v3-duration-slow) var(--v3-ease-out),
               transform var(--v3-duration-slow) var(--v3-ease-out);
 }
 [data-v3] [data-v3-reveal].is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* Stagger child reveal — initial state. Motion-script ставит per-item delay. */
 [data-v3] [data-v3-stagger] > * {
-  opacity: 0;
-  transform: translateY(16px);
+  opacity: 1;
+  transform: none;
   transition: opacity var(--v3-duration-slow) var(--v3-ease-out),
               transform var(--v3-duration-slow) var(--v3-ease-out);
 }
 [data-v3] [data-v3-stagger] > .is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* prefers-reduced-motion */
@@ -519,6 +554,21 @@
 [data-v3] .v3-surface-ink .v3-link::after { background: var(--v3-champagne); }
 [data-v3] .v3-surface-ink .v3-link:hover,
 [data-v3] .v3-surface-ink .v3-link:focus-visible { color: var(--v3-champagne); }
+
+/* ── Photo system ────────────────────────────────────────────────
+   Реальные фото и их контейнеры используют единый мягкий радиус. */
+[data-v3] .v3-photo-film {
+  border-radius: var(--v3-radius-xl);
+}
+[data-v3] .v3-photo-film .v3-photo-breathing {
+  border-radius: inherit;
+  overflow: hidden;
+}
+[data-v3] .v3-photo-film img,
+[data-v3] .v3-photo-film picture,
+[data-v3] .v3-photo-film :where(canvas, video) {
+  border-radius: inherit;
+}
 
 /* ── Audit G — focus-visible champagne ring ────────────────────── */
 [data-v3] :focus-visible {

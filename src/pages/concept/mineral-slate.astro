@@ -1,0 +1,829 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import clinicReception from '../../assets/photos/clinic-reception.webp';
+import clinicLobby from '../../assets/photos/clinic-lobby.webp';
+import clinicExterior from '../../assets/photos/clinic-exterior.webp';
+import consultationPhoto from '../../assets/photos/cv-consultation.jpeg';
+
+const directions = [
+  {
+    code: 'A1',
+    title: 'Пластическая хирургия',
+    text: 'Спокойный хирургический premium: меньше декоративности, больше ощущения частной клиники с высоким уровнем дисциплины и вкуса.',
+  },
+  {
+    code: 'A2',
+    title: 'Косметология',
+    text: 'Направление подаётся не как набор процедур, а как точная система ухода и омоложения с врачебной логикой.',
+  },
+  {
+    code: 'A3',
+    title: 'Космецевтика',
+    text: 'Секция выглядит как curated selection: структурно, чисто и без ощущений интернет-магазина.',
+  },
+];
+
+const principles = [
+  'Никаких тяжёлых чёрных плоскостей как доминирующего фона',
+  'Более графичная сетка и спокойная типографика вместо “воздушной романтики”',
+  'Холодная минеральная палитра вместо бежево-шампаньного сценария',
+  'Светлые формы и карточки с точными расстояниями и ровной иерархией',
+];
+---
+
+<BaseLayout
+  title="The Platinental — концепт «Mineral & Slate»"
+  description="Альтернативный концепт главной страницы The Platinental Казань в холодной premium-палитре."
+  canonical="https://kzn.platinental.ru/concept/mineral-slate"
+  darkHero={false}
+>
+  <div class="mineral">
+    <section class="ms-hero" aria-labelledby="ms-hero-heading">
+      <div class="ms-shell ms-hero-grid">
+        <div class="ms-hero-copy" data-reveal>
+          <p class="ms-kicker">Alternative concept · Mineral &amp; Slate</p>
+          <h1 id="ms-hero-heading" class="ms-display ms-hero-title">
+            Холодный премиальный
+            визуал без бежевого
+            настроения
+          </h1>
+          <p class="ms-lead">
+            Этот вариант уходит не только от тёмного старого образа, но и от
+            светло-бежевой эстетики. Вместо неё: жемчужно-серые поверхности,
+            минеральный зелёный акцент, строгая сетка и более собранная типографика.
+          </p>
+          <div class="ms-hero-actions">
+            <a href="#ms-form" class="ms-button ms-button-primary">Обсудить вариант</a>
+            <a href="#ms-system" class="ms-button ms-button-secondary">Смотреть систему</a>
+          </div>
+        </div>
+
+        <div class="ms-hero-media" data-reveal>
+          <div class="ms-hero-frame">
+            <Image
+              src={clinicExterior}
+              alt="Фасад клиники The Platinental в Казани"
+              width={1400}
+              height={1100}
+              class="ms-hero-image"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+          <div class="ms-hero-panel">
+            <span class="ms-panel-label">Visual system</span>
+            <ul class="ms-panel-list">
+              <li>Pearl background</li>
+              <li>Slate typography</li>
+              <li>Sage accent</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ms-system" class="ms-section ms-section-pearl" aria-labelledby="ms-system-heading">
+      <div class="ms-shell">
+        <div class="ms-section-head" data-reveal>
+          <p class="ms-kicker">System</p>
+          <h2 id="ms-system-heading" class="ms-display ms-h2">
+            Другая палитра,<br />
+            другие пропорции,<br />
+            другой ритм
+          </h2>
+          <p class="ms-copy">
+            Здесь акцент не на “воздухе и мягкости”, а на ясности, архитектурности и
+            спокойной дорогой собранности. За счёт этого концепт ощущается новым и
+            менее похожим на типичный aesthetic-лендинг.
+          </p>
+        </div>
+
+        <div class="ms-system-grid" data-reveal>
+          <article class="ms-swatch-card">
+            <span class="ms-swatch" style="--sw:#F3F6F6;"></span>
+            <h3>Pearl</h3>
+            <p>Основной фон страницы и крупных полей.</p>
+          </article>
+          <article class="ms-swatch-card">
+            <span class="ms-swatch" style="--sw:#DCE6E2;"></span>
+            <h3>Mineral</h3>
+            <p>Подложки, сервисные карточки и вспомогательные зоны.</p>
+          </article>
+          <article class="ms-swatch-card">
+            <span class="ms-swatch" style="--sw:#6D857F;"></span>
+            <h3>Sage</h3>
+            <p>Единственный акцент: CTA, active states и служебные маркеры.</p>
+          </article>
+          <article class="ms-swatch-card">
+            <span class="ms-swatch" style="--sw:#1F2A30;"></span>
+            <h3>Slate</h3>
+            <p>Текст, сильные контрасты, структурные линии.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ms-section ms-section-mineral" aria-labelledby="ms-services-heading">
+      <div class="ms-shell">
+        <div class="ms-service-layout">
+          <div class="ms-service-intro" data-reveal>
+            <p class="ms-kicker">Service architecture</p>
+            <h2 id="ms-services-heading" class="ms-display ms-h2">
+              Сетка с чёткой
+              геометрией вместо
+              мягких спредов
+            </h2>
+            <p class="ms-copy">
+              Композиция собрана на ровных колонках и единых вертикальных отступах.
+              Заголовки, тексты и карточки подчинены одной шкале, чтобы страница не
+              разваливалась по ощущениям.
+            </p>
+            <ul class="ms-principles">
+              {principles.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <div class="ms-direction-grid">
+            {directions.map((direction, index) => (
+              <article class="ms-direction-card" data-reveal>
+                <span class="ms-direction-code">{direction.code}</span>
+                <h3 class="ms-direction-title">{direction.title}</h3>
+                <p class="ms-direction-text">{direction.text}</p>
+                <a href={index === 0 ? '/plastika' : index === 1 ? '/kosmetologiya' : '/kosmecevtika'} class="ms-direction-link">
+                  Смотреть раздел
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ms-section ms-section-pearl" aria-labelledby="ms-gallery-heading">
+      <div class="ms-shell">
+        <div class="ms-gallery-head" data-reveal>
+          <p class="ms-kicker">Image direction</p>
+          <h2 id="ms-gallery-heading" class="ms-display ms-h2">
+            Интерьер и свет
+            как главные носители
+            новой эстетики
+          </h2>
+        </div>
+
+        <div class="ms-gallery-grid">
+          <figure class="ms-figure ms-figure-large" data-reveal>
+            <Image
+              src={clinicReception}
+              alt="Зона reception в клинике The Platinental"
+              width={1400}
+              height={1700}
+              class="ms-gallery-image"
+              loading="eager"
+            />
+          </figure>
+          <figure class="ms-figure" data-reveal>
+            <Image
+              src={consultationPhoto}
+              alt="Сцена консультации в клинике"
+              width={1200}
+              height={1600}
+              class="ms-gallery-image"
+              loading="eager"
+            />
+          </figure>
+          <figure class="ms-figure" data-reveal>
+            <Image
+              src={clinicLobby}
+              alt="Светлое интерьерное пространство клиники"
+              width={1200}
+              height={900}
+              class="ms-gallery-image"
+              loading="eager"
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="ms-section ms-section-slate" aria-labelledby="ms-statement-heading">
+      <div class="ms-shell">
+        <div class="ms-statement" data-reveal>
+          <p class="ms-kicker ms-kicker-inverse">Brand line</p>
+          <blockquote id="ms-statement-heading" class="ms-display ms-statement-text">
+            Не драматичный luxury.
+            Не тёплый салонный chic.
+            А собранная частная клиника
+            с эстетическим вкусом.
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="ms-form" class="ms-section ms-section-mineral" aria-labelledby="ms-form-heading">
+      <div class="ms-shell ms-form-grid">
+        <div class="ms-form-copy" data-reveal>
+          <p class="ms-kicker">Final CTA</p>
+          <h2 id="ms-form-heading" class="ms-display ms-h2">
+            Финальный экран
+            тоже остаётся светлым,
+            но более строгим
+          </h2>
+          <p class="ms-copy">
+            Вместо “воздушной” формы здесь более архитектурный контактный блок:
+            ровные поля, сильные линии, собранный ритм и аккуратный акцентный цвет.
+          </p>
+          <div class="ms-contact-box">
+            <p>+7 843 223-66-66</p>
+            <p>ул. Карла Маркса, 48, корп. 1</p>
+            <p>Telegram: platinental_kazan</p>
+          </div>
+        </div>
+
+        <form class="ms-form-card" data-reveal>
+          <label class="ms-field">
+            <span>Имя</span>
+            <input type="text" name="name" placeholder="Как к вам обращаться" autocomplete="name" />
+          </label>
+          <label class="ms-field">
+            <span>Телефон</span>
+            <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" />
+          </label>
+          <label class="ms-field">
+            <span>Что интересует</span>
+            <textarea name="message" rows="5" placeholder="Коротко опишите запрос"></textarea>
+          </label>
+          <label class="ms-consent">
+            <input type="checkbox" name="consent" required />
+            <span>
+              Согласен(а) на обработку персональных данных в соответствии с
+              <a href="/privacy">политикой конфиденциальности</a>.
+            </span>
+          </label>
+          <button type="submit" class="ms-button ms-button-primary ms-submit">
+            Записаться на консультацию
+          </button>
+        </form>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Prata&family=Manrope:wght@400;500;600;700&display=swap&subset=cyrillic');
+
+  .mineral {
+    --ms-pearl: #f3f6f6;
+    --ms-mineral: #dce6e2;
+    --ms-mineral-strong: #c7d4cf;
+    --ms-sage: #6d857f;
+    --ms-sage-deep: #536761;
+    --ms-slate: #1f2a30;
+    --ms-slate-soft: #556169;
+    --ms-white: #fbfcfc;
+    --ms-line: rgba(31, 42, 48, 0.12);
+    --ms-line-strong: rgba(31, 42, 48, 0.18);
+    --ms-shadow: 0 18px 48px rgba(27, 36, 41, 0.08);
+    background: var(--ms-pearl);
+    color: var(--ms-slate);
+  }
+
+  .mineral :global(main) {
+    background: transparent;
+  }
+
+  .mineral :global(.grain) {
+    opacity: 0.02;
+    mix-blend-mode: multiply;
+  }
+
+  .ms-shell {
+    width: min(1240px, calc(100% - 40px));
+    margin: 0 auto;
+  }
+
+  .ms-display {
+    font-family: 'Prata', var(--font-display);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.06;
+  }
+
+  .ms-kicker,
+  .ms-direction-code,
+  .ms-field span,
+  .ms-panel-label {
+    font-family: 'Manrope', var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .ms-kicker {
+    color: var(--ms-sage-deep);
+    margin: 0 0 1rem;
+  }
+
+  .ms-kicker-inverse {
+    color: rgba(255, 255, 255, 0.68);
+  }
+
+  .ms-hero,
+  .ms-section {
+    padding: 96px 0;
+  }
+
+  .ms-hero {
+    padding-top: calc(var(--nav-height) + 64px);
+  }
+
+  .ms-hero-grid,
+  .ms-form-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 48px;
+    align-items: start;
+  }
+
+  .ms-hero-copy {
+    max-width: 640px;
+  }
+
+  .ms-hero-title {
+    font-size: clamp(3.5rem, 5.3vw, 5.5rem);
+    max-width: 10ch;
+    margin: 0;
+  }
+
+  .ms-lead,
+  .ms-copy,
+  .ms-direction-text,
+  .ms-principles li,
+  .ms-contact-box p,
+  .ms-consent {
+    font-family: 'Manrope', var(--font-body);
+    font-size: clamp(1rem, 1.1vw, 1.125rem);
+    line-height: 1.72;
+    color: var(--ms-slate-soft);
+  }
+
+  .ms-lead {
+    max-width: 56ch;
+    margin: 24px 0 0;
+  }
+
+  .ms-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .ms-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 22px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-family: 'Manrope', var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  .ms-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .ms-button-primary {
+    background: var(--ms-sage);
+    color: var(--ms-white);
+  }
+
+  .ms-button-primary:hover {
+    background: var(--ms-sage-deep);
+  }
+
+  .ms-button-secondary {
+    border-color: var(--ms-line-strong);
+    color: var(--ms-slate);
+    background: transparent;
+  }
+
+  .ms-button-secondary:hover {
+    border-color: var(--ms-sage);
+    color: var(--ms-sage-deep);
+  }
+
+  .ms-hero-media {
+    position: relative;
+    padding-top: 24px;
+  }
+
+  .ms-hero-frame {
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: var(--ms-shadow);
+    background: var(--ms-white);
+    border: 1px solid var(--ms-line);
+  }
+
+  .ms-hero-image,
+  .ms-gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ms-hero-image {
+    aspect-ratio: 1 / 1.05;
+  }
+
+  .ms-hero-panel {
+    position: absolute;
+    right: -16px;
+    bottom: -24px;
+    width: min(280px, 72%);
+    padding: 20px;
+    border-radius: 22px;
+    background: rgba(251, 252, 252, 0.92);
+    border: 1px solid rgba(31, 42, 48, 0.14);
+    box-shadow: var(--ms-shadow);
+  }
+
+  .ms-panel-label {
+    color: var(--ms-sage-deep);
+  }
+
+  .ms-panel-list {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    font-family: 'Manrope', var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--ms-slate);
+  }
+
+  .ms-panel-list li {
+    padding-top: 10px;
+    border-top: 1px solid var(--ms-line);
+  }
+
+  .ms-section-pearl {
+    background: var(--ms-pearl);
+  }
+
+  .ms-section-mineral {
+    background: var(--ms-mineral);
+  }
+
+  .ms-section-slate {
+    background: var(--ms-slate);
+  }
+
+  .ms-section-head,
+  .ms-gallery-head {
+    max-width: 760px;
+    margin-bottom: 40px;
+  }
+
+  .ms-h2 {
+    font-size: clamp(2.4rem, 4vw, 4.25rem);
+    max-width: 11ch;
+    margin: 0;
+  }
+
+  .ms-copy {
+    margin: 20px 0 0;
+    max-width: 60ch;
+  }
+
+  .ms-system-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .ms-swatch-card,
+  .ms-direction-card,
+  .ms-form-card {
+    background: rgba(251, 252, 252, 0.7);
+    border: 1px solid var(--ms-line);
+    box-shadow: var(--ms-shadow);
+  }
+
+  .ms-swatch-card {
+    border-radius: 24px;
+    padding: 20px;
+  }
+
+  .ms-swatch {
+    display: block;
+    width: 100%;
+    height: 72px;
+    border-radius: 16px;
+    background: var(--sw);
+    border: 1px solid rgba(31, 42, 48, 0.08);
+    margin-bottom: 18px;
+  }
+
+  .ms-swatch-card h3 {
+    font-family: 'Manrope', var(--font-body);
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ms-slate);
+    margin: 0 0 8px;
+  }
+
+  .ms-swatch-card p {
+    font-family: 'Manrope', var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ms-slate-soft);
+    margin: 0;
+  }
+
+  .ms-service-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 32px;
+    align-items: start;
+  }
+
+  .ms-service-intro {
+    padding-right: 20px;
+  }
+
+  .ms-principles {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+
+  .ms-principles li {
+    position: relative;
+    padding-left: 18px;
+  }
+
+  .ms-principles li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.78rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--ms-sage);
+  }
+
+  .ms-direction-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .ms-direction-card {
+    border-radius: 24px;
+    padding: 24px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ms-direction-code {
+    color: var(--ms-sage-deep);
+  }
+
+  .ms-direction-title {
+    font-family: 'Prata', var(--font-display);
+    font-size: 1.7rem;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    color: var(--ms-slate);
+    margin: 14px 0 12px;
+  }
+
+  .ms-direction-text {
+    margin: 0;
+  }
+
+  .ms-direction-link {
+    margin-top: auto;
+    padding-top: 18px;
+    font-family: 'Manrope', var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ms-sage-deep);
+  }
+
+  .ms-gallery-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 16px;
+  }
+
+  .ms-figure {
+    margin: 0;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--ms-line);
+    box-shadow: var(--ms-shadow);
+    background: var(--ms-white);
+    min-height: 280px;
+  }
+
+  .ms-figure-large {
+    grid-row: span 2;
+    min-height: 640px;
+  }
+
+  .ms-statement {
+    max-width: 900px;
+  }
+
+  .ms-statement-text {
+    font-size: clamp(2.5rem, 4.4vw, 4.75rem);
+    line-height: 1.08;
+    color: var(--ms-white);
+    max-width: 12ch;
+    margin: 0;
+  }
+
+  .ms-contact-box {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--ms-line-strong);
+  }
+
+  .ms-contact-box p {
+    margin: 0 0 10px;
+    color: var(--ms-slate);
+  }
+
+  .ms-form-card {
+    border-radius: 28px;
+    padding: 28px;
+    display: grid;
+    gap: 16px;
+  }
+
+  .ms-field {
+    display: grid;
+    gap: 8px;
+  }
+
+  .ms-field span {
+    color: var(--ms-sage-deep);
+  }
+
+  .ms-field input,
+  .ms-field textarea {
+    width: 100%;
+    min-height: 54px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--ms-line);
+    background: rgba(255, 255, 255, 0.86);
+    font-family: 'Manrope', var(--font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--ms-slate);
+    transition: border-color var(--duration-fast) var(--ease-out),
+      box-shadow var(--duration-fast) var(--ease-out);
+  }
+
+  .ms-field textarea {
+    min-height: 140px;
+    resize: vertical;
+  }
+
+  .ms-field input:focus,
+  .ms-field textarea:focus {
+    outline: none;
+    border-color: rgba(109, 133, 127, 0.56);
+    box-shadow: 0 0 0 4px rgba(109, 133, 127, 0.12);
+  }
+
+  .ms-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .ms-consent input {
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+    flex-shrink: 0;
+    accent-color: var(--ms-sage);
+  }
+
+  .ms-consent a {
+    color: var(--ms-sage-deep);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .ms-submit {
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 1100px) {
+    .ms-system-grid,
+    .ms-direction-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .ms-service-layout,
+    .ms-hero-grid,
+    .ms-form-grid,
+    .ms-gallery-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ms-hero-panel {
+      position: static;
+      width: 100%;
+      margin-top: 16px;
+    }
+
+    .ms-figure-large {
+      grid-row: auto;
+      min-height: 420px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .ms-shell {
+      width: min(100% - 24px, 1240px);
+    }
+
+    .ms-hero,
+    .ms-section {
+      padding: 72px 0;
+    }
+
+    .ms-hero {
+      padding-top: calc(var(--nav-height-mobile) + 40px);
+    }
+
+    .ms-hero-title {
+      font-size: clamp(2.4rem, 10vw, 3.4rem);
+      max-width: none;
+    }
+
+    .ms-h2 {
+      font-size: clamp(2rem, 8vw, 2.8rem);
+      max-width: none;
+    }
+
+    .ms-hero-actions {
+      flex-direction: column;
+    }
+
+    .ms-button {
+      width: 100%;
+    }
+
+    .ms-system-grid,
+    .ms-direction-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ms-swatch-card,
+    .ms-direction-card,
+    .ms-form-card {
+      padding: 20px;
+    }
+
+    .ms-direction-card {
+      min-height: auto;
+    }
+
+    .ms-statement-text {
+      max-width: none;
+    }
+  }
+</style>

@@ -8,6 +8,13 @@ import Footer from '../components/v3/sections/Footer.astro';
 import { doctors } from '../data/doctors';
 
 const allDoctors = doctors;
+const filterOptions = [
+  { id: 'all', label: 'Все специалисты' },
+  { id: 'plastika', label: 'Пластическая хирургия' },
+  { id: 'face', label: 'Лицо' },
+  { id: 'body', label: 'Тело' },
+  { id: 'cosmetology', label: 'Косметология' },
+];
 ---
 
 <V3Layout
@@ -21,7 +28,7 @@ const allDoctors = doctors;
       pageMarkerLabel="Команда"
       eyebrow="THE PLATINENTAL · КАЗАНЬ"
       h1="Врачи клиники The Platinental в Казани"
-      lead="У каждого хирурга клиники — своя школа, свой опыт, свой почерк. На консультации поможем выбрать того, чьи руки подходят именно вашей задаче."
+      lead="У каждого хирурга клиники — своя школа, свой опыт, свой почерк. Подскажем, к какому врачу лучше записаться именно с вашей задачей."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Посмотреть врачей', href: '#doctors-heading' }}
     />
@@ -32,20 +39,34 @@ const allDoctors = doctors;
           <span class="v3-eyebrow">Команда</span>
           <h2 id="doctors-heading" class="v3-h2">Врачи клиники</h2>
         </header>
-        <ul class="doctors-filters" data-v3-reveal>
-          <li><span class="filter-chip">Все специалисты</span></li>
-          <li><span class="filter-chip">Пластическая хирургия</span></li>
-          <li><span class="filter-chip">Лицо</span></li>
-          <li><span class="filter-chip">Тело</span></li>
-          <li><span class="filter-chip">Косметология</span></li>
+        <ul class="doctors-filters" data-v3-reveal aria-label="Фильтр врачей по направлению">
+          {filterOptions.map((option) => (
+            <li>
+              <button
+                type="button"
+                class={`filter-chip${option.id === 'all' ? ' is-active' : ''}`}
+                data-doctor-filter={option.id}
+                aria-pressed={option.id === 'all' ? 'true' : 'false'}
+              >
+                {option.label}
+              </button>
+            </li>
+          ))}
         </ul>
         <ul class="doctors-grid">
           {allDoctors.map((d) => (
-            <li class="doctor-card" data-v3-reveal>
+            <li class="doctor-card" data-v3-reveal data-doctor-card data-tags={d.tags.join(' ')}>
               <a href={`/doctors/${d.slug}`} class="doctor-link">
                 <div class="doctor-photo">
                   {d.photo ? (
-                    <img src={d.photo} alt={d.name} width="400" height="500" loading="lazy" />
+                    <img
+                      src={d.photo}
+                      alt={d.name}
+                      width="400"
+                      height="500"
+                      loading="lazy"
+                      style={`--doctor-photo-scale:${d.photoFrame?.scale ?? 1.12}; --doctor-photo-x:${d.photoFrame?.x ?? '0%'}; --doctor-photo-y:${d.photoFrame?.y ?? '-3%'};`}
+                    />
                   ) : (
                     <div class="doctor-initials" aria-hidden="true">{d.initials}</div>
                   )}
@@ -102,6 +123,36 @@ const allDoctors = doctors;
   <Footer />
 </V3Layout>
 
+<script>
+  function initDoctorFilters() {
+    const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-doctor-filter]'));
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-doctor-card]'));
+    if (buttons.length === 0 || cards.length === 0) return;
+
+    buttons.forEach((button) => {
+      if (button.dataset.bound === '1') return;
+      button.dataset.bound = '1';
+      button.addEventListener('click', () => {
+        const filter = button.dataset.doctorFilter ?? 'all';
+        buttons.forEach((b) => {
+          const active = b === button;
+          b.classList.toggle('is-active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        cards.forEach((card) => {
+          const tags = (card.dataset.tags ?? '').split(' ');
+          const visible = filter === 'all' || tags.includes(filter);
+          card.hidden = !visible;
+        });
+      });
+    });
+  }
+
+  if (document.readyState !== 'loading') initDoctorFilters();
+  else document.addEventListener('DOMContentLoaded', initDoctorFilters);
+  document.addEventListener('astro:page-load', initDoctorFilters);
+</script>
+
 <style>
   .v3-doctors {
     padding-top: var(--v3-gap-deep);
@@ -124,16 +175,33 @@ const allDoctors = doctors;
   .filter-chip {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     padding: 0.5rem 0.875rem;
-    border: 1px solid var(--v3-border-hair);
-    border-radius: 999px;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-pill);
     font-family: var(--v3-font-body);
     font-size: 0.8125rem;
     color: var(--v3-ink-secondary);
-    background: rgba(255, 253, 248, 0.7);
+    background: var(--v3-surface-card);
     letter-spacing: 0.005em;
-    pointer-events: none;
-    user-select: none;
+    cursor: pointer;
+    transition:
+      color var(--v3-duration-fast) var(--v3-ease-out),
+      background var(--v3-duration-fast) var(--v3-ease-out),
+      border-color var(--v3-duration-fast) var(--v3-ease-out),
+      transform var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .filter-chip:hover,
+  .filter-chip:focus-visible,
+  .filter-chip.is-active {
+    color: var(--v3-on-ink);
+    background: var(--v3-ink);
+    border-color: var(--v3-ink);
+    outline: none;
+  }
+  .filter-chip:hover,
+  .filter-chip:focus-visible {
+    transform: translateY(-1px);
   }
   .doctors-grid {
     list-style: none;
@@ -141,19 +209,22 @@ const allDoctors = doctors;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2px;
-    background: var(--v3-border-hair);
+    gap: 1rem;
   }
   .doctors-grid-cosm {
     grid-template-columns: repeat(2, 1fr);
     max-width: 48rem;
   }
   .doctor-card {
-    background: var(--v3-cream);
+    background: var(--v3-surface-card);
     min-width: 0;
+    border: 1px solid var(--v3-border-hair);
+    border-radius: var(--v3-radius-xl);
+    box-shadow: var(--v3-shadow-sm);
   }
+  .doctor-card[hidden] { display: none; }
   .v3-surface-sand .doctor-card {
-    background: var(--v3-sand);
+    background: var(--v3-surface-card);
   }
   .doctor-link {
     display: flex;
@@ -162,21 +233,26 @@ const allDoctors = doctors;
     height: 100%;
     min-width: 0;
     overflow: hidden;
-    transition: background var(--v3-duration-fast) var(--v3-ease-out);
+    border-radius: inherit;
+    transition: background var(--v3-duration-fast) var(--v3-ease-out), transform var(--v3-duration-fast) var(--v3-ease-out);
   }
-  .doctor-link:hover { background: var(--v3-cream-alt); }
+  .doctor-link:hover {
+    background: var(--v3-surface-muted);
+    transform: translateY(-2px);
+  }
   .v3-surface-sand .doctor-link:hover { background: var(--v3-sand-deep); }
 
   .doctor-photo {
     width: clamp(13rem, 21vw, 17.5rem);
     max-width: calc(100% - 3rem);
-    aspect-ratio: 1/1;
+    aspect-ratio: 4/5;
     overflow: hidden;
-    background: var(--v3-sand);
+    background: linear-gradient(180deg, var(--v3-surface-muted), var(--v3-sand));
     position: relative;
-    border-radius: 50%;
+    border-radius: var(--v3-radius-lg);
     margin: 1.5rem auto 0;
     flex: 0 0 auto;
+    border: 1px solid var(--v3-border-soft);
   }
   .doctor-photo img {
     width: 100%;
@@ -184,6 +260,8 @@ const allDoctors = doctors;
     object-fit: cover;
     object-position: center top;
     display: block;
+    transform: translate(var(--doctor-photo-x, 0%), var(--doctor-photo-y, -3%)) scale(var(--doctor-photo-scale, 1.12));
+    transform-origin: center top;
   }
   .doctor-initials {
     width: 100%;
@@ -201,7 +279,7 @@ const allDoctors = doctors;
     padding: 1.25rem 1.5rem 1.75rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.625rem;
     flex: 1;
     min-width: 0;
   }

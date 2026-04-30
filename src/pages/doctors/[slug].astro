@@ -19,14 +19,21 @@ interface Props { doctor: Doctor }
 const { doctor: d } = Astro.props;
 
 const isSurgeon = d.tags.includes('plastika');
+const isCosmetologist = d.tags.includes('cosmetology');
 const consultationPrice = d.priceMain;
 const doctorPriceSheet = doctorPriceSheets.find((sheet) => sheet.doctorSlug === d.slug);
 const hasOnlinePrice = (d.priceSub ?? '').includes('Онлайн');
+const heroTrustItems = [
+  isCosmetologist ? 'Инъекционная косметология' : d.tags.includes('body') ? 'Хирургия тела' : 'Хирургия лица',
+  d.details.specialization[0]?.split(',')[0],
+  hasOnlinePrice ? 'Онлайн-консультация' : undefined,
+  d.details.patent ? 'Патентная работа' : d.details.awards ? 'Профильная экспертиза' : undefined,
+].filter((item): item is string => Boolean(item)).slice(0, 4);
 
 const faqItems = [
   {
     q: `Как записаться ${d.nameBtn}?`,
-    a: 'Позвоните по номеру <a href="tel:+78432236666">+7 843 223-66-66</a>, напишите в WhatsApp или заполните форму на сайте. Администратор подберёт удобное время.',
+    a: 'Позвоните по номеру <a href="tel:+78432236666">+7 843 223-66-66</a>, напишите в <a href="https://t.me/platinental_kazan">Telegram</a>, <a href="https://max.ru">Max</a> или <a href="https://wa.me/78432236666">WhatsApp</a>, либо заполните форму на сайте. Администратор подберёт удобное время.',
     open: true,
   },
   {
@@ -43,7 +50,7 @@ const faqItems = [
   {
     q: 'Можно ли получить онлайн-консультацию?',
     a: hasOnlinePrice
-      ? 'Да, онлайн-консультации доступны. Запишитесь через форму или WhatsApp — укажите, что вам нужен онлайн-формат.'
+      ? 'Да, онлайн-консультации доступны. Запишитесь через форму, Telegram, Max или WhatsApp — укажите, что вам нужен онлайн-формат.'
       : 'Да, онлайн-консультации доступны. Формат и стоимость администратор уточнит при записи.',
   },
 ];
@@ -70,6 +77,13 @@ const faqItems = [
             <em>{d.name}</em>
           </h1>
           <p class="v3-lead doc-lead" set:html={d.short}></p>
+          {heroTrustItems.length > 0 && (
+            <ul class="doc-trust-list" aria-label="Ключевые преимущества врача">
+              {heroTrustItems.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )}
           <div class="doc-price-row">
             <span class="doc-price">{consultationPrice}</span>
             {d.priceSub && <span class="v3-caption doc-price-sub">{d.priceSub}</span>}
@@ -90,6 +104,7 @@ const faqItems = [
               height="600"
               loading="eager"
               class="doc-photo-img"
+              style={`--doctor-photo-scale:${d.photoFrame?.scale ?? 1.08}; --doctor-photo-x:${d.photoFrame?.x ?? '0%'}; --doctor-photo-y:${d.photoFrame?.y ?? '-2%'};`}
             />
           ) : (
             <div class="doc-photo-placeholder" aria-hidden="true">
@@ -127,71 +142,6 @@ const faqItems = [
       </section>
     )}
 
-    <!-- Specialization -->
-    <section class="v3-doc-spec v3-surface-sand" aria-labelledby="spec-heading">
-      <div class="v3-container v3-container-default">
-        <header class="doc-section-header" data-v3-stagger>
-          <span class="v3-eyebrow">Специализация</span>
-          <h2 id="spec-heading" class="v3-h2"><em>Что делает</em></h2>
-        </header>
-        <ul class="spec-list" data-v3-stagger>
-          {d.details.specialization.map((s) => (
-            <li class="spec-item">
-              <span class="spec-dot" aria-hidden="true"></span>
-              <span class="v3-body spec-text">{s}</span>
-            </li>
-          ))}
-        </ul>
-
-        {d.details.patent && (
-          <div class="patent-note" data-v3-reveal>
-            <span class="v3-eyebrow">Патент</span>
-            <p class="v3-body patent-text">{d.details.patent}</p>
-          </div>
-        )}
-
-        {d.details.awards && (
-          <div class="awards-note" data-v3-reveal>
-            <span class="v3-eyebrow">Квалификация</span>
-            <p class="v3-body" set:html={d.details.awards}></p>
-          </div>
-        )}
-
-        {d.profileNote && (
-          <div class="awards-note" data-v3-reveal>
-            <span class="v3-eyebrow">{d.profileNote.label}</span>
-            <p class="v3-body" set:html={d.profileNote.body}></p>
-          </div>
-        )}
-      </div>
-    </section>
-
-    {doctorPriceSheet && doctorPriceSheet.items.length > 0 && (
-      <section class="v3-doc-prices v3-surface-cream" aria-labelledby="doc-prices-heading">
-        <div class="v3-container v3-container-default">
-          <header class="doc-section-header" data-v3-stagger>
-            <span class="v3-eyebrow">Стоимость услуг</span>
-            <h2 id="doc-prices-heading" class="v3-h2"><em>Индивидуальный прайс врача</em></h2>
-          </header>
-          <div class="doc-price-table-wrap" data-v3-reveal>
-            <table class="doc-price-table">
-              <tbody>
-                {doctorPriceSheet.items.map((item) => (
-                  <tr>
-                    <td class="doc-price-service">{item.procedure}</td>
-                    <td class="doc-price-value">{item.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p class="v3-caption doc-price-disclaimer" data-v3-reveal>
-            Цены носят информационный характер. Точную стоимость врач определяет на консультации после осмотра и обсуждения задачи.
-          </p>
-        </div>
-      </section>
-    )}
-
     <!-- Education -->
     <section class="v3-doc-edu v3-surface-cream" aria-labelledby="edu-heading">
       <div class="v3-container v3-container-default">
@@ -225,8 +175,84 @@ const faqItems = [
         {d.details.congresses && (
           <p class="v3-body edu-congresses" data-v3-reveal>{d.details.congresses}</p>
         )}
+
+        <div class="doc-support-grid" data-v3-stagger>
+          {d.profileNote && (
+            <article class="doc-support-card">
+              <span class="v3-eyebrow">{d.profileNote.label}</span>
+              <p class="v3-body" set:html={d.profileNote.body}></p>
+            </article>
+          )}
+
+          {d.details.awards && (
+            <article class="doc-support-card">
+              <span class="v3-eyebrow">Квалификация</span>
+              <p class="v3-body" set:html={d.details.awards}></p>
+            </article>
+          )}
+
+          {d.details.patent && (
+            <article class="doc-support-card">
+              <span class="v3-eyebrow">Патент</span>
+              <p class="v3-body patent-text">{d.details.patent}</p>
+            </article>
+          )}
+        </div>
       </div>
     </section>
+
+    {doctorPriceSheet && doctorPriceSheet.items.length > 0 && !isCosmetologist && (
+      <section class="v3-doc-prices v3-surface-sand" aria-labelledby="doc-prices-heading">
+        <div class="v3-container v3-container-default">
+          <header class="doc-section-header" data-v3-stagger>
+            <span class="v3-eyebrow">Стоимость услуг</span>
+            <h2 id="doc-prices-heading" class="v3-h2"><em>Индивидуальный прайс врача</em></h2>
+          </header>
+          <div class="doc-price-table-wrap" data-v3-reveal>
+            <table class="doc-price-table">
+              <tbody>
+                {doctorPriceSheet.items.map((item) => (
+                  <tr>
+                    <td class="doc-price-service">{item.procedure}</td>
+                    <td class="doc-price-value">{item.price}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="v3-caption doc-price-disclaimer" data-v3-reveal>
+            Цены носят информационный характер. Точную стоимость врач определяет на консультации после осмотра и обсуждения задачи.
+          </p>
+        </div>
+      </section>
+    )}
+
+    {isCosmetologist && (
+      <section class="v3-doc-prices v3-surface-sand" aria-labelledby="doc-prices-heading">
+        <div class="v3-container v3-container-default">
+          <header class="doc-section-header" data-v3-stagger>
+            <span class="v3-eyebrow">Косметология</span>
+            <h2 id="doc-prices-heading" class="v3-h2"><em>Прайс и направления</em></h2>
+          </header>
+          <div class="doc-price-link-card" data-v3-reveal>
+            <div class="doc-price-link-copy">
+              <p class="v3-body">
+                Для косметологии используем общий прайс направления: актуальные цены, инъекционные и аппаратные методики, а также терапевтические процедуры.
+              </p>
+              <ul class="doc-price-link-list">
+                {d.details.specialization.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="doc-price-link-actions">
+              <a href="/kosmetologiya" class="v3-btn v3-btn-primary">Открыть косметологию</a>
+              <a href="/prices" class="v3-link">Смотреть общий прайс</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
 
     {d.documents && d.documents.length > 0 && (
       <section class="v3-doc-docs v3-surface-cream" aria-labelledby="docs-heading">
@@ -277,7 +303,7 @@ const faqItems = [
             {d.gallery.map((src, i) => (
               <li class="gallery-item">
                 <button type="button" class="gallery-btn" data-gallery-open data-index={i} aria-label={`Открыть фото ${i + 1}`}>
-                  <img src={src} alt="" width="400" height="500" loading="lazy" />
+                  <img src={src} alt="" width="400" height="500" loading="eager" decoding="async" />
                 </button>
               </li>
             ))}
@@ -423,6 +449,28 @@ const faqItems = [
   .doc-spec { color: var(--v3-champagne-deep); margin-bottom: var(--v3-gap-eyebrow-h1); }
   .doc-h1 { font-size: clamp(1.75rem, 3.5vw, 3rem); }
   .doc-lead { max-width: 44ch; }
+  .doc-trust-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    max-width: 44rem;
+  }
+  .doc-trust-list li {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-pill);
+    background: var(--v3-surface-card);
+    color: var(--v3-ink-secondary);
+    font-family: var(--v3-font-body);
+    font-size: 0.8125rem;
+    line-height: 1.25;
+  }
   .doc-price-row {
     display: flex;
     flex-direction: column;
@@ -447,20 +495,25 @@ const faqItems = [
   .doc-photo-img {
     width: 100%;
     height: auto;
-    aspect-ratio: 1/1;
+    aspect-ratio: 4/5;
     object-fit: cover;
-    object-position: center;
+    object-position: center top;
     display: block;
     background: var(--v3-sand);
-    border-radius: 50%;
+    border-radius: var(--v3-radius-xl);
+    border: 1px solid var(--v3-border-soft);
+    box-shadow: var(--v3-shadow-md);
+    transform: translate(var(--doctor-photo-x, 0%), var(--doctor-photo-y, -2%)) scale(var(--doctor-photo-scale, 1.08));
+    transform-origin: center top;
   }
   .doc-photo-placeholder {
-    aspect-ratio: 1/1;
-    background: var(--v3-sand);
+    aspect-ratio: 4/5;
+    background: linear-gradient(180deg, var(--v3-surface-card), var(--v3-sand));
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: var(--v3-radius-xl);
+    border: 1px solid var(--v3-border-soft);
   }
   .doc-initials {
     font-family: var(--v3-font-display);
@@ -470,7 +523,6 @@ const faqItems = [
   }
 
   /* Section shared */
-  .v3-doc-spec,
   .v3-doc-edu {
     padding-top: var(--v3-gap-medium);
     padding-bottom: var(--v3-gap-medium);
@@ -486,46 +538,12 @@ const faqItems = [
     margin-bottom: var(--v3-gap-h2-body);
   }
 
-  /* Spec list */
-  .spec-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  .spec-item {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    padding-block: 0.875rem;
-    border-top: 1px solid var(--v3-border-hair);
-  }
-  .spec-item:last-of-type { border-bottom: 1px solid var(--v3-border-hair); }
-  .spec-dot {
-    flex-shrink: 0;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--v3-champagne-deep);
-    margin-top: 0.4em;
-  }
-  .spec-text { margin: 0; }
-
-  .patent-note,
-  .awards-note {
-    margin-top: var(--v3-gap-small);
-    padding: 1.5rem;
-    background: var(--v3-cream);
-    border-left: 3px solid var(--v3-champagne);
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .patent-text { margin: 0; }
   .doc-price-table-wrap {
     overflow-x: auto;
-    border-top: 1px solid var(--v3-border-hair);
+    border: 1px solid var(--v3-border-hair);
+    border-radius: var(--v3-radius-xl);
+    background: var(--v3-surface-card);
+    padding-inline: clamp(1rem, 2vw, 1.5rem);
   }
   .doc-price-table {
     width: 100%;
@@ -556,6 +574,49 @@ const faqItems = [
     color: var(--v3-ink-muted);
     text-transform: none;
     letter-spacing: 0.005em;
+  }
+  .doc-price-link-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(15rem, 0.7fr);
+    gap: clamp(1.25rem, 3vw, 2rem);
+    align-items: start;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid var(--v3-border-hair);
+    border-radius: var(--v3-radius-xl);
+    background: var(--v3-surface-card);
+  }
+  .doc-price-link-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .doc-price-link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .doc-price-link-list li {
+    position: relative;
+    padding-left: 1rem;
+    color: var(--v3-ink-secondary);
+  }
+  .doc-price-link-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.68rem;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 999px;
+    background: var(--v3-accent-strong);
+  }
+  .doc-price-link-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
   }
 
   /* Education timeline */
@@ -603,6 +664,22 @@ const faqItems = [
   }
   .edu-add-year { color: var(--v3-ink-muted); flex-shrink: 0; min-width: 3rem; }
   .edu-congresses { margin-top: var(--v3-gap-small); color: var(--v3-ink-secondary); }
+  .doc-support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    gap: 1rem;
+    margin-top: var(--v3-gap-small);
+  }
+  .doc-support-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    padding: 1.25rem;
+    border: 1px solid var(--v3-border-hair);
+    border-radius: var(--v3-radius-lg);
+    background: var(--v3-surface-muted);
+  }
+  .patent-text { margin: 0; }
 
   /* Works */
   .v3-doc-works {
@@ -622,6 +699,8 @@ const faqItems = [
     aspect-ratio: 4/5;
     overflow: hidden;
     background: var(--v3-cream);
+    border-radius: var(--v3-radius-lg);
+    border: 1px solid var(--v3-border-soft);
   }
   .work-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
   .work-caption { color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0.005em; }
@@ -638,6 +717,7 @@ const faqItems = [
     .doc-hero-grid { grid-template-columns: 1fr; }
     .doc-hero-photo { max-width: 26rem; margin-inline: 0; }
     .works-grid { grid-template-columns: repeat(2, 1fr); }
+    .doc-price-link-card { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     .edu-item { grid-template-columns: 1fr; gap: 0.25rem; }
@@ -707,7 +787,7 @@ const faqItems = [
     background: var(--v3-border-hair);
   }
   .doc-card {
-    background: var(--v3-cream);
+    background: var(--v3-surface-card);
   }
   .doc-card-link {
     display: flex;
@@ -762,8 +842,10 @@ const faqItems = [
   .gallery-btn {
     width: 100%;
     padding: 0;
-    border: 0;
-    background: var(--v3-cream);
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-lg);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
     cursor: pointer;
     display: block;
     overflow: hidden;

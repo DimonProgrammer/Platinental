@@ -1,20 +1,43 @@
 ---
+import { doctors } from '../../../data/doctors';
+
 type NavLink = {
   label: string;
   href?: string;
   children?: { label: string; href: string }[];
 };
 
+const formatDoctorMenuLabel = (fullName: string) => {
+  const parts = fullName.trim().split(/\s+/);
+  const surname = parts[0] ?? fullName;
+  const givenInitial = parts[1]?.[0] ? `${parts[1][0]}.` : '';
+  const patronymicInitial = parts[2]?.[0] ? `${parts[2][0]}.` : '';
+  return `${surname} ${givenInitial}${patronymicInitial}`.trim();
+};
+
+const doctorLinks = [
+  { label: 'Все врачи', href: '/doctors' },
+  ...doctors.map((doctor) => ({
+    label: formatDoctorMenuLabel(doctor.name),
+    href: `/doctors/${doctor.slug}`,
+  })),
+];
+
 const links: NavLink[] = [
   {
     label: 'Услуги',
+    href: '/plastika',
     children: [
       { label: 'Пластика',     href: '/plastika' },
       { label: 'Косметология', href: '/kosmetologiya' },
       { label: 'Космецевтика', href: '/kosmecevtika' },
     ],
   },
-  { label: 'Врачи',     href: '/doctors' },
+  {
+    label: 'Врачи',
+    href: '/doctors',
+    children: doctorLinks,
+  },
   { label: 'Цены',      href: '/prices' },
   { label: 'О клинике', href: '/about' },
   { label: 'Контакты',  href: '/contacts' },
@@ -43,12 +66,19 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
         {links.map((l) => (
           l.children ? (
             <li class="nav-item nav-item-has-children">
-              <button type="button" class="nav-link nav-trigger" aria-haspopup="true" aria-expanded="false">
-                {l.label}
-                <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
+              <div class="nav-link-group">
+                {l.href ? (
+                  <a href={l.href} class="nav-link nav-parent-link">{l.label}</a>
+                ) : (
+                  <span class="nav-link nav-link-static">{l.label}</span>
+                )}
+                <button type="button" class="nav-trigger" aria-label={`Открыть список: ${l.label}`} aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">{l.label}</span>
+                  <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
               <ul class="nav-submenu" role="menu">
                 {l.children.map((c) => (
                   <li role="none"><a href={c.href} class="nav-sublink" role="menuitem">{c.label}</a></li>
@@ -162,7 +192,7 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
     left: 0;
     right: 0;
     z-index: var(--v3-z-nav);
-    background: rgba(255, 254, 242, 0.92);
+    background: rgba(246, 248, 243, 0.92);
     backdrop-filter: saturate(180%) blur(16px);
     -webkit-backdrop-filter: saturate(180%) blur(16px);
     border-bottom: 1px solid transparent;
@@ -216,6 +246,12 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
     padding: 0;
   }
   .nav-item { position: relative; }
+  .nav-link-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    position: relative;
+  }
   .nav-link {
     display: inline-flex;
     align-items: center;
@@ -235,20 +271,56 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
     border-right: none;
     cursor: pointer;
   }
+  .nav-link-static {
+    cursor: default;
+  }
   .nav-link:hover,
   .nav-link:focus-visible {
     color: var(--v3-champagne-deep);
     border-bottom-color: var(--v3-champagne-deep);
     outline: none;
   }
+  .nav-parent-link {
+    padding-right: 0.125rem;
+  }
   .nav-trigger {
-    font-family: var(--v3-font-body);
-    font-size: 0.9375rem;
-    font-weight: inherit;
-    line-height: inherit;
-    letter-spacing: 0.01em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: var(--v3-radius-pill);
+    background: transparent;
+    color: var(--v3-ink-secondary);
+    cursor: pointer;
+    transition:
+      color var(--v3-duration-fast) var(--v3-ease-out),
+      background var(--v3-duration-fast) var(--v3-ease-out),
+      border-color var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .nav-trigger:hover,
+  .nav-trigger:focus-visible,
+  .nav-item-has-children.is-open .nav-trigger {
+    color: var(--v3-ink);
+    background: var(--v3-surface-card);
+    border-color: var(--v3-border-soft);
+    outline: none;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
   .nav-chevron {
+    pointer-events: none;
     transition: transform var(--v3-duration-fast) var(--v3-ease-out);
     margin-bottom: 1px;
   }
@@ -265,10 +337,11 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
     list-style: none;
     margin: 0;
     padding: 0.5rem 0;
-    min-width: 12rem;
-    background: var(--v3-cream);
+    min-width: 15rem;
+    background: var(--v3-surface-card);
     border: 1px solid var(--v3-border-hair);
-    box-shadow: 0 12px 32px -16px rgba(10, 10, 10, 0.18);
+    border-radius: var(--v3-radius-lg);
+    box-shadow: var(--v3-shadow-md);
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--v3-duration-fast) var(--v3-ease-out),
@@ -548,8 +621,7 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
     transition: max-height 0.34s var(--v3-ease-out);
   }
   .overlay-group.is-open .overlay-sublinks {
-    /* Достаточно для 3-х пунктов; grid не используем, чтобы коллапс сработал */
-    max-height: 18rem;
+    max-height: 40rem;
   }
   .overlay-sublinks li {
     display: block;
@@ -758,13 +830,38 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
   });
 
   // Dropdown — keyboard support (click toggle for trigger button)
+  const closeDesktopMenus = (except?: HTMLElement) => {
+    document.querySelectorAll<HTMLElement>('.nav-item-has-children.is-open').forEach((el) => {
+      if (except && el === except) return;
+      el.classList.remove('is-open');
+      el.querySelector<HTMLButtonElement>('.nav-trigger')?.setAttribute('aria-expanded', 'false');
+    });
+  };
+
   document.querySelectorAll<HTMLElement>('.nav-item-has-children').forEach((item) => {
     const trigger = item.querySelector<HTMLButtonElement>('.nav-trigger');
     if (!trigger) return;
-    trigger.addEventListener('click', () => {
-      const open = item.classList.toggle('is-open');
+    const close = () => {
+      item.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const isOpen = item.classList.contains('is-open');
+      closeDesktopMenus(item);
+      const open = isOpen ? false : item.classList.toggle('is-open');
       trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+    item.addEventListener('mouseleave', close);
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Node)) return;
+    const insideNavMenu = event.target instanceof Element
+      ? Boolean(event.target.closest('.nav-item-has-children'))
+      : false;
+    if (!insideNavMenu) closeDesktopMenus();
   });
 
   // Меню всегда видимо (фиксированное по скроллу). Только обновляем
