@@ -1,6 +1,11 @@
 ---
 import SectionHeader from '../primitives/SectionHeader.astro';
 
+const mapLat = '55.795720635738';
+const mapLon = '49.128799438477';
+const mapAddress = 'Казань, ул. Карла Маркса, 48, корп. 1';
+const mapWidgetSrc = `https://yandex.ru/map-widget/v1/?ll=${mapLon}%2C${mapLat}&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgozODkyNjQyNzkxEknQoNC-0YHRgdC40Y8sINCa0LDQt9Cw0L3RjCwg0YPQu9C40YbQsCDQmtCw0YDQutC70LAg0JzQsNGA0LrRgdCwLCA0OCDQutC-0YDQv9GD0YEgMSIKDbULVkIVwe1C&pt=${mapLon}%2C${mapLat}%2Cpm2rdm&z=17`;
+
 const items = [
   {
     label: 'Адрес',
@@ -36,11 +41,26 @@ const items = [
         ))}
       </dl>
 
-      <div class="contacts__map" data-reveal aria-hidden="true">
-        <div class="contacts__map-inner">
+      <div class="contacts__map" data-reveal aria-label="Карта расположения клиники">
+        <div class="contacts__map-placeholder" aria-hidden="true">
           <span class="contacts__map-label">Яндекс.Карта</span>
-          <span class="contacts__map-coords">55.7887 N · 49.1221 E</span>
+          <span class="contacts__map-point"></span>
         </div>
+        <iframe
+          title="Карта The Platinental Казань"
+          class="contacts__map-iframe"
+          data-map-src={mapWidgetSrc}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+        <a
+          href={`https://yandex.ru/maps/?ll=${mapLon}%2C${mapLat}&mode=search&pt=${mapLon},${mapLat}&text=${encodeURIComponent(mapAddress)}&z=17`}
+          target="_blank"
+          rel="noopener"
+          class="contacts__map-link"
+        >
+          Открыть карту →
+        </a>
       </div>
     </div>
 
@@ -147,32 +167,28 @@ const items = [
   .contacts__map {
     aspect-ratio: 16 / 10;
     border-radius: var(--radius-md);
-    background: linear-gradient(160deg, var(--color-sand-200) 0%, var(--color-cream-100) 100%);
     position: relative;
     overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    background: var(--color-cream-100);
+  }
+
+  .contacts__map-placeholder {
+    position: relative;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .contacts__map-inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: var(--space-2);
-  }
-
-  .contacts__map::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%230A0A0A' stroke-opacity='0.08' fill='none'%3E%3Cpath d='M0 70h400M0 150h400M0 210h400M80 0v260M180 0v260M280 0v260M340 0v260'/%3E%3Ccircle cx='230' cy='150' r='8' fill='%23C4A882' stroke='none'/%3E%3Ccircle cx='230' cy='150' r='16' stroke-opacity='0.3' stroke='%23C4A882'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: cover;
-    opacity: 0.7;
+    background:
+      linear-gradient(rgba(10,10,10,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10,10,10,0.05) 1px, transparent 1px),
+      linear-gradient(160deg, var(--color-sand-200) 0%, var(--color-cream-100) 100%);
+    background-size: 2.25rem 2.25rem, 2.25rem 2.25rem, auto;
+    transition: opacity var(--duration-normal) var(--ease-out);
   }
 
   .contacts__map-label {
@@ -187,4 +203,64 @@ const items = [
     text-transform: uppercase;
     color: var(--text-muted);
   }
+  .contacts__map-point {
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 999px;
+    background: var(--color-champagne-500, #C4A882);
+    box-shadow: 0 0 0 0.75rem rgba(196,168,130,0.18);
+  }
+  .contacts__map-iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-out);
+  }
+  .contacts__map.is-ready .contacts__map-iframe { opacity: 1; }
+  .contacts__map.is-ready .contacts__map-placeholder { opacity: 0; pointer-events: none; }
+  .contacts__map-link {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    z-index: 2;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 253, 248, 0.92);
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: var(--text-caption);
+    letter-spacing: 0.04em;
+  }
 </style>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('.contacts__map');
+    const iframe = root?.querySelector('.contacts__map-iframe');
+    if (!root || !iframe || !(iframe instanceof HTMLIFrameElement)) return;
+
+    const loadMap = () => {
+      if (iframe.src) return;
+      const src = iframe.dataset.mapSrc;
+      if (!src) return;
+      iframe.src = src;
+      iframe.addEventListener('load', () => root.classList.add('is-ready'), { once: true });
+    };
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          loadMap();
+          io.disconnect();
+        }
+      }, { rootMargin: '240px 0px' });
+      io.observe(root);
+    } else {
+      loadMap();
+    }
+  })();
+</script>

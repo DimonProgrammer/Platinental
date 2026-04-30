@@ -1,4 +1,10 @@
 ---
+const mapLat = '55.795720635738';
+const mapLon = '49.128799438477';
+const mapAddress = 'Казань, ул. Карла Маркса, 48, корп. 1';
+const mapWidgetSrc = `https://yandex.ru/map-widget/v1/?ll=${mapLon}%2C${mapLat}&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgozODkyNjQyNzkxEknQoNC-0YHRgdC40Y8sINCa0LDQt9Cw0L3RjCwg0YPQu9C40YbQsCDQmtCw0YDQutC70LAg0JzQsNGA0LrRgdCwLCA0OCDQutC-0YDQv9GD0YEgMSIKDbULVkIVwe1C&pt=${mapLon}%2C${mapLat}%2Cpm2rdm&z=17`;
+const mapRouteHref = `https://yandex.ru/maps/?ll=${mapLon}%2C${mapLat}&mode=search&pt=${mapLon},${mapLat}&text=${encodeURIComponent(mapAddress)}&z=17`;
+
 const fields = [
   { label: 'Адрес', value: 'ул. Карла Маркса, 48, корп. 1<br />Казань, 420015' },
   { label: 'Телефоны', value: '<a href="tel:+78432236666" class="v3-link">+7 (843) 223-66-66</a>' },
@@ -31,25 +37,22 @@ const fields = [
     </div>
 
     <div class="contacts-map" data-v3-reveal aria-label="Карта расположения клиники">
-      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(26,31,42,0.06)" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="400" height="500" fill="var(--v3-sand)"/>
-        <rect width="400" height="500" fill="url(#grid)"/>
-        <line x1="0" y1="220" x2="400" y2="220" stroke="rgba(26,31,42,0.2)" stroke-width="1.5"/>
-        <line x1="0" y1="280" x2="400" y2="280" stroke="rgba(26,31,42,0.1)" stroke-width="1"/>
-        <line x1="180" y1="0" x2="180" y2="500" stroke="rgba(26,31,42,0.15)" stroke-width="1"/>
-        <line x1="240" y1="0" x2="240" y2="500" stroke="rgba(26,31,42,0.08)" stroke-width="1"/>
-        <circle cx="200" cy="250" r="32" fill="rgba(196,168,130,0.18)"/>
-        <circle cx="200" cy="250" r="8" fill="var(--v3-champagne-deep)"/>
-        <text x="216" y="254" font-family="var(--v3-font-body)" font-size="11" letter-spacing="0.16em" fill="var(--v3-ink)" font-weight="500">PLATINENTAL</text>
-      </svg>
-      <p class="map-coords v3-caption">55.7887 N · 49.1221 E</p>
+      <div class="contacts-map-frame">
+        <div class="map-placeholder" aria-hidden="true">
+          <span class="map-placeholder-label v3-eyebrow">Яндекс.Карта</span>
+          <span class="map-placeholder-point"></span>
+        </div>
+        <iframe
+          title="Карта The Platinental Казань"
+          class="map-embed"
+          data-map-src={mapWidgetSrc}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+      <p class="map-coords v3-caption">55.7957 N · 49.1288 E</p>
       <a
-        href="https://yandex.ru/maps/?rtext=~55.788700,49.122100&rtt=auto"
+        href={mapRouteHref}
         target="_blank"
         rel="noopener"
         class="map-route v3-btn v3-btn-ghost"
@@ -109,12 +112,62 @@ const fields = [
     position: relative;
     overflow: hidden;
   }
-  .contacts-map svg { width: 100%; height: 100%; display: block; }
+  .contacts-map-frame {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--v3-border-hair);
+    background: var(--v3-sand);
+  }
+  .map-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.75rem;
+    background:
+      linear-gradient(rgba(26,31,42,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,31,42,0.05) 1px, transparent 1px),
+      var(--v3-sand);
+    background-size: 2.25rem 2.25rem, 2.25rem 2.25rem, auto;
+    transition: opacity 240ms var(--v3-ease-out);
+  }
+  .map-placeholder-label {
+    color: var(--v3-ink-muted);
+  }
+  .map-placeholder-point {
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 999px;
+    background: var(--v3-champagne-deep);
+    box-shadow: 0 0 0 0.75rem rgba(196, 168, 130, 0.18);
+  }
+  .map-embed {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    opacity: 0;
+    transition: opacity 240ms var(--v3-ease-out);
+  }
+  .contacts-map.is-ready .map-embed {
+    opacity: 1;
+  }
+  .contacts-map.is-ready .map-placeholder {
+    opacity: 0;
+    pointer-events: none;
+  }
   .map-coords {
     position: absolute;
     bottom: 3.5rem;
     left: 1rem;
     color: var(--v3-ink-muted);
+    z-index: 2;
+    background: rgba(255, 254, 242, 0.84);
+    padding: 0.1875rem 0.375rem;
   }
   .map-route {
     position: absolute;
@@ -126,6 +179,7 @@ const fields = [
     min-height: 0;
     text-align: center;
     background: var(--v3-cream);
+    z-index: 2;
   }
 
   @media (max-width: 1024px) {
@@ -148,3 +202,31 @@ const fields = [
     }
   }
 </style>
+
+<script is:inline>
+  (() => {
+    const mapRoot = document.querySelector('.contacts-map');
+    const frame = mapRoot?.querySelector('.map-embed');
+    if (!mapRoot || !frame || !(frame instanceof HTMLIFrameElement)) return;
+
+    const loadMap = () => {
+      if (frame.src) return;
+      const src = frame.dataset.mapSrc;
+      if (!src) return;
+      frame.src = src;
+      frame.addEventListener('load', () => mapRoot.classList.add('is-ready'), { once: true });
+    };
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          loadMap();
+          io.disconnect();
+        }
+      }, { rootMargin: '240px 0px' });
+      io.observe(mapRoot);
+    } else {
+      loadMap();
+    }
+  })();
+</script>
