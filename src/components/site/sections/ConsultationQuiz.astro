@@ -1,0 +1,675 @@
+---
+const whatsappBase = 'https://wa.me/78432236666';
+---
+
+<section class="v3-quiz v3-surface-cream" id="consultation-quiz" aria-labelledby="quiz-heading">
+  <div class="v3-container v3-container-wide quiz-layout">
+    <div class="quiz-copy" data-v3-stagger>
+      <span class="v3-eyebrow">Quiz + мини-чек-лист</span>
+      <h2 id="quiz-heading" class="v3-h2 quiz-heading">
+        <em>Навигатор консультации за 3 минуты</em>
+      </h2>
+      <p class="v3-lead quiz-lead">
+        Не просим сразу выбирать операцию или процедуру. Помогаем спокойно собрать запрос:
+        какая зона беспокоит, какие сроки важны и что спросить у врача на очной консультации.
+      </p>
+
+      <div class="quiz-principles" aria-label="Что даст quiz" data-v3-stagger>
+        <div class="quiz-principle">
+          <span class="quiz-principle-mark" aria-hidden="true">?</span>
+          <span>01</span>
+          <p>Вы отделите эстетический запрос от названий процедур.</p>
+        </div>
+        <div class="quiz-principle">
+          <span class="quiz-principle-mark" aria-hidden="true">✓</span>
+          <span>02</span>
+          <p>Получите короткий чек-лист подготовки к визиту.</p>
+        </div>
+        <div class="quiz-principle">
+          <span class="quiz-principle-mark" aria-hidden="true">→</span>
+          <span>03</span>
+          <p>Администратор увидит контекст и быстрее подберёт формат консультации.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-shell" data-consultation-quiz data-v3-reveal>
+      <div class="quiz-step" data-quiz-step>
+        <div class="quiz-topline">
+          <span class="v3-caption" data-quiz-count>Вопрос 1 из 5</span>
+          <span class="v3-caption" data-quiz-percent>20%</span>
+        </div>
+        <div class="quiz-progress" aria-hidden="true">
+          <span data-quiz-progress></span>
+        </div>
+
+        <div class="quiz-question">
+          <h3 class="v3-h3" data-quiz-question></h3>
+          <p class="v3-body" data-quiz-helper></p>
+        </div>
+
+        <div class="quiz-options" data-quiz-options></div>
+
+        <aside class="quiz-learning" aria-label="Полезная подсказка">
+          <span class="v3-eyebrow">Полезно знать</span>
+          <p class="v3-body" data-quiz-lesson></p>
+          <ul data-quiz-checklist></ul>
+        </aside>
+
+        <div class="quiz-controls">
+          <button type="button" class="quiz-nav quiz-nav-secondary" data-quiz-back disabled>
+            Назад
+          </button>
+          <button type="button" class="v3-btn v3-btn-primary" data-quiz-next disabled>
+            Далее <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="quiz-result" data-quiz-result hidden>
+        <span class="v3-eyebrow">Предварительный маршрут</span>
+        <h3 class="v3-h3 quiz-result-title">
+          Ваш чек-лист для консультации готов
+        </h3>
+        <p class="v3-body" data-quiz-result-lead></p>
+        <ul class="quiz-result-list" data-quiz-result-list></ul>
+
+        <div class="quiz-result-actions">
+          <button type="button" class="v3-btn v3-btn-primary" data-quiz-booking>
+            Передать ответы администратору <span aria-hidden="true">→</span>
+          </button>
+          <a href={whatsappBase} class="v3-link quiz-whatsapp" data-quiz-whatsapp target="_blank" rel="noopener noreferrer">
+            Отправить в WhatsApp
+          </a>
+        </div>
+
+        <p class="v3-caption quiz-disclaimer">
+          Quiz не ставит диагноз и не заменяет консультацию врача. Итоговые рекомендации возможны только после осмотра.
+        </p>
+
+        <button type="button" class="quiz-restart" data-quiz-restart>
+          Пройти ещё раз
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const quizWhatsappBase = 'https://wa.me/78432236666';
+
+  type QuizOption = {
+    label: string;
+    value: string;
+  };
+
+  type QuizStep = {
+    question: string;
+    helper: string;
+    lesson: string;
+    checklist: string[];
+    options: QuizOption[];
+  };
+
+  const quizSteps: QuizStep[] = [
+    {
+      question: 'С чего начался запрос?',
+      helper: 'Выберите не процедуру, а область, из-за которой хочется разобраться.',
+      lesson: 'На первой консультации важнее описать, что именно изменилось в восприятии себя. Название процедуры врач подберёт после осмотра.',
+      checklist: ['Отметьте зону, которая беспокоит чаще всего.', 'Не сравнивайте себя с референсом: лучше показать динамику своих фото.'],
+      options: [
+        { label: 'Лицо, веки, овал или шея', value: 'face' },
+        { label: 'Грудь, живот или контуры тела', value: 'body' },
+        { label: 'Кожа, качество, тонус', value: 'skin' },
+        { label: 'Пока не понимаю, нужен взгляд врача', value: 'unknown' },
+      ],
+    },
+    {
+      question: 'Насколько запрос уже сформулирован?',
+      helper: 'Это поможет понять, нужна ли точечная консультация или обзор возможностей.',
+      lesson: 'Хороший запрос звучит не как “хочу такую процедуру”, а как “хочу понять, почему меня не устраивает зона и какие есть варианты”.',
+      checklist: ['Подготовьте 2-3 своих фото в спокойном свете.', 'Запишите, что хочется сохранить неизменным.'],
+      options: [
+        { label: 'Есть конкретная зона и вопросы', value: 'specific' },
+        { label: 'Есть референсы, но нет уверенности', value: 'references' },
+        { label: 'Хочу сравнить несколько вариантов', value: 'compare' },
+        { label: 'Нужна вторая точка зрения', value: 'second-opinion' },
+      ],
+    },
+    {
+      question: 'Есть ли важные сроки?',
+      helper: 'Сроки влияют на маршрут, восстановление и очередность этапов.',
+      lesson: 'Не все эстетические задачи стоит привязывать к событию. Иногда безопаснее спланировать этапы и оставить запас на восстановление.',
+      checklist: ['Сообщите врачу о поездках, событиях и рабочем графике.', 'Уточните, какой срок восстановления для вас неприемлем.'],
+      options: [
+        { label: 'Хочу успеть к событию', value: 'event' },
+        { label: 'Готов(а) планировать спокойно', value: 'calm' },
+        { label: 'Нужен вариант без долгого восстановления', value: 'low-downtime' },
+        { label: 'Пока сроков нет', value: 'no-deadline' },
+      ],
+    },
+    {
+      question: 'Какой формат решения вам ближе?',
+      helper: 'Ответ не фиксирует выбор. Он помогает врачу объяснить варианты понятнее.',
+      lesson: 'Иногда лучший маршрут начинается с косметологии, иногда с хирургии, а иногда с отказа от лишнего вмешательства.',
+      checklist: ['Не скрывайте прошлые процедуры и операции.', 'Скажите, готовы ли вы к этапному плану.'],
+      options: [
+        { label: 'Сначала хочу мягкий косметологический путь', value: 'cosmetology-first' },
+        { label: 'Рассматриваю хирургическое решение', value: 'surgery' },
+        { label: 'Хочу сравнить хирургию и косметологию', value: 'compare-format' },
+        { label: 'Не знаю, что мне подходит', value: 'format-unknown' },
+      ],
+    },
+    {
+      question: 'Как вы хотите описать желаемый результат?',
+      helper: 'Так врачу проще отличить натуральную коррекцию от заметного изменения.',
+      lesson: 'Результат полезно описывать словами про ощущение: свежее, мягче, собраннее, естественнее. Врач переведёт это в медицинский план.',
+      checklist: ['Сформулируйте “что должно остаться моим”.', 'Отдельно отметьте страхи: заметность, боль, восстановление, стоимость.'],
+      options: [
+        { label: 'Натурально, чтобы никто не понял', value: 'natural' },
+        { label: 'Заметная, но гармоничная коррекция', value: 'visible' },
+        { label: 'Хочу убрать возрастные изменения', value: 'age' },
+        { label: 'Хочу восстановить форму после изменений', value: 'restore' },
+      ],
+    },
+  ];
+
+  function initConsultationQuiz() {
+    const root = document.querySelector<HTMLElement>('[data-consultation-quiz]');
+    if (!root || root.dataset.quizBound === '1') return;
+    root.dataset.quizBound = '1';
+
+    const stepView = root.querySelector<HTMLElement>('[data-quiz-step]');
+    const resultView = root.querySelector<HTMLElement>('[data-quiz-result]');
+    const countEl = root.querySelector<HTMLElement>('[data-quiz-count]');
+    const percentEl = root.querySelector<HTMLElement>('[data-quiz-percent]');
+    const progressEl = root.querySelector<HTMLElement>('[data-quiz-progress]');
+    const questionEl = root.querySelector<HTMLElement>('[data-quiz-question]');
+    const helperEl = root.querySelector<HTMLElement>('[data-quiz-helper]');
+    const optionsEl = root.querySelector<HTMLElement>('[data-quiz-options]');
+    const lessonEl = root.querySelector<HTMLElement>('[data-quiz-lesson]');
+    const checklistEl = root.querySelector<HTMLElement>('[data-quiz-checklist]');
+    const backBtn = root.querySelector<HTMLButtonElement>('[data-quiz-back]');
+    const nextBtn = root.querySelector<HTMLButtonElement>('[data-quiz-next]');
+    const restartBtn = root.querySelector<HTMLButtonElement>('[data-quiz-restart]');
+    const bookingBtn = root.querySelector<HTMLButtonElement>('[data-quiz-booking]');
+    const whatsappLink = root.querySelector<HTMLAnchorElement>('[data-quiz-whatsapp]');
+    const resultLead = root.querySelector<HTMLElement>('[data-quiz-result-lead]');
+    const resultList = root.querySelector<HTMLElement>('[data-quiz-result-list]');
+
+    let current = 0;
+    const answers: Array<QuizOption | null> = Array(quizSteps.length).fill(null);
+    let resultMessage = '';
+
+    const scrollToQuiz = (target: HTMLElement | null = root) => {
+      if (window.innerWidth > 760) return;
+      window.requestAnimationFrame(() => {
+        target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    };
+
+    const render = () => {
+      const step = quizSteps[current];
+      const percent = Math.round(((current + 1) / quizSteps.length) * 100);
+
+      if (countEl) countEl.textContent = `Вопрос ${current + 1} из ${quizSteps.length}`;
+      if (percentEl) percentEl.textContent = `${percent}%`;
+      if (progressEl) progressEl.style.width = `${percent}%`;
+      if (questionEl) questionEl.textContent = step.question;
+      if (helperEl) helperEl.textContent = step.helper;
+      if (lessonEl) lessonEl.textContent = step.lesson;
+
+      if (checklistEl) {
+        checklistEl.textContent = '';
+        step.checklist.forEach((item) => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          checklistEl.append(li);
+        });
+      }
+
+      if (optionsEl) {
+        optionsEl.textContent = '';
+        step.options.forEach((option) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'quiz-option';
+          button.textContent = option.label;
+          button.dataset.value = option.value;
+          button.setAttribute('aria-pressed', answers[current]?.value === option.value ? 'true' : 'false');
+          button.addEventListener('click', () => {
+            answers[current] = option;
+            optionsEl.querySelectorAll<HTMLButtonElement>('.quiz-option').forEach((b) => {
+              b.setAttribute('aria-pressed', b.dataset.value === option.value ? 'true' : 'false');
+            });
+            if (nextBtn) nextBtn.disabled = false;
+          });
+          optionsEl.append(button);
+        });
+      }
+
+      if (backBtn) backBtn.disabled = current === 0;
+      if (nextBtn) {
+        nextBtn.disabled = !answers[current];
+        nextBtn.innerHTML = current === quizSteps.length - 1
+          ? 'Собрать чек-лист <span aria-hidden="true">→</span>'
+          : 'Далее <span aria-hidden="true">→</span>';
+      }
+    };
+
+    const buildResult = () => {
+      const selected = answers.filter(Boolean) as QuizOption[];
+      const values = selected.map((answer) => answer.value);
+      const isSurgery = values.includes('surgery') || values.includes('body');
+      const isSkin = values.includes('skin') || values.includes('cosmetology-first');
+      const isUnclear = values.includes('unknown') || values.includes('format-unknown');
+
+      const route = isUnclear
+        ? 'Начните с обзорной консультации: врач поможет отделить эстетический запрос от лишних процедур.'
+        : isSurgery
+          ? 'Вам подойдёт консультация хирурга с обсуждением сроков, восстановления и альтернатив.'
+          : isSkin
+            ? 'Логично начать с косметологического осмотра и плана по качеству кожи.'
+            : 'Вам подойдёт консультация, где врач сравнит несколько спокойных маршрутов.';
+
+      const list = [
+        'Возьмите 2-3 свои фотографии в нейтральном свете.',
+        'Запишите сроки, события и ограничения по восстановлению.',
+        'Отдельно сформулируйте, что хочется сохранить естественным.',
+      ];
+
+      resultMessage = [
+        'Quiz: Навигатор консультации',
+        ...quizSteps.map((step, index) => `${index + 1}. ${step.question} — ${answers[index]?.label ?? 'не выбрано'}`),
+        '',
+        route,
+      ].join('\n');
+
+      if (resultLead) resultLead.textContent = route;
+      if (resultList) {
+        resultList.textContent = '';
+        list.forEach((item) => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          resultList.append(li);
+        });
+      }
+      if (whatsappLink) {
+        whatsappLink.href = `${quizWhatsappBase}?text=${encodeURIComponent(resultMessage)}`;
+      }
+
+      if (stepView) stepView.hidden = true;
+      if (resultView) resultView.hidden = false;
+      scrollToQuiz(resultView);
+    };
+
+    nextBtn?.addEventListener('click', () => {
+      if (!answers[current]) return;
+      if (current === quizSteps.length - 1) {
+        buildResult();
+        return;
+      }
+      current += 1;
+      render();
+      scrollToQuiz(stepView);
+    });
+
+    backBtn?.addEventListener('click', () => {
+      if (current === 0) return;
+      current -= 1;
+      render();
+      scrollToQuiz(stepView);
+    });
+
+    restartBtn?.addEventListener('click', () => {
+      current = 0;
+      answers.fill(null);
+      if (stepView) stepView.hidden = false;
+      if (resultView) resultView.hidden = true;
+      render();
+      scrollToQuiz(stepView);
+    });
+
+    bookingBtn?.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('open-booking', {
+        detail: {
+          preset: 'Quiz: навигатор консультации',
+          message: resultMessage,
+        },
+      }));
+    });
+
+    render();
+  }
+
+  if (document.readyState !== 'loading') initConsultationQuiz();
+  else document.addEventListener('DOMContentLoaded', initConsultationQuiz);
+  document.addEventListener('astro:page-load', initConsultationQuiz);
+</script>
+
+<style>
+  .v3-quiz {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-deep);
+  }
+
+  .quiz-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(21rem, 1.14fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  .quiz-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h1-lead);
+    position: sticky;
+    top: calc(var(--v3-nav-h, 4rem) + 2rem);
+  }
+
+  .quiz-heading {
+    max-width: 12ch;
+  }
+
+  .quiz-lead {
+    max-width: 42ch;
+  }
+
+  .quiz-principles {
+    display: grid;
+    gap: 0;
+    margin-top: 1rem;
+    border-top: 1px solid var(--v3-border-hair);
+  }
+
+  .quiz-principle {
+    display: grid;
+    grid-template-columns: 1.75rem 2.25rem minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--v3-border-hair);
+  }
+
+  .quiz-principle > span:not(.quiz-principle-mark) {
+    font-size: var(--v3-text-caption);
+    letter-spacing: var(--v3-tracking-eyebrow);
+    color: var(--v3-champagne-deep);
+  }
+
+  .quiz-principle-mark {
+    display: inline-grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: 50%;
+    background: var(--v3-surface-card);
+    font-family: var(--v3-font-body);
+    font-size: 0.85rem;
+    line-height: 1;
+    color: var(--v3-champagne-deep);
+  }
+
+  .quiz-principle p {
+    margin: 0;
+    color: var(--v3-ink-secondary);
+    line-height: var(--v3-leading-body);
+  }
+
+  .quiz-shell {
+    min-width: 0;
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-xl);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+  }
+
+  .quiz-step,
+  .quiz-result {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    scroll-margin-top: calc(var(--v3-nav-h, 4rem) + 1rem);
+  }
+
+  .quiz-step[hidden],
+  .quiz-result[hidden] {
+    display: none;
+  }
+
+  .quiz-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .quiz-progress {
+    height: 2px;
+    background: var(--v3-border-hair);
+    overflow: hidden;
+  }
+
+  .quiz-progress span {
+    display: block;
+    width: 20%;
+    height: 100%;
+    background: var(--v3-ink);
+    transition: width var(--v3-duration-base) var(--v3-ease-out);
+  }
+
+  .quiz-question {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .quiz-options {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  :global([data-consultation-quiz] .quiz-option) {
+    width: 100%;
+    min-height: 3.5rem;
+    padding: 0.95rem 1rem;
+    border: 1px solid var(--v3-border-hair);
+    border-radius: var(--v3-radius-md);
+    background: var(--v3-surface-muted);
+    color: var(--v3-ink);
+    font-family: var(--v3-font-body);
+    font-size: 1rem;
+    line-height: 1.4;
+    text-align: left;
+    cursor: pointer;
+    transition:
+      border-color var(--v3-duration-fast) var(--v3-ease-out),
+      background var(--v3-duration-fast) var(--v3-ease-out),
+      color var(--v3-duration-fast) var(--v3-ease-out);
+  }
+
+  :global([data-consultation-quiz] .quiz-option:hover),
+  :global([data-consultation-quiz] .quiz-option:focus-visible) {
+    outline: none;
+    border-color: var(--v3-champagne-deep);
+  }
+
+  :global([data-consultation-quiz] .quiz-option[aria-pressed='true']) {
+    background: var(--v3-ink);
+    border-color: var(--v3-ink);
+    color: var(--v3-on-ink);
+  }
+
+  .quiz-learning {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--v3-border-hair);
+  }
+
+  .quiz-learning .v3-eyebrow {
+    margin-bottom: 0.75rem;
+    color: var(--v3-champagne-deep);
+  }
+
+  .quiz-learning ul,
+  .quiz-result-list {
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.625rem;
+  }
+
+  :global([data-consultation-quiz] .quiz-learning li),
+  :global([data-consultation-quiz] .quiz-result-list li) {
+    position: relative;
+    padding-left: 1.25rem;
+    color: var(--v3-ink-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  :global([data-consultation-quiz] .quiz-learning li::before),
+  :global([data-consultation-quiz] .quiz-result-list li::before) {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.4rem;
+    height: 1px;
+    background: var(--v3-champagne-deep);
+  }
+
+  .quiz-controls,
+  .quiz-result-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 0.25rem;
+  }
+
+  .quiz-nav {
+    min-height: 3rem;
+    padding: 0 1.25rem;
+    border-radius: var(--v3-radius-pill);
+    border: 1px solid var(--v3-border-soft);
+    background: transparent;
+    color: var(--v3-ink-secondary);
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    cursor: pointer;
+  }
+
+  .quiz-nav:disabled,
+  .quiz-controls .v3-btn:disabled {
+    opacity: 0.42;
+    cursor: not-allowed;
+  }
+
+  .quiz-result-title {
+    max-width: 28rem;
+  }
+
+  .quiz-disclaimer {
+    max-width: 48rem;
+    letter-spacing: 0.04em;
+  }
+
+  .quiz-restart {
+    align-self: flex-start;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid currentColor;
+    background: transparent;
+    color: var(--v3-ink-muted);
+    font-family: var(--v3-font-body);
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+
+  @media (max-width: 1024px) {
+    .quiz-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .quiz-copy {
+      position: static;
+      gap: 1rem;
+    }
+
+    .quiz-heading {
+      max-width: 18ch;
+    }
+
+    .quiz-lead {
+      max-width: 42rem;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .quiz-principles {
+      margin-top: 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .v3-quiz {
+      padding-top: var(--v3-gap-small);
+      padding-bottom: var(--v3-gap-medium);
+    }
+
+    .quiz-shell {
+      border-radius: var(--v3-radius-lg);
+      padding: 1rem;
+    }
+
+    .quiz-lead {
+      display: none;
+    }
+
+    .quiz-principle {
+      grid-template-columns: 1.5rem minmax(0, 1fr);
+      grid-template-areas:
+        'mark num'
+        'mark text';
+      gap: 0.2rem 0.75rem;
+      padding: 0.875rem 0;
+    }
+
+    .quiz-principle-mark {
+      grid-area: mark;
+      width: 1.5rem;
+      height: 1.5rem;
+      background: transparent;
+      font-size: 0.75rem;
+    }
+
+    .quiz-principle > span:not(.quiz-principle-mark) {
+      grid-area: num;
+    }
+
+    .quiz-principle p {
+      grid-area: text;
+      font-size: 0.9375rem;
+      line-height: 1.45;
+    }
+
+    .quiz-controls,
+    .quiz-result-actions {
+      align-items: stretch;
+    }
+
+    .quiz-controls .v3-btn,
+    .quiz-result-actions .v3-btn,
+    .quiz-nav {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .quiz-whatsapp {
+      align-self: flex-start;
+    }
+  }
+</style>

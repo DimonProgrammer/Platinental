@@ -1,12 +1,16 @@
 ---
-import V3Layout from '../../layouts/V3Layout.astro';
-import Navigation from '../../components/v3/sections/Navigation.astro';
-import FinalCTA from '../../components/v3/sections/FinalCTA.astro';
-import FAQ from '../../components/v3/sections/FAQ.astro';
-import Footer from '../../components/v3/sections/Footer.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Navigation from '../../components/site/sections/Navigation.astro';
+import PageLeadMagnet from '../../components/site/sections/PageLeadMagnet.astro';
+import MedicalDisclaimer from '../../components/site/sections/MedicalDisclaimer.astro';
+import FinalCTA from '../../components/site/sections/FinalCTA.astro';
+import FAQ from '../../components/site/sections/FAQ.astro';
+import Footer from '../../components/site/sections/Footer.astro';
 import { doctors } from '../../data/doctors';
 import { doctorPriceSheets } from '../../data/prices';
+import { getSurgicalBase } from '../../data/partners';
 import type { Doctor } from '../../data/doctors';
+import { formatCurrencyPlainText } from '../../lib/formatText';
 
 export async function getStaticPaths() {
   return doctors.map((d) => ({
@@ -20,20 +24,29 @@ const { doctor: d } = Astro.props;
 
 const isSurgeon = d.tags.includes('plastika');
 const isCosmetologist = d.tags.includes('cosmetology');
+const bookingEnabled = d.bookingEnabled !== false;
+const surgicalBase = getSurgicalBase(d.surgicalBase);
 const consultationPrice = d.priceMain;
 const doctorPriceSheet = doctorPriceSheets.find((sheet) => sheet.doctorSlug === d.slug);
 const hasOnlinePrice = (d.priceSub ?? '').includes('Онлайн');
+const resultImages = d.resultCases?.map((item) => item.src) ?? [];
+const galleryImages = resultImages.length > 0 ? resultImages : (d.gallery ?? []);
+const hasResultCases = resultImages.length > 0;
 const heroTrustItems = [
   isCosmetologist ? 'Инъекционная косметология' : d.tags.includes('body') ? 'Хирургия тела' : 'Хирургия лица',
   d.details.specialization[0]?.split(',')[0],
   hasOnlinePrice ? 'Онлайн-консультация' : undefined,
-  d.details.patent ? 'Патентная работа' : d.details.awards ? 'Профильная экспертиза' : undefined,
+  d.patents?.length ? 'Патентная работа' : d.details.awards ? 'Профильная экспертиза' : undefined,
 ].filter((item): item is string => Boolean(item)).slice(0, 4);
 
 const faqItems = [
-  {
+  bookingEnabled ? {
     q: `Как записаться ${d.nameBtn}?`,
     a: 'Позвоните по номеру <a href="tel:+78432236666">+7 843 223-66-66</a>, напишите в <a href="https://t.me/platinental_kazan">Telegram</a>, <a href="https://max.ru">Max</a> или <a href="https://wa.me/78432236666">WhatsApp</a>, либо заполните форму на сайте. Администратор подберёт удобное время.',
+    open: true,
+  } : {
+    q: 'В чём подход Андрея Искорнева?',
+    a: 'В основе подхода — работа с пропорциями лица, анатомией, мимикой и индивидуальным запросом пациента. Цель — гармоничный образ без шаблонного результата.',
     open: true,
   },
   {
@@ -53,10 +66,10 @@ const faqItems = [
       ? 'Да, онлайн-консультации доступны. Запишитесь через форму, Telegram, Max или WhatsApp — укажите, что вам нужен онлайн-формат.'
       : 'Да, онлайн-консультации доступны. Формат и стоимость администратор уточнит при записи.',
   },
-];
+].filter((item): item is { q: string; a: string; open?: boolean } => Boolean(item));
 ---
 
-<V3Layout
+<SiteLayout
   title={`${d.name} — ${d.spec} — The Platinental Казань`}
   description={`${d.name} — ${isSurgeon ? 'пластический хирург' : 'врач-косметолог'} клиники The Platinental Казань. Специализация, образование, запись на консультацию.`}
 >
@@ -80,19 +93,34 @@ const faqItems = [
           {heroTrustItems.length > 0 && (
             <ul class="doc-trust-list" aria-label="Ключевые преимущества врача">
               {heroTrustItems.map((item) => (
-                <li>{item}</li>
+                <li><span class="v3-minimark" aria-hidden="true">•</span>{item}</li>
               ))}
             </ul>
           )}
-          <div class="doc-price-row">
-            <span class="doc-price">{consultationPrice}</span>
-            {d.priceSub && <span class="v3-caption doc-price-sub">{d.priceSub}</span>}
-          </div>
-          <div class="doc-cta">
-            <button type="button" class="v3-btn v3-btn-primary" data-booking-open data-doctor={d.nameBtn}>
-              Записаться {d.nameBtn}
-            </button>
-          </div>
+          {bookingEnabled ? (
+            <>
+              <div class="doc-price-row">
+                <span class="doc-price" set:html={formatCurrencyPlainText(consultationPrice)}></span>
+                {d.priceSub && <span class="v3-caption doc-price-sub" set:html={formatCurrencyPlainText(d.priceSub)}></span>}
+                {surgicalBase && (
+                  <span class="v3-caption doc-base">
+                    Операционная база: <a href={surgicalBase.href} target="_blank" rel="noopener noreferrer" class="v3-link">{surgicalBase.shortName}</a>, {surgicalBase.city}, {surgicalBase.address}
+                  </span>
+                )}
+              </div>
+              <div class="doc-cta">
+                <button type="button" class="v3-btn v3-btn-primary" data-booking-open data-doctor={d.nameBtn}>
+                  Записаться {d.nameBtn}
+                </button>
+              </div>
+            </>
+          ) : (
+            <div class="doc-price-row doc-price-row-muted">
+              <span class="doc-price">Гармонизирующая пластическая хирургия</span>
+              <span class="v3-caption doc-price-sub">Лицо, шея, пропорции и естественное омоложение.</span>
+              <a href="/doctors" class="v3-btn v3-btn-secondary doc-profile-link">Выбрать врача клиники</a>
+            </div>
+          )}
         </div>
 
         <div class="doc-hero-photo" data-v3-reveal>
@@ -113,7 +141,8 @@ const faqItems = [
           )}
         </div>
       </div>
-    </section>
+	    </section>
+	    <MedicalDisclaimer />
 
     {d.stats && d.stats.length > 0 && (
       <section class="v3-doc-stats v3-surface-sand" aria-label="Статистика">
@@ -121,7 +150,15 @@ const faqItems = [
           <ul class="stats-row" data-v3-stagger>
             {d.stats.map((s) => (
               <li class="stats-item">
-                <span class="stats-value">{s.value}</span>
+                <span class="stats-value-row">
+                  <span class="stats-value">{s.value}</span>
+                  {s.description && (
+                    <span class="stats-help" tabindex="0" aria-label={s.description}>
+                      ?
+                      <span class="stats-tooltip" role="tooltip">{s.description}</span>
+                    </span>
+                  )}
+                </span>
                 <span class="v3-caption stats-label">{s.label}</span>
               </li>
             ))}
@@ -129,6 +166,28 @@ const faqItems = [
         </div>
       </section>
     )}
+
+    <PageLeadMagnet
+      eyebrow={isSurgeon ? 'Перед консультацией хирурга' : 'Перед консультацией косметолога'}
+      heading={isSurgeon ? 'Что подготовить<br />к приёму' : 'Что рассказать<br />на приёме'}
+      lead={isSurgeon
+        ? 'Чем точнее вы опишете задачу, сроки и ожидания, тем предметнее врач объяснит возможный маршрут.'
+        : 'Врачу важно понять не только процедуру, но и состояние кожи, домашний уход, предыдущие вмешательства и сроки восстановления.'}
+      items={isSurgeon ? [
+        { mark: '?', title: 'Запрос', text: 'что хочется изменить и какой результат выглядит естественным' },
+        { mark: '—', title: 'Сроки', text: 'работа, поездки, спорт и важные даты после операции' },
+        { mark: '₽', title: 'Бюджет', text: 'консультация помогает понять порядок расходов по вашему случаю' },
+      ] : [
+        { mark: '•', title: 'Кожа', text: 'сухость, пигментация, воспаления, тонус или мимика' },
+        { mark: '+', title: 'Уход', text: 'что уже используете утром и вечером' },
+        { mark: '—', title: 'Процедуры', text: 'что делали раньше и как кожа реагировала' },
+      ]}
+      ctaPrimary={bookingEnabled
+        ? { label: `Записаться ${d.nameBtn}`, href: '#form' }
+        : { label: 'Выбрать врача клиники', href: '/doctors' }}
+      ctaSecondary={{ label: 'Задать вопрос', href: 'https://wa.me/78432236666' }}
+      surface="sand"
+    />
 
     {d.approach && (
       <section class="v3-doc-approach v3-surface-cream" aria-labelledby="approach-heading">
@@ -138,6 +197,39 @@ const faqItems = [
             <h2 id="approach-heading" class="v3-h2"><em>{d.approach.title}</em></h2>
           </header>
           <p class="v3-lead approach-body" data-v3-reveal set:html={d.approach.body}></p>
+        </div>
+      </section>
+    )}
+
+    {d.regenerativeComparison && (
+      <section class="v3-doc-regen v3-surface-sand" aria-labelledby="regen-heading">
+        <div class="v3-container v3-container-default">
+          <header class="doc-section-header" data-v3-stagger>
+            <span class="v3-eyebrow">Методика</span>
+            <h2 id="regen-heading" class="v3-h2"><em>{d.regenerativeComparison.title}</em></h2>
+          </header>
+
+          <div class="regen-intro" data-v3-reveal>
+            <p class="v3-lead">{d.regenerativeComparison.lead}</p>
+            <a href={d.regenerativeComparison.source.href} target="_blank" rel="noopener" class="v3-link regen-source">
+              {d.regenerativeComparison.source.label}
+            </a>
+          </div>
+
+          <div class="regen-grid" data-v3-stagger>
+            {d.regenerativeComparison.columns.map((column) => (
+              <article class="regen-card">
+                <h3 class="regen-title">{column.title}</h3>
+                <ul class="regen-list">
+                  {column.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+
+          <p class="regen-note v3-caption" data-v3-reveal>{d.regenerativeComparison.note}</p>
         </div>
       </section>
     )}
@@ -191,12 +283,30 @@ const faqItems = [
             </article>
           )}
 
-          {d.details.patent && (
-            <article class="doc-support-card">
+          {d.patents?.map((patent) => (
+            <article class="doc-support-card doc-patent-card">
               <span class="v3-eyebrow">Патент</span>
-              <p class="v3-body patent-text">{d.details.patent}</p>
+              <h3 class="patent-title">{patent.number} · {patent.title}</h3>
+              <p class="v3-body patent-text">{patent.description}</p>
+              <dl class="patent-meta">
+                <div>
+                  <dt>Роль</dt>
+                  <dd>{patent.role}</dd>
+                </div>
+                <div>
+                  <dt>Соавторы</dt>
+                  <dd>{patent.coauthors.join(', ')}</dd>
+                </div>
+                <div>
+                  <dt>Патентообладатель</dt>
+                  <dd>{patent.holder}</dd>
+                </div>
+              </dl>
+              <a href={patent.href} target="_blank" rel="noopener noreferrer" class="v3-link patent-link">
+                Проверить в базе ФИПС
+              </a>
             </article>
-          )}
+          ))}
         </div>
       </div>
     </section>
@@ -214,7 +324,7 @@ const faqItems = [
                 {doctorPriceSheet.items.map((item) => (
                   <tr>
                     <td class="doc-price-service">{item.procedure}</td>
-                    <td class="doc-price-value">{item.price}</td>
+                    <td class="doc-price-value" set:html={formatCurrencyPlainText(item.price)}></td>
                   </tr>
                 ))}
               </tbody>
@@ -223,6 +333,11 @@ const faqItems = [
           <p class="v3-caption doc-price-disclaimer" data-v3-reveal>
             Цены носят информационный характер. Точную стоимость врач определяет на консультации после осмотра и обсуждения задачи.
           </p>
+          {surgicalBase && (
+            <p class="v3-caption doc-price-disclaimer doc-price-base" data-v3-reveal>
+              Где проводится операция: <a href={surgicalBase.href} target="_blank" rel="noopener noreferrer" class="v3-link">{surgicalBase.name}</a>, {surgicalBase.city}, {surgicalBase.address}.
+            </p>
+          )}
         </div>
       </section>
     )}
@@ -292,30 +407,30 @@ const faqItems = [
       </section>
     )}
 
-    {d.gallery && d.gallery.length > 0 && (
+    {galleryImages.length > 0 && (
       <section class="v3-doc-gallery v3-surface-sand" aria-labelledby="gallery-heading">
         <div class="v3-container v3-container-wide">
           <header class="doc-section-header" data-v3-stagger>
             <span class="v3-eyebrow">Работы</span>
-            <h2 id="gallery-heading" class="v3-h2"><em>Результаты</em></h2>
+            <h2 id="gallery-heading" class="v3-h2"><em>{hasResultCases ? 'До и после' : 'Результаты'}</em></h2>
           </header>
-          <ul class="gallery-grid" data-v3-stagger data-gallery>
-            {d.gallery.map((src, i) => (
+          <ul class:list={['gallery-grid', hasResultCases && 'gallery-grid--cases']} data-v3-stagger data-gallery>
+            {galleryImages.map((src, i) => (
               <li class="gallery-item">
                 <button type="button" class="gallery-btn" data-gallery-open data-index={i} aria-label={`Открыть фото ${i + 1}`}>
-                  <img src={src} alt="" width="400" height="500" loading="eager" decoding="async" />
+                  <img src={src} alt={d.resultCases?.[i]?.title ?? ''} width="800" height="500" loading="eager" decoding="async" />
                 </button>
               </li>
             ))}
           </ul>
           <p class="works-disclaimer v3-caption" data-v3-reveal>
-            Фотографии результатов публикуются с письменного согласия пациентов. Результат индивидуален.
+            Фотографии результатов публикуются с письменного согласия пациентов. Слева — до, справа — после. Результат индивидуален.
           </p>
         </div>
       </section>
     )}
 
-    {d.gallery && d.gallery.length > 0 && (
+    {galleryImages.length > 0 && (
       <div class="lightbox" data-lightbox hidden role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
         <button type="button" class="lightbox-close" data-lightbox-close aria-label="Закрыть"><span aria-hidden="true">×</span></button>
         <button type="button" class="lightbox-prev" data-lightbox-prev aria-label="Предыдущее фото"><span aria-hidden="true">‹</span></button>
@@ -329,20 +444,33 @@ const faqItems = [
 
     <FAQ
       eyebrow="Вопросы"
-      heading={`Вопросы о приёме`}
+      heading={bookingEnabled ? 'Вопросы о приёме' : 'Вопросы о враче'}
       items={faqItems}
     />
 
-    <FinalCTA
-      heading={`Записаться<br />${d.nameBtn}`}
-      lead={`Консультация: ${[d.priceMain, d.priceSub].filter(Boolean).join(' · ')}. Задайте вопросы и получите подробные ответы.`}
-      submitLabel={`Записаться ${d.nameBtn}`}
-    />
+    {bookingEnabled ? (
+      <FinalCTA
+        heading={`Записаться<br />${d.nameBtn}`}
+        lead={`Консультация: ${[d.priceMain, d.priceSub].filter(Boolean).join(' · ')}. Задайте вопросы и получите подробные ответы.`}
+        submitLabel={`Записаться ${d.nameBtn}`}
+      />
+    ) : (
+      <section class="doc-founder-cta v3-surface-ink" aria-labelledby="founder-cta-heading">
+        <div class="v3-container v3-container-default doc-founder-cta-inner" data-v3-reveal>
+          <span class="v3-eyebrow">Консультация в Казани</span>
+          <h2 id="founder-cta-heading" class="v3-h2"><em>Подобрать врача в Казани</em></h2>
+          <p class="v3-lead">
+            Опишите задачу — администратор подскажет, какой специалист The Platinental Казань подходит под ваш запрос.
+          </p>
+          <a href="/doctors" class="v3-btn v3-btn-primary">Перейти к врачам</a>
+        </div>
+      </section>
+    )}
   </main>
   <Footer />
-</V3Layout>
+</SiteLayout>
 
-<script define:vars={{ images: d.gallery ?? [] }}>
+<script is:inline define:vars={{ images: galleryImages }}>
   function initDoctorPage() {
     // Booking button binding
     document.querySelectorAll('[data-booking-open]').forEach((b) => {
@@ -461,8 +589,9 @@ const faqItems = [
   .doc-trust-list li {
     display: inline-flex;
     align-items: center;
+    gap: 0.5rem;
     min-height: 2rem;
-    padding: 0.45rem 0.75rem;
+    padding: 0.35rem 0.75rem 0.35rem 0.35rem;
     border: 1px solid var(--v3-border-soft);
     border-radius: var(--v3-radius-pill);
     background: var(--v3-surface-card);
@@ -470,6 +599,11 @@ const faqItems = [
     font-family: var(--v3-font-body);
     font-size: 0.8125rem;
     line-height: 1.25;
+  }
+  .doc-trust-list .v3-minimark {
+    width: 1.35rem;
+    height: 1.35rem;
+    font-size: 0.65rem;
   }
   .doc-price-row {
     display: flex;
@@ -485,7 +619,19 @@ const faqItems = [
     color: var(--v3-champagne-deep);
   }
   .doc-price-sub { color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0.005em; }
+  .doc-base {
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+  }
   .doc-cta { margin-top: 0.5rem; }
+  .doc-price-row-muted .doc-price {
+    color: var(--v3-ink);
+  }
+  .doc-profile-link {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
 
   .doc-hero-photo {
     max-width: 36rem;
@@ -574,6 +720,9 @@ const faqItems = [
     color: var(--v3-ink-muted);
     text-transform: none;
     letter-spacing: 0.005em;
+  }
+  .doc-price-base {
+    margin-top: 0.5rem;
   }
   .doc-price-link-card {
     display: grid;
@@ -679,7 +828,41 @@ const faqItems = [
     border-radius: var(--v3-radius-lg);
     background: var(--v3-surface-muted);
   }
+  .patent-title {
+    margin: 0;
+    font-family: var(--v3-font-display);
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--v3-ink);
+  }
   .patent-text { margin: 0; }
+  .patent-meta {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+  }
+  .patent-meta div {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    align-items: baseline;
+  }
+  .patent-meta dt {
+    color: var(--v3-ink-muted);
+    font-family: var(--v3-font-body);
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .patent-meta dd {
+    margin: 0;
+    color: var(--v3-ink-secondary);
+  }
+  .patent-link {
+    align-self: flex-start;
+    margin-top: 0.25rem;
+  }
 
   /* Works */
   .v3-doc-works {
@@ -734,7 +917,7 @@ const faqItems = [
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
     gap: clamp(1rem, 3vw, 3rem);
     border-top: 1px solid var(--v3-border-soft);
     border-bottom: 1px solid var(--v3-border-soft);
@@ -746,12 +929,67 @@ const faqItems = [
     gap: 0.5rem;
     align-items: flex-start;
   }
+  .stats-value-row {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
   .stats-value {
     font-family: var(--v3-font-display);
     font-style: normal;
     font-size: clamp(1.75rem, 3.5vw, 2.75rem);
     line-height: 1.05;
     color: var(--v3-champagne-deep);
+  }
+  .stats-help {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.45rem;
+    height: 1.45rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: 999px;
+    color: var(--v3-ink-muted);
+    background: var(--v3-surface-card);
+    font-family: var(--v3-font-body);
+    font-size: 0.75rem;
+    line-height: 1;
+    cursor: help;
+  }
+  .stats-help:focus-visible {
+    outline: 2px solid var(--v3-champagne-deep);
+    outline-offset: 3px;
+  }
+  .stats-tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 0.75rem);
+    z-index: 4;
+    width: min(18rem, 80vw);
+    padding: 0.75rem 0.875rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-lg);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-md);
+    color: var(--v3-ink-secondary);
+    font-family: var(--v3-font-body);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    text-align: left;
+    opacity: 0;
+    transform: translate(-50%, 0.35rem);
+    pointer-events: none;
+    transition:
+      opacity var(--v3-duration-fast) var(--v3-ease-out),
+      transform var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .stats-help:hover .stats-tooltip,
+  .stats-help:focus .stats-tooltip,
+  .stats-help:focus-visible .stats-tooltip {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
   .stats-label {
     color: var(--v3-ink-secondary);
@@ -760,6 +998,22 @@ const faqItems = [
     font-family: var(--v3-font-body);
     font-size: 0.9375rem;
     line-height: 1.4;
+  }
+  @media (max-width: 640px) {
+    .stats-row {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .stats-tooltip {
+      left: 0;
+      width: min(17rem, calc(100vw - 2rem));
+      transform: translate(0, 0.35rem);
+    }
+    .stats-help:hover .stats-tooltip,
+    .stats-help:focus .stats-tooltip,
+    .stats-help:focus-visible .stats-tooltip {
+      transform: translate(0, 0);
+    }
   }
 
   /* Approach */
@@ -770,6 +1024,89 @@ const faqItems = [
   .approach-body {
     max-width: 56ch;
     color: var(--v3-ink);
+  }
+
+  /* Regenerative comparison */
+  .v3-doc-regen {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .regen-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 58rem;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+  .regen-intro .v3-lead {
+    margin: 0;
+    color: var(--v3-ink);
+  }
+  .regen-source {
+    font-size: 0.9375rem;
+  }
+  .regen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--v3-border-soft);
+    border: 1px solid var(--v3-border-soft);
+  }
+  .regen-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-height: 100%;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: var(--v3-surface-card);
+  }
+  .regen-title {
+    margin: 0;
+    font-family: var(--v3-font-display);
+    font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1.18;
+    color: var(--v3-ink);
+  }
+  .regen-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    margin: 0;
+    padding: 0;
+  }
+  .regen-list li {
+    position: relative;
+    padding-left: 1rem;
+    color: var(--v3-ink-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+  .regen-list li::before {
+    content: '';
+    position: absolute;
+    top: 0.72em;
+    left: 0;
+    width: 0.3125rem;
+    height: 0.3125rem;
+    border-radius: 999px;
+    background: var(--v3-champagne-deep);
+  }
+  .regen-note {
+    max-width: 58rem;
+    margin: 1.25rem 0 0;
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-family: var(--v3-font-body);
+    line-height: 1.5;
+  }
+  @media (max-width: 900px) {
+    .regen-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* Documents */
@@ -838,6 +1175,9 @@ const faqItems = [
     grid-template-columns: repeat(3, 1fr);
     gap: 0.75rem;
   }
+  .gallery-grid--cases {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .gallery-item { margin: 0; }
   .gallery-btn {
     width: 100%;
@@ -851,6 +1191,9 @@ const faqItems = [
     overflow: hidden;
     aspect-ratio: 4/5;
     transition: transform var(--v3-duration-fast) var(--v3-ease-out), box-shadow var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .gallery-grid--cases .gallery-btn {
+    aspect-ratio: 16/10;
   }
   .gallery-btn img {
     width: 100%;
@@ -868,6 +1211,22 @@ const faqItems = [
   }
   @media (max-width: 480px) {
     .gallery-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+
+  .doc-founder-cta {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .doc-founder-cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    color: var(--v3-on-ink);
+  }
+  .doc-founder-cta .v3-eyebrow,
+  .doc-founder-cta .v3-lead {
+    color: var(--v3-on-ink-secondary);
   }
 
   /* Lightbox */

@@ -1,0 +1,207 @@
+---
+---
+
+<section class="v3-quote v3-surface-ink" aria-label="Брендовая цитата" data-quote-bridge>
+  <div class="quote-orbit" aria-hidden="true"></div>
+  <div class="quote-inner v3-container v3-container-wide">
+    <div class="quote-copy">
+      <p class="quote-kicker-row">
+        <span class="v3-minimark" aria-hidden="true">•</span>
+        <span class="quote-kicker v3-eyebrow">Brand statement</span>
+      </p>
+
+      <blockquote class="quote-text v3-display" data-quote-heading>
+        <em>
+          Гармонизирующая хирургия — это
+          <span class="hc-shell">
+            <span class="hc">Haute Couture<sup>*</sup></span>
+          </span>
+          эстетической медицины
+        </em>
+      </blockquote>
+
+      <p class="quote-footnote v3-eyebrow">
+        * Haute Couture (фр.) — высокая мода; изделие, созданное по индивидуальным меркам, вручную, без шаблонов.
+      </p>
+    </div>
+
+    <figure class="quote-media" data-v3-reveal>
+      <img
+        src="/quote/iskornev-portrait-2026.png"
+        alt="Портрет Андрея Искорнева для брендовой секции The Platinental"
+        class="quote-photo"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption class="quote-caption">
+        <span class="quote-caption-name">Андрей Александрович Искорнев</span>
+        <span class="quote-caption-role">Сооснователь клиники</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .v3-quote {
+    position: relative;
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+    overflow: hidden;
+  }
+  .quote-orbit {
+    position: absolute;
+    inset: auto auto 12% 68%;
+    width: clamp(14rem, 28vw, 28rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid rgba(251, 248, 244, 0.08);
+    background:
+      radial-gradient(circle at 50% 50%, rgba(145, 114, 113, 0.1) 0%, rgba(145, 114, 113, 0.04) 22%, rgba(145, 114, 113, 0) 68%);
+    pointer-events: none;
+    opacity: 0.9;
+  }
+  .quote-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.32fr) minmax(20rem, 26rem);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: end;
+  }
+  .quote-copy {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.25rem, 3vw, 3rem);
+    min-width: 0;
+  }
+  .quote-kicker {
+    color: var(--v3-on-ink-muted);
+    margin: 0;
+  }
+  .quote-kicker-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+  }
+  .quote-text {
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-weight: 400;
+    font-size: clamp(2.2rem, 5.4vw, 4.85rem);
+    line-height: 1.05;
+    color: var(--v3-on-ink);
+    margin: 0;
+    max-width: 22ch;
+  }
+  .quote-text .line {
+    overflow: hidden;
+    padding-bottom: 0.08em;
+  }
+  .quote-text .word {
+    will-change: transform, opacity;
+  }
+  .hc-shell {
+    position: relative;
+    display: inline-block;
+    padding-inline: 0.08em 0.14em;
+    white-space: nowrap;
+    --hc-reveal-scale: 0;
+  }
+  .hc-shell::before {
+    content: '';
+    position: absolute;
+    inset: 0.12em 0 0.06em;
+    background: linear-gradient(90deg, rgba(145, 114, 113, 0.22) 0%, rgba(145, 114, 113, 0.08) 100%);
+    border-left: 1px solid rgba(145, 114, 113, 0.5);
+    transform: scaleX(var(--hc-reveal-scale));
+    transform-origin: left center;
+  }
+  .hc {
+    position: relative;
+    z-index: 1;
+    font-style: normal;
+    font-weight: 400;
+    color: var(--v3-champagne);
+    white-space: nowrap;
+  }
+  .hc sup {
+    font-family: var(--v3-font-body);
+    font-style: normal;
+    font-size: 0.5em;
+    vertical-align: super;
+    margin-left: 0.05em;
+  }
+  .quote-footnote {
+    color: var(--v3-on-ink-muted);
+    max-width: 60ch;
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-size: 0.875rem;
+    font-family: var(--v3-font-body);
+  }
+  .quote-media {
+    position: relative;
+    margin: 0;
+    justify-self: end;
+    width: min(100%, 25rem);
+  }
+  .quote-media::before {
+    content: '';
+    position: absolute;
+    inset: -0.875rem 0.875rem 0.875rem -0.875rem;
+    border: 1px solid rgba(251, 248, 244, 0.12);
+    border-radius: calc(var(--v3-radius-xl) + 0.375rem);
+    pointer-events: none;
+  }
+  .quote-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: var(--v3-radius-xl);
+  }
+  .quote-caption {
+    margin: 0;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .quote-caption-name {
+    color: var(--v3-on-ink);
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+  }
+  .quote-caption-role {
+    color: var(--v3-on-ink-muted);
+    font-family: var(--v3-font-body);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .quote-inner {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    .quote-orbit {
+      inset: auto auto 16% 48%;
+      width: 14rem;
+      opacity: 0.7;
+    }
+    .quote-media {
+      width: min(100%, 20rem);
+      justify-self: start;
+    }
+    .quote-media::before {
+      inset: -0.625rem 0.625rem 0.625rem -0.625rem;
+    }
+  }
+</style>

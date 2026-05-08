@@ -1,0 +1,164 @@
+---
+import { formatCurrencyPlainText } from '../../../lib/formatText';
+
+const procedures = [
+  { num: '01', name: 'Ринопластика', cat: 'Пластика лица', price: 'от 200 000 ₽', body: 'Проектируется по замерам лица — результат органично впишется в вашу внешность.', href: '/plastika#rinoplastika' },
+  { num: '02', name: 'Маммопластика', cat: 'Пластика тела', price: 'от 450 000 ₽', body: 'Индивидуальный дизайн молочной железы, подбор протеза.', href: '/plastika#mammoplastika' },
+  { num: '03', name: 'Блефаропластика', cat: 'Пластика лица', price: 'от 60 000 ₽', body: 'Верхних и нижних век. Лазерная и хирургическая методика.', href: '/plastika#blefaroplastika' },
+  { num: '04', name: 'Ботокс', cat: 'Косметология', price: 'от 150 ₽ / ед.', body: 'Диспорт, Миотокс, Ксеомин. Эффект через 3–14 дней, длится 4–6 месяцев.', href: '/kosmetologiya#botulotoxin' },
+  { num: '05', name: 'Контурная пластика', cat: 'Косметология', price: 'от 22 000 ₽', body: 'Белотеро, Радиесс, Скульптра. Многоуровневые техники.', href: '/kosmetologiya#kontur' },
+  { num: '06', name: 'Абдоминопластика', cat: 'Пластика тела', price: 'от 250 000 ₽', body: 'Мини- и полная абдоминопластика. Коррекция живота, талии, нависающего фартука.', href: '/plastika#abdominoplastika' },
+];
+---
+
+<section class="v3-procedures v3-surface-cream" aria-labelledby="procedures-heading">
+  <div class="v3-container v3-container-default">
+    <header class="proc-header" data-v3-stagger>
+      <span class="v3-eyebrow">Каталог процедур</span>
+      <h2 id="procedures-heading" class="v3-h2"><em>Чаще всего выбирают</em></h2>
+    </header>
+
+    <ol class="proc-list" data-v3-stagger>
+      {procedures.map((p) => (
+        <li class="proc-row">
+          <a href={p.href} class="proc-link">
+            <span class="proc-num v3-minimark" aria-hidden="true">{p.num}</span>
+            <span class="proc-name">{p.name}</span>
+            <span class="proc-cat v3-eyebrow">{p.cat}</span>
+            <span class="proc-body v3-body">{p.body}</span>
+            <span class="proc-price" set:html={formatCurrencyPlainText(p.price)}></span>
+          </a>
+        </li>
+      ))}
+    </ol>
+
+    <footer class="proc-footer">
+      <a href="/prices" class="v3-link">Все процедуры →</a>
+      <p class="v3-caption proc-disclaimer">
+        Цены носят информационный характер и не являются публичной офертой.
+        Точная стоимость определяется врачом на консультации.
+      </p>
+    </footer>
+  </div>
+</section>
+
+<style>
+  .v3-procedures {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .proc-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
+  }
+  .proc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .proc-row {
+    border-top: 1px solid var(--v3-border-hair);
+  }
+  .proc-row:last-child { border-bottom: 1px solid var(--v3-border-hair); }
+  .proc-link {
+    display: grid;
+    grid-template-columns: 3rem minmax(12rem, 1fr) auto minmax(0, 2fr) auto;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+    align-items: baseline;
+    padding-block: clamp(1.5rem, 2.5vw, 2.25rem);
+    padding-inline: 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--v3-radius-lg);
+    transition: background var(--v3-duration-fast) var(--v3-ease-out), transform var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .proc-link:hover {
+    background: var(--v3-surface-muted);
+    transform: translateY(-1px);
+  }
+  .proc-link:hover .proc-name {
+    font-style: normal;
+    color: var(--v3-champagne-deep);
+  }
+  /* Audit B — editorial menu spotlight: при hover на одну строку
+     соседи приглушаются. CSS-only, через :has() на родителе. */
+  @media (hover: hover) {
+    .proc-list:has(.proc-row:hover) .proc-row {
+      transition: opacity var(--v3-duration-base) var(--v3-ease-out);
+    }
+    .proc-list:has(.proc-row:hover) .proc-row:not(:hover) {
+      opacity: 0.42;
+    }
+    .proc-list:has(.proc-row:hover) .proc-row:hover {
+      border-top-color: var(--v3-champagne-soft);
+    }
+    .proc-list:has(.proc-row:hover) .proc-row:hover + .proc-row {
+      border-top-color: var(--v3-champagne-soft);
+    }
+    /* Если hover на последней — нижняя кромка тоже champagne */
+    .proc-list:has(.proc-row:last-child:hover) .proc-row:last-child {
+      border-bottom-color: var(--v3-champagne-soft);
+    }
+  }
+  .proc-num {
+    color: var(--v3-champagne-deep);
+    font-size: 0.68rem;
+  }
+  .proc-name {
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-weight: 400;
+    font-size: clamp(1.75rem, 2.2vw, 2rem);
+    line-height: 1.1;
+    color: var(--v3-ink);
+    transition: font-style var(--v3-duration-fast) var(--v3-ease-out),
+                color var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .proc-cat {
+    color: var(--v3-ink-muted);
+  }
+  .proc-body {
+    color: var(--v3-ink-secondary);
+    font-size: 0.9375rem;
+    max-width: 56ch;
+  }
+  .proc-price {
+    font-family: var(--v3-font-body);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: var(--v3-champagne-deep);
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+  .proc-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    margin-top: var(--v3-gap-small);
+    flex-wrap: wrap;
+  }
+  .proc-disclaimer { max-width: 56ch; text-align: right; text-transform: none; letter-spacing: 0; color: var(--v3-ink-muted); font-family: var(--v3-font-body); font-size: 0.8125rem; }
+
+  @media (max-width: 1024px) {
+    .proc-link {
+      grid-template-columns: 2rem minmax(0, 1fr) auto;
+      grid-template-areas:
+        'num name price'
+        '. cat cat'
+        '. body body';
+      gap: 0.5rem 1rem;
+    }
+    .proc-link > * { min-width: 0; overflow-wrap: anywhere; }
+    .proc-num { grid-area: num; }
+    .proc-name { grid-area: name; }
+    .proc-cat { grid-area: cat; }
+    .proc-body { grid-area: body; max-width: none; padding-top: 0.25rem; }
+    .proc-price { grid-area: price; }
+  }
+  @media (max-width: 560px) {
+    .proc-disclaimer { text-align: left; }
+  }
+</style>

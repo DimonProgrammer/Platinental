@@ -1,13 +1,42 @@
 ---
-import V3Layout from '../layouts/V3Layout.astro';
-import Navigation from '../components/v3/sections/Navigation.astro';
-import PageHero from '../components/v3/sections/PageHero.astro';
-import FAQ from '../components/v3/sections/FAQ.astro';
-import FinalCTA from '../components/v3/sections/FinalCTA.astro';
-import Footer from '../components/v3/sections/Footer.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Navigation from '../components/site/sections/Navigation.astro';
+import PageHero from '../components/site/sections/PageHero.astro';
+import PageLeadMagnet from '../components/site/sections/PageLeadMagnet.astro';
+import FAQ from '../components/site/sections/FAQ.astro';
+import FinalCTA from '../components/site/sections/FinalCTA.astro';
+import Footer from '../components/site/sections/Footer.astro';
 import { doctors } from '../data/doctors';
+import { getSurgicalBase } from '../data/partners';
+import { formatCurrencyPlainText } from '../lib/formatText';
 
 const allDoctors = doctors;
+const doctorGroups = [
+  {
+    id: 'founder',
+    title: 'Учредитель и идейный вдохновитель',
+    lead: 'Хирург, сформировавший эстетическую философию бренда: работа с пропорциями, характером лица и чувством меры.',
+    doctors: allDoctors.filter((doctor) => doctor.group === 'founder'),
+  },
+  {
+    id: 'surgery',
+    title: 'Хирурги клиники',
+    lead: 'Пластическая и челюстно-лицевая хирургия: лицо, тело, сложные и повторные случаи.',
+    doctors: allDoctors.filter((doctor) => doctor.group === 'surgery'),
+  },
+  {
+    id: 'cosmetology',
+    title: 'Косметология',
+    lead: 'Инъекционные, аппаратные и реабилитационные процедуры в связке с хирургическим маршрутом.',
+    doctors: allDoctors.filter((doctor) => doctor.group === 'cosmetology'),
+  },
+  {
+    id: 'orthopedia',
+    title: 'Ортопедия и нейрохирургия',
+    lead: 'Консультации по восстановлению суставов и позвоночника, разбор снимков и подбор маршрута лечения.',
+    doctors: allDoctors.filter((doctor) => doctor.group === 'orthopedia'),
+  },
+].filter((group) => group.doctors.length > 0);
 const filterOptions = [
   { id: 'all', label: 'Все специалисты' },
   { id: 'plastika', label: 'Пластическая хирургия' },
@@ -17,7 +46,7 @@ const filterOptions = [
 ];
 ---
 
-<V3Layout
+<SiteLayout
   title="Врачи — The Platinental Казань"
   description="Пластические хирурги и косметологи клиники The Platinental Казань. Клиника The Platinental Казань собрала самых востребованных специалистов в своей области. Образование, специализации, стоимость консультации."
 >
@@ -31,6 +60,11 @@ const filterOptions = [
       lead="У каждого хирурга клиники — своя школа, свой опыт, свой почерк. Подскажем, к какому врачу лучше записаться именно с вашей задачей."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Посмотреть врачей', href: '#doctors-heading' }}
+      meta={[
+        { num: '?', label: 'поможем выбрать специалиста' },
+        { num: '+', label: 'хирургия и косметология' },
+        { num: '₽', label: 'стоимость в карточках врачей' },
+      ]}
     />
 
     <section class="v3-doctors v3-surface-cream" aria-labelledby="doctors-heading">
@@ -53,39 +87,73 @@ const filterOptions = [
             </li>
           ))}
         </ul>
-        <ul class="doctors-grid">
-          {allDoctors.map((d) => (
-            <li class="doctor-card" data-v3-reveal data-doctor-card data-tags={d.tags.join(' ')}>
-              <a href={`/doctors/${d.slug}`} class="doctor-link">
-                <div class="doctor-photo">
-                  {d.photo ? (
-                    <img
-                      src={d.photo}
-                      alt={d.name}
-                      width="400"
-                      height="500"
-                      loading="lazy"
-                      style={`--doctor-photo-scale:${d.photoFrame?.scale ?? 1.12}; --doctor-photo-x:${d.photoFrame?.x ?? '0%'}; --doctor-photo-y:${d.photoFrame?.y ?? '-3%'};`}
-                    />
-                  ) : (
-                    <div class="doctor-initials" aria-hidden="true">{d.initials}</div>
-                  )}
-                </div>
-                <div class="doctor-info">
-                  <p class="doctor-spec v3-eyebrow">{d.spec}</p>
-                  <h3 class="doctor-name v3-h3">{d.name}</h3>
-                  <p class="doctor-short v3-body" set:html={d.short}></p>
-                  <div class="doctor-price">
-                    <span class="price-primary v3-caption">{d.priceMain}</span>
-                    {d.priceSub && <span class="price-sub v3-caption">{d.priceSub}</span>}
-                  </div>
-                </div>
-              </a>
-            </li>
+        <div class="doctor-groups">
+          {doctorGroups.map((group) => (
+            <section class:list={['doctor-group', `doctor-group--${group.id}`]} data-doctor-group>
+              <header class="doctor-group-header">
+                <h3 class="v3-h3 doctor-group-title">{group.title}</h3>
+                <p class="v3-body doctor-group-lead">{group.lead}</p>
+              </header>
+              <ul class="doctors-grid">
+                {group.doctors.map((d) => {
+                  const base = getSurgicalBase(d.surgicalBase);
+                  return (
+                    <li class:list={['doctor-card', d.group === 'founder' && 'doctor-card--wide']} data-v3-reveal data-doctor-card data-tags={d.tags.join(' ')}>
+                      <a href={`/doctors/${d.slug}`} class="doctor-link">
+                        <div class="doctor-photo">
+                          {d.photo ? (
+                            <img
+                              src={d.photo}
+                              alt={d.name}
+                              width="400"
+                              height="500"
+                              loading="lazy"
+                              style={`--doctor-photo-scale:${d.photoFrame?.scale ?? 1.12}; --doctor-photo-x:${d.photoFrame?.x ?? '0%'}; --doctor-photo-y:${d.photoFrame?.y ?? '-3%'};`}
+                            />
+                          ) : (
+                            <div class="doctor-initials" aria-hidden="true">{d.initials}</div>
+                          )}
+                        </div>
+                        <div class="doctor-info">
+                          <p class="doctor-spec v3-eyebrow">{d.spec}</p>
+                          <h3 class="doctor-name v3-h3">{d.name}</h3>
+                          <p class="doctor-short v3-body" set:html={d.short}></p>
+                          {base && <p class="doctor-base v3-caption">Операционная база: {base.shortName}</p>}
+                          {d.bookingEnabled === false ? (
+                            <div class="doctor-price doctor-price-muted">
+                              <span class="price-primary v3-caption">Открыть профиль</span>
+                            </div>
+                          ) : (
+                            <div class="doctor-price">
+                              <span class="price-primary v3-caption" set:html={formatCurrencyPlainText(d.priceMain)}></span>
+                              {d.priceSub && <span class="price-sub v3-caption" set:html={formatCurrencyPlainText(d.priceSub)}></span>}
+                            </div>
+                          )}
+                        </div>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
+
+    <PageLeadMagnet
+      eyebrow="Подбор врача"
+      heading="Не знаете,<br />к кому записаться?"
+      lead="Опишите задачу коротко — администратор направит к врачу нужного профиля, а не к первому свободному специалисту."
+      items={[
+        { mark: '?', title: 'Запрос', text: 'что хотите изменить или проверить' },
+        { mark: '+', title: 'Профиль', text: 'хирург, челюстно-лицевой хирург или косметолог' },
+        { mark: '→', title: 'Запись', text: 'подберём время и формат консультации' },
+      ]}
+      ctaPrimary={{ label: 'Подобрать врача', href: '#form' }}
+      ctaSecondary={{ label: 'Смотреть всех', href: '#doctors-heading' }}
+      surface="sand"
+    />
 
     <FAQ items={[
       {
@@ -121,13 +189,21 @@ const filterOptions = [
     />
   </main>
   <Footer />
-</V3Layout>
+</SiteLayout>
 
 <script>
   function initDoctorFilters() {
     const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-doctor-filter]'));
     const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-doctor-card]'));
+    const groups = Array.from(document.querySelectorAll<HTMLElement>('[data-doctor-group]'));
     if (buttons.length === 0 || cards.length === 0) return;
+
+    const updateGroups = () => {
+      groups.forEach((group) => {
+        const groupCards = Array.from(group.querySelectorAll<HTMLElement>('[data-doctor-card]'));
+        group.hidden = groupCards.every((card) => card.hidden);
+      });
+    };
 
     buttons.forEach((button) => {
       if (button.dataset.bound === '1') return;
@@ -144,8 +220,10 @@ const filterOptions = [
           const visible = filter === 'all' || tags.includes(filter);
           card.hidden = !visible;
         });
+        updateGroups();
       });
     });
+    updateGroups();
   }
 
   if (document.readyState !== 'loading') initDoctorFilters();
@@ -203,6 +281,27 @@ const filterOptions = [
   .filter-chip:focus-visible {
     transform: translateY(-1px);
   }
+  .doctor-groups {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+  .doctor-group[hidden] { display: none; }
+  .doctor-group-header {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: baseline;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--v3-border-soft);
+    margin-bottom: 1rem;
+  }
+  .doctor-group-title,
+  .doctor-group-lead {
+    margin: 0;
+  }
+  .doctor-group-lead {
+    color: var(--v3-ink-muted);
+  }
   .doctors-grid {
     list-style: none;
     margin: 0;
@@ -210,6 +309,9 @@ const filterOptions = [
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
+  }
+  .doctor-group--founder .doctors-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
   .doctors-grid-cosm {
     grid-template-columns: repeat(2, 1fr);
@@ -241,6 +343,30 @@ const filterOptions = [
     transform: translateY(-2px);
   }
   .v3-surface-sand .doctor-link:hover { background: var(--v3-sand-deep); }
+  .doctor-card--wide {
+    max-width: 68rem;
+  }
+  .doctor-card--wide .doctor-link {
+    display: grid;
+    grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
+    align-items: center;
+  }
+  .doctor-card--wide .doctor-photo {
+    width: min(17.5rem, calc(100% - 2.5rem));
+    max-width: none;
+    margin: 1.25rem;
+  }
+  .doctor-card--wide .doctor-info {
+    padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2.25rem) 0.5rem;
+    max-width: 48rem;
+  }
+  .doctor-card--wide .doctor-short {
+    max-width: 54ch;
+    font-size: 1rem;
+  }
+  .doctor-card--wide .doctor-price {
+    margin-top: 0.5rem;
+  }
 
   .doctor-photo {
     width: clamp(13rem, 21vw, 17.5rem);
@@ -286,6 +412,12 @@ const filterOptions = [
   .doctor-spec { color: var(--v3-ink-muted); }
   .doctor-name { color: var(--v3-ink); }
   .doctor-short { color: var(--v3-ink-secondary); margin: 0; font-size: 0.9375rem; line-height: 1.5; }
+  .doctor-base {
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    margin: 0;
+  }
   .doctor-price {
     display: flex;
     flex-direction: column;
@@ -295,6 +427,9 @@ const filterOptions = [
   }
   .price-primary { color: var(--v3-champagne-deep); text-transform: none; letter-spacing: 0.005em; font-family: var(--v3-font-display); font-style: normal; font-size: 0.9375rem; }
   .price-sub { color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0.005em; }
+  .doctor-price-muted .price-primary {
+    color: var(--v3-ink-secondary);
+  }
 
   @media (max-width: 1024px) {
     .doctors-grid { grid-template-columns: repeat(2, 1fr); }
@@ -304,8 +439,19 @@ const filterOptions = [
     }
   }
   @media (max-width: 560px) {
+    .doctor-group-header { grid-template-columns: 1fr; }
     .doctors-grid { grid-template-columns: 1fr; }
     .doctors-grid-cosm { grid-template-columns: 1fr; }
+    .doctor-card--wide .doctor-link {
+      display: flex;
+    }
+    .doctor-card--wide .doctor-photo {
+      width: min(15.5rem, calc(100vw - 5rem));
+      margin: 1.25rem auto 0;
+    }
+    .doctor-card--wide .doctor-info {
+      padding: 1.25rem 1.5rem 1.75rem;
+    }
     .doctor-photo {
       width: min(15.5rem, calc(100vw - 5rem));
       margin-top: 1.25rem;

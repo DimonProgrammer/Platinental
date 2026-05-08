@@ -1,8 +1,10 @@
 ---
-import V3Layout from '../layouts/V3Layout.astro';
-import Navigation from '../components/v3/sections/Navigation.astro';
-import PageHero from '../components/v3/sections/PageHero.astro';
-import Footer from '../components/v3/sections/Footer.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Navigation from '../components/site/sections/Navigation.astro';
+import PageHero from '../components/site/sections/PageHero.astro';
+import PageLeadMagnet from '../components/site/sections/PageLeadMagnet.astro';
+import FinalCTA from '../components/site/sections/FinalCTA.astro';
+import Footer from '../components/site/sections/Footer.astro';
 
 const docs = [
   {
@@ -38,7 +40,7 @@ const docs = [
 ];
 ---
 
-<V3Layout
+<SiteLayout
   title="Документы и лицензии — The Platinental Казань"
   description="Лицензия на медицинскую деятельность и правовые документы клиники The Platinental Казань."
 >
@@ -51,6 +53,25 @@ const docs = [
       lead="ООО «Платинентал Казань» · Лицензия ЛО-16-01-003022 · ул. Карла Маркса, 48, корп. 1, Казань, 420015"
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={undefined}
+      meta={[
+        { num: '✓', label: 'лицензия и юридическое лицо' },
+        { num: '—', label: 'правила и согласия' },
+        { num: '!', label: 'информация не является офертой' },
+      ]}
+    />
+
+    <PageLeadMagnet
+      eyebrow="Перед записью"
+      heading="Проверить всё<br />до консультации"
+      lead="Если вы внимательно выбираете клинику, начните с базовых вещей: лицензия, адрес, договорные документы и правила обработки персональных данных."
+      items={[
+        { mark: '✓', title: 'Лицензия', text: 'медицинская деятельность и юридические реквизиты' },
+        { mark: '—', title: 'Согласия', text: 'персональные данные и медицинские документы' },
+        { mark: '!', title: 'Ограничения', text: 'сайт не заменяет консультацию специалиста' },
+      ]}
+      ctaPrimary={{ label: 'Задать вопрос', href: '#form' }}
+      ctaSecondary={{ label: 'Позвонить', href: 'tel:+78432236666' }}
+      surface="sand"
     />
 
     <section class="v3-docs v3-surface-cream" aria-labelledby="docs-heading">
@@ -60,6 +81,7 @@ const docs = [
         <ul class="docs-list" data-v3-stagger>
           {docs.map((d) => (
             <li class="doc-item">
+              <span class="v3-minimark doc-mark" aria-hidden="true">•</span>
               <div class="doc-info">
                 <p class="doc-title v3-h3">{d.title}</p>
                 <p class="v3-caption doc-issuer">PDF · {d.size}</p>
@@ -115,9 +137,16 @@ const docs = [
         </p>
       </div>
     </section>
+
+    <FinalCTA
+      eyebrow="Документы и запись"
+      heading="Остались вопросы<br />по документам?"
+      lead="Оставьте контакт — администратор подскажет, какие документы можно посмотреть заранее, и запишет на консультацию."
+      submitLabel="Задать вопрос"
+    />
   </main>
   <Footer />
-</V3Layout>
+</SiteLayout>
 
 <style>
   .sr-only {
@@ -141,12 +170,13 @@ const docs = [
   }
   .doc-item {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) auto;
-    gap: 2rem;
-    align-items: baseline;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: start;
     padding-block: 1.75rem;
     border-top: 1px solid var(--v3-border-hair);
   }
+  .doc-mark { margin-top: 0.125rem; }
   .doc-item:last-child { border-bottom: 1px solid var(--v3-border-hair); }
   .doc-meta { display: flex; flex-direction: column; gap: 0.375rem; }
   .doc-num { color: var(--v3-ink-muted); }
@@ -187,5 +217,6 @@ const docs = [
       grid-template-columns: 1fr;
       gap: 0.75rem;
     }
+    .doc-mark { display: none; }
   }
 </style>

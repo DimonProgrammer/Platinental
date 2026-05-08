@@ -1,0 +1,215 @@
+---
+import Button from '../primitives/Button.astro';
+import type { Doctor } from '../../data/doctors';
+import { formatCurrencyPlainText } from '../../lib/formatText';
+
+interface Props {
+  doctor: Doctor;
+  index?: number;
+}
+
+const { doctor, index = 0 } = Astro.props;
+const topSpecs = doctor.details.specialization.slice(0, 3);
+---
+
+<article
+  class="dcb"
+  data-reveal
+  data-tags={doctor.tags.join(' ')}
+  style={`transition-delay: ${Math.min(index * 70, 350)}ms`}
+>
+  <a href={`/doctors/${doctor.slug}/`} class="dcb__portrait-link" tabindex="-1" aria-hidden="true">
+    <div class={`dcb__portrait dcb__portrait--${doctor.tone}`}>
+      {doctor.photo
+        ? <img src={doctor.photo} alt={doctor.name} width="400" height="533" loading="lazy" decoding="async" />
+        : <span class="dcb__initials font-display">{doctor.initials}</span>
+      }
+    </div>
+  </a>
+
+  <div class="dcb__body">
+    <span class="dcb__spec">{doctor.spec}</span>
+    <h3 class="dcb__name font-display">
+      <a href={`/doctors/${doctor.slug}/`}>{doctor.name}</a>
+    </h3>
+    <p class="dcb__desc" set:html={doctor.short} />
+
+    {topSpecs.length > 0 && (
+      <ul class="dcb__specs">
+        {topSpecs.map((s) => <li>{s}</li>)}
+      </ul>
+    )}
+
+    <div class="dcb__price">
+      <span class="dcb__price-main" set:html={formatCurrencyPlainText(doctor.priceMain)}></span>
+      {doctor.priceSub && <span class="dcb__price-sub" set:html={formatCurrencyPlainText(doctor.priceSub)}></span>}
+    </div>
+
+    <div class="dcb__actions">
+      <Button href={`/doctors/${doctor.slug}/`} variant="secondary" size="md">Подробнее</Button>
+      <Button href="/#form" variant="primary" size="md">Записаться</Button>
+    </div>
+  </div>
+</article>
+
+<style>
+  .dcb {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    padding: var(--space-6);
+    background: var(--surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .dcb:hover { border-color: var(--border-soft); }
+
+  @media (min-width: 640px) {
+    .dcb {
+      grid-template-columns: 180px 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  /* Portrait */
+  .dcb__portrait-link { display: block; }
+
+  .dcb__portrait {
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius-sm);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dcb__portrait--a { background: var(--color-ink-900); }
+  .dcb__portrait--b { background: var(--color-ink-700); }
+  .dcb__portrait--c { background: var(--color-ink-900); }
+  .dcb__portrait--d { background: var(--color-ink-700); }
+
+  .dcb__portrait img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .dcb__portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='ndcb'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23ndcb)'/%3E%3C/svg%3E");
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .dcb__initials {
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(255, 253, 248, 0.92);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    z-index: 1;
+  }
+
+  /* Body */
+  .dcb__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-width: 0;
+  }
+
+  .dcb__spec {
+    font-size: var(--text-micro);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--accent-hover);
+  }
+
+  .dcb__name {
+    font-size: var(--text-h5);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: var(--tracking-heading);
+    margin: 0;
+  }
+
+  .dcb__name a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .dcb__name a:hover { color: var(--accent-hover); }
+
+  .dcb__desc {
+    font-size: var(--text-ui);
+    line-height: 1.55;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .dcb__specs {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dcb__specs li {
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+    padding-left: var(--space-4);
+    position: relative;
+    line-height: 1.45;
+  }
+
+  .dcb__specs li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    color: var(--accent-hover);
+    font-weight: 600;
+  }
+
+  .dcb__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    margin-top: auto;
+  }
+
+  .dcb__price-main {
+    font-size: var(--text-ui);
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .dcb__price-sub {
+    font-size: var(--text-caption);
+    color: var(--text-muted);
+  }
+
+  .dcb__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding-top: var(--space-2);
+  }
+</style>

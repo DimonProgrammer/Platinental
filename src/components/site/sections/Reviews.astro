@@ -1,0 +1,108 @@
+---
+// Все отзывы — публичные, с Яндекс.Карт и ПроДокторов. Не редактируем содержательно.
+const reviews = [
+  {
+    text: 'После консультации у Мхитара Мисаковича все страхи прошли — он объяснил каждый шаг. В день снятия гипса я была самым счастливым человеком. Три года прошло — результат только лучше.',
+    author: 'Лейла',
+    meta: 'Казань · Ринопластика',
+  },
+  {
+    text: 'Доктор Тулатова сделала круговую блефаропластику и височный лифтинг. Лёгкая реабилитация, результат выглядит естественно. Все подруги просят её контактную информацию.',
+    author: 'Пациентка клиники',
+    meta: 'Казань · Блефаропластика',
+  },
+  {
+    text: 'Просто счастлива, что узнала Васильева Максима Николаевича. Он и выслушал, и понял. После операции — наконец-то могу убирать волосы назад.',
+    author: 'Пациентка клиники',
+    meta: 'Казань · Отопластика',
+  },
+];
+---
+
+<section class="v3-reviews v3-surface-cream" aria-labelledby="reviews-heading">
+  <div class="v3-container v3-container-default">
+    <header class="rev-header" data-v3-stagger>
+      <span class="v3-eyebrow">Отзывы</span>
+      <h2 id="reviews-heading" class="v3-h2"><em>Пациенты о клинике</em></h2>
+    </header>
+
+    <ol class="rev-grid" data-v3-stagger>
+      {reviews.map((r, i) => (
+        <li class="rev-item">
+          <span class="v3-minimark rev-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <blockquote class="rev-quote">
+            <p>«{r.text}»</p>
+            <footer class="rev-foot">
+              — <strong>{r.author}</strong>, <span class="rev-meta">{r.meta}</span>
+            </footer>
+          </blockquote>
+        </li>
+      ))}
+    </ol>
+
+    <p class="rev-cta" data-v3-reveal>
+      Все отзывы можно прочитать на
+      <a href="https://2gis.ru/kazan/firm/platinental" class="v3-link">2ГИС</a>
+      и
+      <a href="https://yandex.ru/maps/-/CCUmAEpyeC" class="v3-link">Яндекс.Картах</a>.
+    </p>
+  </div>
+</section>
+
+<style>
+  .v3-reviews {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .rev-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
+  }
+  .rev-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+  .rev-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .rev-num {
+    color: var(--v3-champagne-deep);
+    font-size: 0.68rem;
+  }
+  .rev-quote { margin: 0; }
+  .rev-quote p {
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-weight: 400;
+    font-size: clamp(1.0625rem, 1.25vw, 1.25rem);
+    line-height: 1.5;
+    color: var(--v3-ink);
+    margin: 0 0 0.875rem 0;
+  }
+  .rev-foot {
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    color: var(--v3-ink-secondary);
+  }
+  .rev-foot strong { font-weight: 500; color: var(--v3-ink); }
+  .rev-meta { color: var(--v3-ink-muted); }
+  .rev-cta {
+    margin-top: var(--v3-gap-small);
+    text-align: center;
+    color: var(--v3-ink-secondary);
+    font-size: 0.9375rem;
+  }
+
+  @media (max-width: 900px) {
+    .rev-grid { grid-template-columns: 1fr; gap: clamp(1.5rem, 4vw, 2.25rem); }
+    .rev-item { padding-block: 0; }
+  }
+</style>

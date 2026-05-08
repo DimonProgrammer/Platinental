@@ -4,6 +4,7 @@ dist/
 .git/
 .DS_Store
 .env.local
+_archive/
 .claude/
 .mcp.json
 .playwright-mcp/
@@ -23,6 +24,8 @@ knowledge/
 daily/
 refs/
 research/
+output/
+*.zip
 Notion выгрузка/
 ZapfHumnst BT [Rus by me]/
 Врачи/

@@ -1,0 +1,192 @@
+---
+interface LeadItem {
+  mark: string;
+  title: string;
+  text?: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  lead: string;
+  items: LeadItem[];
+  ctaPrimary?: { label: string; href: string };
+  ctaSecondary?: { label: string; href: string };
+  surface?: 'cream' | 'sand' | 'ink';
+  note?: string;
+}
+
+const {
+  eyebrow = 'Полезно перед записью',
+  heading,
+  lead,
+  items,
+  ctaPrimary = { label: 'Получить ориентир', href: '#form' },
+  ctaSecondary,
+  surface = 'sand',
+  note = 'Материал помогает подготовиться к консультации, но не заменяет очный осмотр врача.',
+} = Astro.props;
+
+const leadId = `lead-${heading
+  .replace(/[^\p{L}\p{N}]+/gu, '-')
+  .replace(/^-|-$/g, '')
+  .toLowerCase() || 'page'}`;
+---
+
+<section class={`v3-page-lead v3-surface-${surface}`} aria-labelledby={leadId}>
+  <div class="v3-container v3-container-wide page-lead-grid">
+    <div class="page-lead-copy" data-v3-stagger>
+      <span class="v3-eyebrow">{eyebrow}</span>
+      <h2 id={leadId} class="v3-h2" set:html={heading}></h2>
+      <p class="v3-lead page-lead-text" set:html={lead}></p>
+      <div class="page-lead-actions">
+        <a href={ctaPrimary.href} class="v3-btn v3-btn-primary">{ctaPrimary.label} <span aria-hidden="true">→</span></a>
+        {ctaSecondary && <a href={ctaSecondary.href} class="v3-link">{ctaSecondary.label}</a>}
+      </div>
+    </div>
+
+    <div class="page-lead-panel" data-v3-stagger>
+      <ul class="page-lead-list">
+        {items.map((item) => (
+          <li class="page-lead-item">
+            <span class="v3-minimark" aria-hidden="true">{item.mark}</span>
+            <span class="page-lead-item-copy">
+              <strong>{item.title}</strong>
+              {item.text && <span>{item.text}</span>}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <p class="v3-caption page-lead-note">
+        <span class="v3-minimark" aria-hidden="true">!</span>
+        {note}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v3-page-lead {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-medium);
+  }
+  .page-lead-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.82fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .page-lead-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h1-lead);
+    max-width: 44rem;
+  }
+  .page-lead-copy .v3-eyebrow {
+    color: var(--v3-ink-muted);
+  }
+  .page-lead-text {
+    max-width: 54ch;
+  }
+  .page-lead-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+  .page-lead-panel {
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-xl);
+    background: color-mix(in srgb, var(--v3-surface-card) 78%, transparent);
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+  .page-lead-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .page-lead-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding-block: 1rem;
+    border-top: 1px solid var(--v3-border-hair);
+  }
+  .page-lead-item:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .page-lead-item:last-child {
+    padding-bottom: 0;
+  }
+  .page-lead-item-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+  .page-lead-item-copy strong {
+    color: var(--v3-ink);
+    font-weight: 500;
+    line-height: 1.35;
+  }
+  .page-lead-item-copy span {
+    color: var(--v3-ink-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+  .page-lead-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin: 1.5rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--v3-border-hair);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-family: var(--v3-font-body);
+    font-size: 0.8125rem;
+    color: var(--v3-ink-muted);
+  }
+
+  .v3-surface-ink .page-lead-copy .v3-eyebrow,
+  .v3-surface-ink .page-lead-text,
+  .v3-surface-ink .page-lead-note,
+  .v3-surface-ink .page-lead-item-copy span {
+    color: var(--v3-on-ink-secondary);
+  }
+  .v3-surface-ink .page-lead-panel {
+    border-color: var(--v3-border-on-ink);
+    background: rgba(251, 248, 244, 0.04);
+  }
+  .v3-surface-ink .page-lead-item,
+  .v3-surface-ink .page-lead-note {
+    border-color: var(--v3-border-on-ink);
+  }
+  .v3-surface-ink .page-lead-item-copy strong {
+    color: var(--v3-on-ink);
+  }
+
+  @media (max-width: 900px) {
+    .page-lead-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    .page-lead-actions {
+      align-items: stretch;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .page-lead-actions .v3-link {
+      align-self: flex-start;
+    }
+    .page-lead-panel {
+      border-radius: var(--v3-radius-lg);
+    }
+  }
+</style>

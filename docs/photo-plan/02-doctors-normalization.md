@@ -1,12 +1,12 @@
 # 02 · Нормализация портретов врачей
 
-**Контекст:** в `src/data/doctors.ts` 8 врачей с фото-путями `/doctors/<slug>/photo.<ext>`. Сами фото лежат в `public/doctors/<slug>/photo.{png,jpg}` и **взяты с kzn.platinental.ru**. Часть из них в едином стиле (3/4, нейтральный фон), часть — в **другом стиле** (B&W, нестандартный ракурс, плотный задний план). Это разрушает Pattern 03 (typographic spread) и delivers «странички 5-летней давности» feel.
+**Контекст:** в `src/data/doctors.ts` 7 врачей с фото-путями `/doctors/<slug>/photo.<ext>`. Сами фото лежат в `public/doctors/<slug>/photo.{png,jpg}` и **взяты с kzn.platinental.ru**. Часть из них в едином стиле (3/4, нейтральный фон), часть — в **другом стиле** (B&W, нестандартный ракурс, плотный задний план). Это разрушает Pattern 03 (typographic spread) и delivers «странички 5-летней давности» feel.
 
-**Задача:** привести все 8 портретов к единому визуальному voice через ИИ — не меняя личность, не «улучшая» лицо.
+**Задача:** привести все 7 портретов к единому визуальному voice через ИИ — не меняя личность, не «улучшая» лицо.
 
 ---
 
-## Список 8 врачей и источники
+## Список 7 врачей и источники
 
 | # | Slug | ФИО | Source URL (kzn.platinental.ru) | Текущий путь в проекте | Приоритет |
 |---|---|---|---|---|---|
@@ -14,10 +14,9 @@
 | 2 | `tulatova` | Тулатова Регина Тимуровна | https://kzn.platinental.ru/specialist/regina-tulatova/ | `public/doctors/tulatova/photo.jpg` | **P0 — главная** |
 | 3 | `mamedov` | Мамедов Вахид Аждарович | https://kzn.platinental.ru/specialist/1077/ | `public/doctors/mamedov/photo.png` | **P0 — главная** |
 | 4 | `vasilev` | Васильев Максим Николаевич | https://kzn.platinental.ru/specialist/maksim-vasilev/ | `public/doctors/vasilev/photo.png` | **P0 — главная** |
-| 5 | `makeenko` | Макеенко Николай Владимирович | https://kzn.platinental.ru/specialist/makeenko-nikolaj-vladimirovich/ | `public/doctors/makeenko/photo.png` | P1 — `/doctors` |
-| 6 | `mardanova` | Марданова Дженнет | https://kzn.platinental.ru/specialist/dzhennet-mardanova/ | `public/doctors/mardanova/photo.png` | P1 — `/doctors` |
-| 7 | `brechko` | Бречко Мария | https://kzn.platinental.ru/specialist/brechko-mariya/ | `public/doctors/brechko/photo.png` | P1 — `/doctors` |
-| 8 | `gritsay` | Грицай Олеся | https://kzn.platinental.ru/specialist/olesya-griczaj/ | `public/doctors/gritsay/photo.jpg` | P1 — `/doctors` |
+| 5 | `mardanova` | Марданова Дженнет | https://kzn.platinental.ru/specialist/dzhennet-mardanova/ | `public/doctors/mardanova/photo.png` | P1 — `/doctors` |
+| 6 | `brechko` | Бречко Мария | https://kzn.platinental.ru/specialist/brechko-mariya/ | `public/doctors/brechko/photo.png` | P1 — `/doctors` |
+| 7 | `gritsay` | Грицай Олеся | https://kzn.platinental.ru/specialist/olesya-griczaj/ | `public/doctors/gritsay/photo.jpg` | P1 — `/doctors` |
 
 > **Примечание:** некоторые URL могут отличаться — sourceSlug в `doctors.ts` основан на текущей структуре сайта. Если URL не отвечает — искать через поисковую страницу kzn.platinental.ru или через web.archive.org.
 
@@ -32,7 +31,7 @@
 ```bash
 # Если фото уже в public/doctors/ — их используем как baseline.
 # Если нет — скачиваем с kzn.platinental.ru через curl или browser.
-for slug in meloyan tulatova mamedov vasilev makeenko mardanova brechko gritsay; do
+for slug in meloyan tulatova mamedov vasilev mardanova brechko gritsay; do
   ls -la "public/doctors/$slug/" 2>/dev/null
 done
 ```
@@ -57,7 +56,6 @@ done
 | tulatova | TBD | TBD | TBD | TBD | TBD |
 | mamedov | TBD | TBD | TBD | TBD | TBD |
 | vasilev | TBD | TBD | TBD | TBD | TBD |
-| makeenko | TBD | TBD | TBD | TBD | TBD |
 | mardanova | TBD | TBD | TBD | TBD | TBD |
 | brechko | TBD | TBD | TBD | TBD | TBD |
 | gritsay | TBD | TBD | TBD | TBD | TBD |

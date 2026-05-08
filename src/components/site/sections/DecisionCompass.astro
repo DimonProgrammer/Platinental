@@ -1,0 +1,300 @@
+---
+const routes = [
+  {
+    num: '01',
+    mark: '?',
+    label: 'Не знаю, с чего начать',
+    title: 'Пройти навигатор консультации',
+    body: '5 вопросов помогут собрать исходную задачу и понять, с каким специалистом говорить первым.',
+    href: '#consultation-quiz',
+  },
+  {
+    num: '02',
+    mark: '₽',
+    label: 'Уже знаю процедуру',
+    title: 'Посмотреть стоимость',
+    body: 'Прайс помогает заранее оценить порядок бюджета. Точная стоимость определяется после осмотра.',
+    href: '/prices',
+  },
+  {
+    num: '03',
+    mark: '+',
+    label: 'Выбираю врача',
+    title: 'Сравнить специалистов',
+    body: 'Специализация, образование, консультации и страницы врачей собраны в одном разделе.',
+    href: '/doctors',
+  },
+  {
+    num: '04',
+    mark: '—',
+    label: 'Проверяю клинику',
+    title: 'Открыть документы',
+    body: 'Юрлицо, лицензия, адрес и правовые документы доступны до записи на приём.',
+    href: '/documents',
+  },
+];
+
+const steps = [
+  'Запрос и ограничения',
+  'Врач или направление',
+  'Консультация и фото',
+  'План, сроки и стоимость',
+];
+---
+
+<section class="v3-decision v3-surface-cream" aria-labelledby="decision-heading">
+  <div class="v3-container v3-container-wide decision-shell">
+    <div class="decision-intro" data-v3-stagger>
+      <span class="v3-eyebrow">Маршрут пациента</span>
+      <h2 id="decision-heading" class="v3-h2">
+        <em>Быстро понять,<br />куда двигаться дальше</em>
+      </h2>
+      <p class="v3-body decision-lead">
+        Если запрос пока не сформулирован, начните с навигатора. Если решение уже ближе,
+        сразу переходите к врачам, прайсу или документам клиники.
+      </p>
+    </div>
+
+    <div class="decision-board" data-v3-stagger>
+      <ol class="decision-routes" aria-label="Быстрые сценарии">
+        {routes.map((item) => (
+          <li class="decision-route">
+            <a href={item.href} class="decision-link">
+              <span class="decision-mark" aria-hidden="true">{item.mark}</span>
+              <span class="decision-copy">
+                <span class="decision-label v3-eyebrow">{item.label}</span>
+                <strong>{item.title}</strong>
+                <span>{item.body}</span>
+              </span>
+              <span class="decision-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+
+      <aside class="decision-path" aria-label="Как принимается решение">
+        <span class="v3-eyebrow decision-path-kicker">Что соберём до решения</span>
+        <ol class="decision-steps">
+          {steps.map((step, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <strong>{step}</strong>
+            </li>
+          ))}
+        </ol>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v3-decision {
+    padding-top: var(--v3-gap-small);
+    padding-bottom: var(--v3-gap-medium);
+  }
+
+  .decision-shell {
+    display: grid;
+    grid-template-columns: minmax(16rem, 0.72fr) minmax(0, 1.28fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .decision-intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    max-width: 27rem;
+  }
+
+  .decision-lead {
+    max-width: 34ch;
+    color: var(--v3-ink-secondary);
+  }
+
+  .decision-board {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .decision-routes,
+  .decision-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .decision-routes {
+    border-top: 1px solid var(--v3-border-hair);
+  }
+
+  .decision-route {
+    border-bottom: 1px solid var(--v3-border-hair);
+  }
+
+  .decision-link {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 1fr) 2rem;
+    gap: 1rem;
+    align-items: center;
+    min-height: 6.5rem;
+    padding: 1.125rem 1rem;
+    color: inherit;
+    text-decoration: none;
+    transition:
+      background var(--v3-duration-fast) var(--v3-ease-out),
+      color var(--v3-duration-fast) var(--v3-ease-out);
+  }
+
+  .decision-link:hover,
+  .decision-link:focus-visible {
+    background: var(--v3-surface-muted);
+    outline: none;
+  }
+
+  .decision-link:hover .decision-arrow,
+  .decision-link:focus-visible .decision-arrow {
+    color: var(--v3-champagne-deep);
+    transform: translateX(0.25rem);
+  }
+
+  .decision-mark {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: 50%;
+    background: var(--v3-surface-card);
+    font-family: var(--v3-font-body);
+    font-size: 0.95rem;
+    line-height: 1;
+    color: var(--v3-champagne-deep);
+  }
+
+  .decision-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    min-width: 0;
+  }
+
+  .decision-copy strong {
+    font-family: var(--v3-font-body);
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
+    line-height: 1.35;
+    font-weight: 500;
+    color: var(--v3-ink);
+  }
+
+  .decision-copy span:last-child {
+    max-width: 52ch;
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--v3-ink-secondary);
+  }
+
+  .decision-label {
+    color: var(--v3-ink-muted);
+  }
+
+  .decision-arrow {
+    justify-self: end;
+    color: var(--v3-ink-muted);
+    transition:
+      color var(--v3-duration-fast) var(--v3-ease-out),
+      transform var(--v3-duration-fast) var(--v3-ease-out);
+  }
+
+  .decision-path {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-xl);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+  }
+
+  .decision-path-kicker {
+    color: var(--v3-ink-muted);
+  }
+
+  .decision-steps {
+    display: grid;
+    gap: 0.875rem;
+  }
+
+  .decision-steps li {
+    display: grid;
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: baseline;
+    padding-top: 0.875rem;
+    border-top: 1px solid var(--v3-border-hair);
+  }
+
+  .decision-steps span {
+    font-family: var(--v3-font-body);
+    font-size: var(--v3-text-caption);
+    letter-spacing: var(--v3-tracking-eyebrow);
+    color: var(--v3-champagne-deep);
+  }
+
+  .decision-steps strong {
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    font-weight: 500;
+    color: var(--v3-ink);
+  }
+
+  @media (max-width: 1100px) {
+    .decision-shell,
+    .decision-board {
+      grid-template-columns: 1fr;
+    }
+
+    .decision-intro,
+    .decision-lead {
+      max-width: 46rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .v3-decision {
+      padding-top: 0;
+    }
+
+    .decision-link {
+      grid-template-columns: 2rem minmax(0, 1fr);
+      gap: 0.75rem;
+      min-height: 0;
+      padding: 1rem 0;
+    }
+
+    .decision-mark {
+      width: 1.75rem;
+      height: 1.75rem;
+      background: transparent;
+      font-size: 0.8rem;
+    }
+
+    .decision-copy span:last-child {
+      display: none;
+    }
+
+    .decision-arrow {
+      display: none;
+    }
+
+    .decision-path {
+      border-radius: var(--v3-radius-lg);
+    }
+  }
+</style>

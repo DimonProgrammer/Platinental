@@ -1,31 +1,39 @@
 ---
-import V3Layout from '../layouts/V3Layout.astro';
-import Navigation from '../components/v3/sections/Navigation.astro';
-import Hero from '../components/v3/sections/Hero.astro';
-import ServicesGrid from '../components/v3/sections/ServicesGrid.astro';
-import Principles from '../components/v3/sections/Principles.astro';
-import Procedures from '../components/v3/sections/Procedures.astro';
-import QuoteBridge from '../components/v3/sections/QuoteBridge.astro';
-import DoctorsPreview from '../components/v3/sections/DoctorsPreview.astro';
-import BeforeAfter from '../components/v3/sections/BeforeAfter.astro';
-import Reviews from '../components/v3/sections/Reviews.astro';
-import ConsultationValue from '../components/v3/sections/ConsultationValue.astro';
-import FinalCTA from '../components/v3/sections/FinalCTA.astro';
-import FAQ from '../components/v3/sections/FAQ.astro';
-import Contacts from '../components/v3/sections/Contacts.astro';
-import Footer from '../components/v3/sections/Footer.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Navigation from '../components/site/sections/Navigation.astro';
+import Hero from '../components/site/sections/Hero.astro';
+import MedicalDisclaimer from '../components/site/sections/MedicalDisclaimer.astro';
+import DecisionCompass from '../components/site/sections/DecisionCompass.astro';
+import Promotions from '../components/site/sections/Promotions.astro';
+import ConsultationQuiz from '../components/site/sections/ConsultationQuiz.astro';
+import ServicesGrid from '../components/site/sections/ServicesGrid.astro';
+import Principles from '../components/site/sections/Principles.astro';
+import Procedures from '../components/site/sections/Procedures.astro';
+import QuoteBridge from '../components/site/sections/QuoteBridge.astro';
+import DoctorsPreview from '../components/site/sections/DoctorsPreview.astro';
+import BeforeAfter from '../components/site/sections/BeforeAfter.astro';
+import Reviews from '../components/site/sections/Reviews.astro';
+import ConsultationValue from '../components/site/sections/ConsultationValue.astro';
+import FinalCTA from '../components/site/sections/FinalCTA.astro';
+import FAQ from '../components/site/sections/FAQ.astro';
+import Contacts from '../components/site/sections/Contacts.astro';
+import Footer from '../components/site/sections/Footer.astro';
 ---
 
-<V3Layout
+<SiteLayout
   title="The Platinental Казань — клиника пластической хирургии и косметологии"
   description="Клиника The Platinental в Казани. Гармонизирующая хирургия, авторские методики. С 2011 года."
 >
   <Navigation />
   <main id="main">
     <Hero />
+    <MedicalDisclaimer />
+    <DecisionCompass />
+    <ConsultationQuiz />
     <ServicesGrid />
     <Principles />
     <Procedures />
+    <Promotions />
     <QuoteBridge />
     <DoctorsPreview />
     <BeforeAfter />
@@ -36,7 +44,7 @@ import Footer from '../components/v3/sections/Footer.astro';
     <Contacts />
   </main>
   <Footer />
-</V3Layout>
+</SiteLayout>
 
 <style is:global>
   /* ZapfHumnst BT вместо Cormorant на всём сайте */

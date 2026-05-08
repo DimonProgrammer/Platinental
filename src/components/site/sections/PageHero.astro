@@ -1,0 +1,165 @@
+---
+interface MetaItem { num: string; label: string }
+
+interface Props {
+  eyebrow?: string;
+  h1: string;
+  lead: string;
+  ctaPrimary?: { label: string; href: string };
+  ctaSecondary?: { label: string; href: string };
+  surface?: 'cream' | 'sand' | 'ink';
+  pageMarker?: string;       // например "02 / 04"
+  pageMarkerLabel?: string;  // например "Услуги"
+  meta?: MetaItem[];         // 3-4 факта в строке метаданных
+  /** @deprecated — оставлен для совместимости, не используется в variant C */
+  imagePlaceholder?: unknown;
+}
+
+const {
+  eyebrow,
+  h1,
+  lead,
+  ctaPrimary = { label: 'Записаться на консультацию', href: '#form' },
+  ctaSecondary,
+  surface = 'cream',
+  pageMarker,
+  pageMarkerLabel,
+  meta,
+} = Astro.props;
+---
+
+<section class={`v3-page-hero v3-surface-${surface}`} aria-labelledby="page-hero-heading">
+  <div class="v3-container v3-container-wide page-hero-inner">
+    {(pageMarker || pageMarkerLabel) && (
+      <div class="page-marker" data-v3-reveal>
+        {pageMarker && <span class="v3-eyebrow">{pageMarker}</span>}
+        {pageMarkerLabel && <span class="v3-eyebrow page-marker-label">{pageMarkerLabel}</span>}
+      </div>
+    )}
+
+    <div class="hero-text" data-v3-stagger>
+      {eyebrow && <span class="v3-eyebrow">{eyebrow}</span>}
+      <h1 id="page-hero-heading" class="v3-display" set:html={h1}></h1>
+      <p class="v3-lead hero-lead">{lead}</p>
+      <div class="hero-cta">
+        <a href={ctaPrimary.href} class="v3-btn v3-btn-primary">{ctaPrimary.label}</a>
+        {ctaSecondary && (
+          <a href={ctaSecondary.href} class="v3-link cta-secondary">{ctaSecondary.label}</a>
+        )}
+      </div>
+    </div>
+
+    {meta && meta.length > 0 && (
+      <div class="hero-meta">
+        <div class="hero-meta-row" data-cols={meta.length} data-v3-stagger>
+          {meta.map((m) => (
+            <div class="hero-meta-item">
+              <span class="v3-minimark hero-meta-num" aria-hidden="true">{m.num}</span>
+              <span class="hero-meta-label v3-caption">{m.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .v3-page-hero {
+    padding-top: clamp(2rem, 5vh, 4rem);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .page-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.75rem, 3.5vw, 3rem);
+  }
+
+  /* Маркер страницы */
+  .page-marker {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--v3-border-hair);
+    width: max-content;
+    max-width: 100%;
+  }
+  .page-marker-label { color: var(--v3-ink-muted); }
+
+  /* Текст */
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 56rem;
+  }
+  .hero-text .v3-eyebrow { margin-bottom: 0; }
+  .hero-lead {
+    max-width: 56ch;
+    color: var(--v3-ink-secondary);
+  }
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+  .cta-secondary { font-size: 0.9375rem; }
+
+  /* Метадата-полоса */
+  .hero-meta {
+    border-top: 1px solid var(--v3-border-hair);
+    padding-top: 1.5rem;
+    margin-top: clamp(1rem, 2vw, 1.5rem);
+  }
+  .hero-meta-row {
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 3rem);
+  }
+  .hero-meta-row[data-cols="2"] { grid-template-columns: repeat(2, 1fr); max-width: 36rem; }
+  .hero-meta-row[data-cols="3"] { grid-template-columns: repeat(3, 1fr); max-width: 56rem; }
+  .hero-meta-row[data-cols="4"] { grid-template-columns: repeat(4, 1fr); }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+  .hero-meta-num {
+    color: var(--v3-champagne-deep);
+  }
+  .hero-meta-label {
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-size: 0.8125rem;
+  }
+
+  /* Тёмная поверхность */
+  .v3-surface-ink .hero-meta-num { color: var(--v3-champagne); }
+  .v3-surface-ink .hero-lead { color: var(--v3-on-ink-secondary); }
+  .v3-surface-ink .hero-meta-label,
+  .v3-surface-ink .page-marker-label { color: var(--v3-on-ink-muted); }
+  .v3-surface-ink .page-marker,
+  .v3-surface-ink .hero-meta { border-color: rgba(251, 248, 244, 0.18); }
+
+  @media (max-width: 768px) {
+    .v3-page-hero { padding-bottom: var(--v3-gap-medium); }
+    .hero-meta-row[data-cols="3"],
+    .hero-meta-row[data-cols="4"] {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: none;
+    }
+  }
+  @media (max-width: 480px) {
+    .hero-meta-row[data-cols="3"],
+    .hero-meta-row[data-cols="4"] {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .hero-cta { gap: 0.875rem; width: 100%; }
+    .hero-cta .v3-btn { width: 100%; }
+  }
+</style>

@@ -1,0 +1,97 @@
+---
+import { surgicalBases } from '../../../data/partners';
+
+const partners = Object.values(surgicalBases);
+---
+
+<section class="partners-block v3-surface-cream" aria-labelledby="partners-heading">
+  <div class="v3-container v3-container-wide partners-grid" data-v3-reveal>
+    <header class="partners-header">
+      <span class="v3-eyebrow">Наши партнёры</span>
+      <h2 id="partners-heading" class="v3-h2"><em>Операционные базы</em></h2>
+      <p class="v3-body">
+        Часть операций проводится на партнёрских медицинских площадках в Казани. На консультации врач объясняет маршрут, показания и место проведения операции.
+      </p>
+    </header>
+
+    <div class="partners-list">
+      {partners.map((partner) => (
+        <article class="partner-card">
+          <div class="partner-card-head">
+            <h3 class="v3-h3 partner-title">{partner.name}</h3>
+            <a class="v3-link partner-link" href={partner.href} target="_blank" rel="noopener noreferrer">
+              сайт партнёра
+            </a>
+          </div>
+          <p class="v3-body partner-address">{partner.city}, {partner.address}</p>
+          <p class="v3-caption partner-doctors">Врачи: {partner.doctors}</p>
+          <p class="v3-small partner-note">{partner.note}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .partners-block {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-medium);
+  }
+  .partners-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  .partners-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 34rem;
+  }
+  .partners-header .v3-eyebrow {
+    color: var(--v3-ink-muted);
+  }
+  .partners-list {
+    display: grid;
+    gap: 1rem;
+  }
+  .partner-card {
+    border-top: 1px solid var(--v3-border-soft);
+    padding-top: 1.25rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .partner-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .partner-title {
+    margin: 0;
+  }
+  .partner-address {
+    margin: 0;
+    color: var(--v3-ink-secondary);
+  }
+  .partner-doctors,
+  .partner-note {
+    margin: 0;
+    color: var(--v3-ink-muted);
+  }
+  .partner-link {
+    white-space: nowrap;
+  }
+  @media (max-width: 900px) {
+    .partners-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    .partner-card-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

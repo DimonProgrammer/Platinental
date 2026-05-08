@@ -3,7 +3,7 @@
 > Клиника пластической хирургии и косметологии в Казани.
 > Дизайн-философия: **"дорогое ателье, не поликлиника"** — доверие + экспертиза + лёгкость записи.
 
-**Отстройка от московского `platinental.ru` (обновлено 2026-04-20):** Platinental Казань — самостоятельная клиника. Не копируем визуал московского сайта: у них тёмный фон и красный акцент — это личный вкус Искорнева. У нас **светлая премиальная эстетика** — cream, champagne, минимум контраста, никакого красного. Логотип и частично шрифты — общие с брендом, фоны/цвета/тональность — свои.
+**Отстройка от московского `platinental.ru` (обновлено 2026-05-07):** Platinental Казань — самостоятельная клиника. Не копируем визуал московского сайта: у них тёмный фон и красный акцент. У нас утверждена **светлая тёплая коричневая premium-эстетика**: cream `#FBF8F4`, sand `#EFE7DF`, warm brown ink `#685C54`, rose taupe accent `#917271`. Никакого красного и никакого возврата к sage/green-концептам.
 
 ## 1. Visual Theme & Atmosphere
 
@@ -12,129 +12,127 @@
 Структура подачи — кинематографическая: каждый блок — это сцена, каждая сцена — один месседж. Фото — только авторские или нейтральные. Никаких стоковых улыбок. Никаких бинарных «До/После» в духе рекламы таблеток.
 
 **Ключевые характеристики:**
-- Кремовый фон (`#FFFDF8`) как нейтральная "кожа" сайта — не белый, не серый, живой
-- Тёплый серый (`#F5F0EB`) для чередующихся секций — создаёт ритм без контраста
-- Serif-заголовки (Cormorant Garamond или Playfair Display) — медицинский авторитет + изящество
-- Sans-serif для тела (Golos Text или Manrope) — Кириллица, читаемость, нейтралитет
-- Акцент TBD — одна хроматическая роль: CTA, активные элементы, ссылки
+- Кремовый фон (`#FBF8F4`) как нейтральная "кожа" сайта — не белый, не серый, живой
+- Sand-поверхность (`#EFE7DF`) для чередующихся секций — создаёт ритм без контраста
+- Warm brown ink (`#685C54`) вместо чёрного как основной тон текста и CTA
+- Display-шрифт `ZapfHumnst BT`, body/UI `Formular` — это активная утверждённая пара
+- Акцент `#917271` / `#7B6261` — одна хроматическая роль: CTA, активные элементы, ссылки
 - Нет градиентов, нет текстур, нет иконочных "наборов" из 200 иконок
 - Mobile-first: большинство трафика из Яндекс Директ приходит с мобильных
 
 ## 2. Color Palette & Roles
 
 ### Primary Surfaces
-- **Cream** (`#FFFDF8`): Основной фон страниц, карточек, форм. Не белый — тёплый оттенок создаёт ощущение уюта и дороговизны.
-- **Warm Grey** (`#F5F0EB`): Вторичный фон для чередующихся секций, подложек, зон с инфо-блоками. Создаёт ритм без резкого контраста.
-- **Black** (`#0A0A0A`): Hero-секции, тёмные блоки с фото, инвертированные поверхности. Глубокий, не резкий.
+- **Cream** (`#FBF8F4`): Основной фон страниц. Не белый — тёплый оттенок создаёт ощущение уюта и дороговизны.
+- **Cream Alt** (`#F6F0EA`): Мягкий переходный фон.
+- **Sand** (`#EFE7DF`): Вторичный фон для чередующихся секций, подложек, зон с инфо-блоками.
+- **Card** (`#FFFDF9`): Карточки, формы, вложенные поверхности.
 
 ### Text
-- **Black Text** (`#0A0A0A`): Заголовки, основной контент. Чуть теплее чистого чёрного.
-- **Muted** (`#6B6B6B`): Подписи, мелкий текст, метаданные (время, теги), вторичные описания.
-- **White** (`#FFFFFF`): Текст на тёмных (black) секциях.
+- **Warm Brown Ink** (`#685C54`): Заголовки, основной контент, тёмные CTA.
+- **Secondary** (`#616F84`): Подписи, метаданные, вторичные описания.
+- **Muted** (`#897F78`): Мелкий текст и спокойные пояснения.
+- **Cream Text** (`#FBF8F4`): Текст на тёмных warm-ink секциях.
 
-### Accent (TBD — согласовать с клиентом)
-- **Accent** (`TBD`): Единственный хроматический цвет. Используется ТОЛЬКО для: CTA-кнопок, активных состояний, ссылок. Подтверждено: **НЕ красный**.
-- Кандидаты: сдержанное золото (~`#B8975A`), глубокий сапфир (~`#1B3A6B`), тёплая бронза (~`#9B7E5A`)
-- Когда акцент согласован — заменить все `TBD-ACCENT` в этом файле.
+### Accent
+- **Champagne / Rose Taupe** (`#917271`): Единственный хроматический акцент. Используется для CTA, активных состояний, ссылок, focus-ring и micro-UI.
+- **Deep Accent** (`#7B6261`): Hover/active-состояния.
+- Акцент утверждён в актуальной коричневой версии. Не возвращать `TBD-ACCENT`.
 
 ### Functional
-- **Border** (`rgba(10, 10, 10, 0.08)`): Тонкие разделители карточек, инпутов. Почти невидимые.
-- **Overlay** (`rgba(10, 10, 10, 0.4)`): Затемнение поверх hero-фотографий.
-- **Focus** (`TBD-ACCENT`): Обводка фокуса на интерактивных элементах (доступность).
+- **Border** (`#E5DCD3` / `#DCD1C7`): Тонкие разделители карточек, инпутов. Почти невидимые.
+- **Overlay** (`rgba(104, 92, 84, 0.4)`): Затемнение поверх фото при необходимости.
+- **Focus** (`#7B6261`): Обводка фокуса на интерактивных элементах.
 
 ### Medical Disclaimer Strip
-- Background: `#F5F0EB` или `rgba(10,10,10,0.04)`
-- Text: `#6B6B6B`, мелкий
+- Background: `#EFE7DF` или `rgba(104,92,84,0.04)`
+- Text: `#897F78`, мелкий
 - "Имеются противопоказания, требуется консультация специалиста"
 
 ## 3. Typography Rules
 
 ### Font Families
-- **Display / Заголовки**: `Cormorant Garamond` (предпочтительно) или `Playfair Display`
-  - Оба поддерживают кириллицу через Google Fonts
-  - Serif придаёт авторитет и изящество — контрастирует с медицинской "холодностью"
-- **Body / UI**: `Golos Text` (российский, отличная кириллица) или `Manrope`
-  - Нейтральный, чистый, хорошо читается на мобильных
+- **Display / Заголовки**: `ZapfHumnst BT`, fallback `Georgia, serif`
+  - Это активный утверждённый голос сайта. Не заменять на Cormorant/Golos без отдельного решения.
+- **Body / UI**: `Formular`, fallback `-apple-system`, `Inter`, `system-ui`, `sans-serif`
+  - Нейтральный, чистый, хорошо читается на мобильных.
 - **Моноширинный** (если нужен): `JetBrains Mono` — только для кодов, артикулов (редко)
 
 ### Hierarchy
 
 | Роль | Шрифт | Размер | Насыщ. | Line-height | Letter-spacing | Применение |
 |------|-------|--------|--------|-------------|----------------|------------|
-| Hero Display | Cormorant Garamond | 64px (4rem) | 300 | 1.05 | -0.5px | Главный заголовок hero-секции |
-| Section Heading | Cormorant Garamond | 48px (3rem) | 400 | 1.10 | -0.3px | Заголовки основных блоков |
-| Card Heading | Cormorant Garamond | 32px (2rem) | 400 | 1.15 | -0.2px | Заголовки карточек услуг, врачей |
-| Sub-heading | Cormorant Garamond | 24px (1.5rem) | 400 | 1.25 | normal | Подзаголовки, подписи к секциям |
-| Body | Golos Text | 16px (1rem) | 400 | 1.60 | normal | Основной текст, описания |
-| Body Lead | Golos Text | 18px (1.125rem) | 400 | 1.55 | normal | Вводный абзац, lede |
-| UI Label | Golos Text | 14px (0.875rem) | 500 | 1.40 | 0.2px | Метки форм, навигация, теги |
-| Button | Golos Text | 15px (0.9375rem) | 500 | 1.00 | 0.5px | Текст кнопок — чуть шире для читаемости |
-| Caption | Golos Text | 13px (0.8125rem) | 400 | 1.45 | 0.1px | Подписи под фото, примечания |
-| Micro / Legal | Golos Text | 11px (0.6875rem) | 400 | 1.40 | 0.2px | Дисклеймеры, 152-ФЗ текст |
-| Nav | Golos Text | 14px (0.875rem) | 400 | 1.00 | 0.3px | Пункты навигации |
-| Price | Cormorant Garamond | 28px (1.75rem) | 300 | 1.20 | normal | "от 15 000 ₽" — лёгкий вес подчёркивает элегантность |
+| Hero Display | ZapfHumnst BT | 28→48px | 300/400 | 1.05 | 0 | Главный заголовок hero-секции |
+| Section Heading | ZapfHumnst BT | 22→36px | 400 | 1.10 | 0 | Заголовки основных блоков |
+| Card Heading | ZapfHumnst BT | 16→20px | 400 | 1.30 | 0 | Заголовки карточек услуг, врачей |
+| Body | Formular | 15→16px | 400 | 1.65 | 0.005em | Основной текст, описания |
+| Body Lead | Formular | 16→18px | 400 | 1.50 | 0.005em | Вводный абзац, lede |
+| UI Label / Eyebrow | Formular | 12→14px | 400/500 | 1.40 | 0.20em | Метки, навигация, теги |
+| Button | Formular | 15px | 500/600 | 1.00 | 0.02em | Текст кнопок |
+| Caption | Formular | 12px | 400 | 1.45 | 0.005em | Подписи, примечания |
+| Price | ZapfHumnst BT | 20→28px | 300/400 | 1.20 | 0 | "от 15 000 ₽" |
 
 ### Принципы
-- **Serif + Sans контраст**: заголовки Cormorant создают "голос клиники", тело Golos Text — доступность и читаемость. Никогда не смешивать: заголовок sans / тело serif.
+- **Serif + Sans контраст**: заголовки ZapfHumnst BT создают "голос клиники", тело Formular — доступность и читаемость.
 - **Лёгкий вес для Display**: hero-заголовки вес 300 или 400 — премиальная тонкость, не жирность.
 - **Кириллица первична**: все шрифты проверены на кириллическое начертание. Google Fonts гарантирует стабильную загрузку.
-- **Отрицательный трекинг у заголовков**: -0.3...-0.5px для display, normal для тела.
+- **Трекинг без сжатия**: display = 0, body = 0.005em, eyebrow = 0.20em.
 
 ## 4. Component Stylings
 
 ### Кнопки
 
 **Primary CTA ("Записаться")**
-- Background: `TBD-ACCENT`
-- Text: `#FFFFFF`
+- Background: `#685C54`
+- Text: `#FBF8F4`
 - Padding: 14px 28px
-- Radius: 4px (немного скруглённый, не пилюля)
-- Font: Golos Text, 15px, weight 500, letter-spacing 0.5px
-- Hover: чуть темнее акцента (-10% brightness)
-- Focus: `2px solid TBD-ACCENT` outline с offset 2px
+- Radius: pill или мягкий radius из `tokens.css`
+- Font: Formular, 15px, weight 500/600
+- Hover: `#7B6261` или мягкое затемнение warm brown
+- Focus: `2px solid #7B6261` outline с offset 2px
 - Использование: главный конверсионный элемент — запись, консультация
 
 **Secondary ("Подробнее", "Узнать стоимость")**
 - Background: transparent
-- Border: 1px solid `TBD-ACCENT`
-- Text: `TBD-ACCENT`
+- Border: 1px solid `#7B6261`
+- Text: `#7B6261`
 - Padding: 13px 27px (компенсация бордера)
 - Radius: 4px
-- Hover: background `TBD-ACCENT` 10% opacity
+- Hover: background `rgba(145, 114, 113, 0.10)`
 - Использование: вторичный CTA рядом с primary
 
 **Ghost / Text Link**
 - Background: none
-- Text: `TBD-ACCENT`, underline on hover
-- Font: Golos Text, 14px
+- Text: `#7B6261`, underline/hairline reveal on hover
+- Font: Formular, 14px
 - Использование: "Все услуги →", "Смотреть все врачей"
 
 **Кнопка телефона (Sticky Header)**
 - Background: transparent или кремовый
 - Border: 1px solid `rgba(10,10,10,0.15)`
-- Text: `#0A0A0A`, 15px, weight 500
+- Text: `#685C54`, 15px, weight 500
 - Radius: 4px
 - Использование: "+7 843 223-66-66" в хедере
 
 ### Карточки
 
 **Карточка услуги**
-- Background: `#FFFDF8` или `#F5F0EB`
+- Background: `#FFFDF9` или `#EFE7DF`
 - Border: none (тень или разделитель если нужна граница)
 - Radius: 8px
 - Shadow: `0 2px 16px rgba(10, 10, 10, 0.06)` — мягкая, почти не видна
 - Padding: 24px
 - Изображение: верхние 50-60% карточки, скруглены только сверху (8px 8px 0 0)
-- Heading: Cormorant Garamond, 24px
-- Description: Golos Text, 14px, `#6B6B6B`
-- CTA-ссылка внизу: `TBD-ACCENT`
+- Heading: ZapfHumnst BT, 20-24px
+- Description: Formular, 14-16px, `#616F84`
+- CTA-ссылка внизу: `#7B6261`
 
 **Карточка врача**
-- Background: `#F5F0EB`
+- Background: `#EFE7DF`
 - Radius: 8px
 - Фото: квадрат или 3:4, скруглено сверху
-- ФИО: Cormorant Garamond, 22px, weight 400
-- Специализация: Golos Text, 13px, `#6B6B6B`, CAPS, letter-spacing 0.8px
+- ФИО: ZapfHumnst BT или Formular по контексту карточки
+- Специализация: Formular, 12-13px, `#616F84`, CAPS, letter-spacing 0.20em
 - Кнопка "Записаться": Primary CTA, полная ширина
 
 **Карточка до/после**
@@ -146,8 +144,8 @@
 ### Навигация (Sticky Header)
 
 - Height: 64px (desktop), 56px (mobile)
-- Background: `rgba(255, 253, 248, 0.9)` + `backdrop-filter: blur(12px)`
-- Border-bottom: `1px solid rgba(10, 10, 10, 0.06)`
+- Background: `rgba(251, 248, 244, 0.9)` + `backdrop-filter: blur(12px)`
+- Border-bottom: `1px solid #E5DCD3`
 - Логотип: слева, SVG
 - Навигация: центр (desktop) — не более 5 пунктов
 - CTA справа: телефон + кнопка "Записаться"
@@ -155,12 +153,12 @@
 
 ### Формы
 
-- Input background: `#FFFFFF` или `#FFFDF8`
-- Input border: `1px solid rgba(10, 10, 10, 0.15)`
-- Input border (focus): `1px solid TBD-ACCENT`
+- Input background: `#FFFFFF` или `#FFFDF9`
+- Input border: `1px solid #DCD1C7`
+- Input border (focus): `1px solid #7B6261`
 - Input radius: 4px
-- Label: Golos Text, 13px, `#6B6B6B`, выше поля
-- Placeholder: `rgba(10, 10, 10, 0.35)`
+- Label: Formular, 13px, `#616F84`, выше поля
+- Placeholder: `rgba(104, 92, 84, 0.42)`
 - Ошибка: красный `#D32F2F` (исключение — только для ошибок валидации)
 - Чекбокс 152-ФЗ: обязателен, стандартный чекбокс стилизованный
 - CTA-кнопка формы: Primary, полная ширина
@@ -189,8 +187,8 @@
 - Гутер: 24px (desktop), 16px (mobile)
 
 ### Ритм секций
-- Чередование: cream (`#FFFDF8`) → warm grey (`#F5F0EB`) → cream → dark (`#0A0A0A`) → cream
-- Dark-секция: не чаще 1-2 раза на странице (hero или ключевой блок)
+- Чередование: cream (`#FBF8F4`) → sand (`#EFE7DF`) → cream → warm ink (`#685C54`) → cream
+- Тёмная warm-ink секция: не чаще 1-2 раза на странице (ключевой CTA или editorial-мост)
 - Каждая секция — один месседж, одна задача, один CTA
 
 ### Whitespace Philosophy
@@ -214,9 +212,9 @@
 ## 7. Do's and Don'ts
 
 ### Делать
-- Использовать Cormorant Garamond для заголовков: он создаёт нужный тон "дорогого ателье"
+- Использовать ZapfHumnst BT для display-заголовков: он создаёт текущий утверждённый тон сайта
 - Чередовать фоновые цвета для ритма секций, не только отступами
-- Один акцентный цвет (TBD) — только для интерактивных элементов
+- Один акцентный цвет `#917271`/`#7B6261` — только для интерактивных элементов
 - Фото врачей — профессиональные портреты, нейтральный фон
 - Цены на страницах услуг: "от X ₽" — честность снижает барьер записи
 - Дисклеймер снизу каждой страницы — это юридически обязательно и доверие
@@ -270,39 +268,39 @@
 ## 9. Agent Prompt Guide
 
 ### Quick Color Reference
-- Page background: `#FFFDF8`
-- Section alternate bg: `#F5F0EB`
-- Dark section bg: `#0A0A0A`
-- Heading text (light bg): `#0A0A0A`
-- Heading text (dark bg): `#FFFFFF`
-- Body text: `#0A0A0A`
-- Secondary text: `#6B6B6B`
-- CTA / Accent: `TBD-ACCENT` (согласовать с клиентом)
-- Border: `rgba(10, 10, 10, 0.08)`
-- Card shadow: `0 2px 16px rgba(10, 10, 10, 0.06)`
+- Page background: `#FBF8F4`
+- Section alternate bg: `#EFE7DF`
+- Dark / CTA bg: `#685C54`
+- Heading text (light bg): `#685C54`
+- Heading text (dark bg): `#FBF8F4`
+- Body text: `#685C54`
+- Secondary text: `#616F84`
+- CTA / Accent: `#917271` / `#7B6261`
+- Border: `#E5DCD3`
+- Card shadow: `0 10px 30px rgba(104, 92, 84, 0.06)`
 
 ### Пример промптов к агенту
 
 **Hero-секция:**
-"Создай hero-секцию с фоном `#0A0A0A`. Overlay `rgba(10,10,10,0.4)` поверх фонового фото. Заголовок: Cormorant Garamond, 64px, weight 300, line-height 1.05, letter-spacing -0.5px, цвет `#FFFFFF`. Подзаголовок: Golos Text, 18px, weight 400, `rgba(255,255,255,0.8)`. Два CTA: Primary ('Записаться', `TBD-ACCENT` фон, белый текст, 4px radius, 14px 28px padding) и Secondary ('Узнать стоимость', прозрачный фон, 1px solid `TBD-ACCENT`, `TBD-ACCENT` текст)."
+"Создай hero-секцию в актуальной коричневой системе: фон `#FBF8F4`, текст `#685C54`, акцент `#917271`, display `ZapfHumnst BT`, body `Formular`. Hero должен быть светлым, тёплым, с editorial-фото и двумя CTA максимум. Primary: warm brown `#685C54` с cream-текстом; secondary: текстовая/outline-ссылка `#7B6261`."
 
 **Карточка услуги:**
-"Карточка: фон `#FFFDF8`, radius 8px, тень `0 2px 16px rgba(10,10,10,0.06)`. Изображение верхние 55% карточки, radius 8px 8px 0 0. Заголовок: Cormorant Garamond, 24px, weight 400, `#0A0A0A`. Описание: Golos Text, 14px, `#6B6B6B`, 3 строки. Цена: Cormorant Garamond, 20px, weight 300, `#0A0A0A`. CTA-ссылка: Golos Text, 13px, `TBD-ACCENT`."
+"Карточка: фон `#FFFDF9` или `#EFE7DF`, мягкий radius 14-24px, тень `0 10px 30px rgba(104,92,84,0.06)`. Заголовок: ZapfHumnst BT, `#685C54`. Описание: Formular, `#616F84`. CTA-ссылка: Formular, `#7B6261`."
 
 **Навигация (sticky):**
-"Sticky header, height 64px, background `rgba(255,253,248,0.9)` + backdrop-filter blur(12px), border-bottom `1px solid rgba(10,10,10,0.06)`. Логотип SVG слева. Меню по центру: Golos Text, 14px, letter-spacing 0.3px, `#0A0A0A`. Справа: номер телефона + кнопка 'Записаться' (Primary CTA). На мобильных: hamburger-иконка, full-screen overlay кремового цвета."
+"Sticky header, background `rgba(251,248,244,0.9)` + backdrop-filter blur(12px), border-bottom `1px solid #E5DCD3`. Логотип SVG слева. Меню: Formular, `#685C54`. Справа: номер телефона + кнопка 'Записаться'. На мобильных: hamburger-иконка, full-screen overlay cream."
 
 **Карточка врача:**
-"Фон `#F5F0EB`, radius 8px. Фото соотношение 3:4, скруглено 8px 8px 0 0. ФИО: Cormorant Garamond, 22px, weight 400, `#0A0A0A`. Специализация: Golos Text, 12px, weight 500, `#6B6B6B`, UPPERCASE, letter-spacing 0.8px. Краткое описание: Golos Text, 13px, `#6B6B6B`. Кнопка 'Записаться': Primary CTA, полная ширина, margin-top auto."
+"Фон `#EFE7DF` или `#FFFDF9`, мягкий radius 14-24px. Фото 3:4, единая обработка. ФИО: ZapfHumnst BT/Formular по контексту, `#685C54`. Специализация: Formular, `#616F84`, uppercase, letter-spacing 0.20em. Кнопка 'Записаться': Primary CTA, margin-top auto."
 
 **Форма записи:**
-"Форма с фоном `#FFFDF8`, radius 12px, padding 32px, тень `0 4px 24px rgba(10,10,10,0.10)`. Поля: высота 48px, border `1px solid rgba(10,10,10,0.15)`, focus border `1px solid TBD-ACCENT`, radius 4px, Golos Text 15px. Чекбокс 152-ФЗ с текстом 'Я согласен на обработку персональных данных'. CTA-кнопка 'Записаться': Primary, полная ширина, height 52px."
+"Форма с фоном `#FFFDF9`, radius 18-24px, padding 32px, тень `0 18px 44px rgba(104,92,84,0.10)`. Поля: min-height 48px, border `1px solid #DCD1C7`, focus border `1px solid #7B6261`, Formular 15px. Чекбокс 152-ФЗ обязателен. CTA-кнопка 'Записаться': primary, полная ширина."
 
 ### Правила итерации
-1. Акцентный цвет (TBD) — единственный хроматический элемент: только CTA, ссылки, фокус-обводки
-2. Заголовки всегда Cormorant Garamond, тело всегда Golos Text — не смешивать роли
-3. Фоны секций чередуются: cream → warm grey → cream → (опционально) black
-4. Тёмная секция (`#0A0A0A`) — не чаще 1-2 раз на странице
+1. Акцент `#917271`/`#7B6261` — единственный хроматический элемент: только CTA, ссылки, фокус-обводки
+2. Заголовки: ZapfHumnst BT; тело/UI: Formular — не возвращать Cormorant/Golos как активную систему
+3. Фоны секций чередуются: cream → sand → cream → warm ink/CTA → cream
+4. Тёмная секция использует warm brown ink, не московский black/red
 5. Каждый блок = один месседж + один CTA максимум
 6. Mobile-first: верстать для 375px, потом расширять
 7. Чекбокс 152-ФЗ на каждой форме — не убирать
@@ -310,5 +308,5 @@
 
 ---
 
-*Акцентный цвет помечен `TBD-ACCENT` — заменить после согласования с клиентом.*
+*Актуальная цветовая система утверждена 2026-05-07. `TBD-ACCENT`, sage-палитра и Cormorant/Golos больше не являются активными инструкциями.*
 *Референсные design системы: `docs/design-references/apple.md`*

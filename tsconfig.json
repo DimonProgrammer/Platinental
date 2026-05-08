@@ -1,7 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist", "wireframes", "docs", "knowledge", "research", "Ресурсы", "design-system", "memory"],
+  "exclude": ["dist", "_archive", "wireframes", "docs", "knowledge", "research", "design-system", "memory", "output"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

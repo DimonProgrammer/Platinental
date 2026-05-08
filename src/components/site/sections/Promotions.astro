@@ -1,0 +1,321 @@
+---
+import { Image } from 'astro:assets';
+import consultationPhoto from '../../../assets/photos/promo-consultation-plan.png';
+---
+
+<section class="v3-promotions v3-surface-sand" aria-labelledby="promo-heading" id="promo">
+  <div class="v3-container v3-container-wide">
+    <article class="promo-panel" data-v3-reveal>
+      <div class="promo-content" data-v3-stagger>
+        <span class="v3-eyebrow promo-kicker">Акция для первичного визита</span>
+        <h2 id="promo-heading" class="v3-h2 promo-title">
+          <em>План гармонизации внешности перед консультацией</em>
+        </h2>
+
+        <p class="v3-lead promo-lead">
+          Оставьте заявку с сайта — администратор подскажет, какие фото и вопросы подготовить,
+          а врач на очной консультации соберёт понятный маршрут: что действительно имеет смысл,
+          что можно отложить и как спланировать восстановление.
+        </p>
+
+        <div class="promo-points" aria-label="Что входит в акцию" data-v3-stagger>
+          <div class="promo-point">
+            <span class="promo-point-mark" aria-hidden="true">•</span>
+            <span class="promo-point-num">01</span>
+            <span class="promo-point-text">Фокус на вашей задаче, без продажи лишних процедур</span>
+          </div>
+          <div class="promo-point">
+            <span class="promo-point-mark" aria-hidden="true">?</span>
+            <span class="promo-point-num">02</span>
+            <span class="promo-point-text">Список вопросов к хирургу или косметологу</span>
+          </div>
+          <div class="promo-point">
+            <span class="promo-point-mark" aria-hidden="true">—</span>
+            <span class="promo-point-num">03</span>
+            <span class="promo-point-text">Этапы, сроки и ограничения до решения</span>
+          </div>
+        </div>
+
+        <div class="promo-actions">
+          <button type="button" class="v3-btn v3-btn-primary" data-promo-booking>
+            Получить план <span aria-hidden="true">→</span>
+          </button>
+          <a href="https://wa.me/78432236666" class="v3-link promo-whatsapp" target="_blank" rel="noopener noreferrer">
+            Написать в WhatsApp
+          </a>
+        </div>
+
+        <p class="v3-caption promo-note">
+          План не заменяет консультацию врача. Медицинские рекомендации и стоимость определяются только после осмотра.
+        </p>
+      </div>
+
+      <figure class="promo-visual" aria-label="Подготовка персонального плана консультации">
+        <Image
+          src={consultationPhoto}
+          alt="Спокойная консультация в светлом кабинете с планшетом и планом эстетической коррекции"
+          class="promo-photo"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="promo-badge">
+          <span class="promo-badge-label">Первичный визит</span>
+          <span class="promo-badge-text">маршрут консультации</span>
+        </figcaption>
+      </figure>
+    </article>
+  </div>
+</section>
+
+<script>
+  function initPromoBooking() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[data-promo-booking]');
+    buttons.forEach((button) => {
+      if (button.dataset.bookingBound === '1') return;
+      button.dataset.bookingBound = '1';
+      button.addEventListener('click', () => {
+        window.dispatchEvent(new CustomEvent('open-booking', {
+          detail: { preset: 'План гармонизации внешности' },
+        }));
+      });
+    });
+  }
+
+  if (document.readyState !== 'loading') initPromoBooking();
+  else document.addEventListener('DOMContentLoaded', initPromoBooking);
+  document.addEventListener('astro:page-load', initPromoBooking);
+</script>
+
+<style>
+  .v3-promotions {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-deep);
+  }
+
+  .promo-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: stretch;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-xl);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+  }
+
+  .promo-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h1-lead);
+    min-width: 0;
+    padding: clamp(0.25rem, 2vw, 1rem) 0;
+  }
+
+  .promo-kicker {
+    align-self: flex-start;
+    padding: 0.45rem 0.85rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-pill);
+    background: var(--v3-surface-muted);
+  }
+
+  .promo-title {
+    max-width: 16ch;
+  }
+
+  .promo-lead {
+    max-width: 58ch;
+  }
+
+  .promo-points {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .promo-point {
+    display: grid;
+    grid-template-columns: 1.75rem minmax(0, 1fr);
+    grid-template-areas:
+      'mark num'
+      'mark text';
+    gap: 0.25rem 0.7rem;
+    align-items: center;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid var(--v3-border-hair);
+    border-radius: var(--v3-radius-lg);
+    background: var(--v3-surface-muted);
+  }
+
+  .promo-point-mark {
+    grid-area: mark;
+    display: inline-grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: 50%;
+    background: var(--v3-surface-card);
+    font-family: var(--v3-font-body);
+    font-size: 0.85rem;
+    line-height: 1;
+    color: var(--v3-champagne-deep);
+  }
+
+  .promo-point-num {
+    grid-area: num;
+    font-family: var(--v3-font-body);
+    font-size: var(--v3-text-caption);
+    line-height: 1;
+    letter-spacing: var(--v3-tracking-eyebrow);
+    color: var(--v3-champagne-deep);
+  }
+
+  .promo-point-text {
+    grid-area: text;
+    color: var(--v3-ink-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .promo-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    padding-top: 0.5rem;
+  }
+
+  .promo-whatsapp {
+    font-size: 0.9375rem;
+  }
+
+  .promo-note {
+    max-width: 58ch;
+    color: var(--v3-ink-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .promo-visual {
+    position: relative;
+    margin: 0;
+    min-height: 100%;
+    border-radius: var(--v3-radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--v3-border-soft);
+    background: var(--v3-surface-muted);
+  }
+
+  .promo-photo {
+    width: 100%;
+    height: 100%;
+    min-height: clamp(24rem, 42vw, 36rem);
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .promo-badge {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-lg);
+    background: color-mix(in srgb, var(--v3-surface-card) 86%, transparent);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--v3-shadow-sm);
+  }
+
+  .promo-badge-label,
+  .promo-badge-text {
+    font-family: var(--v3-font-body);
+    font-size: var(--v3-text-caption);
+    line-height: 1.35;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--v3-ink);
+  }
+
+  .promo-badge-text {
+    color: var(--v3-ink-muted);
+    text-align: right;
+  }
+
+  @media (max-width: 1024px) {
+    .promo-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .promo-visual {
+      min-height: 0;
+    }
+
+    .promo-photo {
+      min-height: 22rem;
+      max-height: 30rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .v3-promotions {
+      padding-top: var(--v3-gap-small);
+      padding-bottom: var(--v3-gap-medium);
+    }
+
+    .promo-panel {
+      padding: 1rem;
+      border-radius: var(--v3-radius-lg);
+    }
+
+    .promo-lead {
+      display: none;
+    }
+
+    .promo-points {
+      grid-template-columns: 1fr;
+    }
+
+    .promo-point-mark {
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 0.75rem;
+    }
+
+    .promo-point-num {
+      font-size: 0.6875rem;
+    }
+
+    .promo-point-text {
+      font-size: 0.9375rem;
+    }
+
+    .promo-actions {
+      align-items: stretch;
+    }
+
+    .promo-whatsapp {
+      align-self: flex-start;
+    }
+
+    .promo-photo {
+      min-height: 13rem;
+      max-height: 15rem;
+    }
+
+    .promo-badge {
+      position: static;
+      border-radius: 0;
+      border-width: 1px 0 0;
+      box-shadow: none;
+      background: var(--v3-surface-card);
+    }
+  }
+</style>

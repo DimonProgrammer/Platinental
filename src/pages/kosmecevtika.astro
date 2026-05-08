@@ -1,10 +1,13 @@
 ---
-import V3Layout from '../layouts/V3Layout.astro';
-import Navigation from '../components/v3/sections/Navigation.astro';
-import PageHero from '../components/v3/sections/PageHero.astro';
-import FinalCTA from '../components/v3/sections/FinalCTA.astro';
-import Footer from '../components/v3/sections/Footer.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Navigation from '../components/site/sections/Navigation.astro';
+import PageHero from '../components/site/sections/PageHero.astro';
+import MedicalDisclaimer from '../components/site/sections/MedicalDisclaimer.astro';
+import PageLeadMagnet from '../components/site/sections/PageLeadMagnet.astro';
+import FinalCTA from '../components/site/sections/FinalCTA.astro';
+import Footer from '../components/site/sections/Footer.astro';
 import { brands, categories, products } from '../data/kosmecevtika';
+import { formatCurrencyPlainText } from '../lib/formatText';
 
 const badgeLabel: Record<string, string> = {
   new: 'Новинка',
@@ -22,7 +25,7 @@ const toneStyle: Record<string, string> = {
 };
 ---
 
-<V3Layout
+<SiteLayout
   title="Космецевтика — The Platinental Казань"
   description="Профессиональная космецевтика в клинике The Platinental Казань: ANUBIS, Ultraceuticals, HELIOCARE. Подбор средств врачом-косметологом."
 >
@@ -32,11 +35,17 @@ const toneStyle: Record<string, string> = {
       pageMarker="03 / 04"
       pageMarkerLabel="Услуги"
       eyebrow="Космецевтика"
-      h1="Профессиональная косметика по рекомендации врача"
+      h1="Космецевтика в Казани по рекомендации врача"
       lead="Профессиональная уходовая косметика, которую косметологи клиники подбирают для домашнего ухода между процедурами и послеоперационной реабилитации. Только оригинальные поставки от официальных представителей."
       ctaPrimary={{ label: 'Смотреть каталог', href: '#catalog' }}
       ctaSecondary={{ label: 'Записаться на подбор', href: '#form' }}
+      meta={[
+        { num: '✓', label: 'подбор врачом-косметологом' },
+        { num: '—', label: 'утро, вечер и восстановление' },
+        { num: '+', label: 'совместимость с процедурами' },
+      ]}
     />
+    <MedicalDisclaimer />
 
     <!-- Brands -->
     <section class="v3-brands v3-surface-sand" aria-labelledby="brands-heading">
@@ -56,6 +65,20 @@ const toneStyle: Record<string, string> = {
         </ul>
       </div>
     </section>
+
+    <PageLeadMagnet
+      eyebrow="Домашний уход"
+      heading="Схема ухода<br />на 30 дней"
+      lead="Подбор не начинается с покупки банки. Сначала врач смотрит кожу, процедуры и привычный уход — потом собирает понятную схему без конфликтующих ингредиентов."
+      items={[
+        { mark: '✓', title: 'Утро / вечер', text: 'что использовать ежедневно и в каком порядке' },
+        { mark: '—', title: 'Что исключить', text: 'ингредиенты, которые конфликтуют с лазером, инъекциями или восстановлением' },
+        { mark: '+', title: 'Под заказ', text: 'нужные позиции можно привезти в клинику' },
+      ]}
+      ctaPrimary={{ label: 'Записаться на подбор', href: '#form' }}
+      ctaSecondary={{ label: 'Смотреть каталог', href: '#catalog' }}
+      surface="cream"
+    />
 
     <!-- Products by category -->
     <span id="catalog" aria-hidden="true"></span>
@@ -80,7 +103,7 @@ const toneStyle: Record<string, string> = {
                   <h3 class="product-name v3-h3">{p.name}</h3>
                   <p class="product-volume v3-caption">{p.volume}</p>
                   <p class="product-benefit v3-body">{p.benefit}</p>
-                  <p class="product-price">{p.price}</p>
+                  <p class="product-price" set:html={formatCurrencyPlainText(p.price)}></p>
                 </li>
               ))}
             </ul>
@@ -105,7 +128,7 @@ const toneStyle: Record<string, string> = {
           {[
             { n: '01', title: 'Правильный подбор', text: 'Косметолог знает, что происходит с вашей кожей — он подбирает средства под конкретный случай, а не по общим рекомендациям.' },
             { n: '02', title: 'Совместимость с процедурами', text: 'Некоторые ингредиенты несовместимы с инъекциями или лазером. Врач подбирает домашний уход так, чтобы он усиливал, а не нивелировал результат.' },
-            { n: '03', title: 'Без подделок', text: 'Все средства — из официальных каналов поставок. Без маркетплейсов, без рисков купить неоригинальный продукт.' },
+	            { n: '03', title: 'Проверенный источник', text: 'Клиника работает с поставками, которым доверяет. По конкретному средству администратор подскажет наличие и происхождение.' },
           ].map((item) => (
             <li class="why-item">
               <span class="why-num v3-eyebrow">{item.n}</span>
@@ -148,12 +171,12 @@ const toneStyle: Record<string, string> = {
     <FinalCTA
       eyebrow="Подбор косметолога"
       heading="Записаться<br />на подбор"
-      lead="Оставьте телефон — перезвоним в течение рабочего дня и подберём удобное время."
+      lead="Оставьте телефон — администратор свяжется в рабочее время и подберёт удобное время."
       submitLabel="Отправить заявку"
     />
   </main>
   <Footer />
-</V3Layout>
+</SiteLayout>
 
 <style>
   /* Brands */

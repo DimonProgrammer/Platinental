@@ -1,6 +1,6 @@
 # Platinental — Design Direction
 
-Зафиксированные решения дизайн-системы, подтверждённые на главной странице (апрель 2026). Источник правды для всех последующих страниц.
+Зафиксированные решения дизайн-системы, подтверждённые в актуальной коричневой версии сайта (2026-05-07). Источник правды для всех последующих страниц: `src/styles/tokens.css`.
 
 ---
 
@@ -8,30 +8,31 @@
 
 | Роль | Значение | Где |
 |------|----------|-----|
-| `--surface-page` | pearl-sage `#F6F8F3` | основной фон страниц |
-| `--surface-alt` | soft sage `#E7ECE5` | чередующиеся секции |
-| `--surface-inverse` | ink `#25302B` | цитата-мост, форма, stats |
-| `--text-primary` | ink `#25302B` | заголовки, body |
-| `--text-muted` | ink-500 `#7E8E86` | мелкий текст |
-| `--accent` | sage accent `#A7B7AC` | основной акцент в интерфейсе |
-| `--accent-hover` | sage-deep `#6D7F74` | hover на CTA, активные ссылки |
+| `--v3-cream` | warm cream `#FBF8F4` | основной фон страниц |
+| `--v3-cream-alt` | warm off-cream `#F6F0EA` | мягкие переходы поверхностей |
+| `--v3-sand` | beige sand `#EFE7DF` | чередующиеся секции |
+| `--v3-surface-card` | porcelain `#FFFDF9` | карточки, формы, вложенные поверхности |
+| `--v3-ink` | warm brown ink `#685C54` | заголовки, body, тёмные CTA |
+| `--v3-ink-secondary` | slate taupe `#616F84` | вторичный текст, подписи |
+| `--v3-champagne` | rose taupe `#917271` | акцент, focus, hover, micro-UI |
+| `--v3-champagne-deep` | deep rose taupe `#7B6261` | hover, активные ссылки |
 
-**Правило:** акцент используется только на интерактивных элементах, деликатных плашках, цифрах и micro-UI. Полного залива акцентом не делаем. Красный по-прежнему запрещён.
+**Правило:** коричневая палитра утверждена как актуальная. Не возвращать sage/green, black-red московскую эстетику или TBD-акцент. Красный по-прежнему запрещён.
 
 **Чередование секций:**
-pearl-sage → pearl-sage → soft sage → pearl-sage → ink(dark) → soft sage → pearl-sage → soft sage → pearl-sage → pearl-sage → ink(dark) → soft sage → pearl-sage. Ритм мягкий, без резких контрастов подряд.
+cream → sand → cream → sand → warm ink/dark CTA → cream. Ритм мягкий, тёплый, без резких контрастов подряд.
 
 ---
 
 ## 2. Типографика
 
-- **Display:** `Cormorant Garamond` (Google Fonts, cyrillic subset). Weights 300, 400, 500 italic + regular.
-- **Body:** `Golos Text` (Google Fonts, cyrillic). Weights 400, 500, 600.
-- **Правило:** заголовки почти всегда **italic 400** — это визуальный код бренда (Haute Couture). Body всегда regular.
-- Отрицательный трекинг display: `-0.02em` (H1/H2), `-0.015em` (H3/H4/H5).
-- Line-height: 1.05 у display, 1.15 у H3–H5, 1.6 у body.
-- Fluid clamp: `--text-h1` 32→80px, `--text-display` 36→104px, `--text-h2` 36→56px.
-- Каждое слово на своей строке разрешено и даже желательно в hero — это editorial-стиль.
+- **Display:** `ZapfHumnst BT`, fallback `Georgia, serif`.
+- **Body/UI:** `Formular`, fallback `-apple-system`, `Inter`, `system-ui`, `sans-serif`.
+- **Правило:** курсив не является активным кодом бренда. `em/i/cite` в v3-системе намеренно нормализованы в normal style.
+- Letter-spacing у display = `0`; у body = `0.005em`; у eyebrow = `0.20em`.
+- Line-height: 1.05 у display/H1, 1.10 у H2, 1.65 у body.
+- Fluid clamp: `--v3-text-h1` 28→48px, `--v3-text-display` 32→56px, `--v3-text-h2` 22→36px.
+- Hero может быть многострочным, но без искусственного отрицательного tracking и без возврата к Cormorant/Golos.
 
 ---
 
@@ -50,33 +51,35 @@ pearl-sage → pearl-sage → soft sage → pearl-sage → ink(dark) → soft sa
 **Обязательный набор для любой страницы:**
 - `Navigation` — sticky, liquid-glass blur при scroll > 24px, brand + 6 items + phone + CTA + burger.
 - `Footer` — 4-colonкi, brand + links + medical disclaimer + ПДн-links.
-- `SectionHeader` — eyebrow + title + lede. Display italic 400.
+- `SectionHeader` — eyebrow + title + lede. Display regular через `ZapfHumnst BT`.
 - `Button` — primary (dark) / secondary (outlined) / ghost (underlined) / inverse (cream on dark).
 - Радиусы: не копируем референсы один в один, но системно уходим от жёсткой геометрии. Кнопки, фото-контейнеры, карточки и плашки используют мягкие скругления `16–32px`.
 
-**Секции главной (13 шт., в этом порядке):**
-1. `Hero` — eyebrow «THE PLATINENTAL · КАЗАНЬ», H1 italic, sub, 2 CTA, placeholder aside, stats-row.
-2. `ServicesGrid` — 3 направления с photo-placeholder, описанием, CTA.
-3. `Principles` — 4 карточки («Почему Platinental»).
-4. `Procedures` — 6 карточек с ценами и категориями.
-5. `QuoteBridge` — dark-секция с одной строкой на italic.
-6. `AboutNumbers` — 4 цифры + цитата Искорнева + ссылка «О клинике».
-7. `DoctorsPreview` — 4 врача с EN/RU специализацией + CTA + «все врачи».
-8. `BeforeAfter` — горизонтальная карусель с 6 парными плейсхолдерами.
-9. `Reviews` — 3 карточки со звёздами и цитатами.
-10. `ConsultationValue` — узкая центрированная «от 5 000 ₽».
-11. `FinalCTA` — dark-форма «Задайте вопрос врачу» с 152-ФЗ.
-12. `FAQ` — details/summary, 6 вопросов.
-13. `Contacts` — адрес / телефон / WhatsApp / режим + плейсхолдер Яндекс-карты.
+**Секции главной (актуальный порядок в `src/pages/index.astro`):**
+1. `Hero` — коричневая premium-hero, тёплый фон, главный editorial-образ.
+2. `DecisionCompass` — быстрый выбор направления.
+3. `ConsultationQuiz` — интерактивный подбор маршрута.
+4. `ServicesGrid` — 3 направления.
+5. `Principles` — принципы клиники.
+6. `Procedures` — ключевые процедуры.
+7. `Promotions` — актуальные предложения.
+8. `QuoteBridge` — эмоциональный editorial-мост.
+9. `DoctorsPreview` — превью врачей.
+10. `BeforeAfter` — результаты/кейсы при наличии согласий.
+11. `Reviews` — отзывы с проверяемыми источниками.
+12. `ConsultationValue` — ценность консультации.
+13. `FinalCTA` — форма записи с 152-ФЗ.
+14. `FAQ` — вопросы.
+15. `Contacts` — адрес, телефон, мессенджеры, карта.
 
 ---
 
 ## 5. Motion
 
-- Бюджет: ≤50 KB JS. На главной — ноль зависимостей motion (чистый CSS + IntersectionObserver в BaseLayout).
-- Reveal: opacity 0→1 + translateY 24→0, 420ms, `cubic-bezier(0.22, 1, 0.36, 1)`.
-- Hover: translateY -4px, 240ms.
-- `prefers-reduced-motion: reduce` → все transitions = 0ms.
+- Актуальная motion-система утверждена и подключается глобально в `SiteLayout.astro`: `motion-stagger`, `motion-scroll` (Lenis), `motion-faq`, `motion-quote` (GSAP/SplitType).
+- Базовый reveal в tokens: `--v3-duration-slow: 1500ms`, shutter/hairline: `--v3-duration-deep: 2000ms`.
+- Motion должен оставаться редким, медленным и editorial. Не добавлять новые motion-зависимости без явной задачи.
+- `prefers-reduced-motion: reduce` обязателен: transitions/animations отключаются или сокращаются до 0.01ms.
 - Transform + opacity только. Никогда width/height/top/left.
 
 ---
@@ -100,10 +103,10 @@ pearl-sage → pearl-sage → soft sage → pearl-sage → ink(dark) → soft sa
 
 ### Временные плейсхолдеры (до замены реальными фото)
 
-- Фото врачей — cream→ink градиенты с monogram-инициалами, film-grain pass → заменить (@aleksa_chernyshova)
-- Hero aside — B/A слайдер с реальными кейсами (не ambient, не Track A)
-- Before/After — парные dark/light gradient-плейсхолдеры → заменить на согласованные кейсы
-- Яндекс-карта — SVG-сетка с champagne-точкой → embed Я.Карты
+- Фото врачей без исходников — осознанный editorial fallback, но не имитация незагруженного фото. При появлении фотосессии заменить.
+- Hero — текущий коричневый editorial-образ считается актуальным.
+- Before/After — только согласованные кейсы с письменным согласием.
+- Яндекс-карта — embed с понятным fallback на адрес и маршрут.
 
 ---
 

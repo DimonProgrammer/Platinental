@@ -1,12 +1,15 @@
 ---
-import V3Layout from '../layouts/V3Layout.astro';
-import Navigation from '../components/v3/sections/Navigation.astro';
-import PageHero from '../components/v3/sections/PageHero.astro';
-import FinalCTA from '../components/v3/sections/FinalCTA.astro';
-import FAQ from '../components/v3/sections/FAQ.astro';
-import Footer from '../components/v3/sections/Footer.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Navigation from '../components/site/sections/Navigation.astro';
+import PageHero from '../components/site/sections/PageHero.astro';
+import MedicalDisclaimer from '../components/site/sections/MedicalDisclaimer.astro';
+import PageLeadMagnet from '../components/site/sections/PageLeadMagnet.astro';
+import FinalCTA from '../components/site/sections/FinalCTA.astro';
+import FAQ from '../components/site/sections/FAQ.astro';
+import Footer from '../components/site/sections/Footer.astro';
 import { kosmProcs } from '../data/kosmetologiya';
 import { doctors } from '../data/doctors';
+import { formatCurrencyPlainText } from '../lib/formatText';
 
 const cosmetologists = doctors.filter((d) => d.tags.includes('cosmetology'));
 
@@ -24,36 +27,36 @@ const faqItems = [
     a: 'У косметолога — от <strong>2 000 ₽</strong>. У хирурга — от <strong>5 000 ₽</strong>.',
     open: true,
   },
-  {
-    q: 'Есть ли противопоказания к операциям?',
-    a: 'Да. Часть — общие для любой хирургии: беременность, лактация, онкология, нарушения свёртываемости крови, тяжёлые хронические заболевания. Часть — индивидуальные: их хирург видит только на очной консультации.',
-  },
+	  {
+	    q: 'Есть ли противопоказания к косметологическим процедурам?',
+	    a: 'Да. Они зависят от состояния кожи, здоровья, беременности, лактации, хронических заболеваний и препаратов, которые вы принимаете. Врач уточнит ограничения на консультации.',
+	  },
   {
     q: 'Через сколько дней виден результат после ботокса?',
     a: 'Первый эффект появляется через 3–5 дней, окончательный — через 10–14 дней. Держится 4–6 месяцев в зависимости от препарата и индивидуальных особенностей.',
   },
-  {
-    q: 'Вы работаете с мужчинами?',
-    a: 'Каждый пятый пациент — мужчина. Чаще всего приходят с носом, веками, подбородком и коррекцией гинекомастии. У мужской эстетики своё правило: результат не должен читаться как вмешательство — хирурги работают именно в этом ключе.',
-  },
-  {
-    q: 'Как проходит первичная консультация хирурга?',
-    a: 'Хирург осматривает, замеряет, фотографирует, подбирает методику — и отвечает на все вопросы без спешки.',
-  },
-  {
-    q: 'Как долго длится реабилитация?',
-    a: 'Зависит от операции:<br />— Блефаропластика — 7–14 дней<br />— Ринопластика — 2–3 недели<br />— Маммопластика — 2–4 недели ограничений<br />— SMAS-лифтинг — 3–4 недели<br /><br />Точные сроки хирург назовёт на консультации.',
-  },
+	  {
+	    q: 'Можно ли сочетать косметологию с пластической операцией?',
+	    a: 'Да, но порядок определяет врач. Иногда косметология помогает подготовить кожу до операции, иногда подключается после восстановления.',
+	  },
+	  {
+	    q: 'Как проходит первичная консультация косметолога?',
+	    a: 'Врач смотрит кожу, спрашивает про домашний уход и прошлые процедуры, уточняет ограничения и предлагает понятный план.',
+	  },
+	  {
+	    q: 'Нужна ли реабилитация после косметологии?',
+	    a: 'Зависит от процедуры. После инъекций и аппаратных методик врач может временно ограничить спорт, баню, солнце и часть домашнего ухода.',
+	  },
 ];
 ---
 
-<V3Layout
+<SiteLayout
   title="Косметология — The Platinental Казань"
   description="Инъекционная, аппаратная и терапевтическая косметология в клинике The Platinental Казань. Ботулотоксин, филлеры, лазер CO₂, биоревитализация."
 >
   <Navigation />
   <main id="main">
-    <PageHero
+	    <PageHero
       pageMarker="02 / 04"
       pageMarkerLabel="Услуги"
       eyebrow="Косметология"
@@ -61,7 +64,13 @@ const faqItems = [
       lead="Косметолог при консультации клиента может порекомендовать процедуры, которые отсрочат операции на годы. Хирурги смотрят шире и не спешат к скальпелю. Если результат можно получить без операционных действий, через косметолога, — рекомендация будет в пользу этого пути."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Цены', href: '/prices' }}
-    />
+      meta={[
+        { num: '•', label: 'качество кожи и мимика' },
+        { num: '—', label: 'курс, интервалы и восстановление' },
+        { num: '+', label: 'совместимость с хирургией' },
+      ]}
+	    />
+	    <MedicalDisclaimer />
 
     <section class="v3-kosm-quote v3-surface-sand" aria-labelledby="kosm-quote-heading">
       <div class="v3-container v3-container-wide">
@@ -74,6 +83,20 @@ const faqItems = [
         </div>
       </div>
     </section>
+
+    <PageLeadMagnet
+      eyebrow="План без лишних процедур"
+      heading="Карта кожи<br />на 90 дней"
+      lead="Вместо случайных инъекций — короткий маршрут: что можно сделать сейчас, что даст накопительный эффект и где лучше не торопиться."
+      items={[
+        { mark: '•', title: 'Зона', text: 'лицо, шея, веки, качество кожи или мимические морщины' },
+        { mark: '—', title: 'Ритм', text: 'сколько визитов потребуется и какие интервалы разумны' },
+        { mark: '+', title: 'Домашний уход', text: 'что поддержит результат между процедурами' },
+      ]}
+      ctaPrimary={{ label: 'Получить карту', href: '#form' }}
+      ctaSecondary={{ label: 'Смотреть прайс', href: '/prices' }}
+      surface="cream"
+    />
 
     <!-- Procedures by category -->
     {categories.map((catKey) => {
@@ -96,7 +119,7 @@ const faqItems = [
                     {p.prices.map((pr) => (
                       <li class="proc-price-row">
                         <span class="proc-price-label v3-caption">{pr.label}</span>
-                        <span class="proc-price-val">{pr.value}</span>
+                        <span class="proc-price-val" set:html={formatCurrencyPlainText(pr.value)}></span>
                       </li>
                     ))}
                   </ul>
@@ -137,7 +160,7 @@ const faqItems = [
                 <hr class="dc-rule" />
                 <div class="dc-consult-row">
                   <span class="v3-eyebrow dc-consult-label">Консультация</span>
-                  <span class="dc-price">{d.priceMain}</span>
+                  <span class="dc-price" set:html={formatCurrencyPlainText(d.priceMain)}></span>
                 </div>
                 <hr class="dc-rule" />
                 <div class="dc-actions">
@@ -163,7 +186,7 @@ const faqItems = [
     />
   </main>
   <Footer />
-</V3Layout>
+</SiteLayout>
 
 <style>
   .v3-kosm-quote {
@@ -310,7 +333,7 @@ const faqItems = [
     font-family: var(--v3-font-display);
     font-style: normal;
     font-size: clamp(4rem, 8vw, 8rem);
-    color: rgba(255, 254, 242, 0.18);
+    color: rgba(251, 248, 244, 0.18);
     letter-spacing: 0.04em;
   }
   .dc-body {

@@ -1,12 +1,15 @@
 ---
-import V3Layout from '../layouts/V3Layout.astro';
-import Navigation from '../components/v3/sections/Navigation.astro';
-import PageHero from '../components/v3/sections/PageHero.astro';
-import FinalCTA from '../components/v3/sections/FinalCTA.astro';
-import FAQ from '../components/v3/sections/FAQ.astro';
-import Footer from '../components/v3/sections/Footer.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Navigation from '../components/site/sections/Navigation.astro';
+import PageHero from '../components/site/sections/PageHero.astro';
+import MedicalDisclaimer from '../components/site/sections/MedicalDisclaimer.astro';
+import PageLeadMagnet from '../components/site/sections/PageLeadMagnet.astro';
+import FinalCTA from '../components/site/sections/FinalCTA.astro';
+import FAQ from '../components/site/sections/FAQ.astro';
+import Footer from '../components/site/sections/Footer.astro';
 import { plastikaOps } from '../data/plastika';
 import { doctors } from '../data/doctors';
+import { formatCurrencyPlainText } from '../lib/formatText';
 
 const faceOps = plastikaOps.filter((op) => op.category === 'face');
 const bodyOps = plastikaOps.filter((op) => op.category === 'body');
@@ -27,10 +30,10 @@ const faqItems = [
     q: 'Как подготовиться к операции?',
     a: 'Список анализов и обследований хирург выдаёт на консультации после осмотра и оценки вашей ситуации. За 2 недели до операции может потребоваться отмена части препаратов и корректировка образа жизни — это врач объяснит индивидуально.',
   },
-  {
-    q: 'Где проходит операция?',
-    a: 'Операции проводятся в операционной клиники на ул. Карла Маркса, 48, корп. 1. Операционная аккредитована и оснащена в соответствии с требованиями к плановой хирургии.',
-  },
+	  {
+	    q: 'Где проходит операция?',
+	    a: 'Зависит от операции и врача. Часть операций проходит на партнёрских базах в Казани; где именно будет операция, врач объяснит на консультации.',
+	  },
   {
     q: 'Каков реабилитационный период?',
     a: 'Зависит от операции:<br />— Блефаропластика: 7–14 дней<br />— Ринопластика: 2–3 недели<br />— Маммопластика: 2–4 недели<br />— SMAS-лифтинг: 3–4 недели<br /><br />Реабилитация ведётся совместно с косметологом клиники.',
@@ -42,13 +45,13 @@ const faqItems = [
 ];
 ---
 
-<V3Layout
+<SiteLayout
   title="Пластическая хирургия — The Platinental Казань"
   description="Пластические операции на лице и теле в клинике The Platinental Казань. Ринопластика, блефаропластика, SMAS-лифтинг, маммопластика. Хирурги с ординатурой в ведущих московских центрах."
 >
   <Navigation />
   <main id="main" class="page-plastika">
-    <PageHero
+	    <PageHero
       pageMarker="01 / 04"
       pageMarkerLabel="Услуги"
       eyebrow="THE PLATINENTAL · КАЗАНЬ"
@@ -56,7 +59,13 @@ const faqItems = [
       lead="Мы не делаем «идеальный нос из каталога» и не «увеличиваем грудь до размера». The Platinental работает как дорогое ателье: сначала замеры — потом методика. Цель одна: все заметят изменение, но никто не свяжет его с операцией."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Цены', href: '/prices' }}
-    />
+      meta={[
+        { num: '?', label: 'подходит ли операция именно вам' },
+        { num: '—', label: 'сроки, ограничения и восстановление' },
+        { num: '₽', label: 'точная стоимость после осмотра' },
+      ]}
+	    />
+	    <MedicalDisclaimer />
 
     <!-- Category tabs -->
     <section class="v3-plastika v3-surface-cream" aria-labelledby="plastika-heading">
@@ -84,7 +93,7 @@ const faqItems = [
                 <h3 class="op-name v3-h3">{op.name}</h3>
                 <p class="op-desc v3-body" set:html={op.desc}></p>
                 <div class="op-footer">
-                  <span class="op-price">{op.price}</span>
+                  <span class="op-price" set:html={formatCurrencyPlainText(op.price)}></span>
                   <a href="#form" class="v3-link op-cta">Записаться</a>
                 </div>
               </li>
@@ -102,7 +111,7 @@ const faqItems = [
                 <h3 class="op-name v3-h3">{op.name}</h3>
                 <p class="op-desc v3-body" set:html={op.desc}></p>
                 <div class="op-footer">
-                  <span class="op-price">{op.price}</span>
+                  <span class="op-price" set:html={formatCurrencyPlainText(op.price)}></span>
                   <a href="#form" class="v3-link op-cta">Записаться</a>
                 </div>
               </li>
@@ -111,6 +120,20 @@ const faqItems = [
         </div>
       </div>
     </section>
+
+    <PageLeadMagnet
+      eyebrow="Чек-лист к хирургу"
+      heading="Что подготовить<br />до консультации"
+      lead="Короткий список помогает прийти не «просто поговорить», а получить понятный ответ: что возможно, что лучше отложить и какой путь восстановления реалистичен."
+      items={[
+        { mark: '?', title: 'Запрос', text: 'что беспокоит и какой результат кажется естественным' },
+        { mark: '—', title: 'Ограничения', text: 'сроки, перелёты, работа, спорт и важные события' },
+        { mark: '₽', title: 'Бюджет', text: 'какие расходы входят в операционный маршрут' },
+      ]}
+      ctaPrimary={{ label: 'Получить чек-лист', href: '#form' }}
+      ctaSecondary={{ label: 'Написать в WhatsApp', href: 'https://wa.me/78432236666' }}
+      surface="sand"
+    />
 
     <!-- Bridge quote -->
     <section class="v3-bridge-quote v3-surface-ink" aria-label="Принцип работы">
@@ -153,8 +176,8 @@ const faqItems = [
                   <p class="surgeon-spec v3-eyebrow">{d.spec}</p>
                   <h3 class="surgeon-name v3-h3">{d.name}</h3>
                   <div class="surgeon-prices">
-                    <p class="surgeon-price surgeon-price--primary v3-caption">{d.priceMain}</p>
-                    {d.priceSub && <p class="surgeon-price surgeon-price--secondary v3-caption">{d.priceSub}</p>}
+                    <p class="surgeon-price surgeon-price--primary v3-caption" set:html={formatCurrencyPlainText(d.priceMain)}></p>
+                    {d.priceSub && <p class="surgeon-price surgeon-price--secondary v3-caption" set:html={formatCurrencyPlainText(d.priceSub)}></p>}
                   </div>
                 </div>
               </a>
@@ -178,8 +201,8 @@ const faqItems = [
           {[
             { n: '01', title: 'Консультация', text: 'Хирург осматривает, замеряет, объясняет — что возможно, что разумно, что ожидать. Без спешки.' },
             { n: '02', title: 'Подготовка', text: 'Анализы, обследования, отмена препаратов если нужно. Список — от хирурга на консультации.' },
-            { n: '03', title: 'Операция', text: 'В собственной операционной клиники. Анестезиолог — штатный, не приглашённый.' },
-            { n: '04', title: 'Реабилитация', text: 'Под наблюдением хирурга и косметолога — без передачи в чужие руки.' },
+	            { n: '03', title: 'Операция', text: 'На подходящей операционной базе в Казани. Место, анестезию и условия врач обсуждает с вами заранее.' },
+	            { n: '04', title: 'Реабилитация', text: 'Врач заранее объясняет, когда прийти на осмотр, что ограничить и как будет идти восстановление.' },
           ].map((s) => (
             <li class="process-item">
               <span class="process-num v3-eyebrow">{s.n}</span>
@@ -199,14 +222,14 @@ const faqItems = [
       items={faqItems}
     />
 
-    <FinalCTA
-      heading="Неудачная пластика<br />видна всем"
-      lead="Перекачанные губы, несоразмерные скулы — это вопрос эстетического вкуса хирурга, не только его рук. В The Platinental задача одна: все заметят, что вы изменились. Никто не поймёт — чем.<br /><br />Перезвоним в течение часа."
-      submitLabel="Записаться на консультацию"
-    />
+	    <FinalCTA
+	      heading="Выберите маршрут<br />без спешки"
+	      lead="На консультации врач посмотрит вашу ситуацию, объяснит возможные решения и честно скажет об ограничениях. Цель — изменение, которое выглядит естественно и подходит именно вам."
+	      submitLabel="Записаться на консультацию"
+	    />
   </main>
   <Footer />
-</V3Layout>
+</SiteLayout>
 
 <style>
   .sr-only {
@@ -443,13 +466,6 @@ const faqItems = [
     .process-list { grid-template-columns: 1fr; }
   }
 
-  /* На этой странице убираем сдвиги-reveal, чтобы карточки/фото не "плыли" при первом рендере */
-  .page-plastika [data-v3-reveal],
-  .page-plastika [data-v3-stagger] > * {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
 </style>
 
 <script>

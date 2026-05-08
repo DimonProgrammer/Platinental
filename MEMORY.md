@@ -12,6 +12,19 @@
 - **Prototype mapping** — каждый компонент → паттерн → действие в `04-prototype-mapping.md`
 - **design-system/platinental/MASTER.md** помечен DEPRECATED
 
+## Обновления 2026-04-30
+
+- Фото врача Тулатовой заменено на новый цветной портрет: `public/doctors/tulatova/photo.png` теперь взят из `Врачи в цвете/Тулатова new.png` и используется на карточках/странице врача через существующее поле `photo`.
+- Временная цветная партия портретов врачей подключена для всех 9 врачей в `src/data/doctors.ts`: `public/doctors/{meloyan,tulatova,vasilev,mamedov,mardanova,brechko,gritsay,sorvin,babayan}/photo.png`. Добавлено поле `photoFrame` для 4/5-кропа на главной, `/doctors` и страницах врачей; `docs/photo-plan/05-asset-checklist.md` обновлён под фактическую команду из 9 врачей. Полный pipeline `src/assets/doctors/final/` остаётся следующим этапом после согласования.
+- На главной добавлен блок акции `src/components/v3/sections/Promotions.astro`: лид-магнит “План гармонизации внешности перед консультацией”, CTA открывает форму записи с preset `План гармонизации внешности`, fallback — WhatsApp. Основное изображение: `src/assets/photos/promo-consultation-plan.png`; альтернативный более muted sage вариант сохранён как `src/assets/photos/promo-consultation-plan-sage.png`.
+- На главной добавлен интерактивный quiz `src/components/v3/sections/ConsultationQuiz.astro`: 5 вопросов + обучающие подсказки + чек-лист, финальный CTA передаёт ответы в `BookingModal` и формирует WhatsApp-сообщение.
+- Для стабильной локальной сборки зафиксированы рабочие зависимости под текущий Astro/Vite: `sharp@0.34.5`, `vite@6.4.2`, восстановлены нативные optional-пакеты Rollup/Tailwind/Lightning CSS/Sharp/esbuild.
+- Мобильная адаптация главной проверена и доработана: hero-фото теперь заполняет рамку без внутренней белой полосы (`object-fit: cover`), закрытое мобильное меню сделано `inert`, основные touch-targets в шапке/CTA/футере расширены до 44px, Astro dev toolbar отключён в `astro.config.mjs` для чистого предпросмотра.
+- Для цен добавлен общий форматтер `src/lib/formatText.ts`: суммы рендерятся с неразрывными пробелами (`5&nbsp;000&nbsp;₽`), чтобы знак рубля не переносился отдельно в карточках, прайсах, FAQ и CTA.
+- На главную добавлен компактный блок `DecisionCompass.astro` после hero: маршруты для рекламного трафика “навигатор консультации / прайс / врачи / документы”; hero proof-strip обновлён на `2011`, три направления и лицензию.
+- Во всех v3 местах с `Instagram*` добавлена юридическая подпись: Meta признана экстремистской и запрещена на территории РФ.
+- Проверки 2026-05-01: `npm run check` — 0 errors, 0 warnings, 7 existing hints; `npm run build` — успешно. HTML в `dist/` содержит ссылки на портреты врачей и страницы 9 врачей. Playwright/Chromium визуальная проверка в этой сессии не завершилась: bundled Chromium зависал, системный Chrome падал с `SIGABRT/EPERM`; нужна ручная проверка в браузере или повторный Playwright после очистки окружения.
+
 ## v3 — параллельная пересборка Главной (2026-04-28)
 
 - **Прототип на `/` не трогали** — рабочая версия осталась как была (`src/components/sections/`, `src/pages/index.astro`).
