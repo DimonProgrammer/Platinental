@@ -28,10 +28,10 @@ export interface Product {
 }
 
 export const brands: Brand[] = [
-  { slug: 'anubis', name: 'ANUBIS', country: 'Испания', tagline: 'Профессиональная косметика' },
-  { slug: 'ultraceuticals', name: 'Ultraceuticals', country: 'Австралия', tagline: 'Доказательная косметология' },
-  { slug: 'heliocare', name: 'HELIOCARE', country: 'Испания', tagline: 'Фотозащита медицинского класса' },
-  { slug: 'careju', name: 'CAREJU', country: '', tagline: 'Профессиональный уход' },
+  { slug: 'anubis', name: 'ANUBIS', country: 'Испания', tagline: 'Космецевтика для ухода за кожей' },
+  { slug: 'ultraceuticals', name: 'Ultraceuticals', country: 'Австралия', tagline: 'Средства для ухода за кожей' },
+  { slug: 'heliocare', name: 'HELIOCARE', country: 'Испания', tagline: 'Средства SPF-защиты' },
+  { slug: 'careju', name: 'CAREJU', country: '', tagline: 'Средства для ухода за кожей' },
 ];
 
 export const categories: Category[] = [
@@ -51,7 +51,7 @@ export const categories: Category[] = [
     key: 'spf',
     label: 'Солнцезащита',
     shortLabel: 'SPF',
-    description: 'Фотозащита медицинского класса — обязательна после любых процедур и операций.',
+    description: 'SPF-защита для периода после процедур, операций и активного ухода.',
   },
 ];
 

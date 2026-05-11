@@ -1,16 +1,28 @@
 ---
+import { formatTypographyHtml } from '../../../lib/formatText';
+
 interface MetaItem { num: string; label: string }
 
 interface Props {
   eyebrow?: string;
   h1: string;
   lead: string;
-  ctaPrimary?: { label: string; href: string };
+  ctaPrimary?: {
+    label: string;
+    href: string;
+    bookingTitle?: string;
+    bookingLead?: string;
+    bookingMessage?: string;
+    bookingPlaceholder?: string;
+  };
   ctaSecondary?: { label: string; href: string };
   surface?: 'cream' | 'sand' | 'ink';
   pageMarker?: string;       // например "02 / 04"
   pageMarkerLabel?: string;  // например "Услуги"
   meta?: MetaItem[];         // 3-4 факта в строке метаданных
+  metaLabel?: string;        // подпись над мета-плашками, если они относятся к CTA
+  metaPlacement?: 'default' | 'cta';
+  ctaPlacement?: 'before-meta' | 'after-meta';
   /** @deprecated — оставлен для совместимости, не используется в variant C */
   imagePlaceholder?: unknown;
 }
@@ -25,6 +37,9 @@ const {
   pageMarker,
   pageMarkerLabel,
   meta,
+  metaLabel,
+  metaPlacement = 'default',
+  ctaPlacement = 'before-meta',
 } = Astro.props;
 ---
 
@@ -37,21 +52,61 @@ const {
       </div>
     )}
 
-    <div class="hero-text" data-v3-stagger>
+    <div class="hero-text">
       {eyebrow && <span class="v3-eyebrow">{eyebrow}</span>}
-      <h1 id="page-hero-heading" class="v3-display" set:html={h1}></h1>
+      <h1 id="page-hero-heading" class="v3-display" set:html={formatTypographyHtml(h1)}></h1>
       <p class="v3-lead hero-lead">{lead}</p>
-      <div class="hero-cta">
-        <a href={ctaPrimary.href} class="v3-btn v3-btn-primary">{ctaPrimary.label}</a>
-        {ctaSecondary && (
-          <a href={ctaSecondary.href} class="v3-link cta-secondary">{ctaSecondary.label}</a>
+      <div class="hero-action">
+        {ctaPlacement === 'before-meta' && (
+          <div class="hero-cta">
+            <a
+              href={ctaPrimary.href}
+              class="v3-btn v3-btn-primary"
+              data-booking-custom-title={ctaPrimary.bookingTitle}
+              data-booking-custom-lead={ctaPrimary.bookingLead}
+              data-booking-custom-message={ctaPrimary.bookingMessage}
+              data-booking-custom-placeholder={ctaPrimary.bookingPlaceholder}
+            >{ctaPrimary.label}</a>
+            {ctaSecondary && (
+              <a href={ctaSecondary.href} class="v3-link v3-link-action cta-secondary">{ctaSecondary.label}</a>
+            )}
+          </div>
+        )}
+        {metaPlacement === 'cta' && meta && meta.length > 0 && (
+          <div class="hero-meta hero-meta--cta">
+            {metaLabel && <p class="hero-meta-kicker v3-caption">{metaLabel}</p>}
+            <div class="hero-meta-row" data-cols={meta.length}>
+              {meta.map((m) => (
+                <div class="hero-meta-item">
+                  <span class="v3-minimark hero-meta-num" aria-hidden="true">{m.num}</span>
+                  <span class="hero-meta-label v3-caption">{m.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        {ctaPlacement === 'after-meta' && (
+          <div class="hero-cta hero-cta--after-meta">
+            <a
+              href={ctaPrimary.href}
+              class="v3-btn v3-btn-primary"
+              data-booking-custom-title={ctaPrimary.bookingTitle}
+              data-booking-custom-lead={ctaPrimary.bookingLead}
+              data-booking-custom-message={ctaPrimary.bookingMessage}
+              data-booking-custom-placeholder={ctaPrimary.bookingPlaceholder}
+            >{ctaPrimary.label}</a>
+            {ctaSecondary && (
+              <a href={ctaSecondary.href} class="v3-link v3-link-action cta-secondary">{ctaSecondary.label}</a>
+            )}
+          </div>
         )}
       </div>
     </div>
 
-    {meta && meta.length > 0 && (
+    {metaPlacement === 'default' && meta && meta.length > 0 && (
       <div class="hero-meta">
-        <div class="hero-meta-row" data-cols={meta.length} data-v3-stagger>
+        {metaLabel && <p class="hero-meta-kicker v3-caption">{metaLabel}</p>}
+        <div class="hero-meta-row" data-cols={meta.length}>
           {meta.map((m) => (
             <div class="hero-meta-item">
               <span class="v3-minimark hero-meta-num" aria-hidden="true">{m.num}</span>
@@ -66,13 +121,13 @@ const {
 
 <style>
   .v3-page-hero {
-    padding-top: clamp(2rem, 5vh, 4rem);
-    padding-bottom: var(--v3-gap-deep);
+    padding-top: clamp(1.5rem, 4vh, 3rem);
+    padding-bottom: clamp(3.75rem, 8vh, 6rem);
   }
   .page-hero-inner {
     display: grid;
     grid-template-columns: 1fr;
-    gap: clamp(1.75rem, 3.5vw, 3rem);
+    gap: clamp(1.25rem, 3vw, 2.25rem);
   }
 
   /* Маркер страницы */
@@ -91,32 +146,61 @@ const {
   .hero-text {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem;
     max-width: 56rem;
   }
   .hero-text .v3-eyebrow { margin-bottom: 0; }
   .hero-lead {
     max-width: 56ch;
     color: var(--v3-ink-secondary);
+    font-size: clamp(1.0625rem, 1.35vw, 1.2rem);
+    line-height: 1.55;
+  }
+  .hero-action {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.25rem;
   }
   .hero-cta {
     display: flex;
     align-items: center;
     gap: 1.25rem;
     flex-wrap: wrap;
-    margin-top: 0.5rem;
   }
-  .cta-secondary { font-size: 0.9375rem; }
+  .hero-cta--after-meta {
+    margin-top: 0.25rem;
+  }
+  .cta-secondary {
+    font-size: 0.9375rem;
+    color: var(--v3-ink);
+    border-color: color-mix(in srgb, var(--v3-ink) 72%, transparent);
+  }
 
   /* Метадата-полоса */
   .hero-meta {
     border-top: 1px solid var(--v3-border-hair);
-    padding-top: 1.5rem;
-    margin-top: clamp(1rem, 2vw, 1.5rem);
+    padding-top: 1rem;
+    margin-top: clamp(0.5rem, 1vw, 1rem);
+  }
+  .hero-meta--cta {
+    width: min(100%, 56rem);
+    max-width: 56rem;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .hero-meta-kicker {
+    margin: 0 0 0.625rem;
+    color: var(--v3-ink-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
   .hero-meta-row {
     display: grid;
-    gap: clamp(1.25rem, 3vw, 3rem);
+    gap: clamp(0.75rem, 1.4vw, 1rem);
   }
   .hero-meta-row[data-cols="2"] { grid-template-columns: repeat(2, 1fr); max-width: 36rem; }
   .hero-meta-row[data-cols="3"] { grid-template-columns: repeat(3, 1fr); max-width: 56rem; }
@@ -126,27 +210,37 @@ const {
     align-items: center;
     gap: 0.75rem;
     min-width: 0;
+    padding: 0.75rem 0.875rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-pill);
+    background: color-mix(in srgb, var(--v3-surface-card) 88%, transparent);
+    box-shadow: var(--v3-shadow-sm);
   }
   .hero-meta-num {
     color: var(--v3-champagne-deep);
   }
   .hero-meta-label {
-    color: var(--v3-ink-muted);
+    color: var(--v3-ink);
     text-transform: none;
     letter-spacing: 0.005em;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
+    font-weight: 500;
   }
 
   /* Тёмная поверхность */
   .v3-surface-ink .hero-meta-num { color: var(--v3-champagne); }
   .v3-surface-ink .hero-lead { color: var(--v3-on-ink-secondary); }
   .v3-surface-ink .hero-meta-label,
+  .v3-surface-ink .hero-meta-kicker,
   .v3-surface-ink .page-marker-label { color: var(--v3-on-ink-muted); }
   .v3-surface-ink .page-marker,
   .v3-surface-ink .hero-meta { border-color: rgba(251, 248, 244, 0.18); }
 
   @media (max-width: 768px) {
-    .v3-page-hero { padding-bottom: var(--v3-gap-medium); }
+    .v3-page-hero {
+      padding-top: 1.25rem;
+      padding-bottom: clamp(2.25rem, 6vh, 3rem);
+    }
     .hero-meta-row[data-cols="3"],
     .hero-meta-row[data-cols="4"] {
       grid-template-columns: repeat(2, 1fr);
@@ -154,10 +248,31 @@ const {
     }
   }
   @media (max-width: 480px) {
+    .page-hero-inner { gap: 1.125rem; }
+    .hero-text { gap: 0.875rem; }
+    .hero-lead {
+      font-size: 1rem;
+      line-height: 1.52;
+    }
     .hero-meta-row[data-cols="3"],
     .hero-meta-row[data-cols="4"] {
       grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
+      gap: 0.625rem;
+    }
+    .hero-meta-item {
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.625rem 0.675rem;
+      border-radius: var(--v3-radius-lg);
+    }
+    .hero-meta-label {
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+    .hero-meta-num {
+      width: 1.35rem;
+      height: 1.35rem;
+      font-size: 0.68rem;
     }
     .hero-cta { gap: 0.875rem; width: 100%; }
     .hero-cta .v3-btn { width: 100%; }
