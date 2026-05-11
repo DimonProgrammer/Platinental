@@ -22,34 +22,16 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
       pageMarkerLabel="Прайс"
       eyebrow="Цены"
       h1="Цены на услуги клиники The Platinental в Казани"
-      lead="Стоимость зависит от категории сложности — её определяет хирург на консультации. Первая категория — стандартная анатомия, вторая и третья — осложнённые случаи или повторные операции."
+      lead="Цены по направлениям клиники в одном месте: пластическая хирургия, косметология, космецевтика и консультации врачей. Детальный расчёт зависит от выбранного врача, объёма вмешательства и индивидуального плана."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Задать вопрос', href: 'https://wa.me/78432236666' }}
+      metaPlacement="cta"
+      ctaPlacement="after-meta"
       meta={[
-        { num: '₽', label: 'цены от минимального порога' },
-        { num: '?', label: 'точная сумма после консультации' },
-        { num: '—', label: 'операции, процедуры и консультации' },
+        { num: '₽', label: 'пластическая хирургия' },
+        { num: '?', label: 'косметология и космецевтика' },
+        { num: '—', label: 'консультации врачей' },
       ]}
-    />
-
-    <div class="v3-container v3-container-wide prices-hero-caption">
-      <p class="v3-caption">
-        Все цены указаны от минимального порога. Точная стоимость определяется хирургом на консультации после анализа анатомии и сложности случая.
-      </p>
-    </div>
-
-    <PageLeadMagnet
-      eyebrow="Разбор стоимости"
-      heading="Понять порядок<br />бюджета до визита"
-      lead="Если вы не понимаете, с какой суммы начинается ваш случай, оставьте заявку. Администратор поможет сориентироваться по разделу прайса и запишет к профильному врачу."
-      items={[
-        { mark: '?', title: 'Какая задача', text: 'нос, веки, грудь, кожа, уход или консультация' },
-        { mark: '—', title: 'Какой объём', text: 'первичная операция, повторный случай или поддерживающая процедура' },
-        { mark: '₽', title: 'Что уточнить', text: 'консультация, анализы, операция и восстановление обсуждаются отдельно' },
-      ]}
-      ctaPrimary={{ label: 'Разобрать стоимость', href: '#form' }}
-      ctaSecondary={{ label: 'Написать в WhatsApp', href: 'https://wa.me/78432236666' }}
-      surface="sand"
     />
 
     <section class="v3-prices v3-surface-cream" aria-labelledby="prices-heading">
@@ -138,6 +120,10 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
                   </tbody>
                 </table>
                 </div>
+                <div class="price-group-cta">
+                  <span class="v3-caption">Нужна точная сумма по этому разделу?</span>
+                  <a href="#form" class="v3-link v3-link-action">Уточнить стоимость</a>
+                </div>
               </div>
             ))}
           </div>
@@ -148,6 +134,20 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
         </p>
       </div>
     </section>
+
+    <PageLeadMagnet
+      eyebrow="Разбор стоимости"
+      heading="Понять порядок<br />бюджета до визита"
+      lead="Если вы не понимаете, с какой суммы начинается ваш случай, оставьте заявку. Администратор поможет сориентироваться по разделу прайса и запишет к профильному врачу."
+      items={[
+        { mark: '?', title: 'Какая задача', text: 'нос, веки, грудь, кожа, уход или консультация' },
+        { mark: '—', title: 'Какой объём', text: 'первичная операция, повторный случай или поддерживающая процедура' },
+        { mark: '₽', title: 'Что уточнить', text: 'консультация, анализы, операция и восстановление обсуждаются отдельно' },
+      ]}
+      ctaPrimary={{ label: 'Разобрать стоимость', href: '#form' }}
+      ctaSecondary={{ label: 'Написать в WhatsApp', href: 'https://wa.me/78432236666' }}
+      surface="sand"
+    />
 
     <SurgicalPartnersBlock />
 
@@ -170,7 +170,7 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
     white-space: nowrap;
   }
   .v3-prices {
-    padding-top: var(--v3-gap-medium);
+    padding-top: clamp(1rem, 3vw, 2rem);
     padding-bottom: var(--v3-gap-deep);
   }
 
@@ -296,6 +296,24 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
     font: inherit !important;
     text-decoration: none !important;
   }
+  .price-group-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-lg);
+    background: color-mix(in srgb, var(--v3-surface-card) 86%, transparent);
+  }
+  .price-group-cta .v3-caption {
+    color: var(--v3-ink);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-size: 0.875rem;
+    font-family: var(--v3-font-body);
+  }
 
   .prices-disclaimer {
     margin-top: var(--v3-gap-medium);
@@ -402,6 +420,10 @@ const tabs = priceCategories.map((c) => ({ key: c.key, label: c.label }));
     }
     .price-group--consultations .price-val {
       font-size: 1rem;
+    }
+    .price-group-cta {
+      align-items: flex-start;
+      flex-direction: column;
     }
   }
 </style>
