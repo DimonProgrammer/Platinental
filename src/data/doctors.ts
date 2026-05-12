@@ -393,7 +393,7 @@ export const doctors: Doctor[] = [
       { src: '/doctors/tulatova/cases/03.jpg', title: 'Хирургия лица: ракурс 3/4', objectPosition: '50% 44%' },
     ],
     resultCasesAspect: '1370 / 861',
-    resultCasesFit: 'contain',
+    resultCasesFit: 'cover',
     review: {
       label: 'Блефаропластика и височный лифтинг',
       quote: 'Доктор Тулатова сделала мне операцию по круговой блефаропластике и височному лифтингу. Очень профессионально, легкая и быстрая реабилитация. Все подруги просят контактную информацию Регины Тимуровны. На фото шов через 7 дней.',
@@ -466,13 +466,12 @@ export const doctors: Doctor[] = [
     ],
     gallery: [],
     resultCases: [
-      { src: '/doctors/vasilev/cases/01.jpg', title: 'Кейс 1', objectPosition: '50% 38%' },
-      { src: '/doctors/vasilev/cases/02.jpg', title: 'Кейс 2', objectPosition: '50% 38%' },
-      { src: '/doctors/vasilev/cases/03.jpg', title: 'Кейс 3', objectPosition: '50% 38%' },
-      { src: '/doctors/vasilev/cases/04.jpg', title: 'Кейс 4', objectPosition: '50% 38%' },
-      { src: '/doctors/vasilev/cases/05.jpg', title: 'Кейс 5', objectPosition: '50% 38%' },
+      { src: '/doctors/vasilev/cases/01.jpg', title: 'Кейс 1', objectPosition: '50% 50%' },
+      { src: '/doctors/vasilev/cases/02.jpg', title: 'Кейс 2', objectPosition: '50% 50%' },
+      { src: '/doctors/vasilev/cases/03.jpg', title: 'Кейс 3', objectPosition: '50% 50%' },
+      { src: '/doctors/vasilev/cases/04.jpg', title: 'Кейс 4', objectPosition: '50% 50%' },
     ],
-    resultCasesAspect: '1015 / 861',
+    resultCasesAspect: '1 / 1',
     patents: [neckLiftPatent],
     details: {
       specialization: [
@@ -604,8 +603,8 @@ export const doctors: Doctor[] = [
       { src: '/doctors/mardanova/cases/02.jpg', title: 'Кейс 2', objectPosition: '50% 40%' },
       { src: '/doctors/mardanova/cases/03.jpg', title: 'Кейс 3', objectPosition: '50% 40%' },
     ],
-    resultCasesAspect: '1460 / 851',
-    resultCasesFit: 'contain',
+    resultCasesAspect: '1 / 1',
+    resultCasesFit: 'cover',
     approach: {
       title: 'Новая школа риносептопластики',
       body: 'Марданова Д.М. сфокусирована на риносептопластике. Врач разбирает форму носа, дыхание, пропорции лица и объясняет, какой план коррекции возможен в конкретной ситуации.',
