@@ -1,0 +1,124 @@
+---
+const principles = [
+  {
+    num: '01',
+    mark: '•',
+    title: 'Гармонизирующий подход',
+    body: 'Хирург оценивает не только зону операции, но и пропорции лица или тела, состояние тканей, прошлые вмешательства, ожидания и восстановление. После осмотра врач объясняет, какой метод уместен: операция, объём коррекции, косметология или этапный план.',
+  },
+  {
+    num: '02',
+    mark: '+',
+    title: 'Профессиональный почерк',
+    body: 'У хирургов разные сильные направления: ринопластика, маммопластика, хирургия век, лица, шеи и тела. Поэтому пациента направляют к врачу, чей опыт ближе к конкретной задаче.',
+  },
+  {
+    num: '03',
+    mark: '✓',
+    title: 'Квалификация хирургов',
+    body: 'В команде врачи, проходившие обучение в РНИМУ им. Н.И. Пирогова, РНЦХ им. академика Б.В. Петровского, Первом МГМУ им. И.М. Сеченова, МОНИКИ им. М.Ф. Владимирского, МГМСУ им. А.И. Евдокимова и др.',
+  },
+  {
+    num: '04',
+    mark: '→',
+    title: 'Хирург + косметолог',
+    body: 'Косметолог подключается до и после операции: помогает улучшить качество кожи перед вмешательством, подобрать уход, а затем поддержать восстановление с учётом рекомендаций хирурга.',
+  },
+];
+---
+
+<section class="v3-principles v3-surface-ink" aria-labelledby="principles-heading">
+  <div class="v3-container v3-container-default principles-grid">
+    <aside class="principles-aside" data-v3-stagger>
+      <span class="v3-eyebrow">Принципы клиники</span>
+      <h2 id="principles-heading" class="v3-h2 principles-h2">
+        <em>Почему The Platinental</em>
+      </h2>
+    </aside>
+
+    <ol class="principles-list" data-v3-stagger>
+      {principles.map((p) => (
+        <li class="principle">
+          <span class="principle-num v3-display">
+            <em>{p.num}</em>
+          </span>
+          <div class="principle-content">
+            <div class="principle-title-row">
+              <span class="v3-minimark" aria-hidden="true">{p.mark}</span>
+              <h3 class="v3-h3 principle-title">{p.title}</h3>
+            </div>
+            <p class="v3-body principle-body">{p.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .v3-principles {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .principles-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+  }
+  .principles-aside {
+    position: sticky;
+    top: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+  }
+  .principles-h2 { max-width: 12ch; }
+  .principles-lead { max-width: 26ch; }
+
+  .principles-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .principle {
+    display: grid;
+    grid-template-columns: minmax(3.5rem, 5rem) 1fr;
+    gap: clamp(1.25rem, 2.5vw, 2.5rem);
+    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+    border: 1px solid var(--v3-border-on-ink);
+    align-items: start;
+    padding-inline: 1.25rem;
+    border-radius: var(--v3-radius-lg);
+    background: rgba(247, 250, 245, 0.04);
+  }
+  .principle-num {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1;
+    color: var(--v3-champagne);
+    font-family: var(--v3-font-display);
+    font-style: normal;
+  }
+  .principle-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .principle-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .principle-title { color: var(--v3-on-ink); }
+  .principle-body { color: var(--v3-on-ink-secondary); max-width: 56ch; }
+  @media (max-width: 1024px) {
+    .principles-grid { grid-template-columns: 1fr; }
+    .principles-aside { position: static; }
+  }
+  @media (max-width: 640px) {
+    .principle { grid-template-columns: 1fr; gap: 0.75rem; }
+  }
+</style>

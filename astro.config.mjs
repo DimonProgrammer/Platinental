@@ -4,6 +4,9 @@ import tailwind from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://kzn.platinental.ru',
   trailingSlash: 'ignore',
+  devToolbar: {
+    enabled: false,
+  },
   prefetch: {
     prefetchAll: false,
     defaultStrategy: 'viewport',

@@ -1,0 +1,354 @@
+---
+// Глобальная модалка записи. Открывается событием:
+//   window.dispatchEvent(new CustomEvent('open-booking', { detail: { doctor?: 'slug', preset?: 'Тема', message?: 'Текст' } }))
+// Подключена один раз в SiteLayout — доступна со всех страниц.
+
+---
+
+<div class="booking" data-booking hidden role="dialog" aria-modal="true" aria-labelledby="booking-title">
+  <button type="button" class="booking-backdrop" aria-label="Закрыть" data-booking-close></button>
+
+  <div class="booking-panel" role="document" data-lenis-prevent data-lenis-prevent-wheel data-lenis-prevent-touch>
+    <button type="button" class="booking-close" aria-label="Закрыть" data-booking-close>
+      <span aria-hidden="true">×</span>
+    </button>
+
+    <header class="booking-header">
+      <span class="v3-eyebrow">Быстрая связь с клиникой</span>
+      <h2 id="booking-title" class="v3-h3 booking-title">
+        <em data-booking-title>Свяжемся и уточним удобное время</em>
+      </h2>
+      <p class="v3-body booking-lead" data-booking-lead>
+        Оставьте телефон — администратор свяжется в рабочее время,
+        сориентирует по консультации, стоимости и ближайшим вариантам записи.
+      </p>
+    </header>
+
+    <form class="booking-form" data-booking-form>
+      <input type="hidden" name="doctor" data-booking-doctor />
+
+      <label class="field">
+        <span class="field-label v3-eyebrow">Имя</span>
+        <input
+          type="text"
+          name="name"
+          required
+          autocomplete="name"
+          minlength="2"
+          maxlength="60"
+          pattern="[A-Za-zА-Яа-яЁё\\s\\-']{2,60}"
+          placeholder="Как к вам обращаться"
+        />
+      </label>
+
+      <label class="field">
+        <span class="field-label v3-eyebrow">Телефон</span>
+        <input
+          type="tel"
+          name="phone"
+          required
+          autocomplete="tel"
+          inputmode="tel"
+          maxlength="18"
+          pattern="\\+7 \\([0-9]{3}\\) [0-9]{3}-[0-9]{2}-[0-9]{2}"
+          placeholder="+7 (___) ___-__-__"
+          data-phone-mask
+        />
+      </label>
+
+      <label class="field">
+        <span class="field-label v3-eyebrow">Сообщение (опционально)</span>
+        <textarea
+          name="message"
+          rows="3"
+          maxlength="700"
+          placeholder="Что интересует, какие операции рассматриваете"
+        ></textarea>
+      </label>
+
+      <label class="consent">
+        <input type="checkbox" name="consent" required />
+        <span class="consent-text">
+          Я согласен(а) на <a href="/consent" class="v3-link">обработку персональных данных</a>,
+          ознакомлен(а) с <a href="/privacy" class="v3-link">политикой конфиденциальности</a>
+          и <a href="/terms" class="v3-link">пользовательским соглашением</a>.
+        </span>
+      </label>
+
+      <button type="submit" class="v3-btn v3-btn-primary booking-submit">
+        Отправить заявку <span aria-hidden="true">→</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function initBooking() {
+    const root = document.querySelector<HTMLElement>('[data-booking]');
+    if (!root) return;
+
+    const titleEl = root.querySelector<HTMLElement>('[data-booking-title]');
+    const leadEl = root.querySelector<HTMLElement>('[data-booking-lead]');
+    const panel = root.querySelector<HTMLElement>('.booking-panel');
+    const doctorInput = root.querySelector<HTMLInputElement>('[data-booking-doctor]');
+    const form = root.querySelector<HTMLFormElement>('[data-booking-form]');
+    const messageInput = root.querySelector<HTMLTextAreaElement>('textarea[name="message"]');
+    const closeBtns = root.querySelectorAll<HTMLElement>('[data-booking-close]');
+    const defaultTitle = titleEl?.textContent ?? 'Свяжемся и уточним удобное время';
+    const defaultLead = leadEl?.textContent?.replace(/\s+/g, ' ').trim() ??
+      'Оставьте телефон — администратор свяжется в рабочее время, сориентирует по консультации, стоимости и ближайшим вариантам записи.';
+    const defaultMessagePlaceholder = messageInput?.placeholder ?? '';
+
+    let lastFocus: HTMLElement | null = null;
+
+    const open = (detail?: {
+      doctor?: string;
+      preset?: string;
+      message?: string;
+      title?: string;
+      lead?: string;
+      messagePlaceholder?: string;
+    }) => {
+      lastFocus = document.activeElement as HTMLElement;
+      if (titleEl) {
+        titleEl.textContent = detail?.title
+          ? detail.title
+          : detail?.preset
+          ? `Консультация по направлению «${detail.preset}»`
+          : detail?.doctor
+            ? `Подберём время ${detail.doctor}`
+            : defaultTitle;
+      }
+      if (leadEl) leadEl.textContent = detail?.lead ?? defaultLead;
+      if (doctorInput) doctorInput.value = detail?.doctor ?? '';
+      if (messageInput) {
+        messageInput.value = detail?.message ?? '';
+        messageInput.placeholder = detail?.messagePlaceholder ?? defaultMessagePlaceholder;
+      }
+      root.hidden = false;
+      document.documentElement.style.overflow = 'hidden';
+      if (panel) panel.scrollTop = 0;
+      window.requestAnimationFrame(() => root.querySelector<HTMLElement>('[data-booking-close]')?.focus());
+    };
+
+    const close = () => {
+      root.hidden = true;
+      document.documentElement.style.overflow = '';
+      lastFocus?.focus();
+    };
+
+    window.addEventListener('open-booking', (e) => {
+      const detail = (e as CustomEvent).detail;
+      open(detail);
+    });
+
+    // Унифицируем CTA: любые ссылки на #form открывают модалку записи.
+    document.querySelectorAll<HTMLAnchorElement>('a[href="#form"]').forEach((link) => {
+      if (link.dataset.bookingBound === '1') return;
+      link.dataset.bookingBound = '1';
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        open({
+          title: link.dataset.bookingCustomTitle,
+          lead: link.dataset.bookingCustomLead,
+          message: link.dataset.bookingCustomMessage,
+          messagePlaceholder: link.dataset.bookingCustomPlaceholder,
+        });
+      });
+    });
+
+    closeBtns.forEach((b) => b.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => {
+      if (!root.hidden && e.key === 'Escape') close();
+    });
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const formData = new FormData(form);
+      const name = String(formData.get('name') ?? '').trim();
+      const phone = String(formData.get('phone') ?? '').trim();
+      const message = String(formData.get('message') ?? '').trim();
+      const doctor = String(formData.get('doctor') ?? '').trim();
+      const text = [
+        'Заявка с сайта The Platinental Казань',
+        name ? `Имя: ${name}` : '',
+        phone ? `Телефон: ${phone}` : '',
+        doctor ? `Врач: ${doctor}` : '',
+        message ? `Запрос: ${message}` : '',
+      ].filter(Boolean).join('\n');
+      const url = `https://wa.me/78432236666?text=${encodeURIComponent(text)}`;
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = 'Готовим заявку...';
+      }
+      window.open(url, '_blank', 'noopener,noreferrer');
+      window.setTimeout(() => {
+        form.reset();
+        if (submit) {
+          submit.disabled = false;
+          submit.innerHTML = 'Отправить заявку <span aria-hidden="true">→</span>';
+        }
+        close();
+      }, 1500);
+    });
+  }
+
+  if (document.readyState !== 'loading') initBooking();
+  else document.addEventListener('DOMContentLoaded', initBooking);
+  document.addEventListener('astro:page-load', initBooking);
+</script>
+
+<style>
+  .booking[hidden] { display: none; }
+  .booking {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .booking-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.55);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    animation: bk-fade 240ms var(--v3-ease-out, ease-out);
+  }
+  @keyframes bk-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .booking-panel {
+    position: relative;
+    background: var(--v3-cream);
+    width: 100%;
+    max-width: 32rem;
+    max-height: min(calc(100dvh - 1.5rem), 44rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2.5rem) clamp(1.5rem, 4vw, 2.5rem);
+    box-shadow: 0 -20px 60px rgba(10, 10, 10, 0.18);
+    animation: bk-slide 320ms var(--v3-ease-out, ease-out);
+  }
+  @keyframes bk-slide {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  @media (min-width: 720px) {
+    .booking { align-items: center; }
+    .booking-panel {
+      border-radius: 4px;
+      animation-name: bk-pop;
+    }
+    @keyframes bk-pop {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  }
+  .booking-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    color: var(--v3-ink-muted);
+    font-size: 1.75rem;
+    line-height: 1;
+    transition: color var(--v3-duration-fast, 160ms) var(--v3-ease-out, ease-out);
+  }
+  .booking-close:hover { color: var(--v3-ink); }
+
+  .booking-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin-bottom: 1.5rem;
+    padding-right: 2rem;
+  }
+  .booking-title {
+    margin: 0;
+    font-family: var(--v3-font-display);
+    font-style: normal;
+    font-size: clamp(1.5rem, 3vw, 1.875rem);
+    line-height: 1.2;
+    color: var(--v3-ink);
+  }
+  .booking-title em { font-style: normal; }
+  .booking-lead { color: var(--v3-ink-secondary); margin: 0; font-size: 0.9375rem; }
+
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label { color: var(--v3-ink-muted); }
+  .field input,
+  .field textarea {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--v3-border-soft, rgba(10, 10, 10, 0.16));
+    padding: 0.75rem 0;
+    min-height: 44px;
+    color: var(--v3-ink);
+    font-family: var(--v3-font-body);
+    font-size: 16px;
+    line-height: 1.4;
+    transition: border-color var(--v3-duration-fast, 160ms) var(--v3-ease-out, ease-out);
+  }
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-bottom-color: var(--v3-champagne, #917271);
+  }
+  .field input::placeholder,
+  .field textarea::placeholder { color: var(--v3-ink-muted); }
+  .field textarea { resize: vertical; min-height: 4.5rem; }
+
+  .consent {
+    display: flex;
+    gap: 0.625rem;
+    align-items: flex-start;
+    color: var(--v3-ink-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    cursor: pointer;
+  }
+  .consent-text { padding-top: 0.0625rem; }
+  .consent input {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin: 0;
+    accent-color: var(--v3-champagne, #917271);
+    cursor: pointer;
+  }
+
+  .booking-submit { align-self: stretch; margin-top: 0.25rem; }
+
+  @media (max-width: 560px) {
+    .booking {
+      padding: 0.625rem;
+    }
+    .booking-panel {
+      max-height: calc(100dvh - 1.25rem);
+      border-radius: var(--v3-radius-lg);
+      padding: 1.25rem;
+    }
+    .booking-title {
+      font-size: clamp(1.375rem, 7vw, 1.75rem);
+    }
+  }
+</style>

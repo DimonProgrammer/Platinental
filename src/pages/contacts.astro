@@ -1,13 +1,14 @@
 ---
-import V3Layout from '../layouts/V3Layout.astro';
-import Navigation from '../components/v3/sections/Navigation.astro';
-import PageHero from '../components/v3/sections/PageHero.astro';
-import ContactsSection from '../components/v3/sections/Contacts.astro';
-import FinalCTA from '../components/v3/sections/FinalCTA.astro';
-import Footer from '../components/v3/sections/Footer.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Navigation from '../components/site/sections/Navigation.astro';
+import PageHero from '../components/site/sections/PageHero.astro';
+import PageLeadMagnet from '../components/site/sections/PageLeadMagnet.astro';
+import ContactsSection from '../components/site/sections/Contacts.astro';
+import FinalCTA from '../components/site/sections/FinalCTA.astro';
+import Footer from '../components/site/sections/Footer.astro';
 ---
 
-<V3Layout
+<SiteLayout
   title="Контакты — The Platinental Казань"
   description="Адрес клиники The Platinental в Казани, телефон, режим работы и схема проезда. ул. Карла Маркса, 48, корп. 1."
 >
@@ -16,15 +17,33 @@ import Footer from '../components/v3/sections/Footer.astro';
     <PageHero
       pageMarkerLabel="Контакты"
       h1="Контакты клиники The Platinental в Казани"
-      lead="Принимаем ежедневно с 09:00 до 20:00. Запись по телефону, через Max, Telegram или форму — перезвоним в течение часа."
+      lead="Принимаем ежедневно с 09:00 до 20:00. Запись по телефону, через Max, Telegram или форму — администратор свяжется в рабочее время."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: '+7 (843) 223-66-66', href: 'tel:+78432236666' }}
+      meta={[
+        { num: '→', label: 'телефон и мессенджеры' },
+        { num: '•', label: 'ежедневно 09:00–20:00' },
+        { num: '—', label: 'Карла Маркса, 48, Казань' },
+      ]}
+    />
+    <PageLeadMagnet
+      eyebrow="Быстрая запись"
+      heading="Как быстрее<br />попасть на приём"
+      lead="Самый короткий путь — написать, какой специалист или процедура интересует. Если не знаете, администратор задаст пару уточняющих вопросов и предложит следующий шаг."
+      items={[
+        { mark: '+', title: 'Телефон', text: 'если нужно быстро согласовать время' },
+        { mark: '→', title: 'Мессенджер', text: 'если удобнее отправить вопрос и фото' },
+        { mark: '•', title: 'Форма', text: 'если хотите, чтобы мы сами перезвонили' },
+      ]}
+      ctaPrimary={{ label: 'Оставить заявку', href: '#form' }}
+      ctaSecondary={{ label: 'Позвонить', href: 'tel:+78432236666' }}
+      surface="sand"
     />
     <ContactsSection />
     <FinalCTA
       heading="Запишитесь<br />на приём"
-      lead="Позвоните, напишите или заполните форму — мы свяжемся в течение 2 часов."
+      lead="Позвоните, напишите или заполните форму — мы свяжемся в рабочее время."
     />
   </main>
   <Footer />
-</V3Layout>
+</SiteLayout>

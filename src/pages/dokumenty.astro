@@ -1,0 +1,56 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const target = '/documents';
+---
+
+<SiteLayout
+  title="Документы и лицензии — The Platinental Казань"
+  description="Лицензия на медицинскую деятельность и правовые документы клиники The Platinental Казань."
+  canonical={target}
+>
+  <main class="redirect-page" aria-labelledby="redirect-title">
+    <div class="redirect-card">
+      <span class="v3-eyebrow">Документы</span>
+      <h1 id="redirect-title" class="v3-h1">Документы переехали</h1>
+      <p class="v3-lead">Открываем актуальную страницу с лицензиями, политикой конфиденциальности, согласием на обработку персональных данных и пользовательским соглашением.</p>
+      <a href={target} class="v3-btn v3-btn-primary">Открыть документы</a>
+    </div>
+  </main>
+</SiteLayout>
+
+<meta http-equiv="refresh" content={`0; url=${target}`} />
+
+<script is:inline define:vars={{ target }}>
+  window.location.replace(target);
+</script>
+
+<style>
+  .redirect-page {
+    min-height: calc(100vh - var(--v3-nav-h, 4rem));
+    display: grid;
+    place-items: center;
+    padding: var(--v3-gap-small) var(--v3-gutter);
+    background: var(--v3-cream);
+  }
+  .redirect-card {
+    width: min(100%, 42rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 1px solid var(--v3-border-hair);
+    border-radius: var(--v3-radius-lg);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+  }
+  .redirect-card .v3-btn {
+    align-self: flex-start;
+  }
+  @media (max-width: 560px) {
+    .redirect-card .v3-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

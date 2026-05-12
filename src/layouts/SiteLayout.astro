@@ -1,0 +1,178 @@
+---
+import '../styles/tokens.css';
+import { ClientRouter } from 'astro:transitions';
+import BookingModal from '../components/site/BookingModal.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  robots?: string;
+}
+
+const {
+  title = 'The Platinental Казань — клиника пластической хирургии и косметологии',
+  description = 'The Platinental Казань — клиника пластической хирургии и эстетической медицины. Авторские методики, гармонизирующий подход. С 2011 года в Казани.',
+  canonical,
+  ogImage = '/quote/iskornev-portrait-2026.png',
+  robots,
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL('https://kzn.platinental.ru');
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+const ogImageUrl = new URL(ogImage, siteUrl).toString();
+const isNotFound = Astro.url.pathname === '/404';
+const robotsContent = robots ?? (isNotFound ? 'noindex, follow' : undefined);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalClinic',
+  name: 'The Platinental Казань',
+  url: canonicalUrl,
+  telephone: '+7 843 223-66-66',
+  priceRange: '₽₽₽',
+  medicalSpecialty: ['PlasticSurgery', 'Dermatology'],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'ул. Карла Маркса, 48, корп. 1',
+    addressLocality: 'Казань',
+    addressCountry: 'RU',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '09:00',
+      closes: '20:00',
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#FBF8F4" />
+    <meta name="color-scheme" content="light" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    {robotsContent && <meta name="robots" content={robotsContent} />}
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content="The Platinental Казань" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="The Platinental Казань" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      (() => {
+        try {
+          const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (reduced) return;
+          document.documentElement.classList.add('v3-motion-ready');
+          window.setTimeout(() => {
+            if (!document.documentElement.classList.contains('v3-motion-bound')) {
+              document.documentElement.classList.add('v3-motion-fallback');
+            }
+          }, 2500);
+        } catch {
+          document.documentElement.classList.add('v3-motion-fallback');
+        }
+      })();
+    </script>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+    <ClientRouter />
+  </head>
+
+  <body>
+    <div data-v3>
+      <slot />
+
+      <BookingModal />
+    </div>
+
+    <script>
+      import '../scripts/motion-stagger.ts';
+      import '../scripts/motion-scroll.ts';
+      import '../scripts/motion-faq.ts';
+      import '../scripts/motion-quote.ts';
+      import '../scripts/form-guards.ts';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @font-face {
+    font-family: 'Formular';
+    src: url('/fonts/Formular-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Formular';
+    src: url('/fonts/Formular-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Formular';
+    src: url('/fonts/Formular-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'ZapfHumnst BT';
+    src: url('/fonts/ZapfHumnstBT-Roman.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'ZapfHumnst BT';
+    src: url('/fonts/ZapfHumnstBT-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FBF8F4;
+  }
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-top: var(--v3-nav-h, 4rem);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  img, picture, svg { display: block; max-width: 100%; }
+  a[x-apple-data-detectors],
+  a[x-apple-data-detectors='true'],
+  [x-apple-data-detectors] {
+    color: inherit !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+    text-decoration: none !important;
+  }
+</style>

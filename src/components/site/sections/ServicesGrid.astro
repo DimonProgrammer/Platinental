@@ -1,0 +1,263 @@
+---
+import { Image } from 'astro:assets';
+import imgPlastika from '../../../assets/photos/home-plastika-neck.png';
+import imgKosmetologiya from '../../../assets/photos/home-kosmetologiya-injection.png';
+import imgKosmecevtika from '../../../assets/photos/home-kosmecevtika-bottles.png';
+
+const directions = [
+  {
+    num: '01',
+    title: 'Пластическая хирургия',
+    body: 'Хирурги с уникальным профессиональным почерком, методиками и зонами экспертизы, что позволяет подбирать врача и метод под задачу пациента.',
+    list: ['Ринопластика', 'Маммопластика', 'Блефаропластика', 'Абдоминопластика', 'Лифтинг лица', 'Отопластика'],
+    cta: { label: 'Все операции', href: '/plastika' },
+    surface: 'cream',
+    align: 'left',
+    img: imgPlastika,
+    imgAlt: 'Крупный план линии подбородка, шеи и ключиц в тёплом естественном свете',
+  },
+  {
+    num: '02',
+    title: 'Косметология',
+    body: 'Врач-косметолог работает с качеством кожи, мимикой, тонусом и восстановлением: подбирает инъекционные, аппаратные и уходовые процедуры под задачу пациента.',
+    list: ['Ботокс', 'Контурная пластика', 'CO₂-лазер', 'HELEO4', 'Биоревитализация', 'Пилинги'],
+    cta: { label: 'Все процедуры', href: '/kosmetologiya' },
+    surface: 'sand',
+    align: 'right',
+    img: imgKosmetologiya,
+    imgAlt: 'Крупный план косметологической инъекционной процедуры',
+  },
+  {
+    num: '03',
+    title: 'Космецевтика',
+    body: 'Профессиональная косметика под конкретную задачу: реабилитация после операции, поддержание результата, ежедневный уход. Индивидуальный подбор со специалистом.',
+    list: ['Реабилитация', 'Anti-age', 'Чувствительная кожа', 'Постоперационный уход'],
+    cta: { label: 'Каталог', href: '/kosmecevtika' },
+    surface: 'ink',
+    align: 'left',
+    img: imgKosmecevtika,
+    imgAlt: 'Размытые флаконы профессиональной космецевтики в тёплом свете',
+  },
+];
+---
+
+<section class="v3-services v3-surface-cream">
+  {directions.map((d) => (
+    <article class="spread" data-align={d.align}>
+      <div class="v3-container v3-container-wide">
+        <div class={`spread-grid v3-surface-${d.surface}`} data-v3-reveal>
+        <div class="spread-text" data-v3-stagger>
+          <div class="spread-index" aria-hidden="true">
+            <span class="v3-minimark">{d.num}</span>
+            <span class="v3-eyebrow">Направление</span>
+          </div>
+          <h3 class="v3-display spread-display">
+            <a href={d.cta.href} class="spread-title-link" aria-label={`${d.title} — перейти на страницу направления`}>
+              <em>{d.title}</em>
+            </a>
+          </h3>
+          <p class="v3-lead spread-body">{d.body}</p>
+
+          <ul class="spread-list" data-v3-stagger>
+            {d.list.map((item) => <li>{item}</li>)}
+          </ul>
+
+          <a href={d.cta.href} class="v3-link spread-cta">→ {d.cta.label}</a>
+        </div>
+
+        <div class="spread-image v3-photo-film v3-photo-shutter" data-v3-reveal>
+          <div class="v3-photo-breathing spread-img-wrap">
+            <Image
+              src={d.img}
+              alt={d.imgAlt}
+              width={810}
+              height={1013}
+              loading="lazy"
+              class="spread-img"
+            />
+          </div>
+        </div>
+        </div>
+      </div>
+    </article>
+  ))}
+</section>
+
+<style>
+  .v3-services {
+    padding-top: var(--v3-gap-small);
+    padding-bottom: var(--v3-gap-medium);
+  }
+  .spread {
+    padding-top: clamp(0.875rem, 2vw, 1.5rem);
+    padding-bottom: clamp(0.875rem, 2vw, 1.5rem);
+    overflow-x: hidden;
+  }
+  .spread-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "image"
+      "text";
+    gap: 1.5rem;
+    align-items: start;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border: 1px solid var(--v3-border-hair);
+    border-radius: var(--v3-radius-xl);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+  }
+  .spread-grid.v3-surface-sand {
+    background: color-mix(in srgb, var(--v3-sand) 92%, var(--v3-cream));
+  }
+  .spread-grid.v3-surface-ink {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--v3-ink) 96%, black) 0%, var(--v3-ink) 100%);
+    border-color: color-mix(in srgb, var(--v3-on-ink) 12%, transparent);
+    box-shadow: var(--v3-shadow-md);
+  }
+
+  .spread-text {
+    grid-area: text;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: none;
+  }
+  .spread-index {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .spread-index .v3-eyebrow {
+    color: currentColor;
+    opacity: 0.55;
+  }
+  .spread-display {
+    font-size: var(--v3-text-display);
+    line-height: 1.05;
+    margin: 0;
+  }
+  .spread-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .spread-title-link:hover,
+  .spread-title-link:focus-visible {
+    color: var(--v3-champagne-deep);
+    outline: none;
+  }
+  .spread-body {
+    max-width: 36ch;
+  }
+  .spread-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0 1.5rem;
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    letter-spacing: 0.005em;
+    color: inherit;
+  }
+  .spread-list li {
+    display: grid;
+    grid-template-columns: 1rem minmax(0, 1fr);
+    gap: 0.625rem;
+    align-items: baseline;
+    padding-block: 0.5rem;
+    border-top: 1px solid currentColor;
+    opacity: 0.75;
+  }
+  .spread-list li::before {
+    content: '—';
+    color: var(--v3-champagne-deep);
+  }
+  .v3-surface-ink .spread-list li::before {
+    color: var(--v3-champagne);
+  }
+  .v3-surface-ink .spread-list li { opacity: 0.6; }
+  .spread-cta { align-self: flex-start; margin-top: 0.5rem; }
+
+  .spread-image {
+    grid-area: image;
+    max-width: 100%;
+    width: 100%;
+  }
+  .spread-image.v3-photo-film > * {
+    filter: none;
+  }
+  .spread-image.v3-photo-film:hover > *,
+  .spread-image.v3-photo-film:focus-within > * {
+    filter: none;
+  }
+  .spread-img-wrap {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    width: 100%;
+    border-radius: var(--v3-radius-xl);
+    border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+  }
+  .spread-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .v3-services {
+      padding-top: var(--v3-gap-small);
+      padding-bottom: var(--v3-gap-small);
+    }
+    .spread {
+      padding-top: 0.625rem;
+      padding-bottom: 0.625rem;
+    }
+    .spread-display {
+      font-size: clamp(2rem, 11vw, 2.75rem);
+      line-height: 0.98;
+    }
+    .spread-body {
+      max-width: none;
+      font-size: 1rem;
+    }
+    .spread-list { gap: 0; }
+    .spread-list li {
+      padding-block: 0.875rem;
+    }
+  }
+  @media (max-width: 560px) {
+    .spread-display {
+      font-size: clamp(1.875rem, 10vw, 2.375rem);
+    }
+  }
+  @media (min-width: 1025px) {
+    .spread-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas: "text image";
+      gap: clamp(2rem, 6vw, 6rem);
+      align-items: center;
+    }
+    .spread[data-align="right"] .spread-grid {
+      grid-template-areas: "image text";
+    }
+    .spread-text {
+      gap: 1.5rem;
+      max-width: 38rem;
+    }
+    .spread-list {
+      grid-template-columns: 1fr 1fr;
+      margin: 0.5rem 0 1rem;
+    }
+    .spread-image {
+      max-width: 36rem;
+    }
+    .spread-img-wrap {
+      aspect-ratio: 4 / 5;
+    }
+  }
+</style>

@@ -1,44 +1,13 @@
 ---
-import V3Layout from '../layouts/V3Layout.astro';
-import Navigation from '../components/v3/sections/Navigation.astro';
-import PageHero from '../components/v3/sections/PageHero.astro';
-import Footer from '../components/v3/sections/Footer.astro';
-
-const docs = [
-  {
-    title: 'Лицензия на осуществление медицинской деятельности',
-    size: '2.1 МБ',
-    href: null,
-  },
-  {
-    title: 'Политика в отношении обработки персональных данных (152-ФЗ)',
-    size: '480 КБ',
-    href: null,
-  },
-  {
-    title: 'Согласие на обработку персональных данных',
-    size: '320 КБ',
-    href: null,
-  },
-  {
-    title: 'Правила предоставления медицинских услуг',
-    size: '1.2 МБ',
-    href: null,
-  },
-  {
-    title: 'Информированное добровольное согласие на медицинское вмешательство',
-    size: '420 КБ',
-    href: null,
-  },
-  {
-    title: 'Пользовательское соглашение сайта',
-    size: '280 КБ',
-    href: null,
-  },
-];
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Navigation from '../components/site/sections/Navigation.astro';
+import PageHero from '../components/site/sections/PageHero.astro';
+import FinalCTA from '../components/site/sections/FinalCTA.astro';
+import Footer from '../components/site/sections/Footer.astro';
+import { documentsList } from '../data/legalDocuments';
 ---
 
-<V3Layout
+<SiteLayout
   title="Документы и лицензии — The Platinental Казань"
   description="Лицензия на медицинскую деятельность и правовые документы клиники The Platinental Казань."
 >
@@ -50,34 +19,36 @@ const docs = [
       h1="Документы и лицензии клиники The Platinental"
       lead="ООО «Платинентал Казань» · Лицензия ЛО-16-01-003022 · ул. Карла Маркса, 48, корп. 1, Казань, 420015"
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
-      ctaSecondary={undefined}
+      ctaSecondary={{ label: 'Контакты клиники', href: '/contacts' }}
+      meta={[
+        { num: '✓', label: 'лицензия и юридическое лицо' },
+        { num: '—', label: 'правила и согласия' },
+        { num: '!', label: 'информация не является офертой' },
+      ]}
     />
 
     <section class="v3-docs v3-surface-cream" aria-labelledby="docs-heading">
       <div class="v3-container v3-container-default">
         <h2 id="docs-heading" class="sr-only">Документы клиники</h2>
 
-        <ul class="docs-list" data-v3-stagger>
-          {docs.map((d) => (
+        <ul class="docs-list">
+          {documentsList.map((d) => (
             <li class="doc-item">
+              <span class="v3-minimark doc-mark" aria-hidden="true">•</span>
               <div class="doc-info">
                 <p class="doc-title v3-h3">{d.title}</p>
-                <p class="v3-caption doc-issuer">PDF · {d.size}</p>
+                <p class="v3-caption doc-issuer">{d.type} · {d.size}</p>
               </div>
-              {d.href ? (
-                <a href={d.href} class="v3-link doc-link" target="_blank" rel="noopener noreferrer">Скачать</a>
-              ) : (
-                <span class="v3-link doc-link" aria-disabled="true">Скачать</span>
-              )}
+              <a href={d.href} class="v3-link doc-link" target="_blank" rel="noopener noreferrer">{d.label}</a>
             </li>
           ))}
         </ul>
 
-        <p class="docs-note v3-body" data-v3-reveal>
+        <p class="docs-note v3-body">
           Документы представлены для ознакомления. Оригиналы можно запросить в клинике. При заключении договора на медицинские услуги все формы подписываются офлайн.
         </p>
 
-        <div class="docs-legal" data-v3-reveal>
+        <div class="docs-legal">
           <div class="v3-body legal-text">
             <p>
               Информация на сайте kzn.platinental.ru носит исключительно популярно-просветительский характер, не может быть использована как пособие по самолечению и ни при каких условиях не является публичной офертой, определяемой положениями ч. 2 ст. 437 Гражданского кодекса Российской Федерации. Для получения подробной информации о наличии, стоимости услуг и записи на приём обращайтесь по телефону <a href="tel:+78432236666" class="v3-link">8 (843) 223-66-66</a> или по электронной почте <a href="mailto:platinental.kzn@gmail.com" class="v3-link">platinental.kzn@gmail.com</a>.
@@ -106,18 +77,25 @@ const docs = [
           </dl>
         </div>
 
-        <p class="docs-disclaimer v3-caption" data-v3-reveal>
+        <p class="docs-disclaimer v3-caption">
           Для разработки плана лечения вам необходима личная консультация специалиста. Для получения подробной информации о стоимости товаров и услуг обращайтесь по указанным телефонам.
         </p>
 
-        <p class="docs-disclaimer v3-caption" data-v3-reveal>
+        <p class="docs-disclaimer v3-caption">
           Срок ожидания предоставления платных медицинских услуг может быть до 6 месяцев, требуется обязательная предварительная запись.
         </p>
       </div>
     </section>
+
+    <FinalCTA
+      eyebrow="Документы и запись"
+      heading="Остались вопросы<br />по документам?"
+      lead="Оставьте контакт — администратор подскажет, какие документы можно посмотреть заранее, и запишет на консультацию."
+      submitLabel="Задать вопрос"
+    />
   </main>
   <Footer />
-</V3Layout>
+</SiteLayout>
 
 <style>
   .sr-only {
@@ -129,7 +107,7 @@ const docs = [
     white-space: nowrap;
   }
   .v3-docs {
-    padding-top: var(--v3-gap-medium);
+    padding-top: var(--v3-gap-small);
     padding-bottom: var(--v3-gap-deep);
   }
   .docs-list {
@@ -141,12 +119,13 @@ const docs = [
   }
   .doc-item {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) auto;
-    gap: 2rem;
-    align-items: baseline;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: start;
     padding-block: 1.75rem;
     border-top: 1px solid var(--v3-border-hair);
   }
+  .doc-mark { margin-top: 0.125rem; }
   .doc-item:last-child { border-bottom: 1px solid var(--v3-border-hair); }
   .doc-meta { display: flex; flex-direction: column; gap: 0.375rem; }
   .doc-num { color: var(--v3-ink-muted); }
@@ -187,5 +166,6 @@ const docs = [
       grid-template-columns: 1fr;
       gap: 0.75rem;
     }
+    .doc-mark { display: none; }
   }
 </style>

@@ -1,12 +1,14 @@
 ---
-import V3Layout from '../layouts/V3Layout.astro';
-import Navigation from '../components/v3/sections/Navigation.astro';
-import PageHero from '../components/v3/sections/PageHero.astro';
-import FinalCTA from '../components/v3/sections/FinalCTA.astro';
-import FAQ from '../components/v3/sections/FAQ.astro';
-import Footer from '../components/v3/sections/Footer.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Navigation from '../components/site/sections/Navigation.astro';
+import PageHero from '../components/site/sections/PageHero.astro';
+import PageLeadMagnet from '../components/site/sections/PageLeadMagnet.astro';
+import FinalCTA from '../components/site/sections/FinalCTA.astro';
+import FAQ from '../components/site/sections/FAQ.astro';
+import Footer from '../components/site/sections/Footer.astro';
 import { kosmProcs } from '../data/kosmetologiya';
 import { doctors } from '../data/doctors';
+import { formatCurrencyPlainText, formatTypographyHtml } from '../lib/formatText';
 
 const cosmetologists = doctors.filter((d) => d.tags.includes('cosmetology'));
 
@@ -25,29 +27,29 @@ const faqItems = [
     open: true,
   },
   {
-    q: 'Есть ли противопоказания к операциям?',
-    a: 'Да. Часть — общие для любой хирургии: беременность, лактация, онкология, нарушения свёртываемости крови, тяжёлые хронические заболевания. Часть — индивидуальные: их хирург видит только на очной консультации.',
+    q: 'Есть ли противопоказания к косметологическим процедурам?',
+    a: 'Да. Они зависят от состояния кожи, здоровья, беременности, лактации, хронических заболеваний и препаратов, которые вы принимаете. Врач уточнит ограничения на консультации.',
   },
   {
     q: 'Через сколько дней виден результат после ботокса?',
     a: 'Первый эффект появляется через 3–5 дней, окончательный — через 10–14 дней. Держится 4–6 месяцев в зависимости от препарата и индивидуальных особенностей.',
   },
   {
-    q: 'Вы работаете с мужчинами?',
-    a: 'Каждый пятый пациент — мужчина. Чаще всего приходят с носом, веками, подбородком и коррекцией гинекомастии. У мужской эстетики своё правило: результат не должен читаться как вмешательство — хирурги работают именно в этом ключе.',
+    q: 'Можно ли сочетать косметологию с пластической операцией?',
+    a: 'Да, но порядок определяет врач. Иногда косметология помогает подготовить кожу до операции, иногда подключается на этапе восстановления — по назначению хирурга.',
   },
   {
-    q: 'Как проходит первичная консультация хирурга?',
-    a: 'Хирург осматривает, замеряет, фотографирует, подбирает методику — и отвечает на все вопросы без спешки.',
+    q: 'Как проходит первичная консультация косметолога?',
+    a: 'Врач смотрит кожу, спрашивает про домашний уход и прошлые процедуры, уточняет ограничения и предлагает понятный план.',
   },
   {
-    q: 'Как долго длится реабилитация?',
-    a: 'Зависит от операции:<br />— Блефаропластика — 7–14 дней<br />— Ринопластика — 2–3 недели<br />— Маммопластика — 2–4 недели ограничений<br />— SMAS-лифтинг — 3–4 недели<br /><br />Точные сроки хирург назовёт на консультации.',
+    q: 'Нужна ли реабилитация после косметологии?',
+    a: 'Зависит от процедуры. После инъекций и аппаратных методик врач может временно ограничить спорт, баню, солнце и часть домашнего ухода.',
   },
 ];
 ---
 
-<V3Layout
+<SiteLayout
   title="Косметология — The Platinental Казань"
   description="Инъекционная, аппаратная и терапевтическая косметология в клинике The Platinental Казань. Ботулотоксин, филлеры, лазер CO₂, биоревитализация."
 >
@@ -58,23 +60,25 @@ const faqItems = [
       pageMarkerLabel="Услуги"
       eyebrow="Косметология"
       h1="Косметология в Казани — клиника The Platinental"
-      lead="Косметолог при консультации клиента может порекомендовать процедуры, которые отсрочат операции на годы. Хирурги смотрят шире и не спешат к скальпелю. Если результат можно получить без операционных действий, через косметолога, — рекомендация будет в пользу этого пути."
-      ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
+      lead="Самостоятельное направление и часть хирургического вмешательства: подготовка кожи до операции, восстановление после пластики, инъекционные, аппаратные и уходовые процедуры."
+      ctaPrimary={{
+        label: 'Записаться на консультацию',
+        href: '#form',
+        bookingTitle: 'Запишем к врачу-косметологу',
+        bookingLead: 'Оставьте телефон — администратор свяжется в рабочее время и подберёт удобное время консультации.',
+        bookingPlaceholder: 'Что беспокоит: кожа, мимика, пигментация, восстановление или конкретная процедура',
+      }}
       ctaSecondary={{ label: 'Цены', href: '/prices' }}
+      metaLabel="На консультации разберём:"
+      metaPlacement="cta"
+      ctaPlacement="after-meta"
+      meta={[
+        { num: '•', label: 'состояние кожи и мимики' },
+        { num: '?', label: 'какие процедуры подойдут сейчас' },
+        { num: '—', label: 'курс, интервалы и восстановление' },
+        { num: '+', label: 'совместимость с хирургией' },
+      ]}
     />
-
-    <section class="v3-kosm-quote v3-surface-sand" aria-labelledby="kosm-quote-heading">
-      <div class="v3-container v3-container-wide">
-        <div class="kosm-quote-shell" data-v3-reveal>
-          <span class="v3-eyebrow kosm-quote-kicker">Подход клиники</span>
-          <blockquote id="kosm-quote-heading" class="kosm-quote-text v3-display">
-            <em>«Для создания живого лица недостаточно просто вколоть филлер. Мы предлагаем более тонкие и сложные техники»</em>
-          </blockquote>
-          <p class="kosm-quote-note v3-caption">Косметология в клинике работает не как набор отдельных инъекций, а как часть общей эстетической стратегии.</p>
-        </div>
-      </div>
-    </section>
-
     <!-- Procedures by category -->
     {categories.map((catKey) => {
       const procs = kosmProcs.filter((p) => p.category === catKey);
@@ -91,19 +95,27 @@ const faqItems = [
                 <li class="proc-card">
                   <span class="proc-badge v3-eyebrow">{p.badge}</span>
                   <h3 class="proc-name v3-h3">{p.name}</h3>
-                  <p class="proc-desc v3-body" set:html={p.desc}></p>
+                  <p class="proc-desc v3-body" set:html={formatTypographyHtml(p.desc)}></p>
                   <ul class="proc-prices">
                     {p.prices.map((pr) => (
                       <li class="proc-price-row">
                         <span class="proc-price-label v3-caption">{pr.label}</span>
-                        <span class="proc-price-val">{pr.value}</span>
+                        <span class="proc-price-val" set:html={formatCurrencyPlainText(pr.value)}></span>
                       </li>
                     ))}
                   </ul>
-                  <a href="#form" class="proc-cta v3-link">Записаться</a>
                 </li>
               ))}
             </ul>
+            <div class="category-cta" data-v3-reveal>
+              <a
+                href="#form"
+                class="v3-btn v3-btn-primary"
+                data-booking-custom-title="Запишем к врачу-косметологу"
+                data-booking-custom-lead="Оставьте телефон — администратор свяжется в рабочее время и подберёт удобное время консультации."
+                data-booking-custom-placeholder="Какая процедура или задача вас интересует"
+              >Записаться к косметологу</a>
+            </div>
           </div>
         </section>
       );
@@ -115,7 +127,7 @@ const faqItems = [
         <div class="v3-container v3-container-wide">
           <header class="doctors-header" data-v3-stagger>
             <span class="v3-eyebrow">Специалист направления</span>
-            <h2 id="cosm-doctors-heading" class="v3-display doctors-h2"><em>Anti-age врач-косметолог клиники</em></h2>
+            <h2 id="cosm-doctors-heading" class="v3-display doctors-h2"><em>Врач-косметолог клиники</em></h2>
           </header>
           {cosmetologists.map((d) => (
             <div class="doctor-card" data-v3-reveal>
@@ -133,11 +145,11 @@ const faqItems = [
               <div class="dc-body">
                 <p class="v3-eyebrow dc-spec">{d.spec}</p>
                 <h3 class="v3-display dc-name"><em>{d.name}</em></h3>
-                <p class="v3-body dc-bio" set:html={d.short}></p>
+                <p class="v3-body dc-bio" set:html={formatTypographyHtml(d.short)}></p>
                 <hr class="dc-rule" />
                 <div class="dc-consult-row">
                   <span class="v3-eyebrow dc-consult-label">Консультация</span>
-                  <span class="dc-price">{d.priceMain}</span>
+                  <span class="dc-price" set:html={formatCurrencyPlainText(d.priceMain)}></span>
                 </div>
                 <hr class="dc-rule" />
                 <div class="dc-actions">
@@ -151,6 +163,26 @@ const faqItems = [
       </section>
     )}
 
+    <PageLeadMagnet
+      eyebrow="План процедур"
+      heading="Персональный план<br />косметологических процедур"
+      lead="На консультации врач объясняет, какие процедуры уместны сейчас, где нужен курс, какие интервалы соблюдать и как поддерживать результат домашним уходом."
+      items={[
+        { mark: '•', title: 'Зона', text: 'лицо, шея, веки, качество кожи или мимические морщины' },
+        { mark: '—', title: 'Ритм', text: 'сколько визитов потребуется и какие интервалы разумны' },
+        { mark: '+', title: 'Домашний уход', text: 'что поддержит результат между процедурами' },
+      ]}
+      ctaPrimary={{
+        label: 'Получить план',
+        href: '#form',
+        bookingTitle: 'Составим план с косметологом',
+        bookingLead: 'Оставьте телефон — администратор свяжется в рабочее время и запишет на консультацию к врачу-косметологу.',
+        bookingPlaceholder: 'Что беспокоит: качество кожи, мимика, пигментация, восстановление после процедур',
+      }}
+      ctaSecondary={{ label: 'Полный прайс', href: '/prices' }}
+      surface="cream"
+    />
+
     <FAQ
       eyebrow="Косметология"
       heading="Частые вопросы"
@@ -163,43 +195,9 @@ const faqItems = [
     />
   </main>
   <Footer />
-</V3Layout>
+</SiteLayout>
 
 <style>
-  .v3-kosm-quote {
-    padding-top: var(--v3-gap-medium);
-    padding-bottom: var(--v3-gap-medium);
-  }
-  .kosm-quote-shell {
-    max-width: 64rem;
-    padding-block: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .kosm-quote-kicker {
-    color: var(--v3-ink-muted);
-  }
-  .kosm-quote-text {
-    margin: 0;
-    max-width: 22ch;
-    font-family: var(--v3-font-display);
-    font-style: normal;
-    font-weight: 400;
-    font-size: clamp(2rem, 4.2vw, 4rem);
-    line-height: 1.06;
-    color: var(--v3-ink);
-    text-wrap: balance;
-  }
-  .kosm-quote-note {
-    max-width: 56ch;
-    margin: 0;
-    color: var(--v3-ink-muted);
-    text-transform: none;
-    letter-spacing: 0.005em;
-    font-family: var(--v3-font-body);
-    font-size: 0.875rem;
-  }
   .v3-kosm-cat {
     padding-top: var(--v3-gap-deep);
     padding-bottom: var(--v3-gap-deep);
@@ -255,10 +253,12 @@ const faqItems = [
     color: var(--v3-champagne-deep);
     white-space: nowrap;
   }
-  .proc-cta {
-    font-size: 0.9375rem;
-    margin-top: 0.25rem;
-    align-self: flex-start;
+  .category-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
   }
 
   /* Doctors */
@@ -310,7 +310,7 @@ const faqItems = [
     font-family: var(--v3-font-display);
     font-style: normal;
     font-size: clamp(4rem, 8vw, 8rem);
-    color: rgba(255, 254, 242, 0.18);
+    color: rgba(251, 248, 244, 0.18);
     letter-spacing: 0.04em;
   }
   .dc-body {
@@ -358,13 +358,13 @@ const faqItems = [
   .dc-more-link:hover { color: var(--v3-champagne-deep); text-decoration-color: var(--v3-champagne-soft); }
 
   @media (max-width: 1024px) {
-    .kosm-quote-text { max-width: 100%; }
     .procs-grid { grid-template-columns: 1fr; }
     .doctor-card { grid-template-columns: 1fr; }
     .dc-photo-wrap { max-height: 26rem; }
   }
   @media (max-width: 560px) {
-    .kosm-quote-shell { gap: 0.875rem; }
+    .category-cta { align-items: stretch; }
+    .category-cta .v3-link { justify-content: center; }
     .dc-photo-wrap { max-height: none; margin: 1rem; }
   }
 </style>

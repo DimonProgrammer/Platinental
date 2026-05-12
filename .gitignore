@@ -1,6 +1,8 @@
 # Secrets
 .env
 .env.*
+.mcp.json
+.codex/config.toml
 memory/credentials.md
 
 # OS
@@ -27,6 +29,8 @@ check-*.jpg
 .vercel
 .playwright-cli/
 .playwright-screenshots/
+.playwright-audit/
+output/
 
 # Root QA screenshots
 *-desktop-*.png
@@ -37,6 +41,11 @@ check-*.jpg
 audit-*.js
 audit-*.mjs
 mobile-audit-results.txt
+.tmp-*/
+*.zip
+platinental-site-dist*.zip
+doctors-listing-*.png
+tulatova-mobile-snapshot.md
 
 # Source photos from client (too large for git, store separately)
 Врачи/

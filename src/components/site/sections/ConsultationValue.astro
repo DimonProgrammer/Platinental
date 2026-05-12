@@ -1,0 +1,160 @@
+---
+import { Image } from 'astro:assets';
+import cvPhoto from '../../../assets/photos/cv-consultation.jpeg';
+import { formatCurrencyPlainText } from '../../../lib/formatText';
+---
+
+<section class="v3-cv v3-surface-sand" aria-labelledby="cv-heading">
+  <div class="v3-container v3-container-wide cv-grid">
+    <div class="cv-text" data-v3-stagger>
+      <span class="v3-eyebrow">Первый шаг</span>
+      <h2 id="cv-heading" class="v3-h2"><em>Консультация хирурга</em></h2>
+      <p class="v3-lead cv-body">
+        На приёме хирург осматривает, замеряет пропорции, делает фото в нужных
+        ракурсах и показывает похожие случаи из своей практики. Вы уходите с
+        пониманием, что возможно и что разумно.
+      </p>
+      <div class="cv-price-row">
+        <span class="v3-minimark" aria-hidden="true">₽</span>
+        <span class="cv-price-copy">
+          <span class="cv-price">
+            <em set:html={formatCurrencyPlainText('от 5 000 ₽')}></em>
+          </span>
+          <span class="v3-caption cv-price-meta">Первичная консультация: осмотр, разбор запроса и дальнейшие шаги</span>
+        </span>
+      </div>
+      <div class="cv-cta">
+        <a href="#form" class="v3-btn v3-btn-primary">Записаться на консультацию</a>
+        <ul class="cv-msg" data-v3-stagger>
+          <li><a href="https://t.me/platinental_kazan" class="v3-link">Telegram</a></li>
+          <li><a href="https://max.ru" class="v3-link">Max</a></li>
+          <li><a href="https://wa.me/78432236666" class="v3-link">WhatsApp</a></li>
+          <li><a href="https://instagram.com/platinental_kazan" class="v3-link">Instagram*</a></li>
+        </ul>
+        <p class="v3-caption instagram-note">
+          * Instagram принадлежит компании Meta, признанной экстремистской и запрещённой на территории РФ.
+        </p>
+      </div>
+    </div>
+
+    <div class="cv-image" data-v3-reveal>
+      <Image
+        src={cvPhoto}
+        alt="Кабинет хирурга — стол, блокнот, дневной свет"
+        class="cv-photo"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .v3-cv {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .cv-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: center;
+  }
+  .cv-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h1-lead);
+    max-width: 38rem;
+    min-width: 0;
+  }
+  .cv-text .v3-eyebrow { margin-bottom: 0.5rem; }
+  .cv-body { max-width: 50ch; }
+  .cv-price-row {
+    display: grid;
+    grid-template-columns: 1.55rem minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: start;
+    padding-top: 1rem;
+    border-top: 1px solid var(--v3-border-soft);
+    margin-top: 0.5rem;
+  }
+  .cv-price-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .cv-price {
+    font-family: var(--v3-font-display);
+    font-weight: 300;
+    font-style: normal;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1;
+    color: var(--v3-champagne-deep);
+  }
+  .cv-price-meta { color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0.005em; font-family: var(--v3-font-body); font-size: 0.875rem; }
+  .cv-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+  .cv-msg {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.25rem;
+    font-size: 0.9375rem;
+  }
+  .cv-msg li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .cv-msg li::before {
+    content: '•';
+    color: var(--v3-champagne-deep);
+  }
+  .instagram-note {
+    max-width: 34rem;
+    margin: -0.5rem 0 0;
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-family: var(--v3-font-body);
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+  .cv-image {
+    max-width: 30rem;
+    margin-left: auto;
+    width: 100%;
+    min-width: 0;
+  }
+  .cv-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--v3-radius-xl);
+    object-fit: cover;
+    box-shadow: var(--v3-shadow-sm);
+  }
+
+  @media (max-width: 1024px) {
+    .cv-grid {
+      grid-template-columns: minmax(0, 1fr);
+      overflow: hidden;
+    }
+    .cv-text { max-width: 100%; }
+    .cv-image { max-width: 26rem; margin-inline: 0; }
+  }
+  @media (max-width: 560px) {
+    .cv-price {
+      font-size: clamp(1.75rem, 8vw, 2.4rem);
+    }
+    .cv-msg {
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+    }
+  }
+</style>

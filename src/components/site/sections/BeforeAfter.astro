@@ -1,0 +1,229 @@
+---
+const cases = [
+  {
+    id: 'case-01',
+    operation: 'Риносептопластика',
+    doctor: 'Марданова Д.М.',
+    image: '/before-after/mardanova-rhinoseptoplasty.jpg',
+  },
+  {
+    id: 'case-02',
+    operation: 'Платизмопластика',
+    doctor: 'Мамедов В.А.',
+    image: '/before-after/mamedov-platysmoplasty-home.jpg',
+  },
+  {
+    id: 'case-03',
+    operation: 'Платизмопластика',
+    doctor: 'Васильев М.Н.',
+    image: '/before-after/vasilev-platysmoplasty.jpg',
+  },
+  {
+    id: 'case-04',
+    operation: 'SMAS-лифтинг',
+    doctor: 'Бречко М.А.',
+    image: '/before-after/brechko-smas-lift.jpg',
+  },
+  {
+    id: 'case-05',
+    operation: 'Липосакция шеи',
+    doctor: 'Бречко М.А.',
+    image: '/before-after/brechko-neck-lift.jpg',
+  },
+];
+---
+
+<section class="v3-ba v3-surface-cream" aria-labelledby="ba-heading">
+  <div class="v3-container v3-container-default">
+    <header class="ba-header" data-v3-stagger>
+      <span class="v3-eyebrow">Результаты</span>
+      <h2 id="ba-heading" class="v3-h2"><em>До и после</em></h2>
+    </header>
+
+    <div class="ba-stage" data-ba-stage>
+      <div class="ba-photo-wrap">
+        <img
+          class="ba-photo"
+          src={cases[0].image}
+          alt={`${cases[0].operation} — ${cases[0].doctor}`}
+          loading="lazy"
+          decoding="async"
+          data-ba-photo
+        />
+      </div>
+
+      <div class="ba-controls" role="tablist" aria-label="Кейсы" data-v3-stagger>
+        {cases.map((c, i) => (
+          <button
+            class="ba-tab"
+            type="button"
+            data-ba-case={i}
+            data-ba-image={c.image}
+            data-ba-operation={c.operation}
+            data-ba-doctor={c.doctor}
+            aria-selected={i === 0 ? 'true' : 'false'}
+          >
+            <span class="v3-minimark" data-mark="dot" aria-hidden="true"></span>
+            <span class="tab-copy">
+              <span class="tab-operation">{c.operation}</span>
+              <span class="tab-doctor">{c.doctor}</span>
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initBA() {
+    document.querySelectorAll('[data-ba-stage]').forEach((stage) => {
+      if (!(stage instanceof HTMLElement)) return;
+
+      const photo = stage.querySelector('[data-ba-photo]');
+      if (!(photo instanceof HTMLImageElement)) return;
+
+      stage.querySelectorAll('[data-ba-image]').forEach((node) => {
+        if (!(node instanceof HTMLElement) || !node.dataset.baImage) return;
+        const preload = new Image();
+        preload.decoding = 'async';
+        preload.src = node.dataset.baImage;
+      });
+
+      stage.querySelectorAll('[data-ba-case]').forEach((btn) => {
+        if (!(btn instanceof HTMLButtonElement)) return;
+        if (btn.dataset.baBound === '1') return;
+        btn.dataset.baBound = '1';
+
+        btn.addEventListener('click', () => {
+          stage.querySelectorAll('[data-ba-case]').forEach((node) => {
+            if (node instanceof HTMLElement) node.setAttribute('aria-selected', 'false');
+          });
+
+          btn.setAttribute('aria-selected', 'true');
+
+          const image = btn.dataset.baImage;
+          const operation = btn.dataset.baOperation ?? 'Кейс';
+          const doctor = btn.dataset.baDoctor ?? '';
+
+          if (image) {
+            photo.decoding = 'async';
+            photo.loading = 'eager';
+            photo.src = image;
+            photo.alt = doctor ? `${operation} — ${doctor}` : operation;
+          }
+        });
+      });
+    });
+  }
+
+  if (document.readyState !== 'loading') initBA();
+  else document.addEventListener('DOMContentLoaded', initBA);
+  document.addEventListener('astro:page-load', initBA);
+</script>
+
+<style>
+  .v3-ba {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .ba-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-medium);
+    max-width: 56ch;
+  }
+  .ba-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+  }
+  .ba-photo-wrap {
+    width: 100%;
+    background: var(--v3-ink);
+    overflow: hidden;
+    border-radius: var(--v3-radius-xl);
+    border: 1px solid var(--v3-border-soft);
+    box-shadow: var(--v3-shadow-sm);
+  }
+  .ba-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: opacity 0.12s var(--v3-ease-out);
+  }
+  .ba-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .ba-tab {
+    display: grid;
+    grid-template-columns: 1.55rem minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: center;
+    padding: 1rem 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--v3-border-hair);
+    text-align: left;
+    cursor: pointer;
+    transition: background var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .ba-tab:last-child {
+    border-bottom: 1px solid var(--v3-border-hair);
+  }
+  .ba-tab:hover {
+    background: var(--v3-cream-alt);
+  }
+  .ba-tab[aria-selected='true'] {
+    background: var(--v3-cream-alt);
+  }
+  .ba-tab[aria-selected='true'] .tab-operation {
+    color: var(--v3-champagne-deep);
+  }
+  .ba-tab[aria-selected='true'] .v3-minimark {
+    background: var(--v3-surface-card);
+    color: var(--v3-ink);
+  }
+  .tab-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+  .tab-operation {
+    font-family: var(--v3-font-display);
+    font-size: 1.125rem;
+    line-height: 1.15;
+    color: var(--v3-ink);
+    transition: color var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .tab-doctor {
+    font-family: var(--v3-font-body);
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--v3-ink-muted);
+  }
+
+  @media (max-width: 1024px) {
+    .ba-stage {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .ba-header {
+      margin-bottom: 1.25rem;
+    }
+    .ba-stage {
+      gap: 1.25rem;
+    }
+    .ba-tab {
+      padding: 0.875rem 0;
+    }
+  }
+</style>

@@ -1,0 +1,38 @@
+---
+interface Props {
+  surface?: 'cream' | 'sand' | 'ink';
+}
+
+const { surface = 'cream' } = Astro.props;
+---
+
+<div class:list={['medical-disclaimer', `medical-disclaimer--${surface}`]} data-v3-reveal>
+  <div class="v3-container v3-container-wide">
+    <p class="v3-caption">
+      Имеются противопоказания. Необходима консультация специалиста.
+    </p>
+  </div>
+</div>
+
+<style>
+  .medical-disclaimer {
+    padding-block: 0.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--v3-border-hair) 62%, transparent);
+  }
+  .medical-disclaimer--cream { background: var(--v3-cream); }
+  .medical-disclaimer--sand { background: var(--v3-sand); }
+  .medical-disclaimer--ink {
+    background: var(--v3-ink);
+    border-color: rgba(251, 248, 244, 0.16);
+  }
+  .medical-disclaimer p {
+    margin: 0;
+    color: var(--v3-ink-faint);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-family: var(--v3-font-body);
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+  .medical-disclaimer--ink p { color: var(--v3-on-ink-muted); }
+</style>

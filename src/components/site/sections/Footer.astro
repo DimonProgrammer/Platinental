@@ -1,0 +1,307 @@
+---
+const directions = [
+  { label: 'Пластическая хирургия', href: '/plastika' },
+  { label: 'Косметология', href: '/kosmetologiya' },
+  { label: 'Космецевтика', href: '/kosmecevtika' },
+];
+const clinic = [
+  { label: 'О The Platinental', href: '/about' },
+  { label: 'Врачи', href: '/doctors' },
+  { label: 'Цены', href: '/prices' },
+  { label: 'Документы', href: '/documents' },
+  { label: 'Контакты', href: '/contacts' },
+];
+const legal = [
+  { label: 'Политика конфиденциальности', href: '/privacy' },
+  { label: 'Согласие на обработку ПДн', href: '/consent' },
+  { label: 'Пользовательское соглашение', href: '/terms' },
+];
+const year = new Date().getFullYear();
+---
+
+<footer class="v3-footer v3-surface-ink">
+  <div class="v3-container v3-container-wide footer-top">
+    <div class="footer-intro">
+      <a href="/" class="footer-logo" aria-label="The Platinental — на главную">
+        <img src="/logo-white.svg" alt="The Platinental" width="187" height="40" class="footer-logo-img" />
+      </a>
+    </div>
+
+    <div class="footer-cta-block">
+      <a href="#form" class="v3-btn v3-btn-primary footer-cta">Записаться на консультацию</a>
+    </div>
+  </div>
+
+  <div class="v3-container v3-container-wide footer-divider" aria-hidden="true">
+    <hr class="v3-hairline" />
+  </div>
+
+  <div class="v3-container v3-container-wide footer-grid">
+    <div class="col col-contacts">
+      <span class="v3-eyebrow">Контакты</span>
+      <a
+        href="https://yandex.ru/maps/?ll=49.1221%2C55.7887&z=17&text=Казань%2C+Карла+Маркса+48+к1"
+        target="_blank"
+        rel="noopener"
+        class="v3-body addr addr-link"
+      >
+        ул. Карла Маркса, 48, корп. 1<br />
+        Казань, 420015
+      </a>
+      <a href="tel:+78432236666" class="v3-link phone">+7 843 223-66-66</a>
+      <p class="v3-small hours">Ежедневно 9:00–20:00</p>
+      <p class="v3-small messengers">
+        <a href="https://t.me/platinental_kazan" class="footer-link">Telegram</a> ·
+        <a href="https://max.ru" class="footer-link">Max</a> ·
+        <a href="https://wa.me/78432236666" class="footer-link">WhatsApp</a> ·
+        <a href="https://instagram.com/platinental_kazan" class="footer-link">Instagram*</a>
+      </p>
+      <p class="v3-caption instagram-note">
+        * Instagram принадлежит компании Meta, признанной экстремистской и запрещённой на территории РФ.
+      </p>
+    </div>
+
+    <div class="col col-directions">
+      <span class="v3-eyebrow">Направления</span>
+      <ul class="link-list">
+        {directions.map((d) => (
+          <li><a href={d.href} class="footer-link">{d.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="col col-legal">
+      <span class="v3-eyebrow">Клиника</span>
+      <ul class="link-list">
+        {clinic.map((d) => (
+          <li><a href={d.href} class="footer-link">{d.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="col col-legal">
+      <span class="v3-eyebrow">Документы</span>
+      <ul class="link-list">
+        {legal.map((d) => (
+          <li><a href={d.href} class="footer-link">{d.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="v3-container v3-container-wide bottom">
+    <hr class="v3-hairline" />
+    <div class="bottom-row">
+      <div class="bottom-meta">
+        <p class="v3-caption">© The Platinental Казань, {year} · ООО «Платинентал Казань»</p>
+        <p class="v3-caption">Лицензия ЛО-16-01-003022</p>
+      </div>
+      <p class="v3-caption disclaimer">Имеются противопоказания. Необходима консультация специалиста. Информация на сайте не является публичной офертой.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .v3-footer {
+    padding-top: clamp(4.5rem, 8vw, 6.5rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 24rem);
+    align-items: center;
+    gap: 2rem;
+  }
+  .footer-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 34rem;
+  }
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: opacity var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .footer-logo:hover { opacity: 0.78; }
+  .footer-logo-img {
+    display: block;
+    height: 30px;
+    width: auto;
+  }
+  .footer-cta-block {
+    display: flex;
+    align-items: center;
+    justify-self: end;
+    padding: 0;
+    min-width: min(100%, 24rem);
+  }
+  .footer-cta {
+    min-height: 48px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    width: 100%;
+    justify-content: center;
+  }
+  .footer-divider {
+    margin-top: 2.5rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .messengers { color: var(--v3-on-ink-muted); margin: 0; }
+  .messengers .footer-link { font-size: 0.9375rem; }
+  .instagram-note {
+    max-width: 20rem;
+    margin: -0.375rem 0 0;
+    color: var(--v3-on-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-family: var(--v3-font-body);
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) repeat(3, minmax(0, 1fr));
+    gap: clamp(2rem, 4vw, 4.5rem);
+    align-items: start;
+  }
+  .col { display: flex; flex-direction: column; gap: 1rem; }
+  .col .v3-eyebrow {
+    color: var(--v3-on-ink-muted);
+    margin-bottom: 0.5rem;
+  }
+  .addr { color: var(--v3-on-ink); margin: 0; }
+  .addr-link {
+    text-decoration: none;
+    transition:
+      color var(--v3-duration-fast) var(--v3-ease-out),
+      transform var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .addr-link:hover,
+  .addr-link:focus-visible {
+    color: var(--v3-champagne-soft);
+    transform: translateX(2px);
+  }
+  .phone {
+    font-family: var(--v3-font-body);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    align-self: flex-start;
+    letter-spacing: 0.01em;
+  }
+  .hours { color: var(--v3-on-ink-muted); }
+  .link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--v3-on-ink);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition:
+      color var(--v3-duration-fast) var(--v3-ease-out),
+      transform var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .footer-link:hover,
+  .footer-link:focus-visible {
+    color: var(--v3-champagne-soft);
+    transform: translateX(2px);
+  }
+  .note { color: var(--v3-on-ink-muted); margin-top: 0.5rem; }
+  .bottom { margin-top: clamp(3rem, 6vw, 5rem); }
+  .bottom-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 34rem);
+    gap: 1.5rem 2rem;
+    align-items: start;
+    margin-top: 1.5rem;
+  }
+  .bottom-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .bottom-row .v3-caption { color: var(--v3-on-ink-muted); }
+  .disclaimer {
+    text-align: right;
+    letter-spacing: 0.12em;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 1100px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    .footer-cta-block {
+      justify-self: start;
+      align-items: flex-start;
+      width: min(100%, 26rem);
+    }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .col-contacts { grid-column: 1 / -1; }
+    .bottom-row {
+      grid-template-columns: 1fr;
+    }
+    .disclaimer { text-align: left; }
+  }
+  @media (max-width: 560px) {
+    .v3-footer {
+      padding-top: 3.5rem;
+    }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-cta-block {
+      width: 100%;
+      padding: 0;
+    }
+    .footer-cta {
+      text-align: center;
+      font-size: 0.9375rem;
+    }
+    .footer-divider {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-logo,
+    .footer-link {
+      min-height: 44px;
+    }
+    .footer-logo-img { height: 31px; }
+    .messengers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.875rem;
+    }
+    .phone {
+      font-size: 0.9375rem;
+      line-height: 1.3;
+    }
+    .messengers {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.25rem;
+      line-height: 1.4;
+    }
+    .messengers .footer-link {
+      font-size: 0.9375rem;
+    }
+    .bottom {
+      margin-top: 2.5rem;
+    }
+    .bottom-row {
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .disclaimer {
+      letter-spacing: 0.08em;
+    }
+  }
+</style>

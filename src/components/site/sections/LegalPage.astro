@@ -1,0 +1,172 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import Navigation from './Navigation.astro';
+import FinalCTA from './FinalCTA.astro';
+import Footer from './Footer.astro';
+
+interface DocLink {
+  title: string;
+  label: string;
+  href: string;
+  type: string;
+  size: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  heading: string;
+  lead: string;
+  doc: DocLink;
+  extraDocs?: DocLink[];
+  body: string[];
+}
+
+const { title, description, eyebrow, heading, lead, doc, extraDocs = [], body } = Astro.props;
+---
+
+<SiteLayout title={title} description={description}>
+  <Navigation />
+  <main id="main">
+    <section class="legal-hero v3-surface-cream" aria-labelledby="legal-heading">
+      <div class="v3-container v3-container-default legal-hero-grid">
+        <div class="legal-heading">
+          <span class="v3-eyebrow">{eyebrow}</span>
+          <h1 id="legal-heading" class="v3-h1">{heading}</h1>
+          <p class="v3-lead">{lead}</p>
+        </div>
+
+        <aside class="legal-download" aria-label="Документ для скачивания">
+          <span class="v3-eyebrow">Файл</span>
+          <p class="v3-h3">{doc.title}</p>
+          <p class="v3-caption">{doc.type} · {doc.size}</p>
+          <a href={doc.href} class="v3-btn v3-btn-primary" target="_blank" rel="noopener noreferrer">{doc.label}</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="legal-body v3-surface-sand" aria-labelledby="legal-text-heading">
+      <div class="v3-container v3-container-default legal-body-grid">
+        <div class="legal-side">
+          <span class="v3-eyebrow">Юридическая информация</span>
+        </div>
+        <div class="legal-copy">
+          <h2 id="legal-text-heading" class="v3-h2">Основное</h2>
+          {body.map((paragraph) => (
+            <p class="v3-body">{paragraph}</p>
+          ))}
+
+          {extraDocs.length > 0 && (
+            <div class="legal-extra" aria-label="Связанные документы">
+              <span class="v3-eyebrow">Связанные файлы</span>
+              <ul>
+                {extraDocs.map((d) => (
+                  <li>
+                    <a href={d.href} class="v3-link" target="_blank" rel="noopener noreferrer">{d.label}</a>
+                    <span class="v3-caption">{d.type} · {d.size}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <FinalCTA
+      eyebrow="Документы и запись"
+      heading="Нужна консультация<br />по записи?"
+      lead="Оставьте контакт — администратор подскажет, какие документы нужны перед консультацией, и уточнит удобное время."
+      submitLabel="Задать вопрос"
+    />
+  </main>
+  <Footer />
+</SiteLayout>
+
+<style>
+  .legal-hero {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-medium);
+  }
+  .legal-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 26rem);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: end;
+  }
+  .legal-heading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h1-lead);
+    max-width: 46rem;
+  }
+  .legal-download {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid var(--v3-border-hair);
+    border-radius: var(--v3-radius-md);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+  }
+  .legal-download .v3-btn {
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+  .legal-body {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-medium);
+  }
+  .legal-body-grid {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.32fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+  }
+  .legal-side {
+    border-top: 1px solid var(--v3-border-soft);
+    padding-top: 1rem;
+  }
+  .legal-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 68ch;
+  }
+  .legal-copy .v3-body {
+    color: var(--v3-ink);
+  }
+  .legal-extra {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--v3-border-soft);
+  }
+  .legal-extra ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .legal-extra li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.875rem;
+    align-items: baseline;
+  }
+
+  @media (max-width: 820px) {
+    .legal-hero-grid,
+    .legal-body-grid {
+      grid-template-columns: 1fr;
+    }
+    .legal-download {
+      align-self: stretch;
+    }
+  }
+</style>

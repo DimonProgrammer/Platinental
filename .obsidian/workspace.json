@@ -1,0 +1,214 @@
+{
+  "main": {
+    "id": "0de44d29554423bc",
+    "type": "split",
+    "children": [
+      {
+        "id": "2df42e33989117e0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e14d688013c1fea3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Созвон с Филом 11.05/протокол-и-backlog-2026-05-11.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "протокол-и-backlog-2026-05-11"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "290f3a38fa7278ee",
+    "type": "split",
+    "children": [
+      {
+        "id": "5e614bfa6c7b3730",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "47670f7b11c24ea6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Файловый менеджер"
+            }
+          },
+          {
+            "id": "14991f88e40aad46",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Поиск"
+            }
+          },
+          {
+            "id": "747ca81eccf6d063",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Закладки"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "02356ab066ad5404",
+    "type": "split",
+    "children": [
+      {
+        "id": "06a0105b1244edcc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9ca2f456353559a6",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Созвон с Филом 11.05/протокол-и-backlog-2026-05-11.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Обратные ссылки для протокол-и-backlog-2026-05-11"
+            }
+          },
+          {
+            "id": "d25eecfa06028b30",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Созвон с Филом 11.05/протокол-и-backlog-2026-05-11.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Исходящие ссылки из протокол-и-backlog-2026-05-11"
+            }
+          },
+          {
+            "id": "6f9189b8adbc3464",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Теги"
+            }
+          },
+          {
+            "id": "16190fca074a3470",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Все свойства"
+            }
+          },
+          {
+            "id": "1ef015dd5470f5e7",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Созвон с Филом 11.05/протокол-и-backlog-2026-05-11.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Структура протокол-и-backlog-2026-05-11"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "bases:Создать новую базу": false
+    }
+  },
+  "active": "e14d688013c1fea3",
+  "lastOpenFiles": [
+    "dist/_astro/about-clinic-exterior.Bq9BfD5i_Z1zDeTd.webp",
+    "dist/_astro/about-clinic-reception.Cks28NDA_2jTyE8.webp",
+    "dist/_astro/about-clinic-lounge.sxu70IAo_1dFIfR.webp",
+    "dist/_astro/about-clinic-reception.Cks28NDA_ZGNzJs.webp",
+    "dist/_astro/about-clinic-exterior.Bq9BfD5i_18HuD0.webp",
+    "dist/_astro/about-clinic-reception.Cks28NDA_Z2n3Ywf.webp",
+    "dist/_astro/about-clinic-logo-wall.BUEoiM1b_2cuDHX.webp",
+    "dist/_astro/about-clinic-lounge.sxu70IAo_aWn1Q.webp",
+    "dist/_astro/promo-consultation-plan.Bl17Eezw_1hVtax.webp",
+    "dist/_astro/about-clinic-exterior.Bq9BfD5i_ZRSkcQ.webp",
+    "dist/_astro/about-clinic-reception.Cks28NDA_q6Xo6.webp",
+    "dist/about/index.html",
+    "dist/about",
+    "dist/404.html",
+    "dist/_astro/SiteLayout.astro_astro_type_script_index_0_lang.BTMXfcMO.js",
+    "dist/_astro/index.DV4jevJC.js",
+    "dist/_astro/page.CgwHuU39.js",
+    "dist/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BKK5MNsa.js",
+    "dist/_astro/ConsultationQuiz.astro_astro_type_script_index_0_lang.D7_s6WE_.js",
+    "dist/doctors/index.html",
+    "dist/doctors/babayan/index.html",
+    "knowledge/deep-research-report (1).md",
+    "deep-research-report (1).md",
+    "Созвон с Филом 11.05/было-стало-правки-2026-05-11.md"
+  ]
+}
