@@ -39,13 +39,13 @@ const consultations: PriceGroup = {
     { key: 'online', label: 'Онлайн-консультация', width: '15%', align: 'right' },
   ],
   rows: [
-    { service: 'Мелоян М.М.', sub: ' — пластический хирург · операции: КОРЛ', code: 'B01.057.003/004', primary: '7 000 ₽', repeat: '5 000 ₽', online: '4 000 ₽' },
-    { service: 'Тулатова Р.Т.', sub: ' — пластический хирург · операции: КОРЛ', code: 'B01.057.003/004', primary: '7 000 ₽', repeat: '5 000 ₽', online: '4 000 ₽' },
-    { service: 'Васильев М.Н.', sub: ' — пластический хирург · операции: КОРЛ', code: 'B01.057.003/004', primary: '7 000 ₽', repeat: '5 000 ₽', online: '4 000 ₽' },
-    { service: 'Мамедов В.А.', sub: ' — челюстно-лицевой хирург · операции: Millenium', code: 'B01.057.003/004', primary: '10 000 ₽', repeat: '7 000 ₽', online: '5 000 ₽' },
-    { service: 'Марданова Д.М.', sub: ' — пластический хирург · операции: Millenium', code: 'B01.057.003/004', primary: '5 000 ₽', repeat: '2 500 ₽', online: '3 500 ₽' },
-    { service: 'Бречко М.А.', sub: ' — пластический хирург · операции: Millenium', code: 'B01.057.003/004', primary: '5 000 ₽', repeat: '2 500 ₽', online: '3 500 ₽' },
-    { service: 'Сорвин В.А.', sub: ' — челюстно-лицевой хирург · операции: Millenium', code: 'B01.057.003', primary: '10 000 ₽', repeat: '—', online: '10 000 ₽' },
+    { service: 'Мелоян М.М.', sub: ' — эстетическая и реконструктивная хирургия', code: 'B01.057.003/004', primary: '7 000 ₽', repeat: '5 000 ₽', online: '4 000 ₽' },
+    { service: 'Тулатова Р.Т.', sub: ' — хирургия лица и век', code: 'B01.057.003/004', primary: '7 000 ₽', repeat: '5 000 ₽', online: '4 000 ₽' },
+    { service: 'Васильев М.Н.', sub: ' — хирургия лица и тела', code: 'B01.057.003/004', primary: '7 000 ₽', repeat: '5 000 ₽', online: '4 000 ₽' },
+    { service: 'Мамедов В.А.', sub: ' — челюстно-лицевой хирург', code: 'B01.057.003/004', primary: '10 000 ₽', repeat: '7 000 ₽', online: '5 000 ₽' },
+    { service: 'Марданова Д.М.', sub: ' — ринопластика и блефаропластика', code: 'B01.057.003/004', primary: '5 000 ₽', repeat: '2 500 ₽', online: '3 500 ₽' },
+    { service: 'Бречко М.А.', sub: ' — блефаропластика и CO₂-лазер', code: 'B01.057.003/004', primary: '5 000 ₽', repeat: '2 500 ₽', online: '3 500 ₽' },
+    { service: 'Сорвин В.А.', sub: ' — челюстно-лицевой хирург', code: 'B01.057.003', primary: '10 000 ₽', repeat: '—', online: '10 000 ₽' },
     { service: 'Грицай О.А.', sub: ' — врач-косметолог', code: 'B01.008.003/004', primary: '2 000 ₽', repeat: '700 ₽', online: '—' },
   ],
 };
@@ -162,7 +162,7 @@ const body: PriceGroup[] = [
 // ── Косметология ─────────────────────────────────────
 const cosmetology: PriceGroup[] = [
   {
-    title: 'Лазерная шлифовка CO₂ (SmartXide) — косметология',
+    title: 'Лазерная шлифовка CO₂ (SmartXide DOT) — косметология',
     rows: [
       { service: 'Век + «гусиные лапки»', code: 'A22.01.002', price: 'от 12 000 ₽' },
       { service: 'Верхние веки', code: 'A22.01.002', price: 'от 4 000 ₽' },
@@ -185,7 +185,7 @@ const cosmetology: PriceGroup[] = [
     ],
   },
   {
-    title: 'Лазерная шлифовка CO₂ (SmartXide) — пластические хирурги',
+    title: 'Лазерная шлифовка CO₂ (SmartXide DOT) — пластические хирурги',
     rows: [
       { service: 'Век + «гусиные лапки» (ПХ)', code: 'A22.01.002', price: 'от 40 000 ₽' },
       { service: 'Верхние веки (ПХ)', code: 'A22.01.002', price: 'от 20 000 ₽' },
@@ -212,8 +212,8 @@ const cosmetology: PriceGroup[] = [
       { service: 'HELEO4 — курс 5 процедур (лицо и шея)', code: 'A20.01.005', price: 'от 20 000 ₽' },
       { service: 'Микротоки — лицо после операции в Platinental', code: 'A17.01.010', price: 'от 2 200 ₽' },
       { service: 'Микротоки — лицо после операции в другой клинике', code: 'A17.01.010', price: 'от 3 000 ₽' },
-      { service: 'Микротоки — курс 5 процедур для операционников', code: 'A17.01.010', price: 'от 5 500 ₽' },
-      { service: 'Микротоки — одна зона для операционников', code: 'A17.01.010', price: 'от 2 600 ₽' },
+      { service: 'Микротоки — курс 5 процедур после операции', code: 'A17.01.010', price: 'от 5 500 ₽' },
+      { service: 'Микротоки — одна зона после операции', code: 'A17.01.010', price: 'от 2 600 ₽' },
       { service: 'Микротоки — одна зона после операции в другой клинике', code: 'A17.01.010', price: 'от 4 000 ₽' },
       { service: 'Микротоки — курс 5 процедур, одна зона', code: 'A17.01.010', price: 'от 6 500 ₽' },
     ],
@@ -333,6 +333,18 @@ export interface DoctorPriceSheet {
 
 export const doctorPriceSheets: DoctorPriceSheet[] = [
   {
+    doctorSlug: 'iskornev',
+    doctorName: 'Искорнев А.А.',
+    items: [
+      { procedure: 'Deep plane SMAS-лифтинг', price: '2 000 000 ₽' },
+      { procedure: 'Deep plane SMAS-лифтинг + глубокая платизмопластика', price: '2 600 000 ₽' },
+      { procedure: 'Височный лифтинг', price: '850 000 ₽' },
+      { procedure: 'Височный лифтинг + эндоскопия лба', price: '1 600 000 ₽' },
+      { procedure: 'Верхняя блефаропластика дополнительно к операции', price: '+380 000 ₽' },
+      { procedure: 'Нижняя блефаропластика дополнительно к операции', price: '+400 000 ₽' },
+    ],
+  },
+  {
     doctorSlug: 'vasilev',
     doctorName: 'Васильев М.Н.',
     items: [
@@ -415,6 +427,7 @@ export const doctorPriceSheets: DoctorPriceSheet[] = [
       { procedure: 'Эндоскопический лифтинг лба', price: 'от 500 000 ₽' },
       { procedure: 'Гениопластика', price: 'от 700 000 ₽' },
       { procedure: 'Ультразвуковая ринопластика', price: 'от 1 000 000 ₽' },
+      { procedure: 'Вторичная ринопластика', price: 'от 1 200 000 ₽' },
     ],
   },
   {

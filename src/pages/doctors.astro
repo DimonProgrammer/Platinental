@@ -8,14 +8,40 @@ import FinalCTA from '../components/site/sections/FinalCTA.astro';
 import Footer from '../components/site/sections/Footer.astro';
 import { doctors } from '../data/doctors';
 import { getSurgicalBase } from '../data/partners';
-import { formatCurrencyPlainText } from '../lib/formatText';
+import { formatCurrencyPlainText, formatTypographyHtml } from '../lib/formatText';
 
 const allDoctors = doctors;
+const doctorCardCopy: Record<string, { spec?: string; short?: string }> = {
+  iskornev: {
+    spec: 'ЭСТЕТИЧЕСКАЯ ХИРУРГИЯ ЛИЦА И ШЕИ',
+    short: 'Основатель The Platinental Москва и один из учредителей The Platinental Казань. Эстетическая хирургия лица и шеи, консультации и операции в Казани по индивидуальному графику.',
+  },
+  meloyan: {
+    spec: 'ЭСТЕТИЧЕСКАЯ И РЕКОНСТРУКТИВНАЯ ХИРУРГИЯ',
+    short: 'Эстетическая и реконструктивная хирургия с широкой хирургической базой: ринопластика, эстетическая хирургия молочных желёз, смежные задачи по лицу, телу и сосудистому профилю.',
+  },
+  tulatova: {
+    spec: 'ДЕЛИКАТНАЯ ХИРУРГИЯ ЛИЦА И ВЕК',
+    short: 'Деликатная хирургия лица: омоложение, работа с веками, верхней и средней третью лица с учетом анатомии и состояния тканей.',
+  },
+  vasilev: {
+    spec: 'К.М.Н. · БЛЕФАРОПЛАСТИКА · МАММОПЛАСТИКА · КОНТУРИРОВАНИЕ ТЕЛА',
+    short: 'Кандидат медицинских наук, соавтор патента РФ №2741620. Работает с блефаропластикой, маммопластикой, контурированием тела и хирургической коррекцией шейно-подбородочной зоны.',
+  },
+  mardanova: {
+    spec: 'РИНОПЛАСТИКА · БЛЕФАРОПЛАСТИКА',
+    short: 'Главный профиль — риносептопластика: работа с формой носа, дыханием, пропорциями лица и восстановлением.',
+  },
+  brechko: {
+    short: 'Сильная сторона — блефаропластика и работа с CO₂-лазером в задачах, где требуется аккуратная коррекция.',
+  },
+};
+
 const doctorGroups = [
   {
     id: 'founder',
-    title: 'Учредитель и идейный вдохновитель',
-    lead: 'Хирург, сформировавший эстетическую философию бренда: работа с пропорциями, характером лица и чувством меры.',
+    title: 'Основатель The Platinental Москва, один из учредителей The Platinental Казань',
+    lead: 'Андрей Искорнев — пластический хирург, учредитель и главный специалист клиники MESOBAR (Лос-Анджелес). Его хирургический профиль связан с пропорциями лица, анатомией и индивидуальным запросом пациента.',
     doctors: allDoctors.filter((doctor) => doctor.group === 'founder'),
   },
   {
@@ -25,16 +51,16 @@ const doctorGroups = [
     doctors: allDoctors.filter((doctor) => doctor.group === 'surgery'),
   },
   {
-    id: 'cosmetology',
-    title: 'Косметология',
-    lead: 'Инъекционные, аппаратные и реабилитационные процедуры в связке с хирургическим маршрутом.',
-    doctors: allDoctors.filter((doctor) => doctor.group === 'cosmetology'),
+    id: 'orthopedia',
+    title: 'Регенеративная медицина, ортопедия и нейрохирургия',
+    lead: 'Направление Бабаяна А.В. — метод MIBRAR, работа с позвоночником, суставами и восстановительным потенциалом тканей.',
+    doctors: allDoctors.filter((doctor) => doctor.group === 'orthopedia'),
   },
   {
-    id: 'orthopedia',
-    title: 'Ортопедия и нейрохирургия',
-    lead: 'Консультации по восстановлению суставов и позвоночника, разбор снимков и подбор маршрута лечения.',
-    doctors: allDoctors.filter((doctor) => doctor.group === 'orthopedia'),
+    id: 'cosmetology',
+    title: 'Косметология',
+    lead: 'Инъекционные, аппаратные и реабилитационные процедуры в связке с хирургическим лечением.',
+    doctors: allDoctors.filter((doctor) => doctor.group === 'cosmetology'),
   },
 ].filter((group) => group.doctors.length > 0);
 const filterOptions = [
@@ -57,7 +83,7 @@ const filterOptions = [
       pageMarkerLabel="Команда"
       eyebrow="THE PLATINENTAL · КАЗАНЬ"
       h1="Врачи клиники The Platinental в Казани"
-      lead="У каждого хирурга клиники — своя школа, свой опыт, свой почерк. Подскажем, к какому врачу лучше записаться именно с вашей задачей."
+      lead="Команда с профильной хирургической подготовкой, клинической практикой и узкими focus profiles: эстетическая хирургия лица и шеи, ринопластика, маммопластика, ортогнатическая хирургия, косметология и восстановление кожи после операций."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Посмотреть врачей', href: '#doctors-heading' }}
       meta={[
@@ -73,6 +99,14 @@ const filterOptions = [
           <span class="v3-eyebrow">Команда</span>
           <h2 id="doctors-heading" class="v3-h2">Врачи клиники</h2>
         </header>
+        <div class="doctor-picker" data-v3-reveal>
+          <span class="v3-minimark" aria-hidden="true">?</span>
+          <div>
+            <p class="doctor-picker-title">Не знаете, к кому записаться?</p>
+            <p class="v3-body">Опишите задачу администратору: лицо, тело, кожа, восстановление или сложный случай. Мы предложим врача по профилю, а не первого свободного специалиста.</p>
+          </div>
+          <a href="#form" class="v3-link v3-link-action">Помочь выбрать</a>
+        </div>
         <ul class="doctors-filters" data-v3-reveal aria-label="Фильтр врачей по направлению">
           {filterOptions.map((option) => (
             <li>
@@ -96,7 +130,8 @@ const filterOptions = [
               </header>
               <ul class="doctors-grid">
                 {group.doctors.map((d) => {
-                  const base = getSurgicalBase(d.surgicalBase);
+                  const cardCopy = doctorCardCopy[d.slug];
+                  const surgicalBase = getSurgicalBase(d.surgicalBase);
                   return (
                     <li class:list={['doctor-card', d.group === 'founder' && 'doctor-card--wide']} data-v3-reveal data-doctor-card data-tags={d.tags.join(' ')}>
                       <a href={`/doctors/${d.slug}`} class="doctor-link">
@@ -115,10 +150,10 @@ const filterOptions = [
                           )}
                         </div>
                         <div class="doctor-info">
-                          <p class="doctor-spec v3-eyebrow">{d.spec}</p>
+                          <p class="doctor-spec v3-eyebrow">{cardCopy?.spec ?? d.spec}</p>
                           <h3 class="doctor-name v3-h3">{d.name}</h3>
-                          <p class="doctor-short v3-body" set:html={d.short}></p>
-                          {base && <p class="doctor-base v3-caption">Операционная база: {base.shortName}</p>}
+                          <p class="doctor-short v3-body" set:html={formatTypographyHtml(cardCopy?.short ?? d.short)}></p>
+                          {surgicalBase && <p class="doctor-base v3-caption">Операционная база: {surgicalBase.shortName}</p>}
                           {d.bookingEnabled === false ? (
                             <div class="doctor-price doctor-price-muted">
                               <span class="price-primary v3-caption">Открыть профиль</span>
@@ -171,11 +206,11 @@ const filterOptions = [
       },
       {
         q: 'Вы работаете с мужчинами?',
-        a: 'Каждый пятый пациент — мужчина. Чаще всего приходят с носом, веками, подбородком и коррекцией гинекомастии. У мужской эстетики своё правило: результат не должен читаться как вмешательство — хирурги работают именно в этом ключе.',
+        a: 'Да. Чаще всего мужчины приходят с запросами на ринопластику, коррекцию век, подбородка и гинекомастии. Врач учитывает мужскую анатомию и запрос на сдержанный результат.',
       },
       {
         q: 'Как проходит первичная консультация хирурга?',
-        a: 'Хирург осматривает, замеряет, фотографирует, подбирает методику — и отвечает на все вопросы без спешки.',
+        a: 'Хирург осматривает, делает необходимые замеры и фотопротокол, объясняет возможную тактику и отвечает на вопросы.',
       },
       {
         q: 'Как долго длится реабилитация?',
@@ -233,7 +268,7 @@ const filterOptions = [
 
 <style>
   .v3-doctors {
-    padding-top: var(--v3-gap-deep);
+    padding-top: var(--v3-gap-small);
     padding-bottom: var(--v3-gap-deep);
   }
   .doctors-header {
@@ -250,11 +285,31 @@ const filterOptions = [
     flex-wrap: wrap;
     gap: 0.5rem 0.75rem;
   }
+  .doctor-picker {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-xl);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+  }
+  .doctor-picker-title {
+    margin: 0 0 0.25rem;
+    font-family: var(--v3-font-body);
+    font-weight: 500;
+    color: var(--v3-ink);
+  }
+  .doctor-picker .v3-body { color: var(--v3-ink-secondary); }
   .filter-chip {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem 0.875rem;
+    min-height: 42px;
     border: 1px solid var(--v3-border-soft);
     border-radius: var(--v3-radius-pill);
     font-family: var(--v3-font-body);
@@ -331,10 +386,12 @@ const filterOptions = [
   .doctor-link {
     display: flex;
     flex-direction: column;
+    gap: 1.25rem;
     text-decoration: none;
     height: 100%;
     min-width: 0;
     overflow: hidden;
+    padding: 1.25rem;
     border-radius: inherit;
     transition: background var(--v3-duration-fast) var(--v3-ease-out), transform var(--v3-duration-fast) var(--v3-ease-out);
   }
@@ -349,15 +406,16 @@ const filterOptions = [
   .doctor-card--wide .doctor-link {
     display: grid;
     grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
+    gap: clamp(1.25rem, 3vw, 2.25rem);
     align-items: center;
   }
   .doctor-card--wide .doctor-photo {
-    width: min(17.5rem, calc(100% - 2.5rem));
+    width: 100%;
     max-width: none;
-    margin: 1.25rem;
+    margin: 0;
   }
   .doctor-card--wide .doctor-info {
-    padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2.25rem) 0.5rem;
+    padding: 0;
     max-width: 48rem;
   }
   .doctor-card--wide .doctor-short {
@@ -369,14 +427,14 @@ const filterOptions = [
   }
 
   .doctor-photo {
-    width: clamp(13rem, 21vw, 17.5rem);
-    max-width: calc(100% - 3rem);
+    width: 100%;
+    max-width: none;
     aspect-ratio: 4/5;
     overflow: hidden;
     background: linear-gradient(180deg, var(--v3-surface-muted), var(--v3-sand));
     position: relative;
     border-radius: var(--v3-radius-lg);
-    margin: 1.5rem auto 0;
+    margin: 0;
     flex: 0 0 auto;
     border: 1px solid var(--v3-border-soft);
   }
@@ -402,7 +460,7 @@ const filterOptions = [
   }
 
   .doctor-info {
-    padding: 1.25rem 1.5rem 1.75rem;
+    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 0.625rem;
@@ -434,11 +492,20 @@ const filterOptions = [
   @media (max-width: 1024px) {
     .doctors-grid { grid-template-columns: repeat(2, 1fr); }
     .doctors-grid-cosm { grid-template-columns: repeat(2, 1fr); }
-    .doctor-photo {
-      width: clamp(12.5rem, 32vw, 16rem);
-    }
   }
   @media (max-width: 560px) {
+    .doctor-picker {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+    }
+    .doctors-filters {
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .filter-chip {
+      min-height: 44px;
+      padding: 0.55rem 0.8rem;
+    }
     .doctor-group-header { grid-template-columns: 1fr; }
     .doctors-grid { grid-template-columns: 1fr; }
     .doctors-grid-cosm { grid-template-columns: 1fr; }
@@ -446,15 +513,11 @@ const filterOptions = [
       display: flex;
     }
     .doctor-card--wide .doctor-photo {
-      width: min(15.5rem, calc(100vw - 5rem));
-      margin: 1.25rem auto 0;
+      width: 100%;
+      margin: 0;
     }
     .doctor-card--wide .doctor-info {
-      padding: 1.25rem 1.5rem 1.75rem;
-    }
-    .doctor-photo {
-      width: min(15.5rem, calc(100vw - 5rem));
-      margin-top: 1.25rem;
+      padding: 0;
     }
   }
 </style>

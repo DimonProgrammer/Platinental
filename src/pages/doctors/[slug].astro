@@ -2,7 +2,6 @@
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import Navigation from '../../components/site/sections/Navigation.astro';
 import PageLeadMagnet from '../../components/site/sections/PageLeadMagnet.astro';
-import MedicalDisclaimer from '../../components/site/sections/MedicalDisclaimer.astro';
 import FinalCTA from '../../components/site/sections/FinalCTA.astro';
 import FAQ from '../../components/site/sections/FAQ.astro';
 import Footer from '../../components/site/sections/Footer.astro';
@@ -10,7 +9,7 @@ import { doctors } from '../../data/doctors';
 import { doctorPriceSheets } from '../../data/prices';
 import { getSurgicalBase } from '../../data/partners';
 import type { Doctor } from '../../data/doctors';
-import { formatCurrencyPlainText } from '../../lib/formatText';
+import { formatCurrencyPlainText, formatTypographyHtml } from '../../lib/formatText';
 
 export async function getStaticPaths() {
   return doctors.map((d) => ({
@@ -24,24 +23,43 @@ const { doctor: d } = Astro.props;
 
 const isSurgeon = d.tags.includes('plastika');
 const isCosmetologist = d.tags.includes('cosmetology');
+const doctorSeoSpecialty = d.seoSpecialty ?? (isSurgeon ? 'пластический хирург' : 'врач-косметолог');
 const bookingEnabled = d.bookingEnabled !== false;
 const surgicalBase = getSurgicalBase(d.surgicalBase);
+const hasSurgicalBase = Boolean(surgicalBase);
 const consultationPrice = d.priceMain;
 const doctorPriceSheet = doctorPriceSheets.find((sheet) => sheet.doctorSlug === d.slug);
 const hasOnlinePrice = (d.priceSub ?? '').includes('Онлайн');
 const resultImages = d.resultCases?.map((item) => item.src) ?? [];
 const galleryImages = resultImages.length > 0 ? resultImages : (d.gallery ?? []);
 const hasResultCases = resultImages.length > 0;
-const heroTrustItems = [
-  isCosmetologist ? 'Инъекционная косметология' : d.tags.includes('body') ? 'Хирургия тела' : 'Хирургия лица',
-  d.details.specialization[0]?.split(',')[0],
-  hasOnlinePrice ? 'Онлайн-консультация' : undefined,
-  d.patents?.length ? 'Патентная работа' : d.details.awards ? 'Профильная экспертиза' : undefined,
-].filter((item): item is string => Boolean(item)).slice(0, 4);
+const resultCasesAspect = d.resultCasesAspect ?? '8 / 5';
+const resultCasesFit = d.resultCasesFit ?? 'cover';
+const galleryAspect = d.galleryAspect ?? '4 / 5';
+const galleryFit = d.galleryFit ?? 'cover';
+const showResultCaseTitles = d.slug === 'mamedov';
+const hasNamedResultCases = showResultCaseTitles && Boolean(d.resultCases?.some((item) => item.title && !/^Кейс \d+$/u.test(item.title)));
+const prototypeReviews = d.reviews ?? (d.review ? [d.review] : []);
+const hasEditorialProfile = Boolean(d.careAreas?.length || d.professionalPath || prototypeReviews.length || d.focusSections?.length);
+const bookingCtaLabel = d.nameBtn === 'записаться' ? 'Записаться на консультацию' : `Записаться ${d.nameBtn}`;
+const bookingFaqQuestion = d.nameBtn === 'записаться' ? 'Как записаться на консультацию?' : `Как записаться ${d.nameBtn}?`;
+const finalCtaHeading = d.slug === 'iskornev'
+  ? 'Записаться к<br />Искорневу А.А.'
+  : d.nameBtn === 'записаться'
+    ? 'Записаться<br />на приём'
+    : `Записаться<br />${d.nameBtn}`;
+const finalCtaLead = d.slug === 'iskornev'
+  ? 'Администратор уточнит ближайшие даты, формат консультации и какие материалы подготовить к приёму.'
+  : `${[d.priceMain, d.priceSub].filter(Boolean).join(' · ')}. Администратор уточнит удобное время и поможет подготовиться к приёму.`;
+const messengerLinks = [
+  { label: 'Telegram', href: 'https://t.me/platinental_kazan' },
+  { label: 'Max', href: 'https://max.ru' },
+  { label: 'WhatsApp', href: 'https://wa.me/78432236666' },
+];
 
-const faqItems = [
+const defaultFaqItems = [
   bookingEnabled ? {
-    q: `Как записаться ${d.nameBtn}?`,
+    q: bookingFaqQuestion,
     a: 'Позвоните по номеру <a href="tel:+78432236666">+7 843 223-66-66</a>, напишите в <a href="https://t.me/platinental_kazan">Telegram</a>, <a href="https://max.ru">Max</a> или <a href="https://wa.me/78432236666">WhatsApp</a>, либо заполните форму на сайте. Администратор подберёт удобное время.',
     open: true,
   } : {
@@ -50,8 +68,8 @@ const faqItems = [
     open: true,
   },
   {
-    q: 'Сколько длится первичная консультация?',
-    a: 'Первичная консультация длится до 30 минут. Врач осматривает, задаёт уточняющие вопросы, объясняет возможные решения и дальнейшие шаги.',
+    q: 'Как проходит первичная консультация?',
+    a: 'Врач осматривает, задаёт уточняющие вопросы, объясняет возможные решения и дальнейшие шаги. Формат и объём консультации зависят от запроса пациента.',
   },
   isSurgeon ? {
     q: 'Нужна ли подготовка к операции?',
@@ -67,11 +85,12 @@ const faqItems = [
       : 'Да, онлайн-консультации доступны. Формат и стоимость администратор уточнит при записи.',
   },
 ].filter((item): item is { q: string; a: string; open?: boolean } => Boolean(item));
+const faqItems = d.faq ?? defaultFaqItems;
 ---
 
 <SiteLayout
   title={`${d.name} — ${d.spec} — The Platinental Казань`}
-  description={`${d.name} — ${isSurgeon ? 'пластический хирург' : 'врач-косметолог'} клиники The Platinental Казань. Специализация, образование, запись на консультацию.`}
+  description={`${d.name} — ${doctorSeoSpecialty} клиники The Platinental Казань. Специализация, образование, запись на консультацию.`}
 >
   <Navigation />
   <main id="main">
@@ -89,28 +108,21 @@ const faqItems = [
           <h1 id="doc-heading" class="v3-h1 doc-h1">
             <em>{d.name}</em>
           </h1>
-          <p class="v3-lead doc-lead" set:html={d.short}></p>
-          {heroTrustItems.length > 0 && (
-            <ul class="doc-trust-list" aria-label="Ключевые преимущества врача">
-              {heroTrustItems.map((item) => (
-                <li><span class="v3-minimark" aria-hidden="true">•</span>{item}</li>
-              ))}
-            </ul>
-          )}
+          <p class="v3-lead doc-lead" set:html={formatTypographyHtml(d.short)}></p>
           {bookingEnabled ? (
             <>
               <div class="doc-price-row">
                 <span class="doc-price" set:html={formatCurrencyPlainText(consultationPrice)}></span>
                 {d.priceSub && <span class="v3-caption doc-price-sub" set:html={formatCurrencyPlainText(d.priceSub)}></span>}
-                {surgicalBase && (
+                {hasSurgicalBase && (
                   <span class="v3-caption doc-base">
-                    Операционная база: <a href={surgicalBase.href} target="_blank" rel="noopener noreferrer" class="v3-link">{surgicalBase.shortName}</a>, {surgicalBase.city}, {surgicalBase.address}
+                    Операции проходят на базе клиники «{surgicalBase?.shortName}».
                   </span>
                 )}
               </div>
               <div class="doc-cta">
                 <button type="button" class="v3-btn v3-btn-primary" data-booking-open data-doctor={d.nameBtn}>
-                  Записаться {d.nameBtn}
+                  {bookingCtaLabel}
                 </button>
               </div>
             </>
@@ -142,11 +154,13 @@ const faqItems = [
         </div>
       </div>
 	    </section>
-	    <MedicalDisclaimer />
 
     {d.stats && d.stats.length > 0 && (
       <section class="v3-doc-stats v3-surface-sand" aria-label="Статистика">
         <div class="v3-container v3-container-wide">
+          {d.slug === 'iskornev' && (
+            <p class="v3-eyebrow stats-heading">Действительный член международных профессиональных организаций:</p>
+          )}
           <ul class="stats-row" data-v3-stagger>
             {d.stats.map((s) => (
               <li class="stats-item">
@@ -167,36 +181,76 @@ const faqItems = [
       </section>
     )}
 
-    <PageLeadMagnet
-      eyebrow={isSurgeon ? 'Перед консультацией хирурга' : 'Перед консультацией косметолога'}
-      heading={isSurgeon ? 'Что подготовить<br />к приёму' : 'Что рассказать<br />на приёме'}
-      lead={isSurgeon
-        ? 'Чем точнее вы опишете задачу, сроки и ожидания, тем предметнее врач объяснит возможный маршрут.'
-        : 'Врачу важно понять не только процедуру, но и состояние кожи, домашний уход, предыдущие вмешательства и сроки восстановления.'}
-      items={isSurgeon ? [
-        { mark: '?', title: 'Запрос', text: 'что хочется изменить и какой результат выглядит естественным' },
-        { mark: '—', title: 'Сроки', text: 'работа, поездки, спорт и важные даты после операции' },
-        { mark: '₽', title: 'Бюджет', text: 'консультация помогает понять порядок расходов по вашему случаю' },
-      ] : [
-        { mark: '•', title: 'Кожа', text: 'сухость, пигментация, воспаления, тонус или мимика' },
-        { mark: '+', title: 'Уход', text: 'что уже используете утром и вечером' },
-        { mark: '—', title: 'Процедуры', text: 'что делали раньше и как кожа реагировала' },
-      ]}
-      ctaPrimary={bookingEnabled
-        ? { label: `Записаться ${d.nameBtn}`, href: '#form' }
-        : { label: 'Выбрать врача клиники', href: '/doctors' }}
-      ctaSecondary={{ label: 'Задать вопрос', href: 'https://wa.me/78432236666' }}
-      surface="sand"
-    />
-
     {d.approach && (
       <section class="v3-doc-approach v3-surface-cream" aria-labelledby="approach-heading">
         <div class="v3-container v3-container-default">
-          <header class="doc-section-header" data-v3-stagger>
+          <header class="doc-section-header">
             <span class="v3-eyebrow">Подход</span>
             <h2 id="approach-heading" class="v3-h2"><em>{d.approach.title}</em></h2>
           </header>
-          <p class="v3-lead approach-body" data-v3-reveal set:html={d.approach.body}></p>
+          <p class="v3-lead approach-body" data-v3-reveal set:html={formatTypographyHtml(d.approach.body)}></p>
+        </div>
+      </section>
+    )}
+
+    {d.careAreas && d.careAreas.length > 0 && (
+      <section class="v3-doc-care v3-surface-sand" aria-labelledby="care-heading">
+        <div class="v3-container v3-container-wide">
+          <div class="care-layout">
+            <header class="doc-section-header care-header" data-v3-stagger>
+              <span class="v3-eyebrow">{d.careEyebrow ?? 'С чем обращаются'}</span>
+              <h2 id="care-heading" class="v3-h2"><em>{d.careHeading ?? 'Запросы, с которыми работает врач'}</em></h2>
+              <p class="v3-lead care-lead">
+                {d.careIntro ?? 'На консультации врач оценивает исходные данные, показания, ограничения и план дальнейших действий.'}
+              </p>
+            </header>
+            <div class="care-groups" data-v3-stagger>
+              {d.careAreas.map((area) => (
+                <article class="care-group">
+                  <h3 class="care-title">{area.title}</h3>
+                  {area.intro && <p class="v3-body care-intro">{area.intro}</p>}
+                  <ul class="care-list">
+                    {area.items.map((item) => <li>{item}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    {d.focusSections && d.focusSections.length > 0 && (
+      <section class="v3-doc-focus v3-surface-cream" aria-labelledby="focus-heading">
+        <div class="v3-container v3-container-wide">
+          <header class="doc-section-header doc-section-header--wide" data-v3-stagger>
+            <span class="v3-eyebrow">{d.focusEyebrow ?? 'План'}</span>
+            <h2 id="focus-heading" class="v3-h2"><em>{d.focusHeading ?? 'Что важно понять до решения'}</em></h2>
+          </header>
+          <div class:list={['focus-grid', d.focusSections.length === 1 && 'focus-grid--single']} data-v3-stagger>
+            {d.focusSections.map((section) => (
+              <article class="focus-card">
+                {section.image && (
+                  <figure class="focus-document">
+                    <img src={section.image.src} alt={section.image.alt} width="969" height="1400" loading="eager" decoding="async" />
+                    {section.image.caption && <figcaption class="v3-caption">{section.image.caption}</figcaption>}
+                  </figure>
+                )}
+                <div class="focus-card-content">
+                  {section.eyebrow && <span class="v3-eyebrow focus-eyebrow">{section.eyebrow}</span>}
+                  <h3 class="focus-title">{section.title}</h3>
+                  {section.body?.map((paragraph) => (
+                    <p class="v3-body">{paragraph}</p>
+                  ))}
+                  {section.items && section.items.length > 0 && (
+                    <ul class="focus-list">
+                      {section.items.map((item) => <li>{item}</li>)}
+                    </ul>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     )}
@@ -234,6 +288,22 @@ const faqItems = [
       </section>
     )}
 
+    {d.professionalPath && (
+      <section class="v3-doc-path v3-surface-cream" aria-labelledby="path-heading">
+        <div class="v3-container v3-container-default">
+          <header class="doc-section-header" data-v3-stagger>
+            <span class="v3-eyebrow">{d.professionalPath.eyebrow ?? 'Путь врача'}</span>
+            <h2 id="path-heading" class="v3-h2"><em>{d.professionalPath.title}</em></h2>
+          </header>
+          <div class="path-essay" data-v3-stagger>
+            {d.professionalPath.body.map((paragraph) => (
+              <p class="v3-body">{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
     <!-- Education -->
     <section class="v3-doc-edu v3-surface-cream" aria-labelledby="edu-heading">
       <div class="v3-container v3-container-default">
@@ -241,7 +311,7 @@ const faqItems = [
           <span class="v3-eyebrow">Образование</span>
           <h2 id="edu-heading" class="v3-h2"><em>Профессиональная подготовка</em></h2>
         </header>
-        <ol class="edu-timeline" data-v3-stagger>
+        <ol class:list={['edu-timeline', d.slug === 'babayan' && 'edu-timeline--profile']} data-v3-stagger>
           {d.details.education.map((e) => (
             <li class={`edu-item${e.year ? '' : ' edu-item--no-year'}`}>
               {e.year && <span class="edu-year v3-eyebrow">{e.year}</span>}
@@ -272,16 +342,24 @@ const faqItems = [
           {d.profileNote && (
             <article class="doc-support-card">
               <span class="v3-eyebrow">{d.profileNote.label}</span>
-              <p class="v3-body" set:html={d.profileNote.body}></p>
+              <p class="v3-body" set:html={formatTypographyHtml(d.profileNote.body)}></p>
             </article>
           )}
 
-          {d.details.awards && (
-            <article class="doc-support-card">
-              <span class="v3-eyebrow">Квалификация</span>
-              <p class="v3-body" set:html={d.details.awards}></p>
+          {d.supportNotes?.map((note) => (
+            <article class:list={['doc-support-card', note.image && 'doc-support-card--media']}>
+              <div class="doc-support-copy">
+                <span class="v3-eyebrow">{note.label}</span>
+                <p class="v3-body" set:html={formatTypographyHtml(note.body)}></p>
+              </div>
+              {note.image && (
+                <figure class="doc-support-media">
+                  <img src={note.image.src} alt={note.image.alt} width="969" height="1400" loading="eager" decoding="async" />
+                  {note.image.caption && <figcaption class="v3-caption">{note.image.caption}</figcaption>}
+                </figure>
+              )}
             </article>
-          )}
+          ))}
 
           {d.patents?.map((patent) => (
             <article class="doc-support-card doc-patent-card">
@@ -333,9 +411,9 @@ const faqItems = [
           <p class="v3-caption doc-price-disclaimer" data-v3-reveal>
             Цены носят информационный характер. Точную стоимость врач определяет на консультации после осмотра и обсуждения задачи.
           </p>
-          {surgicalBase && (
+          {hasSurgicalBase && (
             <p class="v3-caption doc-price-disclaimer doc-price-base" data-v3-reveal>
-              Где проводится операция: <a href={surgicalBase.href} target="_blank" rel="noopener noreferrer" class="v3-link">{surgicalBase.name}</a>, {surgicalBase.city}, {surgicalBase.address}.
+              Операции проходят на базе клиники «{surgicalBase?.shortName}»: {surgicalBase?.address}. Детали подготовки врач уточняет на консультации.
             </p>
           )}
         </div>
@@ -351,9 +429,6 @@ const faqItems = [
           </header>
           <div class="doc-price-link-card" data-v3-reveal>
             <div class="doc-price-link-copy">
-              <p class="v3-body">
-                Для косметологии используем общий прайс направления: актуальные цены, инъекционные и аппаратные методики, а также терапевтические процедуры.
-              </p>
               <ul class="doc-price-link-list">
                 {d.details.specialization.map((item) => (
                   <li>{item}</li>
@@ -362,7 +437,7 @@ const faqItems = [
             </div>
             <div class="doc-price-link-actions">
               <a href="/kosmetologiya" class="v3-btn v3-btn-primary">Открыть косметологию</a>
-              <a href="/prices" class="v3-link">Смотреть общий прайс</a>
+              <a href="/prices" class="v3-btn v3-btn-secondary">Смотреть общий прайс</a>
             </div>
           </div>
         </div>
@@ -373,8 +448,8 @@ const faqItems = [
       <section class="v3-doc-docs v3-surface-cream" aria-labelledby="docs-heading">
         <div class="v3-container v3-container-default">
           <header class="doc-section-header" data-v3-stagger>
-            <span class="v3-eyebrow">Документы</span>
-            <h2 id="docs-heading" class="v3-h2"><em>Дипломы и публикации</em></h2>
+            <span class="v3-eyebrow">{d.documentsEyebrow ?? 'Документы'}</span>
+            <h2 id="docs-heading" class="v3-h2"><em>{d.documentsHeading ?? 'Дипломы и публикации'}</em></h2>
           </header>
           <ul class="docs-grid" data-v3-stagger>
             {d.documents.map((doc) => (
@@ -390,13 +465,15 @@ const faqItems = [
                   </span>
                   <span class="doc-card-meta">
                     <span class="v3-eyebrow doc-card-kind">{
-                      doc.kind === 'diploma' ? 'Диплом' :
+                      doc.label ??
+                      (doc.kind === 'diploma' ? 'Диплом' :
                       doc.kind === 'certificate' ? 'Сертификат' :
                       doc.kind === 'cv' ? 'Резюме' :
                       doc.kind === 'patent' ? 'Патент' :
-                      'Публикация'
+                      'Материал')
                     }</span>
                     <span class="doc-card-title">{doc.title}</span>
+                    {doc.description && <span class="doc-card-description">{doc.description}</span>}
                     <span class="v3-caption doc-card-cta">Открыть PDF →</span>
                   </span>
                 </a>
@@ -411,27 +488,45 @@ const faqItems = [
       <section class="v3-doc-gallery v3-surface-sand" aria-labelledby="gallery-heading">
         <div class="v3-container v3-container-wide">
           <header class="doc-section-header" data-v3-stagger>
-            <span class="v3-eyebrow">Работы</span>
-            <h2 id="gallery-heading" class="v3-h2"><em>{hasResultCases ? 'До и после' : 'Результаты'}</em></h2>
+            <span class="v3-eyebrow">{d.galleryEyebrow ?? 'Работы'}</span>
+            <h2 id="gallery-heading" class="v3-h2"><em>{d.galleryHeading ?? (hasResultCases ? 'Фотографии результатов' : 'Результаты')}</em></h2>
           </header>
-          <ul class:list={['gallery-grid', hasResultCases && 'gallery-grid--cases']} data-v3-stagger data-gallery>
+          <ul
+            class:list={['gallery-grid', hasResultCases && 'gallery-grid--cases']}
+            style={hasResultCases
+              ? `--case-aspect: ${resultCasesAspect}; --case-fit: ${resultCasesFit}`
+              : `--gallery-aspect: ${galleryAspect}; --gallery-fit: ${galleryFit}`}
+            data-v3-stagger
+            data-gallery
+          >
             {galleryImages.map((src, i) => (
               <li class="gallery-item">
-                <button type="button" class="gallery-btn" data-gallery-open data-index={i} aria-label={`Открыть фото ${i + 1}`}>
+                <button
+                  type="button"
+                  class="gallery-btn"
+                  style={hasResultCases ? `--case-image: url("${src}"); --case-position: ${d.resultCases?.[i]?.objectPosition ?? '50% 50%'}; --case-item-aspect: ${d.resultCases?.[i]?.aspectRatio ?? resultCasesAspect}` : undefined}
+                  data-gallery-open
+                  data-index={i}
+                  data-gallery-src={src}
+                  aria-label={`Открыть фото ${i + 1}`}
+                >
                   <img src={src} alt={d.resultCases?.[i]?.title ?? ''} width="800" height="500" loading="eager" decoding="async" />
                 </button>
+                {hasResultCases && hasNamedResultCases && d.resultCases?.[i]?.title && !/^Кейс \d+$/u.test(d.resultCases[i].title) && (
+                  <p class="gallery-case-title v3-caption">{d.resultCases[i].title}</p>
+                )}
               </li>
             ))}
           </ul>
           <p class="works-disclaimer v3-caption" data-v3-reveal>
-            Фотографии результатов публикуются с письменного согласия пациентов. Слева — до, справа — после. Результат индивидуален.
+            Опубликовано с письменного согласия пациентов. Результат индивидуален.
           </p>
         </div>
       </section>
     )}
 
     {galleryImages.length > 0 && (
-      <div class="lightbox" data-lightbox hidden role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
+      <div class:list={['lightbox', hasResultCases && 'lightbox--cases']} data-lightbox hidden role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
         <button type="button" class="lightbox-close" data-lightbox-close aria-label="Закрыть"><span aria-hidden="true">×</span></button>
         <button type="button" class="lightbox-prev" data-lightbox-prev aria-label="Предыдущее фото"><span aria-hidden="true">‹</span></button>
         <button type="button" class="lightbox-next" data-lightbox-next aria-label="Следующее фото"><span aria-hidden="true">›</span></button>
@@ -442,6 +537,85 @@ const faqItems = [
       </div>
     )}
 
+    {prototypeReviews.length > 0 && (
+      <section class="v3-doc-review v3-surface-cream" aria-labelledby="review-heading">
+        <div class="v3-container v3-container-default">
+          <header class="review-header" data-v3-stagger>
+            <span class="v3-eyebrow" id="review-heading">Отзывы пациентов</span>
+          </header>
+          <div class:list={['review-grid', prototypeReviews.length > 1 && 'review-grid--multi']} data-v3-stagger>
+            {prototypeReviews.map((review) => (
+              <figure class="review-quote">
+                <p class="review-label">{review.label}</p>
+                <blockquote>«{review.quote}»</blockquote>
+                <figcaption>
+                  {review.href ? (
+                    <a href={review.href} target="_blank" rel="noopener noreferrer" class="v3-link">{review.source}</a>
+                  ) : (
+                    review.source
+                  )}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    {!hasEditorialProfile && (
+      <PageLeadMagnet
+        eyebrow={isSurgeon ? 'Перед консультацией хирурга' : 'Перед консультацией косметолога'}
+        heading={isSurgeon ? 'Что подготовить<br />к приёму' : 'Что рассказать<br />на приёме'}
+        lead={isSurgeon
+          ? 'Чем точнее вы опишете задачу, сроки и ожидания, тем предметнее врач объяснит план дальнейших действий.'
+          : 'Врачу важно понять не только процедуру, но и состояние кожи, домашний уход, предыдущие вмешательства и сроки восстановления.'}
+        items={isSurgeon ? [
+          { mark: '?', title: 'Запрос', text: 'что хочется изменить и какой результат выглядит естественным' },
+          { mark: '—', title: 'Сроки', text: 'работа, поездки, спорт и важные даты после операции' },
+          { mark: '₽', title: 'Бюджет', text: 'консультация помогает понять порядок расходов по вашему случаю' },
+        ] : [
+          { mark: '•', title: 'Кожа', text: 'сухость, пигментация, воспаления, тонус или мимика' },
+          { mark: '+', title: 'Уход', text: 'что уже используете утром и вечером' },
+          { mark: '—', title: 'Процедуры', text: 'что делали раньше и как кожа реагировала' },
+        ]}
+        ctaPrimary={bookingEnabled
+          ? { label: bookingCtaLabel, href: '#form' }
+          : { label: 'Выбрать врача клиники', href: '/doctors' }}
+        ctaSecondary={{ label: 'Задать вопрос', href: 'https://wa.me/78432236666' }}
+        surface="sand"
+      />
+    )}
+
+    <section class="v3-doc-mid-cta v3-surface-ink" aria-labelledby="mid-cta-heading">
+      <div class="v3-container v3-container-default">
+        <div class="mid-cta-inner" data-v3-reveal>
+          <div class="mid-cta-copy">
+            <span class="v3-eyebrow">Консультация</span>
+            <h2 id="mid-cta-heading" class="v3-h2"><em>Обсудить задачу с врачом</em></h2>
+            <p class="v3-lead">
+              Администратор подберёт удобный формат и время приёма. На консультации врач разберёт запрос, исходные данные и план дальнейших действий.
+            </p>
+          </div>
+          <div class="mid-cta-actions">
+            {bookingEnabled ? (
+              <button type="button" class="v3-btn v3-btn-primary" data-booking-open data-doctor={d.nameBtn}>
+                {bookingCtaLabel}
+              </button>
+            ) : (
+              <a href="/doctors" class="v3-btn v3-btn-primary">Выбрать врача клиники</a>
+            )}
+            <div class="mid-cta-messengers" aria-label="Мессенджеры для связи">
+              {messengerLinks.map((messenger) => (
+                <a href={messenger.href} class="v3-link mid-cta-link" target="_blank" rel="noopener noreferrer">
+                  {messenger.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <FAQ
       eyebrow="Вопросы"
       heading={bookingEnabled ? 'Вопросы о приёме' : 'Вопросы о враче'}
@@ -450,9 +624,9 @@ const faqItems = [
 
     {bookingEnabled ? (
       <FinalCTA
-        heading={`Записаться<br />${d.nameBtn}`}
-        lead={`Консультация: ${[d.priceMain, d.priceSub].filter(Boolean).join(' · ')}. Задайте вопросы и получите подробные ответы.`}
-        submitLabel={`Записаться ${d.nameBtn}`}
+        heading={finalCtaHeading}
+        lead={finalCtaLead}
+        submitLabel={bookingCtaLabel}
       />
     ) : (
       <section class="doc-founder-cta v3-surface-ink" aria-labelledby="founder-cta-heading">
@@ -470,7 +644,7 @@ const faqItems = [
   <Footer />
 </SiteLayout>
 
-<script is:inline define:vars={{ images: galleryImages }}>
+<script is:inline>
   function initDoctorPage() {
     // Booking button binding
     document.querySelectorAll('[data-booking-open]').forEach((b) => {
@@ -484,9 +658,22 @@ const faqItems = [
       });
     });
 
-    if (!images || images.length === 0) return;
+    const galleryRoot = document.querySelector('[data-gallery]');
+    if (!galleryRoot) return;
+    const galleryButtons = Array.from(galleryRoot.querySelectorAll('[data-gallery-open]'));
+    if (galleryButtons.length === 0) return;
+    const images = galleryButtons.map((btn) => btn.getAttribute('data-gallery-src')).filter(Boolean);
+    if (images.length === 0) return;
+
     const root = document.querySelector('[data-lightbox]');
     if (!root) return;
+    if (root.dataset.lightboxReady === '1') {
+      root.dataset.lightboxImages = JSON.stringify(images);
+      return;
+    }
+
+    root.dataset.lightboxReady = '1';
+    root.dataset.lightboxImages = JSON.stringify(images);
     const imgEl = root.querySelector('[data-lightbox-img]');
     const counterEl = root.querySelector('[data-lightbox-counter]');
     const closeBtn = root.querySelector('[data-lightbox-close]');
@@ -496,9 +683,20 @@ const faqItems = [
     let idx = 0;
     let lastFocus = null;
 
+    const getImages = () => {
+      try {
+        const parsed = JSON.parse(root.dataset.lightboxImages ?? '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    };
+
     const render = () => {
-      imgEl.src = images[idx];
-      counterEl.textContent = `${idx + 1} / ${images.length}`;
+      const currentImages = getImages();
+      if (currentImages.length === 0) return;
+      imgEl.src = currentImages[idx];
+      counterEl.textContent = `${idx + 1} / ${currentImages.length}`;
     };
     const open = (i) => {
       lastFocus = document.activeElement;
@@ -513,10 +711,20 @@ const faqItems = [
       document.documentElement.style.overflow = '';
       lastFocus?.focus?.();
     };
-    const next = () => { idx = (idx + 1) % images.length; render(); };
-    const prev = () => { idx = (idx - 1 + images.length) % images.length; render(); };
+    const next = () => {
+      const currentImages = getImages();
+      if (currentImages.length === 0) return;
+      idx = (idx + 1) % currentImages.length;
+      render();
+    };
+    const prev = () => {
+      const currentImages = getImages();
+      if (currentImages.length === 0) return;
+      idx = (idx - 1 + currentImages.length) % currentImages.length;
+      render();
+    };
 
-    document.querySelectorAll('[data-gallery-open]').forEach((btn) => {
+    galleryButtons.forEach((btn) => {
       if (btn.dataset.lbBound === '1') return;
       btn.dataset.lbBound = '1';
       btn.addEventListener('click', () => open(parseInt(btn.dataset.index ?? '0', 10)));
@@ -554,7 +762,8 @@ const faqItems = [
   .doc-hero-text {
     display: flex;
     flex-direction: column;
-    gap: var(--v3-gap-h1-lead);
+    gap: clamp(0.875rem, 2vw, 1.5rem);
+    max-width: 42rem;
   }
   .doc-breadcrumb {
     display: flex;
@@ -576,49 +785,61 @@ const faqItems = [
   .bc-sep { color: var(--v3-ink-faint); font-size: 0.75rem; }
   .doc-spec { color: var(--v3-champagne-deep); margin-bottom: var(--v3-gap-eyebrow-h1); }
   .doc-h1 { font-size: clamp(1.75rem, 3.5vw, 3rem); }
-  .doc-lead { max-width: 44ch; }
-  .doc-trust-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.625rem;
-    max-width: 44rem;
-  }
-  .doc-trust-list li {
+  .doc-patent-badge {
+    align-self: flex-start;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    min-height: 2rem;
-    padding: 0.35rem 0.75rem 0.35rem 0.35rem;
-    border: 1px solid var(--v3-border-soft);
+    min-height: 2.25rem;
+    padding: 0.35rem 0.875rem 0.35rem 0.45rem;
+    border: 1px solid color-mix(in srgb, var(--v3-champagne-deep) 34%, var(--v3-border-soft));
     border-radius: var(--v3-radius-pill);
-    background: var(--v3-surface-card);
-    color: var(--v3-ink-secondary);
+    background: color-mix(in srgb, var(--v3-champagne-soft) 22%, var(--v3-surface-card));
+    color: var(--v3-champagne-deep);
     font-family: var(--v3-font-body);
     font-size: 0.8125rem;
-    line-height: 1.25;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
   }
-  .doc-trust-list .v3-minimark {
+  .doc-patent-badge-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 1.35rem;
     height: 1.35rem;
-    font-size: 0.65rem;
+    border-radius: var(--v3-radius-pill);
+    background: var(--v3-champagne-deep);
+    color: var(--v3-on-ink);
+    font-size: 0.75rem;
+    line-height: 1;
   }
+  .doc-lead { max-width: 42ch; }
   .doc-price-row {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-    padding-top: 1rem;
+    gap: 0.375rem;
+    padding-top: 0.5rem;
     border-top: 1px solid var(--v3-border-soft);
+    max-width: 34rem;
   }
   .doc-price {
-    font-family: var(--v3-font-display);
+    font-family: var(--v3-font-body);
     font-style: normal;
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-size: clamp(1.125rem, 1.7vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1.35;
     color: var(--v3-champagne-deep);
   }
-  .doc-price-sub { color: var(--v3-ink-muted); text-transform: none; letter-spacing: 0.005em; }
+  .doc-price-sub {
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-family: var(--v3-font-body);
+    font-size: clamp(1.125rem, 1.7vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1.35;
+  }
   .doc-base {
     color: var(--v3-ink-muted);
     text-transform: none;
@@ -631,6 +852,53 @@ const faqItems = [
   .doc-profile-link {
     align-self: flex-start;
     margin-top: 0.5rem;
+  }
+
+  .v3-doc-mid-cta {
+    padding-top: clamp(4rem, 8vw, 6rem);
+    padding-bottom: clamp(4rem, 8vw, 6rem);
+  }
+  .mid-cta-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    padding-block: clamp(0.5rem, 1vw, 1rem);
+  }
+  .mid-cta-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 42rem;
+  }
+  .mid-cta-copy .v3-eyebrow {
+    color: var(--v3-on-ink-muted);
+  }
+  .mid-cta-copy .v3-h2,
+  .mid-cta-copy .v3-lead {
+    color: var(--v3-on-ink);
+  }
+  .mid-cta-copy .v3-lead {
+    max-width: 44rem;
+    color: var(--v3-on-ink-secondary);
+  }
+  .mid-cta-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .mid-cta-actions .v3-btn {
+    width: 100%;
+  }
+  .mid-cta-messengers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+  }
+  .mid-cta-link {
+    white-space: nowrap;
   }
 
   .doc-hero-photo {
@@ -682,6 +950,265 @@ const faqItems = [
     flex-direction: column;
     gap: var(--v3-gap-eyebrow-h1);
     margin-bottom: var(--v3-gap-h2-body);
+  }
+  .doc-section-header--wide {
+    max-width: 48rem;
+  }
+
+  /* Prototype doctor sections */
+  .v3-doc-care,
+  .v3-doc-focus,
+  .v3-doc-path,
+  .v3-doc-review {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-medium);
+  }
+  .care-layout {
+    display: grid;
+    grid-template-columns: minmax(18rem, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  .care-header {
+    position: sticky;
+    top: 7rem;
+    margin-bottom: 0;
+  }
+  .care-lead {
+    max-width: 34rem;
+    margin: 0;
+    color: var(--v3-ink-secondary);
+  }
+  .care-groups {
+    display: grid;
+    gap: clamp(0.875rem, 1.8vw, 1.25rem);
+  }
+  .care-group {
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--v3-surface-card) 90%, transparent), color-mix(in srgb, var(--v3-cream) 76%, var(--v3-sand))),
+      var(--v3-surface-card);
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid color-mix(in srgb, var(--v3-border-soft) 70%, transparent);
+    border-radius: var(--v3-radius-xl);
+    box-shadow: var(--v3-shadow-sm);
+  }
+  .care-title {
+    margin: 0 0 1.25rem;
+    font-family: var(--v3-font-display);
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--v3-ink);
+  }
+  .care-intro {
+    margin: 0 0 1rem;
+    color: var(--v3-ink-secondary);
+  }
+  .care-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem 1.25rem;
+  }
+  .care-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    color: var(--v3-ink-secondary);
+    line-height: 1.55;
+  }
+  .care-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: var(--v3-champagne-deep);
+    box-shadow: 0 0 0 0.375rem color-mix(in srgb, var(--v3-champagne-deep) 10%, transparent);
+  }
+  .path-essay {
+    display: grid;
+    gap: 1.125rem;
+    max-width: 58rem;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid color-mix(in srgb, var(--v3-border-soft) 72%, transparent);
+    border-radius: var(--v3-radius-xl);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--v3-sand) 46%, var(--v3-surface-card)), var(--v3-surface-card)),
+      var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+  }
+  .path-essay p {
+    margin: 0;
+    color: var(--v3-ink-secondary);
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
+    line-height: 1.7;
+  }
+  .focus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .focus-grid--single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .focus-card {
+    min-width: 0;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border: 1px solid color-mix(in srgb, var(--v3-border-soft) 72%, transparent);
+    border-radius: var(--v3-radius-xl);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--v3-sand) 38%, var(--v3-surface-card)), var(--v3-surface-card)),
+      var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .focus-card:nth-child(2n) {
+    transform: translateY(clamp(0.5rem, 1.2vw, 1rem));
+  }
+  .focus-grid--single .focus-card {
+    display: grid;
+    grid-template-columns: minmax(17rem, 0.55fr) minmax(0, 1fr);
+    gap: clamp(2rem, 4.5vw, 4rem);
+    align-items: center;
+    padding: clamp(1.25rem, 3vw, 2.25rem);
+  }
+  .focus-document {
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+    align-self: start;
+  }
+  .focus-document img {
+    display: block;
+    width: 100%;
+    max-height: clamp(20rem, 33vw, 28rem);
+    object-fit: var(--case-fit, contain);
+    object-position: center;
+    padding: clamp(0.875rem, 2vw, 1.125rem);
+    border: 1px solid color-mix(in srgb, var(--v3-border-soft) 72%, transparent);
+    border-radius: calc(var(--v3-radius-lg) + 0.25rem);
+    background: #fff;
+    box-shadow: 0 1rem 2.5rem color-mix(in srgb, var(--v3-ink) 8%, transparent);
+  }
+  .focus-document figcaption {
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+  }
+  .focus-card-content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(0.875rem, 1.6vw, 1.25rem);
+    max-width: 40rem;
+  }
+  .focus-eyebrow {
+    color: var(--v3-champagne-deep);
+  }
+  .focus-title {
+    margin: 0;
+    font-family: var(--v3-font-display);
+    font-size: clamp(1.35rem, 2vw, 2rem);
+    font-weight: 400;
+    line-height: 1.12;
+    color: var(--v3-ink);
+  }
+  .focus-card p {
+    margin: 0;
+    color: var(--v3-ink-secondary);
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
+    line-height: 1.65;
+  }
+  .focus-list {
+    list-style: none;
+    margin: 0.25rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .focus-list li {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--v3-border-soft) 78%, transparent);
+    border-radius: 999px;
+    color: var(--v3-ink-muted);
+    background: color-mix(in srgb, var(--v3-surface-card) 82%, transparent);
+    font-family: var(--v3-font-body);
+    font-size: 0.875rem;
+    line-height: 1.25;
+  }
+  .review-header {
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  }
+  .review-grid {
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .review-grid--multi {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+  .review-quote {
+    margin: 0;
+    display: grid;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    max-width: 54rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 1px solid color-mix(in srgb, var(--v3-border-soft) 72%, transparent);
+    border-radius: var(--v3-radius-xl);
+    background:
+      linear-gradient(135deg, var(--v3-surface-card), color-mix(in srgb, var(--v3-sand) 34%, var(--v3-surface-card))),
+      var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+  .review-quote::before {
+    content: '“';
+    position: absolute;
+    right: clamp(1.25rem, 4vw, 3rem);
+    top: -0.35em;
+    font-family: var(--v3-font-display);
+    font-size: clamp(5rem, 12vw, 9rem);
+    line-height: 1;
+    color: color-mix(in srgb, var(--v3-champagne-deep) 13%, transparent);
+    pointer-events: none;
+  }
+  .review-label {
+    margin: 0;
+    width: fit-content;
+    max-width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--v3-border-soft) 78%, transparent);
+    border-radius: 999px;
+    color: var(--v3-ink-muted);
+    font-family: var(--v3-font-body);
+    font-size: 0.8125rem;
+    line-height: 1.25;
+  }
+  .review-quote blockquote {
+    margin: 0;
+    max-width: 44rem;
+    font-family: var(--v3-font-body);
+    font-size: clamp(1.0625rem, 1.35vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--v3-ink-secondary);
+  }
+  .review-quote figcaption {
+    color: var(--v3-ink-muted);
+    font-family: var(--v3-font-body);
+    font-size: 0.875rem;
   }
 
   .doc-price-table-wrap {
@@ -787,7 +1314,14 @@ const faqItems = [
   .edu-item:last-of-type { border-bottom: 1px solid var(--v3-border-hair); }
   .edu-year { color: var(--v3-champagne-deep); }
   .edu-text { margin: 0; }
-  .edu-item--no-year { grid-template-columns: 1fr; }
+  .edu-item--no-year,
+  .edu-timeline--profile .edu-item {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+  .edu-timeline--profile .edu-text {
+    max-width: 54ch;
+  }
 
   .edu-additional {
     margin-top: var(--v3-gap-small);
@@ -827,6 +1361,83 @@ const faqItems = [
     border: 1px solid var(--v3-border-hair);
     border-radius: var(--v3-radius-lg);
     background: var(--v3-surface-muted);
+  }
+  .doc-support-card--media {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.72fr);
+    gap: clamp(1.25rem, 3vw, 2.25rem);
+    align-items: center;
+  }
+  .doc-support-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    min-width: 0;
+  }
+  .doc-support-media {
+    margin: 0;
+    display: grid;
+    gap: 0.625rem;
+  }
+  .doc-support-media img {
+    display: block;
+    width: 100%;
+    max-height: clamp(18rem, 32vw, 26rem);
+    object-fit: contain;
+    object-position: center;
+    padding: clamp(0.75rem, 1.6vw, 1rem);
+    border: 1px solid color-mix(in srgb, var(--v3-border-soft) 72%, transparent);
+    border-radius: calc(var(--v3-radius-lg) + 0.25rem);
+    background: #fff;
+    box-shadow: 0 1rem 2.25rem color-mix(in srgb, var(--v3-ink) 8%, transparent);
+  }
+  .doc-support-media figcaption {
+    color: var(--v3-ink-muted);
+    text-transform: none;
+    letter-spacing: 0.005em;
+  }
+  :global(.support-note-help) {
+    position: relative;
+    top: -0.08em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-left: 0.2rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: 999px;
+    color: var(--v3-ink-muted);
+    background: var(--v3-surface-card);
+    font-size: 0.68rem;
+    line-height: 1;
+    cursor: help;
+  }
+  :global(.support-note-help:focus-visible) {
+    outline: 2px solid var(--v3-champagne-deep);
+    outline-offset: 3px;
+  }
+  :global(.support-note-help:hover::after),
+  :global(.support-note-help:focus::after),
+  :global(.support-note-help:focus-visible::after) {
+    content: attr(aria-label);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 0.65rem);
+    z-index: 5;
+    width: min(18rem, 78vw);
+    padding: 0.75rem 0.875rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-lg);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-md);
+    color: var(--v3-ink-secondary);
+    font-family: var(--v3-font-body);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    text-align: left;
+    transform: translateX(-50%);
   }
   .patent-title {
     margin: 0;
@@ -898,11 +1509,66 @@ const faqItems = [
 
   @media (max-width: 1024px) {
     .doc-hero-grid { grid-template-columns: 1fr; }
+    .doc-hero-text { max-width: 40rem; }
     .doc-hero-photo { max-width: 26rem; margin-inline: 0; }
+    .mid-cta-inner { grid-template-columns: 1fr; }
+    .mid-cta-actions { align-items: flex-start; }
+    .mid-cta-actions .v3-btn { width: auto; }
+    .care-layout { grid-template-columns: 1fr; }
+    .care-header { position: static; }
+    .doc-support-card--media { grid-template-columns: 1fr; }
+    .doc-support-media { max-width: 28rem; }
     .works-grid { grid-template-columns: repeat(2, 1fr); }
     .doc-price-link-card { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
+    .doc-hero-text {
+      gap: 0.875rem;
+    }
+    .doc-lead,
+    .doc-price-row {
+      max-width: none;
+    }
+    .doc-price-row {
+      padding-top: 0.375rem;
+    }
+    .v3-doc-mid-cta {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
+    }
+    .mid-cta-actions,
+    .mid-cta-actions .v3-btn {
+      width: 100%;
+    }
+    .mid-cta-messengers {
+      justify-content: flex-start;
+    }
+    .doc-hero-photo {
+      overflow: hidden;
+      border-radius: var(--v3-radius-xl);
+    }
+    .care-list { grid-template-columns: 1fr; }
+    .focus-grid,
+    .review-grid--multi {
+      grid-template-columns: 1fr;
+    }
+    .focus-grid--single .focus-card {
+      display: flex;
+      grid-template-columns: none;
+      gap: 1.25rem;
+    }
+    .focus-document img {
+      max-height: 26rem;
+    }
+    .focus-card:nth-child(2n) {
+      transform: none;
+    }
+    .path-essay,
+    .focus-card,
+    .review-quote {
+      padding: 1.25rem;
+      border-radius: var(--v3-radius-lg);
+    }
     .edu-item { grid-template-columns: 1fr; gap: 0.25rem; }
     .works-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
   }
@@ -922,6 +1588,10 @@ const faqItems = [
     border-top: 1px solid var(--v3-border-soft);
     border-bottom: 1px solid var(--v3-border-soft);
     padding-block: clamp(1.25rem, 3vh, 2.25rem);
+  }
+  .stats-heading {
+    margin: 0 0 0.85rem;
+    color: var(--v3-ink-muted);
   }
   .stats-item {
     display: flex;
@@ -978,7 +1648,9 @@ const faqItems = [
     font-size: 0.8125rem;
     line-height: 1.45;
     text-align: left;
+    display: none;
     opacity: 0;
+    visibility: hidden;
     transform: translate(-50%, 0.35rem);
     pointer-events: none;
     transition:
@@ -988,7 +1660,9 @@ const faqItems = [
   .stats-help:hover .stats-tooltip,
   .stats-help:focus .stats-tooltip,
   .stats-help:focus-visible .stats-tooltip {
+    display: block;
     opacity: 1;
+    visibility: visible;
     transform: translate(-50%, 0);
   }
   .stats-label {
@@ -1021,9 +1695,69 @@ const faqItems = [
     padding-top: var(--v3-gap-medium);
     padding-bottom: var(--v3-gap-medium);
   }
+  .approach-editorial {
+    display: grid;
+    grid-template-columns: minmax(0, 1.18fr) minmax(18rem, 0.82fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: stretch;
+    padding: clamp(1.5rem, 5vw, 4rem);
+    border: 1px solid color-mix(in srgb, var(--v3-border-soft) 70%, transparent);
+    border-radius: var(--v3-radius-xl);
+    background:
+      linear-gradient(135deg, var(--v3-surface-card) 0%, color-mix(in srgb, var(--v3-sand) 62%, var(--v3-surface-card)) 100%),
+      var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+  }
+  .approach-copy {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2vw, 1.75rem);
+  }
+  .approach-copy .v3-eyebrow {
+    color: var(--v3-champagne-deep);
+  }
   .approach-body {
     max-width: 56ch;
     color: var(--v3-ink);
+    margin: 0;
+  }
+  .approach-principles {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+  }
+  .approach-principle {
+    display: grid;
+    gap: 0.45rem;
+    padding: clamp(1rem, 2vw, 1.35rem);
+    border-radius: var(--v3-radius-lg);
+    background: color-mix(in srgb, var(--v3-surface-card) 74%, transparent);
+    border: 1px solid color-mix(in srgb, var(--v3-border-soft) 64%, transparent);
+  }
+  .approach-principle h3 {
+    margin: 0;
+    font-family: var(--v3-font-display);
+    font-size: clamp(1.125rem, 1.8vw, 1.45rem);
+    font-weight: 400;
+    line-height: 1.16;
+    color: var(--v3-ink);
+  }
+  .approach-principle p {
+    margin: 0;
+    color: var(--v3-ink-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+  @media (max-width: 900px) {
+    .approach-editorial {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 640px) {
+    .approach-editorial {
+      padding: 1.25rem;
+      border-radius: var(--v3-radius-lg);
+    }
   }
 
   /* Regenerative comparison */
@@ -1155,6 +1889,12 @@ const faqItems = [
     line-height: 1.3;
     color: var(--v3-ink);
   }
+  .doc-card-description {
+    max-width: 54rem;
+    color: var(--v3-ink-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
   .doc-card-cta {
     color: var(--v3-champagne-deep);
     text-transform: none;
@@ -1176,9 +1916,15 @@ const faqItems = [
     gap: 0.75rem;
   }
   .gallery-grid--cases {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.875rem, 1.8vw, 1.5rem);
+    max-width: 76rem;
   }
   .gallery-item { margin: 0; }
+  .gallery-grid--cases .gallery-item {
+    display: grid;
+    gap: 0.625rem;
+  }
   .gallery-btn {
     width: 100%;
     padding: 0;
@@ -1189,28 +1935,67 @@ const faqItems = [
     cursor: pointer;
     display: block;
     overflow: hidden;
-    aspect-ratio: 4/5;
+    aspect-ratio: var(--gallery-aspect, 4 / 5);
     transition: transform var(--v3-duration-fast) var(--v3-ease-out), box-shadow var(--v3-duration-fast) var(--v3-ease-out);
   }
   .gallery-grid--cases .gallery-btn {
-    aspect-ratio: 16/10;
+    position: relative;
+    aspect-ratio: var(--case-item-aspect, var(--case-aspect, 8 / 5));
+    border: 0;
+    background: var(--v3-surface-card);
+    box-shadow: none;
+  }
+  .gallery-grid--cases .gallery-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--case-image);
+    background-position: var(--case-position, center);
+    background-size: cover;
+    filter: blur(18px);
+    opacity: 0.18;
+    transform: scale(1.08);
   }
   .gallery-btn img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: var(--gallery-fit, cover);
     transition: transform 0.6s var(--v3-ease-out);
   }
+  .gallery-grid--cases .gallery-btn img {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    object-fit: var(--case-fit, cover);
+    object-position: var(--case-position, center);
+    display: block;
+    transform: none;
+  }
   .gallery-btn:hover img { transform: scale(1.04); }
+  .gallery-grid--cases .gallery-btn:hover img { transform: none; }
   .gallery-btn:focus-visible {
     outline: 2px solid var(--v3-champagne);
     outline-offset: 4px;
+  }
+  .gallery-case-title {
+    margin: 0;
+    color: var(--v3-ink-secondary);
+    text-transform: none;
+    letter-spacing: 0.005em;
+    line-height: 1.45;
   }
   @media (max-width: 1024px) {
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 480px) {
     .gallery-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+    .gallery-grid--cases {
+      grid-template-columns: 1fr;
+      gap: 0.875rem;
+    }
+    .gallery-grid--cases .gallery-btn {
+      aspect-ratio: var(--case-item-aspect, var(--case-aspect, 8 / 5));
+    }
   }
 
   .doc-founder-cta {
@@ -1280,6 +2065,28 @@ const faqItems = [
     max-height: 84vh;
     object-fit: contain;
     background: rgba(10, 10, 10, 0.4);
+  }
+  .lightbox--cases .lightbox-figure {
+    width: min(92vw, 68rem);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--v3-radius-lg);
+    background: rgba(10, 10, 10, 0.4);
+  }
+  .lightbox--cases .lightbox-figure img {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+    transform: none;
+  }
+  .lightbox--cases .lightbox-counter {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(1rem, 2vw, 1.5rem);
+    transform: translateX(-50%);
   }
   .lightbox-counter {
     color: rgba(255, 253, 248, 0.7);

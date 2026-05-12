@@ -35,7 +35,7 @@ const toneStyle: Record<string, string> = {
       pageMarkerLabel="Услуги"
       eyebrow="Космецевтика"
       h1="Космецевтика в Казани по рекомендации врача"
-      lead="Врач-косметолог подбирает космецевтику как часть маршрута косметологии и пластической хирургии: для подготовки кожи, восстановления после процедур и поддержания результата между визитами. Средства можно купить в клинике после рекомендации специалиста."
+      lead="Врач-косметолог подбирает космецевтику для подготовки кожи, восстановления после процедур и поддержания результата между визитами. Средства можно купить в клинике после рекомендации специалиста."
       ctaPrimary={{ label: 'Записаться на подбор', href: '#form' }}
       ctaSecondary={{ label: 'Смотреть каталог', href: '#catalog' }}
       metaLabel="На подборе разберём:"
@@ -45,7 +45,7 @@ const toneStyle: Record<string, string> = {
         { num: '•', label: 'состояние кожи и текущие назначения' },
         { num: '—', label: 'подготовка, процедуры и восстановление' },
         { num: '+', label: 'средства, доступные в клинике' },
-        { num: '?', label: 'что сочетать в вашем маршруте' },
+        { num: '?', label: 'что сочетать в вашем уходе' },
       ]}
     />
     <!-- Brands -->
@@ -53,14 +53,13 @@ const toneStyle: Record<string, string> = {
       <div class="v3-container v3-container-default">
         <header class="brands-header" data-v3-stagger>
           <span class="v3-eyebrow">Производители</span>
-          <h2 id="brands-heading" class="v3-h2"><em>Мы выбираем препараты брендов, которые используем сами</em></h2>
+          <h2 id="brands-heading" class="v3-h2"><em>Мы выбираем проверенные оригинальные препараты брендов, которые используем сами</em></h2>
         </header>
         <ul class="brands-grid" data-v3-stagger>
           {brands.map((b) => (
             <li class="brand-card">
               <span class="brand-name v3-h3">{b.name}</span>
-              {b.country && <span class="brand-country v3-eyebrow">{b.country}</span>}
-              <p class="brand-tagline v3-body">{b.tagline}</p>
+              <span class:list={['brand-country', 'v3-eyebrow', !b.country && 'brand-country--empty']}>{b.country}</span>
             </li>
           ))}
         </ul>
@@ -205,12 +204,16 @@ const toneStyle: Record<string, string> = {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding: 2rem 1.75rem;
+    justify-content: center;
+    min-height: 8.5rem;
+    padding: 1.5rem 1.75rem;
     background: var(--v3-cream);
   }
   .brand-name { color: var(--v3-ink); }
   .brand-country { color: var(--v3-ink-muted); }
-  .brand-tagline { margin: 0; font-size: 0.9375rem; }
+  .brand-country--empty {
+    min-height: 1.35rem;
+  }
 
   /* Category sections */
   .v3-cat-products {

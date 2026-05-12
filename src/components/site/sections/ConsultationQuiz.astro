@@ -1,39 +1,51 @@
 ---
-const whatsappBase = 'https://wa.me/78432236666';
 ---
 
-<section class="v3-quiz v3-surface-cream" id="consultation-quiz" aria-labelledby="quiz-heading">
-  <div class="v3-container v3-container-wide quiz-layout">
-    <div class="quiz-copy" data-v3-stagger>
-      <span class="v3-eyebrow">Quiz + мини-чек-лист</span>
-      <h2 id="quiz-heading" class="v3-h2 quiz-heading">
-        <em>Навигатор консультации за 3 минуты</em>
-      </h2>
-      <p class="v3-lead quiz-lead">
-        Не просим сразу выбирать операцию или процедуру. Помогаем спокойно собрать запрос:
-        какая зона беспокоит, какие сроки важны и что спросить у врача на очной консультации.
-      </p>
+<section
+  class="v3-quiz-modal"
+  id="consultation-quiz"
+  data-quiz-modal
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="quiz-heading"
+  hidden
+>
+  <button class="quiz-backdrop" type="button" data-quiz-close aria-label="Закрыть навигатор консультации"></button>
+  <div class="quiz-modal-panel" role="document" data-lenis-prevent data-lenis-prevent-wheel data-lenis-prevent-touch>
+    <button class="quiz-close" type="button" data-quiz-close aria-label="Закрыть">
+      <span aria-hidden="true">×</span>
+    </button>
 
-      <div class="quiz-principles" aria-label="Что даст quiz" data-v3-stagger>
-        <div class="quiz-principle">
-          <span class="quiz-principle-mark" aria-hidden="true">?</span>
-          <span>01</span>
-          <p>Вы отделите эстетический запрос от названий процедур.</p>
-        </div>
-        <div class="quiz-principle">
-          <span class="quiz-principle-mark" aria-hidden="true">✓</span>
-          <span>02</span>
-          <p>Получите короткий чек-лист подготовки к визиту.</p>
-        </div>
-        <div class="quiz-principle">
-          <span class="quiz-principle-mark" aria-hidden="true">→</span>
-          <span>03</span>
-          <p>Администратор увидит контекст и быстрее подберёт формат консультации.</p>
+    <div class="quiz-layout">
+      <div class="quiz-copy">
+        <span class="v3-eyebrow">Quiz + мини-чек-лист</span>
+        <h2 id="quiz-heading" class="v3-h2 quiz-heading">
+          <em>Навигатор консультации</em>
+        </h2>
+        <p class="v3-lead quiz-lead">
+          Ответьте на 5 вопросов: какая зона беспокоит, какие сроки важны и что нужно уточнить у врача.
+        </p>
+
+        <div class="quiz-principles" aria-label="Что даст quiz">
+          <div class="quiz-principle">
+            <span class="quiz-principle-mark" aria-hidden="true">?</span>
+            <span>01</span>
+            <p>Соберёте запрос без выбора процедуры заранее.</p>
+          </div>
+          <div class="quiz-principle">
+            <span class="quiz-principle-mark" aria-hidden="true">✓</span>
+            <span>02</span>
+            <p>Получите короткий чек-лист подготовки к визиту.</p>
+          </div>
+          <div class="quiz-principle">
+            <span class="quiz-principle-mark" aria-hidden="true">→</span>
+            <span>03</span>
+            <p>Сможете отправить ответы администратору.</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="quiz-shell" data-consultation-quiz data-v3-reveal>
+      <div class="quiz-shell" data-consultation-quiz>
       <div class="quiz-step" data-quiz-step>
         <div class="quiz-topline">
           <span class="v3-caption" data-quiz-count>Вопрос 1 из 5</span>
@@ -67,37 +79,71 @@ const whatsappBase = 'https://wa.me/78432236666';
       </div>
 
       <div class="quiz-result" data-quiz-result hidden>
-        <span class="v3-eyebrow">Предварительный маршрут</span>
+        <span class="v3-eyebrow">Предварительный план</span>
         <h3 class="v3-h3 quiz-result-title">
-          Ваш чек-лист для консультации готов
+          Ответы готовы к передаче администратору
         </h3>
         <p class="v3-body" data-quiz-result-lead></p>
         <ul class="quiz-result-list" data-quiz-result-list></ul>
 
-        <div class="quiz-result-actions">
-          <button type="button" class="v3-btn v3-btn-primary" data-quiz-booking>
+        <form class="quiz-contact-form" data-quiz-contact-form>
+          <label class="quiz-field">
+            <span class="v3-eyebrow">Имя</span>
+            <input
+              type="text"
+              name="name"
+              required
+              autocomplete="name"
+              minlength="2"
+              maxlength="60"
+              pattern="[A-Za-zА-Яа-яЁё\\s\\-']{2,60}"
+              placeholder="Как к вам обращаться"
+            />
+          </label>
+
+          <label class="quiz-field">
+            <span class="v3-eyebrow">Телефон</span>
+            <input
+              type="tel"
+              name="phone"
+              required
+              autocomplete="tel"
+              inputmode="tel"
+              maxlength="18"
+              pattern="\\+7 \\([0-9]{3}\\) [0-9]{3}-[0-9]{2}-[0-9]{2}"
+              placeholder="+7 (___) ___-__-__"
+              data-phone-mask
+            />
+          </label>
+
+          <label class="quiz-consent">
+            <input type="checkbox" name="consent" required />
+            <span>
+              Я согласен(а) на <a href="/consent" class="v3-link">обработку персональных данных</a>,
+              ознакомлен(а) с <a href="/privacy" class="v3-link">политикой конфиденциальности</a>
+              и <a href="/terms" class="v3-link">пользовательским соглашением</a>.
+            </span>
+          </label>
+
+          <button type="submit" class="v3-btn v3-btn-primary">
             Передать ответы администратору <span aria-hidden="true">→</span>
           </button>
-          <a href={whatsappBase} class="v3-link quiz-whatsapp" data-quiz-whatsapp target="_blank" rel="noopener noreferrer">
-            Отправить в WhatsApp
-          </a>
-        </div>
+        </form>
 
         <p class="v3-caption quiz-disclaimer">
-          Quiz не ставит диагноз и не заменяет консультацию врача. Итоговые рекомендации возможны только после осмотра.
+          Итоговые медицинские рекомендации врач даст после осмотра.
         </p>
 
         <button type="button" class="quiz-restart" data-quiz-restart>
           Пройти ещё раз
         </button>
       </div>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-  const quizWhatsappBase = 'https://wa.me/78432236666';
-
   type QuizOption = {
     label: string;
     value: string;
@@ -138,7 +184,7 @@ const whatsappBase = 'https://wa.me/78432236666';
     },
     {
       question: 'Есть ли важные сроки?',
-      helper: 'Сроки влияют на маршрут, восстановление и очередность этапов.',
+      helper: 'Сроки влияют на план, восстановление и очередность этапов.',
       lesson: 'Не все эстетические задачи стоит привязывать к событию. Иногда безопаснее спланировать этапы и оставить запас на восстановление.',
       checklist: ['Сообщите врачу о поездках, событиях и рабочем графике.', 'Уточните, какой срок восстановления для вас неприемлем.'],
       options: [
@@ -151,7 +197,7 @@ const whatsappBase = 'https://wa.me/78432236666';
     {
       question: 'Какой формат решения вам ближе?',
       helper: 'Ответ не фиксирует выбор. Он помогает врачу объяснить варианты понятнее.',
-      lesson: 'Иногда лучший маршрут начинается с косметологии, иногда с хирургии, а иногда с отказа от лишнего вмешательства.',
+      lesson: 'Иногда лучший план начинается с косметологии, иногда с хирургии, а иногда с отказа от лишнего вмешательства.',
       checklist: ['Не скрывайте прошлые процедуры и операции.', 'Скажите, готовы ли вы к этапному плану.'],
       options: [
         { label: 'Сначала хочу мягкий косметологический путь', value: 'cosmetology-first' },
@@ -175,10 +221,14 @@ const whatsappBase = 'https://wa.me/78432236666';
   ];
 
   function initConsultationQuiz() {
+    const modal = document.querySelector<HTMLElement>('[data-quiz-modal]');
     const root = document.querySelector<HTMLElement>('[data-consultation-quiz]');
     if (!root || root.dataset.quizBound === '1') return;
     root.dataset.quizBound = '1';
 
+    const closeButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-quiz-close]'));
+    const openButtons = Array.from(document.querySelectorAll<HTMLElement>('[data-quiz-open]'));
+    const panel = modal?.querySelector<HTMLElement>('.quiz-modal-panel');
     const stepView = root.querySelector<HTMLElement>('[data-quiz-step]');
     const resultView = root.querySelector<HTMLElement>('[data-quiz-result]');
     const countEl = root.querySelector<HTMLElement>('[data-quiz-count]');
@@ -192,20 +242,53 @@ const whatsappBase = 'https://wa.me/78432236666';
     const backBtn = root.querySelector<HTMLButtonElement>('[data-quiz-back]');
     const nextBtn = root.querySelector<HTMLButtonElement>('[data-quiz-next]');
     const restartBtn = root.querySelector<HTMLButtonElement>('[data-quiz-restart]');
-    const bookingBtn = root.querySelector<HTMLButtonElement>('[data-quiz-booking]');
-    const whatsappLink = root.querySelector<HTMLAnchorElement>('[data-quiz-whatsapp]');
+    const resultForm = root.querySelector<HTMLFormElement>('[data-quiz-contact-form]');
     const resultLead = root.querySelector<HTMLElement>('[data-quiz-result-lead]');
     const resultList = root.querySelector<HTMLElement>('[data-quiz-result-list]');
 
     let current = 0;
     const answers: Array<QuizOption | null> = Array(quizSteps.length).fill(null);
     let resultMessage = '';
+    let lastFocus: HTMLElement | null = null;
+    const sessionKey = 'platinental_quiz_shown_session';
+    const dismissKey = 'platinental_quiz_dismissed_until';
+    const dismissedUntil = () => Number(window.localStorage.getItem(dismissKey) ?? '0');
 
     const scrollToQuiz = (target: HTMLElement | null = root) => {
+      if (modal && !modal.hidden) {
+        window.requestAnimationFrame(() => {
+          panel?.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        return;
+      }
       if (window.innerWidth > 760) return;
       window.requestAnimationFrame(() => {
         target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
+    };
+
+    const openModal = (source = 'manual') => {
+      if (!modal || !modal.hidden) return;
+      lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      modal.hidden = false;
+      modal.dataset.openSource = source;
+      document.documentElement.classList.add('quiz-modal-lock');
+      if (panel) panel.scrollTop = 0;
+      window.sessionStorage.setItem(sessionKey, '1');
+      window.requestAnimationFrame(() => {
+        modal.querySelector<HTMLElement>('[data-quiz-close]')?.focus();
+      });
+    };
+
+    const closeModal = (remember = true) => {
+      if (!modal || modal.hidden) return;
+      modal.hidden = true;
+      document.documentElement.classList.remove('quiz-modal-lock');
+      if (remember) {
+        const sevenDays = 7 * 24 * 60 * 60 * 1000;
+        window.localStorage.setItem(dismissKey, String(Date.now() + sevenDays));
+      }
+      lastFocus?.focus?.();
     };
 
     const render = () => {
@@ -268,14 +351,14 @@ const whatsappBase = 'https://wa.me/78432236666';
         ? 'Начните с обзорной консультации: врач поможет отделить эстетический запрос от лишних процедур.'
         : isSurgery
           ? 'Вам подойдёт консультация хирурга с обсуждением сроков, восстановления и альтернатив.'
-          : isSkin
+        : isSkin
             ? 'Логично начать с косметологического осмотра и плана по качеству кожи.'
-            : 'Вам подойдёт консультация, где врач сравнит несколько спокойных маршрутов.';
+            : 'Вам подойдёт консультация, где врач сравнит несколько спокойных вариантов.';
 
       const list = [
-        'Возьмите 2-3 свои фотографии в нейтральном свете.',
+        'Администратор свяжется и обсудит ответы перед записью.',
         'Запишите сроки, события и ограничения по восстановлению.',
-        'Отдельно сформулируйте, что хочется сохранить естественным.',
+        'Медицинские рекомендации врач даст после осмотра.',
       ];
 
       resultMessage = [
@@ -285,7 +368,7 @@ const whatsappBase = 'https://wa.me/78432236666';
         route,
       ].join('\n');
 
-      if (resultLead) resultLead.textContent = route;
+      if (resultLead) resultLead.textContent = `${route} Оставьте контакт — администратор получит ответы и свяжется в рабочее время.`;
       if (resultList) {
         resultList.textContent = '';
         list.forEach((item) => {
@@ -294,10 +377,6 @@ const whatsappBase = 'https://wa.me/78432236666';
           resultList.append(li);
         });
       }
-      if (whatsappLink) {
-        whatsappLink.href = `${quizWhatsappBase}?text=${encodeURIComponent(resultMessage)}`;
-      }
-
       if (stepView) stepView.hidden = true;
       if (resultView) resultView.hidden = false;
       scrollToQuiz(resultView);
@@ -330,14 +409,61 @@ const whatsappBase = 'https://wa.me/78432236666';
       scrollToQuiz(stepView);
     });
 
-    bookingBtn?.addEventListener('click', () => {
-      window.dispatchEvent(new CustomEvent('open-booking', {
-        detail: {
-          preset: 'Quiz: навигатор консультации',
-          message: resultMessage,
-        },
-      }));
+    resultForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const submit = resultForm.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const formData = new FormData(resultForm);
+      const name = String(formData.get('name') ?? '').trim();
+      const phone = String(formData.get('phone') ?? '').trim();
+      const text = [
+        'Заявка с quiz The Platinental Казань',
+        name ? `Имя: ${name}` : '',
+        phone ? `Телефон: ${phone}` : '',
+        '',
+        resultMessage,
+      ].filter(Boolean).join('\n');
+
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = 'Готовим заявку...';
+      }
+      window.open(`https://wa.me/78432236666?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+      window.setTimeout(() => {
+        resultForm.reset();
+        if (submit) {
+          submit.disabled = false;
+          submit.innerHTML = 'Передать ответы администратору <span aria-hidden="true">→</span>';
+        }
+        closeModal(false);
+      }, 1000);
     });
+
+    openButtons.forEach((button) => {
+      if (button.dataset.quizOpenBound === '1') return;
+      button.dataset.quizOpenBound = '1';
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        openModal('button');
+      });
+    });
+
+    closeButtons.forEach((button) => {
+      if (button.dataset.quizCloseBound === '1') return;
+      button.dataset.quizCloseBound = '1';
+      button.addEventListener('click', () => closeModal(true));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal && !modal.hidden) closeModal(true);
+    });
+
+    window.setTimeout(() => {
+      if (!modal || window.location.pathname !== '/') return;
+      if (window.sessionStorage.getItem(sessionKey) === '1') return;
+      if (Date.now() < dismissedUntil()) return;
+      if (document.hidden) return;
+      openModal('timer');
+    }, 30000);
 
     render();
   }
@@ -348,16 +474,80 @@ const whatsappBase = 'https://wa.me/78432236666';
 </script>
 
 <style>
-  .v3-quiz {
-    padding-top: var(--v3-gap-medium);
-    padding-bottom: var(--v3-gap-deep);
+  .v3-quiz-modal[hidden] {
+    display: none;
+  }
+
+  .v3-quiz-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: grid;
+    place-items: center;
+    padding: clamp(1rem, 3vw, 2rem);
+    overflow: hidden;
+  }
+
+  :global(.quiz-modal-lock) {
+    overflow: hidden;
+  }
+
+  .quiz-backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: color-mix(in srgb, var(--v3-ink) 52%, transparent);
+    cursor: pointer;
+  }
+
+  .quiz-modal-panel {
+    position: relative;
+    z-index: 1;
+    width: min(72rem, 100%);
+    max-height: min(calc(100dvh - clamp(2rem, 6vw, 4rem)), 54rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-xl);
+    background: var(--v3-surface-card);
+    box-shadow: 0 2rem 6rem color-mix(in srgb, var(--v3-ink) 24%, transparent);
+  }
+
+  .quiz-close {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    float: right;
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin: 0 0 0.5rem 0.75rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: 999px;
+    background: var(--v3-surface-card);
+    color: var(--v3-ink-muted);
+    font-family: var(--v3-font-body);
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .quiz-close:hover,
+  .quiz-close:focus-visible {
+    color: var(--v3-ink);
+    outline: 2px solid var(--v3-champagne-deep);
+    outline-offset: 2px;
   }
 
   .quiz-layout {
     display: grid;
-    grid-template-columns: minmax(0, 0.86fr) minmax(21rem, 1.14fr);
-    gap: clamp(2rem, 6vw, 6rem);
+    grid-template-columns: minmax(17rem, 0.74fr) minmax(21rem, 1.26fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
     align-items: start;
+    clear: both;
   }
 
   .quiz-copy {
@@ -365,7 +555,7 @@ const whatsappBase = 'https://wa.me/78432236666';
     flex-direction: column;
     gap: var(--v3-gap-h1-lead);
     position: sticky;
-    top: calc(var(--v3-nav-h, 4rem) + 2rem);
+    top: 0.5rem;
   }
 
   .quiz-heading {
@@ -541,13 +731,80 @@ const whatsappBase = 'https://wa.me/78432236666';
     background: var(--v3-champagne-deep);
   }
 
-  .quiz-controls,
-  .quiz-result-actions {
+  .quiz-controls {
+    position: sticky;
+    bottom: -1px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    padding-top: 0.25rem;
+    padding-top: 1rem;
+    padding-bottom: 0.25rem;
+    background: var(--v3-surface-card);
+    box-shadow: 0 -1rem 1.5rem color-mix(in srgb, var(--v3-surface-card) 82%, transparent);
+  }
+
+  .quiz-contact-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--v3-border-hair);
+  }
+
+  .quiz-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    min-width: 0;
+  }
+
+  .quiz-field .v3-eyebrow {
+    color: var(--v3-ink-muted);
+  }
+
+  .quiz-field input {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.85rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--v3-border-soft);
+    background: transparent;
+    color: var(--v3-ink);
+    font-family: var(--v3-font-body);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .quiz-field input:focus {
+    outline: none;
+    border-bottom-color: var(--v3-champagne-deep);
+  }
+
+  .quiz-field input::placeholder {
+    color: var(--v3-ink-muted);
+  }
+
+  .quiz-consent {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--v3-ink-secondary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .quiz-consent input {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+    margin-top: 0.1rem;
+  }
+
+  .quiz-contact-form .v3-btn {
+    grid-column: 1 / -1;
+    justify-self: start;
   }
 
   .quiz-nav {
@@ -615,17 +872,68 @@ const whatsappBase = 'https://wa.me/78432236666';
   }
 
   @media (max-width: 560px) {
-    .v3-quiz {
-      padding-top: var(--v3-gap-small);
-      padding-bottom: var(--v3-gap-medium);
+    .v3-quiz-modal {
+      align-items: end;
+      padding: 0.625rem;
+    }
+
+    .quiz-modal-panel {
+      width: 100%;
+      height: calc(100dvh - 1.25rem);
+      max-height: calc(100dvh - 1.25rem);
+      padding: 1rem;
+      border-radius: var(--v3-radius-lg);
+    }
+
+    .quiz-close {
+      top: 0;
+      width: 2rem;
+      height: 2rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .quiz-layout {
+      gap: 1rem;
+    }
+
+    .quiz-copy {
+      gap: 0.5rem;
+    }
+
+    .quiz-copy .v3-eyebrow {
+      font-size: 0.6875rem;
+    }
+
+    .quiz-heading {
+      max-width: 15ch;
+      font-size: clamp(1.5rem, 8vw, 2rem);
     }
 
     .quiz-shell {
       border-radius: var(--v3-radius-lg);
-      padding: 1rem;
+      padding: 0.875rem;
+    }
+
+    .quiz-step,
+    .quiz-result {
+      gap: 1rem;
+    }
+
+    .quiz-options {
+      gap: 0.625rem;
+    }
+
+    :global([data-consultation-quiz] .quiz-option) {
+      min-height: 3rem;
+      padding: 0.75rem 0.875rem;
+      font-size: 0.9375rem;
     }
 
     .quiz-lead {
+      display: none;
+    }
+
+    .quiz-principles {
       display: none;
     }
 
@@ -656,20 +964,27 @@ const whatsappBase = 'https://wa.me/78432236666';
       line-height: 1.45;
     }
 
-    .quiz-controls,
-    .quiz-result-actions {
+    .quiz-controls {
+      position: static;
       align-items: stretch;
+      padding-top: 0.5rem;
+      padding-bottom: 0;
+      box-shadow: none;
     }
 
     .quiz-controls .v3-btn,
-    .quiz-result-actions .v3-btn,
     .quiz-nav {
       width: 100%;
       justify-content: center;
     }
 
-    .quiz-whatsapp {
-      align-self: flex-start;
+    .quiz-contact-form {
+      grid-template-columns: 1fr;
+    }
+
+    .quiz-contact-form .v3-btn {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>

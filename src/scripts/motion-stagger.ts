@@ -91,6 +91,8 @@ const initObservers = (root: ParentNode) => {
 };
 
 const init = (root: ParentNode = document) => {
+  document.documentElement.classList.add('v3-motion-bound');
+
   if (prefersReducedMotion()) {
     revealAll(root);
     return;

@@ -16,9 +16,8 @@ const { surface = 'cream' } = Astro.props;
 
 <style>
   .medical-disclaimer {
-    padding-block: 0.875rem;
-    border-top: 1px solid var(--v3-border-hair);
-    border-bottom: 1px solid var(--v3-border-hair);
+    padding-block: 0.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--v3-border-hair) 62%, transparent);
   }
   .medical-disclaimer--cream { background: var(--v3-cream); }
   .medical-disclaimer--sand { background: var(--v3-sand); }
@@ -28,11 +27,12 @@ const { surface = 'cream' } = Astro.props;
   }
   .medical-disclaimer p {
     margin: 0;
-    color: var(--v3-ink-secondary);
+    color: var(--v3-ink-faint);
     text-transform: none;
     letter-spacing: 0.005em;
     font-family: var(--v3-font-body);
-    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-size: 0.75rem;
+    line-height: 1.45;
   }
-  .medical-disclaimer--ink p { color: var(--v3-on-ink-secondary); }
+  .medical-disclaimer--ink p { color: var(--v3-on-ink-muted); }
 </style>

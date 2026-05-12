@@ -1,57 +1,78 @@
 ---
 ---
 
-<section class="v3-quote v3-surface-ink" aria-label="Брендовая цитата" data-quote-bridge>
+<section class="v3-quote v3-surface-ink" aria-label="Принцип клиники" data-quote-bridge>
   <div class="quote-orbit" aria-hidden="true"></div>
   <div class="quote-inner v3-container v3-container-wide">
     <div class="quote-copy">
       <p class="quote-kicker-row">
         <span class="v3-minimark" aria-hidden="true">•</span>
-        <span class="quote-kicker v3-eyebrow">Brand statement</span>
+        <span class="quote-kicker v3-eyebrow">Принцип</span>
       </p>
 
       <blockquote class="quote-text v3-display" data-quote-heading>
         <em>
-          Гармонизирующая хирургия — это
-          <span class="hc-shell">
-            <span class="hc">Haute Couture<sup>*</sup></span>
-          </span>
-          эстетической медицины
+          Сначала анатомия и пропорции.
+          Потом — план операции или процедуры
         </em>
       </blockquote>
 
-      <p class="quote-footnote v3-eyebrow">
-        * Haute Couture (фр.) — высокая мода; изделие, созданное по индивидуальным меркам, вручную, без шаблонов.
-      </p>
     </div>
 
     <figure class="quote-media" data-v3-reveal>
-      <img
-        src="/quote/iskornev-portrait-2026.png"
-        alt="Портрет Андрея Искорнева для брендовой секции The Platinental"
-        class="quote-photo"
-        loading="lazy"
-        decoding="async"
-      />
+      <div class="quote-photo-frame">
+        <img
+          src="/quote/iskornev-portrait-2026.png"
+          alt="Портрет Андрея Александровича Искорнева"
+          class="quote-photo"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
       <figcaption class="quote-caption">
         <span class="quote-caption-name">Андрей Александрович Искорнев</span>
-        <span class="quote-caption-role">Сооснователь клиники</span>
+        <span class="quote-caption-role">Пластический хирург · основатель The Platinental Москва · один из учредителей The Platinental Казань · учредитель и главный специалист клиники MESOBAR (Лос-Анджелес)</span>
+        <span class="quote-caption-role">Соавтор патента РФ №2741620 «Способ подтяжки шеи»</span>
+        <div class="quote-actions">
+          <button type="button" class="quote-cta quote-cta-primary" data-booking-open data-doctor="на консультацию Андрея Искорнева">
+            Консультация <span aria-hidden="true">→</span>
+          </button>
+          <a href="/doctors/iskornev" class="quote-cta quote-cta-secondary">Подробнее</a>
+        </div>
       </figcaption>
     </figure>
   </div>
 </section>
 
+<script>
+  function initQuoteBridgeCTA() {
+    document.querySelectorAll<HTMLButtonElement>('[data-booking-open][data-doctor]').forEach((button) => {
+      if (button.dataset.bookingBound === '1') return;
+      button.dataset.bookingBound = '1';
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const doctor = button.getAttribute('data-doctor') ?? undefined;
+        window.dispatchEvent(new CustomEvent('open-booking', { detail: { doctor } }));
+      });
+    });
+  }
+
+  if (document.readyState !== 'loading') initQuoteBridgeCTA();
+  else document.addEventListener('DOMContentLoaded', initQuoteBridgeCTA);
+  document.addEventListener('astro:page-load', initQuoteBridgeCTA);
+</script>
+
 <style>
   .v3-quote {
     position: relative;
-    padding-top: var(--v3-gap-deep);
-    padding-bottom: var(--v3-gap-deep);
+    padding-top: clamp(4rem, 8vw, 7rem);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
     overflow: hidden;
   }
   .quote-orbit {
     position: absolute;
-    inset: auto auto 12% 68%;
-    width: clamp(14rem, 28vw, 28rem);
+    inset: auto auto 8% 67%;
+    width: clamp(18rem, 32vw, 34rem);
     aspect-ratio: 1;
     border-radius: 50%;
     border: 1px solid rgba(251, 248, 244, 0.08);
@@ -64,9 +85,10 @@
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: minmax(0, 1.32fr) minmax(20rem, 26rem);
-    gap: clamp(2rem, 5vw, 5rem);
-    align-items: end;
+    grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.78fr);
+    gap: clamp(3rem, 7vw, 7rem);
+    align-items: center;
+    min-height: clamp(30rem, 48vw, 42rem);
   }
   .quote-copy {
     display: flex;
@@ -88,11 +110,12 @@
     font-family: var(--v3-font-display);
     font-style: normal;
     font-weight: 400;
-    font-size: clamp(2.2rem, 5.4vw, 4.85rem);
+    font-size: clamp(2.2rem, 4.45vw, 4.05rem);
     line-height: 1.05;
     color: var(--v3-on-ink);
     margin: 0;
-    max-width: 22ch;
+    max-width: 18ch;
+    text-wrap: balance;
   }
   .quote-text .line {
     overflow: hidden;
@@ -144,9 +167,13 @@
     position: relative;
     margin: 0;
     justify-self: end;
-    width: min(100%, 25rem);
+    width: min(100%, 31rem);
+    transform: translateY(0.25rem);
   }
-  .quote-media::before {
+  .quote-photo-frame {
+    position: relative;
+  }
+  .quote-photo-frame::before {
     content: '';
     position: absolute;
     inset: -0.875rem 0.875rem 0.875rem -0.875rem;
@@ -162,6 +189,7 @@
     object-fit: cover;
     object-position: center top;
     border-radius: var(--v3-radius-xl);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.16);
   }
   .quote-caption {
     margin: 0;
@@ -173,34 +201,85 @@
   .quote-caption-name {
     color: var(--v3-on-ink);
     font-family: var(--v3-font-body);
-    font-size: 0.9375rem;
+    font-size: clamp(1.05rem, 1.35vw, 1.25rem);
     line-height: 1.35;
     letter-spacing: 0.01em;
   }
   .quote-caption-role {
     color: var(--v3-on-ink-muted);
     font-family: var(--v3-font-body);
-    font-size: 0.75rem;
-    line-height: 1.4;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+  .quote-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    margin-top: 0.9rem;
+  }
+  .quote-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    padding: 0.625rem 1rem;
+    border: 1px solid rgba(251, 248, 244, 0.28);
+    border-radius: var(--v3-radius-pill);
+    font-family: var(--v3-font-body);
+    font-size: 0.875rem;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      color var(--v3-duration-fast) var(--v3-ease-out),
+      background var(--v3-duration-fast) var(--v3-ease-out),
+      border-color var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .quote-cta-primary {
+    background: var(--v3-on-ink);
+    color: var(--v3-ink);
+    border-color: var(--v3-on-ink);
+  }
+  .quote-cta-secondary {
+    background: transparent;
+    color: var(--v3-on-ink);
+  }
+  .quote-cta:hover,
+  .quote-cta:focus-visible {
+    background: var(--v3-on-ink);
+    border-color: var(--v3-on-ink);
+    color: #0a0a0a !important;
+    outline: none;
+    box-shadow: 0 0.75rem 1.75rem rgba(251, 248, 244, 0.16);
+  }
+  .quote-cta:hover *,
+  .quote-cta:focus-visible * {
+    color: #0a0a0a !important;
   }
 
   @media (max-width: 768px) {
+    .v3-quote {
+      padding-top: var(--v3-gap-medium);
+      padding-bottom: var(--v3-gap-medium);
+    }
     .quote-inner {
       grid-template-columns: 1fr;
       align-items: start;
+      min-height: 0;
     }
     .quote-orbit {
-      inset: auto auto 16% 48%;
-      width: 14rem;
-      opacity: 0.7;
+      display: none;
     }
     .quote-media {
       width: min(100%, 20rem);
       justify-self: start;
+      transform: none;
     }
-    .quote-media::before {
+    .quote-photo-frame::before {
       inset: -0.625rem 0.625rem 0.625rem -0.625rem;
     }
   }

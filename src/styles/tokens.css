@@ -17,9 +17,9 @@
   --v3-white: #FFFFFF;
 
   /* Ink tones */
-  --v3-ink-secondary: #616F84;
-  --v3-ink-muted: #897F78;
-  --v3-ink-faint: #C8BDB4;
+  --v3-ink-secondary: #5F6B7B;
+  --v3-ink-muted: #746A62;
+  --v3-ink-faint: #AFA49B;
 
   /* Inverse ink (для тёмных секций) */
   --v3-on-ink: #FBF8F4;
@@ -215,7 +215,7 @@
   font-size: var(--v3-text-caption);
   line-height: 1.4;
   color: var(--v3-ink-muted);
-  letter-spacing: var(--v3-tracking-eyebrow);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -416,12 +416,15 @@
   border-color: var(--v3-on-ink);
 }
 [data-v3] .v3-surface-ink .v3-btn-primary::before {
-  background: color-mix(in srgb, var(--v3-champagne) 24%, transparent);
+  background: color-mix(in srgb, var(--v3-champagne-soft) 82%, var(--v3-on-ink));
 }
 [data-v3] .v3-surface-ink .v3-btn-primary:hover,
 [data-v3] .v3-surface-ink .v3-btn-primary:focus-visible {
   color: var(--v3-ink);
-  border-color: var(--v3-on-ink);
+  background: var(--v3-champagne-soft);
+  border-color: var(--v3-champagne-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 20px 44px rgba(251, 248, 244, 0.16);
 }
 
 [data-v3] .v3-surface-ink .v3-btn-secondary {
@@ -480,18 +483,22 @@
   border-color: var(--v3-on-ink);
 }
 [data-v3] .v3-surface-ink .v3-link:hover {
-  color: var(--v3-champagne);
-  border-color: var(--v3-champagne);
+  color: var(--v3-champagne-soft);
+  border-color: var(--v3-champagne-soft);
 }
 
 /* ── Reveal ────────────────────────────────────────────────────────
-   Контент должен быть доступен сразу. Анимация остаётся только как
-   прогрессивное улучшение, без скрытия блоков до срабатывания JS. */
+   Без JS контент видим сразу. Ранний inline-script добавляет
+   .v3-motion-ready до первого paint, поэтому animated state не мигает. */
 [data-v3] [data-v3-reveal] {
   opacity: 1;
   transform: none;
   transition: opacity var(--v3-duration-slow) var(--v3-ease-out),
               transform var(--v3-duration-slow) var(--v3-ease-out);
+}
+.v3-motion-ready:not(.v3-motion-fallback) [data-v3] [data-v3-reveal]:not(.is-visible) {
+  opacity: 0;
+  transform: translate3d(0, 1.25rem, 0);
 }
 [data-v3] [data-v3-reveal].is-visible {
   opacity: 1;
@@ -504,6 +511,10 @@
   transform: none;
   transition: opacity var(--v3-duration-slow) var(--v3-ease-out),
               transform var(--v3-duration-slow) var(--v3-ease-out);
+}
+.v3-motion-ready:not(.v3-motion-fallback) [data-v3] [data-v3-stagger] > :not(.is-visible) {
+  opacity: 0;
+  transform: translate3d(0, 1.25rem, 0);
 }
 [data-v3] [data-v3-stagger] > .is-visible {
   opacity: 1;
@@ -583,9 +594,20 @@
 [data-v3] .v3-link:focus-visible::after {
   transform: scaleX(1);
 }
-[data-v3] .v3-surface-ink .v3-link::after { background: var(--v3-champagne); }
+[data-v3] .v3-surface-ink .v3-link::after { background: var(--v3-champagne-soft); }
 [data-v3] .v3-surface-ink .v3-link:hover,
-[data-v3] .v3-surface-ink .v3-link:focus-visible { color: var(--v3-champagne); }
+[data-v3] .v3-surface-ink .v3-link:focus-visible { color: var(--v3-champagne-soft); }
+
+[data-v3] .v3-link.v3-link-action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-bottom: 0;
+  background-position: 0 calc(100% - 0.45rem);
+}
+[data-v3] .v3-link.v3-link-action::after {
+  bottom: 0.45rem;
+}
 
 @media (max-width: 768px) {
   [data-v3] .v3-link.v3-link {

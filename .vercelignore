@@ -20,6 +20,8 @@ wireframes/
 memory/
 design-system/
 docs/
+!public/doctors/**/docs/
+!public/doctors/**/docs/**
 knowledge/
 daily/
 refs/
@@ -27,6 +29,8 @@ research/
 output/
 *.zip
 Notion выгрузка/
+Созвон с клиентом 7.05/
+Созвон с Филом 11.05/
 ZapfHumnst BT [Rus by me]/
 Врачи/
 Врачи в цвете/
@@ -50,3 +54,6 @@ mobile-audit-results.txt
 doctors-listing-1440.png
 tulatova-mobile-snapshot.md
 *.log
+*.mp3
+*.mp4
+*.m4a

@@ -16,13 +16,15 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
       </h1>
 
       <p class="v3-lead hero-lead">
-        Интеллигентная гармонизация внешности — без избыточности и шаблонов,
-        через применение авторских методик.
+        Команда врачей с сильной профессиональной подготовкой, опытом
+        и репутацией. Работаем со сложными эстетическими и функциональными
+        задачами, сохраняя фокус на гармонии пропорций
+        и индивидуальности пациента.
       </p>
 
       <div class="hero-cta">
         <a href="#form" class="v3-btn v3-btn-primary">Записаться на консультацию</a>
-        <a href="/prices" class="v3-link cta-secondary">Узнать стоимость</a>
+        <a href="/prices" class="v3-link v3-link-action cta-secondary">Узнать стоимость</a>
       </div>
     </div>
 
@@ -44,9 +46,8 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
   <div class="v3-container v3-container-wide hero-stats" data-v3-reveal>
     <ul class="stats-list">
 	      <li class="stat-item">С 2011 года в Казани</li>
-	      <li class="stat-item">Пластика · косметология · космецевтика</li>
+		      <li class="stat-item">Уникальные методики</li>
 	      <li class="stat-item">Лицензия ЛО-16-01-003022</li>
-	      <li class="stat-item">Имеются противопоказания</li>
     </ul>
   </div>
 </section>
@@ -55,6 +56,7 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
   .v3-hero {
     padding-top: clamp(1.5rem, 4vh, 3.5rem);
     padding-bottom: var(--v3-gap-medium);
+    overflow-x: clip;
   }
   .hero-grid {
     display: grid;
@@ -81,12 +83,7 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
     flex-wrap: wrap;
     margin-top: 0.75rem;
   }
-  .cta-secondary {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    font-size: 0.9375rem;
-  }
+  .cta-secondary { font-size: 0.9375rem; }
   .hero-image {
     max-width: 43rem;
     margin-left: auto;
@@ -113,7 +110,7 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
     object-fit: cover;
     object-position: center center;
     display: block;
-    transform: scale(1.02);
+    transform: scale(1.14);
     transform-origin: center center;
     animation: heroImageReveal 1.2s var(--v3-ease-out) 0.15s both;
   }
@@ -162,11 +159,11 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
   @keyframes heroImageReveal {
     from {
       opacity: 0;
-      transform: scale(1.045);
+      transform: scale(1.17);
     }
     to {
       opacity: 1;
-      transform: scale(1.02);
+      transform: scale(1.14);
     }
   }
 
@@ -188,7 +185,7 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
       align-self: start;
     }
     .hero-image-wrap { max-width: 33rem; }
-    .hero-image-asset { transform: scale(1.02); }
+    .hero-image-asset { transform: scale(1.14); }
   }
   @media (max-width: 560px) {
     .v3-hero {
@@ -240,7 +237,7 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
     }
     .hero-image-wrap {
       max-width: none;
-      width: 100%;
+      width: min(100%, calc(100vw - (var(--v3-gutter) * 2)));
       aspect-ratio: 1 / 1;
       overflow: hidden;
     }
@@ -251,7 +248,7 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
       height: 100%;
       object-fit: cover;
       object-position: center center;
-      transform: none;
+      transform: scale(1.14);
       transform-origin: center center;
     }
     .stat-item::before {

@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import cvPhoto from '../../../assets/photos/cv-consultation.jpeg';
+import { formatCurrencyPlainText } from '../../../lib/formatText';
 ---
 
 <section class="v3-cv v3-surface-sand" aria-labelledby="cv-heading">
@@ -17,9 +18,9 @@ import cvPhoto from '../../../assets/photos/cv-consultation.jpeg';
         <span class="v3-minimark" aria-hidden="true">₽</span>
         <span class="cv-price-copy">
           <span class="cv-price">
-            <em>от&nbsp;5&nbsp;000&nbsp;₽</em>
+            <em set:html={formatCurrencyPlainText('от 5 000 ₽')}></em>
           </span>
-          <span class="v3-caption cv-price-meta">Первичная консультация длится до 30 минут</span>
+          <span class="v3-caption cv-price-meta">Первичная консультация: осмотр, разбор запроса и дальнейшие шаги</span>
         </span>
       </div>
       <div class="cv-cta">
@@ -64,6 +65,7 @@ import cvPhoto from '../../../assets/photos/cv-consultation.jpeg';
     flex-direction: column;
     gap: var(--v3-gap-h1-lead);
     max-width: 38rem;
+    min-width: 0;
   }
   .cv-text .v3-eyebrow { margin-bottom: 0.5rem; }
   .cv-body { max-width: 50ch; }
@@ -127,6 +129,7 @@ import cvPhoto from '../../../assets/photos/cv-consultation.jpeg';
     max-width: 30rem;
     margin-left: auto;
     width: 100%;
+    min-width: 0;
   }
   .cv-photo {
     width: 100%;
@@ -138,7 +141,20 @@ import cvPhoto from '../../../assets/photos/cv-consultation.jpeg';
   }
 
   @media (max-width: 1024px) {
-    .cv-grid { grid-template-columns: 1fr; }
+    .cv-grid {
+      grid-template-columns: minmax(0, 1fr);
+      overflow: hidden;
+    }
+    .cv-text { max-width: 100%; }
     .cv-image { max-width: 26rem; margin-inline: 0; }
+  }
+  @media (max-width: 560px) {
+    .cv-price {
+      font-size: clamp(1.75rem, 8vw, 2.4rem);
+    }
+    .cv-msg {
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+    }
   }
 </style>

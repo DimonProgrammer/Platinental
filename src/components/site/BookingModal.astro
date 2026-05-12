@@ -3,15 +3,12 @@
 //   window.dispatchEvent(new CustomEvent('open-booking', { detail: { doctor?: 'slug', preset?: 'Тема', message?: 'Текст' } }))
 // Подключена один раз в SiteLayout — доступна со всех страниц.
 
-const whatsapp = 'https://wa.me/78432236666';
-const telegram = 'https://t.me/platinental_kazan';
-const maxLink = 'https://max.ru';
 ---
 
 <div class="booking" data-booking hidden role="dialog" aria-modal="true" aria-labelledby="booking-title">
   <button type="button" class="booking-backdrop" aria-label="Закрыть" data-booking-close></button>
 
-  <div class="booking-panel" role="document">
+  <div class="booking-panel" role="document" data-lenis-prevent data-lenis-prevent-wheel data-lenis-prevent-touch>
     <button type="button" class="booking-close" aria-label="Закрыть" data-booking-close>
       <span aria-hidden="true">×</span>
     </button>
@@ -19,11 +16,11 @@ const maxLink = 'https://max.ru';
     <header class="booking-header">
       <span class="v3-eyebrow">Быстрая связь с клиникой</span>
       <h2 id="booking-title" class="v3-h3 booking-title">
-        <em data-booking-title>Подберём врача и удобное время</em>
+        <em data-booking-title>Свяжемся и уточним удобное время</em>
       </h2>
-      <p class="v3-body booking-lead">
+      <p class="v3-body booking-lead" data-booking-lead>
         Оставьте телефон — администратор свяжется в рабочее время,
-        сориентирует по консультации, стоимости и поможет выбрать врача.
+        сориентирует по консультации, стоимости и ближайшим вариантам записи.
       </p>
     </header>
 
@@ -32,39 +29,55 @@ const maxLink = 'https://max.ru';
 
       <label class="field">
         <span class="field-label v3-eyebrow">Имя</span>
-        <input type="text" name="name" required autocomplete="name" placeholder="Как к вам обращаться" />
+        <input
+          type="text"
+          name="name"
+          required
+          autocomplete="name"
+          minlength="2"
+          maxlength="60"
+          pattern="[A-Za-zА-Яа-яЁё\\s\\-']{2,60}"
+          placeholder="Как к вам обращаться"
+        />
       </label>
 
       <label class="field">
         <span class="field-label v3-eyebrow">Телефон</span>
-        <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="+7 ___ ___ ____" />
+        <input
+          type="tel"
+          name="phone"
+          required
+          autocomplete="tel"
+          inputmode="tel"
+          maxlength="18"
+          pattern="\\+7 \\([0-9]{3}\\) [0-9]{3}-[0-9]{2}-[0-9]{2}"
+          placeholder="+7 (___) ___-__-__"
+          data-phone-mask
+        />
       </label>
 
       <label class="field">
         <span class="field-label v3-eyebrow">Сообщение (опционально)</span>
-        <textarea name="message" rows="3" placeholder="Что интересует, какие операции рассматриваете"></textarea>
+        <textarea
+          name="message"
+          rows="3"
+          maxlength="700"
+          placeholder="Что интересует, какие операции рассматриваете"
+        ></textarea>
       </label>
 
       <label class="consent">
         <input type="checkbox" name="consent" required />
         <span class="consent-text">
-          Я согласен(а) на обработку персональных данных в соответствии с
-          <a href="/privacy" class="v3-link">152-ФЗ</a>.
+          Я согласен(а) на <a href="/consent" class="v3-link">обработку персональных данных</a>,
+          ознакомлен(а) с <a href="/privacy" class="v3-link">политикой конфиденциальности</a>
+          и <a href="/terms" class="v3-link">пользовательским соглашением</a>.
         </span>
       </label>
 
       <button type="submit" class="v3-btn v3-btn-primary booking-submit">
         Отправить заявку <span aria-hidden="true">→</span>
       </button>
-
-      <div class="booking-direct">
-        <p class="v3-caption booking-direct-label">Если удобнее, напишите нам сразу</p>
-        <div class="booking-direct-links">
-          <a href={whatsapp} class="booking-direct-link" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a href={telegram} class="booking-direct-link" target="_blank" rel="noopener noreferrer">Telegram</a>
-          <a href={maxLink} class="booking-direct-link" target="_blank" rel="noopener noreferrer">Max</a>
-        </div>
-      </div>
     </form>
   </div>
 </div>
@@ -75,28 +88,47 @@ const maxLink = 'https://max.ru';
     if (!root) return;
 
     const titleEl = root.querySelector<HTMLElement>('[data-booking-title]');
+    const leadEl = root.querySelector<HTMLElement>('[data-booking-lead]');
+    const panel = root.querySelector<HTMLElement>('.booking-panel');
     const doctorInput = root.querySelector<HTMLInputElement>('[data-booking-doctor]');
     const form = root.querySelector<HTMLFormElement>('[data-booking-form]');
     const messageInput = root.querySelector<HTMLTextAreaElement>('textarea[name="message"]');
     const closeBtns = root.querySelectorAll<HTMLElement>('[data-booking-close]');
+    const defaultTitle = titleEl?.textContent ?? 'Свяжемся и уточним удобное время';
+    const defaultLead = leadEl?.textContent?.replace(/\s+/g, ' ').trim() ??
+      'Оставьте телефон — администратор свяжется в рабочее время, сориентирует по консультации, стоимости и ближайшим вариантам записи.';
+    const defaultMessagePlaceholder = messageInput?.placeholder ?? '';
 
     let lastFocus: HTMLElement | null = null;
 
-    const open = (detail?: { doctor?: string; preset?: string; message?: string }) => {
+    const open = (detail?: {
+      doctor?: string;
+      preset?: string;
+      message?: string;
+      title?: string;
+      lead?: string;
+      messagePlaceholder?: string;
+    }) => {
       lastFocus = document.activeElement as HTMLElement;
       if (titleEl) {
-        titleEl.textContent = detail?.preset
+        titleEl.textContent = detail?.title
+          ? detail.title
+          : detail?.preset
           ? `Консультация по направлению «${detail.preset}»`
           : detail?.doctor
             ? `Подберём время ${detail.doctor}`
-            : 'Подберём врача и удобное время';
+            : defaultTitle;
       }
+      if (leadEl) leadEl.textContent = detail?.lead ?? defaultLead;
       if (doctorInput) doctorInput.value = detail?.doctor ?? '';
-      if (messageInput && detail?.message) messageInput.value = detail.message;
+      if (messageInput) {
+        messageInput.value = detail?.message ?? '';
+        messageInput.placeholder = detail?.messagePlaceholder ?? defaultMessagePlaceholder;
+      }
       root.hidden = false;
       document.documentElement.style.overflow = 'hidden';
-      const firstField = root.querySelector<HTMLInputElement>('input[name="name"]');
-      window.requestAnimationFrame(() => firstField?.focus());
+      if (panel) panel.scrollTop = 0;
+      window.requestAnimationFrame(() => root.querySelector<HTMLElement>('[data-booking-close]')?.focus());
     };
 
     const close = () => {
@@ -116,7 +148,12 @@ const maxLink = 'https://max.ru';
       link.dataset.bookingBound = '1';
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        open();
+        open({
+          title: link.dataset.bookingCustomTitle,
+          lead: link.dataset.bookingCustomLead,
+          message: link.dataset.bookingCustomMessage,
+          messagePlaceholder: link.dataset.bookingCustomPlaceholder,
+        });
       });
     });
 
@@ -143,7 +180,7 @@ const maxLink = 'https://max.ru';
       const url = `https://wa.me/78432236666?text=${encodeURIComponent(text)}`;
       if (submit) {
         submit.disabled = true;
-        submit.textContent = 'Открываем WhatsApp...';
+        submit.textContent = 'Готовим заявку...';
       }
       window.open(url, '_blank', 'noopener,noreferrer');
       window.setTimeout(() => {
@@ -171,6 +208,7 @@ const maxLink = 'https://max.ru';
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    overflow: hidden;
   }
   .booking-backdrop {
     position: absolute;
@@ -190,8 +228,10 @@ const maxLink = 'https://max.ru';
     background: var(--v3-cream);
     width: 100%;
     max-width: 32rem;
-    max-height: 90vh;
+    max-height: min(calc(100dvh - 1.5rem), 44rem);
     overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2.5rem) clamp(1.5rem, 4vw, 2.5rem);
     box-shadow: 0 -20px 60px rgba(10, 10, 10, 0.18);
     animation: bk-slide 320ms var(--v3-ease-out, ease-out);
@@ -298,56 +338,17 @@ const maxLink = 'https://max.ru';
 
   .booking-submit { align-self: stretch; margin-top: 0.25rem; }
 
-  .booking-direct {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--v3-border-soft, rgba(10, 10, 10, 0.16));
-  }
-  .booking-direct-label {
-    margin: 0;
-    color: var(--v3-ink-muted);
-    text-transform: none;
-    letter-spacing: 0.01em;
-  }
-  .booking-direct-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-  .booking-direct-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 2.75rem;
-    padding: 0.625rem 1rem;
-    border: 1px solid var(--v3-border-soft, rgba(10, 10, 10, 0.16));
-    border-radius: 999px;
-    color: var(--v3-ink);
-    text-decoration: none;
-    font-family: var(--v3-font-body);
-    font-size: 0.9375rem;
-    transition:
-      border-color var(--v3-duration-fast, 160ms) var(--v3-ease-out, ease-out),
-      color var(--v3-duration-fast, 160ms) var(--v3-ease-out, ease-out),
-      background-color var(--v3-duration-fast, 160ms) var(--v3-ease-out, ease-out);
-  }
-  .booking-direct-link:hover,
-  .booking-direct-link:focus-visible {
-    color: var(--v3-champagne-deep, #7B6261);
-    border-color: var(--v3-champagne, #917271);
-    background: rgba(145, 114, 113, 0.08);
-    outline: none;
-  }
-
   @media (max-width: 560px) {
-    .booking-direct-links {
-      display: grid;
-      grid-template-columns: 1fr;
+    .booking {
+      padding: 0.625rem;
     }
-    .booking-direct-link {
-      width: 100%;
+    .booking-panel {
+      max-height: calc(100dvh - 1.25rem);
+      border-radius: var(--v3-radius-lg);
+      padding: 1.25rem;
+    }
+    .booking-title {
+      font-size: clamp(1.375rem, 7vw, 1.75rem);
     }
   }
 </style>

@@ -1,33 +1,27 @@
----
-import { surgicalBases } from '../../../data/partners';
-
-const partners = Object.values(surgicalBases);
----
-
 <section class="partners-block v3-surface-cream" aria-labelledby="partners-heading">
   <div class="v3-container v3-container-wide partners-grid" data-v3-reveal>
     <header class="partners-header">
-      <span class="v3-eyebrow">Наши партнёры</span>
-      <h2 id="partners-heading" class="v3-h2"><em>Операционные базы</em></h2>
+      <span class="v3-eyebrow">Где проходят операции</span>
+      <h2 id="partners-heading" class="v3-h2"><em>Клиники, на базе которых проходят операции</em></h2>
       <p class="v3-body">
-        Часть операций проводится на партнёрских медицинских площадках в Казани. На консультации врач объясняет маршрут, показания и место проведения операции.
+        Операции проходят в клинике «Корл» или клинике «Миллениум». Где именно будет операция, врач объясняет на консультации после оценки объёма вмешательства, анестезии и графика.
       </p>
     </header>
 
     <div class="partners-list">
-      {partners.map((partner) => (
-        <article class="partner-card">
-          <div class="partner-card-head">
-            <h3 class="v3-h3 partner-title">{partner.name}</h3>
-            <a class="v3-link partner-link" href={partner.href} target="_blank" rel="noopener noreferrer">
-              сайт партнёра
-            </a>
-          </div>
-          <p class="v3-body partner-address">{partner.city}, {partner.address}</p>
-          <p class="v3-caption partner-doctors">Врачи: {partner.doctors}</p>
-          <p class="v3-small partner-note">{partner.note}</p>
-        </article>
-      ))}
+      <article class="partner-card">
+        <div class="partner-card-head">
+          <h3 class="v3-h3 partner-title">Клиника «Корл»</h3>
+        </div>
+        <p class="v3-body partner-address">Казань, ул. Даурская, д. 12.</p>
+      </article>
+
+      <article class="partner-card">
+        <div class="partner-card-head">
+          <h3 class="v3-h3 partner-title">Клиника «Миллениум»</h3>
+        </div>
+        <p class="v3-body partner-address">Казань, ул. Алексея Козина, д. 3.</p>
+      </article>
     </div>
   </div>
 </section>

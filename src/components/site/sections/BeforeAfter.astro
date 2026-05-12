@@ -8,9 +8,9 @@ const cases = [
   },
   {
     id: 'case-02',
-    operation: 'Блефаропластика',
-    doctor: 'Марданова Д.М.',
-    image: '/before-after/mardanova-blepharoplasty.png',
+    operation: 'Платизмопластика',
+    doctor: 'Мамедов В.А.',
+    image: '/before-after/mamedov-platysmoplasty-home.jpg',
   },
   {
     id: 'case-03',
@@ -40,7 +40,7 @@ const cases = [
       <h2 id="ba-heading" class="v3-h2"><em>До и после</em></h2>
     </header>
 
-    <div class="ba-stage" data-v3-reveal data-ba-stage>
+    <div class="ba-stage" data-ba-stage>
       <div class="ba-photo-wrap">
         <img
           class="ba-photo"
@@ -83,6 +83,13 @@ const cases = [
       const photo = stage.querySelector('[data-ba-photo]');
       if (!(photo instanceof HTMLImageElement)) return;
 
+      stage.querySelectorAll('[data-ba-image]').forEach((node) => {
+        if (!(node instanceof HTMLElement) || !node.dataset.baImage) return;
+        const preload = new Image();
+        preload.decoding = 'async';
+        preload.src = node.dataset.baImage;
+      });
+
       stage.querySelectorAll('[data-ba-case]').forEach((btn) => {
         if (!(btn instanceof HTMLButtonElement)) return;
         if (btn.dataset.baBound === '1') return;
@@ -100,6 +107,8 @@ const cases = [
           const doctor = btn.dataset.baDoctor ?? '';
 
           if (image) {
+            photo.decoding = 'async';
+            photo.loading = 'eager';
             photo.src = image;
             photo.alt = doctor ? `${operation} — ${doctor}` : operation;
           }
@@ -144,6 +153,7 @@ const cases = [
     width: 100%;
     height: auto;
     object-fit: cover;
+    transition: opacity 0.12s var(--v3-ease-out);
   }
   .ba-controls {
     display: flex;

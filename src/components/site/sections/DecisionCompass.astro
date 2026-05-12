@@ -7,6 +7,7 @@ const routes = [
     title: 'Пройти навигатор консультации',
     body: '5 вопросов помогут собрать исходную задачу и понять, с каким специалистом говорить первым.',
     href: '#consultation-quiz',
+    opensQuiz: true,
   },
   {
     num: '02',
@@ -45,7 +46,7 @@ const steps = [
 <section class="v3-decision v3-surface-cream" aria-labelledby="decision-heading">
   <div class="v3-container v3-container-wide decision-shell">
     <div class="decision-intro" data-v3-stagger>
-      <span class="v3-eyebrow">Маршрут пациента</span>
+      <span class="v3-eyebrow">План пациента</span>
       <h2 id="decision-heading" class="v3-h2">
         <em>Быстро понять,<br />куда двигаться дальше</em>
       </h2>
@@ -59,7 +60,7 @@ const steps = [
       <ol class="decision-routes" aria-label="Быстрые сценарии">
         {routes.map((item) => (
           <li class="decision-route">
-            <a href={item.href} class="decision-link">
+            <a href={item.href} class="decision-link" data-quiz-open={item.opensQuiz ? 'true' : undefined}>
               <span class="decision-mark" aria-hidden="true">{item.mark}</span>
               <span class="decision-copy">
                 <span class="decision-label v3-eyebrow">{item.label}</span>

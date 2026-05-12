@@ -2,24 +2,33 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import Navigation from '../components/site/sections/Navigation.astro';
 import PageHero from '../components/site/sections/PageHero.astro';
-import MedicalDisclaimer from '../components/site/sections/MedicalDisclaimer.astro';
-import PageLeadMagnet from '../components/site/sections/PageLeadMagnet.astro';
 import FinalCTA from '../components/site/sections/FinalCTA.astro';
 import FAQ from '../components/site/sections/FAQ.astro';
 import Footer from '../components/site/sections/Footer.astro';
 import { plastikaOps } from '../data/plastika';
 import { doctors } from '../data/doctors';
-import { formatCurrencyPlainText } from '../lib/formatText';
+import { formatCurrencyPlainText, formatTypographyHtml } from '../lib/formatText';
 
 const faceOps = plastikaOps.filter((op) => op.category === 'face');
 const bodyOps = plastikaOps.filter((op) => op.category === 'body');
 
 const surgeons = doctors.filter((d) => d.tags.includes('plastika'));
+const plastikaSurgeonSpecs: Record<string, string> = {
+  iskornev: 'ЭСТЕТИЧЕСКАЯ ХИРУРГИЯ ЛИЦА И ШЕИ',
+  meloyan: 'ЭСТЕТИЧЕСКАЯ И РЕКОНСТРУКТИВНАЯ ХИРУРГИЯ',
+  tulatova: 'ДЕЛИКАТНАЯ ХИРУРГИЯ ЛИЦА И ВЕК',
+  vasilev: 'К.М.Н. · БЛЕФАРОПЛАСТИКА · МАММОПЛАСТИКА · КОНТУРИРОВАНИЕ ТЕЛА',
+  mardanova: 'РИНОПЛАСТИКА · БЛЕФАРОПЛАСТИКА',
+};
+
+const getPlastikaSurgeonSpec = (slug: string, spec: string) => (
+  plastikaSurgeonSpecs[slug] ?? spec.replace(/ПЛАСТИЧЕСКИЙ ХИРУРГ\s*[·/]\s*/giu, '').trim()
+);
 
 const faqItems = [
   {
     q: 'Как записаться на первичную консультацию хирурга?',
-    a: 'Позвоните по <a href="tel:+78432236666">+7 843 223-66-66</a>, напишите в <a href="https://t.me/platinental_kazan">Telegram</a>, <a href="https://max.ru">Max</a> или <a href="https://wa.me/78432236666">WhatsApp</a>, либо заполните форму. Консультация хирурга — от 5 000 ₽, длится до 30 минут.',
+    a: 'Позвоните по <a href="tel:+78432236666">+7 843 223-66-66</a>, напишите в <a href="https://t.me/platinental_kazan">Telegram</a>, <a href="https://max.ru">Max</a> или <a href="https://wa.me/78432236666">WhatsApp</a>, либо заполните форму. На консультации хирург осматривает, уточняет запрос и подбирает подходящее решение: операцию, другой метод или этапный план.',
     open: true,
   },
   {
@@ -28,15 +37,15 @@ const faqItems = [
   },
   {
     q: 'Как подготовиться к операции?',
-    a: 'Список анализов и обследований хирург выдаёт на консультации после осмотра и оценки вашей ситуации. За 2 недели до операции может потребоваться отмена части препаратов и корректировка образа жизни — это врач объяснит индивидуально.',
+    a: 'Подготовка начинается на консультации: врач уточняет анамнез, прошлые операции, препараты, хронические заболевания и сроки. После этого выдаёт список анализов и обследований, объясняет ограничения по лекарствам, алкоголю, курению, нагрузкам и режиму до операции. Точный список зависит от вмешательства и состояния здоровья.',
   },
-	  {
-	    q: 'Где проходит операция?',
-	    a: 'Зависит от операции и врача. Часть операций проходит на партнёрских базах в Казани; где именно будет операция, врач объяснит на консультации.',
-	  },
+  {
+    q: 'Где проходит операция?',
+    a: 'Операции проходят на базе клиники «Корл» или клиники «Миллениум»; конкретную клинику уточняют при записи к врачу.',
+  },
   {
     q: 'Каков реабилитационный период?',
-    a: 'Зависит от операции:<br />— Блефаропластика: 7–14 дней<br />— Ринопластика: 2–3 недели<br />— Маммопластика: 2–4 недели<br />— SMAS-лифтинг: 3–4 недели<br /><br />Реабилитация ведётся совместно с косметологом клиники.',
+    a: 'Зависит от операции:<br />— Блефаропластика: 7–14 дней<br />— Ринопластика: 2–3 недели<br />— Маммопластика: 2–4 недели<br />— SMAS-лифтинг: 3–4 недели<br /><br />В восстановлении участвуют хирург и косметолог клиники: хирург контролирует заживление и ограничения, косметолог помогает с качеством кожи, уходом и поддерживающими процедурами.',
   },
   {
     q: 'Есть ли противопоказания к пластической операции?',
@@ -51,21 +60,23 @@ const faqItems = [
 >
   <Navigation />
   <main id="main" class="page-plastika">
-	    <PageHero
+    <PageHero
       pageMarker="01 / 04"
       pageMarkerLabel="Услуги"
       eyebrow="THE PLATINENTAL · КАЗАНЬ"
       h1="Пластическая хирургия в Казани — The Platinental"
-      lead="Мы не делаем «идеальный нос из каталога» и не «увеличиваем грудь до размера». The Platinental работает как дорогое ателье: сначала замеры — потом методика. Цель одна: все заметят изменение, но никто не свяжет его с операцией."
+      lead="Квалифицированные врачи с сильной профильной практикой. Хирург подбирает решение по запросу, анатомии, состоянию тканей, прошлым вмешательствам и восстановлению."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Цены', href: '/prices' }}
+      metaLabel="На консультации разберём:"
+      metaPlacement="cta"
+      ctaPlacement="after-meta"
       meta={[
-        { num: '?', label: 'подходит ли операция именно вам' },
-        { num: '—', label: 'сроки, ограничения и восстановление' },
-        { num: '₽', label: 'точная стоимость после осмотра' },
+        { num: '?', label: 'оптимальное решение под ваш запрос' },
+        { num: '—', label: 'метод, подготовка, сроки и восстановление' },
+        { num: '₽', label: 'точная стоимость операции' },
       ]}
-	    />
-	    <MedicalDisclaimer />
+    />
 
     <!-- Category tabs -->
     <section class="v3-plastika v3-surface-cream" aria-labelledby="plastika-heading">
@@ -91,14 +102,17 @@ const faqItems = [
               <li class="op-card">
                 <span class="op-badge v3-eyebrow">{op.badge}</span>
                 <h3 class="op-name v3-h3">{op.name}</h3>
-                <p class="op-desc v3-body" set:html={op.desc}></p>
+                <p class="op-desc v3-body" set:html={formatTypographyHtml(op.desc)}></p>
                 <div class="op-footer">
                   <span class="op-price" set:html={formatCurrencyPlainText(op.price)}></span>
-                  <a href="#form" class="v3-link op-cta">Записаться</a>
                 </div>
               </li>
             ))}
           </ul>
+          <div class="panel-cta" data-v3-reveal>
+            <a href="#form" class="v3-btn v3-btn-primary">Обсудить операцию на консультации</a>
+            <a href="/doctors" class="v3-link v3-link-action">Выбрать хирурга</a>
+          </div>
         </div>
 
         <!-- Body -->
@@ -109,53 +123,63 @@ const faqItems = [
               <li class="op-card">
                 <span class="op-badge v3-eyebrow">{op.badge}</span>
                 <h3 class="op-name v3-h3">{op.name}</h3>
-                <p class="op-desc v3-body" set:html={op.desc}></p>
+                <p class="op-desc v3-body" set:html={formatTypographyHtml(op.desc)}></p>
                 <div class="op-footer">
                   <span class="op-price" set:html={formatCurrencyPlainText(op.price)}></span>
-                  <a href="#form" class="v3-link op-cta">Записаться</a>
                 </div>
               </li>
             ))}
           </ul>
+          <div class="panel-cta" data-v3-reveal>
+            <a href="#form" class="v3-btn v3-btn-primary">Обсудить операцию на консультации</a>
+            <a href="/doctors" class="v3-link v3-link-action">Выбрать хирурга</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <PageLeadMagnet
-      eyebrow="Чек-лист к хирургу"
-      heading="Что подготовить<br />до консультации"
-      lead="Короткий список помогает прийти не «просто поговорить», а получить понятный ответ: что возможно, что лучше отложить и какой путь восстановления реалистичен."
-      items={[
-        { mark: '?', title: 'Запрос', text: 'что беспокоит и какой результат кажется естественным' },
-        { mark: '—', title: 'Ограничения', text: 'сроки, перелёты, работа, спорт и важные события' },
-        { mark: '₽', title: 'Бюджет', text: 'какие расходы входят в операционный маршрут' },
-      ]}
-      ctaPrimary={{ label: 'Получить чек-лист', href: '#form' }}
-      ctaSecondary={{ label: 'Написать в WhatsApp', href: 'https://wa.me/78432236666' }}
-      surface="sand"
-    />
-
-    <!-- Bridge quote -->
-    <section class="v3-bridge-quote v3-surface-ink" aria-label="Принцип работы">
-      <div class="v3-container v3-container-default" data-v3-reveal>
-        <blockquote class="bridge-q">
-          <p class="v3-display bridge-text"><em>«Сделать это так, чтобы все заметили результат, но никто не догадался, что дело в пластике»</em></p>
-        </blockquote>
+    <section class="skin-prep v3-surface-sand" aria-labelledby="skin-prep-heading">
+      <div class="v3-container v3-container-wide skin-prep-grid">
+        <header class="skin-prep-header" data-v3-stagger>
+          <span class="v3-eyebrow">Подготовка кожи</span>
+          <h2 id="skin-prep-heading" class="v3-h2">Косметология перед операцией</h2>
+          <p class="v3-lead">
+            Подготовка кожи помогает подойти к операции с лучшей увлажнённостью, тургором и восстановительным ресурсом тканей. Частый сценарий — курс биоревитализации: три процедуры с интервалом около двух недель. Дополнительно используют коллагеностимуляцию и HELEO4.
+          </p>
+          <a href="/kosmetologiya" class="skin-prep-link">В раздел косметологии <span aria-hidden="true">→</span></a>
+        </header>
+        <div class="skin-prep-panel" data-v3-stagger>
+          <article class="skin-prep-item">
+            <span class="skin-prep-mark">01</span>
+            <h3>Биоревитализация</h3>
+            <p>Курс инъекционных процедур помогает поддержать увлажнённость, тургор и общее качество кожи перед операцией.</p>
+          </article>
+          <article class="skin-prep-item">
+            <span class="skin-prep-mark">02</span>
+            <h3>Коллагеностимуляция</h3>
+            <p>Процедуры направлены на поддержку плотности кожи и работы собственных структур, которые отвечают за упругость тканей.</p>
+          </article>
+          <article class="skin-prep-item skin-prep-item--wide">
+            <span class="skin-prep-mark">03</span>
+            <h3>HELEO4</h3>
+            <p>Фотодинамическая терапия и фотобиомодуляция: на кожу наносят гель-фотосенсибилизатор, затем участок обрабатывают LED-светом. Метод используют в протоколах для возрастных изменений и воспалительных проявлений, чтобы работать с тоном и восстановительным ресурсом кожи.</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- Surgeons -->
-    <section class="v3-plastika-surgeons v3-surface-sand" aria-labelledby="surgeons-heading">
+    <section class="v3-plastika-surgeons v3-surface-cream" aria-labelledby="surgeons-heading">
       <div class="v3-container v3-container-wide">
         <header class="surgeons-header" data-v3-stagger>
           <span class="v3-eyebrow">Команда</span>
           <h2 id="surgeons-heading" class="v3-h2"><em>Хирурги направления</em></h2>
-          <p class="v3-lead surgeons-lead">
-            Каждый хирург клиники прошёл ординатуру по пластической или
-            челюстно-лицевой хирургии в профильных учреждениях. Своя школа
-            и авторские техники — нет единого шаблона.
-          </p>
         </header>
+        <div class="surgeon-choice" data-v3-reveal>
+          <span class="v3-minimark" aria-hidden="true">?</span>
+          <p class="v3-body">Если вы не знаете, к кому записаться, опишите задачу администратору. Мы направим к врачу по профилю: лицо, тело, нос, повторный случай или сочетанная операция.</p>
+          <a href="#form" class="v3-link v3-link-action">Помочь выбрать хирурга</a>
+        </div>
         <ul class="surgeons-grid" data-v3-stagger>
           {surgeons.map((d) => (
             <li class="surgeon-card">
@@ -173,7 +197,7 @@ const faqItems = [
                     : <div class="surgeon-initials">{d.initials}</div>}
                 </div>
                 <div class="surgeon-info">
-                  <p class="surgeon-spec v3-eyebrow">{d.spec}</p>
+                  <p class="surgeon-spec v3-eyebrow">{getPlastikaSurgeonSpec(d.slug, d.spec)}</p>
                   <h3 class="surgeon-name v3-h3">{d.name}</h3>
                   <div class="surgeon-prices">
                     <p class="surgeon-price surgeon-price--primary v3-caption" set:html={formatCurrencyPlainText(d.priceMain)}></p>
@@ -199,10 +223,10 @@ const faqItems = [
         </header>
         <ol class="process-list" data-v3-stagger>
           {[
-            { n: '01', title: 'Консультация', text: 'Хирург осматривает, замеряет, объясняет — что возможно, что разумно, что ожидать. Без спешки.' },
-            { n: '02', title: 'Подготовка', text: 'Анализы, обследования, отмена препаратов если нужно. Список — от хирурга на консультации.' },
-	            { n: '03', title: 'Операция', text: 'На подходящей операционной базе в Казани. Место, анестезию и условия врач обсуждает с вами заранее.' },
-	            { n: '04', title: 'Реабилитация', text: 'Врач заранее объясняет, когда прийти на осмотр, что ограничить и как будет идти восстановление.' },
+            { n: '01', title: 'Консультация', text: 'Хирург разбирает запрос, анамнез, прошлые операции, препараты и ожидания. После осмотра объясняет, какой метод уместен, какой объём нужен и что можно решить без операции.' },
+            { n: '02', title: 'Подготовка', text: 'Врач выдаёт список анализов и обследований, объясняет ограничения по лекарствам, алкоголю, курению, нагрузкам и срокам. Если нужна подготовка кожи или восстановительный уход, подключается косметолог.' },
+            { n: '03', title: 'День операции', text: 'Пациент приезжает в согласованное время в клинику, где запланирована операция: «Корл» или «Миллениум» — в зависимости от врача, объёма и графика. Перед вмешательством хирург проводит контрольный осмотр, разметку и ещё раз проговаривает ход операции.' },
+            { n: '04', title: 'После операции', text: 'Хирург ведёт контрольные осмотры, следит за заживлением и ограничениями. Косметолог может подключаться к уходу за кожей, качеству тканей и поддерживающим процедурам по назначению.' },
           ].map((s) => (
             <li class="process-item">
               <span class="process-num v3-eyebrow">{s.n}</span>
@@ -222,11 +246,11 @@ const faqItems = [
       items={faqItems}
     />
 
-	    <FinalCTA
-	      heading="Выберите маршрут<br />без спешки"
-	      lead="На консультации врач посмотрит вашу ситуацию, объяснит возможные решения и честно скажет об ограничениях. Цель — изменение, которое выглядит естественно и подходит именно вам."
-	      submitLabel="Записаться на консультацию"
-	    />
+    <FinalCTA
+      heading="Обсудите план<br />с хирургом"
+      lead="На консультации врач посмотрит вашу ситуацию, объяснит возможные решения и ограничения, а затем подберёт операцию, другой метод, этапный план или перенос вмешательства."
+      submitLabel="Записаться на консультацию"
+    />
   </main>
   <Footer />
 </SiteLayout>
@@ -302,7 +326,7 @@ const faqItems = [
   .op-footer {
     display: flex;
     align-items: baseline;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 1rem;
     padding-top: 0.75rem;
     border-top: 1px solid var(--v3-border-hair);
@@ -315,7 +339,97 @@ const faqItems = [
     color: var(--v3-champagne-deep);
     white-space: nowrap;
   }
-  .op-cta { font-size: 0.9375rem; }
+  .panel-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-xl);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+  }
+
+  /* Skin preparation */
+  .skin-prep {
+    padding-top: var(--v3-gap-medium);
+    padding-bottom: var(--v3-gap-medium);
+  }
+  .skin-prep-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  .skin-prep-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h1-lead);
+    max-width: 43rem;
+  }
+  .skin-prep-header .v3-eyebrow {
+    color: var(--v3-ink-muted);
+  }
+  .skin-prep-header .v3-lead {
+    max-width: 56ch;
+  }
+  .skin-prep-link {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--v3-ink);
+    font-size: 1rem;
+    line-height: 1.2;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.2rem;
+    transition: color var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .skin-prep-link:hover {
+    color: var(--v3-champagne-deep);
+  }
+  .skin-prep-panel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px;
+    background: var(--v3-border-hair);
+  }
+  .skin-prep-item {
+    min-height: 14rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: clamp(1.35rem, 3vw, 1.85rem);
+    background: var(--v3-surface-card);
+  }
+  .skin-prep-item--wide {
+    grid-column: 1 / -1;
+    min-height: 0;
+  }
+  .skin-prep-mark {
+    font-family: var(--v3-font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--v3-champagne-deep);
+  }
+  .skin-prep-item h3 {
+    margin: 0;
+    font-family: var(--v3-font-display);
+    font-weight: 400;
+    font-size: clamp(1.125rem, 2vw, 1.45rem);
+    line-height: 1.2;
+    color: var(--v3-ink);
+  }
+  .skin-prep-item p {
+    margin: 0;
+    color: var(--v3-ink-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
 
   /* Surgeons */
   .v3-plastika-surgeons {
@@ -329,6 +443,19 @@ const faqItems = [
     margin-bottom: var(--v3-gap-small);
   }
   .surgeons-lead { max-width: 52ch; }
+  .surgeon-choice {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-xl);
+    background: color-mix(in srgb, var(--v3-surface-card) 82%, transparent);
+    box-shadow: var(--v3-shadow-sm);
+  }
+  .surgeon-choice p { color: var(--v3-ink); }
   .surgeons-grid {
     list-style: none;
     margin: 0;
@@ -398,7 +525,7 @@ const faqItems = [
   }
   .surgeon-price--primary {
     color: var(--v3-champagne-deep);
-    font-family: var(--v3-font-display);
+    font-family: var(--v3-font-body);
   }
   .surgeon-price--secondary {
     color: var(--v3-ink-muted);
@@ -408,14 +535,6 @@ const faqItems = [
     margin-top: var(--v3-gap-small);
     display: flex;
   }
-
-  /* Bridge quote */
-  .v3-bridge-quote {
-    padding-top: var(--v3-gap-medium);
-    padding-bottom: var(--v3-gap-medium);
-  }
-  .bridge-q { margin: 0; }
-  .bridge-text { color: var(--v3-on-ink); max-width: 24ch; margin: 0; }
 
   /* Process */
   .v3-process {
@@ -456,14 +575,33 @@ const faqItems = [
 
   @media (max-width: 1024px) {
     .ops-grid { grid-template-columns: repeat(2, 1fr); }
+    .skin-prep-grid { grid-template-columns: 1fr; }
     .surgeons-grid { grid-template-columns: repeat(2, 1fr); }
     .process-list { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 560px) {
     .plast-tab { padding-inline: 1.25rem; font-size: 0.9375rem; }
     .ops-grid { grid-template-columns: 1fr; }
+    .panel-cta { align-items: stretch; }
+    .panel-cta .v3-link { justify-content: center; }
+    .skin-prep-panel { grid-template-columns: 1fr; }
+    .skin-prep-item {
+      min-height: 0;
+      padding: 1.25rem;
+    }
+    .skin-prep-item--wide { grid-column: auto; }
     .surgeons-grid { grid-template-columns: 1fr; }
+    .surgeon-choice { grid-template-columns: 1fr; }
     .process-list { grid-template-columns: 1fr; }
+    .process-item {
+      gap: 0.75rem;
+      padding: 1.375rem 1.25rem;
+    }
+    .process-title { font-size: 1rem; }
+    .process-text {
+      font-size: 0.875rem;
+      line-height: 1.55;
+    }
   }
 
 </style>

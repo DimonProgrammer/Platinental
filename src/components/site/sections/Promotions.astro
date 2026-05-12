@@ -9,12 +9,12 @@ import consultationPhoto from '../../../assets/photos/promo-consultation-plan.pn
       <div class="promo-content" data-v3-stagger>
         <span class="v3-eyebrow promo-kicker">Акция для первичного визита</span>
         <h2 id="promo-heading" class="v3-h2 promo-title">
-          <em>План гармонизации внешности перед консультацией</em>
+          <em>План консультации перед визитом</em>
         </h2>
 
         <p class="v3-lead promo-lead">
           Оставьте заявку с сайта — администратор подскажет, какие фото и вопросы подготовить,
-          а врач на очной консультации соберёт понятный маршрут: что действительно имеет смысл,
+          а врач на очной консультации соберёт понятный план: что действительно имеет смысл,
           что можно отложить и как спланировать восстановление.
         </p>
 
@@ -41,12 +41,12 @@ import consultationPhoto from '../../../assets/photos/promo-consultation-plan.pn
             Получить план <span aria-hidden="true">→</span>
           </button>
           <a href="https://wa.me/78432236666" class="v3-link promo-whatsapp" target="_blank" rel="noopener noreferrer">
-            Написать в WhatsApp
+            Написать в мессенджер
           </a>
         </div>
 
         <p class="v3-caption promo-note">
-          План не заменяет консультацию врача. Медицинские рекомендации и стоимость определяются только после осмотра.
+          Медицинские рекомендации и стоимость врач подтверждает на консультации.
         </p>
       </div>
 
@@ -60,7 +60,7 @@ import consultationPhoto from '../../../assets/photos/promo-consultation-plan.pn
         />
         <figcaption class="promo-badge">
           <span class="promo-badge-label">Первичный визит</span>
-          <span class="promo-badge-text">маршрут консультации</span>
+          <span class="promo-badge-text">план консультации</span>
         </figcaption>
       </figure>
     </article>
@@ -75,7 +75,7 @@ import consultationPhoto from '../../../assets/photos/promo-consultation-plan.pn
       button.dataset.bookingBound = '1';
       button.addEventListener('click', () => {
         window.dispatchEvent(new CustomEvent('open-booking', {
-          detail: { preset: 'План гармонизации внешности' },
+          detail: { preset: 'План консультации перед визитом' },
         }));
       });
     });

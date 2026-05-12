@@ -1,4 +1,6 @@
 ---
+import { formatTypographyHtml } from '../../../lib/formatText';
+
 interface LeadItem {
   mark: string;
   title: string;
@@ -10,7 +12,14 @@ interface Props {
   heading: string;
   lead: string;
   items: LeadItem[];
-  ctaPrimary?: { label: string; href: string };
+  ctaPrimary?: {
+    label: string;
+    href: string;
+    bookingTitle?: string;
+    bookingLead?: string;
+    bookingMessage?: string;
+    bookingPlaceholder?: string;
+  };
   ctaSecondary?: { label: string; href: string };
   surface?: 'cream' | 'sand' | 'ink';
   note?: string;
@@ -24,7 +33,7 @@ const {
   ctaPrimary = { label: 'Получить ориентир', href: '#form' },
   ctaSecondary,
   surface = 'sand',
-  note = 'Материал помогает подготовиться к консультации, но не заменяет очный осмотр врача.',
+  note,
 } = Astro.props;
 
 const leadId = `lead-${heading
@@ -37,11 +46,20 @@ const leadId = `lead-${heading
   <div class="v3-container v3-container-wide page-lead-grid">
     <div class="page-lead-copy" data-v3-stagger>
       <span class="v3-eyebrow">{eyebrow}</span>
-      <h2 id={leadId} class="v3-h2" set:html={heading}></h2>
-      <p class="v3-lead page-lead-text" set:html={lead}></p>
+      <h2 id={leadId} class="v3-h2" set:html={formatTypographyHtml(heading)}></h2>
+      <p class="v3-lead page-lead-text" set:html={formatTypographyHtml(lead)}></p>
       <div class="page-lead-actions">
-        <a href={ctaPrimary.href} class="v3-btn v3-btn-primary">{ctaPrimary.label} <span aria-hidden="true">→</span></a>
-        {ctaSecondary && <a href={ctaSecondary.href} class="v3-link">{ctaSecondary.label}</a>}
+        <a
+          href={ctaPrimary.href}
+          class="v3-btn v3-btn-primary"
+          data-booking-custom-title={ctaPrimary.bookingTitle}
+          data-booking-custom-lead={ctaPrimary.bookingLead}
+          data-booking-custom-message={ctaPrimary.bookingMessage}
+          data-booking-custom-placeholder={ctaPrimary.bookingPlaceholder}
+        >
+          {ctaPrimary.label} <span aria-hidden="true">→</span>
+        </a>
+        {ctaSecondary && <a href={ctaSecondary.href} class="v3-link v3-link-action">{ctaSecondary.label}</a>}
       </div>
     </div>
 
@@ -57,10 +75,12 @@ const leadId = `lead-${heading
           </li>
         ))}
       </ul>
-      <p class="v3-caption page-lead-note">
-        <span class="v3-minimark" aria-hidden="true">!</span>
-        {note}
-      </p>
+      {note && (
+        <p class="v3-caption page-lead-note">
+          <span class="v3-minimark" aria-hidden="true">!</span>
+          {note}
+        </p>
+      )}
     </div>
   </div>
 </section>

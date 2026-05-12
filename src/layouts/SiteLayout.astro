@@ -8,6 +8,7 @@ interface Props {
   description?: string;
   canonical?: string;
   ogImage?: string;
+  robots?: string;
 }
 
 const {
@@ -15,12 +16,14 @@ const {
   description = 'The Platinental Казань — клиника пластической хирургии и эстетической медицины. Авторские методики, гармонизирующий подход. С 2011 года в Казани.',
   canonical,
   ogImage = '/quote/iskornev-portrait-2026.png',
+  robots,
 } = Astro.props;
 
 const siteUrl = Astro.site ?? new URL('https://kzn.platinental.ru');
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteUrl).toString();
 const isNotFound = Astro.url.pathname === '/404';
+const robotsContent = robots ?? (isNotFound ? 'noindex, follow' : undefined);
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'MedicalClinic',
@@ -55,7 +58,7 @@ const jsonLd = {
     <meta name="theme-color" content="#FBF8F4" />
     <meta name="color-scheme" content="light" />
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
-    {isNotFound && <meta name="robots" content="noindex, follow" />}
+    {robotsContent && <meta name="robots" content={robotsContent} />}
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -76,6 +79,22 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImageUrl} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      (() => {
+        try {
+          const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (reduced) return;
+          document.documentElement.classList.add('v3-motion-ready');
+          window.setTimeout(() => {
+            if (!document.documentElement.classList.contains('v3-motion-bound')) {
+              document.documentElement.classList.add('v3-motion-fallback');
+            }
+          }, 2500);
+        } catch {
+          document.documentElement.classList.add('v3-motion-fallback');
+        }
+      })();
+    </script>
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
     <ClientRouter />
   </head>
@@ -92,6 +111,7 @@ const jsonLd = {
       import '../scripts/motion-scroll.ts';
       import '../scripts/motion-faq.ts';
       import '../scripts/motion-quote.ts';
+      import '../scripts/form-guards.ts';
     </script>
   </body>
 </html>

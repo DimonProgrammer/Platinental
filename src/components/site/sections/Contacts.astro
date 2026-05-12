@@ -1,4 +1,6 @@
 ---
+import { formatTypographyHtml } from '../../../lib/formatText';
+
 const mapLat = '55.795720635738';
 const mapLon = '49.128799438477';
 const mapAddress = 'Казань, ул. Карла Маркса, 48, корп. 1';
@@ -28,7 +30,7 @@ const fields = [
           <div class="contact-row">
             <span class="v3-minimark contact-mark" aria-hidden="true">{f.mark}</span>
             <dt class="v3-eyebrow contact-label">{f.label}</dt>
-            <dd class="contact-value v3-body" set:html={f.value}></dd>
+            <dd class="contact-value v3-body" set:html={formatTypographyHtml(f.value)}></dd>
           </div>
         ))}
       </dl>
@@ -54,14 +56,13 @@ const fields = [
           allowfullscreen
         ></iframe>
       </div>
-      <p class="map-coords v3-caption">55.7957 N · 49.1288 E</p>
       <a
         href={mapRouteHref}
         target="_blank"
         rel="noopener"
         class="map-route v3-btn v3-btn-ghost"
       >
-        Построить маршрут →
+        Открыть карту →
       </a>
     </div>
   </div>
@@ -115,12 +116,15 @@ const fields = [
     aspect-ratio: 4/5;
     position: relative;
     overflow: hidden;
+    border-radius: 1.5rem;
   }
   .contacts-map-frame {
     position: absolute;
     inset: 0;
     border: 1px solid var(--v3-border-hair);
+    border-radius: inherit;
     background: var(--v3-sand);
+    overflow: hidden;
   }
   .map-placeholder {
     position: absolute;
@@ -164,15 +168,6 @@ const fields = [
     opacity: 0;
     pointer-events: none;
   }
-  .map-coords {
-    position: absolute;
-    bottom: 3.5rem;
-    left: 1rem;
-    color: var(--v3-ink-muted);
-    z-index: 2;
-    background: rgba(251, 248, 244, 0.84);
-    padding: 0.1875rem 0.375rem;
-  }
   .map-route {
     position: absolute;
     bottom: 1rem;
@@ -200,10 +195,6 @@ const fields = [
     .contact-value { grid-area: value; }
   }
   @media (max-width: 560px) {
-    .map-coords {
-      left: 0.875rem;
-      bottom: 3.25rem;
-    }
     .map-route {
       left: 0.75rem;
       right: 0.75rem;

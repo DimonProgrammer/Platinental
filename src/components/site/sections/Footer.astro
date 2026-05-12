@@ -127,7 +127,7 @@ const year = new Date().getFullYear();
   .footer-logo:hover { opacity: 0.78; }
   .footer-logo-img {
     display: block;
-    height: 28px;
+    height: 30px;
     width: auto;
   }
   .footer-cta-block {
@@ -172,8 +172,17 @@ const year = new Date().getFullYear();
     margin-bottom: 0.5rem;
   }
   .addr { color: var(--v3-on-ink); margin: 0; }
-  .addr-link { text-decoration: none; transition: color var(--v3-duration-fast) var(--v3-ease-out); }
-  .addr-link:hover { color: var(--v3-champagne); }
+  .addr-link {
+    text-decoration: none;
+    transition:
+      color var(--v3-duration-fast) var(--v3-ease-out),
+      transform var(--v3-duration-fast) var(--v3-ease-out);
+  }
+  .addr-link:hover,
+  .addr-link:focus-visible {
+    color: var(--v3-champagne-soft);
+    transform: translateX(2px);
+  }
   .phone {
     font-family: var(--v3-font-body);
     font-weight: 600;
@@ -196,9 +205,15 @@ const year = new Date().getFullYear();
     color: var(--v3-on-ink);
     text-decoration: none;
     font-size: 0.9375rem;
-    transition: color var(--v3-duration-fast) var(--v3-ease-out);
+    transition:
+      color var(--v3-duration-fast) var(--v3-ease-out),
+      transform var(--v3-duration-fast) var(--v3-ease-out);
   }
-  .footer-link:hover { color: var(--v3-champagne); }
+  .footer-link:hover,
+  .footer-link:focus-visible {
+    color: var(--v3-champagne-soft);
+    transform: translateX(2px);
+  }
   .note { color: var(--v3-on-ink-muted); margin-top: 0.5rem; }
   .bottom { margin-top: clamp(3rem, 6vw, 5rem); }
   .bottom-row {
@@ -258,6 +273,7 @@ const year = new Date().getFullYear();
     .footer-link {
       min-height: 44px;
     }
+    .footer-logo-img { height: 31px; }
     .messengers {
       display: flex;
       flex-wrap: wrap;

@@ -13,39 +13,38 @@ import aboutClinicExterior from '../assets/photos/about-clinic-exterior.png';
 import aboutClinicLogoWall from '../assets/photos/about-clinic-logo-wall.png';
 import aboutClinicLounge from '../assets/photos/about-clinic-lounge.png';
 
-const milestones = [
-  { year: '2011', text: 'Открытие клиники в Казани. Первые операции, первые пациенты.' },
-  { year: '2014', text: 'Расширение направления косметологии. Собственная операционная.' },
-  { year: '2018', text: 'Развитие авторских методик и более точной эстетической навигации для пациентов.' },
-  { year: '2022', text: 'Команда пополнилась молодыми хирургами из ведущих московских клиник.' },
-  { year: '2024', text: 'Внедрение face-preserving philosophy — деликатная хирургия без потери естественности.' },
-];
-
 const principles = [
   {
     num: '01',
-    title: 'Хирурги клиники обучались в РНИМУ им. Пирогова, 1-м МГМУ им. Сеченова и РНЦХ им. Петровского.',
-    text: '',
+    title: 'Сильная квалификация врачей',
+    text: 'Хирурги клиники проходили подготовку в РНИМУ им. Пирогова, 1-м МГМУ им. Сеченова, РНЦХ им. Петровского и других профильных медицинских центрах.',
   },
   {
     num: '02',
-    title: 'У наших хирургов — исключительная квалификация и опыт, авторские методики.',
-    text: '',
+    title: 'Своя специализация у каждого врача',
+    text: 'Врачи клиники работают по своим направлениям и глубоко ведут узкие профили: пластика лица и тела, ринопластика, маммопластика, косметология, челюстно-лицевая хирургия и регенеративные методики.',
   },
   {
     num: '03',
-    title: 'Гармонизирующий подход: замеры и расчёт пропорций перед каждой операцией, общий принцип без единого шаблона.',
-    text: '',
+    title: 'План операции после очной оценки',
+    text: 'Врач разбирает анатомию, состояние тканей, показания, ограничения и задачу пациента. После этого обсуждаются метод, объём вмешательства, подготовка и восстановление.',
   },
 ];
 
-const accreditations = [
-  { abbr: 'РНИМУ им. Пирогова', full: 'Ординатура по пластической хирургии' },
-  { abbr: '1-й МГМУ им. Сеченова', full: 'Ординатура по пластической хирургии' },
-  { abbr: 'РНЦХ им. Петровского', full: 'Ординатура по пластической хирургии' },
-  { abbr: 'Челюстно-лицевая хирургия', full: 'Отдельное направление — для сложных и вторичных ринопластик' },
-  { abbr: 'Исключительная квалификация и опыт', full: 'Членство хирургов клиники' },
-  { abbr: 'Патенты', full: 'Авторские методики, разработанные хирургами клиники. Детали — на страницах конкретных врачей' },
+const management = [
+  {
+    name: 'Сергеева Гузель Ильдусовна',
+    role: 'Директор клиники',
+    text: 'Отвечает за работу ООО «Платинентал Казань» и организационный контур клиники.',
+    initials: 'СГ',
+  },
+  {
+    name: 'Грицай Олеся Анатольевна',
+    role: 'Главный врач, врач-косметолог',
+    text: 'Ведёт косметологическое направление и сопровождение пациентов до и после процедур.',
+    photo: '/doctors/gritsay/photo.png',
+    photoAlt: 'Портрет Грицай Олеси Анатольевны',
+  },
 ];
 
 const clinicGallery = [
@@ -77,17 +76,17 @@ const clinicGallery = [
 
 const faqItems = [
   {
-    q: 'The Platinental — это филиал московской клиники?',
-    a: 'Нет. The Platinental Казань — самостоятельное юридическое лицо (ООО «Платинентал Казань»). С московской клиникой у нас общий бренд и один из основателей, но это отдельные проекты.',
+    q: 'Кто ведёт приём в The Platinental Казань?',
+    a: 'В клинике принимают пластические хирурги, косметологи и специалисты смежных направлений. Профиль каждого врача указан на его странице: образование, специализация, ключевые направления и подтверждённые профессиональные факты.',
     open: true,
   },
   {
     q: 'С какого года работает клиника?',
-    a: 'С 2011 года. За это время в клинике выполнены тысячи операций и процедур.',
+    a: 'С 2011 года. За это время клиника развила направления пластической хирургии, косметологии и космецевтики в Казани.',
   },
   {
-    q: 'Есть ли у хирургов международные сертификаты?',
-    a: 'Все хирурги клиники — выпускники ординатуры РНИМУ Пирогова, Сеченовского университета, РНЦХ Петровского. У отдельных специалистов — членство в международных профессиональных ассоциациях; уточнить можно на странице конкретного врача.',
+    q: 'Где посмотреть образование и квалификацию врачей?',
+    a: 'На страницах врачей указаны профильное образование, ординатура, дополнительное обучение и членство в профессиональных ассоциациях, если оно подтверждено для конкретного специалиста.',
   },
   {
     q: 'Где находится клиника?',
@@ -98,7 +97,7 @@ const faqItems = [
 
 <SiteLayout
   title="О клинике — The Platinental Казань"
-  description="The Platinental — клиника пластической хирургии и косметологии в Казани с 2011 года. Авторские методики, деликатный подход, исключительная квалификация хирургов."
+  description="The Platinental — клиника пластической хирургии и косметологии в Казани с 2011 года. Деликатный подход, профильная подготовка врачей и открытые документы."
 >
   <Navigation />
   <main id="main">
@@ -107,13 +106,13 @@ const faqItems = [
       pageMarkerLabel="О клинике"
       eyebrow="PLATINENTAL КАЗАНЬ"
       h1="Казанская клиника пластической хирургии и косметологии"
-      lead="Деликатная гармонизация внешности, хирургия и косметология в одном маршруте."
+      lead="Клиника в Казани с 2011 года: пластическая хирургия, косметология, открытые документы и сопровождение от первичной консультации до полного восстановления."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
-      ctaSecondary={{ label: 'Врачи клиники', href: '/doctors' }}
+      ctaSecondary={{ label: 'Смотреть врачей', href: '/doctors' }}
       meta={[
-        { num: '•', label: 'самостоятельная клиника в Казани' },
-        { num: '—', label: 'юридические документы открыты' },
-        { num: '+', label: 'хирургия и косметология в одном маршруте' },
+        { num: '•', label: 'клиника в Казани с 2011 года' },
+        { num: '•', label: 'профильные хирурги и косметологи' },
+        { num: '+', label: 'подбор врача под задачу' },
       ]}
     />
 
@@ -122,15 +121,14 @@ const faqItems = [
       <div class="v3-container v3-container-wide philosophy-grid" data-v3-reveal>
         <div class="philosophy-text">
           <blockquote class="philosophy-quote">
-            <p class="v3-display"><em>«Мы не создаём абстрактно красивые лица. Мы создаём образы с характером — запоминающиеся, со своей индивидуальностью, усиливающие звучание привлекательных черт»</em></p>
+            <p class="v3-display"><em>Сильная врачебная команда для точного и естественного результата</em></p>
           </blockquote>
           <div class="philosophy-body">
-            <p class="v3-lead">С момента основания клиника держится одного принципа: сначала врач внимательно смотрит на лицо, пропорции и ваш запрос — и только потом предлагает решение.</p>
-            <p class="v3-body">Хирург не просто выполняет операцию, а проектирует результат. Замеры, расчёт пропорций, индивидуальный план — и только потом скальпель. У каждого врача клиники своя школа, свой опыт и авторские техники — и при этом общая философия: деликатная, уважительная гармонизация.</p>
-            <p class="v3-body">Идейный вдохновитель этой философии — Андрей Искорнев, один из учредителей клиники, хирург, оперирующий в Москве и Лос-Анджелесе, действительный член ASPS, ISAPS и IPRAS.</p>
+            <p class="v3-lead">The Platinental Казань — клиника пластической хирургии и косметологии в центре Казани. Главная сила клиники — врачебная команда: пластические хирурги, косметологи и специалисты смежных направлений с серьёзной подготовкой, опытом и собственным профессиональным фокусом.</p>
+            <p class="v3-body">Здесь работают с эстетикой лица и тела, ринопластикой, маммопластикой, челюстно-лицевой хирургией, косметологией и регенеративными методиками. У отдельных врачей есть авторские разработки, патентная работа и международный профессиональный опыт.</p>
           </div>
           <div>
-            <a href="/doctors" class="v3-btn v3-btn-secondary">Познакомиться с врачами</a>
+            <a href="/doctors" class="v3-btn v3-btn-secondary">Познакомиться с командой</a>
           </div>
         </div>
         <div class="philosophy-photo v3-photo-film v3-photo-shutter" data-v3-reveal>
@@ -149,37 +147,19 @@ const faqItems = [
 
     <PageLeadMagnet
       eyebrow="Перед первым визитом"
-      heading="Маршрут знакомства<br />с клиникой"
-      lead="Если вы только выбираете клинику, не нужно сразу решать за операцию. Оставьте заявку — администратор подскажет, с какого специалиста начать, какие вопросы подготовить и какие документы посмотреть заранее."
+      heading="Первое знакомство<br />с клиникой"
+      lead="Если вы только выбираете клинику, не обязательно сразу принимать решение об операции. Оставьте заявку — администратор подскажет, с какого специалиста начать, какие вопросы подготовить и какие документы посмотреть заранее."
       items={[
         { mark: '✓', title: 'Документы', text: 'лицензия, юрлицо, адрес и правила оказания услуг' },
-        { mark: '+', title: 'Команда', text: 'какой профиль врача подходит под ваш запрос' },
+        { mark: '+', title: 'Команда', text: 'кто из специалистов работает с вашей задачей' },
         { mark: '→', title: 'Первичный визит', text: 'что взять с собой и как проходит консультация' },
       ]}
-      ctaPrimary={{ label: 'Получить маршрут', href: '#form' }}
+      ctaPrimary={{ label: 'Получить ориентир', href: '#form' }}
       ctaSecondary={{ label: 'Смотреть документы', href: '/documents' }}
       surface="sand"
     />
 
     <SurgicalPartnersBlock />
-
-    <!-- История -->
-    <section class="v3-timeline v3-surface-sand" aria-labelledby="timeline-heading">
-      <div class="v3-container v3-container-default">
-        <header class="timeline-header" data-v3-stagger>
-          <span class="v3-eyebrow">История</span>
-          <h2 id="timeline-heading" class="v3-h2"><em>Как мы росли</em></h2>
-        </header>
-        <ol class="timeline-list" data-v3-reveal>
-          {milestones.map((m) => (
-            <li class="timeline-item">
-              <span class="timeline-year v3-eyebrow">{m.year}</span>
-              <p class="timeline-text v3-body">{m.text}</p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
 
     <!-- Галерея клиники -->
     <section class="v3-clinic-gallery v3-surface-cream" aria-label="Интерьеры клиники">
@@ -199,25 +179,8 @@ const faqItems = [
                 loading="lazy"
                 class={item.className}
               />
-              <figcaption class="v3-caption gallery-caption">{item.title}</figcaption>
             </figure>
           ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Экономика качества -->
-    <section class="v3-economics v3-surface-ink" aria-labelledby="economics-heading">
-      <div class="v3-container v3-container-wide economics-grid" data-v3-reveal>
-        <div class="economics-left">
-          <span class="v3-eyebrow economics-eyebrow">Экономика качества</span>
-          <h2 id="economics-heading" class="v3-display economics-display">
-	            <em>Результат пластики<br />остаётся надолго.</em>
-          </h2>
-        </div>
-        <div class="economics-right">
-          <p class="v3-lead economics-lead">Хорошее «дорого» не ограничивается персональным подходом и красивым интерьером. В «дорого» вы платите за эстетический вкус, уникальный опыт и репутацию тех, кто умеет создавать идеальное по индивидуальным меркам.</p>
-	          <p class="v3-body economics-body">Вы выбираете опыт, вкус и умение планировать без лишнего. Поэтому важны не только интерьер и бренд, но и профиль врача, его школа и готовность честно объяснить ограничения.</p>
         </div>
       </div>
     </section>
@@ -243,54 +206,52 @@ const faqItems = [
       </div>
     </section>
 
-    <!-- Аккредитации -->
-    <section class="v3-accred v3-surface-ink" aria-labelledby="accred-heading">
+    <section class="v3-management v3-surface-cream" aria-labelledby="management-heading">
       <div class="v3-container v3-container-default">
-        <div class="accred-inner" data-v3-reveal>
-          <span class="v3-eyebrow">Квалификация</span>
-          <h2 id="accred-heading" class="v3-h2"><em>Образование и аккредитация</em></h2>
-          <ul class="accred-list">
-            {accreditations.map((a) => (
-              <li class="accred-item">
-                <span class="accred-abbr v3-h3">{a.abbr}</span>
-                <span class="v3-body accred-full">{a.full}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <FAQ
-      eyebrow="О клинике"
-      heading="Частые вопросы"
-      items={faqItems}
-    />
-
-    <!-- Цитата Искорнева -->
-    <section class="v3-iskornev v3-surface-ink" aria-label="Цитата основателя">
-      <div class="v3-container v3-container-default iskornev-wrap" data-v3-reveal>
-        <blockquote class="iskornev-quote">
-          <p class="v3-h2 iskornev-text"><em>«В мире, где избыточность является минимальным стандартом, деликатность ценится как новое сокровище. Именно так мы относимся к внешности наших пациентов. Внося едва заметные коррективы, мы создаём образ, в котором вам будет комфортно покорять новый мир.»</em></p>
-          <footer class="iskornev-author v3-eyebrow">
-            Андрей Искорнев, один из учредителей и идейный вдохновитель · Член ASPS, ISAPS, IPRAS
-          </footer>
-        </blockquote>
-        <figure class="iskornev-media">
-          <img
-            src="/quote/iskornev-portrait-2026.png"
-            alt="Портрет Андрея Искорнева"
-            class="iskornev-photo"
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
+        <header class="management-header" data-v3-stagger>
+          <span class="v3-eyebrow">Ответственные лица</span>
+          <h2 id="management-heading" class="v3-h2"><em>Управление и медицинский контур</em></h2>
+        </header>
+        <ul class="management-list">
+          {management.map((item) => (
+            <li class="management-item">
+              <figure class="management-photo-wrap" aria-hidden={item.photo ? 'false' : 'true'}>
+                {item.photo ? (
+                  <img
+                    src={item.photo}
+                    alt={item.photoAlt}
+                    class="management-photo"
+                    loading="lazy"
+                    decoding="async"
+                    width="420"
+                    height="520"
+                  />
+                ) : (
+                  <div class="management-photo management-photo-placeholder">
+                    <span>{item.initials}</span>
+                  </div>
+                )}
+              </figure>
+              <div class="management-copy">
+                <span class="v3-eyebrow management-role">{item.role}</span>
+                <h3 class="v3-h3 management-name">{item.name}</h3>
+                <p class="v3-body management-text">{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
 
     <FinalCTA
       heading="Познакомьтесь<br />с клиникой"
       lead="Запишитесь на первичную консультацию. Расскажем о возможностях и ответим на все вопросы."
+    />
+
+    <FAQ
+      eyebrow="О клинике"
+      heading="Частые вопросы"
+      items={faqItems}
     />
   </main>
   <Footer />
@@ -397,131 +358,6 @@ const faqItems = [
   .gallery-img-wrap:hover .gallery-img {
     transform: scale(1.03);
   }
-  .gallery-caption {
-    position: absolute;
-    left: 1rem;
-    bottom: 1rem;
-    display: inline-flex;
-    align-items: center;
-    min-height: 2rem;
-    padding: 0.375rem 0.75rem;
-    border-radius: var(--v3-radius-pill);
-    background: rgba(251, 248, 244, 0.86);
-    color: var(--v3-ink);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(104, 92, 84, 0.14);
-  }
-
-  /* Economics */
-  .v3-economics {
-    padding-top: var(--v3-gap-deep);
-    padding-bottom: var(--v3-gap-deep);
-  }
-  .economics-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(2rem, 6vw, 5rem);
-    align-items: start;
-  }
-  .economics-eyebrow { color: var(--v3-on-ink-muted); }
-  .economics-left {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .economics-display {
-    color: var(--v3-on-ink);
-    margin: 0;
-  }
-  .economics-right {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding-top: 0.5rem;
-  }
-  .economics-lead { color: var(--v3-on-ink); margin: 0; }
-  .economics-body { color: var(--v3-on-ink-secondary); margin: 0; }
-
-  /* Iskornev quote */
-  .v3-iskornev {
-    padding-top: var(--v3-gap-deep);
-    padding-bottom: var(--v3-gap-deep);
-  }
-  .iskornev-wrap {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
-    gap: clamp(2rem, 5vw, 5rem);
-    align-items: end;
-  }
-  .iskornev-quote {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--v3-gap-h1-lead);
-  }
-  .iskornev-text { color: var(--v3-on-ink); margin: 0; }
-  .iskornev-author { color: var(--v3-on-ink-muted); }
-  .iskornev-media {
-    position: relative;
-    margin: 0;
-    justify-self: end;
-    width: min(100%, 24rem);
-  }
-  .iskornev-media::before {
-    content: '';
-    position: absolute;
-    inset: -1rem 1rem 1rem -1rem;
-    border: 1px solid rgba(251, 248, 244, 0.12);
-    border-radius: calc(var(--v3-radius-xl) + 0.375rem);
-    pointer-events: none;
-  }
-  .iskornev-photo {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 27 / 36;
-    object-fit: cover;
-    object-position: center top;
-    border-radius: var(--v3-radius-xl);
-  }
-
-  /* Timeline */
-  .v3-timeline {
-    padding-top: var(--v3-gap-deep);
-    padding-bottom: var(--v3-gap-deep);
-  }
-  .timeline-header {
-    display: flex;
-    flex-direction: column;
-    gap: var(--v3-gap-eyebrow-h1);
-    margin-bottom: var(--v3-gap-small);
-  }
-  .timeline-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  .timeline-item {
-    display: grid;
-    grid-template-columns: 6rem 1fr;
-    gap: 2rem;
-    padding-block: 1.5rem;
-    border-top: 1px solid var(--v3-border-hair);
-    align-items: baseline;
-  }
-  .timeline-item:last-child { border-bottom: 1px solid var(--v3-border-hair); }
-  .timeline-year {
-    color: var(--v3-champagne-deep);
-    letter-spacing: 0.12em;
-  }
-  .timeline-text {
-    margin: 0;
-    color: var(--v3-ink-secondary);
-  }
-
   /* Principles */
   .v3-about-principles {
     padding-top: var(--v3-gap-deep);
@@ -538,7 +374,7 @@ const faqItems = [
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2px;
     background: var(--v3-border-hair);
   }
@@ -553,57 +389,87 @@ const faqItems = [
   .principle-body { display: flex; flex-direction: column; gap: 0.75rem; }
   .principle-body .v3-body { margin: 0; }
 
-  /* Accreditations */
-  .v3-accred {
+  /* Management */
+  .v3-management {
     padding-top: var(--v3-gap-deep);
     padding-bottom: var(--v3-gap-deep);
   }
-  .accred-inner {
+  .management-header {
     display: flex;
     flex-direction: column;
-    gap: var(--v3-gap-h1-lead);
-    max-width: 52rem;
+    gap: var(--v3-gap-eyebrow-h1);
+    margin-bottom: var(--v3-gap-small);
+    max-width: 42rem;
   }
-  .accred-lead { max-width: 52ch; }
-  .accred-list {
+  .management-list {
     list-style: none;
-    margin: 1rem 0 0;
+    margin: 0;
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--v3-border-hair);
+  }
+  .management-item {
+    background: var(--v3-cream);
+    padding: clamp(1rem, 2vw, 1.5rem);
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    border-top: 1px solid var(--v3-border-on-ink);
+    gap: clamp(1rem, 2vw, 1.25rem);
   }
-  .accred-item {
-    display: grid;
-    grid-template-columns: 14rem 1fr;
-    gap: 2rem;
-    padding-block: 1.25rem;
-    border-bottom: 1px solid var(--v3-border-on-ink);
-    align-items: baseline;
+  .management-photo-wrap {
+    margin: 0;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--v3-radius-lg);
+    background:
+      linear-gradient(145deg, color-mix(in srgb, var(--v3-sand) 68%, var(--v3-cream)), var(--v3-cream));
+    border: 1px solid color-mix(in srgb, var(--v3-border-soft) 78%, transparent);
   }
-  .accred-abbr { color: var(--v3-champagne); }
-  .accred-full { color: var(--v3-on-ink-secondary); margin: 0; }
+  .management-photo {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .management-photo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--v3-champagne-deep);
+    font-family: var(--v3-font-display);
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+  .management-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .management-role {
+    color: var(--v3-champagne-deep);
+  }
+  .management-name,
+  .management-text {
+    margin: 0;
+  }
+  .management-text {
+    color: var(--v3-ink-secondary);
+  }
 
   @media (max-width: 1024px) {
     .philosophy-grid { grid-template-columns: 1fr; }
     .philosophy-photo { position: static; order: -1; }
-    .economics-grid { grid-template-columns: 1fr; }
-    .iskornev-wrap {
+    .management-list {
       grid-template-columns: 1fr;
-      align-items: start;
-    }
-    .iskornev-media {
-      justify-self: start;
-      width: min(100%, 22rem);
-    }
-    .iskornev-media::before {
-      inset: -0.75rem 0.75rem 0.75rem -0.75rem;
     }
   }
   @media (max-width: 768px) {
-    .timeline-item { grid-template-columns: 4rem 1fr; gap: 1rem; }
     .principles-list { grid-template-columns: 1fr; }
-    .accred-item { grid-template-columns: 1fr; gap: 0.25rem; }
     .gallery-strip {
       grid-template-columns: 1fr;
       grid-auto-rows: auto;
