@@ -25,7 +25,7 @@ const homeDoctorCopy: Record<string, { spec: string; credential?: string; short:
   },
   vasilev: {
     spec: 'К.М.Н. · БЛЕФАРОПЛАСТИКА · МАММОПЛАСТИКА · КОНТУРИРОВАНИЕ ТЕЛА',
-    short: 'Кандидат медицинских наук, соавтор патента РФ №2741620. Работает с блефаропластикой, маммопластикой, контурированием тела и хирургической коррекцией шейно-подбородочной зоны.',
+    short: 'Кандидат медицинских наук, соавтор четырёх зарегистрированных патентов. Работает с блефаропластикой, маммопластикой, контурированием тела и хирургической коррекцией шейно-подбородочной зоны.',
   },
 };
 
@@ -42,6 +42,9 @@ const featuredCards = featured.map((doctor) => ({
       <header class="doctors-header" data-v3-stagger>
         <span class="v3-eyebrow">Команда</span>
         <h2 id="doctors-heading" class="v3-h2"><em>Врачи клиники</em></h2>
+        <p class="doctors-proof v3-body">
+          В команде клиники — хирурги с научной работой, авторскими разработками и зарегистрированными патентами. Подробности указаны на страницах конкретных врачей.
+        </p>
       </header>
     </div>
   </div>
@@ -187,6 +190,12 @@ const featuredCards = featured.map((doctor) => ({
     display: flex;
     flex-direction: column;
     gap: var(--v3-gap-eyebrow-h1);
+  }
+
+  .doctors-proof {
+    max-width: 48rem;
+    margin: 0;
+    color: var(--v3-ink-secondary);
   }
 
   .babayan-wrap {

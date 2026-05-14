@@ -17,8 +17,9 @@ export interface PatentRef {
   title: string;
   role: string;
   description: string;
+  practicalMeaning?: string[];
   coauthors: string[];
-  holder: string;
+  holder?: string;
   href: string;
 }
 
@@ -137,6 +138,9 @@ export interface Doctor {
   galleryEyebrow?: string;
   galleryHeading?: string;
   patents?: PatentRef[];
+  patentsEyebrow?: string;
+  patentsHeading?: string;
+  patentsIntro?: string;
   proofs?: DoctorProof[];
   proofsEyebrow?: string;
   proofsHeading?: string;
@@ -171,15 +175,68 @@ const worksPlaceholder = (captions: [string, string, string, string]) =>
   captions.map((caption) => ({ before: null, after: null, caption }));
 
 const neckLiftPatent: PatentRef = {
-  number: 'RU 2741620',
-  title: 'Способ подтяжки шеи',
+  number: 'RU2741620C1',
+  title: 'Подтяжка шеи с усиленной фиксацией тканей',
   role: 'соавтор',
   description:
-    'Простыми словами, патент относится к хирургической коррекции возрастных изменений шеи. В нём описан способ работы с мягкими тканями шеи и шейно-подбородочной зоны, чтобы улучшить контур шеи и нижней трети лица.',
-  coauthors: ['Васильев М.Н.', 'Мамедов В.А.', 'Искорнев А.А.'],
+    'Техника подтяжки шеи с внутренней усиленной фиксацией мягких тканей и использованием сетчатого импланта.',
+  practicalMeaning: [
+    'более выраженный контур шеи и подбородка',
+    'уменьшение провисания мягких тканей',
+    'более стабильный результат со временем',
+  ],
+  coauthors: ['Васильев М.Н.', 'Искорнев А.А.', 'Мамедов В.А.'],
   holder: 'ПЛАТИНЕНТАЛ',
   href: 'https://new.fips.ru/registers-doc-view/fips_servlet?DB=RUPAT&DocNumber=2741620&TypeFile=html',
 };
+
+const abdominalHerniaPatent: PatentRef = {
+  number: 'RU2427328C1',
+  title: 'Закрытие больших послеоперационных грыж живота',
+  role: 'соавтор',
+  description:
+    'Хирургический способ закрытия больших послеоперационных грыж живота с более анатомичным расположением сетчатого импланта.',
+  practicalMeaning: [
+    'снижение риска повторного формирования грыжи',
+    'меньше послеоперационных осложнений',
+    'более стабильные условия для заживления тканей',
+  ],
+  coauthors: ['Васильев М.Н.', 'Ванюшин П.А.', 'Григорьев К.А.', 'Морозов В.В.', 'Валыка Е.В.'],
+  href: 'https://new.fips.ru/registers-doc-view/fips_servlet?DB=RUPAT&DocNumber=2427328&TypeFile=html',
+};
+
+const otoplastyPatent: PatentRef = {
+  number: 'RU2764502C1',
+  title: 'Коррекция лопоухости в сложных случаях',
+  role: 'соавтор',
+  description:
+    'Метод коррекции лопоухости при сочетании глубокой чаши ушной раковины и слабовыраженного противозавитка.',
+  practicalMeaning: [
+    'более естественная форма уха',
+    'снижение риска повторного отхождения ушной раковины',
+    'более стабильный эстетический результат',
+  ],
+  coauthors: ['Васильев М.Н.', 'Искорнев А.А.', 'Этибарян А.А.'],
+  href: 'https://new.fips.ru/registers-doc-view/fips_servlet?DB=RUPAT&DocNumber=2764502&TypeFile=html',
+};
+
+const faceliftPatent: PatentRef = {
+  number: 'RU2766524C1',
+  title: 'Подтяжка лица через естественные анатомические пространства',
+  role: 'соавтор',
+  description:
+    'Техника подтяжки лица с перемещением тканей через естественные анатомические пространства лица.',
+  practicalMeaning: [
+    'более точная работа с мягкими тканями лица',
+    'эффективное перемещение тканей при подтяжке',
+    'потенциальное снижение травматичности операции',
+  ],
+  coauthors: ['Васильев М.Н.', 'Искорнев А.А.', 'Этибарян А.А.'],
+  href: 'https://new.fips.ru/registers-doc-view/fips_servlet?DB=RUPAT&DocNumber=2766524&TypeFile=html',
+};
+
+const vasilevPatents = [abdominalHerniaPatent, neckLiftPatent, otoplastyPatent, faceliftPatent];
+const iskornevPatents = [neckLiftPatent, otoplastyPatent, faceliftPatent];
 
 export const doctors: Doctor[] = [
   {
@@ -191,7 +248,7 @@ export const doctors: Doctor[] = [
     spec: 'ЭСТЕТИЧЕСКАЯ ХИРУРГИЯ ЛИЦА И ШЕИ',
     tags: ['plastika', 'face'],
     group: 'surgery',
-    short: 'Пластический хирург, основатель The Platinental Москва и один из учредителей The Platinental Казань. Действительный член международных профессиональных организаций ASPS, ISAPS и IPRAS, учредитель и главный специалист клиники MESOBAR (Лос-Анджелес), соавтор зарегистрированного патента RU 2741620 на способ подтяжки шеи.',
+    short: 'Пластический хирург, основатель The Platinental Москва и один из учредителей The Platinental Казань. Действительный член международных профессиональных организаций ASPS, ISAPS и IPRAS, учредитель и главный специалист клиники MESOBAR (Лос-Анджелес), соавтор трёх зарегистрированных патентов.',
     priceMain: 'Консультация · по записи',
     priceSub: 'Операции в Казани · по индивидуальному графику',
     bookingEnabled: true,
@@ -221,7 +278,9 @@ export const doctors: Doctor[] = [
       title: 'Планирование по анатомии и задаче пациента',
       body: 'В работе с лицом Искорнев А.А. оценивает анатомию пациента, пропорции, мимику, возрастные изменения, состояние мягких тканей и медицинские показания к операции.<br /><br />Задача эстетической хирургии — выбрать обоснованный объем вмешательства: скорректировать возрастные изменения, улучшить контуры и сохранить естественный результат.<br /><br />Сначала врач проводит диагностику и определяет показания. После этого подбираются метод, объем коррекции и реалистичный прогноз результата.',
     },
-    patents: [neckLiftPatent],
+    patents: iskornevPatents,
+    patentsHeading: 'Патенты в хирургической практике',
+    patentsIntro: 'Искорнев А.А. — соавтор зарегистрированных патентов, связанных с хирургией лица, шеи и коррекцией формы ушной раковины.',
     details: {
       specialization: [
         'Пластическая хирургия лица',
@@ -453,7 +512,7 @@ export const doctors: Doctor[] = [
     spec: 'К.М.Н. · ХИРУРГИЯ ЛИЦА И ТЕЛА',
     tags: ['plastika', 'face', 'body'],
     group: 'surgery',
-    short: 'Работает с операциями на лице, груди и теле: блефаропластикой, миниинвазивным лифтингом бровей, маммопластикой, липосакцией, липомоделированием, миниабдоминопластикой и коррекцией рубцов. Научный бэкграунд связан с общей хирургией: Васильев М.Н. защитил диссертацию по хирургии послеоперационных срединных вентральных грыж. Соавтор зарегистрированного в 2021 году патента РФ №2741620 «Способ подтяжки шеи».',
+    short: 'Работает с операциями на лице, груди и теле: блефаропластикой, миниинвазивным лифтингом бровей, маммопластикой, липосакцией, липомоделированием, миниабдоминопластикой и коррекцией рубцов. Научный бэкграунд связан с общей хирургией: Васильев М.Н. защитил диссертацию по хирургии послеоперационных срединных вентральных грыж. Соавтор четырёх зарегистрированных патентов.',
     priceMain: 'Первичная консультация 7 000 ₽',
     priceSub: 'Повторная консультация 5 000 ₽ · Онлайн-консультация 4 000 ₽',
     surgicalBase: 'korl',
@@ -462,7 +521,7 @@ export const doctors: Doctor[] = [
     photoFrame: { scale: 1.13, x: '0%', y: '-4%' },
     stats: [
       { value: 'К.м.н.', label: 'кандидат медицинских наук' },
-      { value: 'Соавтор', label: 'патента РФ № 2741620' },
+      { value: 'Соавтор', label: '4 зарегистрированных патентов' },
     ],
     gallery: [],
     resultCases: [
@@ -472,7 +531,9 @@ export const doctors: Doctor[] = [
       { src: '/doctors/vasilev/cases/04.jpg', title: 'Кейс 4', objectPosition: '50% 50%' },
     ],
     resultCasesAspect: '1 / 1',
-    patents: [neckLiftPatent],
+    patents: vasilevPatents,
+    patentsHeading: 'Четыре патента в хирургической практике',
+    patentsIntro: 'Васильев М.Н. — соавтор четырёх зарегистрированных патентов. Разработки связаны с задачами, где особенно важны анатомия, фиксация тканей, прогнозируемость результата и хирургическая точность.',
     details: {
       specialization: [
         'Блефаропластика, миниинвазивный лифтинг бровей',
@@ -537,6 +598,8 @@ export const doctors: Doctor[] = [
     resultCasesAspect: '1 / 1',
     resultCasesFit: 'contain',
     patents: [neckLiftPatent],
+    patentsHeading: 'Патентная работа',
+    patentsIntro: 'Мамедов В.А. — соавтор зарегистрированного патента, связанного с хирургической коррекцией возрастных изменений шеи.',
     details: {
       specialization: [
         'Ринопластика и риносептопластика',

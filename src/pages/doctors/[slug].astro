@@ -51,6 +51,11 @@ const finalCtaHeading = d.slug === 'iskornev'
 const finalCtaLead = d.slug === 'iskornev'
   ? 'Администратор уточнит ближайшие даты, формат консультации и какие материалы подготовить к приёму.'
   : `${[d.priceMain, d.priceSub].filter(Boolean).join(' · ')}. Администратор уточнит удобное время и поможет подготовиться к приёму.`;
+const patentBadgeLabel = d.patents?.length
+  ? d.patents.length === 1
+    ? 'соавтор патента'
+    : `соавтор ${d.patents.length} патентов`
+  : null;
 const messengerLinks = [
   { label: 'Telegram', href: 'https://t.me/platinental_kazan' },
   { label: 'Max', href: 'https://max.ru' },
@@ -108,6 +113,12 @@ const faqItems = d.faq ?? defaultFaqItems;
           <h1 id="doc-heading" class="v3-h1 doc-h1">
             <em>{d.name}</em>
           </h1>
+          {patentBadgeLabel && (
+            <span class="doc-patent-badge">
+              <span class="doc-patent-badge-mark" aria-hidden="true">+</span>
+              {patentBadgeLabel}
+            </span>
+          )}
           <p class="v3-lead doc-lead" set:html={formatTypographyHtml(d.short)}></p>
           {bookingEnabled ? (
             <>
@@ -361,33 +372,59 @@ const faqItems = d.faq ?? defaultFaqItems;
             </article>
           ))}
 
-          {d.patents?.map((patent) => (
-            <article class="doc-support-card doc-patent-card">
-              <span class="v3-eyebrow">Патент</span>
-              <h3 class="patent-title">{patent.number} · {patent.title}</h3>
-              <p class="v3-body patent-text">{patent.description}</p>
-              <dl class="patent-meta">
-                <div>
-                  <dt>Роль</dt>
-                  <dd>{patent.role}</dd>
-                </div>
-                <div>
-                  <dt>Соавторы</dt>
-                  <dd>{patent.coauthors.join(', ')}</dd>
-                </div>
-                <div>
-                  <dt>Патентообладатель</dt>
-                  <dd>{patent.holder}</dd>
-                </div>
-              </dl>
-              <a href={patent.href} target="_blank" rel="noopener noreferrer" class="v3-link patent-link">
-                Проверить в базе ФИПС
-              </a>
-            </article>
-          ))}
         </div>
       </div>
     </section>
+
+    {d.patents && d.patents.length > 0 && (
+      <section class="v3-doc-patents v3-surface-sand" aria-labelledby="patents-heading">
+        <div class="v3-container v3-container-default">
+          <header class="doc-section-header" data-v3-stagger>
+            <span class="v3-eyebrow">{d.patentsEyebrow ?? 'Патенты'}</span>
+            <h2 id="patents-heading" class="v3-h2"><em>{d.patentsHeading ?? 'Патенты в хирургической практике'}</em></h2>
+            <p class="v3-lead patents-intro">
+              {d.patentsIntro ?? 'Зарегистрированные разработки показывают участие врача в развитии хирургических способов и профессиональной практики.'}
+            </p>
+          </header>
+          <div class="patents-grid" data-v3-stagger>
+            {d.patents.map((patent) => (
+              <article class="doc-patent-card">
+                <span class="v3-eyebrow">Патент</span>
+                <h3 class="patent-title">{patent.number} · {patent.title}</h3>
+                <p class="v3-body patent-text">{patent.description}</p>
+                {patent.practicalMeaning && patent.practicalMeaning.length > 0 && (
+                  <div class="patent-meaning">
+                    <p class="v3-caption patent-meaning-label">Практический смысл</p>
+                    <ul class="patent-meaning-list">
+                      {patent.practicalMeaning.map((item) => <li>{item}</li>)}
+                    </ul>
+                  </div>
+                )}
+                <dl class="patent-meta">
+                  <div>
+                    <dt>Роль</dt>
+                    <dd>{patent.role}</dd>
+                  </div>
+                  <div>
+                    <dt>Соавторы</dt>
+                    <dd>{patent.coauthors.join(', ')}</dd>
+                  </div>
+                  {patent.holder && (
+                    <div>
+                      <dt>Патентообладатель</dt>
+                      <dd>{patent.holder}</dd>
+                    </div>
+                  )}
+                </dl>
+                <a href={patent.href} target="_blank" rel="noopener noreferrer" class="v3-link patent-link">
+                  Проверить в базе ФИПС
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
 
     {doctorPriceSheet && doctorPriceSheet.items.length > 0 && !isCosmetologist && (
       <section class="v3-doc-prices v3-surface-sand" aria-labelledby="doc-prices-heading">
@@ -1439,6 +1476,31 @@ const faqItems = d.faq ?? defaultFaqItems;
     text-align: left;
     transform: translateX(-50%);
   }
+  .v3-doc-patents {
+    padding-top: var(--v3-gap-deep);
+    padding-bottom: var(--v3-gap-deep);
+  }
+  .patents-intro {
+    max-width: 44rem;
+    margin: 0;
+  }
+  .patents-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: var(--v3-gap-small);
+  }
+  .doc-patent-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    min-height: 100%;
+    padding: clamp(1.25rem, 2vw, 1.75rem);
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-lg);
+    background: var(--v3-surface-card);
+    box-shadow: var(--v3-shadow-sm);
+  }
   .patent-title {
     margin: 0;
     font-family: var(--v3-font-display);
@@ -1448,6 +1510,40 @@ const faqItems = d.faq ?? defaultFaqItems;
     color: var(--v3-ink);
   }
   .patent-text { margin: 0; }
+  .patent-meaning {
+    display: grid;
+    gap: 0.5rem;
+    padding-top: 0.25rem;
+  }
+  .patent-meaning-label {
+    margin: 0;
+    color: var(--v3-champagne-deep);
+  }
+  .patent-meaning-list {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .patent-meaning-list li {
+    position: relative;
+    padding-left: 1rem;
+    color: var(--v3-ink-secondary);
+    font-family: var(--v3-font-body);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+  .patent-meaning-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: var(--v3-champagne-deep);
+  }
   .patent-meta {
     display: grid;
     gap: 0.5rem;
@@ -1518,6 +1614,7 @@ const faqItems = d.faq ?? defaultFaqItems;
     .care-header { position: static; }
     .doc-support-card--media { grid-template-columns: 1fr; }
     .doc-support-media { max-width: 28rem; }
+    .patents-grid { grid-template-columns: 1fr; }
     .works-grid { grid-template-columns: repeat(2, 1fr); }
     .doc-price-link-card { grid-template-columns: 1fr; }
   }
