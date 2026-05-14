@@ -582,8 +582,10 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
 
   .nav-overlay {
     position: fixed;
-    inset: 0 0 0 auto;
-    width: 0;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
     z-index: var(--v3-z-overlay);
     background: var(--v3-cream);
     box-shadow: none;
@@ -594,31 +596,35 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
     overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
-    transform: translateX(100%);
+    opacity: 0;
+    transform: none;
     visibility: hidden;
     pointer-events: none;
     transition:
-      transform 0.42s var(--v3-ease-out),
+      opacity 0.24s var(--v3-ease-out),
       visibility 0s linear 0.42s;
-    will-change: transform;
+    will-change: opacity;
   }
   .nav-overlay[inert] {
     visibility: hidden;
   }
   .nav-overlay.is-open {
     display: block;
-    width: min(420px, 92vw);
+    left: 0;
+    right: 0;
+    width: 100vw;
     height: 100vh;
     height: 100dvh;
     max-height: none;
     padding: 0 var(--v3-gutter) max(2rem, env(safe-area-inset-bottom));
     box-shadow: -24px 0 48px -24px rgba(10, 10, 10, 0.18);
     overflow-y: scroll;
-    transform: translateX(0);
+    opacity: 1;
+    transform: none;
     visibility: visible;
     pointer-events: auto;
     transition:
-      transform 0.42s var(--v3-ease-out),
+      opacity 0.24s var(--v3-ease-out),
       visibility 0s linear 0s;
   }
 
@@ -818,7 +824,7 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
     border-radius: 999px;
     font-family: var(--v3-font-body);
     font-size: 0.75rem;
-    color: var(--v3-ink-secondary);
+    color: var(--v3-ink);
     text-decoration: none;
     transition: color var(--v3-duration-fast) var(--v3-ease-out),
                 border-color var(--v3-duration-fast) var(--v3-ease-out);
@@ -839,7 +845,7 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
   }
   .overlay-phone:hover { color: var(--v3-champagne-deep); }
   .overlay-hours {
-    color: var(--v3-ink-muted);
+    color: var(--v3-ink-secondary);
     margin: 0;
   }
   .overlay-msgrs {
@@ -855,7 +861,7 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
     min-height: 44px;
     font-family: var(--v3-font-body);
     font-size: 0.9375rem;
-    color: var(--v3-ink-secondary);
+    color: var(--v3-ink);
     text-decoration: none;
     transition: color var(--v3-duration-fast) var(--v3-ease-out);
     touch-action: manipulation;
@@ -959,7 +965,7 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
     }
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 560px) {
     .nav-cta { display: none; }
   }
 </style>
@@ -982,6 +988,8 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
     overlay.dataset.closeTimer = '';
     overlay.classList.add('is-open');
     backdrop?.classList.add('is-open');
+    document.documentElement.classList.add('nav-open');
+    window.dispatchEvent(new CustomEvent('platinental:nav-open'));
     burger.setAttribute('aria-expanded', 'true');
     burger.setAttribute('aria-label', 'Закрыть меню');
   }
@@ -991,6 +999,8 @@ const dgisReviews = 'https://2gis.ru/kazan/firm/platinental';
     if (!overlay || !burger) return;
     overlay.classList.remove('is-open');
     backdrop?.classList.remove('is-open');
+    document.documentElement.classList.remove('nav-open');
+    window.dispatchEvent(new CustomEvent('platinental:nav-close'));
     burger.setAttribute('aria-expanded', 'false');
     burger.setAttribute('aria-label', 'Открыть меню');
     window.clearTimeout(Number(overlay.dataset.closeTimer || 0));

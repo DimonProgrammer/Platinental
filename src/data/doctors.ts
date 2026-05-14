@@ -587,9 +587,8 @@ export const doctors: Doctor[] = [
       title: 'Анатомическое планирование операций лица',
       body: 'Ринопластика и операции на лице требуют точной работы с костями, хрящами, мягкими тканями и дыхательной функцией. Поэтому Мамедов В.А. планирует операцию под конкретную анатомию пациента, а не только под внешний запрос.<br /><br />На консультации врач разбирает исходные особенности: форму носа, перегородку, дыхание, пропорции лица, толщину кожи, предыдущие операции или травмы. После этого объясняет, какой объём коррекции возможен и где есть ограничения.<br /><br />Такой подход особенно важен при сложных и повторных случаях, когда нужно учитывать не только внешний результат, но и последствия предыдущих вмешательств, включая операции у другого врача.',
     },
-    gallery: Array.from({ length: 6 }, (_, i) => `/doctors/mamedov/gallery/${String(i + 1).padStart(2, '0')}.jpg`),
+    gallery: [],
     resultCases: [
-      { src: '/doctors/mamedov/cases/01.jpg', title: 'Ультразвуковая ринопластика', objectPosition: '50% 50%', aspectRatio: '1 / 1' },
       { src: '/doctors/mamedov/cases/02.jpg', title: 'Платизмопластика (глубокое омоложение шеи)', objectPosition: '50% 50%', aspectRatio: '1 / 1' },
       { src: '/doctors/mamedov/cases/03.jpg', title: 'Ультразвуковая ринопластика + эндоскопическое омоложение верхней и средней трети лица', objectPosition: '50% 50%', aspectRatio: '1 / 1' },
       { src: '/doctors/mamedov/cases/04.jpg', title: 'Ультразвуковая ринопластика + эндоскопическое омоложение средней трети лица', objectPosition: '50% 50%', aspectRatio: '1 / 1' },
@@ -886,7 +885,7 @@ export const doctors: Doctor[] = [
     short: 'Нейрохирург, травматолог-ортопед, доктор медицинских наук, профессор. Основатель метода MIBRAR — системы регенеративной хирургии для работы с позвоночником, суставами и тканями.',
     credential: 'Нейрохирург, травматолог-ортопед, д.м.н., профессор',
     priceMain: 'Онлайн-консультация · по запросу',
-    priceSub: 'Очно в Казани · по записи',
+    priceSub: 'Очно в Ереване · по записи',
     surgicalBase: null,
     tone: 'c',
     photo: '/doctors/babayan/photo.png',
@@ -897,15 +896,7 @@ export const doctors: Doctor[] = [
     },
     documentsEyebrow: 'PDF для пациента',
     documentsHeading: 'Как MIBRAR отличается от классической операции',
-    documents: [
-      {
-        src: '/doctors/babayan/docs/broschure.pdf',
-        label: 'Разбор метода',
-        title: 'Когда рассматривают лечение без имплантатов',
-        description: 'В PDF простым языком объясняется регенеративный подход: почему врач сначала изучает снимки и документы, в каких случаях метод может быть уместен и чем он отличается от открытой операции или эндопротезирования.',
-        kind: 'publication',
-      },
-    ],
+    documents: [],
     galleryEyebrow: 'Клинические случаи',
     galleryHeading: 'Снимки до и после лечения MIBRAR',
     details: {
@@ -925,7 +916,7 @@ export const doctors: Doctor[] = [
     supportNotes: [
       {
         label: 'Международная рекомендация и публикации',
-        body: 'В <a href="/doctors/babayan/docs/diploma.pdf" target="_blank" rel="noopener" class="v3-link">FOCUS-Gesundheit 2026</a> <span class="support-note-help" tabindex="0" aria-label="FOCUS-Gesundheit — немецкий медицинский справочник. В нём публикуют рекомендованных врачей по специальностям.">?</span> Prof. Dr. Dr. Arsen Babayan указан как рекомендованный специалист по нейрохирургии в Мюнхене. Интервью о методике MIBRAR — <a href="https://www.tatar-inform.ru/news/lecat-kletki-tela-a-ne-protez-kak-proryvnoi-metod-ortopedii-spasaet-iznosennye-sustavy-6017202" target="_blank" rel="noopener" class="v3-link">Tatar-inform: «Лечат клетки тела, а не протез»</a>.',
+        body: 'В справочнике FOCUS-Gesundheit 2026 <span class="support-note-help" tabindex="0" aria-label="FOCUS-Gesundheit — немецкий медицинский справочник. В нём публикуют рекомендованных врачей по специальностям.">?</span> Prof. Dr. Dr. Arsen Babayan указан как рекомендованный специалист по нейрохирургии в Мюнхене. Интервью о методике MIBRAR — <a href="https://www.tatar-inform.ru/news/lecat-kletki-tela-a-ne-protez-kak-proryvnoi-metod-ortopedii-spasaet-iznosennye-sustavy-6017202" target="_blank" rel="noopener" class="v3-link">Tatar-inform: «Лечат клетки тела, а не протез»</a>.',
         image: {
           src: '/doctors/babayan/docs/focus-gesundheit-2026.png',
           alt: 'Документ FOCUS-Gesundheit 2026 с рекомендацией Prof. Dr. Dr. Arsen Babayan',
@@ -1081,7 +1072,6 @@ const doctorPrototypeContent: Record<string, Partial<Doctor>> = {
       body: [
         'На консультации Васильев М.Н. сначала уточняет, какая зона беспокоит пациента и за счет чего сформировалась проблема. Например, в области глаз причина может быть не только в избытке кожи верхнего века, но и в положении брови, лба, объеме тканей под глазами или качестве кожи.',
         'По итогам осмотра врач выбирает тактику: блефаропластика, лифтинг бровей, эндоскопическая подтяжка лба, косметологическая коррекция или наблюдение без операции. В отзывах пациенты отдельно отмечают, что врач может не рекомендовать хирургическое вмешательство, если для запроса достаточно косметологического метода.',
-        'В операциях на груди и теле Васильев М.Н. также оценивает ткани, рубцы, объем коррекции и восстановление. Общая хирургическая подготовка помогает внимательнее работать с состоянием тканей после операций, родов, изменения веса или предыдущих вмешательств.',
       ],
     },
     reviews: [

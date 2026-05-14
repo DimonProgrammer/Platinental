@@ -1,0 +1,104 @@
+---
+const label = 'Записаться на консультацию';
+---
+
+<div class="mobile-sticky-cta" data-mobile-sticky-cta>
+  <button type="button" class="mobile-sticky-cta__button" data-mobile-booking-open>
+    {label}
+  </button>
+</div>
+
+<script>
+  function initMobileStickyCTA() {
+    const sticky = document.querySelector<HTMLElement>('[data-mobile-sticky-cta]');
+
+    if (sticky && sticky.dataset.mobileVisibilityBound !== '1') {
+      sticky.dataset.mobileVisibilityBound = '1';
+      const blockers = new Set<Element>();
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) blockers.add(entry.target);
+            else blockers.delete(entry.target);
+          });
+          sticky.classList.toggle('mobile-sticky-cta--hidden-near-form', blockers.size > 0);
+        },
+        { rootMargin: '0px 0px -18% 0px', threshold: 0.01 },
+      );
+      document.querySelectorAll<HTMLElement>('#form, .v3-footer').forEach((section) => observer.observe(section));
+    }
+
+    document.querySelectorAll<HTMLButtonElement>('[data-mobile-booking-open]').forEach((button) => {
+      if (button.dataset.mobileStickyBound === '1') return;
+      button.dataset.mobileStickyBound = '1';
+      button.addEventListener('click', () => {
+        window.dispatchEvent(new CustomEvent('open-booking'));
+      });
+    });
+  }
+
+  if (document.readyState !== 'loading') initMobileStickyCTA();
+  else document.addEventListener('DOMContentLoaded', initMobileStickyCTA);
+  document.addEventListener('astro:page-load', initMobileStickyCTA);
+</script>
+
+<style>
+  .mobile-sticky-cta {
+    display: none;
+  }
+
+  @media (max-width: 560px) {
+    :global(body) {
+      padding-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    .mobile-sticky-cta {
+      position: fixed;
+      left: max(0.875rem, env(safe-area-inset-left, 0px));
+      right: max(0.875rem, env(safe-area-inset-right, 0px));
+      bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+      z-index: calc(var(--v3-z-overlay) - 2);
+      display: block;
+      pointer-events: none;
+      transition:
+        opacity var(--v3-duration-fast) var(--v3-ease-out),
+        transform var(--v3-duration-fast) var(--v3-ease-out),
+        visibility 0s linear 0s;
+    }
+
+    .mobile-sticky-cta__button {
+      width: 100%;
+      min-height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid color-mix(in srgb, var(--v3-on-ink) 16%, transparent);
+      border-radius: var(--v3-radius-pill);
+      background: var(--v3-ink);
+      color: var(--v3-on-ink);
+      box-shadow: 0 18px 42px rgba(104, 92, 84, 0.22);
+      font-family: var(--v3-font-body);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: 0.035em;
+      cursor: pointer;
+      pointer-events: auto;
+      touch-action: manipulation;
+    }
+
+    .mobile-sticky-cta--hidden-near-form,
+    :global(html.nav-open) .mobile-sticky-cta,
+    :global(html.booking-open) .mobile-sticky-cta {
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(0.75rem);
+      pointer-events: none;
+      transition:
+        opacity var(--v3-duration-fast) var(--v3-ease-out),
+        transform var(--v3-duration-fast) var(--v3-ease-out),
+        visibility 0s linear var(--v3-duration-fast);
+    }
+  }
+</style>

@@ -33,8 +33,8 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
         <Image
           src={heroWarmProfile}
           alt="Портрет в тёплом свете с акцентом на профиль, линию подбородка и шеи"
-          width={556}
-          height={680}
+          width={864}
+          height={1080}
           loading="eager"
           fetchpriority="high"
           class="hero-image-asset"
@@ -110,7 +110,7 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
     object-fit: cover;
     object-position: center center;
     display: block;
-    transform: scale(1.14);
+    transform: scale(1);
     transform-origin: center center;
     animation: heroImageReveal 1.2s var(--v3-ease-out) 0.15s both;
   }
@@ -163,7 +163,7 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
     }
     to {
       opacity: 1;
-      transform: scale(1.14);
+      transform: scale(1);
     }
   }
 
@@ -185,7 +185,7 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
       align-self: start;
     }
     .hero-image-wrap { max-width: 33rem; }
-    .hero-image-asset { transform: scale(1.14); }
+    .hero-image-asset { transform: scale(1); }
   }
   @media (max-width: 560px) {
     .v3-hero {
@@ -248,7 +248,7 @@ import heroWarmProfile from '../../../assets/photos/home-hero-warm-profile.png';
       height: 100%;
       object-fit: cover;
       object-position: center center;
-      transform: scale(1.14);
+      transform: scale(1);
       transform-origin: center center;
     }
     .stat-item::before {

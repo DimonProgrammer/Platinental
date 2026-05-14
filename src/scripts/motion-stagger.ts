@@ -19,9 +19,11 @@ const playSoftReveal = (el: HTMLElement, delay = 0) => {
   }
 
   el.dataset[ANIMATED_FLAG] = '1';
-  el.classList.add('is-visible');
 
-  if (prefersReducedMotion() || typeof el.animate !== 'function') return;
+  if (prefersReducedMotion() || typeof el.animate !== 'function') {
+    el.classList.add('is-visible');
+    return;
+  }
 
   el.style.willChange = 'transform, opacity';
   const animation = el.animate(
@@ -33,11 +35,13 @@ const playSoftReveal = (el: HTMLElement, delay = 0) => {
       duration: REVEAL_DURATION_MS,
       delay,
       easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
-      fill: 'backwards',
+      fill: 'both',
     },
   );
 
   animation.addEventListener('finish', () => {
+    el.classList.add('is-visible');
+    animation.cancel();
     el.style.willChange = '';
   }, { once: true });
 };

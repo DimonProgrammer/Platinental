@@ -44,7 +44,7 @@ export const legalDocuments = {
   terms: {
     title: 'Пользовательское соглашение сайта',
     label: 'Скачать пользовательское соглашение',
-    href: '/documents/polzovatelskoe-soglashenie.pdf',
+    href: '/documents/polzovatelskoe_soglashenie.pdf',
     type: 'PDF',
     size: '3,1 МБ',
   },

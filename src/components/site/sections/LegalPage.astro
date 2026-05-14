@@ -3,6 +3,8 @@ import SiteLayout from '../../../layouts/SiteLayout.astro';
 import Navigation from './Navigation.astro';
 import FinalCTA from './FinalCTA.astro';
 import Footer from './Footer.astro';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 
 interface DocLink {
   title: string;
@@ -24,6 +26,8 @@ interface Props {
 }
 
 const { title, description, eyebrow, heading, lead, doc, extraDocs = [], body } = Astro.props;
+const hasPublicFile = (href: string) => existsSync(join(process.cwd(), 'public', href.replace(/^\//, '')));
+const docAvailable = hasPublicFile(doc.href);
 ---
 
 <SiteLayout title={title} description={description}>
@@ -40,8 +44,12 @@ const { title, description, eyebrow, heading, lead, doc, extraDocs = [], body } 
         <aside class="legal-download" aria-label="Документ для скачивания">
           <span class="v3-eyebrow">Файл</span>
           <p class="v3-h3">{doc.title}</p>
-          <p class="v3-caption">{doc.type} · {doc.size}</p>
-          <a href={doc.href} class="v3-btn v3-btn-primary" target="_blank" rel="noopener noreferrer">{doc.label}</a>
+          <p class="v3-caption">{doc.type} · {doc.size}{!docAvailable && ' · по запросу в клинике'}</p>
+          {docAvailable ? (
+            <a href={doc.href} class="v3-btn v3-btn-primary" target="_blank" rel="noopener noreferrer">{doc.label}</a>
+          ) : (
+            <p class="v3-body legal-file-note">Файл готовим к публикации. Сейчас документ можно запросить у администратора клиники.</p>
+          )}
         </aside>
       </div>
     </section>
@@ -61,12 +69,19 @@ const { title, description, eyebrow, heading, lead, doc, extraDocs = [], body } 
             <div class="legal-extra" aria-label="Связанные документы">
               <span class="v3-eyebrow">Связанные файлы</span>
               <ul>
-                {extraDocs.map((d) => (
+                {extraDocs.map((d) => {
+                  const isAvailable = hasPublicFile(d.href);
+                  return (
                   <li>
-                    <a href={d.href} class="v3-link" target="_blank" rel="noopener noreferrer">{d.label}</a>
-                    <span class="v3-caption">{d.type} · {d.size}</span>
+                    {isAvailable ? (
+                      <a href={d.href} class="v3-link" target="_blank" rel="noopener noreferrer">{d.label}</a>
+                    ) : (
+                      <span>{d.title}</span>
+                    )}
+                    <span class="v3-caption">{d.type} · {d.size}{!isAvailable && ' · по запросу'}</span>
                   </li>
-                ))}
+                  );
+                })}
               </ul>
             </div>
           )}
@@ -114,6 +129,10 @@ const { title, description, eyebrow, heading, lead, doc, extraDocs = [], body } 
   .legal-download .v3-btn {
     justify-content: center;
     margin-top: 0.5rem;
+  }
+  .legal-file-note {
+    margin: 0;
+    color: var(--v3-ink-muted);
   }
   .legal-body {
     padding-top: var(--v3-gap-medium);

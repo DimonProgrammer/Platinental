@@ -5,11 +5,15 @@ import PageHero from '../components/site/sections/PageHero.astro';
 import FinalCTA from '../components/site/sections/FinalCTA.astro';
 import Footer from '../components/site/sections/Footer.astro';
 import { documentsList } from '../data/legalDocuments';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+
+const hasPublicFile = (href: string) => existsSync(join(process.cwd(), 'public', href.replace(/^\//, '')));
 ---
 
 <SiteLayout
   title="Документы и лицензии — The Platinental Казань"
-  description="Лицензия на медицинскую деятельность и правовые документы клиники The Platinental Казань."
+  description="Документы The Platinental Казань: лицензия, политика обработки персональных данных, согласия, пользовательское соглашение и реквизиты клиники."
 >
   <Navigation />
   <main id="main">
@@ -32,16 +36,23 @@ import { documentsList } from '../data/legalDocuments';
         <h2 id="docs-heading" class="sr-only">Документы клиники</h2>
 
         <ul class="docs-list">
-          {documentsList.map((d) => (
+          {documentsList.map((d) => {
+            const isAvailable = hasPublicFile(d.href);
+            return (
             <li class="doc-item">
               <span class="v3-minimark doc-mark" aria-hidden="true">•</span>
               <div class="doc-info">
                 <p class="doc-title v3-h3">{d.title}</p>
-                <p class="v3-caption doc-issuer">{d.type} · {d.size}</p>
+                <p class="v3-caption doc-issuer">{d.type} · {d.size}{!isAvailable && ' · по запросу в клинике'}</p>
               </div>
-              <a href={d.href} class="v3-link doc-link" target="_blank" rel="noopener noreferrer">{d.label}</a>
+              {isAvailable ? (
+                <a href={d.href} class="v3-link doc-link" target="_blank" rel="noopener noreferrer">{d.label}</a>
+              ) : (
+                <span class="v3-caption doc-status">Файл готовим</span>
+              )}
             </li>
-          ))}
+            );
+          })}
         </ul>
 
         <p class="docs-note v3-body">

@@ -73,8 +73,8 @@ const filterOptions = [
 ---
 
 <SiteLayout
-  title="Врачи — The Platinental Казань"
-  description="Пластические хирурги и косметологи клиники The Platinental Казань. Клиника The Platinental Казань собрала самых востребованных специалистов в своей области. Образование, специализации, стоимость консультации."
+  title="Врачи The Platinental Казань — пластические хирурги и косметологи"
+  description="Врачи The Platinental Казань: пластические хирурги, косметологи и специалисты смежных направлений. Профили, образование и стоимость консультации."
 >
   <Navigation />
   <main id="main">
@@ -83,31 +83,22 @@ const filterOptions = [
       pageMarkerLabel="Команда"
       eyebrow="THE PLATINENTAL · КАЗАНЬ"
       h1="Врачи клиники The Platinental в Казани"
-      lead="Команда с профильной хирургической подготовкой, клинической практикой и узкими focus profiles: эстетическая хирургия лица и шеи, ринопластика, маммопластика, ортогнатическая хирургия, косметология и восстановление кожи после операций."
+      lead="Команда с профильной хирургической подготовкой, клинической практикой и узкими фокусными профилями: эстетическая хирургия лица и шеи, ринопластика, маммопластика, ортогнатическая хирургия, косметология и восстановление кожи после операций."
       ctaPrimary={{ label: 'Записаться на консультацию', href: '#form' }}
       ctaSecondary={{ label: 'Посмотреть врачей', href: '#doctors-heading' }}
-      meta={[
-        { num: '?', label: 'поможем выбрать специалиста' },
-        { num: '+', label: 'хирургия и косметология' },
-        { num: '₽', label: 'стоимость в карточках врачей' },
-      ]}
     />
 
     <section class="v3-doctors v3-surface-cream" aria-labelledby="doctors-heading">
       <div class="v3-container v3-container-wide">
-        <header class="doctors-header" data-v3-stagger>
-          <span class="v3-eyebrow">Команда</span>
-          <h2 id="doctors-heading" class="v3-h2">Врачи клиники</h2>
-        </header>
-        <div class="doctor-picker" data-v3-reveal>
-          <span class="v3-minimark" aria-hidden="true">?</span>
+        <h2 id="doctors-heading" class="sr-only">Врачи клиники</h2>
+        <div class="doctor-picker">
           <div>
             <p class="doctor-picker-title">Не знаете, к кому записаться?</p>
-            <p class="v3-body">Опишите задачу администратору: лицо, тело, кожа, восстановление или сложный случай. Мы предложим врача по профилю, а не первого свободного специалиста.</p>
+            <p class="v3-body">Опишите задачу администратору: лицо, тело, кожа, восстановление или сложный случай. Мы предложим врача по профилю.</p>
           </div>
           <a href="#form" class="v3-link v3-link-action">Помочь выбрать</a>
         </div>
-        <ul class="doctors-filters" data-v3-reveal aria-label="Фильтр врачей по направлению">
+        <ul class="doctors-filters" aria-label="Фильтр врачей по направлению">
           {filterOptions.map((option) => (
             <li>
               <button
@@ -179,9 +170,9 @@ const filterOptions = [
     <PageLeadMagnet
       eyebrow="Подбор врача"
       heading="Не знаете,<br />к кому записаться?"
-      lead="Опишите задачу коротко — администратор направит к врачу нужного профиля, а не к первому свободному специалисту."
+      lead="Опишите задачу коротко — администратор направит к врачу нужного профиля"
       items={[
-        { mark: '?', title: 'Запрос', text: 'что хотите изменить или проверить' },
+        { mark: '?', title: 'Запрос', text: 'что хотите изменить или уточнить' },
         { mark: '+', title: 'Профиль', text: 'хирург, челюстно-лицевой хирург или косметолог' },
         { mark: '→', title: 'Запись', text: 'подберём время и формат консультации' },
       ]}
@@ -267,15 +258,23 @@ const filterOptions = [
 </script>
 
 <style>
+  :global(.v3-page-hero) {
+    padding-bottom: clamp(1.25rem, 4vh, 2.5rem);
+  }
   .v3-doctors {
-    padding-top: var(--v3-gap-small);
+    padding-top: clamp(0.5rem, 1.8vw, 1.5rem);
     padding-bottom: var(--v3-gap-deep);
   }
-  .doctors-header {
-    display: flex;
-    flex-direction: column;
-    gap: var(--v3-gap-eyebrow-h1);
-    margin-bottom: var(--v3-gap-small);
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
   .doctors-filters {
     list-style: none;
@@ -287,11 +286,12 @@ const filterOptions = [
   }
   .doctor-picker {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 1rem;
     align-items: center;
-    margin-bottom: 1.5rem;
-    padding: 1.25rem 1.5rem;
+    max-width: 64rem;
+    margin: 0 0 1.25rem;
+    padding: 1rem 1.25rem;
     border: 1px solid var(--v3-border-soft);
     border-radius: var(--v3-radius-xl);
     background: var(--v3-surface-card);

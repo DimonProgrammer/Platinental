@@ -427,6 +427,7 @@
         submit.disabled = true;
         submit.textContent = 'Готовим заявку...';
       }
+      window.platinentalReachGoal?.('form_submit_consultation', { form: 'consultation_quiz' });
       window.open(`https://wa.me/78432236666?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
       window.setTimeout(() => {
         resultForm.reset();

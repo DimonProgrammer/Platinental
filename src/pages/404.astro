@@ -7,6 +7,9 @@ import Footer from '../components/site/sections/Footer.astro';
 <SiteLayout
   title="Страница не найдена — The Platinental Казань"
   description="Запрошенная страница не найдена. Вернитесь на главную страницу клиники The Platinental Казань."
+  canonical="/"
+  robots="noindex, follow"
+  includeClinicSchema={false}
 >
   <Navigation />
   <main id="main">
@@ -21,14 +24,14 @@ import Footer from '../components/site/sections/Footer.astro';
           <p class="v3-lead notfound-lead">
             Такой страницы нет — возможно, она переехала или была удалена. Перейдите на главную или выберите раздел:
           </p>
-          <p class="notfound-links v3-body">
-            <a href="/" class="v3-link">Главная</a> ·
-            <a href="/plastika" class="v3-link">Пластическая хирургия</a> ·
-            <a href="/kosmetologiya" class="v3-link">Косметология</a> ·
-            <a href="/doctors" class="v3-link">Врачи</a> ·
-            <a href="/prices" class="v3-link">Цены</a> ·
+          <nav class="notfound-links v3-body" aria-label="Разделы сайта">
+            <a href="/" class="v3-link">Главная</a>
+            <a href="/plastika" class="v3-link">Пластическая хирургия</a>
+            <a href="/kosmetologiya" class="v3-link">Косметология</a>
+            <a href="/doctors" class="v3-link">Врачи</a>
+            <a href="/prices" class="v3-link">Цены</a>
             <a href="/contacts" class="v3-link">Контакты</a>
-          </p>
+          </nav>
           <div class="notfound-cta">
             <a href="/" class="v3-btn v3-btn-primary">На главную</a>
             <a href="/contacts" class="v3-btn v3-btn-secondary">Контакты клиники</a>
@@ -45,16 +48,19 @@ import Footer from '../components/site/sections/Footer.astro';
 
 <style>
   .v3-404 {
-    padding-top: var(--v3-gap-deep);
-    padding-bottom: var(--v3-gap-deep);
-    min-height: 70vh;
+    min-height: calc(100svh - var(--v3-nav-h, 4rem) + 4rem);
+    padding-top: clamp(4rem, 9vh, 7rem);
+    padding-bottom: clamp(4rem, 9vh, 7rem);
     display: flex;
     align-items: center;
+    text-align: center;
   }
   .notfound-inner > div {
     display: flex;
     flex-direction: column;
-    max-width: 56rem;
+    align-items: center;
+    max-width: 44rem;
+    margin-inline: auto;
   }
   .notfound-inner .v3-eyebrow {
     margin-bottom: var(--v3-gap-h1-lead);
@@ -63,27 +69,65 @@ import Footer from '../components/site/sections/Footer.astro';
     font-family: var(--v3-font-display);
     font-style: normal;
     font-weight: 300;
-    font-size: clamp(4.5rem, 12vw, 9rem);
+    font-size: clamp(5.5rem, 13vw, 11rem);
     line-height: 0.95;
-    color: var(--v3-sand-deep);
-    margin: 0 0 var(--v3-gap-h1-lead);
-    letter-spacing: -0.02em;
+    color: color-mix(in srgb, var(--v3-ink) 14%, var(--v3-cream));
+    margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+    letter-spacing: 0;
   }
   .notfound-h1 {
     margin: 0 0 var(--v3-gap-h1-lead);
   }
   .notfound-lead {
     max-width: 40ch;
-    margin: 0 0 var(--v3-gap-content-cta);
+    margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
+  }
+  .notfound-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.25rem;
+    max-width: 42rem;
+    margin: 0 0 clamp(1.75rem, 3vw, 2.5rem);
+  }
+  .notfound-links .v3-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
   }
   .notfound-cta {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1.5rem;
     flex-wrap: wrap;
     font-size: 0.9375rem;
   }
+  .notfound-phone {
+    margin: 1rem 0 0;
+  }
   @media (max-width: 768px) {
-    .v3-404 { min-height: auto; padding-top: var(--v3-gap-medium); padding-bottom: var(--v3-gap-medium); }
+    .v3-404 {
+      min-height: calc(100svh - var(--v3-nav-h, 4rem) + 4rem);
+      padding-top: clamp(3rem, 10vh, 5rem);
+      padding-bottom: clamp(3rem, 10vh, 5rem);
+    }
+    .notfound-links {
+      gap: 0.25rem 1rem;
+    }
+  }
+  @media (max-width: 560px) {
+    .notfound-code {
+      font-size: clamp(5rem, 30vw, 7rem);
+    }
+    .notfound-links {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .notfound-cta {
+      width: 100%;
+      gap: 0.75rem;
+    }
   }
 </style>

@@ -86,11 +86,41 @@ const defaultFaqItems = [
   },
 ].filter((item): item is { q: string; a: string; open?: boolean } => Boolean(item));
 const faqItems = d.faq ?? defaultFaqItems;
+const doctorTitleSpecialty = doctorSeoSpecialty.charAt(0).toUpperCase() + doctorSeoSpecialty.slice(1);
+const doctorDescription = `${d.name} — ${doctorSeoSpecialty} The Platinental Казань. Профиль врача, образование, направления работы и запись на консультацию.`;
+const siteUrl = Astro.site ?? new URL('https://kzn.platinental.ru');
+const doctorSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Physician',
+  '@id': new URL(`/doctors/${d.slug}/#physician`, siteUrl).toString(),
+  name: d.name,
+  url: new URL(`/doctors/${d.slug}/`, siteUrl).toString(),
+  image: d.photo ? new URL(d.photo, siteUrl).toString() : undefined,
+  medicalSpecialty: doctorSeoSpecialty,
+  worksFor: { '@id': new URL('/#clinic', siteUrl).toString() },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'ул. Карла Маркса, 48, корп. 1',
+    addressLocality: 'Казань',
+    postalCode: '420015',
+    addressCountry: 'RU',
+  },
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Главная', item: new URL('/', siteUrl).toString() },
+    { '@type': 'ListItem', position: 2, name: 'Врачи', item: new URL('/doctors/', siteUrl).toString() },
+    { '@type': 'ListItem', position: 3, name: d.name, item: new URL(`/doctors/${d.slug}/`, siteUrl).toString() },
+  ],
+};
 ---
 
 <SiteLayout
-  title={`${d.name} — ${d.spec} — The Platinental Казань`}
-  description={`${d.name} — ${doctorSeoSpecialty} клиники The Platinental Казань. Специализация, образование, запись на консультацию.`}
+  title={`${d.name} — ${doctorTitleSpecialty} в Казани`}
+  description={doctorDescription}
+  jsonLd={[doctorSchema, breadcrumbSchema]}
 >
   <Navigation />
   <main id="main">
@@ -99,40 +129,44 @@ const faqItems = d.faq ?? defaultFaqItems;
     <section class="v3-doc-hero v3-surface-cream" aria-labelledby="doc-heading">
       <div class="v3-container v3-container-wide doc-hero-grid">
         <div class="doc-hero-text" data-v3-reveal>
-          <nav class="doc-breadcrumb" aria-label="Хлебные крошки">
-            <a href="/" class="bc-link">Главная</a>
-            <span class="bc-sep" aria-hidden="true">→</span>
-            <a href="/doctors" class="bc-link">Врачи</a>
-          </nav>
-          <span class="v3-eyebrow doc-spec">{d.spec}</span>
-          <h1 id="doc-heading" class="v3-h1 doc-h1">
-            <em>{d.name}</em>
-          </h1>
-          <p class="v3-lead doc-lead" set:html={formatTypographyHtml(d.short)}></p>
-          {bookingEnabled ? (
-            <>
-              <div class="doc-price-row">
-                <span class="doc-price" set:html={formatCurrencyPlainText(consultationPrice)}></span>
-                {d.priceSub && <span class="v3-caption doc-price-sub" set:html={formatCurrencyPlainText(d.priceSub)}></span>}
+          <div class="doc-hero-copy">
+            <nav class="doc-breadcrumb" aria-label="Хлебные крошки">
+              <a href="/" class="bc-link">Главная</a>
+              <span class="bc-sep" aria-hidden="true">→</span>
+              <a href="/doctors" class="bc-link">Врачи</a>
+            </nav>
+            <span class="v3-eyebrow doc-spec">{d.spec}</span>
+            <h1 id="doc-heading" class="v3-h1 doc-h1">
+              <em>{d.name}</em>
+            </h1>
+            <p class="v3-lead doc-lead" set:html={formatTypographyHtml(d.short)}></p>
+          </div>
+          <div class="doc-hero-booking">
+            {bookingEnabled ? (
+              <>
+                <div class="doc-price-row">
+                  <span class="doc-price" set:html={formatCurrencyPlainText(consultationPrice)}></span>
+                  {d.priceSub && <span class="v3-caption doc-price-sub" set:html={formatCurrencyPlainText(d.priceSub)}></span>}
                 {hasSurgicalBase && (
                   <span class="v3-caption doc-base">
                     Операции проходят на базе клиники «{surgicalBase?.shortName}».
                   </span>
                 )}
               </div>
-              <div class="doc-cta">
-                <button type="button" class="v3-btn v3-btn-primary" data-booking-open data-doctor={d.nameBtn}>
-                  {bookingCtaLabel}
-                </button>
+                <div class="doc-cta">
+                  <button type="button" class="v3-btn v3-btn-primary" data-booking-open data-doctor={d.nameBtn}>
+                    {bookingCtaLabel}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div class="doc-price-row doc-price-row-muted">
+                <span class="doc-price">Гармонизирующая пластическая хирургия</span>
+                <span class="v3-caption doc-price-sub">Лицо, шея, пропорции и естественное омоложение.</span>
+                <a href="/doctors" class="v3-btn v3-btn-secondary doc-profile-link">Выбрать врача клиники</a>
               </div>
-            </>
-          ) : (
-            <div class="doc-price-row doc-price-row-muted">
-              <span class="doc-price">Гармонизирующая пластическая хирургия</span>
-              <span class="v3-caption doc-price-sub">Лицо, шея, пропорции и естественное омоложение.</span>
-              <a href="/doctors" class="v3-btn v3-btn-secondary doc-profile-link">Выбрать врача клиники</a>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         <div class="doc-hero-photo" data-v3-reveal>
@@ -790,6 +824,12 @@ const faqItems = d.faq ?? defaultFaqItems;
     flex-direction: column;
     gap: clamp(0.875rem, 2vw, 1.5rem);
     max-width: 42rem;
+  }
+  .doc-hero-copy,
+  .doc-hero-booking {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.875rem, 2vw, 1.5rem);
   }
   .doc-breadcrumb {
     display: flex;
@@ -1579,7 +1619,28 @@ const faqItems = d.faq ?? defaultFaqItems;
     .doc-price-link-card { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
+    .v3-doc-hero {
+      padding-bottom: 4rem;
+    }
+    .doc-hero-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1.25rem;
+    }
     .doc-hero-text {
+      display: contents;
+      gap: 0.875rem;
+    }
+    .doc-hero-copy {
+      order: 1;
+      gap: 0.75rem;
+    }
+    .doc-hero-photo {
+      order: 2;
+    }
+    .doc-hero-booking {
+      order: 3;
       gap: 0.875rem;
     }
     .doc-lead,
@@ -1603,6 +1664,14 @@ const faqItems = d.faq ?? defaultFaqItems;
     .doc-hero-photo {
       overflow: hidden;
       border-radius: var(--v3-radius-xl);
+      width: min(100%, 22rem);
+      max-width: 22rem;
+      margin-inline: 0;
+    }
+    .doc-cta .v3-btn,
+    .doc-profile-link {
+      width: 100%;
+      justify-content: center;
     }
     .care-list { grid-template-columns: 1fr; }
     .focus-grid,

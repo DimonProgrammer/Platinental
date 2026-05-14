@@ -78,6 +78,13 @@
       <button type="submit" class="v3-btn v3-btn-primary booking-submit">
         Отправить заявку <span aria-hidden="true">→</span>
       </button>
+      <div class="booking-messengers" aria-label="Связаться в мессенджере">
+        <a href="https://t.me/platinental_kazan" class="v3-link" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://max.ru" class="v3-link" target="_blank" rel="noopener noreferrer">Max</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://wa.me/78432236666" class="v3-link" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
     </form>
   </div>
 </div>
@@ -90,6 +97,7 @@
     const titleEl = root.querySelector<HTMLElement>('[data-booking-title]');
     const leadEl = root.querySelector<HTMLElement>('[data-booking-lead]');
     const panel = root.querySelector<HTMLElement>('.booking-panel');
+    const nameInput = root.querySelector<HTMLInputElement>('input[name="name"]');
     const doctorInput = root.querySelector<HTMLInputElement>('[data-booking-doctor]');
     const form = root.querySelector<HTMLFormElement>('[data-booking-form]');
     const messageInput = root.querySelector<HTMLTextAreaElement>('textarea[name="message"]');
@@ -126,13 +134,21 @@
         messageInput.placeholder = detail?.messagePlaceholder ?? defaultMessagePlaceholder;
       }
       root.hidden = false;
+      document.documentElement.classList.add('booking-open');
       document.documentElement.style.overflow = 'hidden';
       if (panel) panel.scrollTop = 0;
-      window.requestAnimationFrame(() => root.querySelector<HTMLElement>('[data-booking-close]')?.focus());
+      window.requestAnimationFrame(() => {
+        if (nameInput) {
+          nameInput.focus({ preventScroll: true });
+          return;
+        }
+        root.querySelector<HTMLElement>('[data-booking-close]')?.focus();
+      });
     };
 
     const close = () => {
       root.hidden = true;
+      document.documentElement.classList.remove('booking-open');
       document.documentElement.style.overflow = '';
       lastFocus?.focus();
     };
@@ -178,6 +194,7 @@
         message ? `Запрос: ${message}` : '',
       ].filter(Boolean).join('\n');
       const url = `https://wa.me/78432236666?text=${encodeURIComponent(text)}`;
+      window.platinentalReachGoal?.('form_submit_consultation', { form: 'booking_modal', doctor });
       if (submit) {
         submit.disabled = true;
         submit.textContent = 'Готовим заявку...';
@@ -228,7 +245,7 @@
     background: var(--v3-cream);
     width: 100%;
     max-width: 32rem;
-    max-height: min(calc(100dvh - 1.5rem), 44rem);
+    max-height: calc(100dvh - 1.5rem);
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
@@ -255,8 +272,8 @@
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -337,18 +354,84 @@
   }
 
   .booking-submit { align-self: stretch; margin-top: 0.25rem; }
+  .booking-messengers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: -0.25rem;
+    color: var(--v3-ink-muted);
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+  .booking-messengers .v3-link {
+    color: var(--v3-ink);
+    border-color: color-mix(in srgb, var(--v3-ink) 45%, transparent);
+  }
 
   @media (max-width: 560px) {
     .booking {
-      padding: 0.625rem;
+      padding: 0.375rem;
     }
     .booking-panel {
-      max-height: calc(100dvh - 1.25rem);
+      max-height: calc(100dvh - 0.375rem);
       border-radius: var(--v3-radius-lg);
-      padding: 1.25rem;
+      padding: 1rem 1.125rem max(1rem, env(safe-area-inset-bottom));
+    }
+    .booking-close {
+      top: 0.375rem;
+      right: 0.375rem;
+    }
+    .booking-header {
+      gap: 0.4rem;
+      margin-bottom: 0.875rem;
+      padding-right: 1.75rem;
     }
     .booking-title {
-      font-size: clamp(1.375rem, 7vw, 1.75rem);
+      font-size: clamp(1.25rem, 6vw, 1.5rem);
+      line-height: 1.12;
+    }
+    .booking-lead {
+      font-size: 0.875rem;
+      line-height: 1.45;
+    }
+    .booking-form {
+      gap: 0.8rem;
+    }
+    .field {
+      gap: 0.25rem;
+    }
+    .field input,
+    .field textarea {
+      min-height: 44px;
+      padding: 0.625rem 0;
+      line-height: 1.35;
+    }
+    .field textarea {
+      min-height: 3.25rem;
+    }
+    .consent {
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      line-height: 1.35;
+      min-height: 44px;
+      padding-block: 0.25rem;
+      align-items: flex-start;
+    }
+    .consent input {
+      width: 24px;
+      height: 24px;
+      margin-top: 0.125rem;
+    }
+    .booking-submit {
+      min-height: 48px;
+      width: 100%;
+      margin-top: 0.125rem;
+    }
+    .booking-messengers {
+      font-size: 0.8125rem;
+      margin-top: -0.125rem;
     }
   }
 </style>

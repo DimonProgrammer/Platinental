@@ -7,13 +7,17 @@ const staticRoutes = [
   '/',
   '/about/',
   '/contacts/',
+  '/consent/',
   '/doctors/',
   '/documents/',
   '/kosmecevtika/',
   '/kosmetologiya/',
   '/plastika/',
   '/prices/',
+  '/privacy/',
+  '/terms/',
 ];
+const lastmod = new Date().toISOString().slice(0, 10);
 
 const routes = [
   ...staticRoutes,
@@ -33,7 +37,7 @@ export const GET: APIRoute = () =>
     [
       '<?xml version="1.0" encoding="UTF-8"?>',
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-      ...routes.map((route) => `  <url><loc>${xmlEscape(`${site}${route}`)}</loc></url>`),
+      ...routes.map((route) => `  <url><loc>${xmlEscape(`${site}${route}`)}</loc><lastmod>${lastmod}</lastmod></url>`),
       '</urlset>',
       '',
     ].join('\n'),
