@@ -18,7 +18,7 @@
 
     <div class="quiz-layout">
       <div class="quiz-copy">
-        <span class="v3-eyebrow">Quiz + мини-чек-лист</span>
+        <span class="v3-eyebrow">Опросник перед консультацией</span>
         <h2 id="quiz-heading" class="v3-h2 quiz-heading">
           <em>Навигатор консультации</em>
         </h2>
@@ -26,7 +26,7 @@
           Ответьте на 5 вопросов: какая зона беспокоит, какие сроки важны и что нужно уточнить у врача.
         </p>
 
-        <div class="quiz-principles" aria-label="Что даст quiz">
+        <div class="quiz-principles" aria-label="Что даст опросник">
           <div class="quiz-principle">
             <span class="quiz-principle-mark" aria-hidden="true">?</span>
             <span>01</span>
@@ -35,7 +35,7 @@
           <div class="quiz-principle">
             <span class="quiz-principle-mark" aria-hidden="true">✓</span>
             <span>02</span>
-            <p>Получите короткий чек-лист подготовки к визиту.</p>
+            <p>Получите список того, что подготовить к визиту.</p>
           </div>
           <div class="quiz-principle">
             <span class="quiz-principle-mark" aria-hidden="true">→</span>
@@ -162,7 +162,7 @@
       question: 'С чего начался запрос?',
       helper: 'Выберите не процедуру, а область, из-за которой хочется разобраться.',
       lesson: 'На первой консультации важнее описать, что именно изменилось в восприятии себя. Название процедуры врач подберёт после осмотра.',
-      checklist: ['Отметьте зону, которая беспокоит чаще всего.', 'Не сравнивайте себя с референсом: лучше показать динамику своих фото.'],
+      checklist: ['Отметьте зону, которая беспокоит чаще всего.', 'Не ориентируйтесь только на чужие фото: лучше показать динамику своих фото.'],
       options: [
         { label: 'Лицо, веки, овал или шея', value: 'face' },
         { label: 'Грудь, живот или контуры тела', value: 'body' },
@@ -177,7 +177,7 @@
       checklist: ['Подготовьте 2-3 своих фото в спокойном свете.', 'Запишите, что хочется сохранить неизменным.'],
       options: [
         { label: 'Есть конкретная зона и вопросы', value: 'specific' },
-        { label: 'Есть референсы, но нет уверенности', value: 'references' },
+        { label: 'Есть примеры результата, но нет уверенности', value: 'references' },
         { label: 'Хочу сравнить несколько вариантов', value: 'compare' },
         { label: 'Нужна вторая точка зрения', value: 'second-opinion' },
       ],
@@ -335,7 +335,7 @@
       if (nextBtn) {
         nextBtn.disabled = !answers[current];
         nextBtn.innerHTML = current === quizSteps.length - 1
-          ? 'Собрать чек-лист <span aria-hidden="true">→</span>'
+          ? 'Собрать ответы <span aria-hidden="true">→</span>'
           : 'Далее <span aria-hidden="true">→</span>';
       }
     };
@@ -362,7 +362,7 @@
       ];
 
       resultMessage = [
-        'Quiz: Навигатор консультации',
+        'Опросник: навигатор консультации',
         ...quizSteps.map((step, index) => `${index + 1}. ${step.question} — ${answers[index]?.label ?? 'не выбрано'}`),
         '',
         route,
@@ -416,7 +416,7 @@
       const name = String(formData.get('name') ?? '').trim();
       const phone = String(formData.get('phone') ?? '').trim();
       const text = [
-        'Заявка с quiz The Platinental Казань',
+        'Заявка с опросника The Platinental Казань',
         name ? `Имя: ${name}` : '',
         phone ? `Телефон: ${phone}` : '',
         '',
@@ -482,7 +482,7 @@
   .v3-quiz-modal {
     position: fixed;
     inset: 0;
-    z-index: 80;
+    z-index: calc(var(--v3-z-overlay) + 20);
     display: grid;
     place-items: center;
     padding: clamp(1rem, 3vw, 2rem);
