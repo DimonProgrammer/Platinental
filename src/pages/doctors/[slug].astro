@@ -23,7 +23,12 @@ const { doctor: d } = Astro.props;
 
 const isSurgeon = d.tags.includes('plastika');
 const isCosmetologist = d.tags.includes('cosmetology');
-const doctorSeoSpecialty = d.seoSpecialty ?? (isSurgeon ? 'пластический хирург' : 'врач-косметолог');
+const defaultDoctorSeoSpecialty =
+  isSurgeon ? 'пластический хирург'
+    : isCosmetologist ? 'врач-косметолог'
+      : d.group === 'orthopedia' ? 'нейрохирург и травматолог-ортопед'
+        : 'врач';
+const doctorSeoSpecialty = d.seoSpecialty ?? defaultDoctorSeoSpecialty;
 const bookingEnabled = d.bookingEnabled !== false;
 const surgicalBase = getSurgicalBase(d.surgicalBase);
 const hasSurgicalBase = Boolean(surgicalBase);
