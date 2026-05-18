@@ -374,7 +374,7 @@
 |---|---|
 | **Адрес** | ул. Карла Маркса, 48, корп. 1 — Казань, 420015 |
 | **Телефон** | [+7 843 223-66-66](tel:+78432236666) |
-| **Мессенджеры** | [WhatsApp](https://wa.me/78432236666) · [Max](https://max.ru) · [Telegram](https://t.me/platinental_kazan) · [Instagram*](https://instagram.com/platinental_kazan) |
+| **Мессенджеры** | [WhatsApp](https://wa.me/78432236666) · [Max](https://max.ru/u/f9LHodD0cOKLXxHeIK067LNPbNjsqlGF8qj74HK5vOo0CfBOPaTkNZmUAXI) · [Telegram](https://t.me/platinental_kazan) · [Instagram*](https://instagram.com/platinental_kazan) |
 | **Режим работы** | Ежедневно 9:00–20:00 |
 
 **Сноска \* (мелким):**
