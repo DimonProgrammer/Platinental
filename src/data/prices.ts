@@ -44,7 +44,7 @@ const consultations: PriceGroup = {
     { service: 'Васильев М.Н.', sub: ' — хирургия лица и тела', code: 'B01.057.003/004', primary: '7 000 ₽', repeat: '5 000 ₽', online: '4 000 ₽' },
     { service: 'Мамедов В.А.', sub: ' — челюстно-лицевой хирург', code: 'B01.057.003/004', primary: '10 000 ₽', repeat: '7 000 ₽', online: '5 000 ₽' },
     { service: 'Марданова Д.М.', sub: ' — ринопластика и блефаропластика', code: 'B01.057.003/004', primary: '5 000 ₽', repeat: '2 500 ₽', online: '3 500 ₽' },
-    { service: 'Бречко М.А.', sub: ' — блефаропластика и CO₂-лазер', code: 'B01.057.003/004', primary: '5 000 ₽', repeat: '2 500 ₽', online: '3 500 ₽' },
+    { service: 'Бречко М.А.', sub: ' — хирургия лица', code: 'B01.057.003/004', primary: '5 000 ₽', repeat: '2 500 ₽', online: '3 500 ₽' },
     { service: 'Сорвин В.А.', sub: ' — челюстно-лицевой хирург', code: 'B01.057.003', primary: '10 000 ₽', repeat: '10 000 ₽', online: '10 000 ₽' },
     { service: 'Грицай О.А.', sub: ' — врач-косметолог', code: 'B01.008.003/004', primary: '2 000 ₽', repeat: '700 ₽', online: '—' },
   ],
