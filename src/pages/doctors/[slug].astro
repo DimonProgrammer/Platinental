@@ -34,7 +34,8 @@ const surgicalBase = getSurgicalBase(d.surgicalBase);
 const hasSurgicalBase = Boolean(surgicalBase);
 const consultationPrice = d.priceMain;
 const doctorPriceSheet = doctorPriceSheets.find((sheet) => sheet.doctorSlug === d.slug);
-const hasOnlinePrice = (d.priceSub ?? '').includes('Онлайн');
+const priceSubParts = (d.priceSub ?? '').split(' · ').map((part) => part.trim()).filter(Boolean);
+const hasOnlinePrice = priceSubParts.some((part) => part.includes('Онлайн'));
 const resultImages = d.resultCases?.map((item) => item.src) ?? [];
 const galleryImages = resultImages.length > 0 ? resultImages : (d.gallery ?? []);
 const hasResultCases = resultImages.length > 0;
@@ -55,7 +56,7 @@ const finalCtaHeading = d.slug === 'iskornev'
     : `Записаться<br />${d.nameBtn}`;
 const finalCtaLead = d.slug === 'iskornev'
   ? 'Администратор уточнит ближайшие даты, формат консультации и какие материалы подготовить к приёму.'
-  : `${[d.priceMain, d.priceSub].filter(Boolean).join(' · ')}. Администратор уточнит удобное время и поможет подготовиться к приёму.`;
+  : `${[d.priceMain, ...priceSubParts].filter(Boolean).join('<br />')}. Администратор уточнит удобное время и поможет подготовиться к приёму.`;
 const messengerLinks = [
   { label: 'Telegram', href: 'https://t.me/platinental_kazan' },
   { label: 'Max', href: 'https://max.ru' },
@@ -149,10 +150,12 @@ const breadcrumbSchema = {
           <div class="doc-hero-booking">
             {bookingEnabled ? (
               <>
-                <div class="doc-price-row">
-                  <span class="doc-price" set:html={formatCurrencyPlainText(consultationPrice)}></span>
-                  {d.priceSub && <span class="v3-caption doc-price-sub" set:html={formatCurrencyPlainText(d.priceSub)}></span>}
-                {hasSurgicalBase && (
+	                <div class="doc-price-row">
+	                  <span class="doc-price" set:html={formatCurrencyPlainText(consultationPrice)}></span>
+	                  {priceSubParts.map((priceSub) => (
+	                    <span class="v3-caption doc-price-sub" set:html={formatCurrencyPlainText(priceSub)}></span>
+	                  ))}
+	                {hasSurgicalBase && (
                   <span class="v3-caption doc-base">
                     Операции проходят на базе клиники «{surgicalBase?.shortName}».
                   </span>

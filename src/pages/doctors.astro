@@ -11,6 +11,10 @@ import { getSurgicalBase } from '../data/partners';
 import { formatCurrencyPlainText, formatTypographyHtml } from '../lib/formatText';
 
 const allDoctors = doctors;
+const splitPriceSub = (value?: string) =>
+  value
+    ? value.split(' · ').map((part) => part.trim()).filter(Boolean)
+    : [];
 const doctorCardCopy: Record<string, { spec?: string; short?: string }> = {
   iskornev: {
     spec: 'ЭСТЕТИЧЕСКАЯ ХИРУРГИЯ ЛИЦА И ШЕИ',
@@ -18,7 +22,7 @@ const doctorCardCopy: Record<string, { spec?: string; short?: string }> = {
   },
   meloyan: {
     spec: 'ЭСТЕТИЧЕСКАЯ И РЕКОНСТРУКТИВНАЯ ХИРУРГИЯ',
-    short: 'Эстетическая и реконструктивная хирургия с широкой хирургической базой: ринопластика, эстетическая хирургия молочных желёз, смежные задачи по лицу и телу.',
+    short: 'Эстетическая и реконструктивная пластическая хирургия: ринопластика, риносептопластика, эстетическая хирургия молочных желёз и реконструктивные задачи.',
   },
   tulatova: {
     spec: 'ДЕЛИКАТНАЯ ХИРУРГИЯ ЛИЦА И ВЕК',
@@ -123,6 +127,7 @@ const filterOptions = [
                 {group.doctors.map((d) => {
                   const cardCopy = doctorCardCopy[d.slug];
                   const surgicalBase = getSurgicalBase(d.surgicalBase);
+                  const priceSubParts = splitPriceSub(d.priceSub);
                   return (
                     <li class:list={['doctor-card', d.group === 'founder' && 'doctor-card--wide']} data-v3-reveal data-doctor-card data-tags={d.tags.join(' ')}>
                       <a href={`/doctors/${d.slug}`} class="doctor-link">
@@ -150,10 +155,12 @@ const filterOptions = [
                               <span class="price-primary v3-caption">Открыть профиль</span>
                             </div>
                           ) : (
-                            <div class="doctor-price">
-                              <span class="price-primary v3-caption" set:html={formatCurrencyPlainText(d.priceMain)}></span>
-                              {d.priceSub && <span class="price-sub v3-caption" set:html={formatCurrencyPlainText(d.priceSub)}></span>}
-                            </div>
+	                            <div class="doctor-price">
+	                              <span class="price-primary v3-caption" set:html={formatCurrencyPlainText(d.priceMain)}></span>
+	                              {priceSubParts.map((priceSub) => (
+	                                <span class="price-sub v3-caption" set:html={formatCurrencyPlainText(priceSub)}></span>
+	                              ))}
+	                            </div>
                           )}
                         </div>
                       </a>
