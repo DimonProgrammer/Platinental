@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { formatTypographyHtml } from '../../../lib/formatText';
 
 interface MetaItem { num: string; label: string }
@@ -23,6 +24,13 @@ interface Props {
   metaLabel?: string;        // подпись над мета-плашками, если они относятся к CTA
   metaPlacement?: 'default' | 'cta';
   ctaPlacement?: 'before-meta' | 'after-meta';
+  image?: {
+    src: ImageMetadata;
+    alt: string;
+    widths?: number[];
+    sizes?: string;
+    className?: string;
+  };
   /** @deprecated — оставлен для совместимости, не используется в variant C */
   imagePlaceholder?: unknown;
 }
@@ -40,6 +48,7 @@ const {
   metaLabel,
   metaPlacement = 'default',
   ctaPlacement = 'before-meta',
+  image,
 } = Astro.props;
 ---
 
@@ -52,55 +61,71 @@ const {
       </div>
     )}
 
-    <div class="hero-text">
-      {eyebrow && <span class="v3-eyebrow">{eyebrow}</span>}
-      <h1 id="page-hero-heading" class="v3-display" set:html={formatTypographyHtml(h1)}></h1>
-      <p class="v3-lead hero-lead">{lead}</p>
-      <div class="hero-action">
-        {ctaPlacement === 'before-meta' && (
-          <div class="hero-cta">
-            <a
-              href={ctaPrimary.href}
-              class="v3-btn v3-btn-primary"
-              data-booking-custom-title={ctaPrimary.bookingTitle}
-              data-booking-custom-lead={ctaPrimary.bookingLead}
-              data-booking-custom-message={ctaPrimary.bookingMessage}
-              data-booking-custom-placeholder={ctaPrimary.bookingPlaceholder}
-            >{ctaPrimary.label}</a>
-            {ctaSecondary && (
-              <a href={ctaSecondary.href} class="v3-link v3-link-action cta-secondary">{ctaSecondary.label}</a>
-            )}
-          </div>
-        )}
-        {metaPlacement === 'cta' && meta && meta.length > 0 && (
-          <div class="hero-meta hero-meta--cta">
-            {metaLabel && <p class="hero-meta-kicker v3-caption">{metaLabel}</p>}
-            <div class="hero-meta-row" data-cols={meta.length}>
-              {meta.map((m) => (
-                <div class="hero-meta-item">
-                  <span class="v3-minimark hero-meta-num" aria-hidden="true">{m.num}</span>
-                  <span class="hero-meta-label v3-caption">{m.label}</span>
-                </div>
-              ))}
+    <div class:list={['hero-main', image && 'hero-main--with-image']}>
+      <div class="hero-text">
+        {eyebrow && <span class="v3-eyebrow">{eyebrow}</span>}
+        <h1 id="page-hero-heading" class="v3-display" set:html={formatTypographyHtml(h1)}></h1>
+        <p class="v3-lead hero-lead">{lead}</p>
+        <div class="hero-action">
+          {ctaPlacement === 'before-meta' && (
+            <div class="hero-cta">
+              <a
+                href={ctaPrimary.href}
+                class="v3-btn v3-btn-primary"
+                data-booking-custom-title={ctaPrimary.bookingTitle}
+                data-booking-custom-lead={ctaPrimary.bookingLead}
+                data-booking-custom-message={ctaPrimary.bookingMessage}
+                data-booking-custom-placeholder={ctaPrimary.bookingPlaceholder}
+              >{ctaPrimary.label}</a>
+              {ctaSecondary && (
+                <a href={ctaSecondary.href} class="v3-link v3-link-action cta-secondary">{ctaSecondary.label}</a>
+              )}
             </div>
-          </div>
-        )}
-        {ctaPlacement === 'after-meta' && (
-          <div class="hero-cta hero-cta--after-meta">
-            <a
-              href={ctaPrimary.href}
-              class="v3-btn v3-btn-primary"
-              data-booking-custom-title={ctaPrimary.bookingTitle}
-              data-booking-custom-lead={ctaPrimary.bookingLead}
-              data-booking-custom-message={ctaPrimary.bookingMessage}
-              data-booking-custom-placeholder={ctaPrimary.bookingPlaceholder}
-            >{ctaPrimary.label}</a>
-            {ctaSecondary && (
-              <a href={ctaSecondary.href} class="v3-link v3-link-action cta-secondary">{ctaSecondary.label}</a>
-            )}
-          </div>
-        )}
+          )}
+          {metaPlacement === 'cta' && meta && meta.length > 0 && (
+            <div class="hero-meta hero-meta--cta">
+              {metaLabel && <p class="hero-meta-kicker v3-caption">{metaLabel}</p>}
+              <div class="hero-meta-row" data-cols={meta.length}>
+                {meta.map((m) => (
+                  <div class="hero-meta-item">
+                    <span class="v3-minimark hero-meta-num" aria-hidden="true">{m.num}</span>
+                    <span class="hero-meta-label v3-caption">{m.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {ctaPlacement === 'after-meta' && (
+            <div class="hero-cta hero-cta--after-meta">
+              <a
+                href={ctaPrimary.href}
+                class="v3-btn v3-btn-primary"
+                data-booking-custom-title={ctaPrimary.bookingTitle}
+                data-booking-custom-lead={ctaPrimary.bookingLead}
+                data-booking-custom-message={ctaPrimary.bookingMessage}
+                data-booking-custom-placeholder={ctaPrimary.bookingPlaceholder}
+              >{ctaPrimary.label}</a>
+              {ctaSecondary && (
+                <a href={ctaSecondary.href} class="v3-link v3-link-action cta-secondary">{ctaSecondary.label}</a>
+              )}
+            </div>
+          )}
+        </div>
       </div>
+
+      {image && (
+        <figure class="hero-image-wrap v3-photo-film v3-photo-shutter" data-v3-reveal>
+          <div class="v3-photo-breathing">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              widths={image.widths ?? [480, 800, 1200]}
+              sizes={image.sizes ?? '(max-width: 1024px) 100vw, 42vw'}
+              class:list={['hero-image', image.className]}
+            />
+          </div>
+        </figure>
+      )}
     </div>
 
     {metaPlacement === 'default' && meta && meta.length > 0 && (
@@ -148,6 +173,40 @@ const {
     flex-direction: column;
     gap: 1rem;
     max-width: 56rem;
+  }
+  .hero-main {
+    min-width: 0;
+  }
+  .hero-main--with-image {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(22rem, 0.55fr);
+    gap: clamp(2rem, 6vw, 5.5rem);
+    align-items: end;
+  }
+  .hero-main--with-image .hero-text {
+    max-width: 48rem;
+  }
+  .hero-image-wrap {
+    margin: 0;
+    align-self: stretch;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: var(--v3-radius-xl);
+  }
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    min-height: clamp(22rem, 38vw, 34rem);
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .hero-image-wrap.v3-photo-film > * {
+    filter: none;
+  }
+  .hero-image-wrap.v3-photo-film:hover > *,
+  .hero-image-wrap.v3-photo-film:focus-within > * {
+    filter: none;
   }
   .hero-text .v3-eyebrow { margin-bottom: 0; }
   .hero-lead {
@@ -246,10 +305,24 @@ const {
       grid-template-columns: repeat(2, 1fr);
       max-width: none;
     }
+    .hero-main--with-image {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .hero-main--with-image .hero-image-wrap {
+      order: -1;
+    }
+    .hero-image {
+      min-height: 0;
+      aspect-ratio: 16 / 7;
+    }
   }
   @media (max-width: 480px) {
     .page-hero-inner { gap: 1.125rem; }
     .hero-text { gap: 0.875rem; }
+    .hero-main--with-image .hero-cta .v3-btn-primary {
+      display: none;
+    }
     .hero-lead {
       font-size: 1rem;
       line-height: 1.52;
