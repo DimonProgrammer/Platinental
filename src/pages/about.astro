@@ -123,17 +123,38 @@ const faqItems = [
       }}
     />
 
+    <!-- Принципы -->
+    <section class="v3-about-principles v3-surface-cream" aria-labelledby="principles-heading">
+      <div class="v3-container v3-container-default">
+        <header class="principles-header" data-v3-stagger>
+          <span class="v3-eyebrow">О клинике</span>
+          <h2 id="principles-heading" class="v3-h2"><em>Что стоит за каждой операцией</em></h2>
+        </header>
+        <ol class="principles-list" data-v3-stagger>
+          {principles.map((p) => (
+            <li class="principle-item">
+              <span class="principle-num v3-eyebrow">{p.num}</span>
+              <div class="principle-body">
+                <h3 class="v3-h3">{p.title}</h3>
+                {p.text && <p class="v3-body">{p.text}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
     <PageLeadMagnet
-      eyebrow="Перед первым визитом"
-      heading="Первое знакомство<br />с клиникой"
-      lead="Если вы только выбираете клинику, не обязательно сразу принимать решение об операции. Оставьте заявку — с вами свяжутся, ответят на первые вопросы и подскажут, какие документы можно посмотреть заранее."
+      eyebrow="Документы"
+      heading="Открытая информация<br />о клинике"
+      lead="Лицензия, реквизиты, адрес и документы для пациента собраны в отдельном разделе."
       items={[
-        { mark: '✓', title: 'Документы', text: 'лицензия, юрлицо, адрес и правила оказания услуг' },
-        { mark: '+', title: 'Врачи', text: 'специализация, образование и подтверждённый опыт' },
-        { mark: '→', title: 'Первичный визит', text: 'что взять с собой и как проходит консультация' },
+        { mark: '✓', title: 'Лицензия', text: 'медицинская деятельность и юридическая информация' },
+        { mark: '+', title: 'Документы', text: 'согласия, договор и правила оказания услуг' },
+        { mark: '→', title: 'Адрес', text: 'Карла Маркса, 48, корп. 1' },
       ]}
-      ctaPrimary={{ label: 'Получить ориентир', href: '#form' }}
-      ctaSecondary={{ label: 'Смотреть документы', href: '/documents' }}
+      ctaPrimary={{ label: 'Открыть документы', href: '/documents' }}
+      ctaSecondary={{ label: 'Контакты клиники', href: '/contacts' }}
       surface="sand"
     />
 
@@ -158,27 +179,6 @@ const faqItems = [
             </figure>
           ))}
         </div>
-      </div>
-    </section>
-
-    <!-- Принципы -->
-    <section class="v3-about-principles v3-surface-cream" aria-labelledby="principles-heading">
-      <div class="v3-container v3-container-default">
-        <header class="principles-header" data-v3-stagger>
-          <span class="v3-eyebrow">О клинике</span>
-          <h2 id="principles-heading" class="v3-h2"><em>Что стоит за каждой операцией</em></h2>
-        </header>
-        <ol class="principles-list" data-v3-stagger>
-          {principles.map((p) => (
-            <li class="principle-item">
-              <span class="principle-num v3-eyebrow">{p.num}</span>
-              <div class="principle-body">
-                <h3 class="v3-h3">{p.title}</h3>
-                {p.text && <p class="v3-body">{p.text}</p>}
-              </div>
-            </li>
-          ))}
-        </ol>
       </div>
     </section>
 
