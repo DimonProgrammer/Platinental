@@ -4,7 +4,6 @@ const allPromotions = [
     label: 'Акция до 31 августа',
     title: '-15% на операции Тулатовой Р.Т.',
     text: 'С 1 мая по 31 августа действует скидка 15% на все операции Регины Тимуровны Тулатовой. Администратор уточнит условия и подберёт время консультации.',
-    points: ['-15%', '1 мая — 31 августа', 'все операции Тулатовой Р.Т.'],
     cta: 'Записаться',
     preset: 'Акция -15% на операции Тулатовой Р.Т.',
     doctorHref: '/doctors/tulatova',
@@ -18,7 +17,6 @@ const allPromotions = [
     label: 'Благотворительная акция',
     title: 'Бесплатная операция совместно с Корл',
     text: 'The Platinental Казань и Корл проводят благотворительную акцию: пациент получает операцию без оплаты. Администратор подскажет, какие документы и фото отправить для предварительного рассмотрения.',
-    points: ['операция без оплаты', 'совместно с Корл', 'предварительное рассмотрение заявки'],
     cta: 'Оставить заявку',
     preset: 'Благотворительная операция совместно с Корл',
     image: '/promo-consultation-plan.png',
@@ -54,15 +52,6 @@ const messengers = [
               </h2>
 
               <p class="v3-lead promo-lead">{promo.text}</p>
-
-              <div class="promo-points" aria-label="Условия акции">
-                {promo.points.map((point, pointIndex) => (
-                  <div class="promo-point">
-                    <span class="promo-point-mark" aria-hidden="true">{String(pointIndex + 1).padStart(2, '0')}</span>
-                    <span class="promo-point-text">{point}</span>
-                  </div>
-                ))}
-              </div>
 
               <div class="promo-actions">
                 <button type="button" class="v3-btn v3-btn-primary" data-promo-booking data-preset={promo.preset}>
@@ -256,7 +245,7 @@ const messengers = [
   .promo-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     gap: var(--v3-gap-small);
     min-width: 0;
     padding: clamp(0.25rem, 2vw, 1rem) 0;
@@ -264,7 +253,7 @@ const messengers = [
 
   .promo-slides {
     position: relative;
-    min-height: clamp(28rem, 34vw, 34rem);
+    min-height: clamp(24rem, 42vw, 36rem);
   }
 
   .promo-slide {
@@ -272,6 +261,7 @@ const messengers = [
     inset: 0;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: var(--v3-gap-h1-lead);
     min-width: 0;
     opacity: 0;
@@ -302,45 +292,6 @@ const messengers = [
 
   .promo-lead {
     max-width: 58ch;
-  }
-
-  .promo-points {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-top: 0.25rem;
-  }
-
-  .promo-point {
-    display: grid;
-    grid-template-columns: 1.65rem minmax(0, 1fr);
-    gap: 0.6rem;
-    align-items: center;
-    min-width: 0;
-    padding: 0.75rem 0.8rem;
-    border: 1px solid var(--v3-border-hair);
-    border-radius: var(--v3-radius-md);
-    background: var(--v3-surface-muted);
-  }
-
-  .promo-point-mark {
-    display: inline-grid;
-    place-items: center;
-    width: 1.65rem;
-    height: 1.65rem;
-    border: 1px solid var(--v3-border-soft);
-    border-radius: 50%;
-    background: var(--v3-surface-card);
-    font-family: var(--v3-font-body);
-    font-size: 0.68rem;
-    line-height: 1;
-    color: var(--v3-champagne-deep);
-  }
-
-  .promo-point-text {
-    color: var(--v3-ink-secondary);
-    font-size: 0.875rem;
-    line-height: 1.5;
   }
 
   .promo-actions {
@@ -505,7 +456,7 @@ const messengers = [
     }
 
     .promo-slides {
-      min-height: clamp(24rem, 48vw, 30rem);
+      min-height: clamp(22rem, 48vw, 28rem);
     }
 
     .promo-visual {
@@ -535,21 +486,7 @@ const messengers = [
     }
 
     .promo-slides {
-      min-height: 30rem;
-    }
-
-    .promo-points {
-      grid-template-columns: 1fr;
-    }
-
-    .promo-point-mark {
-      width: 1.5rem;
-      height: 1.5rem;
-      font-size: 0.65rem;
-    }
-
-    .promo-point-text {
-      font-size: 0.875rem;
+      min-height: 22rem;
     }
 
     .promo-actions {
