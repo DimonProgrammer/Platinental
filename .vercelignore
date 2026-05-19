@@ -31,6 +31,7 @@ output/
 Notion выгрузка/
 Созвон с клиентом 7.05/
 Созвон с Филом 11.05/
+Встречи/
 ZapfHumnst BT [Rus by me]/
 Врачи/
 Врачи в цвете/
@@ -57,3 +58,5 @@ tulatova-mobile-snapshot.md
 *.mp3
 *.mp4
 *.m4a
+*.xls
+*.xlsx

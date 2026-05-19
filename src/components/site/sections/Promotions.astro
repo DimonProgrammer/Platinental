@@ -1,94 +1,243 @@
 ---
-import { Image } from 'astro:assets';
-import consultationPhoto from '../../../assets/photos/promo-consultation-plan.png';
+const allPromotions = [
+  {
+    label: 'Акция до 31 августа',
+    title: '-15% на операции Тулатовой Р.Т.',
+    text: 'С 1 мая по 31 августа действует скидка 15% на все операции Регины Тимуровны Тулатовой. Администратор уточнит условия и подберёт время консультации.',
+    points: ['-15%', '1 мая — 31 августа', 'все операции Тулатовой Р.Т.'],
+    cta: 'Записаться',
+    preset: 'Акция -15% на операции Тулатовой Р.Т.',
+    doctorHref: '/doctors/tulatova',
+    doctorCta: 'Страница врача',
+    image: '/doctors/tulatova/photo.png',
+    imageAlt: 'Тулатова Регина Тимуровна',
+    imageFrame: { scale: 1.02, x: '0%', y: '0%' },
+  },
+  {
+    isVisible: false,
+    label: 'Благотворительная акция',
+    title: 'Бесплатная операция совместно с Корл',
+    text: 'The Platinental Казань и Корл проводят благотворительную акцию: пациент получает операцию без оплаты. Администратор подскажет, какие документы и фото отправить для предварительного рассмотрения.',
+    points: ['операция без оплаты', 'совместно с Корл', 'предварительное рассмотрение заявки'],
+    cta: 'Оставить заявку',
+    preset: 'Благотворительная операция совместно с Корл',
+    image: '/promo-consultation-plan.png',
+    imageAlt: 'Спокойная консультация в светлом кабинете',
+    imageFrame: { scale: 1, x: '0%', y: '0%' },
+  },
+];
+
+const promotions = allPromotions.filter((promo) => promo.isVisible !== false);
+
+const messengers = [
+  { label: 'TG', href: 'https://t.me/platinental_kazan', ariaLabel: 'Написать в Telegram' },
+  { label: 'MAX', href: 'https://max.ru/u/f9LHodD0cOKLXxHeIK067LNPbNjsqlGF8qj74HK5vOo0CfBOPaTkNZmUAXI', ariaLabel: 'Написать в Max' },
+  { label: 'WA', href: 'https://wa.me/78432236666', ariaLabel: 'Написать в WhatsApp' },
+];
 ---
 
 <section class="v3-promotions v3-surface-sand" aria-labelledby="promo-heading" id="promo">
   <div class="v3-container v3-container-wide">
-    <article class="promo-panel" data-v3-reveal>
-      <div class="promo-content" data-v3-stagger>
-        <span class="v3-eyebrow promo-kicker">Акция для первичного визита</span>
-        <h2 id="promo-heading" class="v3-h2 promo-title">
-          <em>План консультации перед визитом</em>
-        </h2>
+    <article class="promo-panel" data-v3-reveal data-promo-slider>
+      <div class="promo-content">
+        <div class="promo-slides" aria-live="polite">
+          {promotions.map((promo, index) => (
+            <div
+              class:list={['promo-slide', index === 0 && 'is-active']}
+              data-promo-slide
+              data-promo-index={index}
+              aria-hidden={index === 0 ? 'false' : 'true'}
+            >
+              <span class="v3-eyebrow promo-kicker">{promo.label}</span>
+              <h2 id={index === 0 ? 'promo-heading' : undefined} class="v3-h2 promo-title">
+                <em>{promo.title}</em>
+              </h2>
 
-        <p class="v3-lead promo-lead">
-          Оставьте заявку с сайта — администратор подскажет, какие фото и вопросы подготовить,
-          а врач на очной консультации соберёт понятный план: что действительно имеет смысл,
-          что можно отложить и как спланировать восстановление.
-        </p>
+              <p class="v3-lead promo-lead">{promo.text}</p>
 
-        <div class="promo-points" aria-label="Что входит в акцию" data-v3-stagger>
-          <div class="promo-point">
-            <span class="promo-point-mark" aria-hidden="true">•</span>
-            <span class="promo-point-num">01</span>
-            <span class="promo-point-text">Фокус на вашей задаче, без продажи лишних процедур</span>
-          </div>
-          <div class="promo-point">
-            <span class="promo-point-mark" aria-hidden="true">?</span>
-            <span class="promo-point-num">02</span>
-            <span class="promo-point-text">Список вопросов к хирургу или косметологу</span>
-          </div>
-          <div class="promo-point">
-            <span class="promo-point-mark" aria-hidden="true">—</span>
-            <span class="promo-point-num">03</span>
-            <span class="promo-point-text">Этапы, сроки и ограничения до решения</span>
-          </div>
+              <div class="promo-points" aria-label="Условия акции">
+                {promo.points.map((point, pointIndex) => (
+                  <div class="promo-point">
+                    <span class="promo-point-mark" aria-hidden="true">{String(pointIndex + 1).padStart(2, '0')}</span>
+                    <span class="promo-point-text">{point}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div class="promo-actions">
+                <button type="button" class="v3-btn v3-btn-primary" data-promo-booking data-preset={promo.preset}>
+                  {promo.cta} <span aria-hidden="true">→</span>
+                </button>
+                {promo.doctorHref && (
+                  <a href={promo.doctorHref} class="promo-profile-link">
+                    {promo.doctorCta} <span aria-hidden="true">→</span>
+                  </a>
+                )}
+                <div class="promo-messengers" aria-label="Быстрая связь в мессенджерах">
+                  {messengers.map((messenger) => (
+                    <a
+                      href={messenger.href}
+                      class="promo-msgr"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={messenger.ariaLabel}
+                    >
+                      {messenger.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <p class="v3-caption promo-note">
+                Медицинские рекомендации и стоимость врач подтверждает на консультации.
+              </p>
+            </div>
+          ))}
         </div>
 
-        <div class="promo-actions">
-          <button type="button" class="v3-btn v3-btn-primary" data-promo-booking>
-            Получить план <span aria-hidden="true">→</span>
-          </button>
-          <a href="https://wa.me/78432236666" class="v3-link promo-whatsapp" target="_blank" rel="noopener noreferrer">
-            Написать в мессенджер
-          </a>
-        </div>
-
-        <p class="v3-caption promo-note">
-          Медицинские рекомендации и стоимость врач подтверждает на консультации.
-        </p>
+        {promotions.length > 1 && (
+          <div class="promo-controls" aria-label="Переключение акций">
+            <button type="button" class="promo-arrow" data-promo-prev aria-label="Предыдущая акция">←</button>
+            <div class="promo-dots" role="tablist" aria-label="Акции">
+              {promotions.map((promo, index) => (
+                <button
+                  type="button"
+                  class="promo-dot"
+                  data-promo-dot
+                  data-promo-index={index}
+                  aria-label={`Показать акцию: ${promo.label}`}
+                  aria-selected={index === 0 ? 'true' : 'false'}
+                />
+              ))}
+            </div>
+            <button type="button" class="promo-arrow" data-promo-next aria-label="Следующая акция">→</button>
+          </div>
+        )}
       </div>
 
-      <figure class="promo-visual" aria-label="Подготовка персонального плана консультации">
-        <Image
-          src={consultationPhoto}
-          alt="Спокойная консультация в светлом кабинете с планшетом и планом эстетической коррекции"
-          class="promo-photo"
-          loading="lazy"
-          decoding="async"
-        />
-        <figcaption class="promo-badge">
-          <span class="promo-badge-label">Первичный визит</span>
-          <span class="promo-badge-text">план консультации</span>
-        </figcaption>
+      <figure class="promo-visual" aria-label="Актуальные акции The Platinental Казань">
+        {promotions.map((promo, index) => (
+          <img
+            src={promo.image}
+            alt={promo.imageAlt}
+            class:list={['promo-photo', index === 0 && 'is-active']}
+            loading="lazy"
+            decoding="async"
+            data-promo-photo
+            data-promo-index={index}
+            aria-hidden={index === 0 ? 'false' : 'true'}
+            style={`--promo-photo-scale:${promo.imageFrame.scale}; --promo-photo-x:${promo.imageFrame.x}; --promo-photo-y:${promo.imageFrame.y};`}
+          />
+        ))}
       </figure>
     </article>
   </div>
 </section>
 
 <script>
+  const PROMO_INTERVAL = 7000;
+
   function initPromoBooking() {
     const buttons = document.querySelectorAll<HTMLButtonElement>('[data-promo-booking]');
     buttons.forEach((button) => {
       if (button.dataset.bookingBound === '1') return;
       button.dataset.bookingBound = '1';
       button.addEventListener('click', () => {
+        const preset = button.dataset.preset || 'Акция The Platinental Казань';
         window.dispatchEvent(new CustomEvent('open-booking', {
-          detail: { preset: 'План консультации перед визитом' },
+          detail: { preset },
         }));
       });
     });
   }
 
-  if (document.readyState !== 'loading') initPromoBooking();
-  else document.addEventListener('DOMContentLoaded', initPromoBooking);
-  document.addEventListener('astro:page-load', initPromoBooking);
+  function initPromoSliders() {
+    const sliders = document.querySelectorAll<HTMLElement>('[data-promo-slider]');
+    sliders.forEach((slider) => {
+      if (slider.dataset.sliderBound === '1') return;
+      slider.dataset.sliderBound = '1';
+
+      const slides = Array.from(slider.querySelectorAll<HTMLElement>('[data-promo-slide]'));
+      const photos = Array.from(slider.querySelectorAll<HTMLElement>('[data-promo-photo]'));
+      const dots = Array.from(slider.querySelectorAll<HTMLButtonElement>('[data-promo-dot]'));
+      const prev = slider.querySelector<HTMLButtonElement>('[data-promo-prev]');
+      const next = slider.querySelector<HTMLButtonElement>('[data-promo-next]');
+      let active = 0;
+      let timer: number | undefined;
+
+      const show = (index: number) => {
+        active = (index + slides.length) % slides.length;
+        slides.forEach((slide, slideIndex) => {
+          const isActive = slideIndex === active;
+          slide.classList.toggle('is-active', isActive);
+          slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+          slide.querySelectorAll<HTMLElement>('a, button').forEach((control) => {
+            if (isActive) control.removeAttribute('tabindex');
+            else control.setAttribute('tabindex', '-1');
+          });
+        });
+        photos.forEach((photo, photoIndex) => {
+          const isActive = photoIndex === active;
+          photo.classList.toggle('is-active', isActive);
+          photo.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        });
+        dots.forEach((dot, dotIndex) => {
+          dot.setAttribute('aria-selected', dotIndex === active ? 'true' : 'false');
+        });
+      };
+
+      const stop = () => {
+        if (timer) window.clearInterval(timer);
+        timer = undefined;
+      };
+
+      const start = () => {
+        stop();
+        if (slides.length < 2) return;
+        timer = window.setInterval(() => show(active + 1), PROMO_INTERVAL);
+      };
+
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          show(Number(dot.dataset.promoIndex || 0));
+          start();
+        });
+      });
+
+      prev?.addEventListener('click', () => {
+        show(active - 1);
+        start();
+      });
+
+      next?.addEventListener('click', () => {
+        show(active + 1);
+        start();
+      });
+
+      slider.addEventListener('mouseenter', stop);
+      slider.addEventListener('mouseleave', start);
+      slider.addEventListener('focusin', stop);
+      slider.addEventListener('focusout', start);
+
+      show(0);
+      start();
+    });
+  }
+
+  function initPromotions() {
+    initPromoBooking();
+    initPromoSliders();
+  }
+
+  if (document.readyState !== 'loading') initPromotions();
+  else document.addEventListener('DOMContentLoaded', initPromotions);
+  document.addEventListener('astro:page-load', initPromotions);
 </script>
 
 <style>
   .v3-promotions {
-    padding-top: var(--v3-gap-medium);
+    scroll-margin-top: 6rem;
+    padding-top: var(--v3-gap-deep);
     padding-bottom: var(--v3-gap-deep);
   }
 
@@ -107,9 +256,36 @@ import consultationPhoto from '../../../assets/photos/promo-consultation-plan.pn
   .promo-content {
     display: flex;
     flex-direction: column;
-    gap: var(--v3-gap-h1-lead);
+    justify-content: space-between;
+    gap: var(--v3-gap-small);
     min-width: 0;
     padding: clamp(0.25rem, 2vw, 1rem) 0;
+  }
+
+  .promo-slides {
+    position: relative;
+    min-height: clamp(28rem, 34vw, 34rem);
+  }
+
+  .promo-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--v3-gap-h1-lead);
+    min-width: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(0, 0.75rem, 0);
+    transition:
+      opacity 520ms var(--v3-ease-out),
+      transform 520ms var(--v3-ease-out);
+  }
+
+  .promo-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate3d(0, 0, 0);
   }
 
   .promo-kicker {
@@ -121,7 +297,7 @@ import consultationPhoto from '../../../assets/photos/promo-consultation-plan.pn
   }
 
   .promo-title {
-    max-width: 16ch;
+    max-width: 18ch;
   }
 
   .promo-lead {
@@ -137,47 +313,33 @@ import consultationPhoto from '../../../assets/photos/promo-consultation-plan.pn
 
   .promo-point {
     display: grid;
-    grid-template-columns: 1.75rem minmax(0, 1fr);
-    grid-template-areas:
-      'mark num'
-      'mark text';
-    gap: 0.25rem 0.7rem;
+    grid-template-columns: 1.65rem minmax(0, 1fr);
+    gap: 0.6rem;
     align-items: center;
     min-width: 0;
-    padding: 1rem;
+    padding: 0.75rem 0.8rem;
     border: 1px solid var(--v3-border-hair);
-    border-radius: var(--v3-radius-lg);
+    border-radius: var(--v3-radius-md);
     background: var(--v3-surface-muted);
   }
 
   .promo-point-mark {
-    grid-area: mark;
     display: inline-grid;
     place-items: center;
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 1.65rem;
+    height: 1.65rem;
     border: 1px solid var(--v3-border-soft);
     border-radius: 50%;
     background: var(--v3-surface-card);
     font-family: var(--v3-font-body);
-    font-size: 0.85rem;
+    font-size: 0.68rem;
     line-height: 1;
-    color: var(--v3-champagne-deep);
-  }
-
-  .promo-point-num {
-    grid-area: num;
-    font-family: var(--v3-font-body);
-    font-size: var(--v3-text-caption);
-    line-height: 1;
-    letter-spacing: var(--v3-tracking-eyebrow);
     color: var(--v3-champagne-deep);
   }
 
   .promo-point-text {
-    grid-area: text;
     color: var(--v3-ink-secondary);
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     line-height: 1.5;
   }
 
@@ -189,8 +351,112 @@ import consultationPhoto from '../../../assets/photos/promo-consultation-plan.pn
     padding-top: 0.5rem;
   }
 
-  .promo-whatsapp {
+  .promo-messengers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .promo-profile-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: var(--v3-ink);
+    text-decoration: none;
+    font-family: var(--v3-font-body);
     font-size: 0.9375rem;
+    line-height: 1.2;
+    border-bottom: 1px solid var(--v3-border-strong);
+    transition: color var(--v3-duration-fast) var(--v3-ease);
+  }
+
+  .promo-profile-link:hover,
+  .promo-profile-link:focus-visible {
+    color: var(--v3-champagne-deep);
+  }
+
+  .promo-profile-link span {
+    margin-left: 0.35rem;
+  }
+
+  .promo-msgr {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--v3-border-soft);
+    border-radius: var(--v3-radius-pill);
+    background: var(--v3-surface-card);
+    color: var(--v3-ink);
+    font-family: var(--v3-font-body);
+    font-size: var(--v3-text-caption);
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: border-color var(--v3-duration-fast) var(--v3-ease),
+      background var(--v3-duration-fast) var(--v3-ease),
+      color var(--v3-duration-fast) var(--v3-ease);
+  }
+
+  .promo-msgr:hover,
+  .promo-msgr:focus-visible {
+    border-color: var(--v3-champagne);
+    background: var(--v3-surface-muted);
+    color: var(--v3-champagne-deep);
+  }
+
+  .promo-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+  }
+
+  .promo-arrow,
+  .promo-dot {
+    border: 1px solid var(--v3-border-soft);
+    background: var(--v3-surface-card);
+    color: var(--v3-ink-secondary);
+    cursor: pointer;
+    transition: border-color var(--v3-duration-fast) var(--v3-ease),
+      background var(--v3-duration-fast) var(--v3-ease),
+      color var(--v3-duration-fast) var(--v3-ease);
+  }
+
+  .promo-arrow {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    font-family: var(--v3-font-body);
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .promo-dots {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .promo-dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .promo-arrow:hover,
+  .promo-arrow:focus-visible,
+  .promo-dot:hover,
+  .promo-dot:focus-visible,
+  .promo-dot[aria-selected='true'] {
+    border-color: var(--v3-champagne);
+    background: var(--v3-champagne);
+    color: var(--v3-ink);
   }
 
   .promo-note {
@@ -202,7 +468,7 @@ import consultationPhoto from '../../../assets/photos/promo-consultation-plan.pn
   .promo-visual {
     position: relative;
     margin: 0;
-    min-height: 100%;
+    min-height: clamp(24rem, 42vw, 36rem);
     border-radius: var(--v3-radius-xl);
     overflow: hidden;
     border: 1px solid var(--v3-border-soft);
@@ -210,57 +476,46 @@ import consultationPhoto from '../../../assets/photos/promo-consultation-plan.pn
   }
 
   .promo-photo {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     min-height: clamp(24rem, 42vw, 36rem);
     object-fit: cover;
     object-position: center;
     display: block;
+    opacity: 0;
+    transform: translate(var(--promo-photo-x, 0%), var(--promo-photo-y, 0%)) scale(calc(var(--promo-photo-scale, 1) * 1.015));
+    transform-origin: center top;
+    transition:
+      opacity 620ms var(--v3-ease-out),
+      transform 760ms var(--v3-ease-out);
   }
 
-  .promo-badge {
-    position: absolute;
-    left: 1rem;
-    right: 1rem;
-    bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.875rem 1rem;
-    border: 1px solid var(--v3-border-soft);
-    border-radius: var(--v3-radius-lg);
-    background: color-mix(in srgb, var(--v3-surface-card) 86%, transparent);
-    backdrop-filter: blur(16px);
-    box-shadow: var(--v3-shadow-sm);
+  .promo-photo.is-active {
+    opacity: 1;
+    transform: translate(var(--promo-photo-x, 0%), var(--promo-photo-y, 0%)) scale(var(--promo-photo-scale, 1));
   }
 
-  .promo-badge-label,
-  .promo-badge-text {
-    font-family: var(--v3-font-body);
-    font-size: var(--v3-text-caption);
-    line-height: 1.35;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--v3-ink);
-  }
-
-  .promo-badge-text {
-    color: var(--v3-ink-muted);
-    text-align: right;
-  }
-
-  @media (max-width: 1024px) {
+  @media (max-width: 1100px) {
     .promo-panel {
       grid-template-columns: 1fr;
+      max-width: 50rem;
+      margin-inline: auto;
+    }
+
+    .promo-slides {
+      min-height: clamp(24rem, 48vw, 30rem);
     }
 
     .promo-visual {
+      height: clamp(20rem, 44vw, 28rem);
       min-height: 0;
     }
 
     .promo-photo {
-      min-height: 22rem;
-      max-height: 30rem;
+      min-height: 20rem;
+      max-height: 28rem;
     }
   }
 
@@ -279,6 +534,10 @@ import consultationPhoto from '../../../assets/photos/promo-consultation-plan.pn
       display: none;
     }
 
+    .promo-slides {
+      min-height: 30rem;
+    }
+
     .promo-points {
       grid-template-columns: 1fr;
     }
@@ -286,36 +545,59 @@ import consultationPhoto from '../../../assets/photos/promo-consultation-plan.pn
     .promo-point-mark {
       width: 1.5rem;
       height: 1.5rem;
-      font-size: 0.75rem;
-    }
-
-    .promo-point-num {
-      font-size: 0.6875rem;
+      font-size: 0.65rem;
     }
 
     .promo-point-text {
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
     }
 
     .promo-actions {
       align-items: stretch;
     }
 
-    .promo-whatsapp {
-      align-self: flex-start;
+    .promo-actions {
+      gap: 0.75rem;
+    }
+
+    .promo-messengers {
+      width: 100%;
+    }
+
+    .promo-profile-link {
+      order: 3;
+      width: fit-content;
+    }
+
+    .promo-msgr {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .promo-controls {
+      justify-content: space-between;
     }
 
     .promo-photo {
-      min-height: 13rem;
-      max-height: 15rem;
+      min-height: 0;
+      height: 100%;
+      max-height: none;
     }
 
-    .promo-badge {
-      position: static;
-      border-radius: 0;
-      border-width: 1px 0 0;
-      box-shadow: none;
-      background: var(--v3-surface-card);
+    .promo-visual {
+      height: 15rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .promo-slide,
+    .promo-photo {
+      transition: none;
+      transform: none;
+    }
+
+    .promo-photo.is-active {
+      transform: translate(var(--promo-photo-x, 0%), var(--promo-photo-y, 0%)) scale(var(--promo-photo-scale, 1));
     }
   }
 </style>

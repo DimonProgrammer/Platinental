@@ -4,7 +4,7 @@ import { formatTypographyHtml } from '../../../lib/formatText';
 import type { Doctor } from '../../../data/doctors';
 
 const babayan = doctors.find((d) => d.slug === 'babayan')!;
-const featuredSlugs = ['meloyan', 'tulatova', 'vasilev'];
+const featuredSlugs = ['meloyan', 'mamedov', 'vasilev'];
 const featured = featuredSlugs
   .map((slug) => doctors.find((d) => d.slug === slug))
   .filter((doctor): doctor is Doctor => Boolean(doctor));
@@ -19,13 +19,13 @@ const homeDoctorCopy: Record<string, { spec: string; credential?: string; short:
     spec: 'ЭСТЕТИЧЕСКАЯ И РЕКОНСТРУКТИВНАЯ ХИРУРГИЯ',
     short: 'Эстетическая и реконструктивная пластическая хирургия. Основные направления — ринопластика, риносептопластика, эстетическая хирургия молочных желёз и реконструктивные задачи.',
   },
-  tulatova: {
-    spec: 'ДЕЛИКАТНАЯ ХИРУРГИЯ ЛИЦА И ВЕК',
-    short: 'Специализируется на деликатной хирургии лица: блефаропластике, височном лифтинге, подтяжке лба, работе с верхней и средней третью лица. В работе делает акцент на анатомии век, положении бровей и естественном характере взгляда.',
+  mamedov: {
+    spec: 'РИНОПЛАСТИКА · ХИРУРГИЯ ЛИЦА · ШЕИ И ВЕК',
+    short: 'Работает с эстетической и функциональной хирургией лица: ринопластикой, риносептопластикой, операциями на лицевом скелете, веках и шее. В сложных случаях учитывает дыхание, анатомию и последствия предыдущих вмешательств.',
   },
   vasilev: {
-    spec: 'К.М.Н. · БЛЕФАРОПЛАСТИКА · МАММОПЛАСТИКА · КОНТУРИРОВАНИЕ ТЕЛА',
-    short: 'Кандидат медицинских наук, соавтор четырёх зарегистрированных патентов. Работает с блефаропластикой, маммопластикой, контурированием тела и хирургической коррекцией шейно-подбородочной зоны.',
+    spec: 'К.М.Н. · ХИРУРГИЯ ЛИЦА · ГРУДИ И ТЕЛА',
+    short: 'Кандидат медицинских наук, соавтор четырёх зарегистрированных патентов. Работает с пластикой лица, груди и тела: блефаропластикой, лифтингом бровей, маммопластикой, липосакцией, липомоделированием и миниабдоминопластикой.',
   },
 };
 
@@ -291,7 +291,7 @@ const featuredCards = featured.map((doctor) => ({
     font-family: var(--v3-font-display);
     font-style: normal;
     font-weight: 400;
-    font-size: clamp(2rem, 3vw, 3rem);
+    font-size: clamp(1.75rem, 2.6vw, 2.5rem);
     line-height: 1.05;
     color: var(--v3-ink);
     transition: color var(--v3-duration-fast) var(--v3-ease-out);
@@ -324,7 +324,7 @@ const featuredCards = featured.map((doctor) => ({
     font-family: var(--v3-font-display);
     font-style: normal;
     font-weight: 400;
-    font-size: clamp(1.35rem, 2.2vw, 2.1rem);
+    font-size: clamp(1.25rem, 1.8vw, 1.75rem);
     line-height: 1.15;
     color: var(--v3-ink);
     max-width: 22ch;
@@ -555,7 +555,7 @@ const featuredCards = featured.map((doctor) => ({
     font-family: var(--v3-font-display);
     font-style: normal;
     font-weight: 400;
-    font-size: clamp(1.25rem, 1.8vw, 1.625rem);
+    font-size: clamp(1.1875rem, 1.35vw, 1.5rem);
     line-height: 1.15;
     color: var(--v3-ink);
     transition: color var(--v3-duration-fast) var(--v3-ease-out);
@@ -598,8 +598,19 @@ const featuredCards = featured.map((doctor) => ({
 
   @media (max-width: 1100px) {
     .babayan-card {
-      grid-template-columns: minmax(16rem, 21rem) minmax(0, 1fr);
-      gap: 2rem;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      max-width: 48rem;
+      margin-inline: auto;
+    }
+
+    .babayan-photo {
+      width: min(18rem, 100%);
+      margin-inline: auto;
+    }
+
+    .babayan-main {
+      gap: 0.875rem;
     }
   }
 
@@ -611,17 +622,8 @@ const featuredCards = featured.map((doctor) => ({
   }
 
   @media (max-width: 768px) {
-    .babayan-card {
-      grid-template-columns: 1fr;
-    }
-
     .babayan-photo {
       width: min(17rem, calc(100vw - 4rem));
-      margin-inline: auto;
-    }
-
-    .babayan-main {
-      gap: 0.875rem;
     }
   }
 
