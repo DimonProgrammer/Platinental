@@ -39,6 +39,7 @@ const hasOnlinePrice = priceSubParts.some((part) => part.includes('Онлайн'
 const resultImages = d.resultCases?.map((item) => item.src) ?? [];
 const galleryImages = resultImages.length > 0 ? resultImages : (d.gallery ?? []);
 const hasResultCases = resultImages.length > 0;
+const isBabayanIllustrationGallery = d.slug === 'babayan' && hasResultCases;
 const resultCasesAspect = d.resultCasesAspect ?? '8 / 5';
 const resultCasesFit = d.resultCasesFit ?? 'cover';
 const galleryAspect = d.galleryAspect ?? '4 / 5';
@@ -586,9 +587,11 @@ const breadcrumbSchema = {
               </li>
             ))}
           </ul>
-          <p class="works-disclaimer v3-caption" data-v3-reveal>
-            Опубликовано с письменного согласия пациентов. Результат индивидуален.
-          </p>
+          {!isBabayanIllustrationGallery && (
+            <p class="works-disclaimer v3-caption" data-v3-reveal>
+              Опубликовано с письменного согласия пациентов. Результат индивидуален.
+            </p>
+          )}
         </div>
       </section>
     )}
