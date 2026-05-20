@@ -326,6 +326,23 @@ const breadcrumbSchema = {
             ))}
           </div>
 
+          {d.regenerativeComparison.illustrations && d.regenerativeComparison.illustrations.length > 0 && (
+            <div class="regen-illustrations" data-v3-stagger>
+              {d.regenerativeComparison.illustrations.map((illustration) => (
+                <figure class="regen-illustration">
+                  <img
+                    src={illustration.src}
+                    alt={illustration.title}
+                    width="1400"
+                    height="1630"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </figure>
+              ))}
+            </div>
+          )}
+
           <p class="regen-note v3-caption" data-v3-reveal>{d.regenerativeComparison.note}</p>
         </div>
       </section>
@@ -1965,6 +1982,23 @@ const breadcrumbSchema = {
     border-radius: 999px;
     background: var(--v3-champagne-deep);
   }
+  .regen-illustrations {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.875rem, 1.8vw, 1.5rem);
+    margin-top: clamp(1.25rem, 3vw, 2rem);
+  }
+  .regen-illustration {
+    margin: 0;
+    border: 1px solid var(--v3-border-soft);
+    background: var(--v3-surface-card);
+    overflow: hidden;
+  }
+  .regen-illustration img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
   .regen-note {
     max-width: 58rem;
     margin: 1.25rem 0 0;
@@ -1976,6 +2010,9 @@ const breadcrumbSchema = {
   }
   @media (max-width: 900px) {
     .regen-grid {
+      grid-template-columns: 1fr;
+    }
+    .regen-illustrations {
       grid-template-columns: 1fr;
     }
   }

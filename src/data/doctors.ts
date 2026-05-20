@@ -112,6 +112,7 @@ export interface Doctor {
     lead: string;
     source: { label: string; href: string };
     columns: Array<{ title: string; items: string[] }>;
+    illustrations?: ResultCase[];
     note: string;
   };
 
@@ -913,6 +914,10 @@ export const doctors: Doctor[] = [
           ],
         },
       ],
+      illustrations: [
+        { src: '/doctors/babayan/illustrations/joints.jpg', title: 'Суставы: принцип регенеративной реконструкции MIBRAR' },
+        { src: '/doctors/babayan/illustrations/spine.jpg', title: 'Позвоночник: принцип регенеративной реконструкции MIBRAR' },
+      ],
       note: 'Брошюра MIBRAR приложена рядом со страницей врача. Решение о применимости метода принимает врач после изучения снимков, диагноза, истории лечения и общего состояния пациента.',
     },
     documentsEyebrow: 'PDF для пациента',
@@ -926,8 +931,6 @@ export const doctors: Doctor[] = [
         kind: 'publication',
       },
     ],
-    galleryEyebrow: 'Иллюстрации метода',
-    galleryHeading: 'MIBRAR для позвоночника и суставов',
     details: {
       specialization: [
         'Метод MIBRAR в нейрохирургии и регенеративной ортопедии',
@@ -1265,12 +1268,6 @@ const doctorPrototypeContent: Record<string, Partial<Doctor>> = {
         'MIBRAR — система регенеративной хирургии, которую Бабаян А.В. развивает как автор метода. Основной профиль врача — позвоночник, суставы, травмы и сложные ортопедические случаи.',
       ],
     },
-    resultCases: [
-      { src: '/doctors/babayan/illustrations/joints.jpg', title: 'Суставы: принцип регенеративной реконструкции MIBRAR', objectPosition: '50% 50%' },
-      { src: '/doctors/babayan/illustrations/spine.jpg', title: 'Позвоночник: принцип регенеративной реконструкции MIBRAR', objectPosition: '50% 50%' },
-    ],
-    resultCasesAspect: '1734 / 2019',
-    resultCasesFit: 'contain',
     reviews: [
       { label: 'Грыжа поясничного диска', quote: 'Врачи предлагали только операцию — удаление диска и стабилизацию. После процедуры MIBRAR® грыжа значительно уменьшилась уже через 4 месяца. Боль в ноге прошла полностью. Рад, что не согласился на открытую операцию.', source: 'PAS MIBRAR', href: 'https://pas-mibrar.com/reviews/' },
       { label: 'Коксартроз обоих суставов', quote: 'Мне предложили двустороннее эндопротезирование. Бабаян А.В. обработал оба тазобедренных сустава за одну процедуру. Через 3 месяца боль уменьшилась на 85%. Хожу без трости, вернулась к обычной жизни.', source: 'PAS MIBRAR', href: 'https://pas-mibrar.com/reviews/' },
