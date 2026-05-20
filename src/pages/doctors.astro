@@ -7,7 +7,6 @@ import FAQ from '../components/site/sections/FAQ.astro';
 import FinalCTA from '../components/site/sections/FinalCTA.astro';
 import Footer from '../components/site/sections/Footer.astro';
 import { doctors } from '../data/doctors';
-import { getSurgicalBase } from '../data/partners';
 import { formatCurrencyPlainText, formatTypographyHtml } from '../lib/formatText';
 
 const allDoctors = doctors;
@@ -126,7 +125,6 @@ const filterOptions = [
               <ul class="doctors-grid">
                 {group.doctors.map((d) => {
                   const cardCopy = doctorCardCopy[d.slug];
-                  const surgicalBase = getSurgicalBase(d.surgicalBase);
                   const priceSubParts = splitPriceSub(d.priceSub);
                   return (
                     <li class:list={['doctor-card', d.group === 'founder' && 'doctor-card--wide']} data-v3-reveal data-doctor-card data-tags={d.tags.join(' ')}>
@@ -149,7 +147,6 @@ const filterOptions = [
                           <p class="doctor-spec v3-eyebrow">{cardCopy?.spec ?? d.spec}</p>
                           <h3 class="doctor-name v3-h3">{d.name}</h3>
                           <p class="doctor-short v3-body" set:html={formatTypographyHtml(cardCopy?.short ?? d.short)}></p>
-                          {surgicalBase && <p class="doctor-base v3-caption">Операции проходят на базе клиники «{surgicalBase.shortName}».</p>}
                           {d.bookingEnabled === false ? (
                             <div class="doctor-price doctor-price-muted">
                               <span class="price-primary v3-caption">Открыть профиль</span>
