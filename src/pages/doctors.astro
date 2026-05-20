@@ -78,7 +78,7 @@ const filterOptions = [
 
 <SiteLayout
   title="Врачи The Platinental Казань — пластические хирурги и косметологи"
-  description="Врачи The Platinental Казань: пластические хирурги, врач-косметолог и приглашённые специалисты по отдельным направлениям. Профили, образование и стоимость консультации."
+  description="Врачи The Platinental Казань: пластические хирурги, косметологи, нейрохирург и травматолог-ортопед. Профили, образование и стоимость консультации."
 >
   <Navigation />
   <main id="main">
@@ -149,7 +149,7 @@ const filterOptions = [
                           <p class="doctor-spec v3-eyebrow">{cardCopy?.spec ?? d.spec}</p>
                           <h3 class="doctor-name v3-h3">{d.name}</h3>
                           <p class="doctor-short v3-body" set:html={formatTypographyHtml(cardCopy?.short ?? d.short)}></p>
-                          {surgicalBase && <p class="doctor-base v3-caption">Операционная база: {surgicalBase.shortName}</p>}
+                          {surgicalBase && <p class="doctor-base v3-caption">Операции проходят на базе клиники «{surgicalBase.shortName}».</p>}
                           {d.bookingEnabled === false ? (
                             <div class="doctor-price doctor-price-muted">
                               <span class="price-primary v3-caption">Открыть профиль</span>
