@@ -72,6 +72,7 @@
 | [brechko-client-prototype.md](doctors-research/brechko-client-prototype.md) | Клиентский текстовый прототип страницы Бречко М.А. на универсальном скелете страниц врачей. |
 | [gritsay.md](doctors-research/gritsay.md) | Исследовательское досье Грицай О.А.: Exa-находки, сверка с вводными клиента, отзывы, негативные сигналы, вопросы на согласование. |
 | [gritsay-client-prototype.md](doctors-research/gritsay-client-prototype.md) | Клиентский текстовый прототип страницы Грицай О.А. на универсальном скелете страниц врачей. |
+| [client-prototypes/12-valisheva.md](doctors-research/client-prototypes/12-valisheva.md) | Клиентский текстовый прототип страницы Валишевой Л.В. как врача-косметолога. |
 | [sorvin.md](doctors-research/sorvin.md) | Исследовательское досье Сорвина В.А.: Exa-находки, сверка с вводными клиента, ортогнатический маршрут, отзывы, риски, вопросы на согласование. |
 | [sorvin-client-prototype.md](doctors-research/sorvin-client-prototype.md) | Клиентский текстовый прототип страницы Сорвина В.А. на универсальном скелете страниц врачей. |
 

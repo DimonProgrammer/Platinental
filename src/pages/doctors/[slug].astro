@@ -44,7 +44,7 @@ const resultCasesAspect = d.resultCasesAspect ?? '8 / 5';
 const resultCasesFit = d.resultCasesFit ?? 'cover';
 const galleryAspect = d.galleryAspect ?? '4 / 5';
 const galleryFit = d.galleryFit ?? 'cover';
-const showResultCaseTitles = d.slug === 'mamedov';
+const showResultCaseTitles = d.slug === 'mamedov' || d.slug === 'valisheva';
 const hasNamedResultCases = showResultCaseTitles && Boolean(d.resultCases?.some((item) => item.title && !/^Кейс \d+$/u.test(item.title)));
 const prototypeReviews = d.reviews ?? (d.review ? [d.review] : []);
 const hasEditorialProfile = Boolean(d.careAreas?.length || d.professionalPath || prototypeReviews.length || d.focusSections?.length);
