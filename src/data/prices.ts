@@ -47,6 +47,7 @@ const consultations: PriceGroup = {
     { service: 'Бречко М.А.', sub: ' — хирургия лица', code: 'B01.057.003/004', primary: '5 000 ₽', repeat: '2 500 ₽', online: '3 500 ₽' },
     { service: 'Сорвин В.А.', sub: ' — челюстно-лицевой хирург', code: 'B01.057.003', primary: '10 000 ₽', repeat: '10 000 ₽', online: '10 000 ₽' },
     { service: 'Грицай О.А.', sub: ' — врач-косметолог', code: 'B01.008.003/004', primary: '2 000 ₽', repeat: '700 ₽', online: '—' },
+    { service: 'Валишева Л.В.', sub: ' — врач-косметолог', code: 'B01.008.003/004', primary: '2 000 ₽', repeat: '700 ₽', online: '—' },
   ],
 };
 
@@ -442,7 +443,7 @@ export const doctorPriceSheets: DoctorPriceSheet[] = [
 ];
 
 export const priceCategories: PriceCategory[] = [
-  { key: 'consultations', label: 'Консультации', count: 7, groups: [consultations] },
+  { key: 'consultations', label: 'Консультации', count: 8, groups: [consultations] },
   { key: 'face', label: 'Пластика лица', count: face.length, groups: face },
   { key: 'body', label: 'Пластика тела', count: body.length, groups: body },
   { key: 'cosmetology', label: 'Косметология', count: cosmetology.length, groups: cosmetology },

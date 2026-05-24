@@ -11,6 +11,8 @@ import { doctors } from '../data/doctors';
 import { formatCurrencyPlainText, formatTypographyHtml } from '../lib/formatText';
 
 const cosmetologists = doctors.filter((d) => d.tags.includes('cosmetology'));
+const splitPriceSub = (value?: string) =>
+  (value ?? '').split(' · ').map((part) => part.trim()).filter(Boolean);
 
 const categoryMeta = {
   injection: { label: 'Инъекционная косметология', eyebrow: 'Инъекции' },
@@ -133,36 +135,42 @@ const faqItems = [
             <span class="v3-eyebrow">Специалисты направления</span>
             <h2 id="cosm-doctors-heading" class="v3-display doctors-h2"><em>Врачи-косметологи клиники</em></h2>
           </header>
-          {cosmetologists.map((d) => (
-            <div class="doctor-card" data-v3-reveal>
-              <div class="dc-photo-wrap">
-                {d.photo
-                  ? <img
-                      src={d.photo}
-                      alt={d.name}
-                      loading="lazy"
-                      class="dc-photo-img"
-                      style={`--doctor-photo-scale:${d.photoFrame?.scale ?? 1.1}; --doctor-photo-x:${d.photoFrame?.x ?? '0%'}; --doctor-photo-y:${d.photoFrame?.y ?? '-2%'};`}
-                    />
-                  : <div class="dc-initials">{d.initials}</div>}
-              </div>
-              <div class="dc-body">
-                <p class="v3-eyebrow dc-spec">{d.spec}</p>
-                <h3 class="v3-display dc-name"><em>{d.name}</em></h3>
-                <p class="v3-body dc-bio" set:html={formatTypographyHtml(d.short)}></p>
-                <hr class="dc-rule" />
-                <div class="dc-consult-row">
-                  <span class="v3-eyebrow dc-consult-label">Консультация</span>
-                  <span class="dc-price" set:html={formatCurrencyPlainText(d.priceMain)}></span>
+          {cosmetologists.map((d) => {
+            const priceSubParts = splitPriceSub(d.priceSub);
+            return (
+              <div class="doctor-card" data-v3-reveal>
+                <div class="dc-photo-wrap">
+                  {d.photo
+                    ? <img
+                        src={d.photo}
+                        alt={d.name}
+                        loading="lazy"
+                        class="dc-photo-img"
+                        style={`--doctor-photo-scale:${d.photoFrame?.scale ?? 1.1}; --doctor-photo-x:${d.photoFrame?.x ?? '0%'}; --doctor-photo-y:${d.photoFrame?.y ?? '-2%'};`}
+                      />
+                    : <div class="dc-initials">{d.initials}</div>}
                 </div>
-                <hr class="dc-rule" />
-                <div class="dc-actions">
-                  <a href="#form" class="v3-btn v3-btn-primary">Записаться</a>
-                  <a href={`/doctors/${d.slug}`} class="dc-more-link">Подробнее о враче</a>
+                <div class="dc-body">
+                  <p class="v3-eyebrow dc-spec">{d.spec}</p>
+                  <h3 class="v3-display dc-name"><em>{d.name}</em></h3>
+                  <p class="v3-body dc-bio" set:html={formatTypographyHtml(d.short)}></p>
+                  <hr class="dc-rule" />
+                  <div class="dc-consult-row">
+                    <span class="v3-eyebrow dc-consult-label">Консультация</span>
+                    <span class="dc-price" set:html={formatCurrencyPlainText(d.priceMain)}></span>
+                    {priceSubParts.map((priceSub) => (
+                      <span class="dc-price dc-price-sub" set:html={formatCurrencyPlainText(priceSub)}></span>
+                    ))}
+                  </div>
+                  <hr class="dc-rule" />
+                  <div class="dc-actions">
+                    <a href="#form" class="v3-btn v3-btn-primary">Записаться</a>
+                    <a href={`/doctors/${d.slug}`} class="dc-more-link">Подробнее о враче</a>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
     )}
@@ -334,6 +342,7 @@ const faqItems = [
   }
   .dc-consult-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     gap: 1.5rem;
   }
@@ -343,6 +352,10 @@ const faqItems = [
     font-style: italic;
     font-size: 1.25rem;
     color: var(--v3-champagne-deep);
+  }
+  .dc-price-sub {
+    font-size: 1rem;
+    color: var(--v3-ink-muted);
   }
   .dc-actions {
     display: flex;
