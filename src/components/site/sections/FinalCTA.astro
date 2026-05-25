@@ -83,8 +83,14 @@ const {
       <label class="consent">
         <input type="checkbox" name="consent" required />
         <span class="consent-text">
-          Я согласен(а) на <a href="/consent" class="v3-link">обработку персональных данных</a>,
-          ознакомлен(а) с <a href="/privacy" class="v3-link">политикой конфиденциальности</a>
+          Я согласен(а) на <a href="/consent" class="v3-link">обработку персональных данных</a>.
+        </span>
+      </label>
+
+      <label class="consent">
+        <input type="checkbox" name="legalConsent" required />
+        <span class="consent-text">
+          Я ознакомлен(а) с <a href="/privacy" class="v3-link">политикой конфиденциальности</a>
           и <a href="/terms" class="v3-link">пользовательским соглашением</a>.
         </span>
       </label>
@@ -145,6 +151,7 @@ const {
         const phone = String(formData.get('phone') ?? '').trim();
         const message = String(formData.get('message') ?? '').trim();
         const consent = Boolean(formData.get('consent'));
+        const legalConsent = Boolean(formData.get('legalConsent'));
         window.platinentalReachGoal?.('form_submit_consultation', { form: 'final_cta' });
         if (submit) {
           submit.dataset.defaultLabel = submit.textContent?.replace(/→/g, '').trim() || 'Отправить заявку';
@@ -159,6 +166,7 @@ const {
             phone,
             message,
             consent,
+            legalConsent,
             page: `${window.location.pathname}${window.location.search}`,
           });
           form.reset();

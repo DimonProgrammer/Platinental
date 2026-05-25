@@ -69,8 +69,14 @@
       <label class="consent">
         <input type="checkbox" name="consent" required />
         <span class="consent-text">
-          Я согласен(а) на <a href="/consent" class="v3-link">обработку персональных данных</a>,
-          ознакомлен(а) с <a href="/privacy" class="v3-link">политикой конфиденциальности</a>
+          Я согласен(а) на <a href="/consent" class="v3-link">обработку персональных данных</a>.
+        </span>
+      </label>
+
+      <label class="consent">
+        <input type="checkbox" name="legalConsent" required />
+        <span class="consent-text">
+          Я ознакомлен(а) с <a href="/privacy" class="v3-link">политикой конфиденциальности</a>
           и <a href="/terms" class="v3-link">пользовательским соглашением</a>.
         </span>
       </label>
@@ -284,6 +290,7 @@
       const message = String(formData.get('message') ?? '').trim();
       const doctor = String(formData.get('doctor') ?? '').trim();
       const consent = Boolean(formData.get('consent'));
+      const legalConsent = Boolean(formData.get('legalConsent'));
       window.platinentalReachGoal?.('form_submit_consultation', { form: 'booking_modal', doctor });
       if (submit) {
         submit.disabled = true;
@@ -298,6 +305,7 @@
           message,
           doctor,
           consent,
+          legalConsent,
           page: `${window.location.pathname}${window.location.search}`,
         });
         form.reset();

@@ -119,8 +119,14 @@
           <label class="quiz-consent">
             <input type="checkbox" name="consent" required />
             <span>
-              Я согласен(а) на <a href="/consent" class="v3-link">обработку персональных данных</a>,
-              ознакомлен(а) с <a href="/privacy" class="v3-link">политикой конфиденциальности</a>
+              Я согласен(а) на <a href="/consent" class="v3-link">обработку персональных данных</a>.
+            </span>
+          </label>
+
+          <label class="quiz-consent">
+            <input type="checkbox" name="legalConsent" required />
+            <span>
+              Я ознакомлен(а) с <a href="/privacy" class="v3-link">политикой конфиденциальности</a>
               и <a href="/terms" class="v3-link">пользовательским соглашением</a>.
             </span>
           </label>
@@ -450,6 +456,7 @@
       const name = String(formData.get('name') ?? '').trim();
       const phone = String(formData.get('phone') ?? '').trim();
       const consent = Boolean(formData.get('consent'));
+      const legalConsent = Boolean(formData.get('legalConsent'));
       const shortAnswers = quizSteps.map((step, index) => ({
         question: step.question,
         answer: answers[index]?.label ?? 'не выбрано',
@@ -467,6 +474,7 @@
           name,
           phone,
           consent,
+          legalConsent,
           answers: shortAnswers,
           page: `${window.location.pathname}${window.location.search}`,
         });
