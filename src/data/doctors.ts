@@ -829,11 +829,8 @@ export const doctors: Doctor[] = [
       },
     ],
     resultCases: [
-      { src: '/doctors/valisheva/cases/01.jpg', title: 'Материал до/после: верхняя треть лица' },
-      { src: '/doctors/valisheva/cases/02.jpg', title: 'Материал до/после: верхняя треть лица' },
-      { src: '/doctors/valisheva/cases/03.jpg', title: 'Материал до/после: качество кожи и мимика' },
-      { src: '/doctors/valisheva/cases/04.jpg', title: 'Материал до/после: качество кожи и мимика' },
-      { src: '/doctors/valisheva/cases/05.jpg', title: 'Материал до/после: мимические морщины' },
+      { src: '/doctors/valisheva/cases/02.jpg', title: 'Кейс 1' },
+      { src: '/doctors/valisheva/cases/05.jpg', title: 'Кейс 2' },
     ],
     resultCasesAspect: '1 / 1',
     resultCasesFit: 'cover',
