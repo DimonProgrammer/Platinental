@@ -23,14 +23,14 @@
           <em>Навигатор консультации</em>
         </h2>
         <p class="v3-lead quiz-lead">
-          Ответьте на 5 вопросов: какая зона беспокоит, какие сроки важны и что нужно уточнить у врача.
+          Короткий опрос перед записью: зона, сроки, ожидания и вопросы для врача.
         </p>
 
         <div class="quiz-principles" aria-label="Что даст опросник">
           <div class="quiz-principle">
             <span class="quiz-principle-mark" aria-hidden="true">?</span>
             <span>01</span>
-            <p>Соберёте запрос без выбора процедуры заранее.</p>
+            <p>Опишете, что беспокоит, без медицинских терминов.</p>
           </div>
           <div class="quiz-principle">
             <span class="quiz-principle-mark" aria-hidden="true">✓</span>
@@ -159,10 +159,10 @@
 
   const quizSteps: QuizStep[] = [
     {
-      question: 'С чего начался запрос?',
-      helper: 'Выберите не процедуру, а область, из-за которой хочется разобраться.',
-      lesson: 'На первой консультации важнее описать, что именно изменилось в восприятии себя. Название процедуры врач подберёт после осмотра.',
-      checklist: ['Отметьте зону, которая беспокоит чаще всего.', 'Не ориентируйтесь только на чужие фото: лучше показать динамику своих фото.'],
+      question: 'Что хотите обсудить с врачом?',
+      helper: 'Выберите зону или ситуацию, которая сейчас беспокоит.',
+      lesson: 'На консультации можно говорить простыми словами: что изменилось, что мешает и какого результата вы ждёте. Врач предложит возможные варианты после осмотра.',
+      checklist: ['Отметьте зону, которая беспокоит чаще всего.', 'Если есть фото в разные периоды, покажите их врачу.'],
       options: [
         { label: 'Лицо, веки, овал или шея', value: 'face' },
         { label: 'Грудь, живот или контуры тела', value: 'body' },
@@ -171,9 +171,9 @@
       ],
     },
     {
-      question: 'Насколько запрос уже сформулирован?',
-      helper: 'Это поможет понять, нужна ли точечная консультация или обзор возможностей.',
-      lesson: 'Хороший запрос звучит не как “хочу такую процедуру”, а как “хочу понять, почему меня не устраивает зона и какие есть варианты”.',
+      question: 'Насколько понятна задача?',
+      helper: 'Так администратор подберёт подходящий формат консультации.',
+      lesson: 'Если вы не знаете название процедуры, это нормально. Достаточно описать зону, прошлый опыт и желаемые изменения.',
       checklist: ['Подготовьте 2-3 своих фото в спокойном свете.', 'Запишите, что хочется сохранить неизменным.'],
       options: [
         { label: 'Есть конкретная зона и вопросы', value: 'specific' },
@@ -248,11 +248,52 @@
 
     let current = 0;
     const answers: Array<QuizOption | null> = Array(quizSteps.length).fill(null);
-    let resultMessage = '';
     let lastFocus: HTMLElement | null = null;
     const sessionKey = 'platinental_quiz_shown_session';
     const dismissKey = 'platinental_quiz_dismissed_until';
+    const cookieConsentKey = 'platinental_cookie_consent_v1';
     const dismissedUntil = () => Number(window.localStorage.getItem(dismissKey) ?? '0');
+    const hasCookieChoice = () => {
+      try {
+        const value = window.localStorage.getItem(cookieConsentKey);
+        return value === 'all' || value === 'essential';
+      } catch {
+        return false;
+      }
+    };
+
+    async function sendTelegramLead(payload: Record<string, unknown>) {
+      const isVercelHost = window.location.hostname.endsWith('vercel.app');
+      if (!isVercelHost) {
+        fetch('/api/telegram-lead.php?store=1', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }).catch(() => {});
+      }
+
+      const endpoints = isVercelHost
+        ? ['/api/telegram-lead', '/api/telegram-lead.php']
+        : [
+            'https://platinental-kazan.vercel.app/api/telegram-lead',
+            '/api/telegram-lead',
+            '/api/telegram-lead.php',
+          ];
+
+      for (const endpoint of endpoints) {
+        try {
+          const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          if (response.ok) return;
+        } catch {}
+      }
+
+      throw new Error('telegram_lead_failed');
+    }
 
     const scrollToQuiz = (target: HTMLElement | null = root) => {
       if (modal && !modal.hidden) {
@@ -348,7 +389,7 @@
       const isUnclear = values.includes('unknown') || values.includes('format-unknown');
 
       const route = isUnclear
-        ? 'Начните с обзорной консультации: врач поможет отделить эстетический запрос от лишних процедур.'
+        ? 'Начните с обзорной консультации: врач поможет понять, с чего начать и какие варианты уместны.'
         : isSurgery
           ? 'Вам подойдёт консультация хирурга с обсуждением сроков, восстановления и альтернатив.'
         : isSkin
@@ -360,13 +401,6 @@
         'Запишите сроки, события и ограничения по восстановлению.',
         'Медицинские рекомендации врач даст после осмотра.',
       ];
-
-      resultMessage = [
-        'Опросник: навигатор консультации',
-        ...quizSteps.map((step, index) => `${index + 1}. ${step.question} — ${answers[index]?.label ?? 'не выбрано'}`),
-        '',
-        route,
-      ].join('\n');
 
       if (resultLead) resultLead.textContent = `${route} Оставьте контакт — администратор получит ответы и свяжется в рабочее время.`;
       if (resultList) {
@@ -409,34 +443,48 @@
       scrollToQuiz(stepView);
     });
 
-    resultForm?.addEventListener('submit', (event) => {
+    resultForm?.addEventListener('submit', async (event) => {
       event.preventDefault();
       const submit = resultForm.querySelector<HTMLButtonElement>('button[type="submit"]');
       const formData = new FormData(resultForm);
       const name = String(formData.get('name') ?? '').trim();
       const phone = String(formData.get('phone') ?? '').trim();
-      const text = [
-        'Заявка с опросника The Platinental Казань',
-        name ? `Имя: ${name}` : '',
-        phone ? `Телефон: ${phone}` : '',
-        '',
-        resultMessage,
-      ].filter(Boolean).join('\n');
+      const consent = Boolean(formData.get('consent'));
+      const shortAnswers = quizSteps.map((step, index) => ({
+        question: step.question,
+        answer: answers[index]?.label ?? 'не выбрано',
+      }));
 
       if (submit) {
         submit.disabled = true;
-        submit.textContent = 'Готовим заявку...';
+        submit.textContent = 'Отправляем заявку...';
       }
       window.platinentalReachGoal?.('form_submit_consultation', { form: 'consultation_quiz' });
-      window.open(`https://wa.me/78432236666?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
-      window.setTimeout(() => {
+
+      try {
+        await sendTelegramLead({
+          source: 'Навигатор консультации',
+          name,
+          phone,
+          consent,
+          answers: shortAnswers,
+          page: `${window.location.pathname}${window.location.search}`,
+        });
         resultForm.reset();
-        if (submit) {
-          submit.disabled = false;
-          submit.innerHTML = 'Передать ответы администратору <span aria-hidden="true">→</span>';
-        }
         closeModal(false);
-      }, 1000);
+        window.dispatchEvent(new CustomEvent('lead-notice', { detail: { status: 'success' } }));
+      } catch (error) {
+        console.error('Telegram lead submit failed', error);
+        closeModal(false);
+        window.dispatchEvent(new CustomEvent('lead-notice', { detail: { status: 'fallback' } }));
+      } finally {
+        window.setTimeout(() => {
+          if (submit) {
+            submit.disabled = false;
+            submit.innerHTML = 'Передать ответы администратору <span aria-hidden="true">→</span>';
+          }
+        }, 1600);
+      }
     });
 
     openButtons.forEach((button) => {
@@ -458,13 +506,17 @@
       if (event.key === 'Escape' && modal && !modal.hidden) closeModal(true);
     });
 
-    window.setTimeout(() => {
+    const openTimerModal = () => {
       if (!modal || window.location.pathname !== '/') return;
       if (window.sessionStorage.getItem(sessionKey) === '1') return;
       if (Date.now() < dismissedUntil()) return;
       if (document.hidden) return;
+      if (!hasCookieChoice()) return;
       openModal('timer');
-    }, 30000);
+    };
+
+    window.setTimeout(openTimerModal, 30000);
+    document.addEventListener('platinental:cookie-consent-updated', openTimerModal);
 
     render();
   }
@@ -625,7 +677,6 @@
     gap: 1.5rem;
     scroll-margin-top: calc(var(--v3-nav-h, 4rem) + 1rem);
   }
-
   .quiz-step[hidden],
   .quiz-result[hidden] {
     display: none;
@@ -801,6 +852,19 @@
     height: 20px;
     flex: 0 0 auto;
     margin-top: 0.1rem;
+  }
+
+  .quiz-consent .v3-link {
+    display: inline;
+    min-height: 0;
+    padding: 0 0 0.12em;
+    line-height: inherit;
+    vertical-align: baseline;
+    background-position: 0 100%;
+  }
+
+  .quiz-consent .v3-link::after {
+    bottom: 0;
   }
 
   .quiz-contact-form .v3-btn {
@@ -981,6 +1045,12 @@
 
     .quiz-contact-form {
       grid-template-columns: 1fr;
+    }
+
+    .quiz-consent {
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      line-height: 1.42;
     }
 
     .quiz-contact-form .v3-btn {

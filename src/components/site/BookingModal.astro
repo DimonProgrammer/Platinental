@@ -86,6 +86,27 @@
         <a href="https://wa.me/78432236666" class="v3-link" target="_blank" rel="noopener noreferrer">WhatsApp</a>
       </div>
     </form>
+
+  </div>
+</div>
+
+<div class="lead-notice" data-lead-notice hidden role="dialog" aria-modal="true" aria-labelledby="lead-notice-title">
+  <button type="button" class="lead-notice-backdrop" aria-label="Закрыть уведомление" data-lead-notice-close></button>
+  <div class="lead-notice-panel" role="document">
+    <button type="button" class="lead-notice-close" aria-label="Закрыть" data-lead-notice-close>
+      <span aria-hidden="true">×</span>
+    </button>
+    <span class="v3-eyebrow" data-lead-notice-eyebrow>Заявка отправлена</span>
+    <h2 id="lead-notice-title" class="lead-notice-title">Спасибо, мы получили обращение</h2>
+    <p class="v3-body" data-lead-notice-text>
+      Администратор свяжется в рабочее время. Если удобно написать самим, выберите мессенджер.
+    </p>
+    <p class="lead-notice-hours">Пн–Вс 9:00–20:00</p>
+    <div class="lead-notice-links" aria-label="Мессенджеры клиники">
+      <a href="https://t.me/platinental_kazan" class="v3-btn v3-btn-secondary" target="_blank" rel="noopener noreferrer">Telegram</a>
+      <a href="https://max.ru/u/f9LHodD0cOKLXxHeIK067LNPbNjsqlGF8qj74HK5vOo0CfBOPaTkNZmUAXI" class="v3-btn v3-btn-secondary" target="_blank" rel="noopener noreferrer">Max</a>
+      <a href="https://wa.me/78432236666" class="v3-btn v3-btn-secondary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
   </div>
 </div>
 
@@ -93,6 +114,8 @@
   function initBooking() {
     const root = document.querySelector<HTMLElement>('[data-booking]');
     if (!root) return;
+    if (root.dataset.bookingInitialized === '1') return;
+    root.dataset.bookingInitialized = '1';
 
     const titleEl = root.querySelector<HTMLElement>('[data-booking-title]');
     const leadEl = root.querySelector<HTMLElement>('[data-booking-lead]');
@@ -100,14 +123,80 @@
     const nameInput = root.querySelector<HTMLInputElement>('input[name="name"]');
     const doctorInput = root.querySelector<HTMLInputElement>('[data-booking-doctor]');
     const form = root.querySelector<HTMLFormElement>('[data-booking-form]');
+    const notice = document.querySelector<HTMLElement>('[data-lead-notice]');
+    const noticeEyebrow = document.querySelector<HTMLElement>('[data-lead-notice-eyebrow]');
+    const noticeText = document.querySelector<HTMLElement>('[data-lead-notice-text]');
     const messageInput = root.querySelector<HTMLTextAreaElement>('textarea[name="message"]');
-    const closeBtns = root.querySelectorAll<HTMLElement>('[data-booking-close]');
     const defaultTitle = titleEl?.textContent ?? 'Свяжемся и уточним удобное время';
     const defaultLead = leadEl?.textContent?.replace(/\s+/g, ' ').trim() ??
       'Оставьте телефон — администратор свяжется в рабочее время, сориентирует по консультации, стоимости и ближайшим вариантам записи.';
     const defaultMessagePlaceholder = messageInput?.placeholder ?? '';
 
     let lastFocus: HTMLElement | null = null;
+
+    const showForm = () => {
+      if (form) form.hidden = false;
+    };
+
+    const openLeadNotice = (status: 'success' | 'fallback') => {
+      if (noticeEyebrow) {
+        noticeEyebrow.textContent = status === 'success' ? 'Заявка отправлена' : 'Свяжитесь с клиникой';
+      }
+      if (noticeText) {
+        noticeText.textContent = status === 'success'
+          ? 'Администратор свяжется в рабочее время. Если удобно написать самим, выберите мессенджер.'
+          : 'Не удалось автоматически отправить заявку. Напишите нам в удобный мессенджер, и администратор ответит в рабочее время.';
+      }
+      if (notice) {
+        notice.hidden = false;
+        document.documentElement.classList.add('lead-notice-open');
+        document.documentElement.style.overflow = 'hidden';
+        window.requestAnimationFrame(() => {
+          notice.querySelector<HTMLElement>('[data-lead-notice-close]')?.focus();
+        });
+      }
+    };
+
+    const closeLeadNotice = () => {
+      if (!notice) return;
+      notice.hidden = true;
+      document.documentElement.classList.remove('lead-notice-open');
+      if (root.hidden) document.documentElement.style.overflow = '';
+      lastFocus?.focus?.();
+    };
+
+    async function sendTelegramLead(payload: Record<string, unknown>) {
+      const isVercelHost = window.location.hostname.endsWith('vercel.app');
+      if (!isVercelHost) {
+        fetch('/api/telegram-lead.php?store=1', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }).catch(() => {});
+      }
+
+      const endpoints = isVercelHost
+        ? ['/api/telegram-lead', '/api/telegram-lead.php']
+        : [
+            'https://platinental-kazan.vercel.app/api/telegram-lead',
+            '/api/telegram-lead',
+            '/api/telegram-lead.php',
+          ];
+
+      for (const endpoint of endpoints) {
+        try {
+          const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          if (response.ok) return;
+        } catch {}
+      }
+
+      throw new Error('telegram_lead_failed');
+    }
 
     const open = (detail?: {
       doctor?: string;
@@ -118,6 +207,7 @@
       messagePlaceholder?: string;
     }) => {
       lastFocus = document.activeElement as HTMLElement;
+      showForm();
       if (titleEl) {
         titleEl.textContent = detail?.title
           ? detail.title
@@ -149,9 +239,14 @@
     const close = () => {
       root.hidden = true;
       document.documentElement.classList.remove('booking-open');
-      document.documentElement.style.overflow = '';
+      if (notice?.hidden !== false) document.documentElement.style.overflow = '';
       lastFocus?.focus();
     };
+
+    window.addEventListener('lead-notice', (e) => {
+      const status = ((e as CustomEvent).detail?.status ?? 'success') as 'success' | 'fallback';
+      openLeadNotice(status);
+    });
 
     window.addEventListener('open-booking', (e) => {
       const detail = (e as CustomEvent).detail;
@@ -173,12 +268,14 @@
       });
     });
 
-    closeBtns.forEach((b) => b.addEventListener('click', close));
+    root.querySelectorAll<HTMLElement>('[data-booking-close]').forEach((b) => b.addEventListener('click', close));
+    notice?.querySelectorAll<HTMLElement>('[data-lead-notice-close]').forEach((b) => b.addEventListener('click', closeLeadNotice));
     document.addEventListener('keydown', (e) => {
       if (!root.hidden && e.key === 'Escape') close();
+      if (notice?.hidden === false && e.key === 'Escape') closeLeadNotice();
     });
 
-    form?.addEventListener('submit', (e) => {
+    form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]');
       const formData = new FormData(form);
@@ -186,28 +283,38 @@
       const phone = String(formData.get('phone') ?? '').trim();
       const message = String(formData.get('message') ?? '').trim();
       const doctor = String(formData.get('doctor') ?? '').trim();
-      const text = [
-        'Заявка с сайта The Platinental Казань',
-        name ? `Имя: ${name}` : '',
-        phone ? `Телефон: ${phone}` : '',
-        doctor ? `Врач: ${doctor}` : '',
-        message ? `Запрос: ${message}` : '',
-      ].filter(Boolean).join('\n');
-      const url = `https://wa.me/78432236666?text=${encodeURIComponent(text)}`;
+      const consent = Boolean(formData.get('consent'));
       window.platinentalReachGoal?.('form_submit_consultation', { form: 'booking_modal', doctor });
       if (submit) {
         submit.disabled = true;
-        submit.textContent = 'Готовим заявку...';
+        submit.textContent = 'Отправляем заявку...';
       }
-      window.open(url, '_blank', 'noopener,noreferrer');
-      window.setTimeout(() => {
+
+      try {
+        await sendTelegramLead({
+          source: 'Запись на консультацию',
+          name,
+          phone,
+          message,
+          doctor,
+          consent,
+          page: `${window.location.pathname}${window.location.search}`,
+        });
         form.reset();
-        if (submit) {
-          submit.disabled = false;
-          submit.innerHTML = 'Отправить заявку <span aria-hidden="true">→</span>';
-        }
         close();
-      }, 1500);
+        openLeadNotice('success');
+      } catch (error) {
+        console.error('Telegram lead submit failed', error);
+        close();
+        openLeadNotice('fallback');
+      } finally {
+        window.setTimeout(() => {
+          if (submit) {
+            submit.disabled = false;
+            submit.innerHTML = 'Отправить заявку <span aria-hidden="true">→</span>';
+          }
+        }, 1600);
+      }
     });
   }
 
@@ -223,9 +330,10 @@
     inset: 0;
     z-index: 100;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding: 0.75rem;
   }
   .booking-backdrop {
     position: absolute;
@@ -344,6 +452,17 @@
     cursor: pointer;
   }
   .consent-text { padding-top: 0.0625rem; }
+  .consent-text .v3-link {
+    display: inline;
+    min-height: 0;
+    padding: 0 0 0.12em;
+    line-height: inherit;
+    vertical-align: baseline;
+    background-position: 0 100%;
+  }
+  .consent-text .v3-link::after {
+    bottom: 0;
+  }
   .consent input {
     width: 20px;
     height: 20px;
@@ -370,12 +489,86 @@
     border-color: color-mix(in srgb, var(--v3-ink) 45%, transparent);
   }
 
+  .lead-notice[hidden] { display: none; }
+  .lead-notice {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .lead-notice-backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(10, 10, 10, 0.52);
+    cursor: pointer;
+    animation: bk-fade 180ms var(--v3-ease-out, ease-out);
+  }
+  .lead-notice-panel {
+    position: relative;
+    width: min(100%, 34rem);
+    background: var(--v3-cream);
+    border-radius: 6px;
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+    box-shadow: 0 24px 70px rgba(10, 10, 10, 0.22);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    animation: bk-pop 240ms var(--v3-ease-out, ease-out);
+  }
+  .lead-notice-close {
+    position: absolute;
+    top: 0.625rem;
+    right: 0.625rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 0;
+    background: transparent;
+    color: var(--v3-ink-muted);
+    cursor: pointer;
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+  .lead-notice-title {
+    margin: 0;
+    padding-right: 2rem;
+    font-family: var(--v3-font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.08;
+    font-weight: 400;
+    color: var(--v3-ink);
+  }
+  .lead-notice p { margin: 0; }
+  .lead-notice [data-lead-notice-text] {
+    color: var(--v3-ink-secondary);
+    max-width: 34rem;
+  }
+  .lead-notice-hours {
+    color: var(--v3-ink-muted);
+    font-size: 0.875rem;
+  }
+  .lead-notice-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+  .lead-notice-links .v3-btn {
+    min-width: 0;
+    justify-content: center;
+    padding-inline: 0.875rem;
+  }
+
   @media (max-width: 560px) {
     .booking {
-      padding: 0.375rem;
+      align-items: flex-start;
+      padding: max(0.5rem, env(safe-area-inset-top)) 0.375rem 0.375rem;
     }
     .booking-panel {
-      max-height: calc(100dvh - 0.375rem);
+      max-height: calc(100dvh - max(0.875rem, env(safe-area-inset-top)));
       border-radius: var(--v3-radius-lg);
       padding: 1rem 1.125rem max(1rem, env(safe-area-inset-bottom));
     }
@@ -414,7 +607,7 @@
     .consent {
       gap: 0.5rem;
       font-size: 0.75rem;
-      line-height: 1.35;
+      line-height: 1.42;
       min-height: 44px;
       padding-block: 0.25rem;
       align-items: flex-start;
@@ -432,6 +625,21 @@
     .booking-messengers {
       font-size: 0.8125rem;
       margin-top: -0.125rem;
+    }
+    .lead-notice {
+      align-items: flex-start;
+      padding: max(0.75rem, env(safe-area-inset-top)) 0.75rem 0.75rem;
+    }
+    .lead-notice-panel {
+      border-radius: var(--v3-radius-lg);
+      padding: 1.25rem 1.125rem 1.375rem;
+      gap: 0.875rem;
+    }
+    .lead-notice-title {
+      font-size: clamp(1.75rem, 9vw, 2.375rem);
+    }
+    .lead-notice-links {
+      grid-template-columns: 1fr;
     }
   }
 </style>

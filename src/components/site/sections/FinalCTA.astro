@@ -98,36 +98,82 @@ const {
 
 <script>
   function initFinalForms() {
+    async function sendTelegramLead(payload: Record<string, unknown>) {
+      const isVercelHost = window.location.hostname.endsWith('vercel.app');
+      if (!isVercelHost) {
+        fetch('/api/telegram-lead.php?store=1', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }).catch(() => {});
+      }
+
+      const endpoints = isVercelHost
+        ? ['/api/telegram-lead', '/api/telegram-lead.php']
+        : [
+            'https://platinental-kazan.vercel.app/api/telegram-lead',
+            '/api/telegram-lead',
+            '/api/telegram-lead.php',
+          ];
+
+      for (const endpoint of endpoints) {
+        try {
+          const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          if (response.ok) return;
+        } catch {}
+      }
+
+      throw new Error('telegram_lead_failed');
+    }
+
     document.querySelectorAll<HTMLFormElement>('.final-form').forEach((form) => {
       if (form.dataset.finalBound === '1') return;
       form.dataset.finalBound = '1';
-      form.addEventListener('submit', (e) => {
+      const showResult = (status: 'success' | 'fallback') => {
+        window.dispatchEvent(new CustomEvent('lead-notice', { detail: { status } }));
+      };
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]');
         const formData = new FormData(form);
         const name = String(formData.get('name') ?? '').trim();
         const phone = String(formData.get('phone') ?? '').trim();
         const message = String(formData.get('message') ?? '').trim();
-        const text = [
-          'Заявка с сайта The Platinental Казань',
-          name ? `Имя: ${name}` : '',
-          phone ? `Телефон: ${phone}` : '',
-          message ? `Запрос: ${message}` : '',
-        ].filter(Boolean).join('\n');
+        const consent = Boolean(formData.get('consent'));
         window.platinentalReachGoal?.('form_submit_consultation', { form: 'final_cta' });
         if (submit) {
           submit.dataset.defaultLabel = submit.textContent?.replace(/→/g, '').trim() || 'Отправить заявку';
           submit.disabled = true;
-          submit.textContent = 'Готовим заявку...';
+          submit.textContent = 'Отправляем заявку...';
         }
-        window.open(`https://wa.me/78432236666?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
-        window.setTimeout(() => {
+
+        try {
+          await sendTelegramLead({
+            source: 'Общая консультация',
+            name,
+            phone,
+            message,
+            consent,
+            page: `${window.location.pathname}${window.location.search}`,
+          });
           form.reset();
-          if (submit) {
-            submit.disabled = false;
-            submit.innerHTML = `${submit.dataset.defaultLabel ?? 'Отправить заявку'} <span aria-hidden="true">→</span>`;
-          }
-        }, 1400);
+          showResult('success');
+        } catch (error) {
+          console.error('Telegram lead submit failed', error);
+          showResult('fallback');
+        } finally {
+          window.setTimeout(() => {
+            if (submit) {
+              submit.disabled = false;
+              submit.innerHTML = `${submit.dataset.defaultLabel ?? 'Отправить заявку'} <span aria-hidden="true">→</span>`;
+            }
+          }, 1600);
+        }
       });
     });
   }
@@ -248,6 +294,17 @@ const {
     padding-block: 0.25rem; /* увеличить tap-зону на label */
   }
   .consent-text { padding-top: 0.125rem; }
+  .consent-text .v3-link {
+    display: inline;
+    min-height: 0;
+    padding: 0 0 0.12em;
+    line-height: inherit;
+    vertical-align: baseline;
+    background-position: 0 100%;
+  }
+  .consent-text .v3-link::after {
+    bottom: 0;
+  }
   .consent input {
     width: 22px;
     height: 22px;
@@ -319,6 +376,8 @@ const {
     .consent {
       min-height: 44px;
       padding-block: 0.375rem;
+      font-size: 0.75rem;
+      line-height: 1.42;
     }
     .consent input {
       width: 24px;
