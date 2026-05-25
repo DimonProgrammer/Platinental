@@ -48,13 +48,14 @@ const showResultCaseTitles = d.slug === 'mamedov' || d.slug === 'valisheva';
 const hasNamedResultCases = showResultCaseTitles && Boolean(d.resultCases?.some((item) => item.title && !/^Кейс \d+$/u.test(item.title)));
 const prototypeReviews = d.reviews ?? (d.review ? [d.review] : []);
 const hasEditorialProfile = Boolean(d.careAreas?.length || d.professionalPath || prototypeReviews.length || d.focusSections?.length);
-const bookingCtaLabel = d.nameBtn === 'записаться' ? 'Записаться на консультацию' : `Записаться ${d.nameBtn}`;
-const bookingFaqQuestion = d.nameBtn === 'записаться' ? 'Как записаться на консультацию?' : `Как записаться ${d.nameBtn}?`;
+const noBreakNameBtn = d.nameBtn.replace(/ ([А-ЯЁ]\.[А-ЯЁ]\.)$/u, '\u00A0$1');
+const bookingCtaLabel = d.nameBtn === 'записаться' ? 'Записаться на консультацию' : `Записаться ${noBreakNameBtn}`;
+const bookingFaqQuestion = d.nameBtn === 'записаться' ? 'Как записаться на консультацию?' : `Как записаться ${noBreakNameBtn}?`;
 const finalCtaHeading = d.slug === 'iskornev'
   ? 'Записаться к<br />Искорневу А.А.'
   : d.nameBtn === 'записаться'
     ? 'Записаться<br />на приём'
-    : `Записаться<br />${d.nameBtn}`;
+    : `Записаться<br />${noBreakNameBtn}`;
 const finalCtaLead = d.slug === 'iskornev'
   ? 'Администратор уточнит ближайшие даты, формат консультации и какие материалы подготовить к приёму.'
   : `${[d.priceMain, ...priceSubParts].filter(Boolean).join('<br />')}. Администратор уточнит удобное время и поможет подготовиться к приёму.`;
