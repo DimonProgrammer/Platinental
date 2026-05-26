@@ -1,11 +1,35 @@
 ---
-const allPromotions = [
+type Promotion = {
+  label: string;
+  title: string;
+  text: string;
+  cta: string;
+  preset: string;
+  bookingTitle?: string;
+  bookingLead?: string;
+  bookingMessage?: string;
+  doctorHref?: string;
+  doctorCta?: string;
+  image: string;
+  imageAlt: string;
+  imageFrame: {
+    scale: number;
+    x: string;
+    y: string;
+  };
+  isVisible?: boolean;
+};
+
+const allPromotions: Promotion[] = [
   {
     label: 'Акция до 31 августа',
     title: '-15% на операции Тулатовой Р.Т.',
     text: 'С 1 мая по 31 августа действует скидка 15% на все операции Регины Тимуровны Тулатовой. Администратор уточнит условия и подберёт время консультации.',
     cta: 'Записаться',
     preset: 'Акция -15% на операции Тулатовой Р.Т.',
+    bookingTitle: 'Запись на консультацию по акции',
+    bookingLead: 'Оставьте телефон — администратор уточнит условия акции на операции Тулатовой Р.Т. и подберёт удобное время консультации.',
+    bookingMessage: 'Интересует акция -15% на операции Тулатовой Р.Т.',
     doctorHref: '/doctors/tulatova',
     doctorCta: 'Страница врача',
     image: '/doctors/tulatova/photo.png',
@@ -13,14 +37,16 @@ const allPromotions = [
     imageFrame: { scale: 1.02, x: '0%', y: '0%' },
   },
   {
-    isVisible: false,
     label: 'Благотворительная акция',
-    title: 'Бесплатная операция совместно с Корл',
-    text: 'The Platinental Казань и Корл проводят благотворительную акцию: пациент получает операцию без оплаты. Администратор подскажет, какие документы и фото отправить для предварительного рассмотрения.',
-    cta: 'Оставить заявку',
-    preset: 'Благотворительная операция совместно с Корл',
-    image: '/promo-consultation-plan.png',
-    imageAlt: 'Спокойная консультация в светлом кабинете',
+    title: 'Бесплатная операция при травме лица',
+    text: 'The Platinental Казань и медицинский центр «Корл» запускают благотворительную инициативу для людей с серьёзными травмами лица и тяжёлым материальным положением. Оставьте заявку — администратор уточнит ситуацию и передаст её на предварительное рассмотрение.',
+    cta: 'Подать заявку',
+    preset: 'Благотворительная операция при травме лица',
+    bookingTitle: 'Заявка на благотворительную операцию',
+    bookingLead: 'Оставьте телефон — администратор уточнит вашу ситуацию и подскажет, какие материалы нужны для предварительного рассмотрения.',
+    bookingMessage: 'Хочу подать заявку на благотворительную операцию при травме лица.',
+    image: '/promo-charity-operation-2026-05-22.jpg',
+    imageAlt: 'Команда благотворительной инициативы The Platinental Казань и медицинского центра Корл',
     imageFrame: { scale: 1, x: '0%', y: '0%' },
   },
 ];
@@ -36,7 +62,7 @@ const messengers = [
 
 <section class="v3-promotions v3-surface-sand" aria-labelledby="promo-heading" id="promo">
   <div class="v3-container v3-container-wide">
-    <article class="promo-panel" data-v3-reveal data-promo-slider>
+    <article class="promo-panel" data-promo-slider>
       <div class="promo-content">
         <div class="promo-slides" aria-live="polite">
           {promotions.map((promo, index) => (
@@ -54,7 +80,15 @@ const messengers = [
               <p class="v3-lead promo-lead">{promo.text}</p>
 
               <div class="promo-actions">
-                <button type="button" class="v3-btn v3-btn-primary" data-promo-booking data-preset={promo.preset}>
+                <button
+                  type="button"
+                  class="v3-btn v3-btn-primary"
+                  data-promo-booking
+                  data-preset={promo.preset}
+                  data-booking-title={promo.bookingTitle}
+                  data-booking-lead={promo.bookingLead}
+                  data-booking-message={promo.bookingMessage}
+                >
                   {promo.cta} <span aria-hidden="true">→</span>
                 </button>
                 {promo.doctorHref && (
@@ -78,7 +112,7 @@ const messengers = [
               </div>
 
               <p class="v3-caption promo-note">
-                Медицинские рекомендации и стоимость врач подтверждает на консультации.
+                Медицинские рекомендации врач подтверждает на консультации.
               </p>
             </div>
           ))}
@@ -133,8 +167,11 @@ const messengers = [
       button.dataset.bookingBound = '1';
       button.addEventListener('click', () => {
         const preset = button.dataset.preset || 'Акция The Platinental Казань';
+        const title = button.dataset.bookingTitle;
+        const lead = button.dataset.bookingLead;
+        const message = button.dataset.bookingMessage || `Интересует ${preset}.`;
         window.dispatchEvent(new CustomEvent('open-booking', {
-          detail: { preset },
+          detail: { preset, title, lead, message },
         }));
       });
     });
@@ -472,29 +509,68 @@ const messengers = [
 
   @media (max-width: 560px) {
     .v3-promotions {
-      padding-top: var(--v3-gap-small);
-      padding-bottom: var(--v3-gap-medium);
+      padding-top: 2.5rem;
+      padding-bottom: 3.5rem;
     }
 
     .promo-panel {
       padding: 1rem;
       border-radius: var(--v3-radius-lg);
+      gap: 1rem;
+      overflow: hidden;
     }
 
-    .promo-lead {
-      display: none;
+    .promo-kicker {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      border-radius: 999px;
+    }
+
+    .promo-content {
+      padding: 0;
+      gap: 0.875rem;
     }
 
     .promo-slides {
-      min-height: 22rem;
+      min-height: 0;
+    }
+
+    .promo-slide {
+      position: relative;
+      inset: auto;
+      gap: 0.875rem;
+      justify-content: flex-start;
+    }
+
+    .promo-slide:not(.is-active) {
+      position: absolute;
+      inset: 0;
+      visibility: hidden;
+    }
+
+    .promo-slide.is-active {
+      visibility: visible;
+    }
+
+    .promo-title {
+      max-width: 12ch;
+    }
+
+    .promo-lead {
+      display: block;
+      font-size: 0.9375rem;
+      line-height: 1.5;
     }
 
     .promo-actions {
       align-items: stretch;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding-top: 0.125rem;
     }
 
-    .promo-actions {
-      gap: 0.75rem;
+    .promo-actions .v3-btn {
+      width: 100%;
     }
 
     .promo-messengers {
@@ -504,6 +580,7 @@ const messengers = [
     .promo-profile-link {
       order: 3;
       width: fit-content;
+      min-height: 2rem;
     }
 
     .promo-msgr {
@@ -522,7 +599,9 @@ const messengers = [
     }
 
     .promo-visual {
-      height: 15rem;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--v3-radius-lg);
     }
   }
 
